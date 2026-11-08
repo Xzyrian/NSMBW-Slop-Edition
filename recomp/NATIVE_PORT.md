@@ -8,7 +8,7 @@ They are being moved to native C in `runtime/`, one subsystem at a time: add the
 name to `runtime/hle_funcs.txt`, write `hle_<name>()`, and compare against `orig_<name>()`.
 Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 
-**217 of 1318 module functions native** (775 replace game functions, 543 are the module's own helpers). Wrapped (hand-written code around the module's version, *italic*): 6.
+**245 of 1318 module functions native** (775 replace game functions, 543 are the module's own helpers). Wrapped (hand-written code around the module's version, *italic*): 6.
 
 | Class | Native | Functions |
 |---|---|---|
@@ -30,14 +30,14 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `dRemoconMng_c::dConnect_c::dExtension_c` | 0/9 | executeState_Freestyle, executeState_None, executeState_Other, executeState_Wait, initializeState_Freestyle, initializeState_None, initializeState_Other, initializeState_Wait, ~dExtension_c |
 | `dScGameSetup_c` | 9/9 | **Phase_Create2DPlayer**, **Phase_CreateLayoutManagers**, **executeState_FileSelect**, **executeState_StartMember**, **finalizeState_EasyPairingWait**, **finalizeState_FileSelect**, **finalizeState_VoiceEndWait**, **initializeState_ConnectionCheck**, **initializeState_EasyPairingWait** |
 | `dStaffCreditScore_c` | 0/9 | createLayout, executeState_No1PlayerKiMe, initializeState_HighScoreAnimeEndWait, initializeState_HighScoreCheck, initializeState_No1PlayerKiMe, initializeState_OnStageAnimeEndWait, initializeState_OnStageWait, setCoinCount, updateCoinCounts |
-| `daWmSubPlayer_c` | 0/9 | calcWalkSpeed, create, getPlayerOrder, getPlayerOrderAngle, getPlayerOrderDistance, getPlayerOrderTableIndex, isPlayerStar, isPlayerType, loadModel |
+| `daWmSubPlayer_c` | 9/9 | **calcWalkSpeed**, **create**, **getPlayerOrder**, **getPlayerOrderAngle**, **getPlayerOrderDistance**, **getPlayerOrderTableIndex**, **isPlayerStar**, **isPlayerType**, **loadModel** |
 | `dfukidashiManager_c` | 9/9 | **FUN_80157360**, **FUN_80157450**, **FUN_801574A0**, **create**, **dfukidashiManager_c**, **doDelete**, **draw**, **execute**, **~dfukidashiManager_c** |
 | `dMj2dHeader_c` | 8/8 | **getPlayCountCoinBattle**, **getPlayCountFreeMode**, **initialize**, **isMultiWorldOpenFlag**, **onMultiWorldOpenFlag**, **setPlayCountCoinBattle**, **setPlayCountFreeMode**, **versionUpdate** |
 | `dStockItem_c` | 0/8 | calc2DPlayerItemUpdate, calcPosScale, calcUseEffects, checkItemSelect, createLayout, executeState_WindowOpenInit, finalizeState_WindowCloseAnimeEndWait, getPosPaneForPlayer |
 | `daEnRemoconCannon_c` | 0/8 | EffectDischargeTail, UNDEF_80a95c00, UNDEF_80a964e0, createModel, firePlayer, initializeState_Fire, setBodyColor, setupGuide |
 | `daMiniGameGunBatteryMgrObj_c` | 0/8 | addResultRest, daMiniGameGunBatteryMgrObj_c, executeState_ShowResult, executeState_ShowRule, hitBalloon, setMessageCloseWait, setPlayerDone, ~daMiniGameGunBatteryMgrObj_c |
 | `dScStage_c` | 0/7 | CreatedLayouts, calcTitleCount, exitClear, exitRestore, procExitMode, setLoopType, setNextScene |
-| `dWmSeManager_c` | 0/7 | UNDEF_80104dd0, construct, execute, initialize, playPlySound, playPlyVoice, ~dWmSeManager_c |
+| `dWmSeManager_c` | 7/7 | **UNDEF_80104dd0**, **construct**, **execute**, **initialize**, **playPlySound**, **playPlyVoice**, **~dWmSeManager_c** |
 | `daEnShell_c` | 0/7 | Normal_VsPlHitCheck, executeState_Slide, hitCallback_YoshiHipAttk, initializeState_Slide, setCarryFall, setEatSpitOut, setKickSlide |
 | `daPlBase_c` | 0/7 | executeState_DemoControl, initDemoInDokanUD, initializeState_DemoRailDokan, playGoalOther, setControlDemoWalk, setExitRailDokan, stopGoalOther |
 | `Controller` | 0/6 | createRumbleMgr, startMotor, startPatternRumble, startPowerFrameRumble, stopMotor, stopRumbleMgr |
@@ -48,7 +48,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `dfukidashiInfo_c` | 6/6 | **ColorSet**, **SetPosOffset**, **draw**, **executeState_Move**, **finalizeState_Exit**, **finalizeState_Move** |
 | `dBgGm_c` | 0/5 | execute, getActScrPlayerNum, getNumberPlayerP, inW2CastleMazeBounds, isManualZoomActive |
 | `dCourseSelectGuide_c` | 0/5 | PlayerIconDisp, RestAlphaDisp, RestNumberDisp, createLayout, ~dCourseSelectGuide_c |
-| `dNandThread_c` | 0/5 | cmdSave, deleteFile, existCheck, load, save |
+| `dNandThread_c` | 5/5 | **cmdSave**, **deleteFile**, **existCheck**, **load**, **save** |
 | `dScCrsin_c` | 0/5 | executeState_DispEndCheck, *executeState_resWaitProc2*, initializeState_loadCourseProc, loadDefaultObjectResPhase, ~dScCrsin_c |
 | `daCastleKokoopaDemo1st_c` | 0/5 | calcBattleStDemoControl, calcIggyDemoScroll, checkBattleStDemo, isPlayerEntry, setFlag115 |
 | `daEnGlpole_c` | 0/5 | ccCallBackForPole, ccCallBackForPole2, create, isAllPlayerOnPole, isTopOfFlagPole |
@@ -61,7 +61,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `dGameKeyCore_c` | 0/4 | handleTilting, read, setConfigKey, setShakeY |
 | `dGameKey_c` | 0/4 | allclear, dGameKey_c, read, ~dGameKey_c |
 | `dMultiCourseSelect_c` | 0/4 | createLayoutExtra, finalizeState_DispWait, initializeState_DispWait, setPlayerPos |
-| `dScWMap_c` | 0/4 | CreateBootParam, createActorsPhase, createLayoutPhase, initLoadGame |
+| `dScWMap_c` | 4/4 | **CreateBootParam**, **createActorsPhase**, **createLayoutPhase**, **initLoadGame** |
 | `dSmallScore_c` | 0/4 | DispWait, chgColor, setPlayer1000Color, setPlayer100Color |
 | `daBossKoopaDemo_c` | 0/4 | executeState_End, executeState_Escape, executeState_Magic, initializeState_Magic |
 | `daEnItem_c` | 0/4 | collectItem, create, initializeState_BlockAppearMultiJumpDown, initializeState_BlockAppearMultiJumpUp |
@@ -101,7 +101,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `daLiftRemoconMain_c` | 0/2 | UpdateControlPlayerNo, ~daLiftRemoconMain_c |
 | `daLiftRemoconSeesaw_c` | 0/2 | CalculateAngle, CalculateInitialAngle |
 | `daShipGear_c` | 0/2 | executeRide, setRideOn |
-| `daWmMap_c` | 0/2 | IsIbaraRouteOpen, IsRouteOpen |
+| `daWmMap_c` | 2/2 | **IsIbaraRouteOpen**, **IsRouteOpen** |
 | `mDvd` | 0/2 | ConvertPathToEntrynum, loadToMainRAM |
 | `sStateID_c` | 0/2 | isSameName, number |
 | `ActorName` | 0/1 | getName |
@@ -143,7 +143,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `daRemoconBalance_c::nodeCallbackA_c` | 0/1 | ~nodeCallbackA_c |
 | `daRemoconBalance_c::nodeCallbackB_c` | 0/1 | ~nodeCallbackB_c |
 | `daTarzanIvy_c::nodeCallback_c` | 0/1 | ~nodeCallback_c |
-| `daWmSubPlayer_c::NodeTrail_c` | 0/1 | pushNext |
+| `daWmSubPlayer_c::NodeTrail_c` | 1/1 | **pushNext** |
 | `daYoshi_c` | 0/1 | executeLastAll |
 | `mDvd_toMainRam_c` | 0/1 | create |
 | `sStateMethod_c` | 0/1 | changeStateMethod |
@@ -474,11 +474,11 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_2C7F0` | dMultiCourseSelect_c::initializeState_DispWait |  |
 | `mod_fn_2_2BFC0` | dMultiCourseSelect_c::setPlayerPos |  |
 | `mod_fn_2_2B1B0` | dMultiCourseSelect_c_classInit |  |
-| `mod_fn_800CF080` | dNandThread_c::cmdSave |  |
-| `mod_fn_800CF960` | dNandThread_c::deleteFile |  |
-| `mod_fn_800CEE90` | dNandThread_c::existCheck |  |
-| `mod_fn_800CF590` | dNandThread_c::load |  |
-| `mod_fn_800CF110` | dNandThread_c::save |  |
+| `mod_fn_800CF080` | dNandThread_c::cmdSave | yes |
+| `mod_fn_800CF960` | dNandThread_c::deleteFile | yes |
+| `mod_fn_800CEE90` | dNandThread_c::existCheck | yes |
+| `mod_fn_800CF590` | dNandThread_c::load | yes |
+| `mod_fn_800CF110` | dNandThread_c::save | yes |
 | `mod_fn_800D0270` | dNext_c::execute |  |
 | `mod_fn_2_33260` | dNumberOfPeopleChange_c::calcBasesForPlayerCount |  |
 | `mod_fn_2_335B0` | dNumberOfPeopleChange_c::checkCancel |  |
@@ -581,10 +581,10 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_1B7A20` | dScStage_c::procExitMode |  |
 | `mod_fn_80101990` | dScStage_c::setLoopType |  |
 | `mod_setNextScene__10dScStage_cFUsiQ210dScStage_c6Exit_eQ28dFader_c12fader_type_e` | dScStage_c::setNextScene |  |
-| `mod_fn_80102A40` | dScWMap_c::CreateBootParam |  |
-| `mod_fn_2_1B9A20` | dScWMap_c::createActorsPhase |  |
-| `mod_fn_2_1B9670` | dScWMap_c::createLayoutPhase |  |
-| `mod_fn_80102A80` | dScWMap_c::initLoadGame |  |
+| `mod_fn_80102A40` | dScWMap_c::CreateBootParam | yes |
+| `mod_fn_2_1B9A20` | dScWMap_c::createActorsPhase | yes |
+| `mod_fn_2_1B9670` | dScWMap_c::createLayoutPhase | yes |
+| `mod_fn_80102A80` | dScWMap_c::initLoadGame | yes |
 | `mod_fn_2_1AFBB0` | dScWorld9DeMo_c::create |  |
 | `mod_fn_800E2410` | dScoreMng_c::MiniGameScoreSet |  |
 | `mod_fn_2_3E9D0` | dSelectPlayer_c::createLayout |  |
@@ -623,13 +623,13 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_43C20` | dStockItem_c::finalizeState_WindowCloseAnimeEndWait |  |
 | `mod_getIconPictureIDforPlayer__12dStockItem_cFi` | dStockItem_c::getPosPaneForPlayer |  |
 | `mod_fn_2_41BD0` | dStockItem_c_classInit |  |
-| `mod_fn_80104CC0` | dWmSeManager_c::UNDEF_80104dd0 |  |
-| `mod_fn_80103E40` | dWmSeManager_c::construct |  |
-| `mod_fn_801045A0` | dWmSeManager_c::execute |  |
-| `mod_fn_80104140` | dWmSeManager_c::initialize |  |
-| `mod_fn_80105060` | dWmSeManager_c::playPlySound |  |
-| `mod_fn_80104FD0` | dWmSeManager_c::playPlyVoice |  |
-| `mod_fn_801040D0` | dWmSeManager_c::~dWmSeManager_c |  |
+| `mod_fn_80104CC0` | dWmSeManager_c::UNDEF_80104dd0 | yes |
+| `mod_fn_80103E40` | dWmSeManager_c::construct | yes |
+| `mod_fn_801045A0` | dWmSeManager_c::execute | yes |
+| `mod_fn_80104140` | dWmSeManager_c::initialize | yes |
+| `mod_fn_80105060` | dWmSeManager_c::playPlySound | yes |
+| `mod_fn_80104FD0` | dWmSeManager_c::playPlyVoice | yes |
+| `mod_fn_801040D0` | dWmSeManager_c::~dWmSeManager_c | yes |
 | `mod_fn_2_1BB7B0` | dWorldSelect_c::checkIslandMove |  |
 | `mod_fn_2_1BC1F0` | dWorldSelect_c::executeState_Select |  |
 | `mod_fn_800FE400` | dYoshiMdl_c::getPlayerObjectRes |  |
@@ -861,8 +861,8 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_140B50` | daTarzanIvy_c::initPlrInfo2 |  |
 | `mod_fn_2_140900` | daTarzanIvy_c::nodeCallback_c::~nodeCallback_c |  |
 | `mod_fn_2_140820` | daTarzanIvy_c_classInit |  |
-| `mod_fn_2_174BE0` | daWmMap_c::IsIbaraRouteOpen |  |
-| `mod_fn_2_174AB0` | daWmMap_c::IsRouteOpen |  |
+| `mod_fn_2_174BE0` | daWmMap_c::IsIbaraRouteOpen | yes |
+| `mod_fn_2_174AB0` | daWmMap_c::IsRouteOpen | yes |
 | `mod_fn_2_195430` | daWmPlayer_c::CreateSubPlayers |  |
 | `mod_fn_2_195500` | daWmPlayer_c::PlayerEntryUpdate |  |
 | `mod_fn_2_196980` | daWmPlayer_c::checkCsGuideKey |  |
@@ -876,16 +876,16 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_195800` | daWmPlayer_c::updatePlayerMode |  |
 | `mod_fn_2_195730` | daWmPlayer_c::updateSubPlayerModel |  |
 | `mod_fn_2_1950F0` | daWmPlayer_c::~daWmPlayer_c |  |
-| `mod_fn_2_181EE0` | daWmSubPlayer_c::NodeTrail_c::pushNext |  |
-| `mod_fn_2_180E80` | daWmSubPlayer_c::calcWalkSpeed |  |
-| `mod_fn_2_17DA80` | daWmSubPlayer_c::create |  |
-| `mod_fn_2_180920` | daWmSubPlayer_c::getPlayerOrder |  |
-| `mod_fn_2_181210` | daWmSubPlayer_c::getPlayerOrderAngle |  |
-| `mod_fn_2_1811C0` | daWmSubPlayer_c::getPlayerOrderDistance |  |
-| `mod_fn_2_181260` | daWmSubPlayer_c::getPlayerOrderTableIndex |  |
-| `mod_fn_2_181B30` | daWmSubPlayer_c::isPlayerStar |  |
-| `mod_fn_2_181B10` | daWmSubPlayer_c::isPlayerType |  |
-| `mod_fn_2_17E030` | daWmSubPlayer_c::loadModel |  |
+| `mod_fn_2_181EE0` | daWmSubPlayer_c::NodeTrail_c::pushNext | yes |
+| `mod_fn_2_180E80` | daWmSubPlayer_c::calcWalkSpeed | yes |
+| `mod_fn_2_17DA80` | daWmSubPlayer_c::create | yes |
+| `mod_fn_2_180920` | daWmSubPlayer_c::getPlayerOrder | yes |
+| `mod_fn_2_181210` | daWmSubPlayer_c::getPlayerOrderAngle | yes |
+| `mod_fn_2_1811C0` | daWmSubPlayer_c::getPlayerOrderDistance | yes |
+| `mod_fn_2_181260` | daWmSubPlayer_c::getPlayerOrderTableIndex | yes |
+| `mod_fn_2_181B30` | daWmSubPlayer_c::isPlayerStar | yes |
+| `mod_fn_2_181B10` | daWmSubPlayer_c::isPlayerType | yes |
+| `mod_fn_2_17E030` | daWmSubPlayer_c::loadModel | yes |
 | `mod_fn_2_1A3EE0` | daYoshiEgg_c::hatchYoshi |  |
 | `mod_fn_2_1A4430` | daYoshiEgg_c::initializeState_MultiJumpDown |  |
 | `mod_fn_2_1A4330` | daYoshiEgg_c::initializeState_MultiJumpUp |  |

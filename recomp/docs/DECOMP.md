@@ -271,6 +271,11 @@ one expression, as the recompiler writes it). Then the results match bit for bit
 | `dMj2dGame_c` (module: a save slot, 8 players) | `gm_mj2d_game.c` | all 48 | 2026-10-17; register-exact with frames 2026-10-28 |
 | `dMj2dHeader_c` (module: the save file header) | `gm_mj2d_header.c` | all 8 | 2026-10-17; register-exact 2026-10-28 |
 | `dSaveMng_c` (module: construction, slots, live-state serialization, ordinary / multi-mode / quick NAND saves and loading) | `gm_save_mng.c` | **all 13 on** | 2026-11-08: Part 81 completed the eight remaining methods and folded prepareSave's singleplayer adjustment into native code. Directed save-start A/B matched all 1,376 events, prepareSave A/B matched all 1,368, and final clean A/B matched all 1,367 |
+| `dNandThread_c` (module: asynchronous existence checks, save staging / writing / loading and deletion; instance 2) | `gm_d_nand.c` | **all 5 on** | 2026-11-08: Part 82's directed isolated-root A/B covered queueing, JSON writing, backup rename and deletion and matched all 1,370 events; final clean A/B matched all 1,367 |
+| `dScWMap_c` (module: world-map layout / actor creation and saved course restoration; instance 2) | `gm_d_sc_wmap.c` | **all 4 on** | 2026-11-08: Part 83 corrected the world-dependent per-player profile table and indexed creation parameters; final clean native / PowerPC A/B matched all 1,367 events |
+| `dWmSeManager_c` (module: world-map sound actors, spatial updates, slot dispatch and player sounds; instance 2) | `gm_d_wm_se.c` | **all 7 on** | 2026-11-08: Part 84's directed native / PowerPC A/B matched all 1,387 ordinary and test events; final clean A/B matched all 1,367 events |
+| `daWmSubPlayer_c` / `NodeTrail_c` (module: companion models, ordering, walking speed and position history; instance 2) | `gm_d_wm_subplayer.c` | **all 9 on** | 2026-11-08: Part 85's directed native / PowerPC calls on all eight live companions matched all 1,400 ordinary and test events; final clean A/B matched all 1,367 events |
+| `daWmMap_c` (module: ordinary and Ibara route-access queries; instance 2) | `gm_d_wm_map.c` | **all 2 on** | 2026-11-08: Part 86's directed calls on the live map covered both override states, matched all 1,370 events and passed full-register checks; final clean A/B matched all 1,367 events |
 | `dInfo_c` (module's functions: session info) | `gm_info.c` | all 6 the module replaces | 2026-10-17; register-exact with frames 2026-10-28 |
 | `daPyMng_c` (module: the player manager - entries, characters, lives / coins, Yoshis, star music, update, incCoin, course spawning, the ground-pound quakes; instance 2) | `gm_py_mng.c` | **all 39 on** | 2026-11-08: Part 77's createCourseInit native / PowerPC A/B matched all 1,367 events; earlier methods used register-exact verification, self-tests and strict input A/Bs |
 | `daPyDemoMng_c` (module: the players' demo manager - course-in / course-out / goal lists, goal / control demos and stage-start toride; instance 2) | `gm_py_demo.c` | **all 27 on** | 2026-11-07: Part 73 fixed calcNotGoalPlayer's key-flag address and ported executeGoalDemo_Pole; both clear A/Bs match all 1,367 events. Part 74 enabled the nine control-demo / toride methods. Directed live-player calls covered all nine; strict query checks found no differences, and the isolated native / PowerPC A/B matched all 1,129 gameplay / scene / state / test events |
@@ -338,6 +343,5 @@ The verifier's poll count leaves out polls an interrupt or another thread made d
 overlap).
 
 The module's class list and what is native: `NATIVE_PORT.md` (`python3 tools/native_port_status.py`).
-Next (roadmap order): the rest of the 8-player module - `daPyMng_c`, the rest of `dSaveMng_c`
-(the NAND saves), then the menus' and world map's classes; then the player (`dAcPy_c` / `daPlBase_c`), then the
-camera / scroll code.
+Next (roadmap order): the rest of the 8-player module's menu and world-map classes, currently
+`daWmPlayer_c`; then the player (`dAcPy_c` / `daPlBase_c`), then the camera / scroll code.

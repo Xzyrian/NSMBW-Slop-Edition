@@ -6,6 +6,72 @@ without re-deriving it.
 
 ---
 
+## 2026-11-08 (86) - Kimi: track B - world-map route access complete
+
+- Ported both `daWmMap_c` methods in `runtime/gm_d_wm_map.c`: `IsRouteOpen` and
+  `IsIbaraRouteOpen`, including the module's all-routes-open override and the original volatile
+  register residue. Generated prologue coverage contains 769 fixed-frame functions.
+- Directed native / PowerPC calls on the caller-owned live map object covered both override states
+  and matched all **1,370** ordinary and test events. Strict full-register verification found no
+  differences; the bounded run did not print aggregate verification totals. The temporary test hook
+  was removed, and the final clean A/B matched all **1,367** events.
+- `NATIVE_PORT.md` regenerated: **245 of 1318** module functions native; `daWmMap_c` **2/2**.
+  Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (85) - Kimi: track B - world-map companion players complete
+
+- Ported all nine `daWmSubPlayer_c` methods and `NodeTrail_c::pushNext` in
+  `runtime/gm_d_wm_subplayer.c`: creation, model loading, player ordering, walking-speed updates,
+  order-table distance / angle lookups, character / star queries and position-history allocation.
+  Generated prologue coverage contains 767 fixed-frame functions.
+- Directed native / PowerPC calls on all eight live companion actors covered every query, walking
+  speed and all three history-buffer branches, matching all **1,400** ordinary and test events.
+  Testing caught and fixed two inverted speed-threshold arms and a missing loop poll; the final
+  clean native / PowerPC A/B matched all **1,367** events.
+- `NATIVE_PORT.md` regenerated: **243 of 1318** module functions native; `daWmSubPlayer_c` **9/9**.
+  Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (84) - Kimi: track B - world-map sound manager complete
+
+- Ported all seven `dWmSeManager_c` methods in `runtime/gm_d_wm_se.c`: construction, destruction,
+  initialization, per-frame spatial sound updates, sound-slot dispatch and player voice / movement
+  sounds. Generated prologue coverage contains 760 fixed-frame functions.
+- Corrected the small-data references to use the actual `r13 = 0x8042F680` base. Also captured the
+  first execute-loop's playing result before the nested spatial update, whose calls clobber `r3`.
+  Directed native / PowerPC A/B covered eight dispatch categories, valid and rejected voices,
+  player movement sounds and deleting destruction, matching all **1,387** events.
+- Removed all temporary test and tracing hooks. The final clean native / PowerPC A/B matched all
+  **1,367** events. `NATIVE_PORT.md` regenerated: **233 of 1318** module functions native;
+  `dWmSeManager_c` **7/7**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (83) - Kimi: track B - world-map scene complete
+
+- Ported all four `dScWMap_c` methods in `runtime/gm_d_sc_wmap.c`: world-map layout creation,
+  actor creation, boot-parameter creation and restoration of saved course state. The save manager
+  now enters native `initLoadGame`. Generated prologue coverage contains 753 fixed-frame functions.
+- Corrected the per-player layout profile table after the first comparison exposed its branches:
+  worlds 0-5 use 735 / 736 / 737 / 738, worlds 6-7 use 737 / 736 / 737 / 738, and world 8 onward
+  uses 739 / 740 / 741 / 742. Each of the four creation calls passes the player index in `r5`.
+- Removed all temporary world-map tracing. The final clean native / PowerPC A/B matched all
+  **1,367** events. `NATIVE_PORT.md` regenerated: **226 of 1318** module functions native;
+  `dScWMap_c` **4/4**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (82) - Kimi: track B - NAND worker complete
+
+- Ported all five `dNandThread_c` methods in `runtime/gm_d_nand.c`: existence checks, save-command
+  queuing and staging, private-file creation / JSON writing / backup rotation, save loading, and
+  deletion. Both save-manager call sites now enter the native queue method. Generated prologue
+  coverage contains 749 fixed-frame functions.
+- The ordinary replay reached only existence checks and loading, so a temporary isolated-root
+  directed test also exercised the asynchronous save, write, rename and delete paths. It exposed
+  six inverted status branches in `save`; correcting them against the original control flow made
+  the native / PowerPC directed A/B match all **1,370** ordinary, completion and test events,
+  including `File saved!`. The isolated roots were removed and recreated for each run; the normal
+  installation was not used.
+- Removed all coverage, tracing and directed-test hooks. The final clean native / PowerPC A/B
+  matched all **1,367** events. `NATIVE_PORT.md` regenerated: **222 of 1318** module functions
+  native; `dNandThread_c` **5/5**. Windows no-deploy build used throughout; nothing was deployed.
+
 ## 2026-11-08 (81) - Kimi: track B - save manager complete
 
 - Completed all 13 `dSaveMng_c` methods in `runtime/gm_save_mng.c`: construction, refresh, ordinary

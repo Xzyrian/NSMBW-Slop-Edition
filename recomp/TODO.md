@@ -33,9 +33,18 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     1,367 events and directed calls covered the three otherwise unreached methods. Part 78 completed
     the six child-layout methods with directed register checks. Part 79 completed the HUD; its directed
     A/B matches all 1,371 ordinary / test events and the final clean A/B matches all 1,367 events.
+    Part 80 completed dGameCom (6/6), and Part 81 completed dSaveMng_c (13/13). Part 82 completed
+    dNandThread_c (5/5): directed asynchronous save / rename / delete A/B matched all 1,370 events,
+    and the final clean A/B matched all 1,367 events. Part 83 completed dScWMap_c (4/4), including
+    its world-dependent player layouts and saved course restoration; the clean A/B matched all
+    1,367 events. Part 84 completed dWmSeManager_c (7/7): directed dispatch / voice / movement /
+    destruction A/B matched all 1,387 events, and the final clean A/B matched all 1,367 events.
+    Part 85 completed daWmSubPlayer_c (9/9): directed calls on all eight live companions matched
+    all 1,400 ordinary / test events, and the final clean A/B matched all 1,367 events.
+    Part 86 completed daWmMap_c (2/2): directed calls on the live map covered both route-override
+    states, matched all 1,370 events and passed full-register checks; the clean A/B matched all 1,367.
     Part 70's time-change and rest-coin animation call paths still need directed input.
-    Next: the rest of the module (the NAND saves, menus, world map), then `dAcPy_c` / `daPlBase_c`,
-    then camera / scroll
+    Next: the rest of the module (menus, world map), then `dAcPy_c` / `daPlBase_c`, then camera / scroll
   - [~] B (instance 1, from 2026-10-17, same method `docs/DECOMP.md`): the engine under the game -
     the framework (`fBase_c`, `fManager_c`, `fTree*`, `fLiMg*`, profiles), `cLib` / `sLib` (lists,
     trees, state machines, math, random), then the actor bases `dBase_c` / `dBaseActor_c` /
@@ -189,10 +198,11 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     game's name under / over its portrait
 - [ ] **Free-for-All / Coin Battle** - reachable from the multiplayer File Select and go to the
   8-player character select; nothing past that has been tested.
-- [ ] **Native port of the 8-player module** - 217 of 1318 functions are native (`NATIVE_PORT.md`,
+- [ ] **Native port of the 8-player module** - 245 of 1318 functions are native (`NATIVE_PORT.md`,
   `python3 tools/native_port_status.py`). daPyDemoMng_c is 27/27, daPyMng_c is 39/39,
-  dGameDisplay_c is 29/29, dfukidashiManager_c is 9/9, dfukidashiInfo_c is 6/6, dGameCom is 6/6
-  and dSaveMng_c is 13/13. Next: dNandThread_c, then the menus and world-map classes.
+  dGameDisplay_c is 29/29, dfukidashiManager_c is 9/9, dfukidashiInfo_c is 6/6, dGameCom is 6/6,
+  dSaveMng_c is 13/13, dNandThread_c is 5/5, dScWMap_c is 4/4, dWmSeManager_c is 7/7,
+  daWmSubPlayer_c is 9/9 and daWmMap_c is 2/2. Next: daWmPlayer_c, then the remaining menus.
 - [ ] **Module save names** - renamed at link time (`tools/link_mod.py`); goes away when the
   save code (`dNandThread_c`) is ported.
 

@@ -300,6 +300,25 @@ mod_fn_800E0D20
 mod_fn_800E11D0
 mod_fn_800E1940
 mod_fn_800E1840
+# track B: dNandThread_c, asynchronous save/load operations (gm_d_nand.c)
+mod_fn_800CEE90
+mod_fn_800CF080
+mod_fn_800CF110
+mod_fn_800CF590
+mod_fn_800CF960
+# track B: dScWMap_c, world-map construction and saved-state restoration (gm_d_sc_wmap.c)
+mod_fn_2_1B9670
+mod_fn_2_1B9A20
+mod_fn_80102A40
+mod_fn_80102A80
+# track B: dWmSeManager_c, world-map sound actors and playback (gm_d_wm_se.c)
+mod_fn_80103E40
+mod_fn_801040D0
+mod_fn_80104140
+mod_fn_801045A0
+mod_fn_80104CC0
+mod_fn_80104FD0
+mod_fn_80105060
 # track B: dInfo_c, the session info - the module's functions (gm_info.c)
 mod_fn_800BB130
 mod_AddStockPowerup
@@ -4406,3 +4425,31 @@ mod_WindowPaneColorSet__8dGameComFPQ34nw4r3lyt6Windowi
 mod_PlayerEnterCheck__8dGameComFi
 mod_Player1upColor__8dGameComFP12LytTextBox_ci
 mod_isNowCourseClear__8dGameComFv
+# track B: daWmSubPlayer_c and NodeTrail_c (gm_d_wm_subplayer.c)
+mod_fn_2_17DA80
+mod_fn_2_17E030
+mod_fn_2_180920
+mod_fn_2_180E80
+mod_fn_2_1811C0
+mod_fn_2_181260
+mod_fn_2_181210
+mod_fn_2_181B10
+mod_fn_2_181B30
+mod_fn_2_181EE0
+# track B: daWmMap_c (gm_d_wm_map.c)
+mod_fn_2_174AB0
+mod_fn_2_174BE0
+# track B: daWmPlayer_c (gm_d_wm_player.c)
+mod_fn_2_195020
+mod_fn_2_1950F0
+mod_fn_2_1951C0
+mod_fn_2_195430
+mod_fn_2_195500
+mod_fn_2_195730
+mod_fn_2_195800
+mod_fn_2_196980
+mod_fn_2_19A570
+mod_fn_2_19BC30
+mod_fn_2_19F670
+mod_fn_80100A50
+mod_fn_80100B40

@@ -92,7 +92,7 @@ static void dSaveMng_refresh(GM_CTX, gptr self) {
 static void dSaveMng_startNandSave(GM_CTX, gptr self) {
     I2_FN(0x81813D38u);
     NV_R(30, self); R(3) = 0x80430000u; R(3) = gm_u32(SAVEMNG_NAND_MANAGER);
-    R(4) = self + SAVEMNG_HEADER; BL(0x81813D5Cu, mod_fn_800CF080_81811A10);
+    R(4) = self + SAVEMNG_HEADER; BL(0x81813D5Cu, hle_mod_fn_800CF080);
     gm_set_u8(self, R(3));
 }
 
@@ -172,7 +172,7 @@ static void dSaveMng_startBufferedSave(GM_CTX, gptr self, int mode) {
         } while (1);
     }
     R(3) = 0x80430000u; R(3) = gm_u32(SAVEMNG_NAND_MANAGER); R(4) = gm_frame_sp + 32;
-    BL(mode == 0 ? 0x81813E24u : mode == 1 ? 0x81813FE4u : 0x818140D8u, mod_fn_800CF080_81811A10);
+    BL(mode == 0 ? 0x81813E24u : mode == 1 ? 0x81813FE4u : 0x818140D8u, hle_mod_fn_800CF080);
     gm_set_u8(self, R(3));
     R(4) = 0x81860000u; R(4) = gm_u32(SAVEMNG_STACK_GUARD);
     R(5) = gm_u32(gm_frame_sp + (mode == 0 ? 16332 : 16328));
@@ -251,7 +251,7 @@ static void dSaveMng_initLoadGame(GM_CTX, gptr self, int32_t slot) {
         if (CR_BIT(ctx, 1)) GM_LOOP(); else break;
     } while (1);
     R(3) = gm_u32(SAVEMNG_INFO_INSTANCE); R(4) = R(3) + 8; R(3) = R(30); BL(0x818144A4u, mfn_8180D518);
-    BL(0x818144A8u, hle_mod_fn_80060EF0); BL(0x818144ACu, mod_fn_80102A80_8181601C);
+    BL(0x818144A8u, hle_mod_fn_80060EF0); BL(0x818144ACu, hle_mod_fn_80102A80);
     R(3) = gm_u8(R(28) + 4136); NONZERO(4, 3, R(3)); gm_set_u8(gm_frame_sp + 8, R(3));
     R(3) = gm_frame_sp + 8; gm_set_u32(gm_frame_sp + 12, R(3)); BL(0x818144C8u, mfn_8183A488);
     R(3) = 0x81860000u; R(3) = gm_u32(SAVEMNG_STACK_GUARD); R(4) = gm_u32(gm_frame_sp + 16);
