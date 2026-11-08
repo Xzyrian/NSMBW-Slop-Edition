@@ -23,6 +23,7 @@ uint8_t *g_base RT_LOCAL;
 char g_root[1024] RT_LOCAL, g_disc[1024] RT_LOCAL;
 int g_verbose RT_LOCAL = 0;
 volatile uint32_t ppc_poll_counter;
+uint32_t ppc_poll_foreign;          /* polls counted while ppc_poll ran other code (an interrupt, another thread): gm_verify.c */
 #ifdef PPC_TRACE
 uint32_t ppc_trace_ring[256] RT_LOCAL; uint32_t ppc_trace_pos RT_LOCAL;
 /* RT_FUNCSTAT="first,count": histogram of recently entered guest functions, sampled once per VI
@@ -679,12 +680,15 @@ void rt_post_callback(uint32_t fn, uint32_t a0, uint32_t a1) {
     if (ev_n == EV_MAX) rt_fatal("native event queue full (callback %08X)", fn);
     ev_q[ev_n].fn = fn; ev_q[ev_n].a0 = a0; ev_q[ev_n].a1 = a1; ev_n++;
 }
+/* an SDK interrupt handler (interrupt, OSContext *): the context is the one current when it runs */
+#define EV_CUR_CONTEXT 0xFFFFFFFFu
+void rt_post_interrupt(uint32_t fn, uint32_t intr) { rt_post_callback(fn, intr, EV_CUR_CONTEXT); }
 int rt_events_pending(void) { return ev_n; }
 static void ev_dispatch(ppc_context *ctx, uint8_t *base) {
     while (ev_n) {
         uint32_t fn = ev_q[0].fn, a0 = ev_q[0].a0, a1 = ev_q[0].a1;
         memmove(&ev_q[0], &ev_q[1], sizeof ev_q[0] * (size_t)(ev_n - 1)); ev_n--;
-        ctx->r[3] = a0; ctx->r[4] = a1; ctx->lr = 0;
+        ctx->r[3] = a0; ctx->r[4] = a1 == EV_CUR_CONTEXT ? ld32(base, 0x800000D4u) : a1; ctx->lr = 0;
         ppc_call_indirect(ctx, base, fn);
     }
 }
@@ -707,8 +711,8 @@ static void maybe_force_resched(ppc_context *ctx, uint8_t *base) {
 }
 
 /* Idle: when no guest thread can run, the OS spins in SelectThread's idle loop (current thread
-   = NULL) until an interrupt makes one ready. Every interrupt source is either immediate (then
-   pi_active() is already set) or timed, so instead of spinning a CPU core at 100 % the host
+   = NULL) until an interrupt makes one ready. Every event is either immediate (then a native
+   event is already queued) or timed, so instead of spinning a CPU core at 100 % the host
    thread sleeps until shortly before the next timed event. NSMBW_IDLESLEEP=0 keeps spinning. */
 uint64_t hw_next_event_ns(void);
 void plat_idle_wait(uint64_t ns);
@@ -729,7 +733,7 @@ static void det_pace(void) {
 static void idle_wait(ppc_context *ctx) {
     static int on = -1;
     if (g_det) {                                            /* nothing to run: on to the next timed event */
-        if (R32(0x800000E4) != 0 || cur->npoll || pi_active() || ev_n) return;
+        if (R32(0x800000E4) != 0 || cur->npoll || ev_n) return;
         (void)ctx;
         uint64_t next = hw_next_event_ns();
         if (dec_armed) {
@@ -742,7 +746,7 @@ static void idle_wait(ppc_context *ctx) {
         return;
     }
     if (on < 0) { const char *e = getenv("NSMBW_IDLESLEEP"); on = !(e && *e == '0'); }
-    if (!on || R32(0x800000E4) != 0 || cur->npoll || pi_active() || ev_n) return;
+    if (!on || R32(0x800000E4) != 0 || cur->npoll || ev_n) return;
     (void)ctx;
     uint64_t now = rt_now_ns(), next = hw_next_event_ns();
     if (dec_armed) {
@@ -765,6 +769,7 @@ static void poll_stress(void) {
     if (on) ppc_poll_counter = 0xFFFFFFFFu;
 }
 static uint64_t rt_hash64(const void *p, size_t n) { const uint8_t *b = p; uint64_t h = 1469598103934665603ull; for (size_t i = 0; i < n; i++) { h ^= b[i]; h *= 1099511628211ull; } return h; }
+static void ppc_poll_dispatch(ppc_context *ctx, uint8_t *base);
 void ppc_poll(ppc_context *ctx, uint8_t *base) {
     g_poll_site = __builtin_return_address(0); g_poll_ctx = ctx;
     poll_stress();
@@ -780,11 +785,13 @@ void ppc_poll(ppc_context *ctx, uint8_t *base) {
             rt_log("poll", "f %llu vt %llu lr %08X r1 %08X r3 %08X t %d cnt %u regs %016llx", (unsigned long long)g_vi_fields, (unsigned long long)g_vt_ns, ctx->lr, ctx->r[1], ctx->r[3], cur == &main_thread ? -1 : (int)(cur - thread_pool), ppc_poll_counter, (unsigned long long)rt_hash64(ctx, sizeof *ctx)); }
     hw_update();
     if (!(ctx->msr & 0x8000u)) return;
-    if (pi_active()) {
-        {   static long lf = -2, lt; if (lf == -2) { const char *e = getenv("RT_POLL_LOG"); lf = -1; if (e) sscanf(e, "%ld,%ld", &lf, &lt); }
-            extern uint64_t g_vi_fields; extern uint32_t pi_intsr_dbg(void), pi_intmr_dbg(void);
-            if (lf >= 0 && (long)g_vi_fields >= lf && (long)g_vi_fields <= lt) rt_log("poll", "external: intsr %08X intmr %08X", pi_intsr_dbg(), pi_intmr_dbg()); }
-        take_exception(ctx, base, EXC_EXTERNAL); return; }
+    uint32_t c0 = ppc_poll_counter;
+    ppc_poll_dispatch(ctx, base);
+    ppc_poll_foreign += ppc_poll_counter - c0;
+}
+static void ppc_poll_dispatch(ppc_context *ctx, uint8_t *base) {
+    /* (no hardware interrupts any more - track A: every device library is native and completes
+       through native events) */
     if (ev_n) {                                              /* native events (completion callbacks) */
         static int reg; if (!reg) { reg = 1; rt_register_native(EV_HANDLER, ev_dispatch); }
         take_exception_at(ctx, base, EXC_EXTERNAL, EV_HANDLER); return; }
@@ -802,7 +809,6 @@ void ppc_poll(ppc_context *ctx, uint8_t *base) {
 
 /* state for hang reports (printed by rt_dump_trace) */
 void rt_hang_state(void) {
-    extern uint32_t pi_intsr_dbg(void), pi_intmr_dbg(void);
     ppc_context *c = g_poll_ctx;
     fprintf(stderr, "cpu: fiber %p (main %p) npoll %d | last poll from host %p", (void *)cur, (void *)&main_thread, cur ? cur->npoll : -1, g_poll_site);
 #ifdef _WIN32
@@ -814,7 +820,7 @@ void rt_hang_state(void) {
             fprintf(stderr, "\n     RunQueueBits %08X Reschedule %d RunQueueHint %d current ctx %08X",
                     R32(c->r[13] - 20344), (int)R32(c->r[13] - 20352), (int)R32(c->r[13] - 20348), R32(0x800000D4));
     }
-    fprintf(stderr, "\n     PI intsr %08X intmr %08X | dec armed %d in %lld ticks | preemptions deferred %llu, forced %llu\n", pi_intsr_dbg(), pi_intmr_dbg(), dec_armed,
+    fprintf(stderr, "\n     native events queued %d | dec armed %d in %lld ticks | preemptions deferred %llu, forced %llu\n", ev_n, dec_armed,
             (long long)(dec_deadline - rt_tb_now()), (unsigned long long)g_resched_deferred, (unsigned long long)g_resched_forced);
     if (c && sda_ok(c->r[13])) {                       /* the game's disc command queue (mDvd): r13-21076 = manager */
         uint32_t mgr = R32(c->r[13] - 21076);

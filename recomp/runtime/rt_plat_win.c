@@ -305,10 +305,11 @@ void plat_gl_present_end(void) {
 static char title_note[120];
 static void set_title(double fps) {
     char title[300];
-    extern int g_gx_software;
+    extern int g_gx_software, g_null_render;
+    const char *renderer_note = g_null_render ? "  |  NULL RENDERER (test mode - nothing is drawn)" :
+                                g_gx_software ? "  |  SOFTWARE RENDERER (no OpenGL 3.3 GPU driver found - see nsmbw_log.txt)" : "";
     snprintf(title, sizeof title, "New Super Mario Bros. Wii - native recompilation  |  %.1f FPS%s%s%s", fps,
-             g_gx_software ? "  |  SOFTWARE RENDERER (no OpenGL 3.3 GPU driver found - see nsmbw_log.txt)" : "",
-             title_note[0] ? "  |  " : "", title_note);
+             renderer_note, title_note[0] ? "  |  " : "", title_note);
     if (hwnd) SetWindowTextA(hwnd, title);
 }
 static double last_fps;
@@ -328,7 +329,23 @@ static void fps_title(void) {
         t_last = now; nframes = 0;
     }
 }
-uint32_t plat_buttons(void) { return buttons; }
+uint32_t plat_buttons(void) {             /* (+ RT_AUTOPRESS as on Linux: testing) */
+    static uint64_t t0; static const char *spec; static int init;
+    if (!init) { init = 1; t0 = rt_now_ns(); spec = getenv("RT_AUTOPRESS"); }
+    if (!spec) return buttons;
+    double t = (double)(rt_now_ns() - t0) / 1e9;
+    { extern uint64_t g_frames_presented; static int fr = -1; if (fr < 0) fr = getenv("RT_AUTOPRESS_FRAMES") != NULL;
+      if (fr) t = (double)g_frames_presented / 60.0; }   /* RT_AUTOPRESS_FRAMES=1: seconds of game frames (renderer speed doesn't matter) */
+    uint32_t b = 0; const char *p = spec;
+    while (*p) {
+        double at = strtod(p, (char **)&p); if (*p != ':') break; p++;
+        uint32_t m = (uint32_t)strtoul(p, (char **)&p, 16); double dur = 0.2;
+        if (*p == ':') { p++; dur = strtod(p, (char **)&p) / 1000.0; }
+        if (t >= at && t < at + dur) b |= m;
+        if (*p == ',') p++; else break;
+    }
+    return b | buttons;
+}
 
 /* idle: sleep about ns nanoseconds (a high-resolution waitable timer where Windows has one,
    Windows 10 1803+; otherwise ~1 ms Sleep granularity thanks to timeBeginPeriod(1)) */

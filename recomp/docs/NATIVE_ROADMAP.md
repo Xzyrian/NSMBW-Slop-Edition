@@ -99,3 +99,30 @@ Input recording/replay for testing stays.
 
 Proposal: instance 1 takes track A (platform); instance 2 continues track B (the 8-player code,
 then game classes). Both keep `hle_funcs.txt` / build lists in sync and note changes in CHANGELOG.
+
+## Status (2026-10-16, instance 1)
+
+| step | state |
+|---|---|
+| A1 GX | FIFO / CP / PE / PI native (rt_gx.c); draw-done / token are native events. The command stream itself stays (inline vertex writes, model display lists). |
+| A2 OS | interrupt controller, MI, PI, IPC registers, VI native (rt_os.c, rt_vi.c). Threads / alarms still the recompiled OS on fibers (decrementer = a host deadline). |
+| A3 disc / saves | DVD reads (rt_dvd.c) and the whole IOS client (rt_ios.c) native: no IPC hardware. |
+| A4 input | SI / GameCube pads native (rt_si.c). WUD native (rt_wiimote.c): the Wii Remotes hand HID reports to the SDK's WPAD directly; the Bluetooth stack (BTA/BTM/L2CAP/HCI, rt_bt.c) no longer runs. |
+| A5 audio | AI + DSP native (rt_audio.c): DSP model + AX mixing (rt_ax.c), audio DMA timer. |
+| EXI | RTC / SRAM native (rt_exi.c). |
+| A6 | Done: the register emulation (PI, VI, DSP/AI, EXI, SI, IPC, CP/PE) is deleted; `rt_hw.c` keeps the field clock and the GX write-gather pipe. `RT_MMIO_STRICT=1` makes any other register access fatal, `RT_MMIO_INVENTORY=file` lists them. Remaining "emulated" pieces: the GX command stream (vertices, model display lists) and the OS on fibers with a decrementer deadline. |
+
+## Status, track B (2026-10-17, instance 2)
+
+Method and tools in `docs/DECOMP.md`: `runtime/gm.h` (typed guest-memory accessors, objects stay
+big-endian in guest memory; loop back-edges mirrored with `GM_LOOP()` so the deterministic clock
+stays the same), `runtime/gm_verify.c` (`RT_GM_VERIFY=1` runs the PowerPC version alongside and
+compares, `RT_GM_VERIFY=orig` is the "before" of an A/B replay with one binary, `RT_GM_SELFTEST`
+calls every function with random inputs), `RT_DET_HASH_LIVE=1` in `rt_det.c` (the state hash
+without thread stacks / saved contexts). Done: the module's save data and session info -
+`dMj2dGame_c` (48), `dMj2dHeader_c` (8), `dSaveMng_c` (5 of 13), `dInfo_c` (6), in
+`gm_mj2d_game.c`, `gm_mj2d_header.c`, `gm_save_mng.c`, `gm_info.c`; the player manager
+`daPyMng_c` (38 of 39, `gm_py_mng.c`, 2026-10-28); the demo manager `daPyDemoMng_c` (7 on, 19
+written but off until a test reaches a goal pole, `gm_py_demo.c`, 2026-11-04). All register-exact
+with the PowerPC frames (`gm_i2.h`), strict A/B clean. Next: a level-end test input,
+`dGameDisplay_c`, the rest of the module, then the player classes, then camera / scroll.

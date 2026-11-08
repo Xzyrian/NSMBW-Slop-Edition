@@ -14,12 +14,32 @@
 #if !defined(_WIN32)
 #include <sys/mman.h>
 #include <signal.h>
+#include <ucontext.h>
 #include <execinfo.h>
 #include <unistd.h>
+/* RT_DET_WATCHW=word (with RT_DET_WATCH_AT): every write to that one word from that field on, with a
+   backtrace and the registers of the last poll's context (the running guest thread's ctx), by
+   write-protecting its page and single-stepping each write to that page (x86-64 trap flag) */
+static void *wt_page; static uint32_t wt_word;
+static void wt_trap(int sig, siginfo_t *si, void *uc) { (void)sig; (void)si;
+    mprotect(wt_page, 0x1000, PROT_READ); ((ucontext_t *)uc)->uc_mcontext.gregs[17 /* REG_EFL */] &= ~0x100; }
 static void watch_hit(int sig, siginfo_t *si, void *uc) {
+    if (getenv("RT_DET_WATCHW")) {
+        uint32_t ga = (uint32_t)((uint8_t *)si->si_addr - g_base) | 0x80000000u;
+        if ((ga & ~3u) == wt_word) { void *bt[24]; int n = backtrace(bt, 24); extern uint64_t g_vi_fields;
+            fprintf(stderr, "[det] WORD write %08X field %llu val-before %08X\n", ga, (unsigned long long)g_vi_fields, R32(wt_word)); backtrace_symbols_fd(bt, n, 2);
+            extern ppc_context *volatile g_poll_ctx; ppc_context *c = g_poll_ctx;
+            if (c) { for (int i = 0; i < 32; i++) fprintf(stderr, "r%d=%08X%s", i, c->r[i], i % 8 == 7 ? "\n" : " ");
+                     for (int i = 0; i < 32; i++) fprintf(stderr, "f%d=%016llX/%g%s", i, (unsigned long long)c->f[i].u, c->ps1[i], i % 4 == 3 ? "\n" : " ");
+                     if (getenv("RT_DET_WATCHSTK")) for (uint32_t o = 0; o < 0x700; o += 4) fprintf(stderr, "stk %08X %08X\n", c->r[1] - 0x400 + o, R32(c->r[1] - 0x400 + o)); } }
+        mprotect(wt_page, 0x1000, PROT_READ | PROT_WRITE);
+        ((ucontext_t *)uc)->uc_mcontext.gregs[17 /* REG_EFL */] |= 0x100; return;
+    }
     (void)sig; (void)uc;
     void *bt[24]; int n = backtrace(bt, 24);
-    fprintf(stderr, "[det] write to watched page at %p (guest %08X)\n", si->si_addr, (uint32_t)((uint8_t *)si->si_addr - g_base) | 0x80000000u);
+    extern ppc_context *volatile g_poll_ctx;
+    fprintf(stderr, "[det] write to watched page at %p (guest %08X; last poll: r1 %08X lr %08X, OS thread %08X, current context %08X)\n", si->si_addr, (uint32_t)((uint8_t *)si->si_addr - g_base) | 0x80000000u,
+            g_poll_ctx ? g_poll_ctx->r[1] : 0, g_poll_ctx ? g_poll_ctx->lr : 0, R32(0x800000E4u), R32(0x800000D4u));
     backtrace_symbols_fd(bt, n, 2);
     mprotect((void *)((uintptr_t)si->si_addr & ~0xFFFull), 0x1000, PROT_READ | PROT_WRITE);
 }
@@ -42,12 +62,40 @@ void det_renderer_writes(uint32_t phys, uint32_t bytes) {
         if (pg < PG_ALL) skip_pg[pg] = 1;
     }
 }
+/* RT_DET_HASH_LIVE=1 (testing the decompiled game code, docs/NATIVE_ROADMAP.md track B): the hash
+   leaves out what a native function can't help changing without the game seeing it - every guest
+   thread's stack (a recompiled function's frame, dead after it returns) and saved register context
+   (volatile registers saved at a thread switch). Threads: the OS's active thread queue. */
+static int live_ranges(uint32_t *lo, uint32_t *hi, int max) {
+    int n = 0;
+    uint32_t t = R32(0x800000DCu);                                 /* __OSActiveThreadQueue.head */
+    for (int guard = 0; t >= 0x80000000u && t < 0x94000000u && guard < 64 && n + 2 <= max; guard++) {
+        uint32_t base = R32(t + 0x304), end = R32(t + 0x308);      /* OSThread: stackBase (top), stackEnd */
+        lo[n] = t; hi[n] = t + 0x2C8; n++;                          /* its OSContext */
+        if (end >= 0x80000000u && base > end && base - end < (16u << 20)) { lo[n] = end; hi[n] = base; n++; }
+        t = R32(t + 0x2FC);                                         /* linkActive.next */
+    }
+    /* and the SDK's private stacks (OSSwitchFiber / OSSwitchFiberEx): the Wii remote libraries run
+       their alarm handlers on these, and a handler's frames keep the interrupted code's registers */
+    static const uint32_t fiber[] = { 0x8039E340u, 0x803A4080u, 0x803CDE40u, 0x803CEE40u, 0x803D0620u };
+    for (int i = 0; i < (int)(sizeof fiber / sizeof *fiber) && n < max; i++) { lo[n] = fiber[i]; hi[n] = fiber[i] + 0x1000; n++; }
+    return n;
+}
 uint64_t det_state_hash(void) {
     static XXH3_state_t st; XXH3_64bits_reset(&st);
+    static int live = -1; if (live < 0) live = getenv("RT_DET_HASH_LIVE") != NULL;
+    uint32_t lo[140], hi[140]; int nr = live ? live_ranges(lo, hi, 138) : 0;
+    static uint8_t pagebuf[0x1000];
     for (uint32_t pg = 0; pg < PG_ALL; pg++) {
         if (skip_pg[pg]) continue;
         uint32_t a = pg < PG_MEM1 ? 0x80000000u + (pg << 12) : 0x90000000u + ((pg - PG_MEM1) << 12);
-        XXH3_64bits_update(&st, G(a), 0x1000);
+        const uint8_t *src = G(a);
+        for (int i = 0; i < nr; i++) if (lo[i] < a + 0x1000 && hi[i] > a) {
+            if (src != pagebuf) { memcpy(pagebuf, src, 0x1000); src = pagebuf; }
+            uint32_t s0 = lo[i] > a ? lo[i] - a : 0, s1 = hi[i] < a + 0x1000 ? hi[i] - a : 0x1000;
+            memset(pagebuf + s0, 0, s1 - s0);
+        }
+        XXH3_64bits_update(&st, src, 0x1000);
     }
     return XXH3_64bits_digest(&st);
 }
@@ -118,6 +166,9 @@ void det_field(void) {
         if (at >= 0 && (long)g_vi_fields == at) {
             uint32_t a = (uint32_t)strtoul(getenv("RT_DET_WATCH"), NULL, 16);
             struct sigaction sa; memset(&sa, 0, sizeof sa); sa.sa_sigaction = watch_hit; sa.sa_flags = SA_SIGINFO; sigaction(SIGSEGV, &sa, NULL);
+            if (getenv("RT_DET_WATCHW")) { wt_word = (uint32_t)strtoul(getenv("RT_DET_WATCHW"), NULL, 16); wt_page = (void *)((uintptr_t)G(wt_word) & ~0xFFFull);
+                struct sigaction st; memset(&st, 0, sizeof st); st.sa_sigaction = wt_trap; st.sa_flags = SA_SIGINFO; sigaction(SIGTRAP, &st, NULL);
+                mprotect(wt_page, 0x1000, PROT_READ); } else
             mprotect(G(a), 0x10000, PROT_READ);
         } }
 #endif
@@ -129,7 +180,13 @@ void det_field(void) {
             static int pass; pass++;                        /* (a state test passes here twice: .pages, .pages2) */
             char p[1200]; snprintf(p, sizeof p, pass > 1 ? "%s.pages%d" : "%s.pages", getenv("RT_DET_HASH"), pass); FILE *f = fopen(p, "w");
             if (f) { for (uint32_t pg = 0; pg < PG_ALL; pg++) { uint32_t a = pg < PG_MEM1 ? 0x80000000u + (pg << 12) : 0x90000000u + ((pg - PG_MEM1) << 12);
-                     fprintf(f, "%08X %d %016llx\n", a, skip_pg[pg], (unsigned long long)XXH3_64bits(G(a), 0x1000)); } fclose(f); }
+                     fprintf(f, "%08X %d %016llx\n", a, skip_pg[pg], (unsigned long long)XXH3_64bits(G(a), 0x1000)); }
+                     uint32_t lo[140], hi[140]; int nr = live_ranges(lo, hi, 138);       /* (and what RT_DET_HASH_LIVE leaves out) */
+                     for (int i = 0; i < nr; i++) fprintf(f, "live %08X %08X\n", lo[i], hi[i]);
+                     fclose(f); }
+            if (getenv("RT_DET_DUMP_MEM")) {                /* (and all of MEM1 + MEM2, raw: .mem) */
+                snprintf(p, sizeof p, pass > 1 ? "%s.mem%d" : "%s.mem", getenv("RT_DET_HASH"), pass); f = fopen(p, "wb");
+                if (f) { fwrite(G(0x80000000u), 1, 24u << 20, f); fwrite(G(0x90000000u), 1, 64u << 20, f); fclose(f); } }
             const char *pk = getenv("RT_DET_PEEK");
             if (pk) { uint32_t a = (uint32_t)strtoul(pk, NULL, 16); snprintf(p, sizeof p, pass > 1 ? "%s.peek%d" : "%s.peek", getenv("RT_DET_HASH"), pass); f = fopen(p, "wb"); if (f) { fwrite(G(a), 1, 0x2000, f); fclose(f); } } } }
     if (hash_out) {

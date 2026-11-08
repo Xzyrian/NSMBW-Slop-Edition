@@ -58,31 +58,16 @@ void net_snap_point(void);
 void net_shutdown(void);                                   /* the game is closing */
 uint64_t rt_tb_now(void);
 
-/* processor interface interrupts (PI INTSR bits) */
-enum {
-    PI_GPERR = 1 << 0, PI_RSW = 1 << 1, PI_DI = 1 << 2, PI_SI = 1 << 3, PI_EXI = 1 << 4,
-    PI_AI = 1 << 5, PI_DSP = 1 << 6, PI_MEM = 1 << 7, PI_VI = 1 << 8, PI_PE_TOKEN = 1 << 9,
-    PI_PE_FINISH = 1 << 10, PI_CP = 1 << 11, PI_DEBUG = 1 << 12, PI_HSP = 1 << 13, PI_WII_IPC = 1 << 14,
-};
-void pi_set(uint32_t bits, int on);
-uint32_t pi_active(void);          /* INTSR & INTMR */
-
 /* hardware */
 void hw_init(void);
 void hw_update(void);
 /* rt_si.c - GameCube controller ports; rt_remotes.c - the players' controllers */
-uint32_t si_read_sized(uint32_t r, int size); void si_write_sized(uint32_t r, uint32_t v, int size); void si_tick(void);
+void si_tick(void);
 int remotes_gc_state(int port, uint8_t s[8]);   /* GC port 0-3 (players 5-8): 1 + its 8 poll bytes, 0 = empty */              /* advance VI timing etc.; called from polls */
 void ios_init(void);
-void ios_mmio_write(uint32_t reg, uint32_t v);
-uint32_t ios_mmio_read(uint32_t reg);
 void ios_update(void);
 void gx_fifo_write(uint32_t v, int size);
 void gx_init(void);
-uint32_t gx_cp_read(uint32_t reg, int size);
-void gx_cp_write(uint32_t reg, uint32_t v, int size);
-uint32_t gx_pe_read(uint32_t reg, int size);
-void gx_pe_write(uint32_t reg, uint32_t v, int size);
 
 /* disc */
 int disc_init(void);
@@ -237,7 +222,8 @@ uint32_t rt_gcall_(const char *file, int line, ppc_context *ctx, uint8_t *base, 
 #define rt_gcall(...) rt_gcall_(__FILE__, __LINE__, __VA_ARGS__)
 /* give a native function a guest address, so guest code can call it (function pointers, vtables) */
 void rt_register_native(uint32_t addr, ppc_func fn);
-void rt_post_callback(uint32_t fn, uint32_t a0, uint32_t a1);   /* rt_core.c: a guest callback "from an interrupt" (track A) */
+void rt_post_callback(uint32_t fn, uint32_t a0, uint32_t a1);
+void rt_post_interrupt(uint32_t fn, uint32_t intr);                /* an SDK interrupt handler (intr, current OSContext) as a native event */   /* rt_core.c: a guest callback "from an interrupt" (track A) */
 int  rt_events_pending(void);
 
 /* the character list (rt_chars.c, docs/CHARACTERS.md) */

@@ -14,7 +14,11 @@
  *   0x80-0xFF       the transfer buffer
  * A transfer (TSTART) finishes at once: the command is the buffer's first byte - 0x00 / 0xFF
  * type (09 00 00: standard controller), 0x41 / 0x42 origin / recalibrate (10 bytes), 0x40 poll
- * (8 bytes). Polling runs once per video field (si_tick). */
+ * (8 bytes). Polling runs once per video field (si_tick).
+ *
+ * Track A (docs/NATIVE_ROADMAP.md): the SDK's SI library is replaced by native functions at the
+ * end of this file - the state above is now the library's own (what the controllers answered),
+ * not registers: no SI register is read or written and no SI interrupt is raised. */
 #include "rt.h"
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 
@@ -32,8 +36,8 @@ enum { SR_NOREP = 3, SR_WRST = 4, SR_RDST = 5 };
 
 static int any_rdst(void) { for (int p = 0; p < 4; p++) if (sisr & SR_BIT(p, SR_RDST)) return 1; return 0; }
 static void update_irq(void) {
-    int irq = ((comcsr & CSR_TCINT) && (comcsr & CSR_TCINTMSK)) || (any_rdst() && (comcsr & CSR_RDSTINTMSK));
-    pi_set(PI_SI, irq);
+    /* (track A: the SI library is native - see the end of this file - and takes no interrupts) */
+    (void)any_rdst;
 }
 
 /* a port's 8-byte poll answer: H = [flags | start y x b a][0x80 | l r z up down right left][stick x][stick y],
@@ -77,50 +81,6 @@ static void transfer(void) {
     update_irq();
 }
 
-uint32_t si_read(uint32_t r) {
-    if (r < 0x30) {
-        int port = r / 0xC, k = r % 0xC;
-        if (k == 0) return outbuf[port];
-        if (k == 4) { sisr &= ~SR_BIT(port, SR_RDST); update_irq(); return inh[port]; }
-        return inl[port];
-    }
-    if (r == 0x30) return sipoll;
-    if (r == 0x34) return (comcsr & ~CSR_RDSTINT) | (any_rdst() ? CSR_RDSTINT : 0);
-    if (r == 0x38) return sisr;
-    if (r == 0x3C) return exilk;
-    if (r >= 0x80 && r < 0x100) return ((uint32_t)buf[r - 0x80] << 24) | ((uint32_t)buf[r - 0x80 + 1] << 16) | ((uint32_t)buf[r - 0x80 + 2] << 8) | buf[r - 0x80 + 3];
-    return 0;
-}
-void si_write(uint32_t r, uint32_t v) {
-    if (r < 0x30) { int port = r / 0xC, k = r % 0xC; if (k == 0) outbuf[port] = v; return; }
-    if (r == 0x30) { sipoll = v; return; }
-    if (r == 0x34) {
-        if (v & CSR_TCINT) comcsr &= ~CSR_TCINT;                                       /* write 1 clears */
-        comcsr = (comcsr & (CSR_TCINT | CSR_COMERR)) | (v & ~(CSR_TCINT | CSR_RDSTINT | CSR_COMERR));
-        update_irq();
-        if (v & CSR_TSTART) transfer();
-        return;
-    }
-    if (r == 0x38) {                                                                   /* error bits: write 1 clears */
-        for (int p = 0; p < 4; p++) sisr &= ~(v & (0x0Fu << ((3 - p) * 8)));
-        return;
-    }
-    if (r == 0x3C) { exilk = v; return; }
-    if (r >= 0x80 && r < 0x100) { int o = r - 0x80; buf[o] = v >> 24; buf[o + 1] = v >> 16; buf[o + 2] = v >> 8; buf[o + 3] = v; }
-}
-/* 8- or 16-bit access to the buffer (byte-wise readers) */
-uint32_t si_read_sized(uint32_t r, int size) {
-    if (size == 4 || r < 0x80) return si_read(r & ~3u);
-    if (r >= 0x100) return 0;
-    if (size == 2) return ((uint32_t)buf[r - 0x80] << 8) | buf[r - 0x80 + 1];
-    return buf[r - 0x80];
-}
-void si_write_sized(uint32_t r, uint32_t v, int size) {
-    if (size == 4 || r < 0x80) { si_write(r & ~3u, v); return; }
-    if (r >= 0x100) return;
-    if (size == 2) { buf[r - 0x80] = v >> 8; buf[r - 0x80 + 1] = v; } else buf[r - 0x80] = v;
-}
-
 /* once per video field: the hardware polls the enabled ports */
 void si_tick(void) {
     for (int p = 0; p < 4; p++) {
@@ -141,4 +101,178 @@ void hle_SITransfer(ppc_context *ctx, uint8_t *base) {
     uint32_t chan = ctx->r[3] & 3, t = SI_XFER_TIME + 8 * chan;
     if (!R32(t) && !R32(t + 4)) W32(t, 0x80000000u);
     orig_SITransfer(ctx, base);
+}
+
+/* ------------------------------------------------------------------ the SI library, native (track A4)
+ * Decompiled from the USA rev 2 SDK (si.c; the 8-player module carries its own copies of the
+ * SIGetStatus / SISetCommand / SIEnablePolling / SIDisablePolling / SIGetResponse group), with the
+ * registers replaced by the state above. A transfer is answered at once; its completion (callback,
+ * queued packets, the type re-probe) runs "from an interrupt" as a native event. */
+#define SI_SI        0x8033FF90u     /* Si: +0 chan (-1 idle), +4 poll, +8 inputBytes, +0xC input, +0x10 callback */
+#define SI_TYPE      0x8033FFA8u     /* Type[4] */
+#define SI_RATES     0x8033FFB8u     /* XY tables: NTSC (12 x {u16 line, u8 count}), PAL at +0x30 */
+#define SI_PACKET    0x8038F7D0u     /* Packet[4] (0x20): chan, output, outputBytes, input, inputBytes, callback, fire time */
+#define SI_ALARM     0x8038F890u     /* Alarm[4] (0x30) */
+#define SI_XFERTIME  0x8038F850u     /* (OSTime[4]) */
+#define SI_TYPETIME  0x8038F870u
+#define SI_INBUF     0x8038F950u     /* InputBuffer[4][2] */
+#define SI_INVALID   0x8038F970u     /* InputBufferValid[4] */
+#define SDA          0x8042F680u
+#define F_GetTypeCallback 0x801BB3C0u
+#define F_OSGetSystemTime 0x801B5FB0u
+#define F_OSCancelAlarm   0x801AB640u
+#define F_OSRegisterVersion 0x801AB1C0u
+#define F_SIGetType       0x801BB680u
+#define F_SITransfer      0x801BB250u
+#define F_VIGetTvFormat   0x801BE010u
+#define F_OSReport        0x8015F730u
+#define SI_TC_FN          0x80001F30u     /* guest address of si_complete (rt_register_native) */
+
+static uint8_t tc_resp[128]; static int tc_n, tc_err;     /* the answer of the transfer in flight */
+
+static uint32_t gcall(ppc_context *ctx, uint32_t fn, uint32_t a0, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5) {
+    uint32_t lr = ctx->lr;
+    ctx->r[3] = a0; ctx->r[4] = a1; ctx->r[5] = a2; ctx->r[6] = a3; ctx->r[7] = a4; ctx->r[8] = a5;
+    ppc_call_indirect(ctx, g_base, fn);
+    ctx->lr = lr;
+    return ctx->r[3];
+}
+static int64_t systime(ppc_context *ctx) {
+    gcall(ctx, F_OSGetSystemTime, 0, 0, 0, 0, 0, 0);
+    return (int64_t)(((uint64_t)ctx->r[3] << 32) | ctx->r[4]);
+}
+static void w64(uint32_t a, int64_t v) { W32(a, (uint32_t)((uint64_t)v >> 32)); W32(a + 4, (uint32_t)v); }
+static int64_t r64(uint32_t a) { return (int64_t)(((uint64_t)R32(a) << 32) | R32(a + 4)); }
+static void clear_errors(int chan) { sisr &= ~(0x0F000000u >> (chan * 8)); }
+
+/* __SITransfer (fn_801BAFB0): start a transfer if the bus is free */
+static int si_start(ppc_context *ctx, uint32_t chan, uint32_t out, uint32_t out_n, uint32_t in, uint32_t in_n, uint32_t cb) {
+    (void)ctx;
+    if ((int32_t)R32(SI_SI) != -1) return 0;
+    chan &= 3;
+    clear_errors((int)chan);
+    W32(SI_SI, chan); W32(SI_SI + 0x10, cb); W32(SI_SI + 8, in_n); W32(SI_SI + 0xC, in);
+    for (uint32_t i = 0; i < out_n && i < 128; i++) buf[i] = R8(out + i);
+    comcsr = (comcsr & ~(3u << 1) & ~(0x7Fu << 8)) | (chan << 1) | ((in_n & 0x7F) << 8);
+    transfer();                                              /* (the answer, into buf; sisr / COMERR) */
+    tc_n = (int)(in_n < 128 ? in_n : 128); memcpy(tc_resp, buf, (size_t)tc_n);
+    tc_err = (comcsr & CSR_COMERR) != 0;
+    comcsr &= ~CSR_TCINT;
+    static int reg; if (!reg) { reg = 1; extern void si_complete(ppc_context *, uint8_t *); rt_register_native(SI_TC_FN, si_complete); }
+    rt_post_callback(SI_TC_FN, 0, 0);
+    return 1;
+}
+void hle_fn_801BAFB0(ppc_context *ctx, uint8_t *base) {
+    (void)base;
+    ctx->r[3] = (uint32_t)si_start(ctx, ctx->r[3], ctx->r[4], ctx->r[5], ctx->r[6], ctx->r[7], ctx->r[8]);
+}
+/* CompleteTransfer: the answer into the caller's buffer, the status */
+static uint32_t si_finish(ppc_context *ctx) {
+    uint32_t chan = R32(SI_SI);
+    if ((int32_t)chan == -1) return 0;
+    int64_t now = systime(ctx);
+    w64(SI_XFERTIME + 8 * chan, now);
+    uint32_t in = R32(SI_SI + 0xC), n = R32(SI_SI + 8);
+    for (uint32_t i = 0; i < n && i < (uint32_t)tc_n; i++) W8(in + i, tc_resp[i]);
+    uint32_t st;
+    if (tc_err) {
+        st = (sisr >> ((3 - chan) * 8)) & 0xF;
+        if ((st & 8) && !(R32(SI_TYPE + 4 * chan) & 0x80)) W32(SI_TYPE + 4 * chan, 8);
+        if (!st) st = 4;
+    } else { w64(SI_TYPETIME + 8 * chan, now); st = 0; }
+    W32(SI_SI, 0xFFFFFFFFu);
+    return st;
+}
+/* the transfer-complete half of SIInterruptHandler */
+void si_complete(ppc_context *ctx, uint8_t *base) {
+    (void)base;
+    uint32_t chan = R32(SI_SI), cb = R32(SI_SI + 0x10);
+    if ((int32_t)chan == -1) return;
+    W32(SI_SI + 0x10, 0);
+    uint32_t st = si_finish(ctx);
+    for (int i = 1; i <= 4; i++) {                           /* a transfer queued for later whose time has come */
+        uint32_t c = (chan + (uint32_t)i) & 3, P = SI_PACKET + 0x20 * c;
+        if ((int32_t)R32(P) == -1) continue;
+        if (systime(ctx) < r64(P + 0x18)) continue;
+        if (si_start(ctx, R32(P), R32(P + 4), R32(P + 8), R32(P + 0xC), R32(P + 0x10), R32(P + 0x14))) {
+            gcall(ctx, F_OSCancelAlarm, SI_ALARM + 0x30 * c, 0, 0, 0, 0, 0);
+            W32(P, 0xFFFFFFFFu);
+        }
+        break;
+    }
+    if (cb) gcall(ctx, cb, chan, st, R32(0x800000D4), 0, 0, 0);   /* (running as a native event: the current context is the interrupted one) */
+    clear_errors((int)chan);
+    if (R32(SI_TYPE + 4 * chan) == 0x80 && (int32_t)R32(SI_PACKET + 0x20 * chan) == -1 && R32(SI_SI) != chan) {
+        /* a type probe still running: ask again in 65 us */
+        uint32_t t = (uint32_t)(((uint64_t)0x431BDE83u * (R32(0x800000F8) >> 2)) >> 32);
+        uint32_t delay = (((t >> 9) & 0x007FFFC0u) + (t >> 15)) >> 3;
+        uint32_t lr = ctx->lr;
+        ctx->r[3] = chan; ctx->r[4] = SDA - 0x4ee0; ctx->r[5] = 1; ctx->r[6] = SI_TYPE + 4 * chan; ctx->r[7] = 3;
+        ctx->r[8] = F_GetTypeCallback; ctx->r[9] = 0; ctx->r[10] = delay;
+        ppc_call_indirect(ctx, g_base, F_SITransfer);
+        ctx->lr = lr;
+    }
+}
+
+/* SIInit */
+void hle_SIInit(ppc_context *ctx, uint8_t *base) {
+    (void)base;
+    if (R32(SDA - 0x4edc)) return;
+    gcall(ctx, F_OSRegisterVersion, R32(SDA - 0x6120), 0, 0, 0, 0, 0);
+    for (int c = 0; c < 4; c++) W32(SI_PACKET + 0x20 * c, 0xFFFFFFFFu);
+    W32(SI_SI + 4, 0);
+    gcall(ctx, 0x801BB840u, 0, 0, 0, 0, 0, 0);              /* SISetSamplingRate(0) */
+    comcsr = 0;                                              /* (no interrupt handler: completions are native events) */
+    for (uint32_t c = 0; c < 4; c++) gcall(ctx, F_SIGetType, c, 0, 0, 0, 0, 0);
+    W32(SDA - 0x4edc, 1);
+}
+/* SISetXY(line, count): the polling interval */
+static uint32_t set_xy(uint32_t x, uint32_t y) {
+    uint32_t v = (R32(SI_SI + 4) & 0xFC0000FFu) | (x << 16) | (y << 8);
+    W32(SI_SI + 4, v); sipoll = v;
+    return v;
+}
+void hle_SISetXY(ppc_context *ctx, uint8_t *base) { (void)base; ctx->r[3] = set_xy(ctx->r[3], ctx->r[4]); }
+/* SISetSamplingRate(msec): the XY pair for the TV format; the VI "VISEL" doubling: progressive off */
+void hle_SISetSamplingRate(ppc_context *ctx, uint8_t *base) {
+    (void)base;
+    uint32_t rate = ctx->r[3] > 11 ? 11 : ctx->r[3];
+    W32(SDA - 0x4ed0, rate);
+    uint32_t tv = gcall(ctx, F_VIGetTvFormat, 0, 0, 0, 0, 0, 0), tab;
+    if (tv == 0 || tv == 2 || tv == 5) tab = SI_RATES;
+    else if (tv == 1) tab = SI_RATES + 0x30;
+    else { gcall(ctx, F_OSReport, SI_RATES + 0x60, 0, 0, 0, 0, 0); rate = 0; tab = SI_RATES; }
+    set_xy(1 * R16(tab + 4 * rate), R8(tab + 4 * rate + 2));
+}
+/* the module's group (8-player module, d_project.rel) */
+static uint32_t get_status(uint32_t chan) {
+    uint32_t st = sisr >> ((3 - chan) * 8);
+    if ((st & 8) && !(R8(SI_TYPE + 4 * chan + 3) & 0x80)) W32(SI_TYPE + 4 * chan, 8);
+    return st;
+}
+void hle_mfn_8184105C(ppc_context *ctx, uint8_t *base) { (void)base; ctx->r[3] = get_status(ctx->r[3] & 3); }  /* SIGetStatus */
+void hle_mfn_818410D8(ppc_context *ctx, uint8_t *base) { (void)base; if (ctx->r[3] < 4) outbuf[ctx->r[3]] = ctx->r[4]; }   /* SISetCommand */
+void hle_mfn_81841124(ppc_context *ctx, uint8_t *base) { (void)ctx; (void)base; }                                  /* SITransferCommands */
+void hle_mfn_81841134(ppc_context *ctx, uint8_t *base) {                                                           /* SIEnablePolling */
+    (void)base;
+    uint32_t poll = ctx->r[3];
+    if (poll) { uint32_t v = (R32(SI_SI + 4) & ~(poll >> 28)) | (poll >> 24); W32(SI_SI + 4, v); sipoll = v; }
+    ctx->r[3] = R32(SI_SI + 4);
+}
+void hle_mfn_818411D8(ppc_context *ctx, uint8_t *base) {                                                           /* SIDisablePolling */
+    (void)base;
+    uint32_t poll = ctx->r[3];
+    if (poll) { uint32_t v = R32(SI_SI + 4) & ~(poll >> 24); W32(SI_SI + 4, v); sipoll = v; }
+    ctx->r[3] = R32(SI_SI + 4);
+}
+void hle_mfn_81841264(ppc_context *ctx, uint8_t *base) {                                                           /* SIGetResponse(chan, data) */
+    (void)base;
+    uint32_t chan = ctx->r[3] & 3, data = ctx->r[4], ok;
+    if (get_status(chan) & 0x20) {                                       /* a fresh poll */
+        W32(SI_INBUF + 8 * chan, inh[chan]); W32(SI_INBUF + 8 * chan + 4, inl[chan]);
+        sisr &= ~SR_BIT(chan, SR_RDST);
+        W32(SI_INVALID + 4 * chan, 0); ok = 1;
+    } else { ok = R32(SI_INVALID + 4 * chan); W32(SI_INVALID + 4 * chan, 0); }
+    if (ok) { W32(data, R32(SI_INBUF + 8 * chan)); W32(data + 4, R32(SI_INBUF + 8 * chan + 4)); }
+    ctx->r[3] = ok;
 }

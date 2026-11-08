@@ -1,8 +1,7 @@
-/* rt_ios.c - Hollywood IPC registers + a small IOS (Starlet) emulation:
- * /dev/di (disc), /dev/fs + NAND files (host folder nand/), /dev/es, /dev/stm.
- * The IPC handshake follows Dolphin's WiiIPC/EmulationKernel exactly. */
+/* rt_ios.c - the IOS services the game uses, native: /dev/di (disc), /dev/fs + NAND files (host
+ * folder nand/), /dev/es, /dev/stm. The SDK's IOS client functions (IOS_Open / IOS_Ioctl / ...)
+ * are native too and call them directly (track A3) - no IPC registers, no Starlet. */
 #include "rt.h"
-#include "rt_bt.h"
 #include <sys/stat.h>
 #include <dirent.h>
 #ifdef _WIN32
@@ -18,80 +17,17 @@ RT_STATE_FILE                                   /* (this file's variables are pa
 
 enum { IPC_OPEN = 1, IPC_CLOSE, IPC_READ, IPC_WRITE, IPC_SEEK, IPC_IOCTL, IPC_IOCTLV, IPC_REPLY };
 enum { IOS_ENOENT = -6, IOS_EINVAL = -4, FS_ENOENT = -106, FS_EEXIST = -105 };
-#define IRQ_IPC_BROADWAY 0x40000000u
 
-/* ------------------------------------------------------------------ IPC registers */
-static struct { uint8_t X1, X2, Y1, Y2, IX1, IX2, IY1, IY2; } c;
-static uint32_t ppc_msg, arm_msg, irq_flags, irq_mask;
-static uint32_t reqq[64], nreq, repq[64], nrep;
-static uint8_t hwregs[0x400];
-
+/* (no IPC registers: the IOS client is native - see "the IOS client, native" below - and talks
+   to the devices here directly) */
 static void execute(uint32_t req);
-static void update_irq(void) {
-    if ((c.Y1 & c.IY1) || (c.Y2 & c.IY2)) irq_flags |= IRQ_IPC_BROADWAY;
-    pi_set(PI_WII_IPC, (irq_flags & irq_mask) != 0);
-}
-static int ready(void) { return !c.Y1 && !c.Y2 && !(irq_flags & IRQ_IPC_BROADWAY); }
-static void update_ipc(void) {
-    if (!ready()) return;
-    if (nreq) {
-        c.X1 = 0; c.Y2 = 1;                      /* ack */
-        uint32_t r = reqq[0]; memmove(reqq, reqq + 1, --nreq * 4);
-        execute(r);
-        return;
-    }
-    if (nrep) {
-        arm_msg = repq[0]; memmove(repq, repq + 1, --nrep * 4);
-        c.Y1 = 1;
-    }
-}
-void ios_update(void) { bt_update(); update_ipc(); update_irq(); }
-
-void ios_reply(uint32_t req, int32_t result);
-static void reply(uint32_t req, int32_t result) { ios_reply(req, result); }
+void ios_update(void) { void wiimote_update(void); wiimote_update(); }   /* (the remotes: rt_wiimote.c) */
 static int native_reply(uint32_t req, int32_t result);
 void ios_reply(uint32_t req, int32_t result) {
-    if (native_reply(req, result)) return;                   /* a request from the native IOS client (below) */
-    uint32_t cmd = R32(req);
-    W32(req + 4, (uint32_t)result);
-    W32(req + 8, cmd);
-    W32(req, IPC_REPLY);
-    if (nrep < 64) repq[nrep++] = req;
+    if (native_reply(req, result)) return;
+    rt_log("ios", "reply %d for request %08X that no client sent", result, req);
 }
-
-uint32_t ios_mmio_read(uint32_t reg) {
-    switch (reg) {
-    case 0x04: return (c.IY2 << 5) | (c.IY1 << 4) | (c.X2 << 3) | (c.Y1 << 2) | (c.Y2 << 1) | c.X1;
-    case 0x08: return arm_msg;
-    case 0x30: return irq_flags;
-    case 0x34: return irq_mask;
-    case 0x64: return 0xFFFFFFFF;               /* AHBPROT */
-    case 0xC8: return 0;                        /* GPIOB_IN */
-    case 0x180: case 0x1CC: case 0x1D0: return 0;
-    }
-    return ((uint32_t)hwregs[reg] << 24) | (hwregs[reg + 1] << 16) | (hwregs[reg + 2] << 8) | hwregs[reg + 3];
-}
-void ios_mmio_write(uint32_t reg, uint32_t v) {
-    switch (reg) {
-    case 0x00: ppc_msg = v; return;
-    case 0x04:
-        c.X1 = v & 1; c.X2 = (v >> 3) & 1;
-        if ((v >> 2) & 1) c.Y1 = 0;
-        if ((v >> 1) & 1) c.Y2 = 0;
-        c.IY1 = (v >> 4) & 1; c.IY2 = (v >> 5) & 1;
-        if ((((v >> 2) & 1) && c.IY1) || (((v >> 1) & 1) && c.IY2)) irq_flags |= IRQ_IPC_BROADWAY;
-        if (c.X1 && nreq < 64) reqq[nreq++] = ppc_msg;
-        ios_update();
-        return;
-    case 0x30: irq_flags &= ~v; ios_update(); return;
-    case 0x34:
-        irq_mask = v;
-        if (irq_mask & IRQ_IPC_BROADWAY) { memset(&c, 0, sizeof c); ppc_msg = arm_msg = 0; }
-        ios_update();
-        return;
-    }
-    hwregs[reg] = v >> 24; hwregs[reg + 1] = v >> 16; hwregs[reg + 2] = v >> 8; hwregs[reg + 3] = v;
-}
+static void reply(uint32_t req, int32_t result) { ios_reply(req, result); }
 
 /* ------------------------------------------------------------------ devices */
 enum { DEV_NONE, DEV_DI, DEV_FS, DEV_ES, DEV_STM_IMM, DEV_STM_EVENT, DEV_FILE, DEV_STUB, DEV_BT };
@@ -308,7 +244,7 @@ static void execute(uint32_t req) {
         if (!e || !e->type) break;
         res = 0;
         if (e->type == DEV_FS) LOG("ios", "fs ioctlv %u nin %u nout %u path %s", ioc, nin, nout, nin ? (const char *)G(R32(vec)) : "-");
-        if (e->type == DEV_BT) res = bt_ioctlv(req, ioc, nin, nout, vec, &pending);
+        if (e->type == DEV_BT) { res = -4; rt_log("ios", "Bluetooth USB device used - but WUD is native (rt_wiimote.c)"); }
         else if (e->type == DEV_ES) {
             if (ioc == 0x20 && nout >= 1) { uint32_t o = R32(vec + 8 * nin); W32(o, 0x00010000); W32(o + 4, 0x534D4E45); }  /* GetTitleID */
             else if (ioc == 0x1D && nin >= 1 && nout >= 1) {        /* GetTitleDir: the save folder ("home dir") */

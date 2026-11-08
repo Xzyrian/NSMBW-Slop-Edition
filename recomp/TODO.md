@@ -12,8 +12,30 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
   modding and principle; online play may be taken apart) - `docs/NATIVE_ROADMAP.md`.
   Split (user, 2026-10-16): track A (platform: SDK libraries native, no emulated hardware)
   instance 1; track B (game code decompiled class by class) instance 2.
-  - [~] A1 GX (FIFO/CP/PE/PI native: done; GX state functions + the pipe: next)  - [ ] A2 OS threads/timing  - [~] A3 disc/saves (DVD reads + IOS client native: done; DI boot calls, NAND straight to host files: next)
-  - [ ] A4 input  - [ ] A5 audio  - [ ] A6 hardware layer deleted
+  - [~] A1 GX (FIFO/CP/PE/PI native: done; GX state functions + the pipe: next)  - [~] A2 OS (VI, interrupt controller, MI/PI/EXI native: done; threads/alarms/timing: next)
+  - [x] A3 disc/saves (DVD reads + IOS client native)  - [x] A4 input (SI/GameCube pads native; WUD native: remotes talk HID to WPAD directly, Bluetooth stack gone)  - [x] A5 audio (AI + DSP native)
+  - [x] A6 hardware layer deleted: rt_hw.c is the field clock + the GX write-gather pipe; any other register access is logged (RT_MMIO_STRICT=1: fatal)
+  - [~] B (instance 2, `docs/DECOMP.md`): the game code decompiled class by class, checked by
+    `RT_GM_VERIFY` / `RT_GM_SELFTEST` and A/B replays. Done: the module's save data and session
+    info (`dMj2dGame_c`, `dMj2dHeader_c`, `dSaveMng_c` in part, `dInfo_c`: 67 functions) and
+    the player manager (`daPyMng_c`: 38 of 39, part 61), the demo manager's lists
+    (`daPyDemoMng_c`: 7 on, 19 written but off, part 67), all register-exact with frames, strict
+    four-input A/B clean. The HUD's first fourteen functions are native (`dGameDisplay_c`, parts 68-71,
+    register-exact self-test and live gameplay / pause / normal goal-settle verification; strict A/B pending).
+    Part 70 adds the time / score setters and RestCoinAnimeCheck; only setScore's live layout-call path is reached,
+    so the time-change and rest-coin animation call paths still need directed input. Part 71 adds a repeatable
+    1-1 goal replay and both ProcGoalSettleUp state methods; normal mode is checked, assist-mode settlement is not.
+    Next: use that replay to verify / switch on daPyDemoMng_c's goal demos (instance 1 wants it too), the rest of
+    `dGameDisplay_c`, daPyMng_c's createCourseInit, the rest of the module (the NAND saves, menus, world map),
+    then `dAcPy_c` / `daPlBase_c`, then camera / scroll
+  - [~] B (instance 1, from 2026-10-17, same method `docs/DECOMP.md`): the engine under the game -
+    the framework (`fBase_c`, `fManager_c`, `fTree*`, `fLiMg*`, profiles), `cLib` / `sLib` (lists,
+    trees, state machines, math, random), then the actor bases `dBase_c` / `dBaseActor_c` /
+    `dActor_c` and the enemy base `dEn_c`. Files `runtime/gm_f_*.c`, `gm_c_*.c`, `gm_s_*.c`,
+    `gm_d_base*.c`, `gm_d_actor.c`, `gm_d_enemy.c` (instance 2: not these classes). Done: the cLib lists and trees and the framework's lists of bases
+    (`gm_c_list.c`, `gm_f_list.c`: 18 functions), `fBase_c` and `fManager_c` (`gm_f_base.c`,
+    `gm_f_manager.c`: 33), the state machines (`gm_s_state.c`: 20), `dBase_c` / `dBaseActor_c` (`gm_d_base.c`:
+    35), `dActor_c` (`gm_d_actor.c`: 42, plus 14 written but off), `dEn_c` (`gm_d_enemy.c`: 44, plus 28 written but off). Part 35: guest frames for all of them (`GM_FN`, prologues replayed from `gm_prologue.c`), strict A/B against a build without them, two bugs fixed (scrOutCheck deleted the wrong actors; the module's state functions were overridden). Part 36: the enemy death / states and dEnCombo_c (`gm_d_enemy_death.c`: 46 on, 44 written but off - a test run with power-ups / Yoshi would switch most of them on). Part 37: every state-ID template copy native (2946, generated), dEnemyCarry_c (written, off), the background tile lookups (`gm_bg.c`, picked by a call profile of the tests). Part 38: mLib m3d (`gm_m3d.c`, 68). Part 39: the rest of m3d (`gm_m3d_scene.c`, `gm_m3d_anm.c`: 101 on). Part 40: mMtx_c / mVec3_c, mHeap, the allocators, the faders (`gm_m_mtx.c`, `gm_m_heap.c`, `gm_m_allocator.c`, `gm_m_fader.c`: 70 on), and GM_CALLR (calls with the real return address). Part 41: dCc_c collision (`gm_d_cc.c`, 19 on), GM_CALLR in the older files (`tools/gm_callr.py`). Part 42: the 1-1 / 4-1 blips found (run-time bisect) and fixed (gm_s_state.c, gm_f_base.c, a gm_prologues.py bug). Part 43: mLib m2d and mFrustum_c (`gm_m_2d.c`, `gm_m_frustum.c`). Part 44: the sLib / cLib helpers (`gm_s_lib.c`, `gm_c_lib.c`: 29 on), register-exact, with the new `RT_GM_VERIFY_REGS=1` check. Part 46: mFrustum_c::set, dCdFile_c (`gm_d_cd.c`), dRail_c / mColor::lerp (written, mostly off). Part 47: dActorCreateMng_c (`gm_d_actorcreate.c`). Part 48: the framework / dBaseActor_c / dActor_c natives register-exact; the field-863 word fixed (f31's ps1 leaking through stfd / lfd: GM_NV_KEEP keeps ps1 only for psq_st prologues). Part 49: the layout wipes (`gm_d_wipe.c`), dCdFile_c's getters' frames. Part 50: the score pop-ups and the 2D GX state keeper (`gm_d_smallscore.c`). Part 51: dSys_c::execute (the frame) and dScene_c (`gm_d_scene.c`). Part 52: dNext_c (`gm_d_next.c`, a self-test for what no input reaches). Part 53: LytBase_c's animations (`gm_d_lytbase.c`). Part 54: the rest of fBase_c / dBase_c / dBaseActor_c (all native now but the module's). Part 56: the 2,946 state-ID natives register-exact, dEn_c::PlayerCarryCheck's poll count - the no-input A/B clean; the older natives' loops checked against their back-edges (part 57): no other poll mismatch. Part 57: the world map's dWmActor_c and dCsvData_c getters (`gm_d_wm.c`), dScStage_c::getLoopPosX (`gm_d_stage.c`); mFrustum_c::intersectSphere's temporaries were written into the caller's frame and changeStateMethod had no frame (prologue scanner) - fixed. Part 58: d2d (`gm_d_2d.c`). Part 59: dRes_c (`gm_d_res.c`). Part 60: info_c / dResMng_c; `<FILE>_COUNT` builds (first-call logs) found 12 unreached natives in parts 57-60 - off. Part 62: the rest of LytBase_c (`gm_d_lytbuild.c`) and LytTextBox_c (`gm_d_lyttextbox.c`). Part 63: dMessage_c / MsgRes_c (`gm_d_message.c`), dSelectCursor_c (`gm_d_selectcursor.c`), dSmallScoreManager_c's life. Part 64: dCoin_c / dCurtainMng_c / dDvd (`gm_d_misc.c`), Util::FrameCounter_c written but off (`gm_d_util.c`). Part 65: the first library natives - nw4r::ut lists (`gm_nw4r_ut.c`, 10), EGG::ColorFader (`gm_egg.c`, 5 on, 3 off), the hottest nw4r g3d / math leaves of the call profile (`gm_nw4r_g3d.c`, 99 on, 1 off: MSL strcmp / memcmp and some mTexture_c / EGG / 2D-state leaves too). Part 66: 31 more there (130 on) - MSL libm (sin / cos / tan and their kernels) / strncmp, the g3d camera's projection matrices, ScnObj::SetMtx, panes' global position / matrix. Part 55: a no-input A/B (the attract demos) - dEn_c::posMove register-exact, 72 GM_CALLs given their return address; left: ~170 GM_CALLs with LR = 0 in the older natives (helpers, mismatched call counts: give them GM_CALLR by hand), the one-field blips of the long runs (no input: 12517 / 14916 / 26206 / 27785 / 28412-28442; title demos: 29443 / 29993). Next: test inputs that take a pipe, a door and a level end (dNext_c::changeScene, the wipes' pipe / Bowser variants); the rest of mLib (m_wipe_fader, mEf, mPad), dCc_c trapezoids, a test run with rail platforms (dRail_c), the older natives' NV / CR / volatile exactness (gm_d_actor.c, gm_d_enemy.c ...: `RT_GM_VERIFY_REGS=1` now lists what each leaves different)
   - [x] online play may be paused while track A runs (user, 2026-10-16)
 - [~] **Player profiles** (user, 2026-10-15) - `docs/PROFILES.md`. Player data moves from the
   characters to the people playing.
@@ -159,9 +181,9 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     game's name under / over its portrait
 - [ ] **Free-for-All / Coin Battle** - reachable from the multiplayer File Select and go to the
   8-player character select; nothing past that has been tested.
-- [ ] **Native port of the 8-player module** - 13 of 1318 functions are native (`NATIVE_PORT.md`,
-  `python3 tools/native_port_status.py`). Next: the rest of the character select
-  (`dNumberOfPeopleChange_c`, `dCharacterChangeSelectBase_c`), then the save/NAND code.
+- [ ] **Native port of the 8-player module** - 152 of 1318 functions are native (`NATIVE_PORT.md`,
+  `python3 tools/native_port_status.py`). Next: the goal-demo functions now reachable through the 1-1
+  replay, the rest of dGameDisplay_c and the character select, then the save/NAND code.
 - [ ] **Module save names** - renamed at link time (`tools/link_mod.py`); goes away when the
   save code (`dNandThread_c`) is ported.
 

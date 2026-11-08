@@ -172,7 +172,8 @@ void plat_audio_push(const int16_t *lr, int frames) {
    (addresses AABBCC00000i) that answer like real ones (status, memory reads, acks, reporting
    modes), with buttons from RT_FAKE_WM_SCRIPT="remote:frame:buttons hex:frames,..." (remote
    0-7; buttons in report order: 0x0100 2, 0x0200 1, 0x0800 A, 0x0010 +, 0x0008 up...) and
-   RT_FAKE_WM_GONE="remote:frame,..." taking one away. Their LED reports are logged. */
+   RT_FAKE_WM_GONE="remote:frame,..." taking one away; RT_FAKE_WM_AT=frame connects them only
+   from that frame on (a remote found after the boot). Their LED reports are logged. */
 #define FWM 8
 static struct { int on; uint8_t mode, cont, leds; uint8_t q[64][23]; int qn[64], nq; uint64_t last_frame; uint16_t last_btn; } fwm[FWM];
 static int fwm_n = -1;
@@ -197,6 +198,8 @@ static void fwm_init(void) {
 }
 int plat_wm_list(plat_wm_dev *out, int max) {
     fwm_init();
+    { static const char *at_ = (const char *)1; if (at_ == (const char *)1) { at_ = getenv("RT_FAKE_WM_AT"); if (at_) for (int i = 0; i < fwm_n; i++) fwm[i].on = 0; }
+      if (at_ && (long)g_frames_presented >= atol(at_)) { for (int i = 0; i < fwm_n; i++) if (!fwm[i].on) { fwm[i].on = 1; fwm[i].mode = 0x30; rt_log("fakewm", "remote %d appears", i); } at_ = NULL; } }   /* RT_FAKE_WM_AT=frame: they connect late (testing) */
     const char *gone = getenv("RT_FAKE_WM_GONE");
     for (const char *p = gone; p && *p; ) {
         long who = strtol(p, (char **)&p, 10); if (*p != ':') break; p++;

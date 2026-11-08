@@ -530,6 +530,160 @@ static void transform_vertex(const rawv *r, vtx *o) {
     }
 }
 
+/* ---- the same for a whole draw: decode_vertex + transform_vertex with everything that is the same
+   for every vertex of the draw worked out once (formats, scales, matrices, texgen setup). The math
+   per vertex is the same expressions in the same order, so the results are bit-identical (checked:
+   RT_SLOWXFORM=1 runs the per-vertex path above, frames compared). */
+typedef struct {
+    int pt, pcnt, pfmt; float psc;                 /* position: type (1 direct, 2/3 indexed), components, format, scale */
+    int nt, nbt, nfmt, idx3; float nsc;            /* normal (+binormal/tangent) */
+    int ct[2], cfmt[2];
+    int tt[8], tcnt[8], tfmt[8]; float tsc[8];
+    int pn_vtx, tm_vtx[8];                          /* matrix indices in the vertex data */
+    int def_pn, def_tm[8];
+    int nchan, ntex, ortho, dual;
+    float pm[12], nm[9], proj[6];                   /* (pm / nm: when the position matrix index is the same for all) */
+    struct { int proj, form, type, row, postnorm; uint32_t post; int tm_const; float tm[12]; float post_m[12]; } tg[8];
+} xfplan;
+static inline float rcomp(const uint8_t **p, int fmt, float sc) {
+    const uint8_t *q = *p;
+    switch (fmt) {
+    case 0: *p += 1; return (float)q[0] * sc;
+    case 1: *p += 1; return (float)(int8_t)q[0] * sc;
+    case 2: *p += 2; return (float)(uint16_t)(q[0] << 8 | q[1]) * sc;
+    case 3: *p += 2; return (float)(int16_t)(q[0] << 8 | q[1]) * sc;
+    default: { uint32_t u = (uint32_t)q[0] << 24 | q[1] << 16 | q[2] << 8 | q[3]; float f; memcpy(&f, &u, 4); *p += 4; return f; }
+    }
+}
+static float shift_scale(int sh) { return 1.0f / (float)(1u << (sh & 31)); }   /* (a power of two: v * scale == v / 2^sh exactly) */
+static void xfplan_setup(xfplan *P, int vat) {
+    uint32_t lo = gx.cp_vcd_lo, hi = gx.cp_vcd_hi, a = gx.cp_vat_a[vat], b = gx.cp_vat_b[vat], c = gx.cp_vat_c[vat];
+    uint32_t mia = gx.xf_regs[0x18], mib = gx.xf_regs[0x19];
+    P->def_pn = mia & 63;
+    for (int i = 0; i < 8; i++) P->def_tm[i] = i < 4 ? (mia >> (6 + 6 * i)) & 63 : (mib >> (6 * (i - 4))) & 63;
+    P->pn_vtx = lo & 1;
+    for (int i = 0; i < 8; i++) P->tm_vtx[i] = (lo >> (1 + i)) & 1;
+    P->pt = (lo >> 9) & 3; P->pcnt = (a & 1) ? 3 : 2; P->pfmt = (a >> 1) & 7; P->psc = shift_scale((a >> 4) & 31);
+    P->nt = (lo >> 11) & 3; P->nbt = (a >> 9) & 1; P->nfmt = (a >> 10) & 7; P->idx3 = (a >> 31) & 1;
+    P->nsc = shift_scale(P->nfmt == 1 ? 6 : P->nfmt == 3 ? 14 : 0);
+    for (int ci = 0; ci < 2; ci++) { P->ct[ci] = (lo >> (13 + 2 * ci)) & 3; P->cfmt[ci] = (a >> (14 + 4 * ci)) & 7; }
+    for (int t = 0; t < 8; t++) {
+        int sh;
+        P->tt[t] = (hi >> (2 * t)) & 3;
+        switch (t) {
+        case 0: P->tcnt[t] = (a >> 21) & 1; P->tfmt[t] = (a >> 22) & 7; sh = (a >> 25) & 31; break;
+        case 1: P->tcnt[t] = b & 1; P->tfmt[t] = (b >> 1) & 7; sh = (b >> 4) & 31; break;
+        case 2: P->tcnt[t] = (b >> 9) & 1; P->tfmt[t] = (b >> 10) & 7; sh = (b >> 13) & 31; break;
+        case 3: P->tcnt[t] = (b >> 18) & 1; P->tfmt[t] = (b >> 19) & 7; sh = (b >> 22) & 31; break;
+        case 4: P->tcnt[t] = (b >> 27) & 1; P->tfmt[t] = (b >> 28) & 7; sh = c & 31; break;
+        case 5: P->tcnt[t] = (c >> 5) & 1; P->tfmt[t] = (c >> 6) & 7; sh = (c >> 9) & 31; break;
+        case 6: P->tcnt[t] = (c >> 14) & 1; P->tfmt[t] = (c >> 15) & 7; sh = (c >> 18) & 31; break;
+        default: P->tcnt[t] = (c >> 23) & 1; P->tfmt[t] = (c >> 24) & 7; sh = (c >> 27) & 31; break;
+        }
+        P->tsc[t] = shift_scale(sh);
+    }
+    P->nchan = xf_r(0x09) & 3;
+    P->ntex = xf_r(0x3F) & 15; if (P->ntex > 8) P->ntex = 8;
+    P->ortho = xf_r(0x26) != 0;
+    for (int i = 0; i < 6; i++) P->proj[i] = xf_f(0x1020 + (uint32_t)i);
+    P->dual = xf_r(0x12) & 1;
+    if (!P->pn_vtx) {
+        for (int i = 0; i < 12; i++) P->pm[i] = xf_f((uint32_t)P->def_pn * 4 + (uint32_t)i);
+        for (int i = 0; i < 9; i++) P->nm[i] = xf_f(0x400 + (uint32_t)P->def_pn * 3 + (uint32_t)i);
+    }
+    for (int t = 0; t < P->ntex; t++) {
+        uint32_t info = xf_r(0x40 + t), post = xf_r(0x50 + t);
+        P->tg[t].proj = (info >> 1) & 1; P->tg[t].form = (info >> 2) & 1; P->tg[t].type = (info >> 4) & 7; P->tg[t].row = (info >> 7) & 31;
+        P->tg[t].postnorm = (post & 0x100) != 0; P->tg[t].post = 0x500 + (post & 63) * 4;
+        P->tg[t].tm_const = !P->tm_vtx[t];
+        if (P->tg[t].tm_const) for (int i = 0; i < 12; i++) P->tg[t].tm[i] = xf_f((uint32_t)P->def_tm[t] * 4 + (uint32_t)i);
+        for (int i = 0; i < 12; i++) P->tg[t].post_m[i] = xf_f(P->tg[t].post + (uint32_t)i);
+    }
+}
+static void xform_batch(int vat, uint32_t count, const uint8_t *data, vtx *out) {
+    xfplan P; xfplan_setup(&P, vat);
+    const uint8_t *p = data;
+    for (uint32_t n = 0; n < count; n++) {
+        rawv r;                                                 /* ---- decode (as decode_vertex) */
+        r.pnidx = P.def_pn;
+        if (P.pn_vtx) r.pnidx = *p++ & 63;
+        for (int i = 0; i < 8; i++) { r.tmidx[i] = P.def_tm[i]; if (P.tm_vtx[i]) r.tmidx[i] = *p++ & 63; }
+        r.pos[0] = r.pos[1] = r.pos[2] = 0;
+        if (P.pt) {
+            const uint8_t *q = P.pt == 1 ? p : indexed(0, &p, P.pt);
+            for (int i = 0; i < P.pcnt; i++) r.pos[i] = rcomp(&q, P.pfmt, P.psc);
+            if (P.pt == 1) p = q;
+        }
+        memset(r.nrm, 0, sizeof r.nrm); memset(r.bin, 0, sizeof r.bin); memset(r.tan, 0, sizeof r.tan);
+        if (P.nt) {
+            float *dst[3] = {r.nrm, r.bin, r.tan};
+            if (P.nt == 1) { for (int k = 0; k < (P.nbt ? 3 : 1); k++) for (int i = 0; i < 3; i++) dst[k][i] = rcomp(&p, P.nfmt, P.nsc); }
+            else if (P.nbt && P.idx3) { for (int k = 0; k < 3; k++) { const uint8_t *q = indexed(1, &p, P.nt); q += k * 3 * (P.nfmt >= 4 ? 4 : P.nfmt >= 2 ? 2 : 1); for (int i = 0; i < 3; i++) dst[k][i] = rcomp(&q, P.nfmt, P.nsc); } }
+            else { const uint8_t *q = indexed(1, &p, P.nt); for (int k = 0; k < (P.nbt ? 3 : 1); k++) for (int i = 0; i < 3; i++) dst[k][i] = rcomp(&q, P.nfmt, P.nsc); }
+        }
+        for (int ci = 0; ci < 2; ci++) {
+            if (!P.ct[ci]) { r.col[ci][0] = r.col[ci][1] = r.col[ci][2] = r.col[ci][3] = 255; continue; }
+            if (P.ct[ci] == 1) read_color(&p, P.cfmt[ci], r.col[ci]);
+            else { const uint8_t *q = indexed(2 + ci, &p, P.ct[ci]); read_color(&q, P.cfmt[ci], r.col[ci]); }
+        }
+        for (int t = 0; t < 8; t++) {
+            r.tc[t][0] = r.tc[t][1] = 0;
+            if (!P.tt[t]) continue;
+            const uint8_t *q = P.tt[t] == 1 ? p : indexed(4 + t, &p, P.tt[t]);
+            r.tc[t][0] = rcomp(&q, P.tfmt[t], P.tsc[t]);
+            if (P.tcnt[t]) r.tc[t][1] = rcomp(&q, P.tfmt[t], P.tsc[t]);
+            if (P.tt[t] == 1) p = q;
+        }
+        /* ---- transform (as transform_vertex) */
+        vtx *o = &out[n];
+        const float *M; float mtmp[12], ntmp[9]; const float *NM;
+        if (P.pn_vtx) { for (int i = 0; i < 12; i++) mtmp[i] = xf_f((uint32_t)r.pnidx * 4 + (uint32_t)i); M = mtmp; } else M = P.pm;
+        float in[4] = {r.pos[0], r.pos[1], r.pos[2], 1.0f}, mv[3];
+        for (int k = 0; k < 3; k++) mv[k] = M[k * 4] * in[0] + M[k * 4 + 1] * in[1] + M[k * 4 + 2] * in[2] + M[k * 4 + 3] * in[3];
+        float nv[3] = {0, 0, 1};
+        if (P.nchan) {
+            if (P.pn_vtx) { for (int i = 0; i < 9; i++) ntmp[i] = xf_f(0x400 + (uint32_t)r.pnidx * 3 + (uint32_t)i); NM = ntmp; } else NM = P.nm;
+            for (int i = 0; i < 3; i++) nv[i] = NM[i * 3] * r.nrm[0] + NM[i * 3 + 1] * r.nrm[1] + NM[i * 3 + 2] * r.nrm[2];
+            float nl = sqrtf(nv[0] * nv[0] + nv[1] * nv[1] + nv[2] * nv[2]); if (nl > 0) { nv[0] /= nl; nv[1] /= nl; nv[2] /= nl; }
+        }
+        const float *pj = P.proj;
+        if (P.ortho) { o->x = pj[0] * mv[0] + pj[1]; o->y = pj[2] * mv[1] + pj[3]; o->z = pj[4] * mv[2] + pj[5]; o->w = 1.0f; }
+        else { o->x = pj[0] * mv[0] + pj[1] * mv[2]; o->y = pj[2] * mv[1] + pj[3] * mv[2]; o->z = pj[4] * mv[2] + pj[5]; o->w = -mv[2]; }
+        for (int ch = 0; ch < 2; ch++) {
+            if (ch < P.nchan) light_channel(ch, mv, nv, r.col[ch], o->col[ch]);
+            else memcpy(o->col[ch], r.col[ch], sizeof o->col[ch]);
+        }
+        for (int t = 0; t < P.ntex; t++) {
+            int row = P.tg[t].row, type = P.tg[t].type;
+            float src[4] = {0, 0, 1, 1};
+            if (row == 0) { src[0] = r.pos[0]; src[1] = r.pos[1]; src[2] = r.pos[2]; }
+            else if (row == 1) { src[0] = r.nrm[0]; src[1] = r.nrm[1]; src[2] = r.nrm[2]; }
+            else if (row == 3) { memcpy(src, r.tan, 12); }
+            else if (row == 4) { memcpy(src, r.bin, 12); }
+            else if (row >= 5 && row <= 12) { src[0] = r.tc[row - 5][0]; src[1] = r.tc[row - 5][1]; src[2] = 1; }
+            if (!P.tg[t].form) src[2] = 1.0f;
+            float res[3] = {0, 0, 1};
+            if (type == 0) {
+                const float *T; float ttmp[12];
+                if (P.tg[t].tm_const) T = P.tg[t].tm;
+                else { for (int i = 0; i < 12; i++) ttmp[i] = xf_f((uint32_t)r.tmidx[t] * 4 + (uint32_t)i); T = ttmp; }
+                res[0] = T[0] * src[0] + T[1] * src[1] + T[2] * src[2] + T[3] * src[3];
+                res[1] = T[4] * src[0] + T[5] * src[1] + T[6] * src[2] + T[7] * src[3];
+                res[2] = P.tg[t].proj ? T[8] * src[0] + T[9] * src[1] + T[10] * src[2] + T[11] * src[3] : 1.0f;
+            } else if (type == 2 || type == 3) {
+                res[0] = o->col[type - 2][0] / 255.0f; res[1] = o->col[type - 2][1] / 255.0f; res[2] = 1;
+            } else { res[0] = src[0]; res[1] = src[1]; res[2] = 1; }
+            if (P.dual) {
+                if (P.tg[t].postnorm) { float l = sqrtf(res[0] * res[0] + res[1] * res[1] + res[2] * res[2]); if (l > 0) { res[0] /= l; res[1] /= l; res[2] /= l; } }
+                const float *Q = P.tg[t].post_m; float in2[4] = {res[0], res[1], res[2], 1}, r2[3];
+                for (int k = 0; k < 3; k++) r2[k] = Q[k * 4] * in2[0] + Q[k * 4 + 1] * in2[1] + Q[k * 4 + 2] * in2[2] + Q[k * 4 + 3] * in2[3];
+                res[0] = r2[0]; res[1] = r2[1]; res[2] = r2[2];
+            }
+            o->tex[t][0] = res[0]; o->tex[t][1] = res[1]; o->tex[t][2] = res[2];
+        }
+    }
+}
+
 static void to_screen(vtx *v) {
     float iw = v->w != 0 ? 1.0f / v->w : 0;
     float sx = xf_f(0x101A), sy = xf_f(0x101B), sz = xf_f(0x101C), ox = xf_f(0x101D), oy = xf_f(0x101E), oz = xf_f(0x101F);
@@ -967,7 +1121,7 @@ void gx_render_draw(int prim, int vat, uint32_t count, const uint8_t *data) {
     gx_render_draw_impl(prim, vat, count, data);
     g_perf_draw_ns += rt_now_ns() - t;
 }
-static int g_null_render;                                    /* NSMBW_RENDERER=null: draw nothing (logic/timing tests) */
+int g_null_render;                                           /* NSMBW_RENDERER=null: draw nothing (logic/timing tests; also labels the Windows title) */
 static void gx_render_draw_impl(int prim, int vat, uint32_t count, const uint8_t *data) {
     if (!count) return;
     if (g_null_render || g_resim) { frame_draws++; return; }   /* (g_resim: fields run again after a rollback - not shown) */
@@ -1137,8 +1291,7 @@ static void gx_render_efb_copy_impl(uint32_t val) {
             rt_log("gx", "frame %llu: %u draws", (unsigned long long)g_frames_presented, frame_draws);
             { extern void rt_state_scan(void); const char *ss = getenv("RT_STATESCAN");
               if (ss && g_frames_presented >= strtoull(ss, NULL, 10)) rt_state_scan(); }   /* repeats each logged frame */
-            { extern void rt_ax_scan(void); const char *as = getenv("RT_AXSCAN");
-              if (as && g_frames_presented >= strtoull(as, NULL, 10)) { static int done; if (!done++) rt_ax_scan(); } }
+
             const char *pk = getenv("RT_PEEK");             /* RT_PEEK="80xxxxxx,..." words to print with each frame log */
             while (pk && *pk) {
                 uint32_t a = (uint32_t)strtoul(pk, (char **)&pk, 16);

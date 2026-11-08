@@ -12,45 +12,12 @@ static uint16_t cp_regs[0x80 / 2];
 static uint16_t pe_regs[0x100 / 2];
 static uint16_t pe_token;
 
-/* The GX library no longer reaches these registers (its register pointers point at plain memory,
-   rt_gx.c "the GX FIFO, native"); an access means something new does - logged once. */
-static void hw_unexpected(const char *what, uint32_t reg) { static int n; if (n++ < 4) rt_log("gx", "unexpected %s register access %03X (track A1: should not happen)", what, reg); }
-uint32_t gx_cp_read(uint32_t reg, int size) {
-    reg &= 0x7F; hw_unexpected("CP", reg);
-    switch (reg) {
-    case 0x00: return 0x0C | 0x02;                         /* GP idle (cmd + read), underflow */
-    case 0x30: case 0x32: return 0;                         /* read/write distance: drained */
-    }
-    if (size == 4) return ((uint32_t)cp_regs[reg / 2] << 16) | cp_regs[reg / 2 + 1];
-    return cp_regs[reg / 2];
-}
-void gx_cp_write(uint32_t reg, uint32_t v, int size) {
-    reg &= 0x7F; hw_unexpected("CP", reg);
-    if (size == 4) { cp_regs[reg / 2] = v >> 16; cp_regs[reg / 2 + 1] = (uint16_t)v; }
-    else cp_regs[reg / 2] = (uint16_t)v;
-}
-static void pe_update_irq(void) {                         /* (token / finish: always enabled - __GXPEInit enables both) */
-    uint16_t ctl = pe_regs[0x0A / 2];
-    pi_set(PI_PE_TOKEN, (ctl & 4) != 0);
-    pi_set(PI_PE_FINISH, (ctl & 8) != 0);
-}
-uint32_t gx_pe_read(uint32_t reg, int size) {
-    reg &= 0xFF; (void)size; hw_unexpected("PE", reg);
-    if (reg == 0x0E) return pe_token;
-    return pe_regs[reg / 2];
-}
-void gx_pe_write(uint32_t reg, uint32_t v, int size) {
-    reg &= 0xFF; (void)size; hw_unexpected("PE", reg);
-    if (reg == 0x0A) {                                      /* status bits are write-1-to-clear */
-        uint16_t st = pe_regs[0x0A / 2] & 0x0C;
-        st &= ~(v & 0x0C);
-        pe_regs[0x0A / 2] = (uint16_t)((v & 0x03) | st);
-        pe_update_irq();
-        return;
-    }
-    pe_regs[reg / 2] = (uint16_t)v;
-}
-
+/* (the CP / PE registers: plain memory now - the GX library's register pointers point at
+   GX_REG_SHADOW, see "the GX FIFO, native" below; pe_regs / pe_token are the renderer's view) */
+static void pe_update_irq(void) {}                        /* (track A: no PE interrupt - the handlers run as native events) */
+#define F_GXTokenInterruptHandler  0x801C5120u
+#define F_GXFinishInterruptHandler 0x801C5200u
+#define GX_SHADOW_PE_TOKEN         0x8200100Eu           /* (the PE token register, in the plain-memory register block) */
 /* ------------------------------------------------------------------ vertex sizes */
 static int comp_size(int fmt) { static const int s[8] = {1, 1, 2, 2, 4, 4, 4, 4}; return s[fmt & 7]; }
 static int color_size(int fmt) { static const int s[8] = {2, 3, 4, 2, 3, 4, 4, 4}; return s[fmt & 7]; }
@@ -137,11 +104,12 @@ static void load_bp(uint32_t v) {
     val = gx.bp[reg];
     if (val != old || reg == 0x0F || reg == 0x52 || reg == 0x64 || reg == 0x65 || (reg >= 0xE0 && reg <= 0xE7)) g_gx_state_gen++;
     switch (reg) {
-    case 0x45:                                               /* PE_DONE: draw done */
-        pe_regs[0x0A / 2] |= 8; pe_update_irq(); gx_render_flush(); break;
-    case 0x47:                                               /* token with interrupt */
-        pe_token = val & 0xFFFF; pe_regs[0x0A / 2] |= 4; pe_update_irq(); break;
-    case 0x48: pe_token = val & 0xFFFF; break;
+    case 0x45:                                               /* PE_DONE: draw done -> GXFinishInterruptHandler */
+        pe_regs[0x0A / 2] |= 8; gx_render_flush(); rt_post_interrupt(F_GXFinishInterruptHandler, 19); break;
+    case 0x47:                                               /* token with interrupt -> GXTokenInterruptHandler */
+        pe_token = val & 0xFFFF; pe_regs[0x0A / 2] |= 4; W16(GX_SHADOW_PE_TOKEN, pe_token);
+        rt_post_interrupt(F_GXTokenInterruptHandler, 18); break;
+    case 0x48: pe_token = val & 0xFFFF; W16(GX_SHADOW_PE_TOKEN, pe_token); break;
     case 0x52: gx_render_efb_copy(val); break;               /* EFB copy execute */
     case 0x64: case 0x65: gx_render_tlut_load(reg, val); break;
     case 0x0F: gx_render_tex_invalidate(); break;

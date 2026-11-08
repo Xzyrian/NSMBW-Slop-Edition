@@ -8,21 +8,21 @@ They are being moved to native C in `runtime/`, one subsystem at a time: add the
 name to `runtime/hle_funcs.txt`, write `hle_<name>()`, and compare against `orig_<name>()`.
 Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 
-**20 of 1318 module functions native** (775 replace game functions, 543 are the module's own helpers). Wrapped (hand-written code around the module's version, *italic*): 6.
+**152 of 1318 module functions native** (775 replace game functions, 543 are the module's own helpers). Wrapped (hand-written code around the module's version, *italic*): 7.
 
 | Class | Native | Functions |
 |---|---|---|
 | `(free functions)` | 0/85 | CreateBlueNumber, CreatePlayerMask, CreateRedNumber, DVDConvertPathToEntrynum, DVDFastOpen, GoalScoreExecute, MiniGameCannonEndCheck, MiniGameCannonOperateCloseRequest, MiniGameCannonResult, MiniGameCannonResultCloseRequest, MiniGameCannonStart, MiniGameCannonTitle, MiniGameCannonTitleCloseRequest, OSPanic, StaffCreditAddCoin, UNDEF_80078670, UNDEF_8007ca90, UNDEF_80156BF0, UNDEF_809C9DD0, UNDEF_80A0A9F0, UNDEF_80A0AB10, UNDEF_80A0ABE0, UNDEF_80A39660, UNDEF_80A65530, chkCancelButton, chkContinue, clearWPADInfo, dBlockMng_c_FUN_800883E0, dBlockMng_c_hitHiddenBlock, dCharacterChangeSelectContents_c_classInit, dContinue_c_classInit, dCourseSelectManager_c_classInit, dEnBoss_c_Normal_VsPlHitCheck, dGameDisplay_c_classInit, dMiniGameCannon_c_classInit, dMiniGameWire_c_classInit, dMultiCourseSelect_c_classInit, dNumberOfPeopleChange_c_classInit, dSelectPlayer_c_classInit, dStaffCreditScore_c_classInit, dStockItem_c_classInit, daBossKoopaJrDemo_c_classInit, daCastleKokoopaDemo1st_c_classInit, daCastleKokoopaDemo2nd_c_classInit, daEnBigBlock_c_FUN_809B90B0, daEnBigHanachan_c_Normal_VsPlHitCheck, daEnBigHanachan_c_Normal_VsYoshiHitCheck, daEnBigWrturn_c_classInit, daEnBkBlock_c_onCreate, daEnBlock_c_onCreate, daEnBlock_c_spawnContent, daEnGlpole_c_classInit, daEnRedRing_c_classInit, daEnRedcoin_c_classInit, daEnWaterStream_c_classInit, daEnWhiteBlock_c_classInit, daEnWrturn_c_classInit, daFireBall_Player_c_createCheck, daFloorJrC_c_classInit, daIceBall_c_create, daLastActorStage_c_classInit, daLineKinokoBlock_c_numPlayersInMask, daLineTrain_c_classInit, daMask_c_GetPlayerP, daMask_c_isYoshi, daMiniGameGunBatteryMgrObj_c_classInit, daMiniGameWireMesh_c_classInit, daNextGotoBlock_c_classInit, daNiceBoat_c_classInit, daObjGrass_c_classInit, daObjGrass_c_onExecute, daRemoconBalance_c_classInit, daShipGear_c_classInit, daTarzanIvy_c_classInit, dfukidashiManager_c_classInit, fn_2_103CA0, free, getBatteryLevel_ch, initWPADInfo, isYokoCon, memcpy, memset, new, new, new |
-| `dMj2dGame_c` | 0/48 | getCSEnemyPosIndex, getCSEnemyRevivalCnt, getCSEnemySceneNo, getCSEnemyWalkDir, getCoin, getContinue, getCourseDataFlag, getCreateItem, getDeathCount, getIbaraNow, getKinopioCourseNo, getPlrID, getPlrMode, getRest, getScore, getStaffCreditHighScore, getStartKinokoKind, getSwitchDeathCount, getTotalWorldCollectCoin, initialize, isCollectCoin, isCourseDataFlag, isOtehonMenuOpenFlag, isWorldDataFlag, offCourseDataFlag, offWorldDataFlag, onCourseDataFlag, onOtehonMenuOpenFlag, onWorldDataFlag, setCSEnemyPosIndex, setCSEnemyRevivalCnt, setCSEnemySceneNo, setCSEnemyWalkDir, setCoin, setContinue, setCreateItem, setDeathCount, setIbaraNow, setKinopioCourseNo, setPlrID, setPlrMode, setRest, setScore, setStaffCreditHighScore, setStartKinokoKind, setStockItem, setSwitchDeathCount, versionUpdate |
+| `dMj2dGame_c` | 48/48 | **getCSEnemyPosIndex**, **getCSEnemyRevivalCnt**, **getCSEnemySceneNo**, **getCSEnemyWalkDir**, **getCoin**, **getContinue**, **getCourseDataFlag**, **getCreateItem**, **getDeathCount**, **getIbaraNow**, **getKinopioCourseNo**, **getPlrID**, **getPlrMode**, **getRest**, **getScore**, **getStaffCreditHighScore**, **getStartKinokoKind**, **getSwitchDeathCount**, **getTotalWorldCollectCoin**, **initialize**, **isCollectCoin**, **isCourseDataFlag**, **isOtehonMenuOpenFlag**, **isWorldDataFlag**, **offCourseDataFlag**, **offWorldDataFlag**, **onCourseDataFlag**, **onOtehonMenuOpenFlag**, **onWorldDataFlag**, **setCSEnemyPosIndex**, **setCSEnemyRevivalCnt**, **setCSEnemySceneNo**, **setCSEnemyWalkDir**, **setCoin**, **setContinue**, **setCreateItem**, **setDeathCount**, **setIbaraNow**, **setKinopioCourseNo**, **setPlrID**, **setPlrMode**, **setRest**, **setScore**, **setStaffCreditHighScore**, **setStartKinokoKind**, **setStockItem**, **setSwitchDeathCount**, **versionUpdate** |
 | `dMiniGameCannon_c` | 0/40 | create, createLayout, dMiniGameCannon_c, doDelete, draw, execute, executeState_ExitAnimeEndWait, executeState_NowDisp, executeState_OpenAnimeEndWait, executeState_ResultNowDisp, executeState_StartWait, executeState_TitleDisp, executeState_TitleExitAnimeEndWait, executeState_TitleOpenAnimeEndWait, executeState_TitleOpenWait, finalizeState_ExitAnimeEndWait, finalizeState_NowDisp, finalizeState_OpenAnimeEndWait, finalizeState_ResultNowDisp, finalizeState_StartWait, finalizeState_TitleDisp, finalizeState_TitleExitAnimeEndWait, finalizeState_TitleOpenAnimeEndWait, finalizeState_TitleOpenWait, getPosPaneIdx, initializeState_ExitAnimeEndWait, initializeState_NowDisp, initializeState_OpenAnimeEndWait, initializeState_ResultDispAnimeEndWait, initializeState_ResultNowDisp, initializeState_StartWait, initializeState_TitleDisp, initializeState_TitleExitAnimeEndWait, initializeState_TitleOpenAnimeEndWait, initializeState_TitleOpenWait, isWin, preExecute, setAllText, setPlayerPanePositions, ~dMiniGameCannon_c |
-| `daPyMng_c` | 0/39 | addNum, addNum, checkBonusNoCap, checkCorrectCreateInfo, create, createCourseInit, decNum, decNum, decideCtrlPlrNo, executeLastAll, executeLastPlayer, findPlayerWithType, getActScrollInfo, getCoinAll, getCourseInListPlrNo, getCourseInPlayerModelType, getEntryNum, getNumInGame, getScrollNum, getYoshi, getYoshiColor, getYoshiFruit, getYoshiNum, incCoin, incRestAll, initGame, initKinopioPlayer, initStage, isCreateBalloon, releaseYoshi, setCarryOverYoshiInfo, setCourseInStarBGM, setDefaultParam, setHipAttackQuake, setHipAttackSpecialEffect, setYoshi, stopStarBGM, stopYoshiBGM, update |
-| `dNumberOfPeopleChange_c` | 2/37 | calcBasesForPlayerCount, checkCancel, checkRemoConnect, create, createLayout, dNumberOfPeopleChange_c, disableInactiveControllers, executeState_ButtonChangeAnimeEndWait, **executeState_ButtonDecision**, executeState_ButtonOnStageAnimeEndWait, executeState_ButtonSelect, executeState_ExitAnimeEndCheck, executeState_InfoOnStageAnimeEndWait, executeState_InfoWindowExitWait, executeState_InitialSetup, **executeState_NowEntrantRecruit**, executeState_OnStageAnimeEndWait, executeState_StoryModeCourseSelectExitWait, finalizeState_ExitAnimeEndCheck, finalizeState_InfoOnStageAnimeEndWait, finalizeState_InitialSetup, finalizeState_OnStageAnimeEndWait, initializeState_ButtonChangeAnimeEndWait, initializeState_ButtonDecision, initializeState_ButtonOnStageAnimeEndWait, initializeState_ButtonSelect, initializeState_ExitAnimeEndCheck, initializeState_InitialSetup, initializeState_NowEntrantRecruit, initializeState_OnStageAnimeEndWait, initializeState_StoryModeCourseSelectExitWait, set2dPlyPosition, setCcAnimFrame, setCcLytPosition, setPlayerSelectPos, setupPlayerTypes, ~dNumberOfPeopleChange_c |
-| `dGameDisplay_c` | 0/29 | AlphaEnterAndExit, AreaCheck, AreaSetupAll, Effect1Up, GrayColorSet, NormalSettle, OtasukeSettle, RestCoinAnimeCheck, RestCoinAnimeSetup, RestDispSetup, ReturnGrayColorSet, createLayout, dGameDisplay_c, draw, execute, executeState_ProcGoalEnd, executeState_ProcGoalSettleUp, executeState_ProcMainGame, executeState_ProcMainPause, finalizeState_ProcMainGame, finalizeState_ProcMainPause, initializeState_ProcGoalSettleUp, initializeState_ProcMainGame, initializeState_ProcMainPause, setCollect, setPlayNum, setScore, setTime, ~dGameDisplay_c |
-| `daPyDemoMng_c` | 0/27 | UNDEF_8005CE50, calcGoalCenterPos, calcNotGoalPlayer, clearDemoNo, endControlDemoAll, executeGoalDemo_Jump, executeGoalDemo_JumpCheck, executeGoalDemo_KimeWait, executeGoalDemo_Land, executeGoalDemo_Pole, executeGoalDemo_PoleDown, executeStartToride, genCourseInList, getControlDemoPlayerNum, getPoleBelowPlayer, init, isAllPlayerControlDemo, isAllPlayerGoalIn, isLandAll, onLandStopReq, setCourseOutList, setGoalDemoKimeAll, setGoalDemoList, setGoalDemoRunCastle, startControlDemoAll, startControlDemoLandPlayer, turnNextDemoNo |
+| `daPyMng_c` | 38/39 | **addNum**, **addNum**, **checkBonusNoCap**, **checkCorrectCreateInfo**, **create**, createCourseInit, **decNum**, **decNum**, **decideCtrlPlrNo**, **executeLastAll**, **executeLastPlayer**, **findPlayerWithType**, **getActScrollInfo**, **getCoinAll**, **getCourseInListPlrNo**, **getCourseInPlayerModelType**, **getEntryNum**, **getNumInGame**, **getScrollNum**, **getYoshi**, **getYoshiColor**, **getYoshiFruit**, **getYoshiNum**, **incCoin**, **incRestAll**, **initGame**, **initKinopioPlayer**, **initStage**, **isCreateBalloon**, **releaseYoshi**, **setCarryOverYoshiInfo**, **setCourseInStarBGM**, **setDefaultParam**, **setHipAttackQuake**, **setHipAttackSpecialEffect**, **setYoshi**, **stopStarBGM**, **stopYoshiBGM**, **update** |
+| `dNumberOfPeopleChange_c` | 2/37 | calcBasesForPlayerCount, checkCancel, checkRemoConnect, create, createLayout, dNumberOfPeopleChange_c, disableInactiveControllers, executeState_ButtonChangeAnimeEndWait, **executeState_ButtonDecision**, executeState_ButtonOnStageAnimeEndWait, *executeState_ButtonSelect*, executeState_ExitAnimeEndCheck, executeState_InfoOnStageAnimeEndWait, executeState_InfoWindowExitWait, executeState_InitialSetup, **executeState_NowEntrantRecruit**, executeState_OnStageAnimeEndWait, executeState_StoryModeCourseSelectExitWait, finalizeState_ExitAnimeEndCheck, finalizeState_InfoOnStageAnimeEndWait, finalizeState_InitialSetup, finalizeState_OnStageAnimeEndWait, initializeState_ButtonChangeAnimeEndWait, initializeState_ButtonDecision, initializeState_ButtonOnStageAnimeEndWait, initializeState_ButtonSelect, initializeState_ExitAnimeEndCheck, initializeState_InitialSetup, initializeState_NowEntrantRecruit, initializeState_OnStageAnimeEndWait, initializeState_StoryModeCourseSelectExitWait, set2dPlyPosition, setCcAnimFrame, setCcLytPosition, setPlayerSelectPos, setupPlayerTypes, ~dNumberOfPeopleChange_c |
+| `dGameDisplay_c` | 14/29 | AlphaEnterAndExit, AreaCheck, AreaSetupAll, Effect1Up, GrayColorSet, NormalSettle, OtasukeSettle, **RestCoinAnimeCheck**, **RestCoinAnimeSetup**, RestDispSetup, ReturnGrayColorSet, createLayout, dGameDisplay_c, draw, execute, **executeState_ProcGoalEnd**, **executeState_ProcGoalSettleUp**, **executeState_ProcMainGame**, **executeState_ProcMainPause**, **finalizeState_ProcMainGame**, **finalizeState_ProcMainPause**, **initializeState_ProcGoalSettleUp**, **initializeState_ProcMainGame**, **initializeState_ProcMainPause**, setCollect, **setPlayNum**, **setScore**, **setTime**, ~dGameDisplay_c |
+| `daPyDemoMng_c` | 7/27 | UNDEF_8005CE50, calcGoalCenterPos, calcNotGoalPlayer, **clearDemoNo**, endControlDemoAll, executeGoalDemo_Jump, executeGoalDemo_JumpCheck, executeGoalDemo_KimeWait, executeGoalDemo_Land, executeGoalDemo_Pole, executeGoalDemo_PoleDown, executeStartToride, **genCourseInList**, getControlDemoPlayerNum, **getPoleBelowPlayer**, **init**, isAllPlayerControlDemo, isAllPlayerGoalIn, isLandAll, onLandStopReq, **setCourseOutList**, setGoalDemoKimeAll, **setGoalDemoList**, setGoalDemoRunCastle, startControlDemoAll, startControlDemoLandPlayer, **turnNextDemoNo** |
 | `dCharacterChangeSelectBase_c` | 5/22 | **calcContentsIcon**, clearPlayerNo, executeState_OnStageAnimeEndWait, executeState_PlayerDisp, executeState_PlayerExitWait, executeState_PlayerOnStageWait, **executeState_SelectWait**, finalizeState_OnStageWait, finalizeState_PlayerDisp, finalizeState_PlayerExitWait, finalizeState_PlayerOnStageWait, **initDecidedCharacter**, **initOption**, initializeState_ButtonOnStageAnimeEndWait, initializeState_ExitAnimeEndForPlayerOnStageWait, initializeState_PlayerDisp, initializeState_PlayerExitWait, initializeState_PlayerOnStageWait, **isCharacterLocked**, *readyContents*, resetIndicator, updateRemocon |
 | `dAcPy_c` | 0/17 | checkRest, create, executeChangeInit, executeDemoGoal_Run, executeState_WallSlide, initChangeInit, playOtherDownDemo, setBalloonInDispOut, setBalloonInDispOutBase, setBalloonInDispOutByYoshi, setDamage, setFallDownDemo, setForcedDamage, setSceneChangeInfo, setSpinLiftUpReserve, stopOtherDownDemo, updateRopeAngle |
 | `dContinue_c` | 0/13 | EffectContinueInc, create, createLayout, executeState_ContinueCountUp, executeState_EndWait, executeState_RestCountUp, finalizeState_EndWait, finalizeState_RestCountUp, getPaneIdx, setCardPosition, setContinue, setPlayerInfo, setRest |
-| `dSaveMng_c` | 0/13 | calcCRC, create, getSaveGame, getTempGame, initLoadGame, loadQuickSaveData, *prepareSave*, refresh, saveGameCopy, startDeleteQuickNandSave, startMultiModeNandSave, startNandSave, startQuickNandSave |
+| `dSaveMng_c` | 5/13 | **calcCRC**, create, **getSaveGame**, **getTempGame**, initLoadGame, **loadQuickSaveData**, *prepareSave*, refresh, **saveGameCopy**, startDeleteQuickNandSave, startMultiModeNandSave, startNandSave, startQuickNandSave |
 | `daWmPlayer_c` | 0/13 | CreateSubPlayers, PlayerEntryUpdate, checkCsGuideKey, create, daWmPlayer_c, getCourseInVoiceId, getSkeletonRoot, initActiveCharaFlags, isRouteClosedByGate, startGame, updatePlayerMode, updateSubPlayerModel, ~daWmPlayer_c |
 | `daMiniGameWireMesh_c` | 0/12 | ccCallback, create, endAmiRollAction, execute, executeState_ForceTurnUp, executeState_PlayMove, initializeState_ForceTurnUp, initializeState_PlayMove, initializeState_PlayWait, setAmiRollPos, updateAll, updatePlayerAmiRoll |
 | `dCourseSelectManager_c` | 0/11 | executeState_ContinueCheck, executeState_ContinueEndWait, executeState_InterruptSaveWindowOpen, executeState_KeyWait, executeState_StockItemSelectWait, finalizeState_EasyPairingWait, finalizeState_InterruptSaveWindowOpen, getPlayerPowerup, initializeState_EasyPairingWait, initializeState_InterruptSaveWindowOpen, preExecute |
@@ -32,7 +32,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `dStaffCreditScore_c` | 0/9 | createLayout, executeState_No1PlayerKiMe, initializeState_HighScoreAnimeEndWait, initializeState_HighScoreCheck, initializeState_No1PlayerKiMe, initializeState_OnStageAnimeEndWait, initializeState_OnStageWait, setCoinCount, updateCoinCounts |
 | `daWmSubPlayer_c` | 0/9 | calcWalkSpeed, create, getPlayerOrder, getPlayerOrderAngle, getPlayerOrderDistance, getPlayerOrderTableIndex, isPlayerStar, isPlayerType, loadModel |
 | `dfukidashiManager_c` | 0/9 | FUN_80157360, FUN_80157450, FUN_801574A0, create, dfukidashiManager_c, doDelete, draw, execute, ~dfukidashiManager_c |
-| `dMj2dHeader_c` | 0/8 | getPlayCountCoinBattle, getPlayCountFreeMode, initialize, isMultiWorldOpenFlag, onMultiWorldOpenFlag, setPlayCountCoinBattle, setPlayCountFreeMode, versionUpdate |
+| `dMj2dHeader_c` | 8/8 | **getPlayCountCoinBattle**, **getPlayCountFreeMode**, **initialize**, **isMultiWorldOpenFlag**, **onMultiWorldOpenFlag**, **setPlayCountCoinBattle**, **setPlayCountFreeMode**, **versionUpdate** |
 | `dStockItem_c` | 0/8 | calc2DPlayerItemUpdate, calcPosScale, calcUseEffects, checkItemSelect, createLayout, executeState_WindowOpenInit, finalizeState_WindowCloseAnimeEndWait, getPosPaneForPlayer |
 | `daEnRemoconCannon_c` | 0/8 | EffectDischargeTail, UNDEF_80a95c00, UNDEF_80a964e0, createModel, firePlayer, initializeState_Fire, setBodyColor, setupGuide |
 | `daMiniGameGunBatteryMgrObj_c` | 0/8 | addResultRest, daMiniGameGunBatteryMgrObj_c, executeState_ShowResult, executeState_ShowRule, hitBalloon, setMessageCloseWait, setPlayerDone, ~daMiniGameGunBatteryMgrObj_c |
@@ -42,7 +42,7 @@ Its source (tag v0.6.5, address in THIRD_PARTY_NOTICES.md) is the reference.
 | `daPlBase_c` | 0/7 | executeState_DemoControl, initDemoInDokanUD, initializeState_DemoRailDokan, playGoalOther, setControlDemoWalk, setExitRailDokan, stopGoalOther |
 | `Controller` | 0/6 | createRumbleMgr, startMotor, startPatternRumble, startPowerFrameRumble, stopMotor, stopRumbleMgr |
 | `dGameCom` | 0/6 | CreateSmallScore, FUN_800B3600, Player1upColor, PlayerEnterCheck, WindowPaneColorSet, isNowCourseClear |
-| `dInfo_c` | 0/6 | PlayerStateInit, addStockItem, getStockItem, initMultiMode, initStage, subStockItem |
+| `dInfo_c` | 6/6 | **PlayerStateInit**, **addStockItem**, **getStockItem**, **initMultiMode**, **initStage**, **subStockItem** |
 | `dRemoconMng_c::dConnect_c` | 0/6 | dConnect_c, executeState_Setup, executeState_Shutdown, finalizeState_Setup, initializeState_Setup, ~dConnect_c |
 | `daBossKoopaJrDemo_c` | 0/6 | calcPlayerWalkPos, finalizeState_BattleStDemo, initialize, initializeState_BattleStDemo, isPlayerEntry, sortPlayers |
 | `dfukidashiInfo_c` | 0/6 | ColorSet, SetPosOffset, draw, executeState_Move, finalizeState_Exit, finalizeState_Move |
@@ -329,27 +329,27 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_80159250` | dGameDisplay_c::GrayColorSet |  |
 | `mod_fn_80158C50` | dGameDisplay_c::NormalSettle |  |
 | `mod_fn_80158D00` | dGameDisplay_c::OtasukeSettle |  |
-| `mod_fn_80158890` | dGameDisplay_c::RestCoinAnimeCheck |  |
-| `mod_fn_80159D20` | dGameDisplay_c::RestCoinAnimeSetup |  |
+| `mod_fn_80158890` | dGameDisplay_c::RestCoinAnimeCheck | yes |
+| `mod_fn_80159D20` | dGameDisplay_c::RestCoinAnimeSetup | yes |
 | `mod_fn_80158580` | dGameDisplay_c::RestDispSetup |  |
 | `mod_fn_801594E0` | dGameDisplay_c::ReturnGrayColorSet |  |
 | `mod_fn_801586F0` | dGameDisplay_c::createLayout |  |
 | `mod_fn_80157710` | dGameDisplay_c::dGameDisplay_c |  |
 | `mod_fn_801580A0` | dGameDisplay_c::draw |  |
 | `mod_fn_80157F90` | dGameDisplay_c::execute |  |
-| `mod_fn_80159070` | dGameDisplay_c::executeState_ProcGoalEnd |  |
-| `mod_fn_80158F70` | dGameDisplay_c::executeState_ProcGoalSettleUp |  |
-| `mod_fn_80158E30` | dGameDisplay_c::executeState_ProcMainGame |  |
-| `mod_fn_80158ED0` | dGameDisplay_c::executeState_ProcMainPause |  |
-| `mod_fn_80158EA0` | dGameDisplay_c::finalizeState_ProcMainGame |  |
-| `mod_fn_80158F00` | dGameDisplay_c::finalizeState_ProcMainPause |  |
-| `mod_fn_80158F10` | dGameDisplay_c::initializeState_ProcGoalSettleUp |  |
-| `mod_fn_80158E10` | dGameDisplay_c::initializeState_ProcMainGame |  |
-| `mod_fn_80158EB0` | dGameDisplay_c::initializeState_ProcMainPause |  |
+| `mod_fn_80159070` | dGameDisplay_c::executeState_ProcGoalEnd | yes |
+| `mod_fn_80158F70` | dGameDisplay_c::executeState_ProcGoalSettleUp | yes |
+| `mod_fn_80158E30` | dGameDisplay_c::executeState_ProcMainGame | yes |
+| `mod_fn_80158ED0` | dGameDisplay_c::executeState_ProcMainPause | yes |
+| `mod_fn_80158EA0` | dGameDisplay_c::finalizeState_ProcMainGame | yes |
+| `mod_fn_80158F00` | dGameDisplay_c::finalizeState_ProcMainPause | yes |
+| `mod_fn_80158F10` | dGameDisplay_c::initializeState_ProcGoalSettleUp | yes |
+| `mod_fn_80158E10` | dGameDisplay_c::initializeState_ProcMainGame | yes |
+| `mod_fn_80158EB0` | dGameDisplay_c::initializeState_ProcMainPause | yes |
 | `mod_fn_80159AF0` | dGameDisplay_c::setCollect |  |
-| `mod_fn_80159880` | dGameDisplay_c::setPlayNum |  |
-| `mod_fn_80159CB0` | dGameDisplay_c::setScore |  |
-| `mod_fn_80159AC0` | dGameDisplay_c::setTime |  |
+| `mod_fn_80159880` | dGameDisplay_c::setPlayNum | yes |
+| `mod_fn_80159CB0` | dGameDisplay_c::setScore | yes |
+| `mod_fn_80159AC0` | dGameDisplay_c::setTime | yes |
 | `mod_fn_80157960` | dGameDisplay_c::~dGameDisplay_c |  |
 | `mod_fn_801576E0` | dGameDisplay_c_classInit |  |
 | `mod_fn_800B61A0` | dGameKeyCore_c::handleTilting |  |
@@ -361,12 +361,12 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_read__10dGameKey_cFv` | dGameKey_c::read |  |
 | `mod_fn_800B59B0` | dGameKey_c::~dGameKey_c |  |
 | `mod_fn_2_1B7A0` | dGameOver_c::finalizeState_ExitAnimeEndWait |  |
-| `mod_fn_800BB130` | dInfo_c::PlayerStateInit |  |
-| `mod_AddStockPowerup` | dInfo_c::addStockItem |  |
-| `mod_fn_800BB380` | dInfo_c::getStockItem |  |
-| `mod_fn_800BB560` | dInfo_c::initMultiMode |  |
-| `mod_fn_800BB8F0` | dInfo_c::initStage |  |
-| `mod_fn_800BB330` | dInfo_c::subStockItem |  |
+| `mod_fn_800BB130` | dInfo_c::PlayerStateInit | yes |
+| `mod_AddStockPowerup` | dInfo_c::addStockItem | yes |
+| `mod_fn_800BB380` | dInfo_c::getStockItem | yes |
+| `mod_fn_800BB560` | dInfo_c::initMultiMode | yes |
+| `mod_fn_800BB8F0` | dInfo_c::initStage | yes |
+| `mod_fn_800BB330` | dInfo_c::subStockItem | yes |
 | `mod_fn_800BC2A0` | dKADr_c::nodeCallback_c::~nodeCallback_c |  |
 | `mod_fn_800BCEE0` | dKinopioMdl_c::setColorType | wrapped |
 | `mod_fn_2_1E7C0` | dMiniGameCannon_c::create |  |
@@ -413,62 +413,62 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_206B0` | dMiniGameWire_c::createLayout |  |
 | `mod_fn_2_20B40` | dMiniGameWire_c::setTurnFaceIcon |  |
 | `mod_fn_2_202B0` | dMiniGameWire_c_classInit |  |
-| `mod_fn_800CE4D0` | dMj2dGame_c::getCSEnemyPosIndex |  |
-| `mod_fn_800CE450` | dMj2dGame_c::getCSEnemyRevivalCnt |  |
-| `mod_fn_800CE490` | dMj2dGame_c::getCSEnemySceneNo |  |
-| `mod_fn_800CE510` | dMj2dGame_c::getCSEnemyWalkDir |  |
-| `mod_fn_800CE0F0` | dMj2dGame_c::getCoin |  |
-| `mod_fn_800CE320` | dMj2dGame_c::getContinue |  |
-| `mod__ZN9SaveBlock17GetLevelConditionEii` | dMj2dGame_c::getCourseDataFlag |  |
-| `mod_fn_800CE0D0` | dMj2dGame_c::getCreateItem |  |
-| `mod_fn_800CE2C0` | dMj2dGame_c::getDeathCount |  |
-| `mod_fn_800CE560` | dMj2dGame_c::getIbaraNow |  |
-| `mod_fn_800CE540` | dMj2dGame_c::getKinopioCourseNo |  |
-| `mod_fn_800CE070` | dMj2dGame_c::getPlrID |  |
-| `mod_fn_800CE090` | dMj2dGame_c::getPlrMode |  |
-| `mod_fn_800CE0B0` | dMj2dGame_c::getRest |  |
-| `mod_fn_800CE110` | dMj2dGame_c::getScore |  |
-| `mod_fn_800CE140` | dMj2dGame_c::getStaffCreditHighScore |  |
-| `mod_fn_800CE250` | dMj2dGame_c::getStartKinokoKind |  |
-| `mod_fn_800CE300` | dMj2dGame_c::getSwitchDeathCount |  |
-| `mod_fn_800CE190` | dMj2dGame_c::getTotalWorldCollectCoin |  |
-| `mod_fn_800CDED0` | dMj2dGame_c::initialize |  |
-| `mod_fn_800CE210` | dMj2dGame_c::isCollectCoin |  |
-| `mod_CheckLevelCondition__9SaveBlockFiii` | dMj2dGame_c::isCourseDataFlag |  |
-| `mod_fn_800CE160` | dMj2dGame_c::isOtehonMenuOpenFlag |  |
-| `mod_fn_800CE350` | dMj2dGame_c::isWorldDataFlag |  |
-| `mod_UnsetLevelCondition__9SaveBlockFiii` | dMj2dGame_c::offCourseDataFlag |  |
-| `mod_fn_800CE380` | dMj2dGame_c::offWorldDataFlag |  |
-| `mod_SetLevelCondition__9SaveBlockFiii` | dMj2dGame_c::onCourseDataFlag |  |
-| `mod_fn_800CE150` | dMj2dGame_c::onOtehonMenuOpenFlag |  |
-| `mod_fn_800CE360` | dMj2dGame_c::onWorldDataFlag |  |
-| `mod_fn_800CE4B0` | dMj2dGame_c::setCSEnemyPosIndex |  |
-| `mod_fn_800CE430` | dMj2dGame_c::setCSEnemyRevivalCnt |  |
-| `mod_fn_800CE470` | dMj2dGame_c::setCSEnemySceneNo |  |
-| `mod_fn_800CE4F0` | dMj2dGame_c::setCSEnemyWalkDir |  |
-| `mod_fn_800CE0E0` | dMj2dGame_c::setCoin |  |
-| `mod_fn_800CE310` | dMj2dGame_c::setContinue |  |
-| `mod_fn_800CE0C0` | dMj2dGame_c::setCreateItem |  |
-| `mod_fn_800CE260` | dMj2dGame_c::setDeathCount |  |
-| `mod_fn_800CE550` | dMj2dGame_c::setIbaraNow |  |
-| `mod_fn_800CE530` | dMj2dGame_c::setKinopioCourseNo |  |
-| `mod_fn_800CE060` | dMj2dGame_c::setPlrID |  |
-| `mod_fn_800CE080` | dMj2dGame_c::setPlrMode |  |
-| `mod_fn_800CE0A0` | dMj2dGame_c::setRest |  |
-| `mod_fn_800CE100` | dMj2dGame_c::setScore |  |
-| `mod_fn_800CE120` | dMj2dGame_c::setStaffCreditHighScore |  |
-| `mod_fn_800CE240` | dMj2dGame_c::setStartKinokoKind |  |
-| `mod_fn_800CE330` | dMj2dGame_c::setStockItem |  |
-| `mod_fn_800CE2F0` | dMj2dGame_c::setSwitchDeathCount |  |
-| `mod_fn_800CE020` | dMj2dGame_c::versionUpdate |  |
-| `mod_fn_800CE640` | dMj2dHeader_c::getPlayCountCoinBattle |  |
-| `mod_fn_800CE600` | dMj2dHeader_c::getPlayCountFreeMode |  |
-| `mod_fn_800CE580` | dMj2dHeader_c::initialize |  |
-| `mod_fn_800CE6A0` | dMj2dHeader_c::isMultiWorldOpenFlag |  |
-| `mod_fn_800CE680` | dMj2dHeader_c::onMultiWorldOpenFlag |  |
-| `mod_fn_800CE660` | dMj2dHeader_c::setPlayCountCoinBattle |  |
-| `mod_fn_800CE620` | dMj2dHeader_c::setPlayCountFreeMode |  |
-| `mod_fn_800CE6C0` | dMj2dHeader_c::versionUpdate |  |
+| `mod_fn_800CE4D0` | dMj2dGame_c::getCSEnemyPosIndex | yes |
+| `mod_fn_800CE450` | dMj2dGame_c::getCSEnemyRevivalCnt | yes |
+| `mod_fn_800CE490` | dMj2dGame_c::getCSEnemySceneNo | yes |
+| `mod_fn_800CE510` | dMj2dGame_c::getCSEnemyWalkDir | yes |
+| `mod_fn_800CE0F0` | dMj2dGame_c::getCoin | yes |
+| `mod_fn_800CE320` | dMj2dGame_c::getContinue | yes |
+| `mod__ZN9SaveBlock17GetLevelConditionEii` | dMj2dGame_c::getCourseDataFlag | yes |
+| `mod_fn_800CE0D0` | dMj2dGame_c::getCreateItem | yes |
+| `mod_fn_800CE2C0` | dMj2dGame_c::getDeathCount | yes |
+| `mod_fn_800CE560` | dMj2dGame_c::getIbaraNow | yes |
+| `mod_fn_800CE540` | dMj2dGame_c::getKinopioCourseNo | yes |
+| `mod_fn_800CE070` | dMj2dGame_c::getPlrID | yes |
+| `mod_fn_800CE090` | dMj2dGame_c::getPlrMode | yes |
+| `mod_fn_800CE0B0` | dMj2dGame_c::getRest | yes |
+| `mod_fn_800CE110` | dMj2dGame_c::getScore | yes |
+| `mod_fn_800CE140` | dMj2dGame_c::getStaffCreditHighScore | yes |
+| `mod_fn_800CE250` | dMj2dGame_c::getStartKinokoKind | yes |
+| `mod_fn_800CE300` | dMj2dGame_c::getSwitchDeathCount | yes |
+| `mod_fn_800CE190` | dMj2dGame_c::getTotalWorldCollectCoin | yes |
+| `mod_fn_800CDED0` | dMj2dGame_c::initialize | yes |
+| `mod_fn_800CE210` | dMj2dGame_c::isCollectCoin | yes |
+| `mod_CheckLevelCondition__9SaveBlockFiii` | dMj2dGame_c::isCourseDataFlag | yes |
+| `mod_fn_800CE160` | dMj2dGame_c::isOtehonMenuOpenFlag | yes |
+| `mod_fn_800CE350` | dMj2dGame_c::isWorldDataFlag | yes |
+| `mod_UnsetLevelCondition__9SaveBlockFiii` | dMj2dGame_c::offCourseDataFlag | yes |
+| `mod_fn_800CE380` | dMj2dGame_c::offWorldDataFlag | yes |
+| `mod_SetLevelCondition__9SaveBlockFiii` | dMj2dGame_c::onCourseDataFlag | yes |
+| `mod_fn_800CE150` | dMj2dGame_c::onOtehonMenuOpenFlag | yes |
+| `mod_fn_800CE360` | dMj2dGame_c::onWorldDataFlag | yes |
+| `mod_fn_800CE4B0` | dMj2dGame_c::setCSEnemyPosIndex | yes |
+| `mod_fn_800CE430` | dMj2dGame_c::setCSEnemyRevivalCnt | yes |
+| `mod_fn_800CE470` | dMj2dGame_c::setCSEnemySceneNo | yes |
+| `mod_fn_800CE4F0` | dMj2dGame_c::setCSEnemyWalkDir | yes |
+| `mod_fn_800CE0E0` | dMj2dGame_c::setCoin | yes |
+| `mod_fn_800CE310` | dMj2dGame_c::setContinue | yes |
+| `mod_fn_800CE0C0` | dMj2dGame_c::setCreateItem | yes |
+| `mod_fn_800CE260` | dMj2dGame_c::setDeathCount | yes |
+| `mod_fn_800CE550` | dMj2dGame_c::setIbaraNow | yes |
+| `mod_fn_800CE530` | dMj2dGame_c::setKinopioCourseNo | yes |
+| `mod_fn_800CE060` | dMj2dGame_c::setPlrID | yes |
+| `mod_fn_800CE080` | dMj2dGame_c::setPlrMode | yes |
+| `mod_fn_800CE0A0` | dMj2dGame_c::setRest | yes |
+| `mod_fn_800CE100` | dMj2dGame_c::setScore | yes |
+| `mod_fn_800CE120` | dMj2dGame_c::setStaffCreditHighScore | yes |
+| `mod_fn_800CE240` | dMj2dGame_c::setStartKinokoKind | yes |
+| `mod_fn_800CE330` | dMj2dGame_c::setStockItem | yes |
+| `mod_fn_800CE2F0` | dMj2dGame_c::setSwitchDeathCount | yes |
+| `mod_fn_800CE020` | dMj2dGame_c::versionUpdate | yes |
+| `mod_fn_800CE640` | dMj2dHeader_c::getPlayCountCoinBattle | yes |
+| `mod_fn_800CE600` | dMj2dHeader_c::getPlayCountFreeMode | yes |
+| `mod_fn_800CE580` | dMj2dHeader_c::initialize | yes |
+| `mod_fn_800CE6A0` | dMj2dHeader_c::isMultiWorldOpenFlag | yes |
+| `mod_fn_800CE680` | dMj2dHeader_c::onMultiWorldOpenFlag | yes |
+| `mod_fn_800CE660` | dMj2dHeader_c::setPlayCountCoinBattle | yes |
+| `mod_fn_800CE620` | dMj2dHeader_c::setPlayCountFreeMode | yes |
+| `mod_fn_800CE6C0` | dMj2dHeader_c::versionUpdate | yes |
 | `mod_fn_2_2B960` | dMultiCourseSelect_c::createLayoutExtra |  |
 | `mod_fn_2_2D030` | dMultiCourseSelect_c::finalizeState_DispWait |  |
 | `mod_fn_2_2C7F0` | dMultiCourseSelect_c::initializeState_DispWait |  |
@@ -490,7 +490,7 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_2_34340` | dNumberOfPeopleChange_c::executeState_ButtonChangeAnimeEndWait |  |
 | `mod_fn_2_345C0` | dNumberOfPeopleChange_c::executeState_ButtonDecision | yes |
 | `mod_fn_2_34220` | dNumberOfPeopleChange_c::executeState_ButtonOnStageAnimeEndWait |  |
-| `mod_fn_2_343F0` | dNumberOfPeopleChange_c::executeState_ButtonSelect |  |
+| `mod_fn_2_343F0` | dNumberOfPeopleChange_c::executeState_ButtonSelect | wrapped |
 | `mod_fn_2_34710` | dNumberOfPeopleChange_c::executeState_ExitAnimeEndCheck |  |
 | `mod_fn_2_33C10` | dNumberOfPeopleChange_c::executeState_InfoOnStageAnimeEndWait |  |
 | `mod_fn_2_340C0` | dNumberOfPeopleChange_c::executeState_InfoWindowExitWait |  |
@@ -542,15 +542,15 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_800DC090` | dRemoconMng_c::dConnect_c::~dConnect_c |  |
 | `mod_execute__13dRemoconMng_cFv` | dRemoconMng_c::execute |  |
 | `mod_fn_800DBFE0` | dRemoconMng_c::~dRemoconMng_c |  |
-| `mod_calcCRC__10dSaveMng_cFv` | dSaveMng_c::calcCRC |  |
+| `mod_calcCRC__10dSaveMng_cFv` | dSaveMng_c::calcCRC | yes |
 | `mod_create__10dSaveMng_cFPQ23EGG4Heap` | dSaveMng_c::create |  |
-| `mod_getSaveGame__10dSaveMng_cFSc` | dSaveMng_c::getSaveGame |  |
-| `mod_getTempGame__10dSaveMng_cFSc` | dSaveMng_c::getTempGame |  |
+| `mod_getSaveGame__10dSaveMng_cFSc` | dSaveMng_c::getSaveGame | yes |
+| `mod_getTempGame__10dSaveMng_cFSc` | dSaveMng_c::getTempGame | yes |
 | `mod_fn_800E1840` | dSaveMng_c::initLoadGame |  |
-| `mod_fn_800E1940` | dSaveMng_c::loadQuickSaveData |  |
+| `mod_fn_800E1940` | dSaveMng_c::loadQuickSaveData | yes |
 | `mod_fn_800E1690` | dSaveMng_c::prepareSave | wrapped |
 | `mod_fn_800E02D0` | dSaveMng_c::refresh |  |
-| `mod_fn_800E03E0` | dSaveMng_c::saveGameCopy |  |
+| `mod_fn_800E03E0` | dSaveMng_c::saveGameCopy | yes |
 | `mod_fn_800E11D0` | dSaveMng_c::startDeleteQuickNandSave |  |
 | `mod_fn_800E0C20` | dSaveMng_c::startMultiModeNandSave |  |
 | `mod_startNandSave__10dSaveMng_cFv` | dSaveMng_c::startNandSave |  |
@@ -784,7 +784,7 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_8005CE50` | daPyDemoMng_c::UNDEF_8005CE50 |  |
 | `mod_fn_8005C6D0` | daPyDemoMng_c::calcGoalCenterPos |  |
 | `mod_fn_8005B6A0` | daPyDemoMng_c::calcNotGoalPlayer |  |
-| `mod_clearDemoNo__13daPyDemoMng_cFSc` | daPyDemoMng_c::clearDemoNo |  |
+| `mod_clearDemoNo__13daPyDemoMng_cFSc` | daPyDemoMng_c::clearDemoNo | yes |
 | `mod_disableDemoControl__7WLClassFb` | daPyDemoMng_c::endControlDemoAll |  |
 | `mod_fn_8005BE30` | daPyDemoMng_c::executeGoalDemo_Jump |  |
 | `mod_fn_8005BD60` | daPyDemoMng_c::executeGoalDemo_JumpCheck |  |
@@ -793,60 +793,60 @@ source names come from `linked/mod_source_names.json` (`tools/mod_source_names.p
 | `mod_fn_8005B8A0` | daPyDemoMng_c::executeGoalDemo_Pole |  |
 | `mod_fn_8005BCF0` | daPyDemoMng_c::executeGoalDemo_PoleDown |  |
 | `mod_fn_8005CED0` | daPyDemoMng_c::executeStartToride |  |
-| `mod_fn_8005D280` | daPyDemoMng_c::genCourseInList |  |
+| `mod_fn_8005D280` | daPyDemoMng_c::genCourseInList | yes |
 | `mod_getControlDemoPlayerNum__13daPyDemoMng_cCFv` | daPyDemoMng_c::getControlDemoPlayerNum |  |
-| `mod_getPoleBelowPlayer__13daPyDemoMng_cFi` | daPyDemoMng_c::getPoleBelowPlayer |  |
-| `mod_fn_8005B4A0` | daPyDemoMng_c::init |  |
+| `mod_getPoleBelowPlayer__13daPyDemoMng_cFi` | daPyDemoMng_c::getPoleBelowPlayer | yes |
+| `mod_fn_8005B4A0` | daPyDemoMng_c::init | yes |
 | `mod_fn_8005C9D0` | daPyDemoMng_c::isAllPlayerControlDemo |  |
 | `mod_fn_8005C210` | daPyDemoMng_c::isAllPlayerGoalIn |  |
 | `mod_fn_8005CDD0` | daPyDemoMng_c::isLandAll |  |
 | `mod_fn_8005CB70` | daPyDemoMng_c::onLandStopReq |  |
-| `mod_setCourseOutList__13daPyDemoMng_cFSc` | daPyDemoMng_c::setCourseOutList |  |
+| `mod_setCourseOutList__13daPyDemoMng_cFSc` | daPyDemoMng_c::setCourseOutList | yes |
 | `mod_fn_8005C130` | daPyDemoMng_c::setGoalDemoKimeAll |  |
-| `mod_setGoalDemoList__13daPyDemoMng_cFi` | daPyDemoMng_c::setGoalDemoList |  |
+| `mod_setGoalDemoList__13daPyDemoMng_cFi` | daPyDemoMng_c::setGoalDemoList | yes |
 | `mod_fn_8005C1A0` | daPyDemoMng_c::setGoalDemoRunCastle |  |
 | `mod_demoControlAllPlayers__7WLClassFv` | daPyDemoMng_c::startControlDemoAll |  |
 | `mod_fn_8005CC00` | daPyDemoMng_c::startControlDemoLandPlayer |  |
-| `mod_turnNextDemoNo__13daPyDemoMng_cFv` | daPyDemoMng_c::turnNextDemoNo |  |
-| `mod_addNum__9daPyMng_cFi` | daPyMng_c::addNum |  |
-| `mod_fn_8005FEB0` | daPyMng_c::addNum |  |
-| `mod_fn_80060EF0` | daPyMng_c::checkBonusNoCap |  |
-| `mod_fn_80061160` | daPyMng_c::checkCorrectCreateInfo |  |
-| `mod_fn_8005EEE0` | daPyMng_c::create |  |
+| `mod_turnNextDemoNo__13daPyDemoMng_cFv` | daPyDemoMng_c::turnNextDemoNo | yes |
+| `mod_addNum__9daPyMng_cFi` | daPyMng_c::addNum | yes |
+| `mod_fn_8005FEB0` | daPyMng_c::addNum | yes |
+| `mod_fn_80060EF0` | daPyMng_c::checkBonusNoCap | yes |
+| `mod_fn_80061160` | daPyMng_c::checkCorrectCreateInfo | yes |
+| `mod_fn_8005EEE0` | daPyMng_c::create | yes |
 | `mod_fn_8005EF50` | daPyMng_c::createCourseInit |  |
-| `mod_decNum__9daPyMng_cFi` | daPyMng_c::decNum |  |
-| `mod_fn_8005FED0` | daPyMng_c::decNum |  |
-| `mod_fn_8005F920` | daPyMng_c::decideCtrlPlrNo |  |
-| `mod_fn_80060A10` | daPyMng_c::executeLastAll |  |
-| `mod_fn_80060970` | daPyMng_c::executeLastPlayer |  |
-| `mod_getPlayerIndex__9daPyMng_cF13PLAYER_TYPE_e` | daPyMng_c::findPlayerWithType |  |
-| `mod_fn_8005FC70` | daPyMng_c::getActScrollInfo |  |
-| `mod_fn_80060200` | daPyMng_c::getCoinAll |  |
-| `mod_fn_800601E0` | daPyMng_c::getCourseInListPlrNo |  |
-| `mod_getCourseInPlayerModelType__9daPyMng_cFUc` | daPyMng_c::getCourseInPlayerModelType |  |
-| `mod_getEntryNum__9daPyMng_cFv` | daPyMng_c::getEntryNum |  |
-| `mod_getNumInGame__9daPyMng_cFv` | daPyMng_c::getNumInGame |  |
-| `mod_fn_8005FD20` | daPyMng_c::getScrollNum |  |
-| `mod_getYoshi__9daPyMng_cFi` | daPyMng_c::getYoshi |  |
-| `mod_getYoshiColor__9daPyMng_cFUc` | daPyMng_c::getYoshiColor |  |
-| `mod_getYoshiFruit__9daPyMng_cFUc` | daPyMng_c::getYoshiFruit |  |
-| `mod_fn_8005FB00` | daPyMng_c::getYoshiNum |  |
-| `mod_fn_80060250` | daPyMng_c::incCoin |  |
-| `mod_fn_80060590` | daPyMng_c::incRestAll |  |
-| `mod_fn_8005EA60` | daPyMng_c::initGame |  |
-| `mod_fn_8005f570__9daPyMng_cF16PLAYER_POWERUP_ei` | daPyMng_c::initKinopioPlayer |  |
-| `mod_fn_8005EB10` | daPyMng_c::initStage |  |
-| `mod_isCreateBalloon__9daPyMng_cFi` | daPyMng_c::isCreateBalloon |  |
-| `mod_fn_8005FA00` | daPyMng_c::releaseYoshi |  |
-| `mod_setCarryOverYoshiInfo__9daPyMng_cFUcUci` | daPyMng_c::setCarryOverYoshiInfo |  |
-| `mod_fn_80060700` | daPyMng_c::setCourseInStarBGM |  |
-| `mod_fn_8005ECE0` | daPyMng_c::setDefaultParam |  |
-| `mod_setHipAttackQuake__9daPyMng_cFiUc` | daPyMng_c::setHipAttackQuake |  |
-| `mod_fn_80060DB0` | daPyMng_c::setHipAttackSpecialEffect |  |
-| `mod_fn_8005F990` | daPyMng_c::setYoshi |  |
-| `mod_stopStarBGM__9daPyMng_cFv` | daPyMng_c::stopStarBGM |  |
-| `mod_stopYoshiBGM__9daPyMng_cFv` | daPyMng_c::stopYoshiBGM |  |
-| `mod_fn_8005F5C0` | daPyMng_c::update |  |
+| `mod_decNum__9daPyMng_cFi` | daPyMng_c::decNum | yes |
+| `mod_fn_8005FED0` | daPyMng_c::decNum | yes |
+| `mod_fn_8005F920` | daPyMng_c::decideCtrlPlrNo | yes |
+| `mod_fn_80060A10` | daPyMng_c::executeLastAll | yes |
+| `mod_fn_80060970` | daPyMng_c::executeLastPlayer | yes |
+| `mod_getPlayerIndex__9daPyMng_cF13PLAYER_TYPE_e` | daPyMng_c::findPlayerWithType | yes |
+| `mod_fn_8005FC70` | daPyMng_c::getActScrollInfo | yes |
+| `mod_fn_80060200` | daPyMng_c::getCoinAll | yes |
+| `mod_fn_800601E0` | daPyMng_c::getCourseInListPlrNo | yes |
+| `mod_getCourseInPlayerModelType__9daPyMng_cFUc` | daPyMng_c::getCourseInPlayerModelType | yes |
+| `mod_getEntryNum__9daPyMng_cFv` | daPyMng_c::getEntryNum | yes |
+| `mod_getNumInGame__9daPyMng_cFv` | daPyMng_c::getNumInGame | yes |
+| `mod_fn_8005FD20` | daPyMng_c::getScrollNum | yes |
+| `mod_getYoshi__9daPyMng_cFi` | daPyMng_c::getYoshi | yes |
+| `mod_getYoshiColor__9daPyMng_cFUc` | daPyMng_c::getYoshiColor | yes |
+| `mod_getYoshiFruit__9daPyMng_cFUc` | daPyMng_c::getYoshiFruit | yes |
+| `mod_fn_8005FB00` | daPyMng_c::getYoshiNum | yes |
+| `mod_fn_80060250` | daPyMng_c::incCoin | yes |
+| `mod_fn_80060590` | daPyMng_c::incRestAll | yes |
+| `mod_fn_8005EA60` | daPyMng_c::initGame | yes |
+| `mod_fn_8005f570__9daPyMng_cF16PLAYER_POWERUP_ei` | daPyMng_c::initKinopioPlayer | yes |
+| `mod_fn_8005EB10` | daPyMng_c::initStage | yes |
+| `mod_isCreateBalloon__9daPyMng_cFi` | daPyMng_c::isCreateBalloon | yes |
+| `mod_fn_8005FA00` | daPyMng_c::releaseYoshi | yes |
+| `mod_setCarryOverYoshiInfo__9daPyMng_cFUcUci` | daPyMng_c::setCarryOverYoshiInfo | yes |
+| `mod_fn_80060700` | daPyMng_c::setCourseInStarBGM | yes |
+| `mod_fn_8005ECE0` | daPyMng_c::setDefaultParam | yes |
+| `mod_setHipAttackQuake__9daPyMng_cFiUc` | daPyMng_c::setHipAttackQuake | yes |
+| `mod_fn_80060DB0` | daPyMng_c::setHipAttackSpecialEffect | yes |
+| `mod_fn_8005F990` | daPyMng_c::setYoshi | yes |
+| `mod_stopStarBGM__9daPyMng_cFv` | daPyMng_c::stopStarBGM | yes |
+| `mod_stopYoshiBGM__9daPyMng_cFv` | daPyMng_c::stopYoshiBGM | yes |
+| `mod_fn_8005F5C0` | daPyMng_c::update | yes |
 | `mod_fn_2_CFBE0` | daRemoconBalance_c::FUN_8083D380 |  |
 | `mod_fn_2_CE9A0` | daRemoconBalance_c::nodeCallbackA_c::~nodeCallbackA_c |  |
 | `mod_fn_2_CE9E0` | daRemoconBalance_c::nodeCallbackB_c::~nodeCallbackB_c |  |

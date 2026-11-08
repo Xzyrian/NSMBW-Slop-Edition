@@ -710,7 +710,9 @@ static void gl_draw(int prim, int vat, uint32_t count, const uint8_t *data) {
     if (count > vcap) { vcap = count * 2; v = realloc(v, sizeof(vtx) * vcap); }
     const uint8_t *p = data;
     extern uint64_t g_perf_xform_ns; uint64_t tx0 = rt_now_ns();
-    for (uint32_t i = 0; i < count; i++) { rawv r; decode_vertex(vat, &p, &r); transform_vertex(&r, &v[i]); }
+    {   static int slow = -1; if (slow < 0) slow = getenv("RT_SLOWXFORM") != NULL;   /* (testing: the per-vertex path) */
+        if (slow) for (uint32_t i = 0; i < count; i++) { rawv r; decode_vertex(vat, &p, &r); transform_vertex(&r, &v[i]); }
+        else xform_batch(vat, count, data, v); }
     g_perf_xform_ns += rt_now_ns() - tx0;
     float sx = xf_f(0x101A), sy = xf_f(0x101B), sz = xf_f(0x101C), ox = xf_f(0x101D), oy = xf_f(0x101E), oz = xf_f(0x101F);
     float so_x = (float)((bp(0x59) & 0x3FF) * 2) - 342.0f, so_y = (float)(((bp(0x59) >> 10) & 0x3FF) * 2) - 342.0f;

@@ -144,9 +144,19 @@ static void fix_letterbox_ortho(uint32_t fr) {
    shown (and within the zone). Player positions come from daPyMng_c::getPlayer results. */
 static uint32_t pl_ptr[8]; static uint64_t pl_seen[8];
 void hle_getPlayer__9daPyMng_cFi(ppc_context *ctx, uint8_t *base) {
+    static uint64_t test_pos_done;
     uint32_t i = ctx->r[3];
     orig_getPlayer__9daPyMng_cFi(ctx, base);
     if (i < 8 && ctx->r[3]) { pl_ptr[i] = ctx->r[3]; pl_seen[i] = g_frames_presented; }
+    /* RT_TEST_POS="frame,x,y": one player-1 position override for directed test inputs.
+     * It uses the real actor / collision code afterwards and is inert without the variable. */
+    const char *tp = getenv("RT_TEST_POS");
+    unsigned long long frame = 0; float x = 0, y = 0;
+    if (!test_pos_done && i == 0 && ctx->r[3] && tp && sscanf(tp, "%llu,%f,%f", &frame, &x, &y) == 3 && g_frames_presented >= frame) {
+        put_f(ctx->r[3] + 0xAC, x); put_f(ctx->r[3] + 0xB0, y);
+        test_pos_done = 1;
+        rt_log("test", "player 1 position set to %.1f, %.1f at frame %llu", x, y, (unsigned long long)g_frames_presented);
+    }
 }
 static float get_f(uint32_t a) { uint32_t u = R32(a); float f; memcpy(&f, &u, 4); return f; }
 void aspect_camera_fix(void) {
