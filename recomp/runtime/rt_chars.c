@@ -258,10 +258,9 @@ static void copy_type_state(int from, int to) {
     W32(MOD_PY_MODE + 4 * to, R32(MOD_PY_MODE + 4 * from));
     W32(MOD_PY_CREATE_ITEM + 4 * to, R32(MOD_PY_CREATE_ITEM + 4 * from));
 }
-/* dSaveMng_c::prepareSave */
-void hle_mod_fn_800E1690(ppc_context *ctx, uint8_t *base) {
+/* dSaveMng_c::prepareSave's character-state adjustment, before its native serialization. */
+void chars_prepare_save(void) {
     if (singleplayer()) copy_type_state((int)R32(MOD_PY_TYPE), MARIO);
-    orig_mod_fn_800E1690(ctx, base);
 }
 
 /* initDecidedCharacter: the body for the chosen character */

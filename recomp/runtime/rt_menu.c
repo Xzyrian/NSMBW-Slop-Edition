@@ -251,11 +251,38 @@ void hle_fn_80154F60(ppc_context *ctx, uint8_t *base) {
     wrf(bp + 0x48, cam_x + w * 0.5f); wrf(bp + 0x50, cam_x + w * 0.5f);
     (void)cy;
 }
-/* daPlBase_c screen side limit: players may leave (and re-enter) the held screen */
+/* daPlBase_c screen side limit: players may leave (and re-enter) the held screen.
+   RT_TEST_POS's directed warp also lets the camera catch up, but only until the real goal demo
+   starts (or a bounded 1200-frame test window expires); ordinary gameplay is never affected. */
+static int test_limit_hold(uint32_t p) {
+    const char *tp = getenv("RT_TEST_POS");
+    unsigned long long frame; float x, y;
+    return tp && sscanf(tp, "%llu,%f,%f", &frame, &x, &y) == 3 &&
+           g_frames_presented >= frame && g_frames_presented <= frame + 1200 && !R8(p + 0x1460);
+}
 static void title_anim(ppc_context *ctx, uint8_t *base, uint32_t p);
-void hle_fn_80055FF0(ppc_context *ctx, uint8_t *base) { title_anim(ctx, base, ctx->r[3]); if (cam_held()) return; orig_fn_80055FF0(ctx, base); }
-void hle_fn_80055D00(ppc_context *ctx, uint8_t *base) { if (cam_held()) return; orig_fn_80055D00(ctx, base); }   /* (screen edge push) */
-void hle_fn_80055810(ppc_context *ctx, uint8_t *base) { if (cam_held()) return; orig_fn_80055810(ctx, base); }   /* (scroll limits) */
+void hle_fn_80055FF0(ppc_context *ctx, uint8_t *base) {
+    title_anim(ctx, base, ctx->r[3]);
+    if (cam_held()) return;
+    if (test_limit_hold(ctx->r[3])) {
+        if (R8(ctx->r[3] + 0x38D) == 0 && g_frames_presented % 60 == 0) {
+            uint32_t bp = R32(G_BG_PARAM);
+            rt_log("test", "screen limit suppressed at %.1f; camera %.1f width %.1f frame %llu",
+                   rdf(ctx->r[3] + 0xAC), bp ? rdf(bp + 0x38) : 0.0f, bp ? rdf(bp + 0x40) : 0.0f,
+                   (unsigned long long)g_frames_presented);
+        }
+        return;
+    }
+    orig_fn_80055FF0(ctx, base);
+}
+void hle_fn_80055D00(ppc_context *ctx, uint8_t *base) {
+    if (cam_held() || test_limit_hold(ctx->r[3])) return;
+    orig_fn_80055D00(ctx, base);
+}   /* (screen edge push) */
+void hle_fn_80055810(ppc_context *ctx, uint8_t *base) {
+    if (cam_held() || test_limit_hold(ctx->r[3])) return;
+    orig_fn_80055810(ctx, base);
+}   /* (scroll limits) */
 /* While running off (and back in) the title players use the dash animation instead of their
    walk; back at their place they walk again. Animation ids (dPyMdlBase_c): 2 the normal walk
    ("run"), 3 dash ("B_dash"), 4 full-speed dash ("B_dash2"). The game asks for the walk again

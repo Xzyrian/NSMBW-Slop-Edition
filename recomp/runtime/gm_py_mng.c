@@ -12,7 +12,7 @@
  * as the PowerPC code holds them at each call (NV, for the callees' saves) and end with r0 = LR.
  * The comments name the PowerPC instruction a residue comes from when it isn't obvious.
  *
- * Still recompiled: createCourseInit (TODO, CHANGELOG). */
+ * createCourseInit also builds the players and preserves the original spawn-order stack layout. */
 #include "gm_i2.h"
 RT_STATE_FILE                                   /* (game code: its variables are part of a save state) */
 
@@ -751,7 +751,7 @@ static void py_update(GM_CTX) {
         R(3) = disp; BL(0x81806624u, fn_80159960);                       /* setCoinNum(getCoinAll()) */
         R(3) = 0x80430000u; R(4) = gm_u32(PY_SCORE);
         R(3) = disp; BL(0x81806634u, hle_mod_fn_80159CB0);                /* setScore */
-        R(3) = disp; BL(0x8180663Cu, mod_fn_80159AF0_81832CB4);          /* setCollect */
+        R(3) = disp; BL(0x8180663Cu, hle_mod_fn_80159AF0);                /* setCollect */
     }
     /* the quake timers: a timer running out ends the player's quake effect */
     R(3) = PY_QUAKE_TIMER - 4; R(5) = PY_QUAKE_EFFECT - 4; R(4) = 0;
@@ -1056,6 +1056,201 @@ static void py_setHipAttackQuake(GM_CTX, uint32_t type, uint32_t plr) {
     GM_LOOP();                                                           /* (the jump back to the return) */
 }
 
+/* createCourseInit: choose entry positions and create every player, including the multiplayer
+   spawn-order shuffle and spacing rules. The stack arrays intentionally retain the original layout:
+   the first shuffle slot and any unused tail contain the caller's previous stack contents. */
+static void py_createCourseInit(GM_CTX) {
+    uint32_t cr_in = ctx->cr;
+    PY_FN(0x81805DA0u);
+    gptr sp = gm_frame_sp;
+    gm_set_u32(sp + 192, cr_in); gm_set_u32(sp + 188, gm_u32(0x81860000u - 300));
+    NV_R(29, gm_u32(0x80430000u - 24120));
+    R(3) = sp + 76; R(4) = gm_u8(R(29) + 4622); R(5) = gm_u8(R(29) + 4625);
+    BL(0x81805DFCu, getPlayerSetPos__9daPyMng_cFUcUc_8005ED90);
+    BL(0x81805E00u, fn_8005EE90); NV_R(30, R(3));
+    R(6) = gm_u8(R(29) + 4622); R(7) = gm_u8(R(29) + 4625);
+    ctx->f[1].d = ctx->ps1[1] = ldfs(base, sp + 76);
+    ctx->f[2].d = ctx->ps1[2] = ldfs(base, sp + 80);
+    ctx->f[3].d = ctx->ps1[3] = ldfs(base, sp + 84);
+    R(4) = 0x81850000u - 27420; R(3) = R(4) + 196; R(4) += 84;
+    CR_SETBIT(ctx, 6, !(CR_BIT(ctx, 6) ^ CR_BIT(ctx, 6)));
+    R(5) = 265; R(8) = R(30); BL(0x81805E38u, hle_OSReport);
+    if (CMPU(R(30), 27) > 0) goto ordinary_entry;
+    R(3) = (1u << (R(30) & 31)) & 0x08000003u; CR0(ctx, R(3));
+    if (CR_BIT(ctx, 2)) goto ordinary_entry;
+    R(3) = gm_u32(0x80430000u - 25452); BL(0x81805E64u, hle_mod_fn_8005B4A0);
+    R(4) = gm_u32(PY_ACT_INFO + 4); R(3) = 0; ctx->ctr = 8;
+    for (;;) {
+        R(5) = (R(4) >> (R(3) & 31)) & 1; CR0(ctx, R(5));
+        if (!CR_BIT(ctx, 2)) { gm_set_u32(PY_CTRL_PLR_NO, R(3)); break; }
+        R(3)++;
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    }
+    if (CMPU(gm_u8(0x80430000u - 24033), 0) == 0) goto normal_spawns;
+    ctx->f[0].d = ctx->ps1[0] = ldfs(base, sp + 76);
+    ctx->f[1].d = ctx->ps1[1] = ldfs(base, 0x81850000u - 30848);
+    ctx->f[31].d = ctx->ps1[31] = ldfs(base, 0x81850000u - 31116);
+    R(3) = 0x81850000u - 27484 - 8; NV_R(29, 8); NV_R(28, 0);
+    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[0].d + ctx->f[1].d);
+    NV_R(27, PY_ENTRY - 4); NV_R(30, sp + 152); stfs(base, sp + 76, ctx->f[0].d);
+    for (;;) {
+        uint32_t ea = R(27) + 4; R(4) = gm_u32(ea); NV_R(27, ea); NV_R(26, R(3) + 8);
+        if (CMPU(R(4), 0) != 0) {
+            ctx->f[1].d = ctx->ps1[1] = ldfs(base, R(3) + 8); R(5) = R(30);
+            ctx->f[0].d = ctx->ps1[0] = ldfs(base, sp + 76); R(6) = 0;
+            ctx->f[3].d = ctx->ps1[3] = ldfs(base, R(3) + 12);
+            cr_fcmp(ctx, 7, ctx->f[1].d, ctx->f[31].d);
+            R(3) = gm_u32(sp + 84); R(4) = ctx->cr;
+            ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[0].d + ctx->f[1].d);
+            ctx->f[2].d = ctx->ps1[2] = ldfs(base, sp + 80); R(7) = 0;
+            gm_set_u32(sp + 160, R(3)); R(3) = i2_rotl(R(4), 22) & 0x1000000u;
+            stfs(base, sp + 152, ctx->f[0].d);
+            ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[2].d + ctx->f[3].d);
+            R(4) = R(3) + R(28); R(3) = 13; stfs(base, sp + 156, ctx->f[0].d);
+            BL(0x81805F48u, hle_create__13dStageActor_cF6ActorsUiP7Point3dP6S16VecUc);
+        }
+        NV_R(29, R(29) - 1); int more = CMPU(R(29), 0) > 0; NV_R(28, R(28) + 1); R(3) = R(26);
+        if (!more) break;
+        GM_LOOP();
+    }
+    goto finish;
+
+normal_spawns:
+    if (CMPU(gm_u8(0x80430000u - 24036), 1) == 0) {
+        R(3) = gm_u32(0x80430000u - 24708); R(4) = gm_u32(R(3) + 2804);
+        if (CMPS(R(4), 0) < 0) goto entry_direction;
+        NV_R(27, gm_u32(R(3) + 28));
+    } else {
+entry_direction:
+        R(3) = gm_u8(R(29) + 4622); BL(0x81805F94u, fn_8005EE70);
+        R(3) = gm_u32(R(3) + 12); NV_R(27, gm_u8(R(3) + 17));
+    }
+    R(3) = sp + 148; R(4) = 0; ctx->ctr = 8;
+    do {
+        uint32_t ea = R(3) + 4; gm_set_u32(ea, R(4)); R(3) = ea; R(4)++;
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    } while (1);
+    R(3) = PY_ENTRY - 4; NV_R(26, 0); ctx->ctr = 8;
+    do {
+        uint32_t ea = R(3) + 4; R(4) = gm_u32(ea); R(3) = ea;
+        R(5) = R(4) - 1; ctx->xer_ca = R(5) < R(4);
+        uint64_t active = (uint64_t)~R(5) + R(4) + ctx->xer_ca;
+        R(4) = (uint32_t)active; ctx->xer_ca = (uint32_t)(active >> 32); NV_R(26, R(26) + R(4));
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    } while (1);
+    R(5) = gm_u32(0x80310000u + 23440 + 8);
+    if (CMPU(R(5), 2) != 0) {
+        NV_R(28, R(26)); if (CMPS(R(26), 4) > 0) NV_R(28, 4);
+        NV_R(29, sp + 184); NV_R(25, sp + 116);
+        for (;;) {
+            BL(0x81806014u, rnd__8dGameComFv_800B2F00); NV_R(28, R(28) - 1);
+            int more = CMPU(R(28), 0) > 0;
+            uint32_t ea = R(25) + 4; stfs(base, ea, ctx->f[1].d); NV_R(25, ea);
+            if (!more) break;
+            GM_LOOP();
+        }
+        R(3) = sp + 116; R(4) = sp + 84; ctx->ctr = 8;
+        do {
+            uint32_t ea = R(3) + 4; R(5) = gm_u32(ea); R(3) = ea;
+            ea = R(4) + 4; gm_set_u32(ea, R(5)); R(4) = ea;
+            if (--ctx->ctr == 0) break;
+            GM_LOOP();
+        } while (1);
+        NV_R(28, sp + 8); R(3) = R(28); R(4) = sp + 88; R(5) = 32; BL(0x81806054u, mod_memcpy_81844C38);
+        R(3) = sp + 152; R(4) = R(29); R(5) = R(28); BL(0x81806064u, mfn_8180637C);
+    }
+    R(4) = PY_CREATE_ITEM; R(6) = PY_REST; R(3) = 0;
+    R(7) = PY_TYPE - 4; R(5) = PY_ENTRY - 4; ctx->ctr = 8;
+    do {
+        uint32_t ea = R(5) + 4; R(9) = gm_u32(ea); R(5) = ea;
+        R(8) = R(7); R(7) += 4;
+        if (CMPU(R(9), 0) != 0) {
+            R(8) = i2_rotl(gm_u32(R(8) + 4), 2) & 0xFFFFFFFCu;
+            R(9) = gm_u8(R(4) + R(8) + 3) & 4; CR0(ctx, R(9));
+            if (CR_BIT(ctx, 2) && CMPS(gm_u32(R(6) + R(8)), 0) > 0) R(3)++;
+        }
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    } while (1);
+    R(6) = R(26) - 4; R(5) = gm_u32(0x80310000u + 23440 + 8); R(4) = 0x43300000u;
+    gm_set_u32(sp + 60, R(6)); ctx->f[0].d = ctx->ps1[0] = ldfs(base, 0x81850000u - 31076);
+    gm_set_u32(sp + 56, R(4));
+    if (CMPU(R(5), 2) == 0) ctx->f[31].u = ctx->f[0].u;
+    else {
+        ctx->f[1].u = ld64(base, sp + 56); ctx->f[2].d = ctx->ps1[2] = ldfs(base, 0x81850000u - 30832);
+        ctx->f[3].d = ctx->ps1[3] = ldfs(base, 0x81850000u - 30948);
+        ctx->f[1].d = frsp(ctx->f[1].d - ctx->f[2].d);
+        ctx->f[31].d = ctx->ps1[31] = frsp(ctx->f[1].d * ctx->f[3].d + ctx->f[0].d);
+    }
+    if (CMPU(R(26), 4) <= 0) ctx->f[31].u = ctx->f[0].u;
+    R(3) = R(3) - 1 + 0x80000000u; gm_set_u32(sp + 64, R(4)); gm_set_u32(sp + 68, R(3));
+    ctx->f[1].d = ctx->ps1[1] = ldfs(base, 0x81850000u - 31040);
+    R(3) = R(27) & 1; CR0(ctx, R(3)); ctx->f[2].u = ld64(base, sp + 64); CR_SET(ctx, 2, (ctx->cr >> 28) & 0xF);
+    ctx->f[0].d = ctx->ps1[0] = ldfs(base, 0x81850000u - 31028);
+    ctx->f[1].d = frsp(ctx->f[2].d - ctx->f[1].d);
+    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[31].d * ctx->f[0].d);
+    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[0].d * ctx->f[1].d);
+    ctx->f[1].d = ctx->ps1[1] = ldfs(base, sp + 76);
+    if (!CR_BIT(ctx, 2)) ctx->f[0].u ^= 0x8000000000000000ull;
+    NV_R(29, i2_rotl(R(30), 16) & 0xFF0000u);
+    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[1].d + ctx->f[0].d);
+    NV_R(28, sp + 148); NV_R(26, 8); NV_R(30, sp + 120);
+    NV_R(29, (i2_rotl(R(27), 24) & 0x1000000u) | (R(29) & ~0x1000000u));
+    NV_R(27, PY_ENTRY); NV_R(25, PY_TYPE); NV_R(24, PY_CREATE_ITEM); NV_R(23, PY_REST);
+    stfs(base, sp + 76, ctx->f[0].d);
+    for (;;) {
+        uint32_t ea = R(28) + 4; R(3) = gm_u32(ea); NV_R(28, ea);
+        if (CMPS(R(3), -1) != 0) {
+            R(4) = gm_u32(sp + 84); R(6) = gm_u32(R(27) + (i2_rotl(R(3), 2) & 0xFFFFFFFCu));
+            R(5) = gm_u32(sp + 80); gm_set_u32(sp + 128, R(4)); R(4) = gm_u32(sp + 76);
+            gm_set_u32(sp + 124, R(5)); gm_set_u32(sp + 120, R(4));
+            if (CMPU(R(6), 0) != 0) {
+                R(3) &= 0x3F; R(4) = R(3) | R(29); R(3) = 13; R(5) = R(30); R(6) = 0; R(7) = 0;
+                BL(0x8180629Cu, hle_create__13dStageActor_cF6ActorsUiP7Point3dP6S16VecUc);
+                R(3) = i2_rotl(gm_u32(R(28)), 2) & 0xFFFFFFFCu; R(3) = gm_u32(R(25) + R(3));
+                R(3) = i2_rotl(R(3), 2) & 0xFFFFFFFCu;
+                R(4) = gm_u8(R(24) + R(3) + 3) & 4; CR0(ctx, R(4));
+                if (CR_BIT(ctx, 2) && CMPS(gm_u32(R(23) + R(3)), 0) > 0) {
+                    ctx->f[0].d = ctx->ps1[0] = ldfs(base, sp + 76);
+                    ctx->f[0].d = ctx->ps1[0] = (R(29) & 0x1000000u) ?
+                        frsp(ctx->f[0].d - ctx->f[31].d) : frsp(ctx->f[31].d + ctx->f[0].d);
+                    stfs(base, sp + 76, ctx->f[0].d);
+                }
+            }
+        }
+        NV_R(26, R(26) - 1);
+        if (CMPU(R(26), 0) <= 0) break;
+        GM_LOOP();
+    }
+    goto finish;
+
+ordinary_entry:
+    R(3) = gm_u32(0x80430000u - 25452); BL(0x81806118u, hle_mod_fn_8005D280);
+    BL(0x8180611Cu, fn_800B30C0); ctx->f[0].d = ctx->ps1[0] = ldfs(base, 0x81850000u - 31116);
+    NV_R(27, PY_ENTRY - 4); cr_fcmp(ctx, 7, ctx->f[1].d, ctx->f[0].d); R(3) = ctx->cr;
+    NV_R(30, i2_rotl(R(30), 16) & 0xFF0000u); R(3) = i2_rotl(R(3), 29) & 1; NV_R(28, 8);
+    NV_R(30, (i2_rotl(R(3), 24) & 0xFF000000u) | (R(30) & ~0xFF000000u)); NV_R(29, sp + 152);
+    for (;;) {
+        R(4) = gm_u32(sp + 84); uint32_t ea = R(27) + 4; R(3) = gm_u32(ea); NV_R(27, ea);
+        R(5) = gm_u32(sp + 80); gm_set_u32(sp + 160, R(4)); R(4) = gm_u32(sp + 76);
+        gm_set_u32(sp + 156, R(5)); gm_set_u32(sp + 152, R(4));
+        if (CMPU(R(3), 0) != 0) {
+            R(3) = 13; R(4) = R(30); R(5) = R(29); R(6) = 0; R(7) = 0;
+            BL(0x81806188u, hle_create__13dStageActor_cF6ActorsUiP7Point3dP6S16VecUc);
+        }
+        NV_R(28, R(28) - 1); int more = CMPU(R(28), 0) > 0; NV_R(30, R(30) + 1);
+        if (!more) break;
+        GM_LOOP();
+    }
+finish:
+    R(3) = gm_u32(0x81860000u - 300); R(4) = gm_u32(sp + 188);
+    if (CMPU(R(3), R(4)) != 0) { BL(0x81806340u, mfn_81844FCC); return; }
+    R(12) = gm_u32(sp + 192); ctx->cr = (ctx->cr & ~0xF00000u) | (R(12) & 0xF00000u);
+}
+
 /* ================================================================== hle entry points
    Verified memory: the manager's arrays and scalars (calls into players / Yoshis / the music
    change more; RT_GM_VERIFY's double run of those is for the registers only). */
@@ -1071,6 +1266,8 @@ GM_HLE_INT (mod_addNum__9daPyMng_cFi, PY_MEM)                       { py_addNum(
 GM_HLE_VOID(mod_fn_8005f570__9daPyMng_cF16PLAYER_POWERUP_ei, PY_MEM) { py_initKinopioPlayer(GM_PASS, A(0), A(1)); }
 GM_HLE_VOID(mod_fn_80060EF0, PY_MEM)                                { py_checkBonusNoCap(GM_PASS); }
 GM_HLE_INT (mod_fn_8005EEE0, PY_MEM)                                { py_create(GM_PASS, A(0), A(1), A(2), A(3)); }
+/* Creating the course's actors is intentionally single-invocation; accept it by isolated A/B. */
+GM_HLE(mod_fn_8005EF50)                                               { py_createCourseInit(GM_PASS); }
 GM_HLE_VOID(mod_fn_8005F920, PY_MEM)                                { py_decideCtrlPlrNo(GM_PASS); }
 GM_HLE_INT (mod_isCreateBalloon__9daPyMng_cFi, PY_MEM)              { py_isCreateBalloon(GM_PASS, A(0)); }
 GM_HLE_INT (mod_fn_80060200, PY_MEM)                                { py_getCoinAll(GM_PASS); }

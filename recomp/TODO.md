@@ -18,16 +18,24 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
   - [~] B (instance 2, `docs/DECOMP.md`): the game code decompiled class by class, checked by
     `RT_GM_VERIFY` / `RT_GM_SELFTEST` and A/B replays. Done: the module's save data and session
     info (`dMj2dGame_c`, `dMj2dHeader_c`, `dSaveMng_c` in part, `dInfo_c`: 67 functions) and
-    the player manager (`daPyMng_c`: 38 of 39, part 61), the demo manager's lists
-    (`daPyDemoMng_c`: 7 on, 19 written but off, part 67), all register-exact with frames, strict
-    four-input A/B clean. The HUD's first fourteen functions are native (`dGameDisplay_c`, parts 68-71,
-    register-exact self-test and live gameplay / pause / normal goal-settle verification; strict A/B pending).
-    Part 70 adds the time / score setters and RestCoinAnimeCheck; only setScore's live layout-call path is reached,
-    so the time-change and rest-coin animation call paths still need directed input. Part 71 adds a repeatable
-    1-1 goal replay and both ProcGoalSettleUp state methods; normal mode is checked, assist-mode settlement is not.
-    Next: use that replay to verify / switch on daPyDemoMng_c's goal demos (instance 1 wants it too), the rest of
-    `dGameDisplay_c`, daPyMng_c's createCourseInit, the rest of the module (the NAND saves, menus, world map),
-    then `dAcPy_c` / `daPlBase_c`, then camera / scroll
+    the complete player manager (`daPyMng_c`: 39/39, parts 61 and 77), the complete demo manager
+    (`daPyDemoMng_c`: 27/27, parts 72-74), the complete speech-bubble manager and child layout
+    (`dfukidashiManager_c`: 9/9, part 77; `dfukidashiInfo_c`: 6/6, part 78), and the complete HUD
+    (`dGameDisplay_c`: 29/29, parts 68-71, 75-76 and 79). The five safe goal methods in Part 72 passed
+    669 strict live calls; world-changing methods passed isolated A/B. Part 73 fixed calcNotGoalPlayer's
+    key-flag address and ported executeGoalDemo_Pole; both clear A/Bs match all 1,367 baseline gameplay /
+    scene / test events, including the in-play coin deletion. Part 74 enabled the nine control-demo /
+    toride methods. Directed live-player calls covered every method, strict query checks found no
+    differences, and the native / PowerPC A/B matched all 1,129 events. Part 75 ported both goal
+    settlement methods; normal and assist A/Bs each match all 1,367 events. Part 76 added the HUD's
+    lifecycle, layout, lives display and per-frame visibility methods; all isolated A/Bs match 1,367 events.
+    Part 77 completed player spawning and all nine speech-bubble manager methods; the full A/B matches
+    1,367 events and directed calls covered the three otherwise unreached methods. Part 78 completed
+    the six child-layout methods with directed register checks. Part 79 completed the HUD; its directed
+    A/B matches all 1,371 ordinary / test events and the final clean A/B matches all 1,367 events.
+    Part 70's time-change and rest-coin animation call paths still need directed input.
+    Next: the rest of the module (the NAND saves, menus, world map), then `dAcPy_c` / `daPlBase_c`,
+    then camera / scroll
   - [~] B (instance 1, from 2026-10-17, same method `docs/DECOMP.md`): the engine under the game -
     the framework (`fBase_c`, `fManager_c`, `fTree*`, `fLiMg*`, profiles), `cLib` / `sLib` (lists,
     trees, state machines, math, random), then the actor bases `dBase_c` / `dBaseActor_c` /
@@ -181,9 +189,10 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     game's name under / over its portrait
 - [ ] **Free-for-All / Coin Battle** - reachable from the multiplayer File Select and go to the
   8-player character select; nothing past that has been tested.
-- [ ] **Native port of the 8-player module** - 152 of 1318 functions are native (`NATIVE_PORT.md`,
-  `python3 tools/native_port_status.py`). Next: the goal-demo functions now reachable through the 1-1
-  replay, the rest of dGameDisplay_c and the character select, then the save/NAND code.
+- [ ] **Native port of the 8-player module** - 217 of 1318 functions are native (`NATIVE_PORT.md`,
+  `python3 tools/native_port_status.py`). daPyDemoMng_c is 27/27, daPyMng_c is 39/39,
+  dGameDisplay_c is 29/29, dfukidashiManager_c is 9/9, dfukidashiInfo_c is 6/6, dGameCom is 6/6
+  and dSaveMng_c is 13/13. Next: dNandThread_c, then the menus and world-map classes.
 - [ ] **Module save names** - renamed at link time (`tools/link_mod.py`); goes away when the
   save code (`dNandThread_c`) is ported.
 

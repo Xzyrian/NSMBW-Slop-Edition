@@ -6,6 +6,185 @@ without re-deriving it.
 
 ---
 
+## 2026-11-08 (81) - Kimi: track B - save manager complete
+
+- Completed all 13 `dSaveMng_c` methods in `runtime/gm_save_mng.c`: construction, refresh, ordinary
+  NAND save, multi-mode / quick-save / quick-save-delete serialization, `prepareSave` and
+  `initLoadGame`, alongside the five existing slot accessors / copies. The three buffered saves
+  preserve the original 32-byte-aligned 16,352-byte alloca frames and stack guards. Generated
+  prologue coverage now contains 744 fixed-frame functions.
+- Folded the singleplayer character-state adjustment into native `prepareSave`, eliminating its
+  former PowerPC forwarding wrapper in `rt_chars.c`. Directed construction and all four save-start
+  paths matched all **1,376** ordinary, NAND-completion and directed-test events; a separate
+  `prepareSave` A/B matched all **1,368** events. The ordinary replay directly covered refresh and
+  game loading. All temporary hooks were removed.
+- The final clean native / PowerPC A/B, with all eight newly native methods isolated, matched all
+  **1,367** events. `NATIVE_PORT.md` regenerated: **217 of 1318** module functions native;
+  `dSaveMng_c` **13/13**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (80) - Kimi: track B - dGameCom utility methods complete
+
+- Ported all six `dGameCom` utility methods in `runtime/gm_d_gamecom.c`: `CreateSmallScore`,
+  `showFukidashi`, `WindowPaneColorSet`, `PlayerEnterCheck`, `Player1upColor` and
+  `isNowCourseClear`. Generated prologue coverage now contains 739 framed functions; all six
+  entry points support isolated PowerPC selection with `RT_GM_VERIFY=orig:<names>`.
+- Directed native / PowerPC calls exercised default, player-specific and invalid score creation,
+  new and updated speech bubbles, all eight player-entry slots, real HUD text and boot-window
+  colours, and early / full course-clear queries. Both runs produced the same **11** directed-test
+  events. Strict full-register checks of the two query methods found no differences; the bounded
+  run did not print aggregate verification totals. All temporary coverage hooks were removed.
+- The final clean native / PowerPC A/B matched all **1,367** gameplay, scene, state-transition and
+  test events. `NATIVE_PORT.md` regenerated: **209 of 1318** module functions native; `dGameCom`
+  **6/6**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (79) - Kimi: track B - in-game HUD complete
+
+- Ported the last four `dGameDisplay_c` methods: `Effect1Up`, `GrayColorSet`, `ReturnGrayColorSet`
+  and `setCollect`, including both 1-up effects, all three saved / tinted text colours, Star Coin
+  icon visibility, animation states and the original saved CR2 behavior. Generated prologue coverage
+  now contains 735 framed functions; the player manager calls the native `setCollect` entry point.
+- Directed live-HUD calls forced the effect guards, produced a successful effect result, saved and
+  restored the white / gray colour set, and exercised all three Star Coin state slots. Separate
+  native / PowerPC runs matched all **1,371** ordinary and directed-test events. A strict double
+  invocation of GrayColorSet was rejected as evidence because its external material writes are not
+  idempotent; the separate A/B is the authoritative comparison. All temporary hooks were removed.
+- The final clean native / PowerPC A/B matched all **1,367** events. `NATIVE_PORT.md` regenerated:
+  **203 of 1318** module functions native; `dGameDisplay_c` **29/29**. Windows no-deploy build used
+  throughout; nothing was deployed.
+
+## 2026-11-08 (78) - Kimi: track B - speech-bubble child layouts
+
+- Ported all six `dfukidashiInfo_c` methods in `runtime/gm_d_fukidashi_info.c`: drawing, position
+  offsets, the four pane/text colour groups, movement counters, and the Move / Exit finalizers.
+  The 572-byte child and its layout objects stay in big-endian guest memory. Generated prologue
+  coverage now includes the child's relocated address range (731 framed functions).
+- Directed calls on a real initialized child covered every method and two movement-counter branches.
+  Strict declared-memory and full-register verification with fatal-on-difference found and fixed
+  inverted timer conditions and a wrong session-info instance address; the final directed run had
+  no differences. All temporary coverage hooks were removed.
+- The final clean native / PowerPC A/B matched all **1,367** gameplay, scene, state-transition and
+  test events. `NATIVE_PORT.md` regenerated: **199 of 1318** module functions native;
+  `dfukidashiInfo_c` **6/6**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (77) - Kimi: track B - player spawning and speech bubbles
+
+- Translated `daPyMng_c::createCourseInit`, preserving spawn order, character randomization,
+  multiplayer spacing and the original stack-array behavior. Its isolated native / PowerPC replay
+  matched all **1,367** gameplay, scene, state-transition and test events, completing `daPyMng_c`
+  at **39/39** and bringing the verified total to 184 module functions.
+- Ported all nine `dfukidashiManager_c` methods in `runtime/gm_d_fukidashi.c`: construction,
+  destruction, archive / child-layout creation, per-frame execution and drawing, deletion, display
+  values and the two session-info flag setters. Expanded generated prologue coverage to the manager's
+  relocated address range. Testing caught and fixed inverted archive / child return checks and missing
+  archive-path arguments in `r4`; the manager's constructor and destructor instance addresses remain
+  distinct, as in the PowerPC code.
+- The final ordinary native / PowerPC A/B matched all **1,367** events. Directed calls covered the
+  three methods not reached by that replay: the selected child value changed without touching its
+  neighbor, and the session-info flag set and cleared correctly. Both directed A/B runs matched all
+  1,367 ordinary events plus the two test events; all temporary tracing and test hooks were removed.
+- `NATIVE_PORT.md` regenerated: **193 of 1318** module functions native; `daPyMng_c` **39/39** and
+  `dfukidashiManager_c` **9/9**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-07 (76) - Kimi: track B - HUD lifecycle, layout and visibility
+
+- Ported and enabled nine more `dGameDisplay_c` methods: destructor, draw, `AreaSetupAll`, execute,
+  `AreaCheck`, `AlphaEnterAndExit`, constructor, `createLayout` and `RestDispSetup`. The native code
+  preserves the PowerPC frames, nested-call return addresses, animation / state calls, player-to-layout
+  coordinate tests, alpha clamps, archive / pane setup, lives-icon placement and material restoration.
+- Expanded the verifier's HUD object range from 1,256 to the full **2,192** bytes allocated by classInit.
+  The first constructor A/B caught incorrect state-manager interface arguments (916 / 920, not 912 / 916);
+  correcting them restored both missing goal-state transitions. No failed build was accepted or deployed.
+- Isolated native / PowerPC A/Bs passed for draw + destructor, execute + area / alpha, constructor,
+  createLayout and RestDispSetup. AreaSetupAll had its own matching A/B. Every final comparison matched
+  all **1,367** gameplay, scene, state-transition and test events.
+- `NATIVE_PORT.md` regenerated: **183 of 1318** module functions native; `dGameDisplay_c` **25/29**.
+  Effect1Up, GrayColorSet, ReturnGrayColorSet and setCollect remain recompiled.
+
+## 2026-11-07 (75) - Kimi: track B - normal and assist goal settlement
+
+- Ported `dGameDisplay_c::NormalSettle` and `OtasukeSettle`, including rounded time-bonus
+  arithmetic, timer / score updates, assist countdown layout updates, sound calls, stack guards,
+  saved registers and completion results. Generated their 32-byte and 48-byte prologues.
+- The first NormalSettle A/B caught a completion one call early. Instruction-level tracing and
+  strict verification isolated two translation errors: the unit / remaining-bonus minimum branch
+  and the completion return mapping. The return flag is captured immediately after the CR2
+  comparison because native nested calls do not all preserve CR2. All temporary tracing was removed.
+- Normal mode's isolated native / PowerPC A/B now matches all **1,367** events. A directed assist-
+  mode replay exercised OtasukeSettle and also matches all **1,367** events. The assist override was
+  removed after testing. Strict double invocation is not used to accept these world-changing methods;
+  its remaining CTR difference came from running nested sound / score code twice.
+- `NATIVE_PORT.md` regenerated: **174 of 1318** module functions native; `dGameDisplay_c` **16/29**.
+  The HUD's setTime-changing and rest-coin animation paths remain directed-test work.
+
+## 2026-11-07 (74) - Kimi: track B - daPyDemoMng_c complete
+
+- Audited and enabled the remaining nine methods: start / end control demo for all players,
+  isAllPlayerControlDemo, getControlDemoPlayerNum, onLandStopReq, startControlDemoLandPlayer,
+  isLandAll, setAnimePlayStandardTypeAll, and executeStartToride. Corrected the toride comment:
+  it follows the first goal-list player who **has landed**, not one who has not.
+- The ordinary single-player clear and a normal stage start did not call any of these methods, so
+  absence of verifier differences was not accepted as coverage. A temporary directed live-goal hook
+  invoked all nine against the real player objects, including control start / stop, landed-player
+  handling, animation setup, and toride states 0 -> 1 -> 2. First-call logs confirmed every method
+  was reached; the hook and coverage instrumentation were removed after testing.
+- The three read-only methods passed strict full-register / declared-memory verification with
+  fatal-on-difference enabled. The world-changing methods were not double-invoked. Separate native
+  and PowerPC directed A/B replays matched all **1,129** gameplay, scene, state-transition and test
+  events and all directed return-value / toride-state logs.
+- `NATIVE_PORT.md` regenerated: **172 of 1318** module functions native; `daPyDemoMng_c` **27/27**,
+  `dGameDisplay_c` **14/29**. Next: the remaining HUD methods and daPyMng_c::createCourseInit.
+
+## 2026-11-07 (73) - Kimi: track B - calcNotGoalPlayer and executeGoalDemo_Pole
+
+- Resolved Part 72's `calcNotGoalPlayer` coin-lifetime discrepancy. Full-memory snapshots around the
+  timer-expiry call were identical on entry and differed in exactly one byte on exit: the PowerPC
+  code cleared `0x80429CF8`, while the native port left `0x0F` there. The cause was a bad address
+  constant (`0x80429F38`); the original accesses the key-flag byte at `r13 - 22920 = 0x80429CF8`.
+  None of the method's three virtual calls clears the mask. Removed all temporary memory-dump,
+  byte-watch, and indirect-call tracing after the diagnosis.
+- Enabled native `calcNotGoalPlayer` after the address fix. Strict live full-register and declared-
+  memory verification with fatal-on-difference reported no mismatches. Its isolated native / PowerPC
+  clear A/B now matches all 1,367 gameplay, scene-transition, and test events, including deletion of
+  coin `8152CA98` during play before `KiMePose`.
+- Ported and enabled `executeGoalDemo_Pole`: pole-slot collection, the eight-player insertion sort,
+  ground and landing-height calculation, goal-list construction, and transition to the next demo
+  phase. Its 160-byte frame includes the GPR-helper saves plus f30/f31 and their paired singles;
+  `tools/gm_prologues.py` generated the complete entry. As a world-changing method it was checked by
+  isolated A/B rather than double invocation: native and PowerPC both produced the same 1,367 events.
+- `NATIVE_PORT.md` regenerated: **163 of 1318** module functions native, `daPyDemoMng_c` **18/27**,
+  `dGameDisplay_c` **14/29**. The nine control-demo / toride methods remain written but off.
+
+## 2026-11-07 (72) - Kimi: track B - verified goal-demo methods and a genuine 1-1 clear
+
+- **Corrected Part 71's level-ending claim.** Its frame-4900 warp entered `StateID_DemoDown` before
+  the world-map transition: it was a death replay, not a successful clear, and its direct settlement
+  verification therefore did not establish a normal clear. The replacement warp is frame 2700, with
+  right+run beginning only at frame 3600. This lets the camera catch up and create `EN_GOALPOLE` at
+  frame 3645; `setDemoGoal` runs at frame 3655. The pole, jump, pose, castle, settlement, goal-end,
+  and world-map states all follow, with no death-demo state. The directed test and its bounded,
+  opt-in camera-catch-up aid are documented in `docs/DECOMP.md`.
+- Enabled nine additional native `daPyDemoMng_c` methods: `executeGoalDemo_PoleDown`, `JumpCheck`,
+  `Jump`, `Land`, `KimeWait`, `setGoalDemoKimeAll`, `setGoalDemoRunCastle`, `isAllPlayerGoalIn`, and
+  `calcGoalCenterPos`. Strict live full-register and declared-memory verification with fatal-on-
+  difference covered JumpCheck 61 calls, Land 74, KimeWait 157, isAllPlayerGoalIn 19, and
+  calcGoalCenterPos 358: 669 calls, zero differences. The already-enabled setGoalDemoList and
+  getPoleBelowPlayer also passed one live call each, as did HUD setScore.
+- The four world-changing methods (PoleDown, Jump, setGoalDemoKimeAll, setGoalDemoRunCastle) cannot
+  be double-invoked safely. Controlled single-run A/B tests against their PowerPC implementations
+  matched player positions and every goal / state transition. With calcNotGoalPlayer returned to
+  PowerPC, the final native 40-second clear and baseline both have exactly 1,367 `[OSReport]`,
+  `[scene]`, and `[test]` events in the same order, including deletion of coin `8152CA98` during play
+  before `KiMePose`. This is an event-sequence A/B, not a claim of whole-memory hash equality.
+- `calcNotGoalPlayer` remains written but disabled. Selective A/B associates its native version with
+  that coin surviving until stage cleanup instead of being deleted during play, even though the
+  traced timer-expiry call's entry / exit registers, condition state, key flags, and poll count match.
+  It is not counted as verified or native. HUD `mod_fn_80158F70` likewise is not newly accepted on
+  the basis of double invocation (which changes sound / world state); the successful single-run A/B
+  includes its normal settlement path.
+- `NATIVE_PORT.md` regenerated: **161 of 1318** module functions native, `daPyDemoMng_c` **16/27**,
+  `dGameDisplay_c` **14/29**. `executeGoalDemo_Pole`, the control demos, and toride methods remain
+  recompiled. Windows no-deploy build and the corrected native clear both pass.
+
 ## 2026-11-07 (71) - Kimi: track B - a 1-1 goal replay and the HUD's goal-settle states
 
 - Added native `initializeState_ProcGoalSettleUp` and `executeState_ProcGoalSettleUp` in
@@ -13,12 +192,13 @@ without re-deriving it.
   use the original nested-call return addresses. NormalSettle and OtasukeSettle themselves remain
   recompiled; the native execute method calls them as the PowerPC code does. Regenerated the
   prologues, added both `hle_funcs.txt` entries, Windows build OK.
-- Built a repeatable level-ending test from 1-1's actual course data: the Goal Pole and Fortress
-  sprite is at x=6704, y=592. The opt-in `RT_TEST_POS="frame,x,y"` hook in `rt_aspect.c` sets player
-  1's position once, leaving the real actor / collision / goal code in control. With the usual menu
-  and right+run script, `RT_TEST_POS="4900,6640,-560"` reaches the pole and returns to the world map.
-  The earlier warp at frame 7200 was too late and hit the course timer; the frame-4900 warp is the
-  working test. `RT_AUTOPRESS_FRAMES=1` makes the script deterministic in game-frame seconds.
+- Built a level-ending test from 1-1's actual course data: the Goal Pole and Fortress sprite is at
+  x=6704, y=592. The opt-in `RT_TEST_POS="frame,x,y"` hook in `rt_aspect.c` sets player 1's position
+  once, leaving the real actor / collision / goal code in control. **Correction (Part 72):** the
+  frame-4900 warp used here entered `StateID_DemoDown` before its world-map transition, so it was a
+  death replay, not the successful clear originally claimed. Do not use it as clear verification;
+  Part 72 and `docs/DECOMP.md` give the corrected frame-2700 procedure. `RT_AUTOPRESS_FRAMES=1`
+  makes the script deterministic in game-frame seconds.
 - Live normal-mode goal verification covers both new functions with full register checks and fatal-
   on-difference. Initialization restores the rounded-time destination before its second invocation.
   Execution restores the timer object and player score; `GMV_IGNORE_POLLS` applies only to its nested

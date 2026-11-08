@@ -227,10 +227,28 @@ cmp before.hash after.hash
 `RT_GM_VERIFY=orig:name,...` instead runs only the listed PowerPC implementations and leaves every
 other native enabled. Use this to isolate world-changing functions without double-invoking them.
 `RT_AUTOPRESS_FRAMES=1` makes the autopress times count game-frame seconds (the usual `8`, `10`, ...
-script stays in those units). For the 1-1 goal replay, add `RT_TEST_POS="4900,6640,-560"` to the
-usual menu / right+run script: the hook moves player 1 beside the real goal once, then normal actor
-and collision code performs the clear. It is inert without the environment variable. Part 71 uses
-this path for direct normal-settle verification; assist mode still needs a separate input.
+script stays in those units). **Part 71's frame-4900 replay was a false positive:** it entered
+`StateID_DemoDown` before reaching the world map, so it tested death, not a clear. The corrected,
+repeatable genuine 1-1 clear (from `recomp/`) is:
+
+```sh
+P=""
+for t in $(seq 8 2 32); do P="${P}${P:+,}${t}:100:300"; done
+P="${P},60:204:300000"
+export NSMBW_RENDERER=null RT_DETERMINISTIC=1 RT_DET_UNPACED=1 RT_UPDATE=0
+export RT_AUTOPRESS_FRAMES=1 RT_AUTOPRESS="$P"
+export RT_TEST_POS="2700,6640,-560"
+timeout 40s ./out/nsmbw.exe game
+```
+
+On Windows the game log is `nsmbw_log.txt` in the same directory. The warp leaves right+run unheld
+until frame 3600 so the camera (initially around x=603) can catch up and load `EN_GOALPOLE` at frame
+3645. `setDemoGoal` follows at frame 3655 with the player at `(6698.2, -592.0)` and the castle at
+x=6944; pole, jump, pose, castle, `ProcGoalSettleUp`, `ProcGoalEnd`, and the world-map transition
+from `8005C648` then occur without `StateID_DemoDown`. The opt-in position hook sets both current
+and last positions. A bounded scroll-limit hold, active only for this test's frame window and only
+before the goal demo starts, permits that camera catch-up; normal scrolling resumes at the goal or
+after 1200 frames. Assist-mode settlement still needs a separate input.
 
 The verifier catches what it should: a sign-extension slip in `getCoin` (`gm_u8` for `gm_s8`)
 showed as 92 of 400 self-test calls different, a missing `GM_LOOP()` in
@@ -252,11 +270,14 @@ one expression, as the recompiler writes it). Then the results match bit for bit
 |---|---|---|---|
 | `dMj2dGame_c` (module: a save slot, 8 players) | `gm_mj2d_game.c` | all 48 | 2026-10-17; register-exact with frames 2026-10-28 |
 | `dMj2dHeader_c` (module: the save file header) | `gm_mj2d_header.c` | all 8 | 2026-10-17; register-exact 2026-10-28 |
-| `dSaveMng_c` (module: the save manager) | `gm_save_mng.c` | 5 of 13: the slot accessors and copies | 2026-10-17; register-exact with frames 2026-10-28 |
+| `dSaveMng_c` (module: construction, slots, live-state serialization, ordinary / multi-mode / quick NAND saves and loading) | `gm_save_mng.c` | **all 13 on** | 2026-11-08: Part 81 completed the eight remaining methods and folded prepareSave's singleplayer adjustment into native code. Directed save-start A/B matched all 1,376 events, prepareSave A/B matched all 1,368, and final clean A/B matched all 1,367 |
 | `dInfo_c` (module's functions: session info) | `gm_info.c` | all 6 the module replaces | 2026-10-17; register-exact with frames 2026-10-28 |
-| `daPyMng_c` (module: the player manager - entries, characters, lives / coins, Yoshis, star music, update, incCoin, the ground-pound quakes; instance 2) | `gm_py_mng.c` | 38 of 39 (createCourseInit still recompiled: a sort over uninitialised stack floats) | 2026-10-28 (register-exact verify / self-test, strict four-input A/B) |
-| `daPyDemoMng_c` (module: the players' demo manager - course-in / course-out / goal lists; instance 2) | `gm_py_demo.c` | 7 on (init, the list functions, genCourseInList), 19 written but off (the goal / control demos and toride start now have a 1-1 goal replay but still need verification), executeGoalDemo_Pole still recompiled | 2026-11-04 (register-exact verify / self-test, strict four-input A/B); goal replay added 2026-11-07 |
-| `dGameDisplay_c` (module: the in-game HUD; instance 2) | `gm_d_gamedisplay.c` | 14 of 29 (the main-game / pause state methods, goal-settle state methods, goal-end counter, setPlayNum, time / score setters, rest-coin helpers) | 2026-11-07 (12 x 400 register-exact self-test; live gameplay / pause / normal goal-settle and setScore layout-call verify; assist settle, setTime / rest-coin call paths and strict A/B pending) |
+| `daPyMng_c` (module: the player manager - entries, characters, lives / coins, Yoshis, star music, update, incCoin, course spawning, the ground-pound quakes; instance 2) | `gm_py_mng.c` | **all 39 on** | 2026-11-08: Part 77's createCourseInit native / PowerPC A/B matched all 1,367 events; earlier methods used register-exact verification, self-tests and strict input A/Bs |
+| `daPyDemoMng_c` (module: the players' demo manager - course-in / course-out / goal lists, goal / control demos and stage-start toride; instance 2) | `gm_py_demo.c` | **all 27 on** | 2026-11-07: Part 73 fixed calcNotGoalPlayer's key-flag address and ported executeGoalDemo_Pole; both clear A/Bs match all 1,367 events. Part 74 enabled the nine control-demo / toride methods. Directed live-player calls covered all nine; strict query checks found no differences, and the isolated native / PowerPC A/B matched all 1,129 gameplay / scene / state / test events |
+| `dGameDisplay_c` (module: the in-game HUD; instance 2) | `gm_d_gamedisplay.c` | **all 29 on** | 2026-11-08: Part 79 completed 1-up effects, grayscale colours and Star Coin display. Directed native / PowerPC A/B matched all 1,371 ordinary and test events; final clean A/B matched all 1,367. Earlier methods used register-exact self-tests and isolated A/Bs; setTime / rest-coin call paths still need directed input |
+| `dfukidashiManager_c` (module: the eight speech-bubble layouts and their session-info flags; instance 2) | `gm_d_fukidashi.c` | **all 9 on** | 2026-11-08: Part 77's ordinary native / PowerPC A/B matched all 1,367 events; directed value and flag calls covered the three otherwise unreached methods and matched on both implementations |
+| `dfukidashiInfo_c` (module: one 572-byte speech-bubble child layout; instance 2) | `gm_d_fukidashi_info.c` | **all 6 on** | 2026-11-08: Part 78's final ordinary native / PowerPC A/B matched all 1,367 events; directed calls covered every method and two movement-counter branches with no declared-memory or full-register differences |
+| `dGameCom` (module: score creation, speech bubbles, player colours / entry and course-clear queries; instance 2) | `gm_d_gamecom.c` | **all 6 on** | 2026-11-08: Part 80's directed native / PowerPC A/B matched all 11 test events, including all eight player slots and real HUD / window colouring; strict query register checks found no differences; final clean A/B matched all 1,367 events |
 | `cLineMg_c` / `cTreeNd_c` / `cTreeMg_c` (cLib lists and trees; instance 1) | `gm_c_list.c` | 10 | 2026-10-17 |
 | `fLiMgBa*` / `fLiNdBaLink_c` / `fTrMgBa*` (framework lists of bases; instance 1) | `gm_f_list.c` | 8 | 2026-10-17 |
 | `fBase_c` (the base of every actor / scene; instance 1) | `gm_f_base.c` | 28 | 2026-10-17 (A/B + memory compare) |

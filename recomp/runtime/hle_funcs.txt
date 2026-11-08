@@ -287,12 +287,19 @@ mod_fn_800CE660
 mod_fn_800CE680
 mod_fn_800CE6A0
 mod_fn_800CE6C0
-# track B: dSaveMng_c, the save manager - slot accessors and copies (gm_save_mng.c)
+# track B: dSaveMng_c, the save manager - construction, slots, loading and NAND saves (gm_save_mng.c)
 mod_getSaveGame__10dSaveMng_cFSc
+mod_create__10dSaveMng_cFPQ23EGG4Heap
+mod_fn_800E02D0
 mod_getTempGame__10dSaveMng_cFSc
 mod_fn_800E03E0
 mod_calcCRC__10dSaveMng_cFv
+mod_startNandSave__10dSaveMng_cFv
+mod_fn_800E0C20
+mod_fn_800E0D20
+mod_fn_800E11D0
 mod_fn_800E1940
+mod_fn_800E1840
 # track B: dInfo_c, the session info - the module's functions (gm_info.c)
 mod_fn_800BB130
 mod_AddStockPowerup
@@ -4277,7 +4284,7 @@ fn_4_4F220
 fn_4_4F250
 fn_4_4F280
 # end of state-ID templates
-# track B: daPyMng_c, the player manager - the module's version (gm_py_mng.c; createCourseInit still recompiled)
+# track B: daPyMng_c, the player manager - the module's version (gm_py_mng.c)
 mod_getEntryNum__9daPyMng_cFv
 mod_getNumInGame__9daPyMng_cFv
 mod_fn_8005EA60
@@ -4287,6 +4294,7 @@ mod_addNum__9daPyMng_cFi
 mod_fn_8005f570__9daPyMng_cF16PLAYER_POWERUP_ei
 mod_fn_80060EF0
 mod_fn_8005EEE0
+mod_fn_8005EF50
 mod_fn_8005F920
 mod_isCreateBalloon__9daPyMng_cFi
 mod_fn_80060200
@@ -4316,11 +4324,12 @@ mod_fn_8005F5C0
 mod_fn_80060250
 mod_setHipAttackQuake__9daPyMng_cFiUc
 mod_fn_80060DB0
-# track B: daPyDemoMng_c, the players' demo manager - the module's version (gm_py_demo.c; the goal / control demos written but off, executeGoalDemo_Pole recompiled)
+# track B: daPyDemoMng_c, the players' demo manager - the module's version (gm_py_demo.c; control demos and toride start written but off)
 mod_fn_8005B4A0
 mod_setGoalDemoList__13daPyDemoMng_cFi
 mod_getPoleBelowPlayer__13daPyDemoMng_cFi
 mod_fn_8005B6A0
+mod_fn_8005B8A0
 mod_fn_8005BCF0
 mod_fn_8005BD60
 mod_fn_8005BE30
@@ -4343,8 +4352,36 @@ mod_setCourseOutList__13daPyDemoMng_cFSc
 mod_turnNextDemoNo__13daPyDemoMng_cFv
 mod_clearDemoNo__13daPyDemoMng_cFSc
 mod_fn_8005D280
+# track B: dfukidashiInfo_c, one speech-bubble child layout (gm_d_fukidashi_info.c)
+mod_fn_800B1990
+mod_fn_800B1A50
+mod_fn_800B1BD0
+mod_fn_800B2230
+mod_fn_800B2370
+mod_fn_800B24B0
+# track B: dfukidashiManager_c, the eight speech-bubble layouts (gm_d_fukidashi.c)
+mod_fn_80156ED0
+mod_fn_80156F40
+mod_fn_80156FD0
+mod_fn_80157060
+mod_fn_801570D0
+mod_fn_80157120
+mod_fn_80157220
+mod_fn_80157310
+mod_fn_80157360
 # track B: dGameDisplay_c, the in-game HUD - the module's version (gm_d_gamedisplay.c)
+mod_fn_80157710
+mod_fn_80157960
+mod_fn_80157F90
+mod_fn_801580A0
+mod_fn_80158480
+mod_fn_80158580
+mod_fn_801586F0
+mod_fn_80158910
+mod_fn_80158A90
 mod_fn_80158890
+mod_fn_80158C50
+mod_fn_80158D00
 mod_fn_80158E10
 mod_fn_80158E30
 mod_fn_80158EA0
@@ -4354,7 +4391,18 @@ mod_fn_80158F00
 mod_fn_80158F10
 mod_fn_80158F70
 mod_fn_80159070
+mod_fn_801590B0
+mod_fn_80159250
+mod_fn_801594E0
 mod_fn_80159880
 mod_fn_80159AC0
+mod_fn_80159AF0
 mod_fn_80159CB0
 mod_fn_80159D20
+# track B: dGameCom utility methods - the module's version (gm_d_gamecom.c)
+mod_CreateSmallScore__8dGameComFRC7mVec3_ciib
+mod_showFukidashi__8dGameComFii
+mod_WindowPaneColorSet__8dGameComFPQ34nw4r3lyt6Windowi
+mod_PlayerEnterCheck__8dGameComFi
+mod_Player1upColor__8dGameComFP12LytTextBox_ci
+mod_isNowCourseClear__8dGameComFv

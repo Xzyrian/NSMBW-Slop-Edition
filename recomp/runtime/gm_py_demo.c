@@ -6,12 +6,9 @@
  * players under demo control. The module made the lists 8 long by adding a second block for
  * players 5-8 further into the class (index + 14 / + 26 words below).
  *
- * Register-exact (gm_i2.h). On: init, the list functions (setGoalDemoList, getPoleBelowPlayer,
- * setCourseOutList, turnNextDemoNo, clearDemoNo, genCourseInList). Written but off (GM_PY_DEMO_ALL):
- * the goal demos, the control demos, the toride start, calcNotGoalPlayer, calcGoalCenterPos - the
- * test inputs never reach a goal pole, so they can't be checked yet (TODO: a level-end input).
- * Still recompiled: executeGoalDemo_Pole (the pole's order: an inlined insertion sort with the GPR
- * save helpers). */
+ * Register-exact (gm_i2.h). All 27 methods are on. The goal methods were verified by the genuine
+ * 1-1 clear; the control and toride methods by directed live-player tests (strict comparison for
+ * read-only methods, isolated native/PowerPC A/B for world-changing methods). */
 #include "gm_i2.h"
 RT_STATE_FILE                                   /* (game code: its variables are part of a save state) */
 
@@ -33,7 +30,7 @@ RT_STATE_FILE                                   /* (game code: its variables are
 #define STACK_GUARD         0x8185FED4u
 #define PY_NUM_             0x80429CA0u  /* daPyMng_c::mNum */
 #define SND_SCENE_MGR_I     0x8042A4A8u  /* SndSceneMgr::sInstance (r13 - 20952) */
-#define PLAYER_KEY_FLAGS    0x80429F38u  /* (r13 - 22920: a byte of key flags the not-goal stop clears) */
+#define PLAYER_KEY_FLAGS    0x80429CF8u  /* (r13 - 22920: a byte of key flags the not-goal stop clears) */
 #define FLAG_DEMO_LAND_STOP 95
 #define VT_EXECUTE_NOT_GOAL 300          /* (virtual: a player that missed the pole stops) */
 #define VT_YOSHI_PLR_NO     108
@@ -156,6 +153,7 @@ static gptr dm_ctrl(GM_CTX, uint32_t p, uint32_t ra, int signed_cmp) {
 #define TESTFLAG(ra, pl, f) (R(3) = (pl), R(4) = (f), BL((ra), testFlag__10daPlBase_cFi_80056CF0), CMPU(R(3), 0) != 0)
 #define SETFLAG(ra, f)      (R(4) = (f), BL((ra), setFlag__10daPlBase_cFi_80056C70))
 #define FLAG_GOAL_DEMO      101          /* daPlBase_c flags of the goal demo */
+#define FLAG_ON_POLE        102
 #define FLAG_POLE_DOWN      103
 #define FLAG_JUMP_READY     104
 #define FLAG_GOAL_JUMP      105
@@ -206,6 +204,195 @@ static void dm_calcNotGoalPlayer(GM_CTX, gptr self) {
         if (CMPS(p, 8) >= 0) break;
         GM_LOOP();
     }
+}
+
+/* executeGoalDemo_Pole: collect the players on the pole, insertion-sort them by height, then
+   fill the goal list and set each player's landing height. The module's eight-entry lists use
+   their second four-word block for players 5-8. */
+static void dm_executeGoalDemo_Pole(GM_CTX, gptr self) {
+    I2_FN(0x81803EF4u);
+    gptr sp = gm_frame_sp;
+    NV_R(26, self);
+
+    /* First pass: player number by the pole slot stored in the actor. */
+    R(0) = 8; ctx->ctr = R(0); R(5) = (uint32_t)-1; R(9) = sp;
+    for (int i = 0;; ) {
+        gm_set_u32(R(9) + 48, R(5)); R(9) += 4;
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    }
+    NV_R(24, sp + 48); NV_R(30, 0); NV_R(25, 1);
+    for (uint32_t p = 0;; ) {
+        R(3) = 0x81860000u; R(3) = gm_u32(R(3) - 6004);                 /* daPyMng_c::mActPlayerInfo */
+        R(0) = (p & 63) > 31 ? 0 : R(25) << (p & 63);
+        R(0) = R(3) & R(0); CR0(ctx, R(0));
+        if (R(0)) {
+            R(3) = p; BL(0x81803F60u, getCtrlPlayer__9daPyMng_cFi_8005FB90);
+            int none = CMPS(R(3), 0) == 0; NV_R(23, R(3));
+            if (!none) {
+                R(0) = gm_u32(self + 16) & 4; CR0(ctx, R(0));
+                if (!R(0)) {
+                    R(3) = R(23);
+                    if (TESTFLAG(0x81803F80u, R(3), FLAG_GOAL_DEMO) &&
+                        !TESTFLAG(0x81803F94u, R(23), FLAG_ON_POLE)) return;
+                } else if (!TESTFLAG(0x81803FA8u, R(23), FLAG_ON_POLE)) return;
+                if (TESTFLAG(0x81803FBCu, R(23), FLAG_ON_POLE)) {
+                    R(0) = gm_u32(R(23) + 1072) << 2;
+                    gm_set_u32(R(24) + R(0), p);
+                }
+            }
+        }
+        NV_R(30, ++p);
+        if (CMPS(p, 8) >= 0) break;
+        GM_LOOP();
+    }
+
+    /* Insertion sort: ascending actor Y, with -1 empty slots kept at the end. */
+    R(0) = 8; ctx->ctr = R(0); R(5) = (uint32_t)-1; R(9) = sp;
+    for (int i = 0;; ) {
+        gm_set_u32(R(9) + 16, R(5)); R(9) += 4;
+        if (--ctx->ctr == 0) break;
+        GM_LOOP();
+    }
+    NV_R(30, sp + 48); NV_R(25, sp + 16); NV_R(28, 0); NV_R(31, 0x80000000u);
+    for (uint32_t n = 0;; ) {
+        NV_R(29, gm_u32(R(30)));
+        int empty = CMPS(R(29), -1) == 0;
+        if (!empty) {
+            R(3) = R(29); BL(0x8180401Cu, getCtrlPlayer__9daPyMng_cFi_8005FB90);
+            int none = CMPS(R(3), 0) == 0; NV_R(24, R(3));
+            if (!none) {
+                R(0) = gm_u32(sp + 16);
+                if (CMPS(R(0), -1) == 0) gm_set_u32(sp + 16, R(29));
+                else {
+                    NV_R(23, sp + 16); NV_R(27, 0);
+                    for (uint32_t i = 0;; ) {
+                        R(3) = gm_u32(R(23));
+                        if (CMPS(R(3), -1) == 0) {
+                            R(0) = i << 2; gm_set_u32(R(25) + R(0), R(29));
+                            break;
+                        }
+                        BL(0x81804060u, getCtrlPlayer__9daPyMng_cFi_8005FB90);
+                        ctx->f[1].d = ctx->ps1[1] = ldfs(base, R(24) + 176);
+                        ctx->f[0].d = ctx->ps1[0] = ldfs(base, R(3) + 176);
+                        cr_fcmp(ctx, 0, ctx->f[1].d, ctx->f[0].d);
+                        CR_SETBIT(ctx, 2, CR_BIT(ctx, 0) | CR_BIT(ctx, 2));   /* current Y <= sorted Y */
+                        if (CR_BIT(ctx, 2)) {
+                            cr_cmp_s(ctx, 1, (int32_t)i, 7); R(3) = 7;
+                            if (CR_BIT(ctx, 4)) {
+                                R(8) = 7 - i; ctx->xer_ca = 7 >= i; R(4) = i + 8;
+                                int many = CMPS(R(8), 8) > 0;
+                                R(5) = 0; R(6) = 0; R(7) = 0;
+                                if (many) {                                    /* (the game's unrolled large shift) */
+                                    for (uint32_t j = 7; j > i + 7; j -= 8) {
+                                        gptr dst = sp + 16 + 4 * j;
+                                        for (int k = 0; k < 8; k++) {
+                                            R(0) = gm_u32(dst - 4 * (k + 1));
+                                            R(3)--;
+                                            gm_set_u32(dst - 4 * k, R(0));
+                                        }
+                                        GM_LOOP();
+                                    }
+                                }
+                                R(4) = R(3) << 2; R(5) = sp + 16 + R(4);
+                                R(0) = R(3) - i; ctx->ctr = R(0);
+                                if (CMPS(R(3), i) > 0) {
+                                    for (;;) {
+                                        R(0) = gm_u32(R(5) - 4); R(3)--;
+                                        gm_set_u32(R(5), R(0)); R(5) -= 4;
+                                        if (--ctx->ctr == 0) break;
+                                        GM_LOOP();
+                                    }
+                                }
+                            }
+                            R(0) = i << 2; gm_set_u32(R(25) + R(0), R(29));
+                            break;
+                        }
+                        NV_R(27, ++i); R(23) += 4;
+                        if (CMPS(i, 8) >= 0) break;
+                        GM_LOOP();
+                    }
+                }
+            }
+        }
+        NV_R(28, ++n); R(30) += 4;
+        if (CMPS(n, 8) >= 0) break;
+        GM_LOOP();
+    }
+
+    /* The first (lowest) player finds the pole's ground height. */
+    R(3) = gm_u32(sp + 16); R(0) = 0; gm_set_u32(self + 44, 0);
+    ctx->f[0].d = ctx->ps1[0] = ldfs(base, R(13) - 15464);
+    int no_players = CMPS(R(3), -1) == 0;
+    stfs(base, sp + 8, ctx->f[0].d);
+    if (!no_players) {
+        BL(0x818041E0u, getCtrlPlayer__9daPyMng_cFi_8005FB90);
+        int none = CMPS(R(3), 0) == 0; NV_R(23, R(3));
+        if (!none) {
+            BL(0x818041F0u, fn_800510F0);
+            R(5) = gm_u8(R(23) + 911); R(3) = R(23) + 172; R(4) = sp + 8;
+            R(6) = 1; R(7) = (uint32_t)-1;
+            BL(0x81804208u, checkGround__5dBc_cFPC7mVec3_cPfUcUcSc_800757B0);
+            R(0) = gm_u8(R(23) + 908);
+            if (CMPU(R(0), 2) == 0) {
+                ctx->f[1].d = ctx->ps1[1] = ldfs(base, sp + 8);
+                ctx->f[0].d = ctx->ps1[0] = ldfs(base, R(13) - 15460);
+                ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[1].d - ctx->f[0].d);
+                stfs(base, sp + 8, ctx->f[0].d);
+            } else {
+                R(0) = gm_u32(R(23) + 4240);
+                if (CMPS(R(0), 3) != 0 && CMPS(R(0), 0) != 0) {
+                    ctx->f[1].d = ctx->ps1[1] = ldfs(base, sp + 8);
+                    ctx->f[0].d = ctx->ps1[0] = ldfs(base, R(13) - 15456);
+                    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[1].d - ctx->f[0].d);
+                    stfs(base, sp + 8, ctx->f[0].d);
+                }
+            }
+        }
+        NV_FL(30, ldfs(base, R(13) - 15452));
+        NV_R(25, self);
+        NV_FL(31, ldfs(base, R(13) - 15448));
+        NV_R(24, sp + 16); NV_R(23, 0);
+        for (uint32_t p = 0;; ) {
+            R(3) = p; BL(0x81804268u, mfn_81803E24);
+            R(3) <<= 2; NV_R(25, self + R(3)); R(3) = gm_u32(R(24));
+            gm_set_u32(R(25) + DM_GOAL_LIST, R(3));
+            if (CMPS(R(3), -1) != 0) {
+                R(4) = gm_u32(self + DM_GOAL_NUM); R(0) = R(4) + 1;
+                gm_set_u32(self + DM_GOAL_NUM, R(0));
+                BL(0x81804290u, getCtrlPlayer__9daPyMng_cFi_8005FB90);
+                if (CMPS(R(3), 0) != 0) {
+                    ctx->f[0].d = ctx->ps1[0] = ldfs(base, R(3) + 176);
+                    ctx->f[1].d = ctx->ps1[1] = ldfs(base, sp + 8);
+                    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[30].d + ctx->f[0].d);
+                    cr_fcmp(ctx, 0, ctx->f[1].d, ctx->f[0].d);
+                    if (CR_BIT(ctx, 1)) {
+                        ctx->f[1].u = ctx->f[0].u;
+                        stfs(base, sp + 8, ctx->f[0].d);
+                    }
+                    ctx->f[0].d = frsp(ctx->f[1].d);
+                    stfs(base, R(3) + 1080, ctx->f[0].d);
+                    ctx->f[1].d = ctx->ps1[1] = ldfs(base, R(3) + 4144);
+                    ctx->f[0].d = ctx->ps1[0] = ldfs(base, sp + 8);
+                    ctx->f[1].d = ctx->ps1[1] = frsp(ctx->f[31].d * ctx->f[1].d);
+                    ctx->f[0].d = ctx->ps1[0] = frsp(ctx->f[0].d + ctx->f[1].d);
+                    stfs(base, sp + 8, ctx->f[0].d);
+                }
+            }
+            NV_R(23, ++p); R(25) += 4;
+            int done = CMPS(p, 8) >= 0; R(24) += 4;
+            if (done) break;
+            GM_LOOP();
+        }
+    }
+    BL(0x818042E8u, fn_80102220);
+    R(3) = gm_u32(R(13) - 23020);
+    BL(0x818042F0u, stopBgmGoalDemo__13daPyDemoMng_cFv_8005B810);
+    R(3) = 1; R(4) = 10; R(0) = 0;
+    gm_set_u32(self + 8, 1); R(3) = self;
+    gm_set_u32(self + 12, 10); gm_set_u32(self + 24, 0);
+    BL(0x81804310u, fn_8005B690);
+    R(3) = self; BL(0x81804318u, fn_8005C830);
 }
 
 /* the goal list, one by one: each player at the pole gets a demo flag */
@@ -536,8 +723,8 @@ static void dm_startControlDemoLandPlayer(GM_CTX) {
     NONZERO(3, 3, R(26));
 }
 
-/* executeStartToride: the stage-start wait - follow the first player in the course-in list who
-   hasn't landed; when all have, everyone stands (anim type 1) and the wait ends */
+/* executeStartToride: the stage-start wait - follow the first player in the goal list who has
+   landed; when all have, everyone stands (anim type 1) and the wait ends */
 void hle_mod_fn_8005CDD0(ppc_context *ctx, uint8_t *base);
 void hle_mod_fn_8005CE50(ppc_context *ctx, uint8_t *base);
 static void dm_executeStartToride(GM_CTX, gptr self) {
@@ -659,32 +846,16 @@ static void dm_genCourseInList(GM_CTX, gptr self) {
 }
 
 /* ================================================================== hle entry points */
-/* Temporary reachability build: log every candidate, then run its PowerPC body under
-   RT_GM_VERIFY=orig so the measurement does not invoke world-changing methods twice. */
-#define GM_PY_DEMO_ALL
-#define GM_PY_DEMO_COUNT
-#ifdef GM_PY_DEMO_COUNT
-#undef GM_HLE_VERIFIED_
-#define GM_HLE_VERIFIED_(name, flags, ...) \
-    static void name##_native(ppc_context *ctx, uint8_t *base); \
-    GM_HLE(name) { static int n_; if (!n_++) rt_log("gm", "first call: " #name); \
-                   if (gm_verifying()) { const gptr r_[] = { __VA_ARGS__ }; \
-                       gm_verify(#name, ctx, base, name##_native, orig_##name, r_, (int)(sizeof r_ / sizeof *r_) / 2, (flags)); } \
-                   else name##_native(ctx, base); } \
-    static void name##_native(ppc_context *ctx, uint8_t *base)
-#endif
 #define SELF GM_ARG(0)
 #define A(i) GM_ARG(i)
 #define DM_SIZE 0xD0                     /* (as far as the module's fields go) */
 #define DM_MEM SELF, DM_SIZE, PY_COURSE_IN_LIST, 32, PLAYER_KEY_FLAGS, 1
 static void dm_selftest(GM_CTX, gptr self);
 GM_HLE_VOID(mod_fn_8005B4A0, DM_MEM)                                  { dm_init(GM_PASS, SELF); }
-#ifdef GM_PY_DEMO_ALL   /* (written but off: never reached by the test inputs - no goal pole, no toride start, no control demo; docs/DECOMP.md) */
 GM_HLE_VOID(mod_fn_8005B6A0, DM_MEM)                                  { dm_calcNotGoalPlayer(GM_PASS, SELF); }
-#endif
+GM_HLE_VOID(mod_fn_8005B8A0, DM_MEM)                                  { dm_executeGoalDemo_Pole(GM_PASS, SELF); }
 GM_HLE_INT (mod_setGoalDemoList__13daPyDemoMng_cFi, DM_MEM)           { dm_setGoalDemoList(GM_PASS, SELF, A(1)); }
 GM_HLE_INT (mod_getPoleBelowPlayer__13daPyDemoMng_cFi, DM_MEM)        { dm_getPoleBelowPlayer(GM_PASS, SELF, A(1)); }
-#ifdef GM_PY_DEMO_ALL   /* (written but off: never reached by the test inputs - no goal pole, no toride start, no control demo; docs/DECOMP.md) */
 GM_HLE_VOID(mod_fn_8005BCF0, DM_MEM)                                  { dm_executeGoalDemo_PoleDown(GM_PASS, SELF); }
 GM_HLE_VOID(mod_fn_8005BD60, DM_MEM)                                  { dm_executeGoalDemo_JumpCheck(GM_PASS, SELF); }
 GM_HLE_VOID(mod_fn_8005BE30, DM_MEM)                                  { dm_executeGoalDemo_Jump(GM_PASS, SELF); }
@@ -703,7 +874,6 @@ GM_HLE_INT (mod_fn_8005CC00, DM_MEM)                                  { dm_start
 GM_HLE_INT (mod_fn_8005CDD0, DM_MEM)                                  { dm_isLandAll(GM_PASS); }
 GM_HLE_VOID(mod_fn_8005CE50, DM_MEM)                                  { dm_setAnimePlayStandardTypeAll(GM_PASS, A(1)); }
 GM_HLE_VOID(mod_fn_8005CED0, DM_MEM)                                  { dm_executeStartToride(GM_PASS, SELF); }
-#endif
 GM_HLE_VOID(mod_setCourseOutList__13daPyDemoMng_cFSc, DM_MEM)         { dm_selftest(GM_PASS, SELF); dm_setCourseOutList(GM_PASS, SELF, A(1)); }
 GM_HLE_VOID(mod_turnNextDemoNo__13daPyDemoMng_cFv, DM_MEM)            { dm_selftest(GM_PASS, SELF); dm_turnNextDemoNo(GM_PASS, SELF); }
 GM_HLE_VOID(mod_clearDemoNo__13daPyDemoMng_cFSc, DM_MEM)              { dm_selftest(GM_PASS, SELF); dm_clearDemoNo(GM_PASS, SELF, A(1)); }

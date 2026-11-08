@@ -143,6 +143,7 @@ static void fix_letterbox_ortho(uint32_t fr) {
    follows the players horizontally instead, kept within the width the 16:9 picture would have
    shown (and within the zone). Player positions come from daPyMng_c::getPlayer results. */
 static uint32_t pl_ptr[8]; static uint64_t pl_seen[8];
+static float get_f(uint32_t a);
 void hle_getPlayer__9daPyMng_cFi(ppc_context *ctx, uint8_t *base) {
     static uint64_t test_pos_done;
     uint32_t i = ctx->r[3];
@@ -154,8 +155,25 @@ void hle_getPlayer__9daPyMng_cFi(ppc_context *ctx, uint8_t *base) {
     unsigned long long frame = 0; float x = 0, y = 0;
     if (!test_pos_done && i == 0 && ctx->r[3] && tp && sscanf(tp, "%llu,%f,%f", &frame, &x, &y) == 3 && g_frames_presented >= frame) {
         put_f(ctx->r[3] + 0xAC, x); put_f(ctx->r[3] + 0xB0, y);
+        put_f(ctx->r[3] + 0xB8, x); put_f(ctx->r[3] + 0xBC, y);       /* last position too: collision must not snap back */
         test_pos_done = 1;
         rt_log("test", "player 1 position set to %.1f, %.1f at frame %llu", x, y, (unsigned long long)g_frames_presented);
+    }
+    static uint64_t test_trace_last;
+    if (test_pos_done && i == 0 && ctx->r[3] && tp && g_frames_presented % 60 == 0 &&
+        test_trace_last != g_frames_presented) {
+        uint32_t pl = ctx->r[3], sid = R32(pl + 0x1464 + 0x14), np = sid ? R32(sid + 4) : 0;
+        char state[80] = "?";
+        if (np >= 0x80000000u && np < 0x81900000u) {
+            int n;
+            for (n = 0; n < 79 && R8(np + n); n++) state[n] = (char)R8(np + n);
+            state[n] = 0;
+        }
+        test_trace_last = g_frames_presented;
+        rt_log("test", "player 1 %08X at %.1f, %.1f; last %.1f, %.1f; delta %.1f, %.1f; speed %.2f, %.2f; keys %04X; demo %u; state %s at frame %llu",
+               pl, get_f(pl + 0xAC), get_f(pl + 0xB0), get_f(pl + 0xB8), get_f(pl + 0xBC),
+               get_f(pl + 0xC4), get_f(pl + 0xC8), get_f(pl + 0xE8), get_f(pl + 0xEC),
+               R16(pl + 0xEA8), R8(pl + 0x1460), state, (unsigned long long)g_frames_presented);
     }
 }
 static float get_f(uint32_t a) { uint32_t u = R32(a); float f; memcpy(&f, &u, 4); return f; }

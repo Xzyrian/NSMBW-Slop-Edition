@@ -491,6 +491,8 @@ static float ground_below(ppc_context *ctx, uint8_t *base, uint32_t pl, float x,
 void hle_fn_8013FCE0(ppc_context *ctx, uint8_t *base) {
     uint32_t pl = ctx->r[3]; retro_t *r = retro_of(pl);
     float y0 = r ? RF(pl + PL_POS + 4) : 0, castle = (float)ctx->f[1].d;
+    if (getenv("RT_TEST_POS")) rt_log("test", "setDemoGoal: player %.1f, %.1f, castle %.1f at frame %llu",
+                                      RF(pl + PL_POS), RF(pl + PL_POS + 4), castle, (unsigned long long)g_frames_presented);
     orig_fn_8013FCE0(ctx, base);
     if (!r || !R8(pl + PL_IS_DEMO)) return;
     memset(&r->goal, 0, sizeof r->goal);
