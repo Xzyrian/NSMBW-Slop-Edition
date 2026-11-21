@@ -31,6 +31,7 @@ static void wmap_child(GM_CTX, uint32_t profile, gptr self, uint32_t index, uint
 
 static uint32_t wmap_createLayoutPhase(GM_CTX, gptr self) {
     I2_FN(0x818157F4u);
+    uint32_t cr_in = ctx->cr; gm_set_u32(gm_frame_sp + 24, cr_in);   /* (mfcr r12 / stw r12,24(r1): cr2-cr3 are put back at the end - part 115) */
     NV_R(30, self); R(4) = gm_u32(WMAP_MODE);
     cr_cmp_s(ctx, 2, (int32_t)R(4), 6); cr_cmp_s(ctx, 3, (int32_t)R(4), 8);
     int atLeast6 = (int32_t)R(4) >= 6, atLeast8 = (int32_t)R(4) >= 8;
@@ -100,11 +101,13 @@ static uint32_t wmap_createLayoutPhase(GM_CTX, gptr self) {
     wmap_parent(GM_PASS, R(3), self, 0x81815BC4u); R(4) = R(3); gm_set_u32(R(29) + 1332, R(4));
     R(3) = atLeast6 ? 748 : 746; if (atLeast8) R(3) = 750;
     wmap_parent(GM_PASS, R(3), self, 0x81815BF0u); R(4) = R(3); gm_set_u32(R(29) + 1336, R(4));
+    R(12) = cr_in; ctx->cr = (ctx->cr & ~0x00FF0000u) | (cr_in & 0x00FF0000u);
     R(3) = 1; return R(3);
 }
 
 static uint32_t wmap_createActorsPhase(GM_CTX, gptr self) {
     I2_FN(0x81815C64u);
+    uint32_t cr_in = ctx->cr; gm_set_u32(gm_frame_sp + 20, cr_in);   /* (mfcr r12 / stw r12,20(r1): cr2-cr4 are put back at the end - part 115) */
     NV_R(30, self); R(3) = gm_u32(WMAP_MODE); cr_cmp_s(ctx, 2, (int32_t)R(3), 8);
     int atLeast8 = (int32_t)R(3) >= 8;
     R(3) = atLeast8 ? 625 : 623; NV_R(29, 0); wmap_actor(GM_PASS, R(3), self, 0x81815CD0u);
@@ -146,6 +149,7 @@ static uint32_t wmap_createActorsPhase(GM_CTX, gptr self) {
             if (CR_BIT(ctx, 1)) GM_LOOP(); else break;
         } while (1);
     }
+    R(12) = cr_in; ctx->cr = (ctx->cr & ~0x00FFF000u) | (cr_in & 0x00FFF000u);
     R(3) = 1; return R(3);
 }
 

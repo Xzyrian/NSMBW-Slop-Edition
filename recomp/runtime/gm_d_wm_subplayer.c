@@ -65,12 +65,13 @@ static void wsp_loadModel(GM_CTX, gptr self) {
     BL(0x818289D8u, create__11dPyMdlMng_cFUcUcQ211dPyMdlMng_c11SceneType_e_800D6DF0);
     gm_set_u32(self + 656, 21); R(3) = 84; BL(0x818289E8u, __nwa__FUl_802B9250);
     gm_set_u32(self + 652, R(3)); NV_R(29, 0); NV_R(30, 0);
-    while (R(29) < gm_u32(self + 656)) {
+    for (;;) {                        /* (the PowerPC loop enters through its test: a poll before every body, the first too) */
+        R(0) = gm_u32(self + 656); CMPS(R(29), R(0));
+        if (!CR_BIT(ctx, 0)) break;
+        GM_LOOP();
         R(3) = 12; BL(0x81828A00u, __nw__FUl_802B9210);
         R(4) = gm_u32(self + 652); NV_R(29, R(29) + 1);
         gm_set_u32(R(4) + R(30), R(3)); NV_R(30, R(30) + 4);
-        R(0) = gm_u32(self + 656); CMPS(R(29), R(0));
-        if (CR_BIT(ctx, 0)) GM_LOOP();
     }
     R(4) = 0x80980000u + 23352; R(5) = 0x80980000u + 23368;
     R(3) = self; R(6) = R(4); R(7) = 1; BL(0x81828A3Cu, fn_800F6710);
@@ -139,7 +140,9 @@ store_speed:
     LF(0, self + 268);
     ctx->f[1].u = ld64(base, 0x81850000u - 30664);
     ctx->f[2].u = ld64(base, 0x81850000u - 30584);
-    ctx->f[0].d = frsp(ctx->f[0].d * ctx->f[1].d + ctx->f[31].d * ctx->f[2].d);
+    ctx->f[0].d = ctx->f[0].d * ctx->f[1].d;                          /* (two statements, as the PowerPC fmul / fmadd) */
+    ctx->f[0].d = ctx->f[31].d * ctx->f[2].d + ctx->f[0].d;
+    ctx->f[0].d = frsp(ctx->f[0].d);
     stfs(base, self + 268, ctx->f[0].d);
 
 finish:

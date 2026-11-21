@@ -206,10 +206,15 @@ uint32_t dActor_drawCullCheck(GM_CTX, gptr self) {
 /* searchNearPlayer: the nearest player to the centre (through the loop-dependent function) */
 uint32_t dActor_searchNearPlayer(GM_CTX, gptr self, gptr delta) {
     FN(0x80064740);
+    /* (the PowerPC code keeps delta in r31 over both calls, and the search function's prologue
+       saves it: left out, a different word stays in that dead stack slot, which nw4r's
+       CalcWorld later copies out of an uninitialised local - P2's frame 29,443 of the strict A/B) */
+    uint32_t r31 = ctx->r[31]; ctx->r[31] = delta;
     dBaseActor_getCenterPos(GM_PASS, f + 0x10, self);
     double y = LF(f + 0x14), x = LF(f + 0x10);
     SF(f + 8, x); SF(f + 0xC, y);
     uint32_t r = GM_CALL(gm_u32(SEARCH_FUNC), 2, delta, f + 8);
+    ctx->r[31] = r31;
     return r;
 }
 

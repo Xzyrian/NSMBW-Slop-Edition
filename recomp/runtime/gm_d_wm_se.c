@@ -36,6 +36,7 @@ static void wmse_updateActor(GM_CTX, gptr actor, int site) {
     R(3) = gm_u32(actor + 92); R(4) = actor + 100; R(5) = actor + 164; R(6) = 0;
     BL(raCalc[site], fn_8019ee20__9Snd2DCalcFRfRQ34nw4r4math4VEC2Ul_8019ECE0);
     while (index < gm_u32(actor + 84)) {
+        GM_LOOP();                     /* (the PowerPC loop enters through its test: a poll before every body, the first too) */
         R(4) = gm_u32(scan + 116);
         if (CMPS(R(4), 0) != 0) {
             R(3) = gm_u32(0x8042F680u - 20984);
@@ -79,7 +80,6 @@ static void wmse_updateActor(GM_CTX, gptr actor, int site) {
             }
         }
         scan += 8; index++;
-        if (index < gm_u32(actor + 84)) GM_LOOP();
     }
 }
 
@@ -102,7 +102,7 @@ static void wmse_initialize(GM_CTX, gptr self) {
         BL(0x81816448u, mfn_818161E8);
         R(28) += 4; gm_set_u32(R(28), R(29)); CMPU(R(22), 3);
         gm_set_u32(R(29) + 176, R(24)); gm_set_u8(R(29) + 180, R(26)); gm_set_u32(R(29), R(23));
-        if (CR_BIT(ctx, 0)) gm_set_u32(R(28) - 1580, R(29));
+        if (!CR_BIT(ctx, 1)) gm_set_u32(R(28) - 1580, R(29));          /* (players 0-3: ble, not blt) */
         R(27)--; gm_set_u32(R(29) + 172, R(22)); CMPU(R(27), 0); R(22)++;
         if (CR_BIT(ctx, 1)) GM_LOOP(); else break;
     } while (1);
@@ -170,19 +170,7 @@ static void wmse_playSlot(GM_CTX, gptr self, uint32_t index) {
     NV_R(29, R(3)); if (R(3) == 0) return;
     R(4) = gm_u32(R(30) + 36); R(3) = self; BL(0x81816DCCu, fn_80105A20);
     switch (R(3)) {
-    case 0:
-        R(4) = gm_u32(R(30) + 76); R(3) = self; BL(0x81816E4Cu, fn_80105B90);
-        R(3) = gm_u32(R(30) + 72); BL(0x81816E54u, mfn_81806A30);
-        R(0) = i2_rotl(R(3), 2) & 0xFFFFFFFCu; R(4) = gm_u32(self + R(0) + 1596);
-        gm_set_u32(R(4) + 176, R(3)); R(3) = gm_u32(R(30) + 64);
-        if (R(3)) {
-            R(5) = (uint32_t)(int16_t)gm_u16(R(3)); R(3) = R(4); R(4) = R(29); R(6) = 0;
-            wmse_virtual(GM_PASS, R(3), 52, 0x81816E90u);
-        } else {
-            R(3) = R(4); R(4) = R(29); R(5) = 0; wmse_virtual(GM_PASS, R(3), 40, 0x81816EB0u);
-        }
-        break;
-    case 1:
+    case 0:                                                               /* (the PowerPC code's case 0; 1 does nothing) */
         if (gm_u32(R(30) + 36) == 12) {
             R(4) = gm_u32(R(30) + 76); R(3) = self; BL(0x81816E10u, fn_80105B90);
             R(5) = gm_u32(self + 32); gm_set_u32(R(5) + 176, R(3)); R(3) = R(5);
@@ -252,14 +240,14 @@ static void wmse_playPlySound(GM_CTX, gptr self, uint32_t id, uint32_t character
     R(3) = self; R(4) = R(27); BL(0x818170ACu, fn_80105B90); gm_set_u32(R(30) + 176, R(3));
     R(3) = self; R(4) = R(26); BL(0x818170BCu, fn_80105A20);
     if (R(3) == 1) {
-        if (action < 5) { R(3) = self; R(4) = 24; BL(0x81817100u, fn_801056C0); NV_R(28, R(3)); }
+        if (action == 5) { R(3) = self; R(4) = 24;                      /* (beq 5 only) */ BL(0x81817100u, fn_801056C0); NV_R(28, R(3)); }
         R(3) = R(30); R(4) = R(28); ctx->f[1].u = ctx->f[31].u; R(5) = 0;
         BL(0x81817118u, startFootSound__11SndObjctPlyFUlfUl_8019A6D0); return;
     }
     if (R(3) != 0) return;
     if (id == 1) {
         if (action == 0) { R(4) = 2; R(3) = self; BL(0x81817140u, fn_801056C0); NV_R(28, R(3)); }
-        else if (action < 3) { R(4) = 3; R(3) = self; BL(0x81817140u, fn_801056C0); NV_R(28, R(3)); }
+        else if (action == 3) { R(4) = 3;                               /* (3 only) */ R(3) = self; BL(0x81817140u, fn_801056C0); NV_R(28, R(3)); }
     } else if (id == 8 && action == 5) {
         R(4) = 13; R(3) = self; BL(0x81817140u, fn_801056C0); NV_R(28, R(3));
     }
@@ -303,6 +291,7 @@ static void wmse_execute(GM_CTX, gptr self) {
     }
     R(3) = gm_u32(0x8042F680u - 21728); NV_R(31, gm_u32(R(3) + 388));
     while (R(31)) {
+        GM_LOOP();                     /* (as above: the list loop polls before every body) */
         if (gm_u8(R(31) + 292)) {
             R(5) = gm_u32(gm_u32(R(31) + 460) + 4); R(3) = gm_u8(R(5) + 337); BL(0x81816AB4u, mfn_81806A30);
             R(0) = i2_rotl(R(3), 2) & 0xFFFFFFFCu; R(5) = self + R(0); NV_R(29, gm_u32(R(5) + 1596));
@@ -316,7 +305,7 @@ static void wmse_execute(GM_CTX, gptr self) {
                 outer++; if (outer < 4) GM_LOOP();
             } while (outer < 4);
         }
-        NV_R(31, gm_u32(R(31) + 388)); if (R(31)) GM_LOOP();
+        NV_R(31, gm_u32(R(31) + 388));
     }
     R(3) = gm_u8(0x8042F680u - 21555); BL(0x81816C5Cu, fn_800FD180); R(3) &= 0xFFFF; R(4) = 0;
     BL(0x81816C68u, hle_search__7fBase_cF6ActorsP7fBase_c);
@@ -326,7 +315,7 @@ static void wmse_execute(GM_CTX, gptr self) {
     }
     NV_R(28, self); NV_R(26, 0);
     do {
-        if (gm_u8(R(28) + 80)) wmse_playSlot(GM_PASS, self, R(26));
+        if (gm_u8(R(28) + 80)) { R(3) = self; R(4) = R(26); ctx->lr = 0x81816CB8u; wmse_playSlot(GM_PASS, self, R(26)); }   /* (as the bl: r3 / r4 / LR) */
         R(26)++; R(28) += 52; if (R(26) < 30) GM_LOOP();
     } while (R(26) < 30);
     R(11) = gm_frame_sp + 208; BL(0x81816CD0u, __restore_gpr_entry_802DCDBC);

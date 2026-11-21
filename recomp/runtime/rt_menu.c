@@ -1,17 +1,19 @@
 /* rt_menu.c - menus added to the game's title screen.
  *
  * Title screen: "Press 2 to Start" works as usual until 2 is pressed; then "Press 2 to Start" and
- * the copyright line fade out and a list fades in: Singleplayer / Multiplayer / Options, drawn
- * with the game's own font (taken from the "Press 2" text box). While the list is up the title
- * doesn't time out into its demo movie.
+ * the copyright line fade out and a list fades in: Singleplayer / Multiplayer / Game / Options,
+ * drawn with the game's own font (taken from the "Press 2" text box). While the list is up the
+ * title doesn't time out into its demo movie.
  *   Singleplayer - Game Select -> File Select -> character select (1 player) -> game
  *   Multiplayer  - the same with the 8-player character select
  *                  (those screens: rt_gamesetup.c)
+ *   Game         - other games run in this runtime: SMB3 (../SMB3Disassembly/port, stub for now)
  *   Options      - display, window, resolution, aspect ratio, HD textures, real Wii Remote;
  *                  saved to settings.ini; "Restart" appears when a change needs one
  * Input: the remote held sideways (d-pad moves, 2/A chooses, 1/B goes back). While our menus are
  * up the game sees no buttons. Drawn as an overlay (menu_draw) on a 640x480 virtual screen. */
 #include "rt.h"
+#include "smb3.h"                               /* ../SMB3Disassembly/port */
 #include <math.h>
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 extern uint64_t g_frames_presented;
@@ -141,8 +143,8 @@ static void gtext(float x, float y, float size, const char *s, uint32_t rgba) {
 static void gtext_centered(float cx, float y, float size, const char *s, uint32_t rgba) { gtext(cx - gtext_width(s, size) / 2, y, size, s, rgba); }
 
 /* ================================================================== title screen state */
-enum { T_IDLE, T_PRESS_OUT, T_LIST, T_LIST_OUT, T_PRESS_IN, T_OPTIONS, T_START, T_CONTROLS, T_ONLINE, T_PROFILES };
-enum { NEXT_NONE, NEXT_SINGLE, NEXT_MULTI, NEXT_OPTIONS, NEXT_TITLE, NEXT_ONLINE };
+enum { T_IDLE, T_PRESS_OUT, T_LIST, T_LIST_OUT, T_PRESS_IN, T_OPTIONS, T_START, T_CONTROLS, T_ONLINE, T_PROFILES, T_SMB3 };
+enum { NEXT_NONE, NEXT_SINGLE, NEXT_MULTI, NEXT_OPTIONS, NEXT_TITLE, NEXT_ONLINE, NEXT_SMB3 };
 #define FADE 0.25
 static int tstate = T_IDLE, next_action, sel, opt_sel;
 static double t_state;
@@ -526,12 +528,13 @@ static void options_save(void) {
 }
 
 /* ================================================================== input */
-/* the list after "press 2": Singleplayer / Multiplayer / Options; Multiplayer opens a second
-   layer: Local / Online */
-static int list_layer;                             /* 0 the main list, 1 Multiplayer: Local / Online */
-static const char *list0[] = {"Singleplayer", "Multiplayer", "Options"}, *list1[] = {"Local", "Online"};
-#define LIST_N (list_layer ? 2 : 3)
-static const char *list_item(int i) { return list_layer ? list1[i] : list0[i]; }
+/* the list after "press 2": Singleplayer / Multiplayer / Game / Options; Multiplayer opens a
+   second layer: Local / Online; Game one with the other games: SMB3 */
+static int list_layer;                             /* 0 the main list, 1 Multiplayer: Local / Online, 2 Game: SMB3 */
+enum { L_SINGLE, L_MULTI, L_GAME, L_OPTIONS };     /* (the main list's items) */
+static const char *list0[] = {"Singleplayer", "Multiplayer", "Game", "Options"}, *list1[] = {"Local", "Online"}, *list2[] = {"SMB3"};
+#define LIST_N (list_layer == 1 ? 2 : list_layer == 2 ? 1 : 4)
+static const char *list_item(int i) { return list_layer == 1 ? list1[i] : list_layer == 2 ? list2[i] : list0[i]; }
 static int online_play;                            /* the host went on from Multiplayer > Online: the start is at the character select */
 
 int gs_char_select_ready(void);
@@ -603,6 +606,7 @@ static uint32_t filter_buttons(uint32_t b) {
     b = gs_filter_buttons(b);                               /* game setup screens (rt_gamesetup.c) */
     if (!title_live()) {                                    /* left the title (demo, reset...): drop our menus */
         if (tstate == T_CONTROLS) controls_reset();
+        if (tstate == T_SMB3) smb3_leave();
         if (tstate != T_IDLE) set_state(T_IDLE);
         cam_mode = CAM_FOLLOW;
         return at_title() ? b & B_HOME : b;                 /* (title still loading: nothing for the game but HOME) */
@@ -615,6 +619,8 @@ static uint32_t filter_buttons(uint32_t b) {
             if (t && press_ready && tstate == T_IDLE) { t = 0; cam_freeze(); set_state(T_ONLINE); online_enter(); return 0; } }
         {   static int t = -1; if (t < 0) t = getenv("RT_NET_ONLINE_SETUP") != NULL;   /* testing: the host goes on to the setup screens once someone joined */
             if (t && press_ready && net_role() == NET_HOST && net_online_players() > 0) { t = 0; cam_freeze(); set_state(T_ONLINE); online_enter(); return 0; } }
+        {   static int t = -1; if (t < 0) t = getenv("RT_MENU_SMB3") != NULL;   /* testing: straight into Game > SMB3 */
+            if (t && press_ready && tstate == T_IDLE) { t = 0; cam_freeze(); list_layer = 2; sel = 0; set_state(T_SMB3); smb3_enter(); return 0; } }
         /* 2 (or A) opens our list. The game's title would take any button as "start" and go
            straight to the setup screens, so it gets none (but HOME). */
         if ((pressed & (B_2 | B_A)) && press_ready) { set_state(T_PRESS_OUT); next_action = NEXT_NONE; sel = 0; list_layer = 0; cam_freeze(); return 0; }
@@ -631,6 +637,7 @@ static uint32_t filter_buttons(uint32_t b) {
             else if (next_action == NEXT_MULTI) start_game(0);
             else if (next_action == NEXT_OPTIONS) { set_state(T_OPTIONS); options_enter(); }
             else if (next_action == NEXT_ONLINE) { set_state(T_ONLINE); online_enter(); }
+            else if (next_action == NEXT_SMB3) { set_state(T_SMB3); smb3_enter(); }
             else set_state(T_PRESS_IN);
         }
         return 0;
@@ -640,10 +647,13 @@ static uint32_t filter_buttons(uint32_t b) {
         if (pressed & NAV_DOWN) sel = (sel + 1) % LIST_N;
         if (sel >= LIST_N) sel = 0;
         if (pressed & (B_2 | B_A)) {
-            if (list_layer == 0 && sel == 1) { set_state(T_PROFILES); profiles_enter(); }   /* Multiplayer: Who's playing?, then Local / Online */
-            else { next_action = list_layer ? (sel == 0 ? NEXT_MULTI : NEXT_ONLINE) : sel == 0 ? NEXT_SINGLE : NEXT_OPTIONS; set_state(T_LIST_OUT); }
+            if (list_layer == 0 && sel == L_MULTI) { set_state(T_PROFILES); profiles_enter(); }   /* Multiplayer: Who's playing?, then Local / Online */
+            else if (list_layer == 0 && sel == L_GAME) { list_layer = 2; sel = 0; set_state(T_LIST); t_state -= FADE * 0.6; }   /* Game: SMB3 */
+            else { next_action = list_layer == 1 ? (sel == 0 ? NEXT_MULTI : NEXT_ONLINE) : list_layer == 2 ? NEXT_SMB3
+                               : sel == L_SINGLE ? NEXT_SINGLE : NEXT_OPTIONS; set_state(T_LIST_OUT); }
         } else if (pressed & (B_1 | B_B)) {
-            if (list_layer) { set_state(T_PROFILES); profiles_enter(); }                   /* (back to Who's playing?) */
+            if (list_layer == 1) { set_state(T_PROFILES); profiles_enter(); }              /* (back to Who's playing?) */
+            else if (list_layer == 2) { list_layer = 0; sel = L_GAME; set_state(T_LIST); t_state -= FADE * 0.6; }
             else { next_action = NEXT_TITLE; set_state(T_LIST_OUT); cam_return(); }
         }
         return 0;
@@ -662,11 +672,11 @@ static uint32_t filter_buttons(uint32_t b) {
             if (pressed & NAV_RIGHT) opt_sel = O_SAVE;
             if (pressed & (B_2 | B_A)) {
                 if (opt_sel == O_SAVE) options_save(); else options_cancel();
-                set_state(T_LIST); list_layer = 0; sel = 2;
+                set_state(T_LIST); list_layer = 0; sel = L_OPTIONS;
                 return 0;
             }
         }
-        if (pressed & (B_1 | B_B)) { options_cancel(); set_state(T_LIST); list_layer = 0; sel = 2; }
+        if (pressed & (B_1 | B_B)) { options_cancel(); set_state(T_LIST); list_layer = 0; sel = L_OPTIONS; }
         return 0;
     case T_CONTROLS:
         if (fade_t() < 0.6f) return 0;
@@ -685,6 +695,11 @@ static uint32_t filter_buttons(uint32_t b) {
             if (r == 1) { set_state(T_LIST); list_layer = 1; sel = 1; }
             else if (r == 2) { online_play = 1; start_game(0); }   /* host: on to the game select / file select */
         }
+        return 0;
+    case T_SMB3:                                            /* Game > SMB3 (../SMB3Disassembly/port) */
+        if (fade_t() < 0.6f) return 0;
+        smb3_frame();
+        if (pressed & (B_1 | B_B)) { smb3_leave(); set_state(T_LIST); list_layer = 2; sel = 0; }
         return 0;
     }
     return 0;
@@ -1257,7 +1272,7 @@ void menu_draw(void) {
         if (nt) { float w = gtext_width(nt, 18) + 40; if (w > 600) w = 600; float x = 320 - w / 2, y = 24;
                   ui_rect(x - 3, y - 3, w + 6, 40, 0xF0C030E0u); ui_rect(x, y, w, 34, 0x101828F0u); gtext_centered(320, y + 7, 18, nt, 0xFFFFFFFFu); } }
     if (ctl_open) { double t = (now_s() - ctl_t) / FADE; controls_draw(t > 1 ? 1 : (float)t); return; }
-    if (!title_live() && tstate != T_OPTIONS && tstate != T_CONTROLS && tstate != T_ONLINE && tstate != T_PROFILES) return;
+    if (!title_live() && tstate != T_OPTIONS && tstate != T_CONTROLS && tstate != T_ONLINE && tstate != T_PROFILES && tstate != T_SMB3) return;
     if (tstate == T_PROFILES) { profiles_draw(fade_t()); return; }
     if (tstate == T_CONTROLS) { controls_draw(fade_t()); return; }
     if (tstate == T_ONLINE) { online_draw(fade_t()); return; }
@@ -1298,5 +1313,13 @@ void menu_draw(void) {
         { char vs[40]; snprintf(vs, sizeof vs, "Version %s", rt_version()); gtext(x + w - gtext_width(vs, 14), y + h + 7, 14, vs, with_alpha(0xC8D0E0FFu, a)); }
         gtext_centered(x + 14 + bw / 2, by, 26, "Cancel", with_alpha(0xFFFFFFFFu, a));
         gtext_centered(x + w - 14 - bw / 2, by, needs_restart() ? 23 : 26, save, with_alpha(needs_restart() ? gold : 0xFFFFFFFFu, a));
+    } else if (tstate == T_SMB3) {
+        /* placeholder until the port draws something itself */
+        float a = t, x = 120, y = 220, w = 400, h = 150;
+        ui_rect(x - 3, y - 3, w + 6, h + 6, with_alpha(0xF0C03000u, a));
+        ui_rect(x, y, w, h, with_alpha(0x101828D8u, a * 0.85f));
+        gtext_centered(320, y + 16, 34, "SMB3", with_alpha(0xFFFFFFFFu, a));
+        gtext_centered(320, y + 66, 20, smb3_status(), with_alpha(0xC8D0E0FFu, a));
+        gtext_centered(320, y + h - 34, 16, "1: Back", with_alpha(0xC8D0E0FFu, a));
     }
 }

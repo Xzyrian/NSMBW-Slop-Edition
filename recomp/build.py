@@ -20,9 +20,12 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 GAME = os.environ.get('NSMBW_GAME_DIR') or os.path.normpath(os.path.join(ROOT, '..', 'game'))
 OBJ = os.path.join(ROOT, 'out', 'objwin')
 RUNTIME = ['rt_core', 'rt_bootscreen', 'rt_hw', 'rt_ios', 'rt_disc', 'rt_gx', 'rt_gxrender', 'rt_wiimote', 'rt_remotes', 'rt_net', 'rt_det', 'rt_state', 'rt_profiles', 'rt_crypto', 'rt_update', 'rt_si', 'rt_threads',
-           'rt_ax', 'rt_hdtex', 'rt_aspect', 'rt_menu', 'rt_gamesetup', 'rt_title', 'rt_lyt', 'rt_mod', 'smb1_physics', 'rt_retro', 'rt_sfx', 'rt_chars', 'rt_charmdl', 'rt_discord', 'rt_dvd', 'rt_vi', 'rt_exi', 'rt_audio', 'rt_os', 'gm_verify', 'gm_mj2d_game', 'gm_mj2d_header', 'gm_save_mng', 'gm_info', 'gm_c_list', 'gm_f_list', 'gm_f_base', 'gm_f_manager', 'gm_s_state', 'gm_d_base', 'gm_d_actor', 'gm_d_enemy', 'gm_d_enemy_death', 'gm_d_enemy_carry', 'gm_bg', 'gm_m3d', 'gm_m3d_scene', 'gm_m3d_anm', 'gm_m_mtx', 'gm_m_heap', 'gm_m_allocator', 'gm_m_fader', 'gm_d_cc', 'gm_m_2d', 'gm_m_frustum', 'gm_s_lib', 'gm_c_lib', 'gm_m_color', 'gm_d_cd', 'gm_d_rail', 'gm_d_actorcreate', 'gm_d_wipe', 'gm_d_smallscore', 'gm_d_scene', 'gm_d_next', 'gm_d_lytbase', 'gm_d_wm', 'gm_d_stage', 'gm_d_2d', 'gm_d_res', 'gm_d_lytbuild', 'gm_d_lyttextbox', 'gm_d_message', 'gm_d_selectcursor', 'gm_d_util', 'gm_d_misc', 'gm_nw4r_ut', 'gm_egg', 'gm_nw4r_g3d', 'gm_state_ids', 'gm_prologue', 'gm_py_mng', 'gm_py_demo', 'gm_d_fukidashi', 'gm_d_fukidashi_info', 'gm_d_gamedisplay', 'gm_d_gamecom', 'gm_d_nand', 'gm_d_sc_wmap', 'gm_d_wm_se', 'gm_d_wm_subplayer', 'gm_d_wm_map', 'gm_d_wm_player', 'rt_plat_win']
+           'rt_ax', 'rt_hdtex', 'rt_aspect', 'rt_menu', 'rt_gamesetup', 'rt_title', 'rt_lyt', 'rt_mod', 'smb1_physics', 'rt_retro', 'rt_sfx', 'rt_chars', 'rt_charmdl', 'rt_discord', 'rt_dvd', 'rt_vi', 'rt_exi', 'rt_audio', 'rt_os', 'gm_verify', 'gm_mj2d_game', 'gm_mj2d_header', 'gm_save_mng', 'gm_info', 'gm_c_list', 'gm_f_list', 'gm_f_base', 'gm_f_manager', 'gm_s_state', 'gm_d_base', 'gm_d_actor', 'gm_d_enemy', 'gm_d_enemy_death', 'gm_d_enemy_carry', 'gm_bg', 'gm_m3d', 'gm_m3d_scene', 'gm_m3d_anm', 'gm_m_mtx', 'gm_m_heap', 'gm_m_allocator', 'gm_m_fader', 'gm_d_cc', 'gm_m_2d', 'gm_m_frustum', 'gm_s_lib', 'gm_c_lib', 'gm_m_color', 'gm_d_cd', 'gm_d_rail', 'gm_d_actorcreate', 'gm_d_wipe', 'gm_d_smallscore', 'gm_d_scene', 'gm_d_next', 'gm_d_lytbase', 'gm_d_wm', 'gm_d_stage', 'gm_d_2d', 'gm_d_res', 'gm_d_lytbuild', 'gm_d_lyttextbox', 'gm_d_message', 'gm_d_selectcursor', 'gm_d_util', 'gm_d_misc', 'gm_nw4r_ut', 'gm_egg', 'gm_nw4r_g3d', 'gm_state_ids', 'gm_prologue', 'gm_py_mng', 'gm_py_demo', 'gm_d_fukidashi', 'gm_d_fukidashi_info', 'gm_d_gamedisplay', 'gm_d_gamecom', 'gm_d_nand', 'gm_d_sc_wmap', 'gm_d_wm_se', 'gm_d_wm_subplayer', 'gm_d_wm_map', 'gm_d_wm_player', 'gm_d_course_guide', 'gm_d_course_manager', 'gm_d_select_player', 'gm_d_continue', 'gm_d_stock_item', 'gm_d_multi_course', 'gm_d_staff_credit', 'gm_d_small_score', 'gm_d_sc_stage', 'gm_py_key', 'gm_py_player', 'gm_d_player_base', 'gm_d_player', 'gm_en_enemies', 'gm_d_player_conv', 'gm_bg_scroll', 'gm_bs_bases', 'gm_eb_boss', 'gm_mj_conv', 'gm_pf_family', 'gm_wmc_worldmap', 'rt_plat_win']
+# the SMB3 port (../SMB3Disassembly/port/<name>.c): compiled with the runtime
+SMB3_DIR = '../SMB3Disassembly/port'
+SMB3 = ['smb3_main']
 ZCC = [sys.executable, '-m', 'ziglang', 'cc', '-target', 'x86_64-windows-gnu']
-FLAGS = ['-std=gnu11', '-O2', '-fno-stack-protector', '-march=x86_64_v3', '-ffp-contract=off', '-w', '-Iruntime', '-Iout']
+FLAGS = ['-std=gnu11', '-O2', '-fno-stack-protector', '-march=x86_64_v3', '-ffp-contract=off', '-w', '-Iruntime', '-Iout', '-I../SMB3Disassembly/port']
 
 
 def say(msg): print(msg, flush=True)
@@ -238,17 +241,19 @@ def main():
     say('    version %s - updates %s' % (ver, 'from ' + url.split('?')[0] if url and key else
         'OFF in this build (%s)' % ' and '.join(x for x, ok in (('no recomp\\update_url.txt', url), ('no update key: python tools/publish_update.py keygen', key)) if not ok)))
     rt = os.path.join(ROOT, 'runtime')
-    newest_header = max(os.path.getmtime(os.path.join(rt, f)) for f in os.listdir(rt) if f.endswith(('.h', '.inc')))
+    sd = os.path.join(ROOT, SMB3_DIR)
+    newest_header = max([os.path.getmtime(os.path.join(rt, f)) for f in os.listdir(rt) if f.endswith(('.h', '.inc'))] +
+                        [os.path.getmtime(os.path.join(sd, f)) for f in os.listdir(sd) if f.endswith('.h')])
     newest_header = max(newest_header, os.path.getmtime(os.path.join(ROOT, 'out', 'recomp_funcs.h')),
                         os.path.getmtime(os.path.join(ROOT, 'out', 'rt_version.h')))
     recomp = sorted('out/' + f for f in os.listdir('out') if f.startswith('recomp_') and f.endswith('.c'))
     compile_all(recomp, a.jobs, '[2/4] game code')
-    compile_all(['runtime/%s.c' % f for f in RUNTIME], a.jobs, '[3/4] runtime')
+    compile_all(['runtime/%s.c' % f for f in RUNTIME] + ['%s/%s.c' % (SMB3_DIR, f) for f in SMB3], a.jobs, '[3/4] runtime')
     say('    linking...')
     tmp = tempfile.mkdtemp(prefix='nsmbw_build_')
     exe = os.path.join(tmp, 'nsmbw.exe')
     objs = sorted(os.path.join(OBJ, f) for f in os.listdir(OBJ)
-                  if f.endswith('.c.o') or (f.endswith('.o') and f[:-2] in RUNTIME))   # (not objects of runtime files that were removed)
+                  if f.endswith('.c.o') or (f.endswith('.o') and f[:-2] in RUNTIME + SMB3))   # (not objects of runtime files that were removed)
     r = subprocess.run(ZCC + objs + ['runtime/nsmbw.rc', '-o', exe, '-luser32', '-lgdi32', '-lwinmm', '-lws2_32', '-lwinhttp', '-Wl,--stack,67108864',
                         # fixed load address, no ASLR: save states hold code addresses (rt_state.c)
                         '-Wl,--image-base,0x140000000', '-Wl,--no-dynamicbase'],

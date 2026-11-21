@@ -137,9 +137,32 @@ static void snap_tests(void) {
         rt_snap_load(snap);
     }
 }
+/* Play recordings (tools/record_play.bat, tools/ab_inputs/README.md): RT_REC=file writes the
+   keyboard's buttons as latched for each field - a "field mask" line (hex) wherever they change -
+   and RT_REPLAY=file plays such a file back in place of the keyboard. In deterministic mode the
+   game only sees the buttons per field, so a recording made by hand on one PC replays the same
+   game anywhere (with the same start: nand, settings.ini, wiimotes.ini, profiles.json). Not while
+   running fields again (rollback) - and a save state loaded while recording breaks it. */
+static void rec_field(void) {
+    static int init; static FILE *rec, *rep; static uint32_t last = 0xFFFFFFFFu, cur, nm;
+    static unsigned long long nf = ~0ull;
+    if (!init) {
+        init = 1;
+        const char *p = getenv("RT_REC"); if (p && *p) { rec = fopen(p, "w"); rt_log("det", "recording the keyboard to %s%s", p, rec ? "" : " - can't write it"); }
+        p = getenv("RT_REPLAY"); if (p && *p) { rep = fopen(p, "r"); rt_log("det", "replaying %s%s", p, rep ? "" : " - can't read it"); }
+        if (rep && fscanf(rep, "%llu %x", &nf, &nm) != 2) nf = ~0ull;
+    }
+    if (g_resim) return;
+    if (rep) {
+        while (nf <= (unsigned long long)g_vi_fields) { cur = nm; if (fscanf(rep, "%llu %x", &nf, &nm) != 2) nf = ~0ull; }
+        kb_latched |= cur;
+    }
+    if (rec && kb_latched != last) { fprintf(rec, "%llu %x\n", (unsigned long long)g_vi_fields, kb_latched); fflush(rec); last = kb_latched; }
+}
 void det_field(void) {
     {   static int f = -1; if (f < 0) { f = getenv("RT_DET_UNPACED") != NULL; } if (f) { extern int g_det_fast; g_det_fast = 1; } }   /* testing: as fast as it goes */
     kb_latched = plat_buttons();
+    rec_field();
     snap_tests();
     {   /* testing: RT_RB_TEST="start:every:depth" - rollback states from field `start`, and every
            `every` fields go back `depth` and run them again (the hashes must not change: RT_DET_HASH) */

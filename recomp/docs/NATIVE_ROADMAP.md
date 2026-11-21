@@ -126,3 +126,8 @@ without thread stacks / saved contexts). Done: the module's save data and sessio
 written but off until a test reaches a goal pole, `gm_py_demo.c`, 2026-11-04). All register-exact
 with the PowerPC frames (`gm_i2.h`), strict A/B clean. Next: a level-end test input,
 `dGameDisplay_c`, the rest of the module, then the player classes, then camera / scroll.
+Update 2026-11-11 (CHANGELOG 102): the level-end input exists (Kimi's 1-1 clear, now in the
+strict A/B set), `dGameDisplay_c` and most of the module's menus / world map are done (parts
+68-96), and the module's player side has started: `gm_py_key.c` (controller input, 9 on) and
+`gm_py_player.c` (the module's dAcPy_c / daPlBase_c overrides, 16 on). Next: the game's own
+player classes.

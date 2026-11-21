@@ -9,7 +9,7 @@ RT_STATE_FILE
 #define FK_CHILD_SIZE 572
 #define FK_CHILDREN   8
 #define FK_CTOR_INSTANCE (ctx->r[13] - 21344) /* module's manager instance */
-#define FK_INSTANCE   0x8042ACA0u            /* original manager pointer cleared by the module destructor */
+#define FK_INSTANCE   (0x80430000u - 23776)  /* the manager instance (r13 - 21344 = 0x8042A320) the module destructor clears */
 
 static void fk_constructor(GM_CTX, gptr self) {
     I2_FN(0x81831134u);
@@ -126,5 +126,5 @@ GM_HLE_VERIFIED_(mod_fn_80157060, GMV_IGNORE_POLLS, FK_MEM) { fk_execute(GM_PASS
 GM_HLE_VERIFIED_(mod_fn_801570D0, GMV_IGNORE_POLLS, FK_MEM) { fk_draw(GM_PASS, SELF); }
 GM_HLE_VERIFIED_(mod_fn_80157120, GMV_IGNORE_POLLS, FK_MEM) { fk_doDelete(GM_PASS, SELF); }
 GM_HLE_VOID(mod_fn_80157220, FK_MEM) { fk_setValue(GM_PASS, SELF, GM_ARG(1), GM_ARG(2), GM_ARG(3)); }
-GM_HLE(mod_fn_80157310) { fk_setInfoFlag(GM_PASS, GM_ARG(0), GM_ARG(1), 1); }
-GM_HLE(mod_fn_80157360) { fk_setInfoFlag(GM_PASS, GM_ARG(0), GM_ARG(1), 0); }
+GM_HLE(mod_fn_80157310) { fk_setInfoFlag(GM_PASS, GM_ARG(1), GM_ARG(2), 1); }   /* (r3 the manager, r4 the character, r5 the player type) */
+GM_HLE(mod_fn_80157360) { fk_setInfoFlag(GM_PASS, GM_ARG(1), GM_ARG(2), 0); }   /* (r3 the manager, r4 the character, r5 the player type) */

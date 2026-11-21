@@ -43,6 +43,214 @@ static const int16_t e_8001C9F0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8001CA40[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8001CB30[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8001CB70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800460D0[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80046490[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800467C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80046A50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80046AB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80046BB0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_80046FC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80047190[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800471F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047390[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80047490[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800474E0[] = { 20, 0x400 };
+static const int16_t e_80047630[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800477B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047800[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800479A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047AC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047B70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047C40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047D10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80047F10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_800480D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80048170[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800481C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80048410[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800484B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048630[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800488F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80048A60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048BA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048C70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048D70[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80048E40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048F30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80048FA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049110[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800491F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049270[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800494D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800496D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800497E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049940[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049C70[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80049D70[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80049E10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80049F50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80049FA0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004A6A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004A7B0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004A830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004A8C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004A920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004AA80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004AAC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004AC10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004AFE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B090[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B0D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B1C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B290[] = { 20, 0x400 };
+static const int16_t e_8004B2F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B380[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B460[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004B4C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004B520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004B580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004B640[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8004B730[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 32, 0x21C, 40, 0x31C, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004B9A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8004BA50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004BAC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8004BC80[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8004BF00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004BF80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004C0D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004C1E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004C310[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8004C480[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004C4F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004C560[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004C620[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004C780[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004C990[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004CA60[] = { 20, 0x400 };
+static const int16_t e_8004CB30[] = { 36, 0x400 };
+static const int16_t e_8004CC10[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8004CD20[] = { 20, 0x400 };
+static const int16_t e_8004CD80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004CE00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004CE70[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8004CF20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8004D040[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8004D210[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004D260[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8004D350[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8004D5C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8004D9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DA30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DA90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DB00[] = { 20, 0x400 };
+static const int16_t e_8004DB40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DD00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DD70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DDE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DE50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DEE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004DF70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004E050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E100[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E1A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E220[] = { 20, 0x400 };
+static const int16_t e_8004E290[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004E360[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E450[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E4D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E710[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E7B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004E980[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004EA20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004EA80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8004EFD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004F1C0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_8004F260[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004F300[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004F480[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8004F670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8004F740[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004F860[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8004FA70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8004FBB0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80050D80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80051080[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800518A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80051AB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80051E70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80051EF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80052470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80052730[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80052880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80052EF0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80052FE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053090[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053120[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800533E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800534B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80053540[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80053600[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053700[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800537B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800538E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053940[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 16, 0x21C, 24, 0x31C, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80053AD0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80053C80[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80053DF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053E60[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80053F90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80053FE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800540F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80054280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80054370[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800543E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800544F0[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 108, 0x11F, 104, 0x11E, 100, 0x11D };
+static const int16_t e_80054EF0[] = { 20, 0x400 };
+static const int16_t e_80054F80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800552D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80055330[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80055530[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80055620[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80055900[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80055A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80055A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80055AE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80055DB0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80055EF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80056620[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80056900[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80056BD0[] = { 20, 0x400 };
+static const int16_t e_80056D50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800573F0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 64, 0x21B, 72, 0x31B, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80057650[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800576A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80057760[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_800577D0[] = { 36, 0x400, 24, 0x21F, 20, 0x11F };
+static const int16_t e_80057860[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_800578D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800579C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80057AD0[] = { 20, 0x400 };
+static const int16_t e_80057B90[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_80057C80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80057CD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80057D70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80057E00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80057E70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80057EE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80057F60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80057FD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80058050[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80058110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800582F0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_800583A0[] = { 212, 0x400, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_80059120[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800592C0[] = { 1380, 0x400, 1348, 0x119, 1352, 0x11A, 1356, 0x11B, 1360, 0x11C, 1364, 0x11D, 1368, 0x11E, 1372, 0x11F };
 static const int16_t e_80064110[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
 static const int16_t e_800642B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_80064390[] = { 20, 0x400, 12, 0x11F };
@@ -75,9 +283,9 @@ static const int16_t e_80065CC0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F
 static const int16_t e_80065DC0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E };
 static const int16_t e_80065EC0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E };
 static const int16_t e_80065FC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
-static const int16_t e_80068320[] = { 132, 0x400 };
+static const int16_t e_80068320[] = { 132, 0x400, 56, 0x10E, 60, 0x10F, 64, 0x110, 68, 0x111, 72, 0x112, 76, 0x113, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
 static const int16_t e_80068620[] = { 132, 0x400, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
-static const int16_t e_80068850[] = { 116, 0x400 };
+static const int16_t e_80068850[] = { 116, 0x400, 40, 0x10E, 44, 0x10F, 48, 0x110, 52, 0x111, 56, 0x112, 60, 0x113, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
 static const int16_t e_80068BC0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
 static const int16_t e_80068C50[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
 static const int16_t e_80068CE0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
@@ -99,14 +307,116 @@ static const int16_t e_8006CB40[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8006CBA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8006CCB0[] = { 36, 0x400, 28, 0x11F };
 static const int16_t e_8006CD50[] = { 20, 0x400, 12, 0x11F };
-static const int16_t e_80070BA0[] = { 36, 0x400, 8, 0x201, 16, 0x200 };
-static const int16_t e_80070BF0[] = { 36, 0x400, 8, 0x201, 16, 0x200 };
+static const int16_t e_80070BA0[] = { 36, 0x400 };
+static const int16_t e_80070BF0[] = { 36, 0x400 };
+static const int16_t e_80076FD0[] = { 20, 0x400 };
+static const int16_t e_80077020[] = { 20, 0x400 };
+static const int16_t e_80077060[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800773A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800773E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_800774A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_80077520[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
-static const int16_t e_80077650[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 16, 0x200 };
+static const int16_t e_800775A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80077610[] = { 20, 0x400 };
+static const int16_t e_80077650[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
 static const int16_t e_80077700[] = { 20, 0x400 };
+static const int16_t e_80077730[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800777B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80077810[] = { 20, 0x400 };
+static const int16_t e_80077860[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80077A00[] = { 180, 0x400, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80077B40[] = { 84, 0x400, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80077D80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80077E30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80077EB0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80078300[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80078780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800789A0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F };
+static const int16_t e_80078A70[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F };
+static const int16_t e_80078B40[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F };
+static const int16_t e_80078C10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F };
+static const int16_t e_80078D00[] = { 228, 0x400, 152, 0x10E, 156, 0x10F, 160, 0x110, 164, 0x111, 168, 0x112, 172, 0x113, 176, 0x114, 180, 0x115, 184, 0x116, 188, 0x117, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80078EB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80079020[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80079060[] = { 148, 0x400, 92, 0x113, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F, 40, 0x114 };
+static const int16_t e_800791D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80079250[] = { 148, 0x400, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F, 40, 0x115 };
+static const int16_t e_80079380[] = { 148, 0x400, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F, 40, 0x115 };
+static const int16_t e_800794B0[] = { 148, 0x400, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F, 40, 0x115 };
+static const int16_t e_800795E0[] = { 148, 0x400, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F, 40, 0x115 };
+static const int16_t e_80079710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80079780[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8007A6C0[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 144, 0x21E, 152, 0x31E, 128, 0x21D, 136, 0x31D, 112, 0x21C, 120, 0x31C, 96, 0x21B, 104, 0x31B, 80, 0x21A, 88, 0x31A, 64, 0x219, 72, 0x319, 48, 0x218, 56, 0x318, 32, 0x217, 40, 0x317, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8007AB70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8007AC40[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 240, 0x21D, 248, 0x31D, 224, 0x21C, 232, 0x31C, 208, 0x21B, 216, 0x31B, 192, 0x21A, 200, 0x31A, 176, 0x219, 184, 0x319, 160, 0x218, 168, 0x318, 144, 0x217, 152, 0x317, 128, 0x216, 136, 0x316, 112, 0x215, 120, 0x315, 96, 0x214, 104, 0x314, 80, 0x213, 88, 0x313, 64, 0x212, 72, 0x312, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8007BA70[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 44, 0x11F };
+static const int16_t e_8007BC40[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 16, 0x21C, 24, 0x31C, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8007BD40[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 48, 0x21C, 56, 0x31C, 32, 0x21B, 40, 0x31B, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8007C7D0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 32, 0x21C, 40, 0x31C, 16, 0x21B, 24, 0x31B, 12, 0x11F };
+static const int16_t e_8007C950[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_8007CD70[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 288, 0x21C, 296, 0x31C, 272, 0x21B, 280, 0x31B, 256, 0x21A, 264, 0x31A, 240, 0x219, 248, 0x319, 224, 0x218, 232, 0x318, 208, 0x217, 216, 0x317, 192, 0x216, 200, 0x316, 176, 0x215, 184, 0x315, 160, 0x214, 168, 0x314, 144, 0x213, 152, 0x313, 128, 0x212, 136, 0x312, 112, 0x211, 120, 0x311, 96, 0x210, 104, 0x310, 80, 0x20F, 88, 0x30F, 64, 0x20E, 72, 0x30E, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8007E0E0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F };
+static const int16_t e_8007E180[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8007E1D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8007E2C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8007E3D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8007E430[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8007E520[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 192, 0x21E, 200, 0x31E, 176, 0x21D, 184, 0x31D, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8007E7F0[] = { 20, 0x400 };
+static const int16_t e_8007E860[] = { 100, 0x400, 36, 0x111, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8007EA80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8007EB70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8007EC20[] = { 1268, 0x400, 1260, 0x11F, 1256, 0x11E };
+static const int16_t e_8007F7A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8007F810[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8007FA40[] = { 52, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8007FB10[] = { 36, 0x400 };
+static const int16_t e_8007FBF0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F };
+static const int16_t e_8007FDA0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8007FFA0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80080170[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80080630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80080670[] = { 180, 0x400, 172, 0x11F, 168, 0x11E };
+static const int16_t e_80080900[] = { 372, 0x400, 352, 0x21F, 360, 0x31F, 304, 0x114, 308, 0x115, 312, 0x116, 316, 0x117, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_80080E40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80081300[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80081410[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_800814D0[] = { 116, 0x400, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_800816A0[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80081780[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80081800[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80081960[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80081AB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80081C40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80081D20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80081E90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80081F40[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80082050[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800820D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80082240[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D };
+static const int16_t e_800822E0[] = { 20, 0x400 };
+static const int16_t e_80082310[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80082370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80082410[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80082560[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800825E0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80082660[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80082740[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 192, 0x21E, 200, 0x31E, 176, 0x21D, 184, 0x31D, 160, 0x21C, 168, 0x31C, 116, 0x115, 120, 0x116, 124, 0x117, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80082BE0[] = { 244, 0x400, 224, 0x21F, 232, 0x31F, 208, 0x21E, 216, 0x31E, 148, 0x111, 152, 0x112, 156, 0x113, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_80082ED0[] = { 452, 0x400, 432, 0x21F, 440, 0x31F, 416, 0x21E, 424, 0x31E, 400, 0x21D, 408, 0x31D, 384, 0x21C, 392, 0x31C, 368, 0x21B, 376, 0x31B, 352, 0x21A, 360, 0x31A, 336, 0x219, 344, 0x319, 320, 0x218, 328, 0x318, 304, 0x217, 312, 0x317, 288, 0x216, 296, 0x316, 272, 0x215, 280, 0x315, 248, 0x11A, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_800833E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80083440[] = { 20, 0x400 };
+static const int16_t e_800834D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80083560[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800837D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80083870[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80083AD0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80083B40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80083BD0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80083D00[] = { 3156, 0x400, 3132, 0x11B, 3136, 0x11C, 3140, 0x11D, 3144, 0x11E, 3148, 0x11F };
+static const int16_t e_80083E20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80083EE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80083FC0[] = { 68, 0x400, 12, 0x113, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
 static const int16_t e_8008C200[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8008C260[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8008C440[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
@@ -132,7 +442,7 @@ static const int16_t e_8008E710[] = { 20, 0x400 };
 static const int16_t e_8008E740[] = { 20, 0x400 };
 static const int16_t e_8008E770[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
 static const int16_t e_8008E800[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
-static const int16_t e_8008E950[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 8, 0x201, 16, 0x200 };
+static const int16_t e_8008E950[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
 static const int16_t e_8008F110[] = { 20, 0x400 };
 static const int16_t e_8008F170[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8008F1B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
@@ -265,6 +575,29 @@ static const int16_t e_800C9B00[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_800C9B50[] = { 260, 0x400, 240, 0x21F, 248, 0x31F, 224, 0x21E, 232, 0x31E, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
 static const int16_t e_800C9DF0[] = { 132, 0x400, 124, 0x11F };
 static const int16_t e_800C9E80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800CAD20[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800CAE70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800CAFD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800CB0F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CB490[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800CB5D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CB630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CB670[] = { 52, 0x400, 40, 0x21F, 20, 0x11B, 24, 0x11C, 28, 0x11D, 32, 0x11E, 36, 0x11F };
+static const int16_t e_800CB780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CB810[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800CB8A0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_800CBAE0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_800CBD20[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_800CBF60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CBFA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800CC050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CC090[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800CC250[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CC2A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800CC350[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800CC390[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800CC8E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800CC9A0[] = { 68, 0x400, 60, 0x11F };
 static const int16_t e_800CDA70[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_800CDAB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_800CDB30[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
@@ -282,6 +615,75 @@ static const int16_t e_800CFD00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D
 static const int16_t e_800CFDE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_800D0030[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
 static const int16_t e_800D0100[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800D1510[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D16B0[] = { 20, 0x400 };
+static const int16_t e_800D19E0[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 272, 0x21D, 280, 0x31D, 256, 0x21C, 264, 0x31C, 240, 0x21B, 248, 0x31B, 224, 0x21A, 232, 0x31A, 208, 0x219, 216, 0x319, 192, 0x218, 200, 0x318, 176, 0x217, 184, 0x317, 160, 0x216, 168, 0x316, 144, 0x215, 152, 0x315, 128, 0x214, 136, 0x314, 112, 0x213, 120, 0x313, 96, 0x212, 104, 0x312, 80, 0x211, 88, 0x311, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_800D1F10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D2060[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D2270[] = { 36, 0x400 };
+static const int16_t e_800D2690[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_800D27B0[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 192, 0x21E, 200, 0x31E, 176, 0x21D, 184, 0x31D, 160, 0x21C, 168, 0x31C, 144, 0x21B, 152, 0x31B, 128, 0x21A, 136, 0x31A, 112, 0x219, 120, 0x319, 96, 0x218, 104, 0x318, 80, 0x217, 88, 0x317, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_800D29F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D2AC0[] = { 20, 0x400 };
+static const int16_t e_800D2B90[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800D2C20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D2CF0[] = { 52, 0x400, 40, 0x21F, 20, 0x11B, 24, 0x11C, 28, 0x11D, 32, 0x11E, 36, 0x11F };
+static const int16_t e_800D2D80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D2DD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800D3030[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D3070[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D30E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D3210[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D3280[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D3380[] = { 116, 0x400, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_800D36E0[] = { 212, 0x400, 204, 0x11F };
+static const int16_t e_800D3830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D38A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800D3A30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D3AD0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800D3B20[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800D3BF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800D3CE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D3EF0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_800D4060[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D40F0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800D4240[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_800D43E0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_800D4520[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_800D4670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D4790[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_800D4980[] = { 20, 0x400 };
+static const int16_t e_800D4CD0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_800D4D80[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_800D4E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800D5170[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F };
+static const int16_t e_800D5330[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D54A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D54E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D5580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D56F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D5730[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D5790[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_800D57F0[] = { 436, 0x400, 416, 0x21F, 424, 0x31F, 400, 0x21E, 408, 0x31E, 384, 0x21D, 392, 0x31D, 380, 0x11F, 376, 0x11E, 372, 0x11D, 368, 0x11C };
+static const int16_t e_800D5C10[] = { 36, 0x400, 24, 0x21F, 20, 0x11F };
+static const int16_t e_800D5C90[] = { 36, 0x400, 24, 0x21F, 20, 0x11F };
+static const int16_t e_800D5D10[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800D6200[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 24, 0x21D, 20, 0x11F, 16, 0x11E };
+static const int16_t e_800D62F0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800D6460[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D65E0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 48, 0x21C, 56, 0x31C, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_800D6840[] = { 20, 0x400 };
+static const int16_t e_800D6A30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800D6AB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D6EB0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_800D6F40[] = { 52, 0x400 };
+static const int16_t e_800D7050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D77D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800D7820[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800D7880[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_800D7C80[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_800D81E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800D82A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_800D9130[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
 static const int16_t e_800D9370[] = { 36, 0x400, 28, 0x11F };
 static const int16_t e_800D9420[] = { 36, 0x400, 28, 0x11F };
@@ -333,7 +735,179 @@ static const int16_t e_800F27D0[] = { 20, 0x400 };
 static const int16_t e_800F2810[] = { 20, 0x400 };
 static const int16_t e_800F2850[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_800F2910[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F3330[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800F33D0[] = { 36, 0x400 };
+static const int16_t e_800F3500[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800F35A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F39D0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_800F3E20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F3E80[] = { 84, 0x400, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_800F4870[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_800F4B50[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_800F4F80[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_800F5050[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_800F5130[] = { 84, 0x400, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_800F5310[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800F53A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800F5420[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800F54D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_800F59E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800F5A90[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_800F5C10[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_800F5D40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F5E60[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800F5F40[] = { 36, 0x400 };
+static const int16_t e_800F6020[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F6130[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 48, 0x21C, 56, 0x31C, 44, 0x11F };
+static const int16_t e_800F6320[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F6390[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F6410[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_800F6810[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 44, 0x11F };
+static const int16_t e_800F6940[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_800F69F0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800F6D60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F6EB0[] = { 36, 0x400 };
+static const int16_t e_800F9080[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800F91E0[] = { 36, 0x400 };
+static const int16_t e_800F9270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F92C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800F9310[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F9370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F9930[] = { 20, 0x400 };
+static const int16_t e_800F9BE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800F9C50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800F9CD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800F9EA0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_800FA350[] = { 84, 0x400, 24, 0x112, 28, 0x113, 32, 0x114, 36, 0x115, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_800FA630[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800FA6C0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800FA8C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FA9C0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800FAD60[] = { 20, 0x400 };
+static const int16_t e_800FADB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FAE40[] = { 20, 0x400 };
+static const int16_t e_800FAE80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FAF70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FB040[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800FB150[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FB1A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FB1F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FB240[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FB290[] = { 20, 0x400 };
+static const int16_t e_800FB2D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FB350[] = { 20, 0x400 };
+static const int16_t e_800FB4B0[] = { 100, 0x400, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_800FBDE0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800FBF30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FBFB0[] = { 20, 0x400 };
+static const int16_t e_800FC040[] = { 20, 0x400 };
+static const int16_t e_800FC0A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800FC140[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FC5C0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E };
+static const int16_t e_800FCA20[] = { 20, 0x400 };
+static const int16_t e_800FCA50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FCAF0[] = { 20, 0x400 };
+static const int16_t e_800FCBB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800FD2E0[] = { 20, 0x400 };
+static const int16_t e_800FD310[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FD500[] = { 36, 0x400 };
+static const int16_t e_800FD630[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FD750[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_800FD9C0[] = { 36, 0x400 };
+static const int16_t e_800FDA50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FDAC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FDC80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FDCF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FDD60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FDF40[] = { 20, 0x400 };
+static const int16_t e_800FDFA0[] = { 36, 0x400 };
+static const int16_t e_800FE060[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800FE110[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_800FE1D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FE2E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FE360[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FE3B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FE560[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_800FE760[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_800FE830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FE8F0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_800FE9E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FEAA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_800FEB40[] = { 68, 0x400, 56, 0x21F, 48, 0x21E, 40, 0x21D, 36, 0x11F, 32, 0x11E, 28, 0x11D };
+static const int16_t e_800FEC10[] = { 68, 0x400, 56, 0x21F, 48, 0x21E, 40, 0x21D, 36, 0x11F, 32, 0x11E, 28, 0x11D, 24, 0x11C };
+static const int16_t e_800FEDD0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_800FEED0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_800FF000[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FF0C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FF120[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_800FF180[] = { 116, 0x400, 108, 0x11F, 104, 0x11E, 100, 0x11D };
+static const int16_t e_800FF230[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_800FF590[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_800FF740[] = { 628, 0x400, 608, 0x21F, 616, 0x31F, 592, 0x21E, 600, 0x31E, 576, 0x21D, 584, 0x31D, 560, 0x21C, 568, 0x31C, 556, 0x11F, 552, 0x11E, 548, 0x11D, 544, 0x11C };
+static const int16_t e_800FFA50[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 128, 0x21E, 136, 0x31E, 124, 0x11F, 120, 0x11E };
+static const int16_t e_800FFC40[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_800FFDB0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_800FFFE0[] = { 20, 0x400 };
+static const int16_t e_80100200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80100270[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_801002F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80100430[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801004B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80100530[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_801005C0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80100720[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80100830[] = { 36, 0x400 };
+static const int16_t e_80100AA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80100CA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80100DA0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80101430[] = { 116, 0x400 };
+static const int16_t e_801015E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80101630[] = { 20, 0x400 };
+static const int16_t e_80101720[] = { 36, 0x400 };
 static const int16_t e_80101AA0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80101C60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80101CE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80101D40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80101DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80101E20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80101EA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801020F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801021D0[] = { 20, 0x400 };
+static const int16_t e_801025D0[] = { 36, 0x400 };
+static const int16_t e_80102C10[] = { 36, 0x400 };
+static const int16_t e_80102CA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80102E00[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80102E80[] = { 36, 0x400 };
+static const int16_t e_80102F10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80102F90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80103000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80103090[] = { 20, 0x400 };
+static const int16_t e_801030E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801031B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80103220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80103310[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80103390[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80103440[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80103730[] = { 36, 0x400 };
+static const int16_t e_801037C0[] = { 20, 0x400 };
+static const int16_t e_80103840[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80103A30[] = { 36, 0x400 };
+static const int16_t e_80103AC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80103B00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80103F10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80105240[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80105370[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80105440[] = { 20, 0x400 };
+static const int16_t e_80105480[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80105EE0[] = { 20, 0x400 };
+static const int16_t e_80105F40[] = { 36, 0x400 };
+static const int16_t e_80105FD0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80106190[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80106200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801062B0[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 144, 0x21E, 152, 0x31E, 128, 0x21D, 136, 0x31D, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80106620[] = { 260, 0x400, 240, 0x21F, 248, 0x31F, 224, 0x21E, 232, 0x31E, 208, 0x21D, 216, 0x31D, 192, 0x21C, 200, 0x31C, 176, 0x21B, 184, 0x31B, 160, 0x21A, 168, 0x31A, 144, 0x219, 152, 0x319, 140, 0x11F, 136, 0x11E };
+static const int16_t e_801068B0[] = { 260, 0x400, 240, 0x21F, 248, 0x31F, 224, 0x21E, 232, 0x31E, 208, 0x21D, 216, 0x31D, 192, 0x21C, 200, 0x31C, 176, 0x21B, 184, 0x31B, 172, 0x11F, 168, 0x11E };
+static const int16_t e_80106D60[] = { 36, 0x400 };
 static const int16_t e_8010C020[] = { 20, 0x400 };
 static const int16_t e_8010C050[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8010C0C0[] = { 20, 0x400, 12, 0x11F };
@@ -351,6 +925,515 @@ static const int16_t e_8010CA00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D
 static const int16_t e_8010CA90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8010CCD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8010CD70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80126630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801267D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80126810[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80126860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801268A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801268F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80126970[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80126A80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80126E90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80126F40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801270F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127170[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127240[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127410[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127470[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_801275B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127600[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_801278E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127990[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127B30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127F10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80127FC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80128190[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80128220[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801282E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80128370[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801284C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801286D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801287B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80128830[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80128B00[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80128D20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80128D60[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_80128FC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80129050[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80129220[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80129330[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80129500[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80129790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801298B0[] = { 20, 0x400 };
+static const int16_t e_80129910[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80129950[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80129CA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80129DA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80129EA0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8012AA30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012AB40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012AB80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012ABF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012AC40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012AC90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012ADA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012AE60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012BD90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012BF70[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012C220[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8012C5E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012C640[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8012C9B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012CB10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012CBA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012CCD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012CE40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012CF80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012D0C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012D110[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8012D200[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8012D250[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_8012D490[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012D5B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8012D620[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012D7C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012D850[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012DA60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012DB90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012DBE0[] = { 20, 0x400 };
+static const int16_t e_8012DC20[] = { 20, 0x400 };
+static const int16_t e_8012DC60[] = { 20, 0x400 };
+static const int16_t e_8012DCC0[] = { 20, 0x400 };
+static const int16_t e_8012DD10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012DE20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012DE80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8012DFB0[] = { 212, 0x400, 204, 0x11F, 200, 0x11E };
+static const int16_t e_8012E140[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8012E360[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F };
+static const int16_t e_8012E510[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012E5A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012E650[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012E6E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012E760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012E820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012E940[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012E9A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012EA10[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_8012EDC0[] = { 20, 0x400 };
+static const int16_t e_8012EDF0[] = { 20, 0x400 };
+static const int16_t e_8012EE20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012F060[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012F1A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012F270[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012F340[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8012F460[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012F4C0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8012FA00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8012FB10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F };
+static const int16_t e_8012FCF0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8012FE50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8012FF40[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80130040[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_801300E0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80130340[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_80130500[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801305B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80130A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80130B20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80130BC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80130C10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80131790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80131870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80131990[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_80131DE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80131F20[] = { 372, 0x400, 352, 0x21F, 360, 0x31F, 336, 0x21E, 344, 0x31E, 320, 0x21D, 328, 0x31D, 316, 0x11F, 312, 0x11E, 308, 0x11D };
+static const int16_t e_80132230[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80132340[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_80132440[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801327F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80132A80[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_80132C70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80132D40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80132DF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801335D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801337E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80133A60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80133B60[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_801341B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80134B10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80134BC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80135E70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80135F50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80135FC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80136000[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80136190[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80136340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801363C0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F };
+static const int16_t e_80136EB0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_80137130[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80137230[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80137320[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80137C10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80137E20[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801380D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80138140[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80138510[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_801386B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80138790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80138990[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80138A90[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80138D40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80138DD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80138E60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80138F40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801393D0[] = { 36, 0x400, 24, 0x21F, 20, 0x11F };
+static const int16_t e_80139460[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801394A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801395C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139640[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801396C0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F };
+static const int16_t e_801397D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80139950[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801399A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139A10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139A90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80139B80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80139C50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139C90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139D00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80139D80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139DE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80139F30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013A180[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8013A430[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013A540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013A670[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8013AAA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013AAF0[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_8013ABA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8013AC90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8013B480[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013B9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013BA80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013BB00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013BB90[] = { 196, 0x400, 176, 0x21F, 184, 0x31F, 160, 0x21E, 168, 0x31E, 156, 0x11F, 152, 0x11E };
+static const int16_t e_8013BDD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013BE80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013BF10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C1B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C3A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C3F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8013C520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8013C5F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C660[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C6C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C7C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013C850[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013CA80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013CB90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013CC90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013CE00[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8013CF70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8013D010[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013D060[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013D140[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013D1E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013D230[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8013D3B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013D400[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013D4E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013D7E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013DB00[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013DC30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013DE40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013DF50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013E000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8013E170[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013E850[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_8013E920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013EA50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013EA90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8013EF50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013EFF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013F100[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8013F1C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8013F350[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8013F4D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013F570[] = { 20, 0x400 };
+static const int16_t e_8013F620[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013F6E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013F750[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8013F950[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8013F9A0[] = { 20, 0x400 };
+static const int16_t e_8013FE00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80140590[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80140A30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80140AF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80140C30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80140FF0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80141140[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80141320[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80141460[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801414C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801415B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80141640[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801416F0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80141A60[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80141BF0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80141CD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80141FD0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80142030[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 300, 0x11F, 296, 0x11E };
+static const int16_t e_80142430[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80142530[] = { 20, 0x400 };
+static const int16_t e_80142580[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80142660[] = { 196, 0x400, 176, 0x21F, 184, 0x31F, 160, 0x21E, 168, 0x31E, 156, 0x11F, 152, 0x11E };
+static const int16_t e_80142F20[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_801430E0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_801432F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80143410[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_801434E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80143530[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80143590[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801435E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_801436F0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80143790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80143A90[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80143C30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80144030[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80144280[] = { 20, 0x400 };
+static const int16_t e_801446E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80144AA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80145040[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801450A0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_801451F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80145440[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80145520[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80145650[] = { 452, 0x400, 432, 0x21F, 440, 0x31F, 428, 0x11F, 424, 0x11E, 420, 0x11D };
+static const int16_t e_801459B0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E };
+static const int16_t e_80145AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80145C50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80145CC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80145E40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80145E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80146060[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801462A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_801465D0[] = { 52, 0x400 };
+static const int16_t e_80146770[] = { 20, 0x400 };
+static const int16_t e_801467B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801469D0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80146E90[] = { 36, 0x400, 24, 0x21F, 16, 0x21E, 12, 0x11F };
+static const int16_t e_80146F00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80146FA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80147040[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80147100[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80147250[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801472F0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_801473F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80147450[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801474F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80147560[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80147680[] = { 20, 0x400 };
+static const int16_t e_80147820[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80147A80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80147B60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80147BD0[] = { 1892, 0x400, 1856, 0x118, 1860, 0x119, 1864, 0x11A, 1868, 0x11B, 1872, 0x11C, 1876, 0x11D, 1880, 0x11E, 1884, 0x11F };
+static const int16_t e_8014A6F0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8014A960[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8014AAF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8014AC10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8014ADB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014AEF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8014AFC0[] = { 20, 0x400 };
+static const int16_t e_8014B000[] = { 20, 0x400 };
+static const int16_t e_8014B040[] = { 20, 0x400 };
+static const int16_t e_8014B060[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8014B130[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8014B2C0[] = { 20, 0x400 };
+static const int16_t e_8014B2F0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8014B580[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8014B850[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014B8C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014B920[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8014BA20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8014BAE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014BBF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014BE50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014BFB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C020[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C170[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014C200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C240[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C330[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8014C3A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C410[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C500[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C570[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C690[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014C730[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014C930[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8014CC30[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014CD70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014CDD0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_8014CEB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014CFD0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8014D070[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D2D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D4A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8014D5D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D610[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D6D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D720[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014D820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014DBB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E4E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E6B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E700[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014E9D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014EB80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014EC40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014ED50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014ED90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014EE10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014EFB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8014F0C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014F160[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014F200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014F290[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014F3E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014F470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014F540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014F590[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014F630[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014F840[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8014F9B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8014FAD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8014FBC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8014FC50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014FCC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014FD60[] = { 20, 0x400 };
+static const int16_t e_8014FF00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8014FF80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150020[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150090[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150150[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801501D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_801502E0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_801506A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801507C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801508A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80150AB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80150B80[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80150DB0[] = { 20, 0x400 };
+static const int16_t e_80150E10[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80151040[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80151270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80151320[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80151470[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80151630[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_801518D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80151A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80151AD0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80151C30[] = { 132, 0x400, 124, 0x11F };
+static const int16_t e_80151D00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80151E50[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80152020[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80152130[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_801522B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80152360[] = { 20, 0x400 };
+static const int16_t e_801523A0[] = { 20, 0x400 };
+static const int16_t e_801523E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80152480[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80152520[] = { 20, 0x400 };
+static const int16_t e_80152560[] = { 20, 0x400 };
+static const int16_t e_801527A0[] = { 20, 0x400 };
+static const int16_t e_80152B30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80152C80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_801531A0[] = { 20, 0x400 };
+static const int16_t e_80153210[] = { 20, 0x400 };
+static const int16_t e_80153240[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80153400[] = { 740, 0x400, 700, 0x117, 704, 0x118, 708, 0x119, 712, 0x11A, 716, 0x11B, 720, 0x11C, 724, 0x11D, 728, 0x11E, 732, 0x11F };
+static const int16_t e_801546C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80154740[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_801548A0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80154A70[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F };
+static const int16_t e_80154D00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80154D50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80156930[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80156D70[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80156E00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80158100[] = { 36, 0x400 };
+static const int16_t e_80159960[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_80159F10[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8015A340[] = { 20, 0x400 };
+static const int16_t e_8015A370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8015A580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8015A610[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8015A810[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015A890[] = { 20, 0x400 };
+static const int16_t e_8015A8D0[] = { 20, 0x400 };
+static const int16_t e_8015A910[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8015AB20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015B320[] = { 276, 0x400, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_8015B930[] = { 20, 0x400 };
+static const int16_t e_8015B970[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015B9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015BA10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015BA60[] = { 20, 0x400 };
+static const int16_t e_8015BAF0[] = { 20, 0x400 };
+static const int16_t e_8015BB30[] = { 20, 0x400 };
+static const int16_t e_8015BB60[] = { 20, 0x400 };
+static const int16_t e_8015BB90[] = { 20, 0x400 };
+static const int16_t e_8015BBC0[] = { 20, 0x400 };
+static const int16_t e_8015BBF0[] = { 20, 0x400 };
+static const int16_t e_8015BC40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015BCB0[] = { 20, 0x400 };
+static const int16_t e_8015BD10[] = { 20, 0x400 };
+static const int16_t e_8015BD40[] = { 20, 0x400 };
+static const int16_t e_8015BD80[] = { 20, 0x400 };
+static const int16_t e_8015BDD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015BE20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015BE60[] = { 20, 0x400 };
+static const int16_t e_8015BEA0[] = { 20, 0x400 };
+static const int16_t e_8015BEE0[] = { 20, 0x400 };
+static const int16_t e_8015BF10[] = { 20, 0x400 };
+static const int16_t e_8015BF50[] = { 20, 0x400 };
+static const int16_t e_8015BF90[] = { 20, 0x400 };
+static const int16_t e_8015BFD0[] = { 20, 0x400 };
+static const int16_t e_8015C010[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015C090[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015C130[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8015C370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8015C410[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8015C4C0[] = { 20, 0x400 };
+static const int16_t e_8015C560[] = { 20, 0x400 };
+static const int16_t e_8015C5A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015C630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015C680[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CCC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CD40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CDF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CE80[] = { 20, 0x400 };
+static const int16_t e_8015CED0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CF70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015CFC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015D030[] = { 20, 0x400 };
+static const int16_t e_8015D0A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015D1D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015D2A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015D330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015D3A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8015D650[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8015DC40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8015DDD0[] = { 900, 0x400, 876, 0x11B, 880, 0x11C, 884, 0x11D, 888, 0x11E, 892, 0x11F };
 static const int16_t e_8015F620[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8015F800[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8015F850[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
@@ -370,9 +1453,9 @@ static const int16_t e_80160D10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F
 static const int16_t e_80160EA0[] = { 36, 0x400 };
 static const int16_t e_80161060[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
 static const int16_t e_801610B0[] = { 52, 0x400, 40, 0x21F, 36, 0x11F, 32, 0x11E };
-static const int16_t e_80161120[] = { 20, 0x400, 8, 0x200 };
+static const int16_t e_80161120[] = { 20, 0x400 };
 static const int16_t e_801611C0[] = { 20, 0x400 };
-static const int16_t e_801613A0[] = { 36, 0x400, 28, 0x11F, 16, 0x200 };
+static const int16_t e_801613A0[] = { 36, 0x400, 28, 0x11F };
 static const int16_t e_80161400[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
 static const int16_t e_80161530[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_801616C0[] = { 20, 0x400 };
@@ -590,59 +1673,3418 @@ static const int16_t e_80170A00[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80170A90[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
 static const int16_t e_80170B40[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
 static const int16_t e_80170D80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802281D0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80229030[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80229860[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80229990[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80229F30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80229FF0[] = { 52, 0x400, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8022A1A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8022A1F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8022A710[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8022B310[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8022B380[] = { 20, 0x400 };
+static const int16_t e_8022B5A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8022B680[] = { 20, 0x400 };
 static const int16_t e_8022BE10[] = { 20, 0x400 };
+static const int16_t e_8022BE60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8022BF80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8022C300[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8022C3A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8022C980[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8022C9C0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8022D2F0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8022D3C0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_8022D4A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8022D500[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8022D560[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8022D5F0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F };
+static const int16_t e_8022D720[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 144, 0x21E, 152, 0x31E, 128, 0x21D, 136, 0x31D, 112, 0x21C, 120, 0x31C, 96, 0x21B, 104, 0x31B, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8022DAF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802308D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802310D0[] = { 196, 0x400, 128, 0x110, 132, 0x111, 136, 0x112, 140, 0x113, 144, 0x114, 148, 0x115, 152, 0x116, 156, 0x117, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80231CF0[] = { 484, 0x400, 464, 0x21F, 472, 0x31F, 448, 0x21E, 456, 0x31E, 432, 0x21D, 440, 0x31D, 416, 0x21C, 424, 0x31C, 400, 0x21B, 408, 0x31B, 352, 0x114, 356, 0x115, 360, 0x116, 364, 0x117, 368, 0x118, 372, 0x119, 376, 0x11A, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_802322C0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802323E0[] = { 660, 0x400, 640, 0x21F, 648, 0x31F, 624, 0x21E, 632, 0x31E, 608, 0x21D, 616, 0x31D, 592, 0x21C, 600, 0x31C, 576, 0x21B, 584, 0x31B, 560, 0x21A, 568, 0x31A, 544, 0x219, 552, 0x319, 528, 0x218, 536, 0x318, 512, 0x217, 520, 0x317, 496, 0x216, 504, 0x316, 452, 0x115, 456, 0x116, 460, 0x117, 464, 0x118, 468, 0x119, 472, 0x11A, 476, 0x11B, 480, 0x11C, 484, 0x11D, 488, 0x11E, 492, 0x11F };
+static const int16_t e_80232C10[] = { 436, 0x400, 416, 0x21F, 424, 0x31F, 400, 0x21E, 408, 0x31E, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_80233110[] = { 20, 0x400 };
+static const int16_t e_80235710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80238270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802385D0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80238930[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 16, 0x21D, 24, 0x31D, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802389F0[] = { 676, 0x400, 656, 0x21F, 664, 0x31F, 640, 0x21E, 648, 0x31E, 624, 0x21D, 632, 0x31D, 608, 0x21C, 616, 0x31C, 592, 0x21B, 600, 0x31B, 576, 0x21A, 584, 0x31A, 540, 0x117, 544, 0x118, 548, 0x119, 552, 0x11A, 556, 0x11B, 560, 0x11C, 564, 0x11D, 568, 0x11E, 572, 0x11F };
+static const int16_t e_80239930[] = { 20, 0x400 };
+static const int16_t e_80239A80[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80239B60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80239C40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80239CC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80239D30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80239DC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80239E30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80239F20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80239F90[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A010[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A0B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A120[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A190[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A200[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A270[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A2E0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023A350[] = { 100, 0x400, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8023A590[] = { 100, 0x400, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8023A860[] = { 212, 0x400, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_8023B1B0[] = { 20, 0x400 };
+static const int16_t e_8023B200[] = { 20, 0x400 };
+static const int16_t e_8023B250[] = { 20, 0x400 };
+static const int16_t e_8023B760[] = { 20, 0x400 };
+static const int16_t e_8023B7B0[] = { 20, 0x400 };
+static const int16_t e_8023BA50[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8023BB60[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_8023C100[] = { 20, 0x400 };
+static const int16_t e_8023C150[] = { 20, 0x400 };
+static const int16_t e_8023C1B0[] = { 20, 0x400 };
+static const int16_t e_8023C280[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
 static const int16_t e_8023C950[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8023C9B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023CBA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8023CBE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8023CD00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8023CE30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8023CEC0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8023CFA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8023D3C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023D520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023E050[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8023E250[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8023E390[] = { 100, 0x400, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8023E740[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023E820[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023E900[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8023EE90[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8023F140[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8023F250[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8023F370[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8023F5A0[] = { 68, 0x400, 56, 0x21F, 20, 0x117, 24, 0x118, 28, 0x119, 32, 0x11A, 36, 0x11B, 40, 0x11C, 44, 0x11D, 48, 0x11E, 52, 0x11F };
+static const int16_t e_8023F720[] = { 68, 0x400, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8023FA30[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8023FE50[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802405B0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80241020[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802412A0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80241330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802413A0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802413E0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80241490[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80241530[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802415D0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80241710[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80241AA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80241C70[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80241DE0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80241EB0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802422A0[] = { 20, 0x400 };
+static const int16_t e_80242300[] = { 20, 0x400 };
+static const int16_t e_80242360[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802423F0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802424A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80242530[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802426D0[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80242C30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80242D80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80242EB0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802430C0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80243250[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80243420[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80243510[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80243630[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80243B30[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80243C70[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80243D20[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80243F10[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80243FE0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80244190[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80244290[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80244360[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80244840[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802449C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80244BF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80244CE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80244E00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80245300[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80245440[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80245500[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802456F0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802457C0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80245970[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80245A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80245B40[] = { 116, 0x400, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80245E40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80245FC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802461F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802462E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80246400[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80246900[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80246A40[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80246B00[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80246CF0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80246DC0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80246F70[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80247070[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802471E0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80247490[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80247610[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80247840[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80247930[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80247A50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802481B0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80248330[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 288, 0x21C, 296, 0x31C, 272, 0x21B, 280, 0x31B, 256, 0x21A, 264, 0x31A, 240, 0x219, 248, 0x319, 224, 0x218, 232, 0x318, 208, 0x217, 216, 0x317, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_80248990[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80248B80[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80248C50[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80248E00[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80248F10[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
 static const int16_t e_802492E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802494B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80249630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80249A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80249AC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80249B40[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80249BF0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
 static const int16_t e_8024A150[] = { 68, 0x400 };
+static const int16_t e_8024A1D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
 static const int16_t e_8024A2D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8024A3D0[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8024A6E0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_8024AAC0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8024B0E0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8024B1E0[] = { 68, 0x400, 8, 0x112, 12, 0x113, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8024B610[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
 static const int16_t e_8024B6B0[] = { 20, 0x400 };
+static const int16_t e_8024B720[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8024B990[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8024BCB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8024C2B0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
 static const int16_t e_8024C8D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8024C960[] = { 212, 0x400, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_8024CC10[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8024CDC0[] = { 100, 0x400, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
 static const int16_t e_8024D0B0[] = { 20, 0x400 };
 static const int16_t e_8024D220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
 static const int16_t e_8024D2C0[] = { 36, 0x400, 28, 0x11F };
 static const int16_t e_8024D3C0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8024D420[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8024D4F0[] = { 68, 0x400, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8024DA70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8024DCE0[] = { 308, 0x400, 300, 0x11F, 296, 0x11E, 292, 0x11D, 288, 0x11C };
+static const int16_t e_8024E180[] = { 612, 0x400, 592, 0x21F, 600, 0x31F, 576, 0x21E, 584, 0x31E, 560, 0x21D, 568, 0x31D, 544, 0x21C, 552, 0x31C, 528, 0x21B, 536, 0x31B, 512, 0x21A, 520, 0x31A, 496, 0x219, 504, 0x319, 480, 0x218, 488, 0x318, 464, 0x217, 472, 0x317, 396, 0x10F, 400, 0x110, 404, 0x111, 408, 0x112, 412, 0x113, 416, 0x114, 420, 0x115, 424, 0x116, 428, 0x117, 432, 0x118, 436, 0x119, 440, 0x11A, 444, 0x11B, 448, 0x11C, 452, 0x11D, 456, 0x11E, 460, 0x11F };
+static const int16_t e_8024EBD0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80250230[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 136, 0x10E, 140, 0x10F, 144, 0x110, 148, 0x111, 152, 0x112, 156, 0x113, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_80250CB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80250E70[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 120, 0x10E, 124, 0x10F, 128, 0x110, 132, 0x111, 136, 0x112, 140, 0x113, 144, 0x114, 148, 0x115, 152, 0x116, 156, 0x117, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80251440[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80251930[] = { 308, 0x400, 288, 0x21F, 296, 0x31F, 272, 0x21E, 280, 0x31E, 256, 0x21D, 264, 0x31D, 216, 0x116, 220, 0x117, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80252160[] = { 148, 0x400, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80252440[] = { 148, 0x400, 88, 0x112, 92, 0x113, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_802525A0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80252710[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_802529F0[] = { 132, 0x400, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802537E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80253BE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80253CB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80253ED0[] = { 212, 0x400, 204, 0x11F, 200, 0x11E, 196, 0x11D, 192, 0x11C };
 static const int16_t e_802540B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_80254110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_802541F0[] = { 20, 0x400 };
 static const int16_t e_802542C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80254340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802543D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802544F0[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 140, 0x11F };
+static const int16_t e_80254A70[] = { 100, 0x400, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80254C20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80254D00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80254DC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80254EC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802556B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80255750[] = { 116, 0x400, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80257030[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80257100[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_802571F0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802574E0[] = { 20, 0x400 };
+static const int16_t e_80257570[] = { 20, 0x400 };
+static const int16_t e_802575D0[] = { 20, 0x400 };
+static const int16_t e_80257900[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80257A40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80257E60[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80257FC0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80258430[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802585C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80258710[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802589E0[] = { 68, 0x400, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80258B20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80258BD0[] = { 20, 0x400 };
+static const int16_t e_80258C30[] = { 20, 0x400 };
 static const int16_t e_80258C80[] = { 20, 0x400 };
+static const int16_t e_80258CE0[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 160, 0x21D, 168, 0x31D, 124, 0x117, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80258F10[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802590A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80259110[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80259190[] = { 324, 0x400, 316, 0x11F };
+static const int16_t e_80259280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802592E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80259360[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802593E0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80259560[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80259680[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80259760[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80259AE0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80259E60[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8025A150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8025A1E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8025A520[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8025A7C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8025B420[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8025B500[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8025BB10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025BC90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025C030[] = { 84, 0x400, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8025C250[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025C660[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8025C960[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8025CA20[] = { 340, 0x400, 264, 0x10E, 268, 0x10F, 272, 0x110, 276, 0x111, 280, 0x112, 284, 0x113, 288, 0x114, 292, 0x115, 296, 0x116, 300, 0x117, 304, 0x118, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_8025D5B0[] = { 564, 0x400, 496, 0x110, 500, 0x111, 504, 0x112, 508, 0x113, 512, 0x114, 516, 0x115, 520, 0x116, 524, 0x117, 528, 0x118, 532, 0x119, 536, 0x11A, 540, 0x11B, 544, 0x11C, 548, 0x11D, 552, 0x11E, 556, 0x11F };
+static const int16_t e_8025DB30[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8025E060[] = { 148, 0x400, 80, 0x110, 84, 0x111, 88, 0x112, 92, 0x113, 96, 0x114, 100, 0x115, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8025E400[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_8025E740[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8025E8B0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_8025EAB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025EB40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025EEB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025EFB0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
 static const int16_t e_8025F0C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F3B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8025F440[] = { 20, 0x400 };
+static const int16_t e_8025F470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F4B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F530[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F5B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8025F6D0[] = { 340, 0x400, 300, 0x117, 304, 0x118, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_8025FAD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8025FC30[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802605D0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80260860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80260AF0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 48, 0x21C, 56, 0x31C, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802610C0[] = { 36, 0x400 };
+static const int16_t e_80261190[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802614E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80261740[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80261DB0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_80262840[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80263810[] = { 52, 0x400 };
+static const int16_t e_802640E0[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80264AE0[] = { 20, 0x400 };
+static const int16_t e_80264C10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80265270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802652E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80265330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80265390[] = { 20, 0x400 };
+static const int16_t e_802653D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80265470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802654B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802654F0[] = { 196, 0x400, 188, 0x11F, 184, 0x11E };
+static const int16_t e_80265780[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80265890[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80265A30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80265B50[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80265E80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80266250[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802667F0[] = { 164, 0x400, 156, 0x11F, 152, 0x11E, 148, 0x11D };
+static const int16_t e_80266DC0[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 160, 0x21D, 168, 0x31D, 144, 0x21C, 152, 0x31C, 128, 0x21B, 136, 0x31B, 112, 0x21A, 120, 0x31A, 96, 0x219, 104, 0x319, 80, 0x218, 88, 0x318, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80267190[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80267530[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80267570[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802675B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80267760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80267C40[] = { 20, 0x400 };
+static const int16_t e_80267DD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80267E30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80267F40[] = { 244, 0x400, 224, 0x21F, 232, 0x31F, 208, 0x21E, 216, 0x31E, 192, 0x21D, 200, 0x31D, 176, 0x21C, 184, 0x31C, 160, 0x21B, 168, 0x31B, 144, 0x21A, 152, 0x31A, 128, 0x219, 136, 0x319, 112, 0x218, 120, 0x318, 96, 0x217, 104, 0x317, 80, 0x216, 88, 0x316, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_80268620[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802686A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80268710[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80268910[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80268A50[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80268D50[] = { 20, 0x400 };
+static const int16_t e_80268FF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802690D0[] = { 388, 0x400, 380, 0x11F, 376, 0x11E, 372, 0x11D };
+static const int16_t e_80269270[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80269320[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802693F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80269480[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80269A50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80269AF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80269D00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80269DC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8026A010[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8026A2A0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8026A350[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8026B160[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8026B1F0[] = { 20, 0x400 };
+static const int16_t e_8026B240[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8026B300[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8026B370[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8026B560[] = { 36, 0x400 };
+static const int16_t e_8026BCF0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8026BDC0[] = { 20, 0x400 };
+static const int16_t e_8026BE10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8026BED0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8026BF40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8026C210[] = { 36, 0x400 };
+static const int16_t e_8026DD60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8026E2B0[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8026E940[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8026F2D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8026F480[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8026F4E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8026F540[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8026F5B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8026F690[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80270120[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80270720[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80270830[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80270920[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80270AD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80270C20[] = { 116, 0x400, 108, 0x11F, 104, 0x11E, 100, 0x11D };
+static const int16_t e_80270EB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80271190[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802723A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802724A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802724E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80272560[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80272830[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802729C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80272A10[] = { 20, 0x400 };
+static const int16_t e_80272C40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80272D90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80272F40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80275040[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80275150[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802751B0[] = { 20, 0x400 };
+static const int16_t e_802753F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802754B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802755D0[] = { 20, 0x400 };
+static const int16_t e_80275850[] = { 628, 0x400, 596, 0x119, 600, 0x11A, 604, 0x11B, 608, 0x11C, 612, 0x11D, 616, 0x11E, 620, 0x11F };
+static const int16_t e_80275A80[] = { 324, 0x400, 292, 0x119, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80275BA0[] = { 324, 0x400, 292, 0x119, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80275CC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80276100[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80276300[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80276410[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802765A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80276660[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80276770[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802768B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80276940[] = { 20, 0x400 };
+static const int16_t e_80276980[] = { 20, 0x400 };
+static const int16_t e_802769D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80276AE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80276BA0[] = { 20, 0x400 };
+static const int16_t e_80276BE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80276CE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80276E00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80276F50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80277050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80277090[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802776B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_80277870[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802778F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80277970[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80277AB0[] = { 100, 0x400, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80277CF0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80277E40[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80278290[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80278790[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_80278920[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_80279510[] = { 100, 0x400, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80279880[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80279A30[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80279B70[] = { 580, 0x400, 572, 0x11F, 568, 0x11E, 564, 0x11D, 560, 0x11C };
+static const int16_t e_80279F00[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_8027A030[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8027A160[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027A1B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027A250[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027B290[] = { 36, 0x400 };
+static const int16_t e_8027B360[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8027B5A0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8027B5F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027BE40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027BF50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8027C210[] = { 132, 0x400, 124, 0x11F, 120, 0x11E, 116, 0x11D, 112, 0x11C };
+static const int16_t e_8027C430[] = { 20, 0x400 };
+static const int16_t e_8027C470[] = { 20, 0x400 };
+static const int16_t e_8027C4B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8027C7C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8027C910[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8027D520[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027DEC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8027E3B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8027EDE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8027F040[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027F450[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8027F510[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8027F650[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8027F6D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027F730[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8027F7B0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8027FA80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8027FC50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8027FD90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8027FDD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80280250[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80280600[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80280870[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80280910[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80281170[] = { 116, 0x400, 48, 0x110, 52, 0x111, 56, 0x112, 60, 0x113, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80281390[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281820[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802818C0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281950[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802819F0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281A70[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281AF0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281B80[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281C00[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281C90[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80281D80[] = { 84, 0x400, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80281E70[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802821E0[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 288, 0x21C, 296, 0x31C, 272, 0x21B, 280, 0x31B, 256, 0x21A, 264, 0x31A, 240, 0x219, 248, 0x319, 224, 0x218, 232, 0x318, 208, 0x217, 216, 0x317, 192, 0x216, 200, 0x316, 176, 0x215, 184, 0x315, 160, 0x214, 168, 0x314, 144, 0x213, 152, 0x313, 128, 0x212, 136, 0x312, 112, 0x211, 120, 0x311, 96, 0x210, 104, 0x310, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_80282EF0[] = { 20, 0x400 };
+static const int16_t e_80282FF0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80283B10[] = { 20, 0x400 };
+static const int16_t e_80283BD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80283E10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80283EC0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80284000[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802842A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802843C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802844E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802845E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80284650[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802856F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80285780[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80285810[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802858E0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80285A40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80285B50[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80285C50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80285CE0[] = { 4148, 0x400, 4116, 0x119, 4120, 0x11A, 4124, 0x11B, 4128, 0x11C, 4132, 0x11D, 4136, 0x11E, 4140, 0x11F };
+static const int16_t e_80285DB0[] = { 4132, 0x400, 4124, 0x11F, 4120, 0x11E, 4116, 0x11D, 4112, 0x11C };
+static const int16_t e_80285E40[] = { 4180, 0x400, 4152, 0x11A, 4156, 0x11B, 4160, 0x11C, 4164, 0x11D, 4168, 0x11E, 4172, 0x11F };
+static const int16_t e_80286430[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80286640[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80286750[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802867A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80286810[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80286A30[] = { 4132, 0x400, 4124, 0x11F, 4120, 0x11E, 4116, 0x11D, 4112, 0x11C };
+static const int16_t e_80286AC0[] = { 4132, 0x400, 4124, 0x11F, 4120, 0x11E, 4116, 0x11D, 4112, 0x11C };
+static const int16_t e_80286B70[] = { 4132, 0x400, 4108, 0x11B, 4112, 0x11C, 4116, 0x11D, 4120, 0x11E, 4124, 0x11F };
+static const int16_t e_80286C10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80286CA0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_80287000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80287130[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802871D0[] = { 4132, 0x400, 4124, 0x11F, 4120, 0x11E, 4116, 0x11D, 4112, 0x11C };
+static const int16_t e_80287270[] = { 4132, 0x400, 4108, 0x11B, 4112, 0x11C, 4116, 0x11D, 4120, 0x11E, 4124, 0x11F };
+static const int16_t e_80287360[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80287410[] = { 4148, 0x400, 4116, 0x119, 4120, 0x11A, 4124, 0x11B, 4128, 0x11C, 4132, 0x11D, 4136, 0x11E, 4140, 0x11F };
+static const int16_t e_802874E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802877C0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80287930[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80287C10[] = { 724, 0x400, 680, 0x116, 684, 0x117, 688, 0x118, 692, 0x119, 696, 0x11A, 700, 0x11B, 704, 0x11C, 708, 0x11D, 712, 0x11E, 716, 0x11F };
+static const int16_t e_80288490[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 156, 0x11F, 152, 0x11E, 148, 0x11D, 144, 0x11C };
+static const int16_t e_802888E0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80288AA0[] = { 4132, 0x400, 4124, 0x11F, 4120, 0x11E, 4116, 0x11D };
+static const int16_t e_80288B30[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_80288C50[] = { 228, 0x400, 220, 0x11F, 216, 0x11E, 212, 0x11D, 208, 0x11C };
+static const int16_t e_80288E30[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80289070[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_802891C0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80289410[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 64, 0x110, 68, 0x111, 72, 0x112, 76, 0x113, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_8028A6F0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8028B6C0[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8028C7A0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8028CD70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8028CEE0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8028DC70[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8028DFC0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80291A10[] = { 196, 0x400, 176, 0x21F, 184, 0x31F, 160, 0x21E, 168, 0x31E, 144, 0x21D, 152, 0x31D, 128, 0x21C, 136, 0x31C, 112, 0x21B, 120, 0x31B, 96, 0x21A, 104, 0x31A, 80, 0x219, 88, 0x319, 64, 0x218, 72, 0x318, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80291D30[] = { 308, 0x400, 288, 0x21F, 296, 0x31F, 252, 0x117, 256, 0x118, 260, 0x119, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80292810[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80292890[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80292920[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802929D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80292B60[] = { 84, 0x400, 72, 0x21F, 36, 0x117, 40, 0x118, 44, 0x119, 48, 0x11A, 52, 0x11B, 56, 0x11C, 60, 0x11D, 64, 0x11E, 68, 0x11F };
+static const int16_t e_80292C90[] = { 1476, 0x400, 1456, 0x21F, 1464, 0x31F, 1440, 0x21E, 1448, 0x31E, 1424, 0x21D, 1432, 0x31D, 1408, 0x21C, 1416, 0x31C, 1392, 0x21B, 1400, 0x31B, 1376, 0x21A, 1384, 0x31A, 1360, 0x219, 1368, 0x319, 1344, 0x218, 1352, 0x318, 1328, 0x217, 1336, 0x317, 1312, 0x216, 1320, 0x316, 1296, 0x215, 1304, 0x315, 1280, 0x214, 1288, 0x314, 1208, 0x10E, 1212, 0x10F, 1216, 0x110, 1220, 0x111, 1224, 0x112, 1228, 0x113, 1232, 0x114, 1236, 0x115, 1240, 0x116, 1244, 0x117, 1248, 0x118, 1252, 0x119, 1256, 0x11A, 1260, 0x11B, 1264, 0x11C, 1268, 0x11D, 1272, 0x11E, 1276, 0x11F };
+static const int16_t e_802941F0[] = { 372, 0x400, 352, 0x21F, 360, 0x31F, 280, 0x10E, 284, 0x10F, 288, 0x110, 292, 0x111, 296, 0x112, 300, 0x113, 304, 0x114, 308, 0x115, 312, 0x116, 316, 0x117, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_80294440[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_802945E0[] = { 164, 0x400, 156, 0x11F };
+static const int16_t e_802946F0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80294CA0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80294E90[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80294F50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80294FD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80295090[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80295160[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802951E0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80295300[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80295400[] = { 52, 0x400, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80295640[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802956E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80295780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802957D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80295860[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80295C20[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80296820[] = { 276, 0x400, 256, 0x21F, 264, 0x31F, 240, 0x21E, 248, 0x31E, 236, 0x11F, 232, 0x11E, 228, 0x11D };
+static const int16_t e_80296DD0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80296F50[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802970D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802972F0[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 272, 0x21D, 280, 0x31D, 256, 0x21C, 264, 0x31C, 240, 0x21B, 248, 0x31B, 224, 0x21A, 232, 0x31A, 208, 0x219, 216, 0x319, 192, 0x218, 200, 0x318, 176, 0x217, 184, 0x317, 160, 0x216, 168, 0x316, 144, 0x215, 152, 0x315, 128, 0x214, 136, 0x314, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80297640[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 272, 0x21D, 280, 0x31D, 256, 0x21C, 264, 0x31C, 240, 0x21B, 248, 0x31B, 224, 0x21A, 232, 0x31A, 208, 0x219, 216, 0x319, 192, 0x218, 200, 0x318, 176, 0x217, 184, 0x317, 128, 0x114, 132, 0x115, 136, 0x116, 140, 0x117, 144, 0x118, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80297980[] = { 420, 0x400, 400, 0x21F, 408, 0x31F, 384, 0x21E, 392, 0x31E, 368, 0x21D, 376, 0x31D, 352, 0x21C, 360, 0x31C, 336, 0x21B, 344, 0x31B, 320, 0x21A, 328, 0x31A, 304, 0x219, 312, 0x319, 288, 0x218, 296, 0x318, 272, 0x217, 280, 0x317, 256, 0x216, 264, 0x316, 240, 0x215, 248, 0x315, 224, 0x214, 232, 0x314, 208, 0x213, 216, 0x313, 192, 0x212, 200, 0x312, 176, 0x211, 184, 0x311, 128, 0x114, 132, 0x115, 136, 0x116, 140, 0x117, 144, 0x118, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80297EC0[] = { 548, 0x400, 528, 0x21F, 536, 0x31F, 512, 0x21E, 520, 0x31E, 496, 0x21D, 504, 0x31D, 480, 0x21C, 488, 0x31C, 464, 0x21B, 472, 0x31B, 448, 0x21A, 456, 0x31A, 432, 0x219, 440, 0x319, 416, 0x218, 424, 0x318, 400, 0x217, 408, 0x317, 384, 0x216, 392, 0x316, 368, 0x215, 376, 0x315, 352, 0x214, 360, 0x314, 336, 0x213, 344, 0x313, 320, 0x212, 328, 0x312, 304, 0x211, 312, 0x311, 288, 0x210, 296, 0x310, 272, 0x20F, 280, 0x30F, 256, 0x20E, 264, 0x30E, 192, 0x110, 196, 0x111, 200, 0x112, 204, 0x113, 208, 0x114, 212, 0x115, 216, 0x116, 220, 0x117, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80299510[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80299840[] = { 564, 0x400, 544, 0x21F, 552, 0x31F, 528, 0x21E, 536, 0x31E, 512, 0x21D, 520, 0x31D, 496, 0x21C, 504, 0x31C, 480, 0x21B, 488, 0x31B, 464, 0x21A, 472, 0x31A, 448, 0x219, 456, 0x319, 432, 0x218, 440, 0x318, 416, 0x217, 424, 0x317, 400, 0x216, 408, 0x316, 384, 0x215, 392, 0x315, 368, 0x214, 376, 0x314, 352, 0x213, 360, 0x313, 336, 0x212, 344, 0x312, 320, 0x211, 328, 0x311, 304, 0x210, 312, 0x310, 288, 0x20F, 296, 0x30F, 272, 0x20E, 280, 0x30E, 212, 0x111, 216, 0x112, 220, 0x113, 224, 0x114, 228, 0x115, 232, 0x116, 236, 0x117, 240, 0x118, 244, 0x119, 248, 0x11A, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_8029B0F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8029B340[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8029B420[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8029B710[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8029BAB0[] = { 100, 0x400, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8029C080[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8029C820[] = { 404, 0x400, 384, 0x21F, 392, 0x31F, 368, 0x21E, 376, 0x31E, 352, 0x21D, 360, 0x31D, 336, 0x21C, 344, 0x31C, 320, 0x21B, 328, 0x31B, 304, 0x21A, 312, 0x31A, 288, 0x219, 296, 0x319, 272, 0x218, 280, 0x318, 256, 0x217, 264, 0x317, 240, 0x216, 248, 0x316, 224, 0x215, 232, 0x315, 208, 0x214, 216, 0x314, 140, 0x10F, 144, 0x110, 148, 0x111, 152, 0x112, 156, 0x113, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_8029CFC0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_8029D2C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8029D340[] = { 740, 0x400, 720, 0x21F, 728, 0x31F, 704, 0x21E, 712, 0x31E, 688, 0x21D, 696, 0x31D, 672, 0x21C, 680, 0x31C, 656, 0x21B, 664, 0x31B, 640, 0x21A, 648, 0x31A, 624, 0x219, 632, 0x319, 608, 0x218, 616, 0x318, 592, 0x217, 600, 0x317, 576, 0x216, 584, 0x316, 560, 0x215, 568, 0x315, 544, 0x214, 552, 0x314, 528, 0x213, 536, 0x313, 512, 0x212, 520, 0x312, 496, 0x211, 504, 0x311, 480, 0x210, 488, 0x310, 464, 0x20F, 472, 0x30F, 448, 0x20E, 456, 0x30E, 376, 0x10E, 380, 0x10F, 384, 0x110, 388, 0x111, 392, 0x112, 396, 0x113, 400, 0x114, 404, 0x115, 408, 0x116, 412, 0x117, 416, 0x118, 420, 0x119, 424, 0x11A, 428, 0x11B, 432, 0x11C, 436, 0x11D, 440, 0x11E, 444, 0x11F };
+static const int16_t e_8029ED70[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8029EEC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8029F460[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8029F4A0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_8029F5F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8029F640[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_8029F7E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8029F900[] = { 1124, 0x400, 1104, 0x21F, 1112, 0x31F, 1088, 0x21E, 1096, 0x31E, 1072, 0x21D, 1080, 0x31D, 1056, 0x21C, 1064, 0x31C, 1040, 0x21B, 1048, 0x31B, 1024, 0x21A, 1032, 0x31A, 1008, 0x219, 1016, 0x319, 992, 0x218, 1000, 0x318, 976, 0x217, 984, 0x317, 960, 0x216, 968, 0x316, 944, 0x215, 952, 0x315, 928, 0x214, 936, 0x314, 912, 0x213, 920, 0x313, 896, 0x212, 904, 0x312, 840, 0x112, 844, 0x113, 848, 0x114, 852, 0x115, 856, 0x116, 860, 0x117, 864, 0x118, 868, 0x119, 872, 0x11A, 876, 0x11B, 880, 0x11C, 884, 0x11D, 888, 0x11E, 892, 0x11F };
+static const int16_t e_802A0660[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_802A0830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A08A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A0A90[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_802A1090[] = { 932, 0x400, 912, 0x21F, 920, 0x31F, 896, 0x21E, 904, 0x31E, 880, 0x21D, 888, 0x31D, 864, 0x21C, 872, 0x31C, 848, 0x21B, 856, 0x31B, 832, 0x21A, 840, 0x31A, 816, 0x219, 824, 0x319, 800, 0x218, 808, 0x318, 784, 0x217, 792, 0x317, 768, 0x216, 776, 0x316, 728, 0x116, 732, 0x117, 736, 0x118, 740, 0x119, 744, 0x11A, 748, 0x11B, 752, 0x11C, 756, 0x11D, 760, 0x11E, 764, 0x11F };
+static const int16_t e_802A16D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A18A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A18E0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_802A1A20[] = { 532, 0x400, 512, 0x21F, 520, 0x31F, 496, 0x21E, 504, 0x31E, 480, 0x21D, 488, 0x31D, 464, 0x21C, 472, 0x31C, 448, 0x21B, 456, 0x31B, 432, 0x21A, 440, 0x31A, 416, 0x219, 424, 0x319, 400, 0x218, 408, 0x318, 384, 0x217, 392, 0x317, 368, 0x216, 376, 0x316, 352, 0x215, 360, 0x315, 312, 0x116, 316, 0x117, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_802A22D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A2900[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A2DA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A2DE0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 36, 0x111, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802A3160[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 272, 0x21D, 280, 0x31D, 240, 0x118, 244, 0x119, 248, 0x11A, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_802A4F70[] = { 692, 0x400, 672, 0x21F, 680, 0x31F, 640, 0x118, 644, 0x119, 648, 0x11A, 652, 0x11B, 656, 0x11C, 660, 0x11D, 664, 0x11E, 668, 0x11F };
+static const int16_t e_802A5810[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_802A6470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802A64B0[] = { 308, 0x400, 288, 0x21F, 296, 0x31F, 272, 0x21E, 280, 0x31E, 256, 0x21D, 264, 0x31D, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_802A6850[] = { 340, 0x400, 320, 0x21F, 328, 0x31F, 304, 0x21E, 312, 0x31E, 288, 0x21D, 296, 0x31D, 272, 0x21C, 280, 0x31C, 256, 0x21B, 264, 0x31B, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_802A6CB0[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 240, 0x21D, 248, 0x31D, 224, 0x21C, 232, 0x31C, 208, 0x21B, 216, 0x31B, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_802A71D0[] = { 980, 0x400, 960, 0x21F, 968, 0x31F, 944, 0x21E, 952, 0x31E, 928, 0x21D, 936, 0x31D, 912, 0x21C, 920, 0x31C, 896, 0x21B, 904, 0x31B, 880, 0x21A, 888, 0x31A, 864, 0x219, 872, 0x319, 848, 0x218, 856, 0x318, 776, 0x10E, 780, 0x10F, 784, 0x110, 788, 0x111, 792, 0x112, 796, 0x113, 800, 0x114, 804, 0x115, 808, 0x116, 812, 0x117, 816, 0x118, 820, 0x119, 824, 0x11A, 828, 0x11B, 832, 0x11C, 836, 0x11D, 840, 0x11E, 844, 0x11F };
+static const int16_t e_802A7CA0[] = { 244, 0x400, 224, 0x21F, 232, 0x31F, 208, 0x21E, 216, 0x31E, 192, 0x21D, 200, 0x31D, 124, 0x10F, 128, 0x110, 132, 0x111, 136, 0x112, 140, 0x113, 144, 0x114, 148, 0x115, 152, 0x116, 156, 0x117, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_802A8020[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 272, 0x21D, 280, 0x31D, 204, 0x10F, 208, 0x110, 212, 0x111, 216, 0x112, 220, 0x113, 224, 0x114, 228, 0x115, 232, 0x116, 236, 0x117, 240, 0x118, 244, 0x119, 248, 0x11A, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_802A8D10[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 288, 0x21C, 296, 0x31C, 224, 0x110, 228, 0x111, 232, 0x112, 236, 0x113, 240, 0x114, 244, 0x115, 248, 0x116, 252, 0x117, 256, 0x118, 260, 0x119, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_802A9E10[] = { 644, 0x400, 624, 0x21F, 632, 0x31F, 592, 0x118, 596, 0x119, 600, 0x11A, 604, 0x11B, 608, 0x11C, 612, 0x11D, 616, 0x11E, 620, 0x11F };
+static const int16_t e_802AA830[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_802AACD0[] = { 84, 0x400, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_802AAF50[] = { 84, 0x400, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_802AB4F0[] = { 20, 0x400 };
+static const int16_t e_802AB550[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802AB680[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802AB7C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802AB8F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802AB9A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802ABA60[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
 static const int16_t e_802ABD60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_802ABE00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_802ABE90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802AC020[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802AC080[] = { 20, 0x400 };
+static const int16_t e_802AC0E0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802AC2E0[] = { 68, 0x400 };
+static const int16_t e_802AC480[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802AC550[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802AC670[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802AC720[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802AC7F0[] = { 20, 0x400 };
+static const int16_t e_802AC830[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802AC8B0[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802ACB80[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802ACCB0[] = { 100, 0x400, 24, 0x10E, 28, 0x10F, 32, 0x110, 36, 0x111, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802AD000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802AD720[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_802AD920[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802ADA70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802ADDA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802ADEA0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802AE190[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_802AE430[] = { 452, 0x400, 432, 0x21F, 440, 0x31F, 416, 0x21E, 424, 0x31E, 400, 0x21D, 408, 0x31D, 384, 0x21C, 392, 0x31C, 312, 0x10E, 316, 0x10F, 320, 0x110, 324, 0x111, 328, 0x112, 332, 0x113, 336, 0x114, 340, 0x115, 344, 0x116, 348, 0x117, 352, 0x118, 356, 0x119, 360, 0x11A, 364, 0x11B, 368, 0x11C, 372, 0x11D, 376, 0x11E, 380, 0x11F };
+static const int16_t e_802AE9C0[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 160, 0x21D, 168, 0x31D, 144, 0x21C, 152, 0x31C, 128, 0x21B, 136, 0x31B, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802AEDA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802AEE70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802AEEC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802AEFA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802AF080[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_802AF1B0[] = { 68, 0x400 };
+static const int16_t e_802AF4F0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802AF6F0[] = { 84, 0x400, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_802AF980[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802AFAD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802AFC60[] = { 100, 0x400, 92, 0x11F, 88, 0x11E };
+static const int16_t e_802AFE40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802AFF60[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802B0070[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 156, 0x117, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_802B0680[] = { 228, 0x400, 188, 0x117, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_802B1D60[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802B20B0[] = { 132, 0x400, 56, 0x10E, 60, 0x10F, 64, 0x110, 68, 0x111, 72, 0x112, 76, 0x113, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802B2BC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B2C70[] = { 100, 0x400, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802B35E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B3B00[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 216, 0x116, 220, 0x117, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
 static const int16_t e_802B4960[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B49E0[] = { 20, 0x400 };
+static const int16_t e_802B4A40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B4B50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802B4C60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B4D30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B4DB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B5110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B51C0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802B5330[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802B5620[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802B5800[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802B5B10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B5CC0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B5DA0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B6320[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802B63B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B6410[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_802B64E0[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802B6620[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B6680[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B67B0[] = { 20, 0x400 };
+static const int16_t e_802B67E0[] = { 20, 0x400 };
+static const int16_t e_802B6860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B68B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B6B90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B6C80[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B71E0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802B7310[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B7380[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B73F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B7460[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B74C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B7540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B75B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802B76C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802B7770[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802B7830[] = { 20, 0x400 };
+static const int16_t e_802B78F0[] = { 84, 0x400, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_802B7A40[] = { 292, 0x400, 284, 0x11F, 280, 0x11E, 276, 0x11D };
+static const int16_t e_802B7AC0[] = { 20, 0x400 };
+static const int16_t e_802B7B00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B7B50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B7BC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B7C30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B7CB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B7D10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B7ED0[] = { 260, 0x400, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_802B7F80[] = { 148, 0x400, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_802B8150[] = { 68, 0x400, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802B8420[] = { 20, 0x400 };
+static const int16_t e_802B8450[] = { 20, 0x400 };
+static const int16_t e_802B8A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B8AD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B8B40[] = { 20, 0x400 };
+static const int16_t e_802B8CC0[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802B8F30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B8F70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802B9010[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B91D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B92A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B9360[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B9430[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B9590[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802B9730[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B9780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B97C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B9840[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802B9910[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B9A10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B9AB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802B9B80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802B9DF0[] = { 20, 0x400 };
+static const int16_t e_802B9E70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802B9F30[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802BA000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802BA2D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BA330[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BA480[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802BA5C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BA630[] = { 20, 0x400 };
+static const int16_t e_802BA670[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802BA710[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802BA800[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BA870[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802BAC30[] = { 20, 0x400 };
+static const int16_t e_802BAC70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BAED0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802BAF70[] = { 36, 0x400, 28, 0x11F };
 static const int16_t e_802BB030[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
 static const int16_t e_802BB2A0[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 140, 0x11F, 136, 0x11E, 132, 0x11D, 128, 0x11C };
+static const int16_t e_802BB580[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BB9A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802BBA30[] = { 132, 0x400, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802BBDD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802BBE30[] = { 36, 0x400, 24, 0x21F, 20, 0x11F, 16, 0x11E, 12, 0x11D, 8, 0x11C };
+static const int16_t e_802BBFD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802BC120[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BC1A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BC440[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BC560[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BC670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BC7A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BC800[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BC9E0[] = { 196, 0x400, 188, 0x11F, 184, 0x11E };
+static const int16_t e_802BD1E0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802BD310[] = { 20, 0x400 };
+static const int16_t e_802BD370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BD460[] = { 20, 0x400 };
+static const int16_t e_802BD4A0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802BD8C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802BD970[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802BDD00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BDD60[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802BDDF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BDE60[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802BDFC0[] = { 36, 0x400, 24, 0x21F, 20, 0x11F };
+static const int16_t e_802BE010[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802BE210[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BE2F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BE3D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BE420[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802BE470[] = { 20, 0x400 };
+static const int16_t e_802BE5E0[] = { 36, 0x400 };
+static const int16_t e_802BE640[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802BE6B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BE880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BEA00[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_802BF3D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802BF540[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802BFE20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802BFF30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C0150[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 32, 0x21C, 40, 0x31C, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C0240[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C02C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C05E0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802C0AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_802C0B60[] = { 52, 0x400, 44, 0x11F };
 static const int16_t e_802C0BA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C0C20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C0C70[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 144, 0x21E, 152, 0x31E, 128, 0x21D, 136, 0x31D, 112, 0x21C, 120, 0x31C, 96, 0x21B, 104, 0x31B, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802C0E30[] = { 5188, 0x400, 5148, 0x117, 5152, 0x118, 5156, 0x119, 5160, 0x11A, 5164, 0x11B, 5168, 0x11C, 5172, 0x11D, 5176, 0x11E, 5180, 0x11F };
+static const int16_t e_802C11E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C1370[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802C13F0[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 192, 0x21E, 200, 0x31E, 176, 0x21D, 184, 0x31D, 160, 0x21C, 168, 0x31C, 144, 0x21B, 152, 0x31B, 128, 0x21A, 136, 0x31A, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802C1710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C17E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C18C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802C1A30[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802C1F80[] = { 20, 0x400 };
+static const int16_t e_802C2060[] = { 20, 0x400 };
+static const int16_t e_802C20F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C2250[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C22C0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802C2360[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C2F00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C2F70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C3050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C30C0[] = { 20, 0x400 };
+static const int16_t e_802C3210[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C32B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C3630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C3CB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C3D80[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 252, 0x113, 256, 0x114, 260, 0x115, 264, 0x116, 268, 0x117, 272, 0x118, 276, 0x119, 280, 0x11A, 284, 0x11B, 288, 0x11C, 292, 0x11D, 296, 0x11E, 300, 0x11F };
+static const int16_t e_802C4D80[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_802C4FB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C56D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C5760[] = { 228, 0x400, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_802C6040[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C64F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C6550[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C65D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C6660[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C66F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C6AA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C6C70[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802C6D80[] = { 20, 0x400 };
+static const int16_t e_802C6E20[] = { 52, 0x400 };
+static const int16_t e_802C6E50[] = { 52, 0x400 };
+static const int16_t e_802C6E80[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_802C6F60[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802C70B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802C7370[] = { 68, 0x400, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802C7560[] = { 164, 0x400, 92, 0x10F, 96, 0x110, 100, 0x111, 104, 0x112, 108, 0x113, 112, 0x114, 116, 0x115, 120, 0x116, 124, 0x117, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_802C78F0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802C7A50[] = { 20, 0x400 };
+static const int16_t e_802C7A90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C7B70[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802C7C70[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802C7EF0[] = { 100, 0x400, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802C8000[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C80C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802C8150[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C81F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C83A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C8410[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802C8450[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802C84F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802C8620[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802C86F0[] = { 100, 0x400, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802C8840[] = { 68, 0x400, 56, 0x21F, 24, 0x118, 28, 0x119, 32, 0x11A, 36, 0x11B, 40, 0x11C, 44, 0x11D, 48, 0x11E, 52, 0x11F };
+static const int16_t e_802C8B00[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802C8BB0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802C8C30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802C8D10[] = { 52, 0x400, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802C9AF0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802C9C40[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802C9F40[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802CA140[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802CA290[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802CA3E0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_802CA560[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802CA780[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_802CA8E0[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_802CB410[] = { 20, 0x400 };
+static const int16_t e_802CB4B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802CB5F0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802CB930[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802CBB90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802CBD90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802CBE20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CBE70[] = { 116, 0x400, 108, 0x11F, 104, 0x11E, 100, 0x11D, 96, 0x11C };
+static const int16_t e_802CC050[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 124, 0x11F, 120, 0x11E, 116, 0x11D };
+static const int16_t e_802CC730[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 124, 0x11F, 120, 0x11E, 116, 0x11D };
 static const int16_t e_802CC9F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CCE10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802CCFC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802CD050[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802CD160[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802CD1F0[] = { 2132, 0x400, 2108, 0x11B, 2112, 0x11C, 2116, 0x11D, 2120, 0x11E, 2124, 0x11F };
+static const int16_t e_802CD2D0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802CD350[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802CD470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CD4B0[] = { 308, 0x400, 288, 0x21F, 296, 0x31F, 272, 0x21E, 280, 0x31E, 256, 0x21D, 264, 0x31D, 240, 0x21C, 248, 0x31C, 212, 0x119, 216, 0x11A, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_802CD970[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802CDA80[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802CDD00[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802CDED0[] = { 20, 0x400 };
+static const int16_t e_802CDF40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CE010[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802CE2A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802CE410[] = { 132, 0x400, 72, 0x112, 76, 0x113, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_802CE620[] = { 20, 0x400 };
+static const int16_t e_802CE7A0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F };
+static const int16_t e_802CE860[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E };
+static const int16_t e_802CE8F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CE940[] = { 20, 0x400 };
+static const int16_t e_802CE9C0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802CED80[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802CEE70[] = { 148, 0x400 };
+static const int16_t e_802CEF70[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802CF050[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 48, 0x21C, 56, 0x31C, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_802CF1E0[] = { 388, 0x400, 368, 0x21F, 376, 0x31F, 352, 0x21E, 360, 0x31E, 336, 0x21D, 344, 0x31D, 320, 0x21C, 328, 0x31C, 304, 0x21B, 312, 0x31B, 288, 0x21A, 296, 0x31A, 272, 0x219, 280, 0x319, 256, 0x218, 264, 0x318, 240, 0x217, 248, 0x317, 224, 0x216, 232, 0x316, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_802CF6F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802CFBA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802CFD00[] = { 180, 0x400, 160, 0x21F, 168, 0x31F, 144, 0x21E, 152, 0x31E, 128, 0x21D, 136, 0x31D, 112, 0x21C, 120, 0x31C, 96, 0x21B, 104, 0x31B, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_802D0030[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 60, 0x11F };
+static const int16_t e_802D01B0[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 172, 0x11F, 168, 0x11E, 164, 0x11D };
+static const int16_t e_802D0830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D0890[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_802D0AE0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802D0CC0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_802D0E50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D0F40[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802D1140[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D12E0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
 static const int16_t e_802D17C0[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_802D19F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D1AA0[] = { 36, 0x400 };
+static const int16_t e_802D1B50[] = { 20, 0x400 };
+static const int16_t e_802D1B90[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_802D1E20[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_802D21F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D2270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D2310[] = { 276, 0x400, 228, 0x115, 232, 0x116, 236, 0x117, 240, 0x118, 244, 0x119, 248, 0x11A, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_802D2550[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802D2610[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802D2730[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802D2800[] = { 20, 0x400 };
+static const int16_t e_802D2850[] = { 20, 0x400 };
+static const int16_t e_802D2990[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_802D2A50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D2AD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D2B60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D2C20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802D2DA0[] = { 20, 0x400 };
+static const int16_t e_802D2E50[] = { 20, 0x400 };
+static const int16_t e_802D2E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_802D2F20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_802D2F80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_802D2FE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D3040[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D3090[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802D31A0[] = { 20, 0x400 };
 static const int16_t e_802D31D0[] = { 20, 0x400 };
 static const int16_t e_802D3200[] = { 20, 0x400 };
 static const int16_t e_802D3230[] = { 20, 0x400 };
-static const int16_t e_802E7FBC[] = { 8, 0x201, 36, 0x400 };
-static const int16_t e_802E84C4[] = { 8, 0x201, 36, 0x400 };
-static const int16_t e_802E8590[] = { 8, 0x201, 36, 0x400 };
+static const int16_t e_802D3270[] = { 20, 0x400 };
+static const int16_t e_802D32A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D32F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D3370[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D3490[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D35C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D3700[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D3810[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D3940[] = { 20, 0x400 };
+static const int16_t e_802D39B0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D3E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D42D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D46E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D4830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D48C0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D49B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D4C70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D4CD0[] = { 20, 0x400 };
+static const int16_t e_802D4DA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D4F00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D4FD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D5290[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D5DD0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D6110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D61C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D6210[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D6400[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_802D6560[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D66B0[] = { 20, 0x400 };
+static const int16_t e_802D6860[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D68E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D6930[] = { 20, 0x400 };
+static const int16_t e_802D6A00[] = { 20, 0x400 };
+static const int16_t e_802D6A60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802D6B40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802D6BB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_802D6C30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D6C80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D6CD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D6E00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D6F20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D7070[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_802D7410[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D7570[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D7680[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802D7860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D79A0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802D7AA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D7B20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D7C50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D7CE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D7D50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D8140[] = { 20, 0x400 };
+static const int16_t e_802D85C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_802D8740[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D87C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D8840[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802D88D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D8B10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D8B70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D8D30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D8DE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D8E70[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802D9500[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D9570[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802D9670[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_802D97B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802D9B40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D9CB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D9E20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802D9F90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802DA040[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_802DA310[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802DA470[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802DA500[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802DA5A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DA670[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802DA6F0[] = { 164, 0x400, 88, 0x10E, 92, 0x10F, 96, 0x110, 100, 0x111, 104, 0x112, 108, 0x113, 112, 0x114, 116, 0x115, 120, 0x116, 124, 0x117, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_802DA970[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DAA20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_802DAAE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802DB030[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DB0F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DB1A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802DB210[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_802DB4B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DB590[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_802DB6C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DB710[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DB750[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_802DB970[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DBB70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_802DBC20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_802E7FBC[] = { 36, 0x400 };
+static const int16_t e_802E84C4[] = { 36, 0x400 };
+static const int16_t e_802E8590[] = { 36, 0x400 };
+static const int16_t e_8076D8C0[] = { 20, 0x400 };
+static const int16_t e_8076D8F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076D940[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076D9B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8076DAC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076DB90[] = { 20, 0x400 };
+static const int16_t e_8076DC00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076DC70[] = { 20, 0x400 };
+static const int16_t e_8076DF20[] = { 20, 0x400 };
+static const int16_t e_8076DF50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076E2A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076E330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076E400[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076E4C0[] = { 20, 0x400 };
+static const int16_t e_8076E500[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076E5C0[] = { 20, 0x400 };
+static const int16_t e_8076E6D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076E7B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076E8D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076E930[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076EBC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076EC50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076ECD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076EEA0[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_8076F390[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076F3D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076F410[] = { 20, 0x400 };
+static const int16_t e_8076F440[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076F680[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076F720[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8076F820[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8076F8E0[] = { 20, 0x400 };
+static const int16_t e_8076F920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8076FA30[] = { 20, 0x400 };
+static const int16_t e_8076FFC0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80770230[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80770DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80771050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807718B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80771A80[] = { 756, 0x400, 732, 0x11B, 736, 0x11C, 740, 0x11D, 744, 0x11E, 748, 0x11F };
+static const int16_t e_80772AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80772CD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80772D60[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80772F50[] = { 20, 0x400 };
+static const int16_t e_80772F90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80773090[] = { 20, 0x400 };
+static const int16_t e_807736F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80773800[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80773920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807739C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80773A30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80773C00[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80773F70[] = { 20, 0x400 };
+static const int16_t e_80773FA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80774220[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807742C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80774580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80774670[] = { 20, 0x400 };
+static const int16_t e_807746B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80774740[] = { 20, 0x400 };
+static const int16_t e_80774780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807747E0[] = { 164, 0x400, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_807749A0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80774BA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80774D40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80774E00[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80775110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807751D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80775280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80775310[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807758A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80775A70[] = { 308, 0x400, 284, 0x11B, 288, 0x11C, 292, 0x11D, 296, 0x11E, 300, 0x11F };
+static const int16_t e_80776190[] = { 20, 0x400 };
+static const int16_t e_807761C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776210[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80776280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776300[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776390[] = { 20, 0x400 };
+static const int16_t e_807763D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776460[] = { 20, 0x400 };
+static const int16_t e_807765B0[] = { 20, 0x400 };
+static const int16_t e_807765E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807767E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80776870[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80776920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807769F0[] = { 20, 0x400 };
+static const int16_t e_80776A30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776AB0[] = { 20, 0x400 };
+static const int16_t e_80776B00[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80776F20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80776FA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80777060[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80777230[] = { 164, 0x400, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80777650[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80777850[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80777B20[] = { 20, 0x400 };
+static const int16_t e_80777B80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80777C10[] = { 20, 0x400 };
+static const int16_t e_80778D40[] = { 436, 0x400, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_80779690[] = { 20, 0x400 };
+static const int16_t e_807796C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807797B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80779980[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80779A40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80779AC0[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_80779CB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80779D40[] = { 20, 0x400 };
+static const int16_t e_8077A2A0[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_8077A790[] = { 20, 0x400 };
+static const int16_t e_8077A7C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077A9C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077ABB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077ACA0[] = { 20, 0x400 };
+static const int16_t e_8077ACE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077AD60[] = { 20, 0x400 };
+static const int16_t e_8077AE00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077AED0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077AF50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077AFD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077B050[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8077B200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077B270[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077B2D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077B370[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077B520[] = { 276, 0x400, 252, 0x11B, 256, 0x11C, 260, 0x11D, 264, 0x11E, 268, 0x11F };
+static const int16_t e_8077BB40[] = { 20, 0x400 };
+static const int16_t e_8077BB70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8077BDB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8077BE70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077BF00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077BFC0[] = { 20, 0x400 };
+static const int16_t e_8077C020[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077C0C0[] = { 20, 0x400 };
+static const int16_t e_8077C6D0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8077CB20[] = { 20, 0x400 };
+static const int16_t e_8077CB50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8077CC50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077CE00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8077CEC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077CF70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8077D0B0[] = { 20, 0x400 };
+static const int16_t e_8077D110[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D1C0[] = { 20, 0x400 };
+static const int16_t e_8077D210[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8077D3A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8077D4E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D6E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D720[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077D9E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8077DBD0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8077DDA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077DF70[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_8077E5D0[] = { 20, 0x400 };
+static const int16_t e_8077E600[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077E800[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077E890[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8077E930[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077E9F0[] = { 20, 0x400 };
+static const int16_t e_8077EA30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077EAB0[] = { 20, 0x400 };
+static const int16_t e_8077EB60[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8077ECB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077ED80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077EDD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8077EE50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8077F020[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8077FE00[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80780230[] = { 20, 0x400 };
+static const int16_t e_80780260[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80780460[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807804F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80780580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80780660[] = { 20, 0x400 };
+static const int16_t e_80780740[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80780800[] = { 20, 0x400 };
+static const int16_t e_80780840[] = { 20, 0x400 };
+static const int16_t e_80781360[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_807819C0[] = { 20, 0x400 };
+static const int16_t e_807819F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80781C00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80781D40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80781E50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80781F50[] = { 20, 0x400 };
+static const int16_t e_80782060[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807820F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782180[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782310[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782450[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80782600[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80782AF0[] = { 20, 0x400 };
+static const int16_t e_80782B20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80782D30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80782DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80782EC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80783000[] = { 20, 0x400 };
+static const int16_t e_80783060[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807830F0[] = { 20, 0x400 };
+static const int16_t e_80783140[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_807835C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807837D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80783870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80783A40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80783B70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80783C50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80783FF0[] = { 20, 0x400 };
+static const int16_t e_80784070[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80786200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807863C0[] = { 1620, 0x400, 1596, 0x11B, 1600, 0x11C, 1604, 0x11D, 1608, 0x11E, 1612, 0x11F };
+static const int16_t e_807893A0[] = { 196, 0x400, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80789850[] = { 20, 0x400 };
+static const int16_t e_80789880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807898D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80789940[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807899D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80789AB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80789BA0[] = { 20, 0x400 };
+static const int16_t e_80789BF0[] = { 20, 0x400 };
+static const int16_t e_80789C20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80789E30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80789EC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80789F60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8078A040[] = { 20, 0x400 };
+static const int16_t e_8078A080[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8078A100[] = { 20, 0x400 };
+static const int16_t e_8078A7D0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_8078AD70[] = { 20, 0x400 };
+static const int16_t e_8078ADA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8078AFA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8078B030[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8078B0E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8078B1C0[] = { 20, 0x400 };
+static const int16_t e_8078B200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8078B280[] = { 20, 0x400 };
+static const int16_t e_8078B870[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8078D1D0[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_8078F6D0[] = { 660, 0x400, 636, 0x11B, 640, 0x11C, 644, 0x11D, 648, 0x11E, 652, 0x11F };
+static const int16_t e_80791170[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80791730[] = { 20, 0x400 };
+static const int16_t e_80791760[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80791960[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807919F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80791AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80791BA0[] = { 20, 0x400 };
+static const int16_t e_80791BE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80791C60[] = { 20, 0x400 };
+static const int16_t e_80791CB0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_80791E50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80791ED0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80791F40[] = { 36, 0x400, 24, 0x21F, 20, 0x11F, 16, 0x11E };
+static const int16_t e_807923D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807925A0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80793900[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80794D20[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80797980[] = { 740, 0x400, 716, 0x11B, 720, 0x11C, 724, 0x11D, 728, 0x11E, 732, 0x11F };
+static const int16_t e_8079C710[] = { 692, 0x400, 668, 0x11B, 672, 0x11C, 676, 0x11D, 680, 0x11E, 684, 0x11F };
+static const int16_t e_8079F010[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_8079FE80[] = { 20, 0x400 };
+static const int16_t e_8079FEE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8079FFD0[] = { 20, 0x400 };
+static const int16_t e_807A0010[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807A23B0[] = { 436, 0x400, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_807A2D30[] = { 20, 0x400 };
+static const int16_t e_807A2D60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807A2F70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807A3040[] = { 20, 0x400 };
+static const int16_t e_807A3080[] = { 20, 0x400 };
+static const int16_t e_807A37F0[] = { 340, 0x400, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_807A6AB0[] = { 612, 0x400, 588, 0x11B, 592, 0x11C, 596, 0x11D, 600, 0x11E, 604, 0x11F };
+static const int16_t e_807A85D0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807AAE30[] = { 756, 0x400, 732, 0x11B, 736, 0x11C, 740, 0x11D, 744, 0x11E, 748, 0x11F };
+static const int16_t e_807ABE50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AC050[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AC0E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807AC2C0[] = { 20, 0x400 };
+static const int16_t e_807AC300[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807AC380[] = { 20, 0x400 };
+static const int16_t e_807ACEE0[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_807AD600[] = { 20, 0x400 };
+static const int16_t e_807AD630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807AD680[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AD6F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807AD810[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AD8D0[] = { 148, 0x400, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807AD9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807ADA20[] = { 20, 0x400 };
+static const int16_t e_807AEC60[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_807AF4A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807AF4E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AF690[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807AF740[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807AF9D0[] = { 20, 0x400 };
+static const int16_t e_807AFA10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807AFAB0[] = { 20, 0x400 };
+static const int16_t e_807AFB00[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807B0480[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_807B05C0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_807B0990[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B0B00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807B0BF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B0DA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B0E40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B0F10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807B1150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807B1320[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B1360[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B14E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B1530[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B15C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B16C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B1870[] = { 340, 0x400, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_807B2040[] = { 20, 0x400 };
+static const int16_t e_807B2070[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B20C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B2130[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B21C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B2290[] = { 20, 0x400 };
+static const int16_t e_807B22D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B2330[] = { 20, 0x400 };
+static const int16_t e_807B2380[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_807B2EB0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807B3C80[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807B40B0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_807B4320[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B44B0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_807B4660[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_807B4D20[] = { 100, 0x400, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_807B51E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B5250[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B5300[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B5480[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B54F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807B56F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_807B58F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B5990[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B5A40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807B5B00[] = { 36, 0x400 };
+static const int16_t e_807B5F70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807B6CF0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_807B6EC0[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_807B8510[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807B8900[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807B9570[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807BA930[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807BB9F0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807BBC80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807BBCD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807BBD50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807BD140[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_807BDF00[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807BE750[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807BF320[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807BFB60[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807C0990[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807C1110[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807C1300[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C1420[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C1530[] = { 84, 0x400, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_807C1990[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_807C1A80[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_807C1C10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807C1D00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C1D90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C1DD0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_807C1F10[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_807C20E0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_807C2220[] = { 132, 0x400, 124, 0x11F, 120, 0x11E, 116, 0x11D };
+static const int16_t e_807C24C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807C25F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C26C0[] = { 20, 0x400 };
+static const int16_t e_807C26F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C2860[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807C2900[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C2990[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C29F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_807C2C30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807C2D40[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_807C2F30[] = { 20, 0x400 };
+static const int16_t e_807C2F90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807C3060[] = { 196, 0x400, 152, 0x116, 156, 0x117, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_807C35B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C3600[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C36D0[] = { 20, 0x400 };
+static const int16_t e_807C3840[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C38F0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
+static const int16_t e_807C3B30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807C3B90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807C3D80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C3F20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807C3F80[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807C61A0[] = { 308, 0x400, 276, 0x119, 280, 0x11A, 284, 0x11B, 288, 0x11C, 292, 0x11D, 296, 0x11E, 300, 0x11F };
+static const int16_t e_807C7980[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_807C8610[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807C9040[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807CF570[] = { 388, 0x400, 352, 0x118, 356, 0x119, 360, 0x11A, 364, 0x11B, 368, 0x11C, 372, 0x11D, 376, 0x11E, 380, 0x11F };
+static const int16_t e_807D2230[] = { 244, 0x400, 208, 0x118, 212, 0x119, 216, 0x11A, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_807D38F0[] = { 260, 0x400, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_807D4860[] = { 164, 0x400, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_807D4F30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807D4F90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807D50F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807D51E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_807D5390[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807D5470[] = { 36, 0x400 };
+static const int16_t e_807D55F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807D56B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807D5710[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807D5F70[] = { 324, 0x400, 316, 0x11F, 312, 0x11E };
+static const int16_t e_807D6330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807D6860[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807D7EB0[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_807D8EB0[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807DA530[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_807DC690[] = { 164, 0x400, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_807DD800[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807DFB90[] = { 308, 0x400, 272, 0x118, 276, 0x119, 280, 0x11A, 284, 0x11B, 288, 0x11C, 292, 0x11D, 296, 0x11E, 300, 0x11F };
+static const int16_t e_807E0220[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E0EC0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807E1DC0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807E2050[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807E2140[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E2290[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807E2420[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E2490[] = { 20, 0x400 };
+static const int16_t e_807E24E0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_807E25D0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_807E2620[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E2680[] = { 20, 0x400 };
+static const int16_t e_807E2880[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E2930[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807E2CB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E2D40[] = { 36, 0x400, 24, 0x21F, 20, 0x11F, 16, 0x11E };
+static const int16_t e_807E2DB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807E2E20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807E2EB0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_807E2F40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807E2FF0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_807E3350[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E33F0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807E4B30[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807E4DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E4E30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E6890[] = { 372, 0x400, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_807E7350[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807E7690[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807E7780[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807E7870[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_807E79C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E7A20[] = { 20, 0x400 };
+static const int16_t e_807E7A70[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_807E7B60[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_807E7BB0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_807E7E70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E7ED0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807E7F40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807E8020[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807E80E0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807E8C40[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_807E9840[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807EA600[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_807EAB80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EABD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EACC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EAD10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EAD60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EADB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807EB290[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EB4D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807EB9B0[] = { 52, 0x400, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_807EBB90[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E };
+static const int16_t e_807EC180[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EC410[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807EC470[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_807EEA00[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807EEC90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EED00[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_807EEF30[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_807EF070[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_807EF1D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807EF220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_807EF2E0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_807EF490[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807EF520[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807F0B20[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807F1560[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_807F2A00[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807F4C50[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_807F69E0[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_807F7760[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807F8730[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807FAD00[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_807FC420[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807FC760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_807FC7B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_807FC870[] = { 20, 0x400 };
+static const int16_t e_807FC8B0[] = { 84, 0x400, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_807FCB50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_807FD500[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_807FE600[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_807FFA30[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80800A00[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80801990[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80801F80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80803AC0[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_808048A0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808062B0[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8080A710[] = { 356, 0x400, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_8080E1C0[] = { 340, 0x400, 304, 0x118, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_8080F3D0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_80812F50[] = { 228, 0x400, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_808138C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80815650[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_808167D0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808185F0[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80818F70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081B170[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8081C150[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8081C2A0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8081C840[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081C8D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8081C980[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081C9D0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8081CAE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8081CC30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081CCC0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8081D5C0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8081DA20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081DA70[] = { 20, 0x400 };
+static const int16_t e_8081DB10[] = { 20, 0x400 };
+static const int16_t e_8081DB70[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8081DD40[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8081DE70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081DF00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081DF90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081E0F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081E160[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081E240[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8081E2B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081E320[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081E440[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081E4A0[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_8081EB90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081EC30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8081EDC0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8081EEC0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8081EFB0[] = { 20, 0x400 };
+static const int16_t e_8081F000[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8081F0F0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_8081F1A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8081F270[] = { 36, 0x400 };
+static const int16_t e_8081F320[] = { 52, 0x400 };
+static const int16_t e_8081F3D0[] = { 36, 0x400 };
+static const int16_t e_8081F430[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8081F540[] = { 20, 0x400 };
+static const int16_t e_8081F6A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8081F8C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8081FA00[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8081FA80[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80820650[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80820A50[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80820BC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80820E00[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80820F40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80820F90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80820FF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80821150[] = { 36, 0x400, 24, 0x21F, 16, 0x21E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808211E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80821270[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808212D0[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 96, 0x21E, 104, 0x31E, 80, 0x21D, 88, 0x31D, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80821640[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80821840[] = { 20, 0x400 };
+static const int16_t e_80821880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80821960[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808219D0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80821B00[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80821F00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80821F90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80823BF0[] = { 228, 0x400, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80826100[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808274D0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80827DA0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80829500[] = { 212, 0x400, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_8082B880[] = { 292, 0x400, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_8082CA30[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8082DC80[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8082E200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8082E4A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8082E590[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8082E6D0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8082EA40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8082EB30[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8082EC30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082ECC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8082ED70[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8082EEB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8082EFE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8082F130[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082F190[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082F210[] = { 20, 0x400 };
+static const int16_t e_8082F260[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8082F350[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8082F3D0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8082F630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082F6F0[] = { 20, 0x400 };
+static const int16_t e_8082F870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082FB10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082FBC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8082FC50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082FF00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8082FF80[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80830BC0[] = { 20, 0x400 };
+static const int16_t e_80832600[] = { 516, 0x400, 480, 0x118, 484, 0x119, 488, 0x11A, 492, 0x11B, 496, 0x11C, 500, 0x11D, 504, 0x11E, 508, 0x11F };
+static const int16_t e_808340A0[] = { 228, 0x400, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80835610[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808363D0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80836710[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80836790[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80836840[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_808369C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80836A20[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80836AA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80836C20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80837BF0[] = { 164, 0x400, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80838FC0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8083A2E0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8083B1B0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8083BCF0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8083C1D0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8083C470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083C550[] = { 20, 0x400 };
+static const int16_t e_8083C580[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083C5F0[] = { 20, 0x400 };
+static const int16_t e_8083C650[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8083C6F0[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_8083C7F0[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_8083C8E0[] = { 148, 0x400, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_8083C9E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8083CA90[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8083CC60[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8083CD90[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8083CF10[] = { 84, 0x400, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8083D1C0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8083D620[] = { 20, 0x400 };
+static const int16_t e_8083DEB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083DF60[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8083E630[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8083E700[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8083EB00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083EB70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8083EBD0[] = { 20, 0x400 };
+static const int16_t e_8083EC30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8083ED40[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8083EE90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083EF20[] = { 20, 0x400 };
+static const int16_t e_8083EF50[] = { 20, 0x400 };
+static const int16_t e_8083EF80[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8083F120[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8083F1A0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_8083F3C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8083F580[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8083F860[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8083F9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8083FA20[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8083FB90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8083FC40[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80841740[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80841B40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80841BE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80841F00[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80841FF0[] = { 20, 0x400 };
+static const int16_t e_80842070[] = { 20, 0x400 };
+static const int16_t e_808422A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80842520[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80842920[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80842AE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80842D10[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80842EA0[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80842F40[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80843000[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 64, 0x21B, 72, 0x31B, 48, 0x21A, 56, 0x31A, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80843120[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 64, 0x21B, 72, 0x31B, 48, 0x21A, 56, 0x31A, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80843240[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80843290[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808432F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80843390[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808433E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80843430[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808434C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80843540[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808435B0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80843640[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 240, 0x21D, 248, 0x31D, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_80843850[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808438A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80843900[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80843BC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80843C30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80843CA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80843D10[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80844200[] = { 548, 0x400, 540, 0x11F, 536, 0x11E, 532, 0x11D, 528, 0x11C };
+static const int16_t e_808442A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808443E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80844490[] = { 20, 0x400 };
+static const int16_t e_808444C0[] = { 20, 0x400 };
+static const int16_t e_80844520[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808445B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808446E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808447A0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80845550[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808464F0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80848110[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80849560[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8084A190[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8084A4D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084A5A0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8084A830[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8084A980[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8084AB50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084ABE0[] = { 148, 0x400, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_8084ACE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8084ADC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084B0A0[] = { 36, 0x400, 16, 0x21F, 24, 0x31F };
+static const int16_t e_8084B100[] = { 20, 0x400 };
+static const int16_t e_8084B180[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084B230[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8084B3D0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8084B5E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084B740[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8084B850[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084B9B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8084BA90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8084BB60[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_8084C310[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8084C3B0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8084C660[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8084C790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084C800[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084C850[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8084C950[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8084CA40[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8084CB40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8084CC00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8084CCC0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8084CE00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8084CEB0[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8084D0F0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8084D350[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084D9C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8084DA70[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8084DF30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8084DFE0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8084E220[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8084E340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084E3A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084E3F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084E450[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084E4C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8084E590[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8084E640[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8084EAD0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80850CC0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808518B0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80851E10[] = { 52, 0x400 };
+static const int16_t e_808521A0[] = { 36, 0x400 };
+static const int16_t e_80852E10[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80853EA0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80854BC0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808551D0[] = { 100, 0x400 };
+static const int16_t e_808552F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80855390[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808554C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80855540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80855580[] = { 20, 0x400 };
+static const int16_t e_808555B0[] = { 20, 0x400 };
+static const int16_t e_808555E0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_80855680[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808557D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80855880[] = { 36, 0x400 };
+static const int16_t e_808558F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80855B20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80855E10[] = { 20, 0x400 };
+static const int16_t e_80855E60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80855ED0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80856030[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808560C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808562D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80856470[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808564C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80856510[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80856660[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80856770[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80856C10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80856CA0[] = { 244, 0x400, 216, 0x11A, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_80857DB0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80859050[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8085B800[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8085C850[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_8085D240[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8085D6F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8085EE60[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808601A0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808604E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808606A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80860710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80860780[] = { 116, 0x400, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808609E0[] = { 164, 0x400, 88, 0x10E, 92, 0x10F, 96, 0x110, 100, 0x111, 104, 0x112, 108, 0x113, 112, 0x114, 116, 0x115, 120, 0x116, 124, 0x117, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80861210[] = { 116, 0x400, 40, 0x10E, 44, 0x10F, 48, 0x110, 52, 0x111, 56, 0x112, 60, 0x113, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80861980[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80861AE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80862570[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80863400[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80864690[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808659F0[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80866F50[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80867E00[] = { 132, 0x400, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80869AD0[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_8086C410[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_8086DF80[] = { 180, 0x400, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8086E6D0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8086E880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086EC20[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8086F090[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8086F120[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8086F1A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086F200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8086F2A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086F4A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086F4F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8086F610[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8086F750[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086F7A0[] = { 196, 0x400, 188, 0x11F, 184, 0x11E, 180, 0x11D, 176, 0x11C };
+static const int16_t e_8086F960[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086FA10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8086FB00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086FB50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086FBB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8086FDE0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80870000[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808700C0[] = { 36, 0x400 };
+static const int16_t e_80870130[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 64, 0x21B, 72, 0x31B, 48, 0x21A, 56, 0x31A, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80870250[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 112, 0x21E, 120, 0x31E, 96, 0x21D, 104, 0x31D, 80, 0x21C, 88, 0x31C, 64, 0x21B, 72, 0x31B, 48, 0x21A, 56, 0x31A, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80870370[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_80870420[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80870480[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808704D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808705D0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80870660[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 240, 0x21D, 248, 0x31D, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_80870870[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808708C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80870920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80870A20[] = { 212, 0x400, 204, 0x11F };
+static const int16_t e_80870AF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80870CD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80870DE0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808711D0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_80871290[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808712E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80871400[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808716E0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80871750[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808717C0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80871840[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80871A80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80871BD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80871C40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80871DA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80871E20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80871EF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80872030[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808724F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80872540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80872590[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808726A0[] = { 20, 0x400 };
+static const int16_t e_80872710[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80872830[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80872890[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808740A0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808743E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808744E0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80874620[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80874680[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808746D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80874730[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80874940[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80874A90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80874B40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80874E90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80874F70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80874FD0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80875850[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80876290[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_808772D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80877350[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80877410[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808783C0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8087C130[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_8087EF20[] = { 244, 0x400, 216, 0x11A, 220, 0x11B, 224, 0x11C, 228, 0x11D, 232, 0x11E, 236, 0x11F };
+static const int16_t e_8087F520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8087F5F0[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 24, 0x21D, 20, 0x11F, 16, 0x11E };
+static const int16_t e_8087F6C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8087F710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8087F770[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8087F8E0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 64, 0x21D, 72, 0x31D, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8087FBB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8087FCA0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8087FD20[] = { 20, 0x400 };
+static const int16_t e_8087FD50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808813E0[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_808829E0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80884320[] = { 660, 0x400, 636, 0x11B, 640, 0x11C, 644, 0x11D, 648, 0x11E, 652, 0x11F };
+static const int16_t e_80886F30[] = { 164, 0x400, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80887390[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80887420[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808875E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808876B0[] = { 100, 0x400, 92, 0x11F, 88, 0x11E };
+static const int16_t e_80887870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808878C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80887950[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80887A90[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80887BF0[] = { 404, 0x400, 384, 0x21F, 392, 0x31F, 368, 0x21E, 376, 0x31E, 352, 0x21D, 360, 0x31D, 336, 0x21C, 344, 0x31C, 320, 0x21B, 328, 0x31B, 304, 0x21A, 312, 0x31A, 288, 0x219, 296, 0x319, 272, 0x218, 280, 0x318, 256, 0x217, 264, 0x317, 240, 0x216, 248, 0x316, 224, 0x215, 232, 0x315, 208, 0x214, 216, 0x314, 192, 0x213, 200, 0x313, 176, 0x212, 184, 0x312, 160, 0x211, 168, 0x311, 144, 0x210, 152, 0x310, 104, 0x116, 108, 0x117, 112, 0x118, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808883F0[] = { 20, 0x400 };
+static const int16_t e_80888420[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80888490[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80888540[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80888680[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808887C0[] = { 468, 0x400, 448, 0x21F, 456, 0x31F, 432, 0x21E, 440, 0x31E, 416, 0x21D, 424, 0x31D, 400, 0x21C, 408, 0x31C, 384, 0x21B, 392, 0x31B, 368, 0x21A, 376, 0x31A, 352, 0x219, 360, 0x319, 336, 0x218, 344, 0x318, 320, 0x217, 328, 0x317, 304, 0x216, 312, 0x316, 288, 0x215, 296, 0x315, 272, 0x214, 280, 0x314, 256, 0x213, 264, 0x313, 240, 0x212, 248, 0x312, 224, 0x211, 232, 0x311, 208, 0x210, 216, 0x310, 192, 0x20F, 200, 0x30F, 176, 0x20E, 184, 0x30E, 116, 0x111, 120, 0x112, 124, 0x113, 128, 0x114, 132, 0x115, 136, 0x116, 140, 0x117, 144, 0x118, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80888D90[] = { 20, 0x400 };
+static const int16_t e_80888DC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80888E30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8088BCD0[] = { 228, 0x400, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_8088C2B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8088C440[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8088C570[] = { 148, 0x400, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_8088C640[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8088C6E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8088C740[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8088C7B0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 48, 0x21D, 56, 0x31D, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8088C920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8088C970[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8088C9D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8088CA20[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8088CBC0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8088CCC0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8088CE10[] = { 20, 0x400 };
+static const int16_t e_8088CE40[] = { 20, 0x400 };
+static const int16_t e_8088CE70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8088D6E0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8088E480[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8088F950[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80890BA0[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_808912C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80891350[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80891490[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80891580[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808915E0[] = { 20, 0x400 };
+static const int16_t e_808916B0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80891800[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80891850[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 16, 0x21E, 24, 0x31E, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80891A10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80891AF0[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_80891D60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80891E60[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808920B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808921F0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80892290[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80892310[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80892360[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80892800[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80892900[] = { 148, 0x400, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_80892C60[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_80892E20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80892EC0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_80893070[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80893110[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80893160[] = { 20, 0x400 };
+static const int16_t e_808931C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80893250[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_808953F0[] = { 196, 0x400, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80895E80[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80897180[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80897B70[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80899D00[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8089A040[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8089A140[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8089A270[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8089A2F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8089A380[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8089A850[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8089A900[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8089A9C0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_8089AA40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8089AAE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8089B000[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8089C4E0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8089DD80[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_8089FA60[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808A0590[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808A0A50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808A0B20[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D };
+static const int16_t e_808A0D80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808A0DF0[] = { 20, 0x400 };
+static const int16_t e_808A0E20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808A0E60[] = { 148, 0x400, 140, 0x11F };
+static const int16_t e_808A0F90[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808A10D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808A12C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808A14B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808A1600[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808A1A90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808A1B20[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808A26C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808A7280[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_808A7EE0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808A89C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808A95F0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808AA000[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_808ABBF0[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_808AC3A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808AC400[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808AC460[] = { 20, 0x400 };
+static const int16_t e_808AC5C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808AC9B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808ACAD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808ACC80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808AFD80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B0760[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808B1350[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B15E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B1720[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808B1BA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808B1C00[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808B2680[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B26E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B27E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B2840[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B2900[] = { 20, 0x400 };
+static const int16_t e_808B2930[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808B2A10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808B2AA0[] = { 20, 0x400 };
+static const int16_t e_808B2B20[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808B2BE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808B2CA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808B2D20[] = { 324, 0x400, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_808B4AC0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808B53A0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B6580[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B6810[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B6860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B68E0[] = { 20, 0x400 };
+static const int16_t e_808B6940[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808B69A0[] = { 20, 0x400 };
+static const int16_t e_808B6AC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808B6BA0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808B6DE0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_808B6F50[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B7060[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_808B7290[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808B75F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808B7730[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808B86A0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808B9340[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808BA510[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808BAAA0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808BB520[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808BC180[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_808BD960[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_808BE6F0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808BECC0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808BF450[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808BF790[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808BF8D0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_808BFB20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808BFC00[] = { 20, 0x400 };
+static const int16_t e_808BFC30[] = { 20, 0x400 };
+static const int16_t e_808BFC70[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808BFDC0[] = { 276, 0x400, 256, 0x21F, 264, 0x31F, 240, 0x21E, 248, 0x31E, 236, 0x11F, 232, 0x11E, 228, 0x11D };
+static const int16_t e_808C0040[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808C0220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808C0330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C03E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808C0460[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808C1370[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808C1770[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808C1920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808C1A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C1A50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C1A90[] = { 20, 0x400 };
+static const int16_t e_808C1AC0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808C1CB0[] = { 20, 0x400 };
+static const int16_t e_808C1D00[] = { 20, 0x400 };
+static const int16_t e_808C1D50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C1DD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C1E60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C1F60[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808C20C0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_808C2920[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808C2FE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C3050[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_808C32D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808C3360[] = { 20, 0x400 };
+static const int16_t e_808C33C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808C3480[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808C3760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C37F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C38D0[] = { 212, 0x400, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_808C4E80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_808C5110[] = { 20, 0x400 };
+static const int16_t e_808C5140[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808C5510[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808C55E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808C57E0[] = { 20, 0x400 };
+static const int16_t e_808C5820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C5940[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C5D60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808C5F10[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_808C6100[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C6D40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808C6EF0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_808C7130[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808C72F0[] = { 468, 0x400, 448, 0x21F, 456, 0x31F, 432, 0x21E, 440, 0x31E, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_808C8350[] = { 36, 0x400 };
+static const int16_t e_808C8C60[] = { 36, 0x400 };
+static const int16_t e_808C98D0[] = { 36, 0x400 };
+static const int16_t e_808CA140[] = { 36, 0x400 };
+static const int16_t e_808CA1F0[] = { 20, 0x400 };
+static const int16_t e_808CA220[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808CA340[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CA3B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CA420[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CA540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808CA580[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CA680[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808CA770[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CA8D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808CA990[] = { 116, 0x400, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808CAC50[] = { 324, 0x400, 304, 0x21F, 312, 0x31F, 288, 0x21E, 296, 0x31E, 248, 0x116, 252, 0x117, 256, 0x118, 260, 0x119, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_808CB2D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808CB3F0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_808CB6A0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808CB8E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808CB9A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808CBAC0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808CBC70[] = { 276, 0x400, 268, 0x11F, 264, 0x11E };
+static const int16_t e_808CC390[] = { 36, 0x400 };
+static const int16_t e_808CD260[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808CDB70[] = { 36, 0x400 };
+static const int16_t e_808CDC20[] = { 20, 0x400 };
+static const int16_t e_808CDC50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CDCE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CDD90[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_808CE110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CE1E0[] = { 20, 0x400 };
+static const int16_t e_808CE220[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808CE5D0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808CE6D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808CE8F0[] = { 52, 0x400, 40, 0x21F, 32, 0x21E, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808CEBA0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808CED70[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808CEF10[] = { 36, 0x400, 16, 0x21F, 24, 0x31F, 12, 0x11F };
+static const int16_t e_808CF010[] = { 36, 0x400 };
+static const int16_t e_808CF940[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808CFC50[] = { 36, 0x400 };
+static const int16_t e_808D0C30[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_808D1900[] = { 36, 0x400 };
+static const int16_t e_808D1B00[] = { 36, 0x400 };
+static const int16_t e_808D32A0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_808D33F0[] = { 20, 0x400 };
+static const int16_t e_808D3420[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808D3520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808D35D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808D3750[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D3870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D38E0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808D39D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808D3AC0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808D3C30[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808D4040[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808D4100[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808D48A0[] = { 20, 0x400 };
+static const int16_t e_808D48D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808D4990[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808D4A20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808D4AD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D4B40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D4BB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D4C30[] = { 196, 0x400, 176, 0x21F, 184, 0x31F, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_808D4ED0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808D5DB0[] = { 36, 0x400 };
+static const int16_t e_808D7720[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808D78D0[] = { 20, 0x400 };
+static const int16_t e_808D7900[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D7980[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808D7A30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D7AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808D7BF0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808D7D30[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808D7DE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808D81C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_808D8510[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808D87C0[] = { 36, 0x400 };
+static const int16_t e_808D89A0[] = { 36, 0x400 };
+static const int16_t e_808D9470[] = { 36, 0x400 };
+static const int16_t e_808D9640[] = { 36, 0x400 };
+static const int16_t e_808D9820[] = { 36, 0x400 };
+static const int16_t e_808DA960[] = { 36, 0x400 };
+static const int16_t e_808DBC10[] = { 36, 0x400 };
+static const int16_t e_808DBCC0[] = { 20, 0x400 };
+static const int16_t e_808DBCF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DBD50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DBDF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DBEF0[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_808DC130[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DC2E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DC380[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808DC4F0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808DD000[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DD2F0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808DD430[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808DD610[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808DD850[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808DE2E0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808DE500[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808DEAA0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_808DEB90[] = { 20, 0x400 };
+static const int16_t e_808DEBD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DEC80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808DED80[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DEE90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DEF00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DEF40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DEFB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DF0A0[] = { 24676, 0x400, 24628, 0x115, 24632, 0x116, 24636, 0x117, 24640, 0x118, 24644, 0x119, 24648, 0x11A, 24652, 0x11B, 24656, 0x11C, 24660, 0x11D, 24664, 0x11E, 24668, 0x11F };
+static const int16_t e_808DF3B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DF430[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808DF4C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_808DF910[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DF990[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808DFA00[] = { 68, 0x400, 12, 0x113, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808E1160[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808E1400[] = { 52, 0x400, 8, 0x116, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E1580[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E1720[] = { 20, 0x400 };
+static const int16_t e_808E1DE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808E1F10[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E20F0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E2480[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E2630[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808E26C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808E2710[] = { 20, 0x400 };
+static const int16_t e_808E2790[] = { 20, 0x400 };
+static const int16_t e_808E27E0[] = { 20, 0x400 };
+static const int16_t e_808E2DC0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808E2E90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808E2F60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808E3170[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808E3240[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808E3660[] = { 36, 0x400 };
+static const int16_t e_808E3D00[] = { 36, 0x400 };
+static const int16_t e_808E43A0[] = { 36, 0x400 };
+static const int16_t e_808E4D60[] = { 36, 0x400 };
+static const int16_t e_808E62B0[] = { 372, 0x400, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_808E6EB0[] = { 36, 0x400 };
+static const int16_t e_808E76C0[] = { 36, 0x400 };
+static const int16_t e_808E7770[] = { 20, 0x400 };
+static const int16_t e_808E77A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808E7840[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808E78F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808E7FF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808E8080[] = { 20, 0x400 };
+static const int16_t e_808E80C0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808E8210[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808E82C0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808E86C0[] = { 36, 0x400 };
+static const int16_t e_808E8AB0[] = { 20, 0x400 };
+static const int16_t e_808EAFF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808EB170[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808EB310[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 128, 0x21E, 136, 0x31E, 112, 0x21D, 120, 0x31D, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_808EB730[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808EB8E0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808EBAA0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808EBC00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808EBD10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808EE260[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 108, 0x11F, 104, 0x11E, 100, 0x11D, 96, 0x11C };
+static const int16_t e_808EE5E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808EF830[] = { 36, 0x400 };
+static const int16_t e_808F00D0[] = { 36, 0x400 };
+static const int16_t e_808F1660[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_808F1E70[] = { 36, 0x400 };
+static const int16_t e_808F1F20[] = { 20, 0x400 };
+static const int16_t e_808F1F50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F2000[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F20C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F21F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808F22C0[] = { 20, 0x400 };
+static const int16_t e_808F2300[] = { 68, 0x400, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808F24E0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808F2590[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808F27C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_808F2D70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F2DE0[] = { 36, 0x400 };
+static const int16_t e_808F3240[] = { 36, 0x400 };
+static const int16_t e_808F3AF0[] = { 36, 0x400 };
+static const int16_t e_808F3BA0[] = { 20, 0x400 };
+static const int16_t e_808F3BD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_808F3E80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808F4010[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808F4180[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F4290[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808F4350[] = { 20, 0x400 };
+static const int16_t e_808F4380[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_808F44A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F4530[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_808F49C0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808F4A30[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_808F4AA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808F4AF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808F4CC0[] = { 132, 0x400, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_808F7910[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F7B00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F8AF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F8D10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F8F30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F9150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F9370[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F95A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808F97C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_808FA840[] = { 36, 0x400 };
+static const int16_t e_808FAEA0[] = { 36, 0x400 };
+static const int16_t e_808FAF50[] = { 20, 0x400 };
+static const int16_t e_808FAF80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808FAFD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FB070[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808FB0B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FB150[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808FB210[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FB300[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_808FBD60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FBFA0[] = { 20, 0x400 };
+static const int16_t e_808FC6F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FC770[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808FCAB0[] = { 36, 0x400 };
+static const int16_t e_808FDA20[] = { 36, 0x400 };
+static const int16_t e_808FE7A0[] = { 36, 0x400 };
+static const int16_t e_808FE850[] = { 20, 0x400 };
+static const int16_t e_808FE880[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FE910[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FE9C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_808FEA30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FEB60[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_808FECA0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_808FED50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_808FEF60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_808FF370[] = { 20, 0x400 };
+static const int16_t e_808FF3B0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_809005E0[] = { 36, 0x400 };
+static const int16_t e_80901310[] = { 36, 0x400 };
+static const int16_t e_80902670[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_809027A0[] = { 20, 0x400 };
+static const int16_t e_809029F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80902AD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809030B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80903130[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809032D0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80903810[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809040A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80904B10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80904C70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80904D90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80904EA0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80904FF0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 124, 0x11F, 120, 0x11E, 116, 0x11D, 112, 0x11C };
+static const int16_t e_809053C0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80905780[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 36, 0x115, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_809061A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809062C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80906350[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809063D0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809064B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809065A0[] = { 132, 0x400, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80906890[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809069D0[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80906C70[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80906DE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80906EF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80907190[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80907320[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809073A0[] = { 20, 0x400 };
+static const int16_t e_80907420[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80907540[] = { 20, 0x400 };
+static const int16_t e_809076D0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809079E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80907B40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80907C60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80907DE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80907E60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80907F00[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80907FC0[] = { 180, 0x400, 128, 0x114, 132, 0x115, 136, 0x116, 140, 0x117, 144, 0x118, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_809082F0[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80908490[] = { 52, 0x400, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80908640[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809086F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809087F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80908860[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809088F0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80908CF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80908E50[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 128, 0x21E, 136, 0x31E, 124, 0x11F, 120, 0x11E, 116, 0x11D };
+static const int16_t e_80909090[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80909150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809091F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80909510[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80909590[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80909950[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809099C0[] = { 324, 0x400, 292, 0x119, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_8090AA50[] = { 164, 0x400, 156, 0x11F, 152, 0x11E };
+static const int16_t e_8090BE40[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_8090C170[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8090C500[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8090C8F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8090C950[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8090C9B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8090CA20[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8090CC80[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8090D180[] = { 36, 0x400 };
+static const int16_t e_8090E800[] = { 180, 0x400, 172, 0x11F, 168, 0x11E };
+static const int16_t e_8090F2E0[] = { 36, 0x400 };
+static const int16_t e_8090F390[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8090F520[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8090F650[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8090F740[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_8090F890[] = { 20, 0x400 };
+static const int16_t e_8090F9B0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_8090FAE0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8090FBC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8090FC30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8090FDC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8090FE60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8090FF40[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80910150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80910330[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 32, 0x21E, 40, 0x31E, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80910690[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80910820[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80910F10[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80910FD0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809111F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80911250[] = { 20, 0x400 };
+static const int16_t e_80911290[] = { 100, 0x400, 92, 0x11F };
+static const int16_t e_80911550[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809119F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80911DD0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80911E30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80911F30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80911FC0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80913470[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80913E60[] = { 20, 0x400 };
+static const int16_t e_80913E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80913FD0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809140D0[] = { 20, 0x400 };
+static const int16_t e_80914100[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80914150[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80914270[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 96, 0x21E, 104, 0x31E, 80, 0x21D, 88, 0x31D, 64, 0x21C, 72, 0x31C, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80914520[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809145E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80914640[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80914690[] = { 20, 0x400 };
+static const int16_t e_809146C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80914710[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80914790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80914800[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80914860[] = { 20, 0x400 };
+static const int16_t e_809148B0[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80914BF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80914F60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80915380[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809153C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80915400[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80915480[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809154F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80915540[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809155A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809156A0[] = { 36, 0x400 };
+static const int16_t e_809157A0[] = { 20, 0x400 };
+static const int16_t e_809157D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809158D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809159D0[] = { 20, 0x400 };
+static const int16_t e_80915A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80915A70[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80915B40[] = { 276, 0x400, 256, 0x21F, 264, 0x31F, 240, 0x21E, 248, 0x31E, 224, 0x21D, 232, 0x31D, 208, 0x21C, 216, 0x31C, 204, 0x11F, 200, 0x11E };
+static const int16_t e_80915FB0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80916040[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809160A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809160F0[] = { 20, 0x400 };
+static const int16_t e_80916120[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80916320[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809163B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80916440[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80916520[] = { 20, 0x400 };
+static const int16_t e_809165C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80916640[] = { 20, 0x400 };
+static const int16_t e_809166B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80917250[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80917970[] = { 20, 0x400 };
+static const int16_t e_809179A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80917A80[] = { 20, 0x400 };
+static const int16_t e_80917BC0[] = { 20, 0x400 };
+static const int16_t e_80917BF0[] = { 20, 0x400 };
+static const int16_t e_80917C40[] = { 20, 0x400 };
+static const int16_t e_80917F60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80917FB0[] = { 20, 0x400 };
+static const int16_t e_80917FE0[] = { 20, 0x400 };
+static const int16_t e_80918030[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809182B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80918340[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809183C0[] = { 20, 0x400 };
+static const int16_t e_80918400[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809185D0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809186A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80918730[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80918920[] = { 20, 0x400 };
+static const int16_t e_80918F90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80919140[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80919280[] = { 20, 0x400 };
+static const int16_t e_809193F0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809194B0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80919570[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809195E0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809197B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809199B0[] = { 436, 0x400, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_8091B630[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_8091C8D0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8091E2E0[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_8091EC20[] = { 20, 0x400 };
+static const int16_t e_8091ECB0[] = { 20, 0x400 };
+static const int16_t e_8091ED00[] = { 20, 0x400 };
+static const int16_t e_8091ED40[] = { 20, 0x400 };
+static const int16_t e_8091ED90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F080[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8091F180[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F210[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F2B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8091F4A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F540[] = { 20, 0x400 };
+static const int16_t e_8091F570[] = { 20, 0x400 };
+static const int16_t e_8091F5D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8091F970[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8091FA40[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8091FBE0[] = { 100, 0x400, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_80920030[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_809201A0[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809203D0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80920600[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809207D0[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_80921AD0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80922070[] = { 20, 0x400 };
+static const int16_t e_809220A0[] = { 20, 0x400 };
+static const int16_t e_80922120[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80922240[] = { 20, 0x400 };
+static const int16_t e_80922280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80922300[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80922360[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809223F0[] = { 20, 0x400 };
+static const int16_t e_80922420[] = { 20, 0x400 };
+static const int16_t e_80922470[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80922570[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80922750[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80922810[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809228F0[] = { 20, 0x400 };
+static const int16_t e_80923140[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80923280[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809232F0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809233B0[] = { 164, 0x400, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80923980[] = { 20, 0x400 };
+static const int16_t e_809239B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809239F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80923A50[] = { 20, 0x400 };
+static const int16_t e_80923AC0[] = { 20, 0x400 };
+static const int16_t e_80923AF0[] = { 20, 0x400 };
+static const int16_t e_80923B30[] = { 20, 0x400 };
+static const int16_t e_80923C20[] = { 20, 0x400 };
+static const int16_t e_80923C50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80923CF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80923D90[] = { 532, 0x400, 512, 0x21F, 520, 0x31F, 440, 0x10E, 444, 0x10F, 448, 0x110, 452, 0x111, 456, 0x112, 460, 0x113, 464, 0x114, 468, 0x115, 472, 0x116, 476, 0x117, 480, 0x118, 484, 0x119, 488, 0x11A, 492, 0x11B, 496, 0x11C, 500, 0x11D, 504, 0x11E, 508, 0x11F };
+static const int16_t e_80924240[] = { 20, 0x400 };
+static const int16_t e_80924270[] = { 20, 0x400 };
+static const int16_t e_809243F0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80924450[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80924640[] = { 20, 0x400 };
+static const int16_t e_80924710[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80924A60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80924B90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80924BD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80924DD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80925A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80925A40[] = { 20, 0x400 };
+static const int16_t e_80925A70[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80925B50[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80925E80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80926120[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80926220[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_809262E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80926340[] = { 340, 0x400, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_80926560[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809266A0[] = { 36, 0x400 };
+static const int16_t e_80926750[] = { 20, 0x400 };
+static const int16_t e_80926780[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80926AF0[] = { 20, 0x400 };
+static const int16_t e_80926B20[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80926BB0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80926DA0[] = { 20, 0x400 };
+static const int16_t e_80926DF0[] = { 20, 0x400 };
+static const int16_t e_809271A0[] = { 20, 0x400 };
+static const int16_t e_80927340[] = { 20, 0x400 };
+static const int16_t e_809273B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80927430[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809274D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80927540[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809275D0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80927760[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80927820[] = { 20, 0x400 };
+static const int16_t e_80927880[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80927AD0[] = { 164, 0x400, 156, 0x11F, 152, 0x11E, 148, 0x11D };
+static const int16_t e_80927BA0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80927C60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80927CF0[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80927DE0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80927EF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80927FB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809280C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809281B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_809282D0[] = { 116, 0x400, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809285E0[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80928770[] = { 36, 0x400 };
+static const int16_t e_80928820[] = { 20, 0x400 };
+static const int16_t e_80928850[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80928A50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80928AE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80928BA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80928C80[] = { 20, 0x400 };
+static const int16_t e_80928CC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80928D50[] = { 20, 0x400 };
+static const int16_t e_8092A7A0[] = { 612, 0x400, 592, 0x21F, 600, 0x31F, 576, 0x21E, 584, 0x31E, 560, 0x21D, 568, 0x31D, 544, 0x21C, 552, 0x31C, 528, 0x21B, 536, 0x31B, 508, 0x11B, 512, 0x11C, 516, 0x11D, 520, 0x11E, 524, 0x11F };
+static const int16_t e_8092B3F0[] = { 20, 0x400 };
+static const int16_t e_8092B420[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092B470[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092B4E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092B5B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092B6C0[] = { 20, 0x400 };
+static const int16_t e_8092B700[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092B770[] = { 20, 0x400 };
+static const int16_t e_8092BB20[] = { 20, 0x400 };
+static const int16_t e_8092BB50[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8092BD40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092BDE0[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 96, 0x21E, 104, 0x31E, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_8092C030[] = { 20, 0x400 };
+static const int16_t e_8092C060[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092C0D0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_8092C180[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092C2A0[] = { 356, 0x400, 336, 0x21F, 344, 0x31F, 320, 0x21E, 328, 0x31E, 304, 0x21D, 312, 0x31D, 288, 0x21C, 296, 0x31C, 272, 0x21B, 280, 0x31B, 256, 0x21A, 264, 0x31A, 240, 0x219, 248, 0x319, 224, 0x218, 232, 0x318, 208, 0x217, 216, 0x317, 192, 0x216, 200, 0x316, 176, 0x215, 184, 0x315, 160, 0x214, 168, 0x314, 156, 0x11F };
+static const int16_t e_8092C5F0[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 80, 0x21E, 88, 0x31E, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_8092CA40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092CC30[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 64, 0x21E, 72, 0x31E, 60, 0x11F, 56, 0x11E };
+static const int16_t e_8092CD40[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_8092E8B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092EB20[] = { 516, 0x400, 508, 0x11F, 504, 0x11E };
+static const int16_t e_8092F060[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092F280[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092F310[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092F4B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8092F560[] = { 20, 0x400 };
+static const int16_t e_8092F5A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092F670[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092F700[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092FC40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_8092FDA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8092FEA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80930000[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80931230[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80931400[] = { 1316, 0x400, 1292, 0x11B, 1296, 0x11C, 1300, 0x11D, 1304, 0x11E, 1308, 0x11F };
+static const int16_t e_809A2EE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809A2F20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809A3040[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809A5650[] = { 420, 0x400, 392, 0x11A, 396, 0x11B, 400, 0x11C, 404, 0x11D, 408, 0x11E, 412, 0x11F };
+static const int16_t e_809A5FB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809A6090[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809A81E0[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_809A9A80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809AAB80[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809AC780[] = { 404, 0x400, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_809AF6D0[] = { 292, 0x400, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_809B17F0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_809B3CA0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809B5B80[] = { 372, 0x400, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_809B70A0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809B8360[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_809B96D0[] = { 212, 0x400, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_809BBC80[] = { 260, 0x400, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_809BD430[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_809BEA80[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809BEDC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809BF2B0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809BF410[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809BF480[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809BF9C0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809BFA50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809BFCC0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_809C0010[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C0050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C0460[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809C0520[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809C1D30[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_809C21F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809C2290[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809C2440[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C24F0[] = { 100, 0x400, 92, 0x11F };
+static const int16_t e_809C2600[] = { 20, 0x400 };
+static const int16_t e_809C2630[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809C2750[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_809C29C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C2A30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809C2AD0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809C2E10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C2F10[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809C3330[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C33F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C3450[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C38B0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_809C3B50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C3BD0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809C3C80[] = { 132, 0x400, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_809C4B60[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809C57C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809C5CA0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809C69E0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809C7A40[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809C88D0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809CD030[] = { 548, 0x400, 512, 0x118, 516, 0x119, 520, 0x11A, 524, 0x11B, 528, 0x11C, 532, 0x11D, 536, 0x11E, 540, 0x11F };
+static const int16_t e_809CF920[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809CFB30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809D00D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809D0340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809D03E0[] = { 20, 0x400 };
+static const int16_t e_809D0420[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809D20A0[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_809D2710[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809D2A20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_809D2B80[] = { 660, 0x400, 640, 0x21F, 648, 0x31F, 624, 0x21E, 632, 0x31E, 608, 0x21D, 616, 0x31D, 592, 0x21C, 600, 0x31C, 576, 0x21B, 584, 0x31B, 560, 0x21A, 568, 0x31A, 544, 0x219, 552, 0x319, 528, 0x218, 536, 0x318, 512, 0x217, 520, 0x317, 496, 0x216, 504, 0x316, 480, 0x215, 488, 0x315, 464, 0x214, 472, 0x314, 448, 0x213, 456, 0x313, 432, 0x212, 440, 0x312, 416, 0x211, 424, 0x311, 400, 0x210, 408, 0x310, 384, 0x20F, 392, 0x30F, 368, 0x20E, 376, 0x30E, 296, 0x10E, 300, 0x10F, 304, 0x110, 308, 0x111, 312, 0x112, 316, 0x113, 320, 0x114, 324, 0x115, 328, 0x116, 332, 0x117, 336, 0x118, 340, 0x119, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_809D3990[] = { 20, 0x400 };
+static const int16_t e_809D39C0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809D3A20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809D43D0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809D57F0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_809D7250[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_809D8540[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_809DB1A0[] = { 404, 0x400, 376, 0x11A, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_809DC6C0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_809DCAC0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809DCCE0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809DCD80[] = { 36, 0x400 };
+static const int16_t e_809DCDE0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_809DF6E0[] = { 20, 0x400 };
+static const int16_t e_809DF710[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809DF760[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809DF8A0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809DFAB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809DFB50[] = { 36, 0x400 };
+static const int16_t e_809DFBB0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_809E0840[] = { 20, 0x400 };
+static const int16_t e_809E0870[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E08C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809E0A00[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809E0B80[] = { 116, 0x400, 96, 0x21F, 104, 0x31F, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_809E1700[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_809E1F60[] = { 20, 0x400 };
+static const int16_t e_809E1FD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E2040[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809E3CF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E3E60[] = { 612, 0x400, 584, 0x11A, 588, 0x11B, 592, 0x11C, 596, 0x11D, 600, 0x11E, 604, 0x11F };
+static const int16_t e_809E4E60[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809E4FE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809E5220[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E52E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E53D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E54F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E5590[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_809E56A0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_809E5AC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E5C70[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809E5FB0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809E60D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809E62A0[] = { 20, 0x400 };
+static const int16_t e_809E62E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6340[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E63A0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809E64F0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809E65F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6720[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809E67C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E68E0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809E6C20[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_809E6D60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6DF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6E40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6E90[] = { 20, 0x400 };
+static const int16_t e_809E6EC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E6FB0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809E70B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809E71D0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809E7B50[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809E8680[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809E9280[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_809E9550[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_809E96D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E9790[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E97E0[] = { 20, 0x400 };
+static const int16_t e_809E9810[] = { 20, 0x400 };
+static const int16_t e_809E9840[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E98D0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_809E99A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809E99F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809E9AD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_809E9C70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809E9DF0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_809EC940[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_809EEE60[] = { 324, 0x400, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_809EFF40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809EFF80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809F00E0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F0C00[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F1780[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F2430[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F2F80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F3A80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F4580[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F4A60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809F4B10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809F4E10[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809F4ED0[] = { 100, 0x400, 92, 0x11F };
+static const int16_t e_809F4FA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809F50E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809F5180[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F71D0[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_809F80A0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_809F8580[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809F85E0[] = { 36, 0x400 };
+static const int16_t e_809F8680[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809F9C70[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809FD030[] = { 548, 0x400, 524, 0x11B, 528, 0x11C, 532, 0x11D, 536, 0x11E, 540, 0x11F };
+static const int16_t e_809FE5E0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_809FE870[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_809FE9C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809FEB20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_809FEC40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_809FEC90[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_809FEDA0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809FEEF0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_809FEFA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_809FF010[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_809FF190[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_809FF280[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_809FFD80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A01C50[] = { 260, 0x400, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A03750[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80A07050[] = { 804, 0x400, 776, 0x11A, 780, 0x11B, 784, 0x11C, 788, 0x11D, 792, 0x11E, 796, 0x11F };
+static const int16_t e_80A08E80[] = { 228, 0x400, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80A09750[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A09920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A09CB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A09D90[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_80A0A050[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A0A0B0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80A0A4F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A0A6B0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A0A7C0[] = { 36, 0x400 };
+static const int16_t e_80A0A820[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80A0AE50[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80A0B140[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A0B530[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A0B5F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A0B6A0[] = { 20, 0x400 };
+static const int16_t e_80A0B730[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A0B850[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A0B980[] = { 196, 0x400, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80A0CD90[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A0E1A0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A0F1E0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A0FE60[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A10F20[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A118E0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A12C40[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A156C0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A184E0[] = { 436, 0x400, 408, 0x11A, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_80A1B990[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80A1F830[] = { 228, 0x400, 192, 0x118, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80A20740[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A21C20[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80A24130[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80A26300[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80A26AC0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80A27490[] = { 164, 0x400, 156, 0x11F, 152, 0x11E };
+static const int16_t e_80A276E0[] = { 116, 0x400, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A27880[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A27BF0[] = { 100, 0x400, 80, 0x21F, 88, 0x31F, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_80A27F40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A28200[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A28280[] = { 36, 0x400 };
+static const int16_t e_80A28A40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A28BF0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A28D50[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80A28E40[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A28EC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A28F60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A29100[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A29150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A29220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A29D10[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A29FF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A2A0A0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A2AAC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A2AC00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A2AEB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A2AFE0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A2BF20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A2C170[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A2C2D0[] = { 804, 0x400, 780, 0x11B, 784, 0x11C, 788, 0x11D, 792, 0x11E, 796, 0x11F };
+static const int16_t e_80A2E330[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A310D0[] = { 228, 0x400, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80A33420[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A33D80[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A34320[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A343F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A344C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A346E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A34760[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A347F0[] = { 20, 0x400 };
+static const int16_t e_80A34820[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A34890[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_80A34C20[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80A34D30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A34DB0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80A34ED0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A35000[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A35090[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A35130[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80A352A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A353F0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80A354E0[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A35690[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A35730[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A358A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A35980[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A36100[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A361C0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A367F0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80A368E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A36A00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A36AD0[] = { 20, 0x400 };
+static const int16_t e_80A36B00[] = { 20, 0x400 };
+static const int16_t e_80A36B40[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80A372D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A374D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A37560[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_80A37690[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80A377B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A37850[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A378D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A379F0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 60, 0x11F, 56, 0x11E, 52, 0x11D, 48, 0x11C };
+static const int16_t e_80A37B90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A37E30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A37F60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A37FB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A38220[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A38310[] = { 180, 0x400, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A3A820[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A3CAA0[] = { 324, 0x400, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80A3FDD0[] = { 260, 0x400, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A441C0[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_80A45A70[] = { 228, 0x400, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80A48470[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_80A4D2E0[] = { 404, 0x400, 372, 0x119, 376, 0x11A, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_80A50CA0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A526B0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A55930[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A55F60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A560B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A564B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A56DD0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A56E80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A56F30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A57060[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A57450[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A57560[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A57630[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A57730[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80A593F0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A5A070[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A5C310[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A5DEF0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A5EBE0[] = { 356, 0x400, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_80A5FA50[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A62770[] = { 404, 0x400, 372, 0x119, 376, 0x11A, 380, 0x11B, 384, 0x11C, 388, 0x11D, 392, 0x11E, 396, 0x11F };
+static const int16_t e_80A63CA0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A63CF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A63DE0[] = { 132, 0x400, 112, 0x21F, 120, 0x31F, 108, 0x11F, 104, 0x11E, 100, 0x11D };
+static const int16_t e_80A640F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A66980[] = { 388, 0x400, 352, 0x118, 356, 0x119, 360, 0x11A, 364, 0x11B, 368, 0x11C, 372, 0x11D, 376, 0x11E, 380, 0x11F };
+static const int16_t e_80A69200[] = { 340, 0x400, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_80A6AA20[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A6D110[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80A6FD00[] = { 308, 0x400, 276, 0x119, 280, 0x11A, 284, 0x11B, 288, 0x11C, 292, 0x11D, 296, 0x11E, 300, 0x11F };
+static const int16_t e_80A70EB0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A71DB0[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A724E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A72630[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80A72900[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80A72A60[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A72B40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A72C20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A72D50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A72DF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A72E90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A72FA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A73120[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80A73230[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
+static const int16_t e_80A732D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A73370[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A734B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A73540[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A73640[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 48, 0x21E, 56, 0x31E, 32, 0x21D, 40, 0x31D, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A73790[] = { 116, 0x400, 108, 0x11F, 104, 0x11E };
+static const int16_t e_80A73AE0[] = { 20, 0x400 };
+static const int16_t e_80A73B20[] = { 36, 0x400, 24, 0x21F, 20, 0x11F, 16, 0x11E };
+static const int16_t e_80A73C00[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A73CF0[] = { 36, 0x400 };
+static const int16_t e_80A73D80[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A73F20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A74380[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A746A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A74730[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A74800[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A74890[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A74AD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A74B60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A74C30[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_80A75700[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A757A0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80A75860[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A75920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A75960[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A759A0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A759F0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A75A40[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A75AA0[] = { 20, 0x400 };
+static const int16_t e_80A75AF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A75B80[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A75D30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A75EE0[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80A76670[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80A76890[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A76A30[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80A76CE0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80A76F00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A76FC0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80A77100[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A775A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A77630[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A77760[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A78C60[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A7B8F0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A7CB40[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A7DE30[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A7E910[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A7FB40[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A81310[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A82770[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A82AB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A82B90[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A82C70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A82F10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A83060[] = { 100, 0x400, 92, 0x11F };
+static const int16_t e_80A83240[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A83700[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80A83A10[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80A83D60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A84000[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A84290[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80A843E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A845D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80A84690[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A846E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A84730[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80A849A0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A84A10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A84B80[] = { 20, 0x400 };
+static const int16_t e_80A84BF0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A851D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A85250[] = { 36, 0x400, 24, 0x21F, 20, 0x11F, 16, 0x11E };
+static const int16_t e_80A85750[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A85830[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A859E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A85BA0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A85C70[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A85D60[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A87EB0[] = { 324, 0x400, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80A88660[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A88720[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80A88960[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80A88FE0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A89070[] = { 20, 0x400 };
+static const int16_t e_80A890B0[] = { 212, 0x400, 204, 0x11F, 200, 0x11E };
+static const int16_t e_80A89F90[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A8A000[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_80A8A3A0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A8A400[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A8B980[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A8B9D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A8BB20[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80A8C5E0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A8C670[] = { 596, 0x400, 564, 0x119, 568, 0x11A, 572, 0x11B, 576, 0x11C, 580, 0x11D, 584, 0x11E, 588, 0x11F };
+static const int16_t e_80A8E450[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A8FA20[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A91070[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80A92370[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A935D0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A93A40[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A93BD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80A93C40[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80A93D90[] = { 20, 0x400 };
+static const int16_t e_80A941E0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80A94860[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80A948E0[] = { 196, 0x400, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80A97420[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80A98CB0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A9A200[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80A9B160[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80A9C580[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80A9F020[] = { 292, 0x400, 272, 0x21F, 280, 0x31F, 256, 0x21E, 264, 0x31E, 240, 0x21D, 248, 0x31D, 224, 0x21C, 232, 0x31C, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80AA10A0[] = { 580, 0x400, 560, 0x21F, 568, 0x31F, 544, 0x21E, 552, 0x31E, 528, 0x21D, 536, 0x31D, 512, 0x21C, 520, 0x31C, 496, 0x21B, 504, 0x31B, 480, 0x21A, 488, 0x31A, 464, 0x219, 472, 0x319, 448, 0x218, 456, 0x318, 432, 0x217, 440, 0x317, 416, 0x216, 424, 0x316, 400, 0x215, 408, 0x315, 384, 0x214, 392, 0x314, 368, 0x213, 376, 0x313, 352, 0x212, 360, 0x312, 336, 0x211, 344, 0x311, 320, 0x210, 328, 0x310, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80AA20C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80AA5CA0[] = { 372, 0x400, 344, 0x11A, 348, 0x11B, 352, 0x11C, 356, 0x11D, 360, 0x11E, 364, 0x11F };
+static const int16_t e_80AA9000[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80AA9730[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AA9880[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80AA9CD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AA9DD0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80AAA0B0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80AAA150[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80AAA560[] = { 20, 0x400 };
+static const int16_t e_80AAAA50[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80AAAE60[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80AAAF50[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80AABCF0[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80AACB50[] = { 116, 0x400, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80AADE80[] = { 148, 0x400, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80AAE5B0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80AAE8D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80AAEB60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AAED30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AAEDB0[] = { 20, 0x400 };
+static const int16_t e_80AAEE10[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AAF220[] = { 132, 0x400, 124, 0x11F, 120, 0x11E };
+static const int16_t e_80AAF570[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AAF5E0[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80AAFA60[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80AAFCB0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AAFD50[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AAFDC0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AAFE30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AAFE90[] = { 36, 0x400 };
+static const int16_t e_80AAFF80[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80AB03C0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80AB0680[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_80AB07D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB0830[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB0870[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80AB0920[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AB0A60[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80AB0AF0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB0C20[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80AB0D70[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80AB1890[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80AB27C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80AB5380[] = { 260, 0x400, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80AB6F00[] = { 180, 0x400, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 172, 0x11F };
+static const int16_t e_80AB73C0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80AB74B0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80AB7950[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB7A90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AB7BD0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB7C50[] = { 20, 0x400 };
+static const int16_t e_80AB7CB0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80AB7D80[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80AB8AC0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80AB8CB0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AB8D40[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80AB8FA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80AB9260[] = { 20, 0x400 };
+static const int16_t e_80AB9880[] = { 116, 0x400, 108, 0x11F };
+static const int16_t e_80AB99C0[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_80AB9BC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80AB9C20[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D, 64, 0x11C };
+static const int16_t e_80AB9E90[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80ABA020[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABAD80[] = { 260, 0x400, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80ABB620[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABB6A0[] = { 36, 0x400 };
+static const int16_t e_80ABB7E0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABB910[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABB9A0[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80ABBA70[] = { 20, 0x400 };
+static const int16_t e_80ABBC00[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80ABBCF0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80ABC480[] = { 148, 0x400, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E, 140, 0x11F };
+static const int16_t e_80ABC880[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABC8D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABC940[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABC990[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80ABCB10[] = { 36, 0x400, 28, 0x11F };
+static const int16_t e_80ABCBC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80ABCD30[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80ABCD90[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80ABEB50[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80AC1FF0[] = { 324, 0x400, 296, 0x11A, 300, 0x11B, 304, 0x11C, 308, 0x11D, 312, 0x11E, 316, 0x11F };
+static const int16_t e_80AC3380[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80AC36C0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AC37A0[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80AC3B40[] = { 20, 0x400 };
+static const int16_t e_80AC4010[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80AC40B0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80AC4C20[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_80AC5540[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80AC6FC0[] = { 260, 0x400, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80AC9830[] = { 196, 0x400, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80ACB4C0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80ACC7C0[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_80B1CB60[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B1FB50[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B201E0[] = { 708, 0x400, 668, 0x117, 672, 0x118, 676, 0x119, 680, 0x11A, 684, 0x11B, 688, 0x11C, 692, 0x11D, 696, 0x11E, 700, 0x11F };
+static const int16_t e_80B21570[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B229D0[] = { 356, 0x400, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_80B25B30[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B25D80[] = { 452, 0x400, 412, 0x117, 416, 0x118, 420, 0x119, 424, 0x11A, 428, 0x11B, 432, 0x11C, 436, 0x11D, 440, 0x11E, 444, 0x11F };
+static const int16_t e_80B29CE0[] = { 596, 0x400, 556, 0x117, 560, 0x118, 564, 0x119, 568, 0x11A, 572, 0x11B, 576, 0x11C, 580, 0x11D, 584, 0x11E, 588, 0x11F };
+static const int16_t e_80B2D530[] = { 628, 0x400, 588, 0x117, 592, 0x118, 596, 0x119, 600, 0x11A, 604, 0x11B, 608, 0x11C, 612, 0x11D, 616, 0x11E, 620, 0x11F };
+static const int16_t e_80B31010[] = { 836, 0x400, 800, 0x118, 804, 0x119, 808, 0x11A, 812, 0x11B, 816, 0x11C, 820, 0x11D, 824, 0x11E, 828, 0x11F };
+static const int16_t e_80B343C0[] = { 356, 0x400, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_80B37C00[] = { 772, 0x400, 696, 0x10E, 700, 0x10F, 704, 0x110, 708, 0x111, 712, 0x112, 716, 0x113, 720, 0x114, 724, 0x115, 728, 0x116, 732, 0x117, 736, 0x118, 740, 0x119, 744, 0x11A, 748, 0x11B, 752, 0x11C, 756, 0x11D, 760, 0x11E, 764, 0x11F };
+static const int16_t e_80B3C490[] = { 1220, 0x400, 1200, 0x21F, 1208, 0x31F, 1184, 0x21E, 1192, 0x31E, 1168, 0x21D, 1176, 0x31D, 1152, 0x21C, 1160, 0x31C, 1136, 0x21B, 1144, 0x31B, 1120, 0x21A, 1128, 0x31A, 1104, 0x219, 1112, 0x319, 1088, 0x218, 1096, 0x318, 1072, 0x217, 1080, 0x317, 1056, 0x216, 1064, 0x316, 1024, 0x118, 1028, 0x119, 1032, 0x11A, 1036, 0x11B, 1040, 0x11C, 1044, 0x11D, 1048, 0x11E, 1052, 0x11F };
+static const int16_t e_80B44BB0[] = { 884, 0x400, 864, 0x21F, 872, 0x31F, 848, 0x21E, 856, 0x31E, 832, 0x21D, 840, 0x31D, 816, 0x21C, 824, 0x31C, 800, 0x21B, 808, 0x31B, 768, 0x118, 772, 0x119, 776, 0x11A, 780, 0x11B, 784, 0x11C, 788, 0x11D, 792, 0x11E, 796, 0x11F };
+static const int16_t e_80B46620[] = { 196, 0x400, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80B484D0[] = { 260, 0x400, 224, 0x118, 228, 0x119, 232, 0x11A, 236, 0x11B, 240, 0x11C, 244, 0x11D, 248, 0x11E, 252, 0x11F };
+static const int16_t e_80B4A4D0[] = { 292, 0x400, 256, 0x118, 260, 0x119, 264, 0x11A, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E, 284, 0x11F };
+static const int16_t e_80B4C2E0[] = { 196, 0x400, 160, 0x118, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E, 188, 0x11F };
+static const int16_t e_80B4E290[] = { 340, 0x400, 304, 0x118, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E, 332, 0x11F };
+static const int16_t e_80B50E10[] = { 228, 0x400, 196, 0x119, 200, 0x11A, 204, 0x11B, 208, 0x11C, 212, 0x11D, 216, 0x11E, 220, 0x11F };
+static const int16_t e_80B51630[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B516F0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80B51870[] = { 84, 0x400, 76, 0x11F, 72, 0x11E, 68, 0x11D };
+static const int16_t e_80B51A40[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B51AB0[] = { 148, 0x400, 140, 0x11F, 136, 0x11E };
+static const int16_t e_80B51D50[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80B51DB0[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80B51ED0[] = { 36, 0x400 };
+static const int16_t e_80B51F40[] = { 20, 0x400 };
+static const int16_t e_80B51FA0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80B52110[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B52200[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B522F0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B523E0[] = { 36, 0x400 };
+static const int16_t e_80B538C0[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80B53990[] = { 436, 0x400, 404, 0x119, 408, 0x11A, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_80B58780[] = { 900, 0x400, 868, 0x119, 872, 0x11A, 876, 0x11B, 880, 0x11C, 884, 0x11D, 888, 0x11E, 892, 0x11F };
+static const int16_t e_80B5DEE0[] = { 900, 0x400, 868, 0x119, 872, 0x11A, 876, 0x11B, 880, 0x11C, 884, 0x11D, 888, 0x11E, 892, 0x11F };
+static const int16_t e_80B62170[] = { 612, 0x400, 552, 0x112, 556, 0x113, 560, 0x114, 564, 0x115, 568, 0x116, 572, 0x117, 576, 0x118, 580, 0x119, 584, 0x11A, 588, 0x11B, 592, 0x11C, 596, 0x11D, 600, 0x11E, 604, 0x11F };
+static const int16_t e_80B65EA0[] = { 724, 0x400, 692, 0x119, 696, 0x11A, 700, 0x11B, 704, 0x11C, 708, 0x11D, 712, 0x11E, 716, 0x11F };
+static const int16_t e_80B6A970[] = { 740, 0x400, 708, 0x119, 712, 0x11A, 716, 0x11B, 720, 0x11C, 724, 0x11D, 728, 0x11E, 732, 0x11F };
+static const int16_t e_80B6BE10[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_80B6C4D0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B6C5D0[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_80B6CDC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B6D110[] = { 36, 0x400 };
+static const int16_t e_80B6D310[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80B6E1A0[] = { 516, 0x400, 508, 0x11F, 504, 0x11E };
+static const int16_t e_80B70120[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B70160[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B701C0[] = { 132, 0x400, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_80B705C0[] = { 100, 0x400, 92, 0x11F };
+static const int16_t e_80B71410[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80B71520[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 140, 0x11F, 136, 0x11E, 132, 0x11D };
+static const int16_t e_80B717C0[] = { 164, 0x400, 128, 0x118, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E, 156, 0x11F };
+static const int16_t e_80B71F20[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B71F70[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_80B71FD0[] = { 132, 0x400, 124, 0x11F, 120, 0x11E, 116, 0x11D, 112, 0x11C };
+static const int16_t e_80B721F0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B72240[] = { 68, 0x400, 60, 0x11F, 56, 0x11E };
+static const int16_t e_80B722E0[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_80B72360[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80B72660[] = { 36, 0x400 };
+static const int16_t e_80B72710[] = { 100, 0x400, 92, 0x11F, 88, 0x11E, 84, 0x11D, 80, 0x11C };
+static const int16_t e_80B72890[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_80B72920[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B72A10[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B72AC0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B72C00[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_80B72CF0[] = { 148, 0x400, 128, 0x21F, 136, 0x31F, 124, 0x11F, 120, 0x11E, 116, 0x11D, 112, 0x11C };
+static const int16_t e_80B72F60[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_80B73080[] = { 84, 0x400, 76, 0x11F };
+static const int16_t e_80B731D0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_80B73370[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_80B734F0[] = { 20, 0x400 };
+static const int16_t e_80B73820[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_80B73990[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_81800564[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_818005F4[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_818006BC[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_818008D8[] = { 84, 0x400, 32, 0x114, 36, 0x115, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_81800A9C[] = { 52, 0x400, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_81800B78[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81800C04[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81800CD4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81800DFC[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81800EC0[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81800F48[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81800FF8[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A };
+static const int16_t e_81801148[] = { 68, 0x400, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_81801514[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81801594[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_818016E4[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_81801CB0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_81802020[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_81802318[] = { 68, 0x400, 60, 0x11F };
+static const int16_t e_81802600[] = { 68, 0x400, 52, 0x11D, 56, 0x11E, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C };
+static const int16_t e_81802840[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_81802A68[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_81802BE4[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81802CC4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81802D7C[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81802E38[] = { 36, 0x400, 8, 0x11C, 12, 0x11D, 16, 0x11E, 24, 0x21F };
+static const int16_t e_81802EF0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81803CFC[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_81803D4C[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_81803EF4[] = { 164, 0x400, 144, 0x21F, 152, 0x31F, 128, 0x21E, 136, 0x31E, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
@@ -665,11 +5107,13 @@ static const int16_t e_81804E2C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D
 static const int16_t e_81804ECC[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81804F54[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
 static const int16_t e_81805168[] = { 100, 0x400, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
+static const int16_t e_81805380[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8180574C[] = { 20, 0x400 };
 static const int16_t e_81805870[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81805BE8[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_81805D38[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_81805DA0[] = { 244, 0x400, 196, 0x117, 200, 0x118, 204, 0x119, 208, 0x11A, 212, 0x11B, 216, 0x11C, 220, 0x11D, 224, 0x11E, 232, 0x21F };
+static const int16_t e_8180637C[] = { 116, 0x400, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E };
 static const int16_t e_81806528[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
 static const int16_t e_81806928[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
 static const int16_t e_818069C4[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
@@ -686,19 +5130,59 @@ static const int16_t e_818072E0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81807380[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81807420[] = { 20, 0x400 };
 static const int16_t e_81807590[] = { 84, 0x400, 32, 0x114, 36, 0x115, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_8180774C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818077B0[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 172, 0x11F, 168, 0x11E, 164, 0x11D, 160, 0x11C };
+static const int16_t e_81807A78[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_81807B10[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_81807C9C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81807CF0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81807D44[] = { 20, 0x400 };
+static const int16_t e_81807E2C[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8180843C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818085E8[] = { 228, 0x400, 208, 0x21F, 216, 0x31F, 192, 0x21E, 200, 0x31E, 176, 0x21D, 184, 0x31D, 160, 0x21C, 168, 0x31C, 156, 0x11F, 152, 0x11E, 148, 0x11D, 144, 0x11C };
+static const int16_t e_81808EEC[] = { 84, 0x400, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E, 76, 0x11F };
+static const int16_t e_818091F0[] = { 52, 0x400, 44, 0x11F };
+static const int16_t e_818093CC[] = { 212, 0x400, 144, 0x110, 148, 0x111, 152, 0x112, 156, 0x113, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_818099B0[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_81809BAC[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_81809F98[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180A038[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8180A164[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
 static const int16_t e_8180A3F0[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180A480[] = { 68, 0x400, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
 static const int16_t e_8180A788[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8180A8AC[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180A974[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180AAA8[] = { 20, 0x400 };
+static const int16_t e_8180AB68[] = { 20, 0x400 };
 static const int16_t e_8180AD10[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
 static const int16_t e_8180ADF0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
 static const int16_t e_8180AFF0[] = { 20, 0x400 };
+static const int16_t e_8180B158[] = { 36, 0x400, 24, 0x11E, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8180B1E8[] = { 52, 0x400, 40, 0x11E, 36, 0x11D, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C };
+static const int16_t e_8180B2C0[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8180B35C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180B3A4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180B3F0[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180B470[] = { 20, 0x400 };
+static const int16_t e_8180B514[] = { 20, 0x400 };
+static const int16_t e_8180B564[] = { 20, 0x400 };
+static const int16_t e_8180B5B4[] = { 52, 0x400, 40, 0x11E, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8180BC78[] = { 36, 0x400 };
+static const int16_t e_8180BF3C[] = { 2948, 0x400, 2932, 0x11D, 2936, 0x11E };
 static const int16_t e_8180C06C[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180C0BC[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180C10C[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180C1EC[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8180C414[] = { 20, 0x400 };
+static const int16_t e_8180C48C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8180C4EC[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180C540[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_8180C614[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180C6C8[] = { 84, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 64, 0x21E, 72, 0x21F };
+static const int16_t e_8180C904[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8180CB80[] = { 36, 0x400 };
+static const int16_t e_8180CF04[] = { 52, 0x400, 32, 0x21F, 40, 0x31F, 28, 0x11F };
 static const int16_t e_8180CF80[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180D104[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8180D1C4[] = { 20, 0x400 };
@@ -706,18 +5190,62 @@ static const int16_t e_8180D1F0[] = { 20, 0x400 };
 static const int16_t e_8180D230[] = { 20, 0x400 };
 static const int16_t e_8180D66C[] = { 20, 0x400 };
 static const int16_t e_8180D6E8[] = { 20, 0x400 };
+static const int16_t e_8180D868[] = { 20, 0x400 };
+static const int16_t e_8180D8B4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8180DC20[] = { 20, 0x400 };
+static const int16_t e_8180DCFC[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8180DF80[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8180E5E0[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8180E6C0[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8180F330[] = { 20, 0x400 };
+static const int16_t e_8180F39C[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_818118EC[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818119AC[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
 static const int16_t e_81811A10[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 12, 0x11B, 24, 0x11E };
 static const int16_t e_81811AC0[] = { 548, 0x400, 504, 0x116, 508, 0x117, 512, 0x118, 516, 0x119, 520, 0x11A, 524, 0x11B, 528, 0x11C, 532, 0x11D, 536, 0x11E };
 static const int16_t e_81811EB4[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
 static const int16_t e_818120C0[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81812100[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81812310[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181245C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181273C[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_818128F0[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 16, 0x11C, 8, 0x11A, 12, 0x11B };
+static const int16_t e_81812BA4[] = { 52, 0x400, 32, 0x11C, 36, 0x11D, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B };
+static const int16_t e_81812E2C[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81812FC8[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 12, 0x11B, 16, 0x11C };
+static const int16_t e_81813150[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818132C4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818133E8[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 12, 0x11B, 16, 0x11C };
+static const int16_t e_81813558[] = { 20, 0x400 };
+static const int16_t e_81813584[] = { 20, 0x400 };
+static const int16_t e_81813960[] = { 20, 0x400 };
+static const int16_t e_81813A0C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81813AB4[] = { 20, 0x400 };
+static const int16_t e_81813B04[] = { 20, 0x400 };
 static const int16_t e_81813BC4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81813C1C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81813CE4[] = { 20, 0x400 };
 static const int16_t e_81813D38[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_81814148[] = { 68, 0x400, 32, 0x118, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
 static const int16_t e_81814388[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_818145A4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181468C[] = { 20, 0x400 };
+static const int16_t e_81814708[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_81814868[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81814904[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181493C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818149B8[] = { 20, 0x400 };
+static const int16_t e_81814A1C[] = { 52, 0x400, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_81814AFC[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_81814D3C[] = { 20, 0x400 };
+static const int16_t e_81814DA0[] = { 20, 0x400 };
+static const int16_t e_81814DC0[] = { 20, 0x400 };
+static const int16_t e_81814DE0[] = { 20, 0x400 };
+static const int16_t e_81814E00[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81814E48[] = { 20, 0x400 };
 static const int16_t e_81815110[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818154A4[] = { 36, 0x400 };
+static const int16_t e_8181558C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
 static const int16_t e_818157F4[] = { 68, 0x400, 56, 0x11E, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D };
 static const int16_t e_81815C64[] = { 68, 0x400, 56, 0x11E, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D };
 static const int16_t e_81815FE8[] = { 20, 0x400 };
@@ -729,6 +5257,110 @@ static const int16_t e_818165C0[] = { 212, 0x400, 184, 0x11A, 188, 0x11B, 192, 0
 static const int16_t e_81816CE0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
 static const int16_t e_81816FB8[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81817044[] = { 52, 0x400, 16, 0x11A, 20, 0x11B, 24, 0x11C, 28, 0x11D, 32, 0x11E, 40, 0x21F };
+static const int16_t e_8181723C[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_818176CC[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81817AF0[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81817D74[] = { 20, 0x400 };
+static const int16_t e_81818110[] = { 52, 0x400, 44, 0x11F, 40, 0x11E };
+static const int16_t e_81818208[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_818185D8[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81818610[] = { 84, 0x400, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_81818A30[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81818A68[] = { 36, 0x400, 24, 0x11E, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81818B74[] = { 84, 0x400, 52, 0x119, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_81818D68[] = { 68, 0x400, 56, 0x11E, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 20, 0x115 };
+static const int16_t e_81818E88[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E, 12, 0x11B };
+static const int16_t e_81818F2C[] = { 20, 0x11D, 24, 0x11E };
+static const int16_t e_81819000[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E, 12, 0x11B };
+static const int16_t e_81819080[] = { 68, 0x400, 56, 0x11E };
+static const int16_t e_818191A8[] = { 52, 0x400, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_818192A4[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81819378[] = { 68, 0x400, 40, 0x11A, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 20, 0x115 };
+static const int16_t e_81819468[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81819580[] = { 36, 0x400, 20, 0x11D, 12, 0x11B, 16, 0x11C, 24, 0x11E };
+static const int16_t e_8181960C[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8181B370[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181B3A8[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181B458[] = { 68, 0x400, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_8181BA1C[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8181BAFC[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181BB34[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181BC64[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181BCCC[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8181C000[] = { 196, 0x400, 164, 0x119, 168, 0x11A, 172, 0x11B, 176, 0x11C, 180, 0x11D, 184, 0x11E };
+static const int16_t e_8181C278[] = { 36, 0x400, 16, 0x11E, 8, 0x11C, 12, 0x11D, 24, 0x21F };
+static const int16_t e_8181C510[] = { 84, 0x400, 40, 0x118, 44, 0x119, 48, 0x11A, 52, 0x11B, 56, 0x11C, 60, 0x11D, 64, 0x11E, 72, 0x21F };
+static const int16_t e_8181C8F0[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8181C980[] = { 100, 0x400, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
+static const int16_t e_8181CB30[] = { 36, 0x400 };
+static const int16_t e_8181CD04[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 12, 0x11B, 16, 0x11C };
+static const int16_t e_8181CFD8[] = { 20, 0x400 };
+static const int16_t e_8181D020[] = { 36, 0x400, 24, 0x11E, 20, 0x11D, 12, 0x11B, 16, 0x11C };
+static const int16_t e_8181D11C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181D1AC[] = { 52, 0x400, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8181D2D4[] = { 20, 0x400 };
+static const int16_t e_8181D5E0[] = { 20, 0x400 };
+static const int16_t e_8181D60C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181D6F4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181D798[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181D7FC[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8181D878[] = { 20, 0x400 };
+static const int16_t e_8181DA2C[] = { 20, 0x400 };
+static const int16_t e_8181DAA8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181DB64[] = { 52, 0x400, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8181DE64[] = { 20, 0x400 };
+static const int16_t e_8181DF18[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181DFC0[] = { 20, 0x400 };
+static const int16_t e_8181E014[] = { 20, 0x400 };
+static const int16_t e_8181E068[] = { 20, 0x400 };
+static const int16_t e_8181E1F4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181E22C[] = { 212, 0x400, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E };
+static const int16_t e_8181E414[] = { 20, 0x400 };
+static const int16_t e_8181E4AC[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8181E524[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8181E5C8[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181E62C[] = { 20, 0x400 };
+static const int16_t e_8181E664[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181E7B8[] = { 20, 0x400 };
+static const int16_t e_8181E804[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181E884[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8181E8E8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181E968[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181E9A0[] = { 148, 0x400, 116, 0x119, 120, 0x11A, 124, 0x11B, 128, 0x11C, 132, 0x11D, 136, 0x11E };
+static const int16_t e_8181EB3C[] = { 36, 0x400, 24, 0x11E };
+static const int16_t e_8181EBBC[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8181EC94[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181ED04[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181ED90[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8181EED8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181EF6C[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8181EFEC[] = { 36, 0x400, 24, 0x11E, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8181F0A8[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8181F0E0[] = { 164, 0x400, 132, 0x119, 136, 0x11A, 140, 0x11B, 144, 0x11C, 148, 0x11D, 152, 0x11E };
+static const int16_t e_8181F2A8[] = { 468, 0x400, 448, 0x21F, 456, 0x31F, 432, 0x21E, 440, 0x31E, 368, 0x110, 372, 0x111, 376, 0x112, 380, 0x113, 384, 0x114, 388, 0x115, 392, 0x116, 396, 0x117, 400, 0x118, 404, 0x119, 408, 0x11A, 412, 0x11B, 416, 0x11C, 420, 0x11D, 424, 0x11E, 428, 0x11F };
+static const int16_t e_8181F77C[] = { 116, 0x400, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
+static const int16_t e_8181FA20[] = { 68, 0x400, 48, 0x21F, 56, 0x31F, 44, 0x11F, 40, 0x11E, 36, 0x11D, 32, 0x11C };
+static const int16_t e_8181FB40[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_8181FD44[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8181FE3C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81823708[] = { 52, 0x400, 32, 0x11E, 20, 0x11B, 24, 0x11C, 28, 0x11D, 40, 0x21F };
+static const int16_t e_81823C84[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81823D00[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81824050[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81824198[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818241D0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81824318[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8182661C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81826668[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81826764[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_81826904[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81826954[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81826B30[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_81826C44[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_81826EC0[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_81826FBC[] = { 644, 0x400, 624, 0x21F, 632, 0x31F, 608, 0x21E, 616, 0x31E, 592, 0x21D, 600, 0x31D, 576, 0x21C, 584, 0x31C, 560, 0x21B, 568, 0x31B, 544, 0x21A, 552, 0x31A, 528, 0x219, 536, 0x319, 512, 0x218, 520, 0x318, 496, 0x217, 504, 0x317, 480, 0x216, 488, 0x316, 464, 0x215, 472, 0x315, 448, 0x214, 456, 0x314, 432, 0x213, 440, 0x313, 416, 0x212, 424, 0x312, 400, 0x211, 408, 0x311, 384, 0x210, 392, 0x310, 368, 0x20F, 376, 0x30F, 352, 0x20E, 360, 0x30E, 284, 0x10F, 288, 0x110, 292, 0x111, 296, 0x112, 300, 0x113, 304, 0x114, 308, 0x115, 312, 0x116, 316, 0x117, 320, 0x118, 324, 0x119, 328, 0x11A, 332, 0x11B, 336, 0x11C, 340, 0x11D, 344, 0x11E, 348, 0x11F };
+static const int16_t e_81828600[] = { 84, 0x400, 68, 0x11D, 72, 0x11E };
+static const int16_t e_81828748[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
 static const int16_t e_81828808[] = { 20, 0x400 };
 static const int16_t e_81828848[] = { 20, 0x400 };
 static const int16_t e_81828914[] = { 20, 0x400, 8, 0x11E };
@@ -748,12 +5380,58 @@ static const int16_t e_81829644[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119
 static const int16_t e_81829738[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_818299AC[] = { 20, 0x400 };
 static const int16_t e_81829A5C[] = { 100, 0x400, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E, 92, 0x11F };
+static const int16_t e_81829BD0[] = { 84, 0x400, 64, 0x21F, 72, 0x31F, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_81829DDC[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81829E50[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182AA74[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8182AAE8[] = { 20, 0x400 };
+static const int16_t e_8182AB30[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8182AB98[] = { 20, 0x400 };
+static const int16_t e_8182AEDC[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182AFA4[] = { 68, 0x400, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E, 60, 0x11F };
+static const int16_t e_8182B77C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182B830[] = { 20, 0x400 };
+static const int16_t e_8182B880[] = { 52, 0x400, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
+static const int16_t e_8182BA94[] = { 20, 0x11D, 24, 0x11E, 16, 0x11C };
+static const int16_t e_8182BF34[] = { 68, 0x400, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_8182C0AC[] = { 36, 0x400, 12, 0x11B, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8182C14C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_8182C5A0[] = { 212, 0x400, 176, 0x11A, 180, 0x11B, 184, 0x11C, 188, 0x11D, 192, 0x11E, 200, 0x21F };
+static const int16_t e_8182CA00[] = { 196, 0x400, 128, 0x114, 132, 0x115, 136, 0x116, 140, 0x117, 144, 0x118, 148, 0x119, 152, 0x11A, 156, 0x11B, 160, 0x11C, 164, 0x11D, 168, 0x11E, 176, 0x21E, 184, 0x21F };
+static const int16_t e_8182D144[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8182D244[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8182D2C0[] = { 68, 0x400, 60, 0x11F, 56, 0x11E, 52, 0x11D };
+static const int16_t e_8182D5B0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8182D73C[] = { 68, 0x400, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_8182DA4C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182DAE0[] = { 20, 0x400 };
+static const int16_t e_8182DB08[] = { 52, 0x400, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8182DD14[] = { 20, 0x400 };
+static const int16_t e_8182DD3C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182DDA4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182DE9C[] = { 36, 0x400, 24, 0x11E, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8182DFFC[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182E094[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182E0F8[] = { 36, 0x400, 28, 0x11F, 24, 0x11E };
+static const int16_t e_8182E498[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182E520[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182E5F0[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8182E834[] = { 20, 0x400, 12, 0x11F };
+static const int16_t e_8182EAD0[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 12, 0x11B, 8, 0x11A, 24, 0x11E };
+static const int16_t e_8182EBE4[] = { 36, 0x400, 8, 0x11A, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8182ECEC[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8182EF38[] = { 452, 0x400, 432, 0x21F, 440, 0x31F, 416, 0x21E, 424, 0x31E, 400, 0x21D, 408, 0x31D, 384, 0x21C, 392, 0x31C, 368, 0x21B, 376, 0x31B, 352, 0x21A, 360, 0x31A, 336, 0x219, 344, 0x319, 320, 0x218, 328, 0x318, 304, 0x217, 312, 0x317, 288, 0x216, 296, 0x316, 272, 0x215, 280, 0x315, 256, 0x214, 264, 0x314, 240, 0x213, 248, 0x313, 224, 0x212, 232, 0x312, 208, 0x211, 216, 0x311, 160, 0x114, 164, 0x115, 168, 0x116, 172, 0x117, 176, 0x118, 180, 0x119, 184, 0x11A, 188, 0x11B, 192, 0x11C, 196, 0x11D, 200, 0x11E, 204, 0x11F };
+static const int16_t e_818307C0[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81830828[] = { 20, 0x400 };
+static const int16_t e_818309E4[] = { 52, 0x400, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E, 44, 0x11F };
+static const int16_t e_818310FC[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_81831134[] = { 20, 0x400, 12, 0x11F };
 static const int16_t e_8183119C[] = { 36, 0x400, 20, 0x11D, 12, 0x11B, 16, 0x11C, 24, 0x11E };
 static const int16_t e_81831240[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D };
 static const int16_t e_818312D0[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8183133C[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
 static const int16_t e_8183138C[] = { 20, 0x400, 12, 0x11F, 8, 0x11E };
+static const int16_t e_818314E4[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_8183151C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
 static const int16_t e_81831650[] = { 36, 0x400, 20, 0x11D, 16, 0x11C, 24, 0x11E };
 static const int16_t e_818316D8[] = { 20, 0x400, 12, 0x11F };
@@ -772,9 +5450,95 @@ static const int16_t e_81832414[] = { 20, 0x400, 8, 0x11E };
 static const int16_t e_818324FC[] = { 84, 0x400, 76, 0x11F, 72, 0x11E };
 static const int16_t e_81832674[] = { 116, 0x400, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E, 108, 0x11F };
 static const int16_t e_818328EC[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_81832A24[] = { 100, 0x400, 28, 0x10F, 32, 0x110, 36, 0x111, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
 static const int16_t e_81832C40[] = { 36, 0x400, 24, 0x11E };
 static const int16_t e_81832CB4[] = { 100, 0x400, 24, 0x10E, 28, 0x10F, 32, 0x110, 36, 0x111, 40, 0x112, 44, 0x113, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
 static const int16_t e_81832EE4[] = { 36, 0x400, 24, 0x11E };
+static const int16_t e_81833024[] = { 20, 0x400 };
+static const int16_t e_818330D8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81833180[] = { 20, 0x400 };
+static const int16_t e_818331D4[] = { 20, 0x400 };
+static const int16_t e_8183327C[] = { 100, 0x400, 48, 0x114, 52, 0x115, 56, 0x116, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
+static const int16_t e_818339F4[] = { 36, 0x400, 28, 0x11F, 24, 0x11E, 20, 0x11D, 16, 0x11C };
+static const int16_t e_81833E58[] = { 100, 0x400, 60, 0x117, 64, 0x118, 68, 0x119, 72, 0x11A, 76, 0x11B, 80, 0x11C, 84, 0x11D, 88, 0x11E };
+static const int16_t e_818341D0[] = { 52, 0x400, 44, 0x11F, 40, 0x11E, 36, 0x11D };
+static const int16_t e_81834870[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E, 28, 0x11F };
+static const int16_t e_81835AAC[] = { 68, 0x400, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D, 56, 0x11E };
+static const int16_t e_81835DD8[] = { 36, 0x400, 16, 0x11E, 24, 0x21F };
+static const int16_t e_818361EC[] = { 212, 0x400, 192, 0x21F, 200, 0x31F, 176, 0x21E, 184, 0x31E, 172, 0x11F, 168, 0x11E, 164, 0x11D, 160, 0x11C };
+static const int16_t e_818383D0[] = { 20, 0x400 };
+static const int16_t e_81838720[] = { 68, 0x400, 56, 0x11E, 16, 0x114, 20, 0x115, 24, 0x116, 28, 0x117, 32, 0x118, 36, 0x119, 40, 0x11A, 44, 0x11B, 48, 0x11C, 52, 0x11D };
+static const int16_t e_81838BF0[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81838C84[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81838DBC[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_81839FFC[] = { 340, 0x400, 288, 0x114, 292, 0x115, 296, 0x116, 300, 0x117, 304, 0x118, 308, 0x119, 312, 0x11A, 316, 0x11B, 320, 0x11C, 324, 0x11D, 328, 0x11E };
+static const int16_t e_8183A2F8[] = { 52, 0x400, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8183A3BC[] = { 548, 0x400, 528, 0x11C, 532, 0x11D, 536, 0x11E };
+static const int16_t e_8183A4A4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183A518[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8183A558[] = { 292, 0x400, 268, 0x11B, 272, 0x11C, 276, 0x11D, 280, 0x11E };
+static const int16_t e_8183A600[] = { 20, 0x400 };
+static const int16_t e_8183A720[] = { 36, 0x400, 24, 0x11E, 20, 0x11D };
+static const int16_t e_8183A78C[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 20, 0x11D, 16, 0x11C };
+static const int16_t e_8183A894[] = { 52, 0x400, 32, 0x11C, 36, 0x11D, 40, 0x11E, 20, 0x119, 24, 0x11A, 28, 0x11B };
+static const int16_t e_8183AA6C[] = { 116, 0x400, 48, 0x110, 52, 0x111, 56, 0x112, 60, 0x113, 64, 0x114, 68, 0x115, 72, 0x116, 76, 0x117, 80, 0x118, 84, 0x119, 88, 0x11A, 92, 0x11B, 96, 0x11C, 100, 0x11D, 104, 0x11E };
+static const int16_t e_8183AE28[] = { 52, 0x400, 28, 0x11B, 12, 0x117, 32, 0x11C, 16, 0x118, 36, 0x11D, 24, 0x11A, 40, 0x11E, 20, 0x119 };
+static const int16_t e_8183BA58[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183BB38[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_8183BBB4[] = { 84, 0x400, 56, 0x11A, 8, 0x10E, 12, 0x10F, 16, 0x110, 20, 0x111, 24, 0x112, 28, 0x113, 32, 0x114, 36, 0x115, 40, 0x116, 44, 0x117, 48, 0x118, 52, 0x119, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_8183C03C[] = { 20, 0x400 };
+static const int16_t e_8183C114[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183C1C4[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183C5AC[] = { 52, 0x400, 32, 0x11C, 36, 0x11D, 40, 0x11E };
+static const int16_t e_8183C768[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183C7C8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183C828[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183CB74[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8183CEC4[] = { 20, 0x400 };
+static const int16_t e_8183D078[] = { 20, 0x400 };
+static const int16_t e_8183EA10[] = { 20, 0x400 };
+static const int16_t e_818409A4[] = { 84, 0x400, 56, 0x11A, 60, 0x11B, 64, 0x11C, 68, 0x11D, 72, 0x11E };
+static const int16_t e_81840AB0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E, 16, 0x11C, 12, 0x11B };
+static const int16_t e_81840B68[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 12, 0x11B, 24, 0x11E };
+static const int16_t e_81840BE8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81840C54[] = { 36, 0x400, 24, 0x11E, 12, 0x11B, 16, 0x11C, 20, 0x11D };
+static const int16_t e_81840F24[] = { 20, 0x400 };
+static const int16_t e_81840F88[] = { 20, 0x400 };
+static const int16_t e_81841364[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81841460[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818414E4[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81841554[] = { 52, 0x400, 36, 0x11D, 40, 0x11E };
+static const int16_t e_81841640[] = { 52, 0x400, 32, 0x11C, 36, 0x11D, 40, 0x11E, 12, 0x117, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B };
+static const int16_t e_818417C4[] = { 20, 0x400 };
+static const int16_t e_81841D6C[] = { 20, 0x400 };
+static const int16_t e_81841E14[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_818423A0[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818425A0[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81842714[] = { 132, 0x400, 56, 0x10E, 60, 0x10F, 64, 0x110, 68, 0x111, 72, 0x112, 76, 0x113, 80, 0x114, 84, 0x115, 88, 0x116, 92, 0x117, 96, 0x118, 100, 0x119, 104, 0x11A, 108, 0x11B, 112, 0x11C, 116, 0x11D, 120, 0x11E, 124, 0x11F };
+static const int16_t e_81842F7C[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8184311C[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81843158[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818431A4[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81843218[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_8184326C[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81843378[] = { 20, 0x400 };
+static const int16_t e_818433C8[] = { 20, 0x400 };
+static const int16_t e_81843414[] = { 20, 0x400 };
+static const int16_t e_8184345C[] = { 20, 0x400 };
+static const int16_t e_818437A4[] = { 20, 0x400 };
+static const int16_t e_81843840[] = { 20, 0x400 };
+static const int16_t e_818438DC[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818439A4[] = { 20, 0x400 };
+static const int16_t e_81843A40[] = { 20, 0x400 };
+static const int16_t e_81843ADC[] = { 20, 0x400 };
+static const int16_t e_81843B78[] = { 68, 0x400, 52, 0x11D, 56, 0x11E };
+static const int16_t e_81844184[] = { 20, 0x400, 8, 0x11E };
+static const int16_t e_81844244[] = { 68, 0x400, 56, 0x11E };
+static const int16_t e_81844664[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818446D4[] = { 36, 0x400, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_818448D8[] = { 36, 0x400, 20, 0x11D, 24, 0x11E };
+static const int16_t e_8184499C[] = { 36, 0x400, 12, 0x11B, 16, 0x11C, 20, 0x11D, 24, 0x11E };
+static const int16_t e_81844A50[] = { 52, 0x400, 40, 0x11E, 16, 0x118, 20, 0x119, 24, 0x11A, 28, 0x11B, 32, 0x11C, 36, 0x11D };
 const gm_prologue_t gm_prologues[] = {
     { 0x80006A70u, 16, 1, e_80006A70 },   /* fn_80006A70 */
     { 0x80006EB0u, 80, 2, e_80006EB0 },   /* fn_80006EB0 */
@@ -821,6 +5585,214 @@ const gm_prologue_t gm_prologues[] = {
     { 0x8001CA40u, 16, 2, e_8001CA40 },   /* fn_8001CA40 */
     { 0x8001CB30u, 16, 2, e_8001CB30 },   /* fn_8001CB30 */
     { 0x8001CB70u, 16, 2, e_8001CB70 },   /* fn_8001CB70 */
+    { 0x800460D0u, 48, 10, e_800460D0 },   /* fn_800460D0 */
+    { 0x80046490u, 16, 3, e_80046490 },   /* fn_80046490 */
+    { 0x800467C0u, 32, 4, e_800467C0 },   /* fn_800467C0 */
+    { 0x80046A50u, 16, 2, e_80046A50 },   /* fn_80046A50 */
+    { 0x80046AB0u, 16, 2, e_80046AB0 },   /* fn_80046AB0 */
+    { 0x80046BB0u, 80, 5, e_80046BB0 },   /* fn_80046BB0 */
+    { 0x80046FC0u, 32, 3, e_80046FC0 },   /* fn_80046FC0 */
+    { 0x80047190u, 16, 2, e_80047190 },   /* fn_80047190 */
+    { 0x800471F0u, 16, 2, e_800471F0 },   /* fn_800471F0 */
+    { 0x80047390u, 32, 4, e_80047390 },   /* dAcPy_vf294 */
+    { 0x80047490u, 16, 2, e_80047490 },   /* fn_80047490 */
+    { 0x800474E0u, 16, 1, e_800474E0 },   /* fn_800474E0 */
+    { 0x80047630u, 16, 3, e_80047630 },   /* fn_80047630 */
+    { 0x800477B0u, 16, 2, e_800477B0 },   /* fn_800477B0 */
+    { 0x80047800u, 16, 3, e_80047800 },   /* fn_80047800 */
+    { 0x800479A0u, 16, 2, e_800479A0 },   /* fn_800479A0 */
+    { 0x80047A00u, 16, 2, e_80047A00 },   /* fn_80047A00 */
+    { 0x80047AC0u, 16, 2, e_80047AC0 },   /* fn_80047AC0 */
+    { 0x80047B70u, 16, 2, e_80047B70 },   /* fn_80047B70 */
+    { 0x80047C40u, 16, 2, e_80047C40 },   /* fn_80047C40 */
+    { 0x80047D10u, 16, 2, e_80047D10 },   /* fn_80047D10 */
+    { 0x80047DC0u, 16, 2, e_80047DC0 },   /* fn_80047DC0 */
+    { 0x80047F10u, 64, 5, e_80047F10 },   /* fn_80047F10 */
+    { 0x800480D0u, 16, 3, e_800480D0 },   /* fn_800480D0 */
+    { 0x80048170u, 16, 2, e_80048170 },   /* fn_80048170 */
+    { 0x800481C0u, 32, 3, e_800481C0 },   /* fn_800481C0 */
+    { 0x80048410u, 16, 2, e_80048410 },   /* fn_80048410 */
+    { 0x800484B0u, 16, 2, e_800484B0 },   /* fn_800484B0 */
+    { 0x80048630u, 48, 5, e_80048630 },   /* fn_80048630 */
+    { 0x800488F0u, 16, 3, e_800488F0 },   /* fn_800488F0 */
+    { 0x80048A60u, 16, 2, e_80048A60 },   /* fn_80048A60 */
+    { 0x80048BA0u, 16, 2, e_80048BA0 },   /* fn_80048BA0 */
+    { 0x80048C70u, 16, 2, e_80048C70 },   /* fn_80048C70 */
+    { 0x80048D70u, 48, 2, e_80048D70 },   /* fn_80048D70 */
+    { 0x80048E40u, 16, 2, e_80048E40 },   /* fn_80048E40 */
+    { 0x80048F30u, 16, 2, e_80048F30 },   /* fn_80048F30 */
+    { 0x80048FA0u, 16, 2, e_80048FA0 },   /* fn_80048FA0 */
+    { 0x80049050u, 16, 2, e_80049050 },   /* fn_80049050 */
+    { 0x80049110u, 16, 2, e_80049110 },   /* fn_80049110 */
+    { 0x800491F0u, 16, 2, e_800491F0 },   /* fn_800491F0 */
+    { 0x80049270u, 32, 2, e_80049270 },   /* fn_80049270 */
+    { 0x800494D0u, 16, 2, e_800494D0 },   /* fn_800494D0 */
+    { 0x80049540u, 16, 2, e_80049540 },   /* fn_80049540 */
+    { 0x800496D0u, 16, 2, e_800496D0 },   /* fn_800496D0 */
+    { 0x800497E0u, 16, 2, e_800497E0 },   /* fn_800497E0 */
+    { 0x80049880u, 16, 2, e_80049880 },   /* fn_80049880 */
+    { 0x80049940u, 16, 2, e_80049940 },   /* fn_80049940 */
+    { 0x80049C70u, 48, 5, e_80049C70 },   /* fn_80049C70 */
+    { 0x80049D70u, 32, 5, e_80049D70 },   /* fn_80049D70 */
+    { 0x80049E10u, 32, 3, e_80049E10 },   /* fn_80049E10 */
+    { 0x80049F50u, 16, 2, e_80049F50 },   /* fn_80049F50 */
+    { 0x80049FA0u, 32, 5, e_80049FA0 },   /* fn_80049FA0 */
+    { 0x8004A6A0u, 16, 3, e_8004A6A0 },   /* fn_8004A6A0 */
+    { 0x8004A7B0u, 32, 5, e_8004A7B0 },   /* fn_8004A7B0 */
+    { 0x8004A830u, 16, 2, e_8004A830 },   /* fn_8004A830 */
+    { 0x8004A8C0u, 16, 2, e_8004A8C0 },   /* fn_8004A8C0 */
+    { 0x8004A920u, 16, 3, e_8004A920 },   /* fn_8004A920 */
+    { 0x8004AA80u, 16, 2, e_8004AA80 },   /* fn_8004AA80 */
+    { 0x8004AAC0u, 16, 2, e_8004AAC0 },   /* fn_8004AAC0 */
+    { 0x8004AC10u, 16, 2, e_8004AC10 },   /* fn_8004AC10 */
+    { 0x8004AFE0u, 16, 2, e_8004AFE0 },   /* fn_8004AFE0 */
+    { 0x8004B090u, 16, 2, e_8004B090 },   /* fn_8004B090 */
+    { 0x8004B0D0u, 16, 2, e_8004B0D0 },   /* fn_8004B0D0 */
+    { 0x8004B1C0u, 16, 2, e_8004B1C0 },   /* fn_8004B1C0 */
+    { 0x8004B290u, 16, 1, e_8004B290 },   /* fn_8004B290 */
+    { 0x8004B2F0u, 16, 2, e_8004B2F0 },   /* fn_8004B2F0 */
+    { 0x8004B380u, 16, 2, e_8004B380 },   /* fn_8004B380 */
+    { 0x8004B460u, 16, 2, e_8004B460 },   /* fn_8004B460 */
+    { 0x8004B4C0u, 16, 3, e_8004B4C0 },   /* fn_8004B4C0 */
+    { 0x8004B520u, 16, 3, e_8004B520 },   /* fn_8004B520 */
+    { 0x8004B580u, 16, 3, e_8004B580 },   /* fn_8004B580 */
+    { 0x8004B640u, 32, 2, e_8004B640 },   /* fn_8004B640 */
+    { 0x8004B730u, 96, 12, e_8004B730 },   /* fn_8004B730 */
+    { 0x8004B9A0u, 32, 2, e_8004B9A0 },   /* fn_8004B9A0 */
+    { 0x8004BA50u, 16, 2, e_8004BA50 },   /* fn_8004BA50 */
+    { 0x8004BAC0u, 32, 3, e_8004BAC0 },   /* fn_8004BAC0 */
+    { 0x8004BC80u, 96, 7, e_8004BC80 },   /* fn_8004BC80 */
+    { 0x8004BF00u, 16, 2, e_8004BF00 },   /* fn_8004BF00 */
+    { 0x8004BF80u, 16, 3, e_8004BF80 },   /* fn_8004BF80 */
+    { 0x8004C0D0u, 32, 4, e_8004C0D0 },   /* fn_8004C0D0 */
+    { 0x8004C1E0u, 16, 3, e_8004C1E0 },   /* fn_8004C1E0 */
+    { 0x8004C310u, 48, 5, e_8004C310 },   /* fn_8004C310 */
+    { 0x8004C480u, 16, 2, e_8004C480 },   /* fn_8004C480 */
+    { 0x8004C4F0u, 16, 2, e_8004C4F0 },   /* fn_8004C4F0 */
+    { 0x8004C560u, 32, 4, e_8004C560 },   /* fn_8004C560 */
+    { 0x8004C620u, 32, 4, e_8004C620 },   /* fn_8004C620 */
+    { 0x8004C780u, 48, 7, e_8004C780 },   /* fn_8004C780 */
+    { 0x8004C990u, 16, 3, e_8004C990 },   /* fn_8004C990 */
+    { 0x8004CA60u, 16, 1, e_8004CA60 },   /* fn_8004CA60 */
+    { 0x8004CB30u, 32, 1, e_8004CB30 },   /* fn_8004CB30 */
+    { 0x8004CC10u, 48, 2, e_8004CC10 },   /* fn_8004CC10 */
+    { 0x8004CD20u, 16, 1, e_8004CD20 },   /* fn_8004CD20 */
+    { 0x8004CD80u, 16, 3, e_8004CD80 },   /* fn_8004CD80 */
+    { 0x8004CE00u, 16, 3, e_8004CE00 },   /* fn_8004CE00 */
+    { 0x8004CE70u, 48, 3, e_8004CE70 },   /* fn_8004CE70 */
+    { 0x8004CF20u, 32, 2, e_8004CF20 },   /* fn_8004CF20 */
+    { 0x8004D040u, 48, 2, e_8004D040 },   /* fn_8004D040 */
+    { 0x8004D210u, 16, 2, e_8004D210 },   /* fn_8004D210 */
+    { 0x8004D260u, 48, 2, e_8004D260 },   /* fn_8004D260 */
+    { 0x8004D350u, 64, 3, e_8004D350 },   /* fn_8004D350 */
+    { 0x8004D5C0u, 32, 5, e_8004D5C0 },   /* fn_8004D5C0 */
+    { 0x8004D9C0u, 16, 2, e_8004D9C0 },   /* fn_8004D9C0 */
+    { 0x8004DA30u, 16, 2, e_8004DA30 },   /* fn_8004DA30 */
+    { 0x8004DA90u, 16, 2, e_8004DA90 },   /* fn_8004DA90 */
+    { 0x8004DB00u, 16, 1, e_8004DB00 },   /* fn_8004DB00 */
+    { 0x8004DB40u, 16, 2, e_8004DB40 },   /* fn_8004DB40 */
+    { 0x8004DD00u, 16, 2, e_8004DD00 },   /* fn_8004DD00 */
+    { 0x8004DD70u, 16, 2, e_8004DD70 },   /* fn_8004DD70 */
+    { 0x8004DDE0u, 16, 2, e_8004DDE0 },   /* fn_8004DDE0 */
+    { 0x8004DE50u, 16, 2, e_8004DE50 },   /* fn_8004DE50 */
+    { 0x8004DEE0u, 16, 2, e_8004DEE0 },   /* fn_8004DEE0 */
+    { 0x8004DF70u, 32, 4, e_8004DF70 },   /* fn_8004DF70 */
+    { 0x8004E050u, 16, 2, e_8004E050 },   /* continueFromMpPauseFix1 */
+    { 0x8004E100u, 16, 2, e_8004E100 },   /* fn_8004E100 */
+    { 0x8004E1A0u, 16, 2, e_8004E1A0 },   /* fn_8004E1A0 */
+    { 0x8004E220u, 16, 1, e_8004E220 },   /* fn_8004E220 */
+    { 0x8004E290u, 32, 4, e_8004E290 },   /* fn_8004E290 */
+    { 0x8004E360u, 16, 2, e_8004E360 },   /* fn_8004E360 */
+    { 0x8004E450u, 16, 2, e_8004E450 },   /* fn_8004E450 */
+    { 0x8004E4D0u, 16, 2, e_8004E4D0 },   /* fn_8004E4D0 */
+    { 0x8004E710u, 16, 2, e_8004E710 },   /* fn_8004E710 */
+    { 0x8004E7B0u, 16, 2, e_8004E7B0 },   /* fn_8004E7B0 */
+    { 0x8004E820u, 16, 2, e_8004E820 },   /* fn_8004E820 */
+    { 0x8004E980u, 16, 2, e_8004E980 },   /* fn_8004E980 */
+    { 0x8004EA20u, 16, 2, e_8004EA20 },   /* fn_8004EA20 */
+    { 0x8004EA80u, 32, 3, e_8004EA80 },   /* fn_8004EA80 */
+    { 0x8004EFD0u, 16, 3, e_8004EFD0 },   /* fn_8004EFD0 */
+    { 0x8004F1C0u, 32, 4, e_8004F1C0 },   /* fn_8004F1C0 */
+    { 0x8004F260u, 16, 2, e_8004F260 },   /* fn_8004F260 */
+    { 0x8004F300u, 64, 8, e_8004F300 },   /* fn_8004F300 */
+    { 0x8004F480u, 32, 4, e_8004F480 },   /* fn_8004F480 */
+    { 0x8004F670u, 16, 2, e_8004F670 },   /* fn_8004F670 */
+    { 0x8004F740u, 16, 3, e_8004F740 },   /* fn_8004F740 */
+    { 0x8004F860u, 32, 3, e_8004F860 },   /* fn_8004F860 */
+    { 0x8004FA70u, 16, 3, e_8004FA70 },   /* fn_8004FA70 */
+    { 0x8004FBB0u, 48, 6, e_8004FBB0 },   /* fn_8004FBB0 */
+    { 0x80050D80u, 16, 2, e_80050D80 },   /* fn_80050D80 */
+    { 0x80051080u, 16, 2, e_80051080 },   /* fn_80051080 */
+    { 0x800518A0u, 16, 2, e_800518A0 },   /* fn_800518A0 */
+    { 0x80051AB0u, 16, 2, e_80051AB0 },   /* fn_80051AB0 */
+    { 0x80051E70u, 16, 2, e_80051E70 },   /* fn_80051E70 */
+    { 0x80051EF0u, 16, 2, e_80051EF0 },   /* fn_80051EF0 */
+    { 0x80052470u, 16, 2, e_80052470 },   /* fn_80052470 */
+    { 0x80052730u, 16, 3, e_80052730 },   /* fn_80052730 */
+    { 0x80052880u, 16, 2, e_80052880 },   /* fn_80052880 */
+    { 0x80052EF0u, 32, 6, e_80052EF0 },   /* fn_80052EF0 */
+    { 0x80052FE0u, 16, 2, e_80052FE0 },   /* fn_80052FE0 */
+    { 0x80053090u, 16, 2, e_80053090 },   /* fn_80053090 */
+    { 0x80053120u, 32, 4, e_80053120 },   /* fn_80053120 */
+    { 0x800533E0u, 16, 2, e_800533E0 },   /* fn_800533E0 */
+    { 0x800534B0u, 32, 4, e_800534B0 },   /* fn_800534B0 */
+    { 0x80053540u, 32, 5, e_80053540 },   /* fn_80053540 */
+    { 0x80053600u, 16, 2, e_80053600 },   /* fn_80053600 */
+    { 0x80053700u, 16, 2, e_80053700 },   /* fn_80053700 */
+    { 0x800537B0u, 16, 2, e_800537B0 },   /* fn_800537B0 */
+    { 0x800538E0u, 16, 2, e_800538E0 },   /* fn_800538E0 */
+    { 0x80053940u, 80, 11, e_80053940 },   /* fn_80053940 */
+    { 0x80053AD0u, 32, 5, e_80053AD0 },   /* fn_80053AD0 */
+    { 0x80053C80u, 48, 7, e_80053C80 },   /* fn_80053C80 */
+    { 0x80053DF0u, 16, 2, e_80053DF0 },   /* fn_80053DF0 */
+    { 0x80053E60u, 48, 7, e_80053E60 },   /* fn_80053E60 */
+    { 0x80053F90u, 16, 2, e_80053F90 },   /* fn_80053F90 */
+    { 0x80053FE0u, 16, 2, e_80053FE0 },   /* fn_80053FE0 */
+    { 0x800540F0u, 16, 2, e_800540F0 },   /* fn_800540F0 */
+    { 0x80054280u, 16, 2, e_80054280 },   /* fn_80054280 */
+    { 0x80054370u, 16, 2, e_80054370 },   /* fn_80054370 */
+    { 0x800543E0u, 16, 3, e_800543E0 },   /* fn_800543E0 */
+    { 0x800544F0u, 128, 6, e_800544F0 },   /* fn_800544F0 */
+    { 0x80054EF0u, 16, 1, e_80054EF0 },   /* fn_80054EF0 */
+    { 0x80054F80u, 16, 2, e_80054F80 },   /* fn_80054F80 */
+    { 0x800552D0u, 16, 2, e_800552D0 },   /* fn_800552D0 */
+    { 0x80055330u, 48, 3, e_80055330 },   /* fn_80055330 */
+    { 0x80055530u, 16, 2, e_80055530 },   /* fn_80055530 */
+    { 0x80055620u, 16, 3, e_80055620 },   /* fn_80055620 */
+    { 0x80055900u, 64, 7, e_80055900 },   /* fn_80055900 */
+    { 0x80055A00u, 16, 2, e_80055A00 },   /* fn_80055A00 */
+    { 0x80055A70u, 16, 2, e_80055A70 },   /* fn_80055A70 */
+    { 0x80055AE0u, 16, 2, e_80055AE0 },   /* fn_80055AE0 */
+    { 0x80055DB0u, 48, 7, e_80055DB0 },   /* fn_80055DB0 */
+    { 0x80055EF0u, 16, 2, e_80055EF0 },   /* fn_80055EF0 */
+    { 0x80056620u, 16, 2, e_80056620 },   /* fn_80056620 */
+    { 0x80056900u, 16, 2, e_80056900 },   /* fn_80056900 */
+    { 0x80056BD0u, 16, 1, e_80056BD0 },   /* fn_80056BD0 */
+    { 0x80056D50u, 16, 2, e_80056D50 },   /* fn_80056D50 */
+    { 0x800573F0u, 144, 15, e_800573F0 },   /* fn_800573F0 */
+    { 0x80057650u, 16, 2, e_80057650 },   /* fn_80057650 */
+    { 0x800576A0u, 32, 2, e_800576A0 },   /* fn_800576A0 */
+    { 0x80057760u, 48, 4, e_80057760 },   /* fn_80057760 */
+    { 0x800577D0u, 32, 3, e_800577D0 },   /* fn_800577D0 */
+    { 0x80057860u, 32, 4, e_80057860 },   /* fn_80057860 */
+    { 0x800578D0u, 16, 2, e_800578D0 },   /* fn_800578D0 */
+    { 0x800579C0u, 48, 4, e_800579C0 },   /* fn_800579C0 */
+    { 0x80057AD0u, 16, 1, e_80057AD0 },   /* fn_80057AD0 */
+    { 0x80057B90u, 32, 4, e_80057B90 },   /* fn_80057B90 */
+    { 0x80057C80u, 16, 2, e_80057C80 },   /* fn_80057C80 */
+    { 0x80057CD0u, 16, 2, e_80057CD0 },   /* fn_80057CD0 */
+    { 0x80057D70u, 16, 2, e_80057D70 },   /* fn_80057D70 */
+    { 0x80057E00u, 16, 2, e_80057E00 },   /* fn_80057E00 */
+    { 0x80057E70u, 16, 3, e_80057E70 },   /* PlayPlayerSound */
+    { 0x80057EE0u, 32, 4, e_80057EE0 },   /* fn_80057EE0 */
+    { 0x80057F60u, 16, 3, e_80057F60 },   /* fn_80057F60 */
+    { 0x80057FD0u, 32, 4, e_80057FD0 },   /* fn_80057FD0 */
+    { 0x80058050u, 16, 3, e_80058050 },   /* fn_80058050 */
+    { 0x80058110u, 16, 3, e_80058110 },   /* fn_80058110 */
+    { 0x800582F0u, 64, 3, e_800582F0 },   /* fn_800582F0 */
+    { 0x800583A0u, 208, 9, e_800583A0 },   /* fn_800583A0 */
+    { 0x80059120u, 16, 3, e_80059120 },   /* fn_80059120 */
+    { 0x800592C0u, 1376, 8, e_800592C0 },   /* fn_800592C0 */
     { 0x80064110u, 48, 4, e_80064110 },   /* __ct__13dStageActor_cFv */
     { 0x800642B0u, 16, 3, e_800642B0 },   /* __dt__13dStageActor_cFv */
     { 0x80064390u, 16, 2, e_80064390 },   /* beforeDelete__13dStageActor_cFv */
@@ -853,9 +5825,9 @@ const gm_prologue_t gm_prologues[] = {
     { 0x80065DC0u, 80, 5, e_80065DC0 },   /* _vfCC__13dStageActor_cFP7Point2df */
     { 0x80065EC0u, 80, 5, e_80065EC0 },   /* _vfD0__13dStageActor_cFP7Point2df */
     { 0x80065FC0u, 32, 5, e_80065FC0 },   /* fn_80065FC0 */
-    { 0x80068320u, 128, 1, e_80068320 },   /* fn_80068320 */
+    { 0x80068320u, 128, 19, e_80068320 },   /* fn_80068320 */
     { 0x80068620u, 128, 12, e_80068620 },   /* fn_80068620 */
-    { 0x80068850u, 112, 1, e_80068850 },   /* fn_80068850 */
+    { 0x80068850u, 112, 19, e_80068850 },   /* fn_80068850 */
     { 0x80068BC0u, 32, 3, e_80068BC0 },   /* fn_80068BC0 */
     { 0x80068C50u, 32, 3, e_80068C50 },   /* fn_80068C50 */
     { 0x80068CE0u, 32, 3, e_80068CE0 },   /* fn_80068CE0 */
@@ -877,14 +5849,116 @@ const gm_prologue_t gm_prologues[] = {
     { 0x8006CBA0u, 32, 4, e_8006CBA0 },   /* _Z17CreateChildObjectsPviii */
     { 0x8006CCB0u, 32, 2, e_8006CCB0 },   /* fn_8006CCB0 */
     { 0x8006CD50u, 16, 2, e_8006CD50 },   /* fn_8006CD50 */
-    { 0x80070BA0u, 32, 3, e_80070BA0 },   /* getUnitType__5dBc_cFffUc */
-    { 0x80070BF0u, 32, 3, e_80070BF0 },   /* getUnitKind__5dBc_cFffUc */
+    { 0x80070BA0u, 32, 1, e_80070BA0 },   /* getUnitType__5dBc_cFffUc */
+    { 0x80070BF0u, 32, 1, e_80070BF0 },   /* getUnitKind__5dBc_cFffUc */
+    { 0x80076FD0u, 16, 1, e_80076FD0 },   /* fn_80076FD0 */
+    { 0x80077020u, 16, 1, e_80077020 },   /* fn_80077020 */
+    { 0x80077060u, 16, 3, e_80077060 },   /* fn_80077060 */
+    { 0x800773A0u, 16, 2, e_800773A0 },   /* fn_800773A0 */
+    { 0x800773E0u, 16, 3, e_800773E0 },   /* fn_800773E0 */
     { 0x800774A0u, 32, 4, e_800774A0 },   /* fn_800774A0 */
     { 0x80077520u, 32, 5, e_80077520 },   /* getPointerToTile__8BgGmBaseFiiiPib */
-    { 0x80077650u, 48, 5, e_80077650 },   /* fn_80077650 */
+    { 0x800775A0u, 16, 2, e_800775A0 },   /* fn_800775A0 */
+    { 0x80077610u, 16, 1, e_80077610 },   /* fn_80077610 */
+    { 0x80077650u, 48, 4, e_80077650 },   /* fn_80077650 */
     { 0x80077700u, 16, 1, e_80077700 },   /* fn_80077700 */
+    { 0x80077730u, 32, 6, e_80077730 },   /* fn_80077730 */
+    { 0x800777B0u, 32, 2, e_800777B0 },   /* CoinGetBitSet__5dBg_cFUsUsi */
+    { 0x80077810u, 16, 1, e_80077810 },   /* CoinGetBitCheck__5dBg_cFUsUsi */
+    { 0x80077860u, 48, 7, e_80077860 },   /* placeTile__8BgGmBaseFUsUsii */
+    { 0x80077A00u, 176, 8, e_80077A00 },   /* fn_80077A00 */
+    { 0x80077B40u, 80, 6, e_80077B40 },   /* fn_80077B40 */
+    { 0x80077D80u, 32, 4, e_80077D80 },   /* fn_80077D80 */
+    { 0x80077E30u, 16, 3, e_80077E30 },   /* fn_80077E30 */
+    { 0x80077EB0u, 144, 15, e_80077EB0 },   /* fn_80077EB0 */
+    { 0x80078300u, 96, 10, e_80078300 },   /* fn_80078300 */
+    { 0x80078780u, 16, 2, e_80078780 },   /* fn_80078780 */
+    { 0x800789A0u, 64, 8, e_800789A0 },   /* fn_800789A0 */
+    { 0x80078A70u, 64, 8, e_80078A70 },   /* getLeftLimit__5dBg_cFv */
+    { 0x80078B40u, 64, 8, e_80078B40 },   /* fn_80078B40 */
+    { 0x80078C10u, 64, 8, e_80078C10 },   /* getRightLimit__5dBg_cFv */
+    { 0x80078D00u, 224, 19, e_80078D00 },   /* fn_80078D00 */
+    { 0x80078EB0u, 16, 2, e_80078EB0 },   /* fn_80078EB0 */
+    { 0x80079020u, 16, 2, e_80079020 },   /* fn_80079020 */
+    { 0x80079060u, 144, 15, e_80079060 },   /* fn_80079060 */
+    { 0x800791D0u, 16, 2, e_800791D0 },   /* fn_800791D0 */
+    { 0x80079250u, 144, 14, e_80079250 },   /* fn_80079250 */
+    { 0x80079380u, 144, 14, e_80079380 },   /* fn_80079380 */
+    { 0x800794B0u, 144, 14, e_800794B0 },   /* fn_800794B0 */
+    { 0x800795E0u, 144, 14, e_800795E0 },   /* fn_800795E0 */
+    { 0x80079710u, 16, 3, e_80079710 },   /* fn_80079710 */
+    { 0x80079780u, 64, 7, e_80079780 },   /* fn_80079780 */
+    { 0x8007A6C0u, 176, 25, e_8007A6C0 },   /* fn_8007A6C0 */
+    { 0x8007AB70u, 32, 4, e_8007AB70 },   /* fn_8007AB70 */
+    { 0x8007AC40u, 288, 34, e_8007AC40 },   /* fn_8007AC40 */
+    { 0x8007BA70u, 96, 8, e_8007BA70 },   /* fn_8007BA70 */
+    { 0x8007BC40u, 80, 11, e_8007BC40 },   /* fn_8007BC40 */
+    { 0x8007BD40u, 112, 14, e_8007BD40 },   /* fn_8007BD40 */
+    { 0x8007C7D0u, 96, 12, e_8007C7D0 },   /* fn_8007C7D0 */
+    { 0x8007C950u, 32, 4, e_8007C950 },   /* fn_8007C950 */
+    { 0x8007CD70u, 352, 43, e_8007CD70 },   /* fn_8007CD70 */
+    { 0x8007E0E0u, 64, 8, e_8007E0E0 },   /* fn_8007E0E0 */
+    { 0x8007E180u, 16, 2, e_8007E180 },   /* fn_8007E180 */
+    { 0x8007E1D0u, 32, 5, e_8007E1D0 },   /* fn_8007E1D0 */
+    { 0x8007E2C0u, 32, 4, e_8007E2C0 },   /* fn_8007E2C0 */
+    { 0x8007E3D0u, 16, 2, e_8007E3D0 },   /* fn_8007E3D0 */
+    { 0x8007E430u, 32, 4, e_8007E430 },   /* fn_8007E430 */
+    { 0x8007E520u, 224, 13, e_8007E520 },   /* fn_8007E520 */
+    { 0x8007E7F0u, 16, 1, e_8007E7F0 },   /* fn_8007E7F0 */
+    { 0x8007E860u, 96, 16, e_8007E860 },   /* fn_8007E860 */
+    { 0x8007EA80u, 64, 3, e_8007EA80 },   /* fn_8007EA80 */
+    { 0x8007EB70u, 16, 2, e_8007EB70 },   /* fn_8007EB70 */
+    { 0x8007EC20u, 1264, 3, e_8007EC20 },   /* fn_8007EC20 */
+    { 0x8007F7A0u, 16, 2, e_8007F7A0 },   /* __ct__9dBg_ctr_cFv */
+    { 0x8007F810u, 16, 3, e_8007F810 },   /* __dt__9dBg_ctr_cFv */
+    { 0x8007FA40u, 48, 3, e_8007FA40 },   /* set__9dBg_ctr_cFP8dActor_cffffPFP8dActor_cP8dActor_c_vPFP8dActor_cP8dActor_c_vPFP8dActor_cP8dActor_cUc_vUcUcP7mVec3_c */
+    { 0x8007FB10u, 32, 1, e_8007FB10 },   /* setup__7PhysicsFP8dActor_cPQ27Physics4InfoUcUcP7Point2d */
+    { 0x8007FBF0u, 80, 8, e_8007FBF0 },   /* setOfs__9dBg_ctr_cFffffP7mVec3_c */
+    { 0x8007FDA0u, 96, 7, e_8007FDA0 },   /* calc__9dBg_ctr_cFv */
+    { 0x8007FFA0u, 80, 8, e_8007FFA0 },   /* fn_8007FFA0 */
+    { 0x80080170u, 48, 4, e_80080170 },   /* fn_80080170 */
+    { 0x80080630u, 16, 2, e_80080630 },   /* fn_80080630 */
+    { 0x80080670u, 176, 3, e_80080670 },   /* fn_80080670 */
+    { 0x80080900u, 368, 15, e_80080900 },   /* fn_80080900 */
+    { 0x80080E40u, 32, 5, e_80080E40 },   /* fn_80080E40 */
+    { 0x80081300u, 48, 10, e_80081300 },   /* fn_80081300 */
+    { 0x80081410u, 48, 7, e_80081410 },   /* fn_80081410 */
+    { 0x800814D0u, 112, 10, e_800814D0 },   /* fn_800814D0 */
+    { 0x800816A0u, 64, 12, e_800816A0 },   /* fn_800816A0 */
+    { 0x80081780u, 32, 4, e_80081780 },   /* fn_80081780 */
+    { 0x80081800u, 16, 2, e_80081800 },   /* fn_80081800 */
     { 0x80081960u, 32, 6, e_80081960 },   /* fn_80081960 */
+    { 0x80081AB0u, 16, 3, e_80081AB0 },   /* fn_80081AB0 */
+    { 0x80081C40u, 32, 3, e_80081C40 },   /* fn_80081C40 */
+    { 0x80081D20u, 16, 2, e_80081D20 },   /* fn_80081D20 */
+    { 0x80081E90u, 16, 3, e_80081E90 },   /* fn_80081E90 */
+    { 0x80081F40u, 48, 9, e_80081F40 },   /* fn_80081F40 */
+    { 0x80082050u, 32, 6, e_80082050 },   /* fn_80082050 */
+    { 0x800820D0u, 16, 2, e_800820D0 },   /* fn_800820D0 */
+    { 0x80082240u, 64, 7, e_80082240 },   /* getLoopScrollDispPosX__14dBgParameter_cFf */
+    { 0x800822E0u, 16, 1, e_800822E0 },   /* fn_800822E0 */
+    { 0x80082310u, 16, 2, e_80082310 },   /* fn_80082310 */
+    { 0x80082370u, 16, 3, e_80082370 },   /* fn_80082370 */
+    { 0x80082410u, 32, 7, e_80082410 },   /* fn_80082410 */
+    { 0x80082560u, 16, 2, e_80082560 },   /* fn_80082560 */
+    { 0x800825E0u, 32, 2, e_800825E0 },   /* fn_800825E0 */
+    { 0x80082660u, 32, 2, e_80082660 },   /* fn_80082660 */
+    { 0x80082740u, 224, 20, e_80082740 },   /* fn_80082740 */
+    { 0x80082BE0u, 240, 20, e_80082BE0 },   /* fn_80082BE0 */
+    { 0x80082ED0u, 448, 29, e_80082ED0 },   /* fn_80082ED0 */
+    { 0x800833E0u, 16, 2, e_800833E0 },   /* fn_800833E0 */
+    { 0x80083440u, 16, 1, e_80083440 },   /* fn_80083440 */
+    { 0x800834D0u, 16, 3, e_800834D0 },   /* fn_800834D0 */
+    { 0x80083560u, 32, 5, e_80083560 },   /* OriginalTilesetLoadingThing */
+    { 0x800837D0u, 32, 5, e_800837D0 },   /* fn_800837D0 */
+    { 0x80083870u, 144, 12, e_80083870 },   /* fn_80083870 */
+    { 0x80083AD0u, 16, 2, e_80083AD0 },   /* fn_80083AD0 */
     { 0x80083B40u, 32, 5, e_80083B40 },   /* getPointerToTile__12TilemapClassFiiPUib */
+    { 0x80083BD0u, 32, 7, e_80083BD0 },   /* fn_80083BD0 */
+    { 0x80083D00u, 3152, 6, e_80083D00 },   /* fn_80083D00 */
+    { 0x80083E20u, 16, 3, e_80083E20 },   /* fn_80083E20 */
+    { 0x80083EE0u, 16, 3, e_80083EE0 },   /* fn_80083EE0 */
+    { 0x80083FC0u, 64, 14, e_80083FC0 },   /* fn_80083FC0 */
     { 0x8008C200u, 16, 2, e_8008C200 },   /* __ct__13ActivePhysicsFv */
     { 0x8008C260u, 16, 3, e_8008C260 },   /* __dt__13ActivePhysicsFv */
     { 0x8008C440u, 16, 3, e_8008C440 },   /* fn_8008C440 */
@@ -910,7 +5984,7 @@ const gm_prologue_t gm_prologues[] = {
     { 0x8008E740u, 16, 1, e_8008E740 },   /* fn_8008E740 */
     { 0x8008E770u, 32, 5, e_8008E770 },   /* fn_8008E770 */
     { 0x8008E800u, 32, 5, e_8008E800 },   /* fn_8008E800 */
-    { 0x8008E950u, 32, 5, e_8008E950 },   /* fn_8008E950 */
+    { 0x8008E950u, 32, 3, e_8008E950 },   /* fn_8008E950 */
     { 0x8008F110u, 16, 1, e_8008F110 },   /* create__4dDvdFlPQ23EGG4HeapPQ23EGG4Heap */
     { 0x8008F170u, 16, 2, e_8008F170 },   /* __dt__Q24dDvd8loader_cFv */
     { 0x8008F1B0u, 32, 4, e_8008F1B0 },   /* request__Q24dDvd8loader_cFPCcUcPQ23EGG4Heap */
@@ -1044,6 +6118,29 @@ const gm_prologue_t gm_prologues[] = {
     { 0x800C9B50u, 256, 13, e_800C9B50 },   /* fn_800C9B50 */
     { 0x800C9DF0u, 128, 2, e_800C9DF0 },   /* fn_800C9DF0 */
     { 0x800C9E80u, 32, 3, e_800C9E80 },   /* fn_800C9E80 */
+    { 0x800CAD20u, 32, 5, e_800CAD20 },   /* fn_800CAD20 */
+    { 0x800CAE70u, 16, 3, e_800CAE70 },   /* fn_800CAE70 */
+    { 0x800CAFD0u, 16, 3, e_800CAFD0 },   /* fn_800CAFD0 */
+    { 0x800CB0F0u, 16, 2, e_800CB0F0 },   /* fn_800CB0F0 */
+    { 0x800CB490u, 32, 6, e_800CB490 },   /* fn_800CB490 */
+    { 0x800CB5D0u, 16, 2, e_800CB5D0 },   /* fn_800CB5D0 */
+    { 0x800CB630u, 16, 2, e_800CB630 },   /* fn_800CB630 */
+    { 0x800CB670u, 48, 7, e_800CB670 },   /* fn_800CB670 */
+    { 0x800CB780u, 16, 2, e_800CB780 },   /* fn_800CB780 */
+    { 0x800CB810u, 32, 4, e_800CB810 },   /* fn_800CB810 */
+    { 0x800CB8A0u, 80, 3, e_800CB8A0 },   /* fn_800CB8A0 */
+    { 0x800CBAE0u, 80, 3, e_800CBAE0 },   /* fn_800CBAE0 */
+    { 0x800CBD20u, 80, 3, e_800CBD20 },   /* fn_800CBD20 */
+    { 0x800CBF60u, 16, 2, e_800CBF60 },   /* fn_800CBF60 */
+    { 0x800CBFA0u, 32, 4, e_800CBFA0 },   /* fn_800CBFA0 */
+    { 0x800CC050u, 16, 2, e_800CC050 },   /* fn_800CC050 */
+    { 0x800CC090u, 32, 2, e_800CC090 },   /* fn_800CC090 */
+    { 0x800CC250u, 16, 2, e_800CC250 },   /* fn_800CC250 */
+    { 0x800CC2A0u, 32, 4, e_800CC2A0 },   /* fn_800CC2A0 */
+    { 0x800CC350u, 16, 2, e_800CC350 },   /* fn_800CC350 */
+    { 0x800CC390u, 32, 3, e_800CC390 },   /* fn_800CC390 */
+    { 0x800CC8E0u, 32, 4, e_800CC8E0 },   /* fn_800CC8E0 */
+    { 0x800CC9A0u, 64, 2, e_800CC9A0 },   /* fn_800CC9A0 */
     { 0x800CDA70u, 16, 2, e_800CDA70 },   /* fn_800CDA70 */
     { 0x800CDAB0u, 16, 3, e_800CDAB0 },   /* fn_800CDAB0 */
     { 0x800CDB30u, 128, 3, e_800CDB30 },   /* create__10dMessage_cFPQ23EGG4Heap */
@@ -1062,6 +6159,75 @@ const gm_prologue_t gm_prologues[] = {
     { 0x800CFEA0u, 48, 0, 0 },   /* fn_800CFEA0 */
     { 0x800D0030u, 32, 5, e_800D0030 },   /* fn_800D0030 */
     { 0x800D0100u, 32, 5, e_800D0100 },   /* fn_800D0100 */
+    { 0x800D1510u, 32, 4, e_800D1510 },   /* check__5dPc_cFi */
+    { 0x800D16B0u, 16, 1, e_800D16B0 },   /* fn_800D16B0 */
+    { 0x800D19E0u, 320, 41, e_800D19E0 },   /* fn_800D19E0 */
+    { 0x800D1F10u, 16, 2, e_800D1F10 },   /* move__5dPc_cFf */
+    { 0x800D2060u, 32, 5, e_800D2060 },   /* fn_800D2060 */
+    { 0x800D2270u, 32, 1, e_800D2270 },   /* getAngle__5dPc_cCFv */
+    { 0x800D2690u, 96, 14, e_800D2690 },   /* fn_800D2690 */
+    { 0x800D27B0u, 224, 26, e_800D27B0 },   /* fn_800D27B0 */
+    { 0x800D29F0u, 16, 3, e_800D29F0 },   /* fn_800D29F0 */
+    { 0x800D2AC0u, 16, 1, e_800D2AC0 },   /* fn_800D2AC0 */
+    { 0x800D2B90u, 32, 2, e_800D2B90 },   /* fn_800D2B90 */
+    { 0x800D2C20u, 16, 2, e_800D2C20 },   /* fn_800D2C20 */
+    { 0x800D2CF0u, 48, 7, e_800D2CF0 },   /* setEffect__14dPyEffectMng_cFQ211dPyEffect_c6Type_eR7mVec3_cfUc */
+    { 0x800D2D80u, 16, 3, e_800D2D80 },   /* fn_800D2D80 */
+    { 0x800D2DD0u, 32, 6, e_800D2DD0 },   /* fn_800D2DD0 */
+    { 0x800D3030u, 16, 2, e_800D3030 },   /* fn_800D3030 */
+    { 0x800D3070u, 16, 3, e_800D3070 },   /* fn_800D3070 */
+    { 0x800D30E0u, 32, 4, e_800D30E0 },   /* fn_800D30E0 */
+    { 0x800D3210u, 16, 2, e_800D3210 },   /* fn_800D3210 */
+    { 0x800D3280u, 32, 4, e_800D3280 },   /* fn_800D3280 */
+    { 0x800D3380u, 112, 8, e_800D3380 },   /* fn_800D3380 */
+    { 0x800D36E0u, 208, 2, e_800D36E0 },   /* fn_800D36E0 */
+    { 0x800D3830u, 16, 2, e_800D3830 },   /* fn_800D3830 */
+    { 0x800D38A0u, 32, 2, e_800D38A0 },   /* fn_800D38A0 */
+    { 0x800D3A30u, 16, 2, e_800D3A30 },   /* fn_800D3A30 */
+    { 0x800D3AD0u, 32, 2, e_800D3AD0 },   /* fn_800D3AD0 */
+    { 0x800D3B20u, 48, 5, e_800D3B20 },   /* fn_800D3B20 */
+    { 0x800D3BF0u, 32, 3, e_800D3BF0 },   /* fn_800D3BF0 */
+    { 0x800D3CE0u, 16, 3, e_800D3CE0 },   /* fn_800D3CE0 */
+    { 0x800D3EF0u, 64, 5, e_800D3EF0 },   /* fn_800D3EF0 */
+    { 0x800D4060u, 32, 4, e_800D4060 },   /* fn_800D4060 */
+    { 0x800D40F0u, 48, 8, e_800D40F0 },   /* fn_800D40F0 */
+    { 0x800D4240u, 96, 11, e_800D4240 },   /* fn_800D4240 */
+    { 0x800D43E0u, 96, 11, e_800D43E0 },   /* fn_800D43E0 */
+    { 0x800D4520u, 48, 4, e_800D4520 },   /* fn_800D4520 */
+    { 0x800D4670u, 16, 2, e_800D4670 },   /* fn_800D4670 */
+    { 0x800D4790u, 112, 9, e_800D4790 },   /* fn_800D4790 */
+    { 0x800D4980u, 16, 1, e_800D4980 },   /* fn_800D4980 */
+    { 0x800D4CD0u, 32, 4, e_800D4CD0 },   /* fn_800D4CD0 */
+    { 0x800D4D80u, 48, 5, e_800D4D80 },   /* fn_800D4D80 */
+    { 0x800D4E90u, 32, 3, e_800D4E90 },   /* fn_800D4E90 */
+    { 0x800D5170u, 80, 4, e_800D5170 },   /* fn_800D5170 */
+    { 0x800D5330u, 32, 4, e_800D5330 },   /* fn_800D5330 */
+    { 0x800D54A0u, 16, 2, e_800D54A0 },   /* fn_800D54A0 */
+    { 0x800D54E0u, 16, 3, e_800D54E0 },   /* fn_800D54E0 */
+    { 0x800D5580u, 16, 3, e_800D5580 },   /* fn_800D5580 */
+    { 0x800D56F0u, 16, 2, e_800D56F0 },   /* fn_800D56F0 */
+    { 0x800D5730u, 16, 3, e_800D5730 },   /* fn_800D5730 */
+    { 0x800D5790u, 80, 2, e_800D5790 },   /* getJointPos__12dPyMdlBase_cFP7mVec3_ci */
+    { 0x800D57F0u, 432, 11, e_800D57F0 },   /* fn_800D57F0 */
+    { 0x800D5C10u, 32, 3, e_800D5C10 },   /* fn_800D5C10 */
+    { 0x800D5C90u, 32, 3, e_800D5C90 },   /* fn_800D5C90 */
+    { 0x800D5D10u, 32, 2, e_800D5D10 },   /* setJumpAnmRand__12dPyMdlBase_cFQ212dPyMdlBase_c9RndType_e */
+    { 0x800D6200u, 48, 6, e_800D6200 },   /* fn_800D6200 */
+    { 0x800D62F0u, 64, 7, e_800D62F0 },   /* fn_800D62F0 */
+    { 0x800D6460u, 48, 6, e_800D6460 },   /* fn_800D6460 */
+    { 0x800D65E0u, 112, 13, e_800D65E0 },   /* fn_800D65E0 */
+    { 0x800D6840u, 16, 1, e_800D6840 },   /* fn_800D6840 */
+    { 0x800D6A30u, 32, 2, e_800D6A30 },   /* fn_800D6A30 */
+    { 0x800D6AB0u, 16, 2, e_800D6AB0 },   /* isFootStepTiming__12dPyMdlBase_cFv */
+    { 0x800D6EB0u, 64, 3, e_800D6EB0 },   /* calc__11dPyMdlMng_cFR6mMtx_c */
+    { 0x800D6F40u, 48, 1, e_800D6F40 },   /* calc__11dPyMdlMng_cF7mVec3_c7mAng3_c7mVec3_c */
+    { 0x800D7050u, 16, 2, e_800D7050 },   /* fn_800D7050 */
+    { 0x800D77D0u, 16, 2, e_800D77D0 },   /* fn_800D77D0 */
+    { 0x800D7820u, 16, 3, e_800D7820 },   /* fn_800D7820 */
+    { 0x800D7880u, 48, 8, e_800D7880 },   /* fn_800D7880 */
+    { 0x800D7C80u, 176, 6, e_800D7C80 },   /* fn_800D7C80 */
+    { 0x800D81E0u, 32, 4, e_800D81E0 },   /* __ct__14dPropelParts_cFv */
+    { 0x800D82A0u, 16, 3, e_800D82A0 },   /* update__14dPropelParts_cFRC6mMtx_c */
     { 0x800D9130u, 64, 8, e_800D9130 },   /* fn_800D9130 */
     { 0x800D9370u, 32, 2, e_800D9370 },   /* fn_800D9370 */
     { 0x800D9420u, 32, 2, e_800D9420 },   /* fn_800D9420 */
@@ -1114,7 +6280,179 @@ const gm_prologue_t gm_prologues[] = {
     { 0x800F2810u, 16, 1, e_800F2810 },   /* fn_800F2810 */
     { 0x800F2850u, 16, 2, e_800F2850 },   /* fn_800F2850 */
     { 0x800F2910u, 16, 2, e_800F2910 },   /* fn_800F2910 */
+    { 0x800F3330u, 32, 4, e_800F3330 },   /* fn_800F3330 */
+    { 0x800F33D0u, 32, 1, e_800F33D0 },   /* fn_800F33D0 */
+    { 0x800F3500u, 32, 6, e_800F3500 },   /* fn_800F3500 */
+    { 0x800F35A0u, 16, 2, e_800F35A0 },   /* fn_800F35A0 */
+    { 0x800F39D0u, 64, 5, e_800F39D0 },   /* fn_800F39D0 */
+    { 0x800F3E20u, 16, 2, e_800F3E20 },   /* fn_800F3E20 */
+    { 0x800F3E80u, 80, 11, e_800F3E80 },   /* fn_800F3E80 */
+    { 0x800F4870u, 48, 8, e_800F4870 },   /* fn_800F4870 */
+    { 0x800F4B50u, 48, 8, e_800F4B50 },   /* fn_800F4B50 */
+    { 0x800F4F80u, 64, 8, e_800F4F80 },   /* fn_800F4F80 */
+    { 0x800F5050u, 48, 5, e_800F5050 },   /* fn_800F5050 */
+    { 0x800F5130u, 80, 8, e_800F5130 },   /* fn_800F5130 */
+    { 0x800F5310u, 32, 6, e_800F5310 },   /* fn_800F5310 */
+    { 0x800F53A0u, 32, 5, e_800F53A0 },   /* fn_800F53A0 */
+    { 0x800F5420u, 32, 3, e_800F5420 },   /* fn_800F5420 */
+    { 0x800F54D0u, 48, 4, e_800F54D0 },   /* fn_800F54D0 */
+    { 0x800F59E0u, 32, 5, e_800F59E0 },   /* fn_800F59E0 */
+    { 0x800F5A90u, 64, 9, e_800F5A90 },   /* fn_800F5A90 */
+    { 0x800F5C10u, 64, 9, e_800F5C10 },   /* fn_800F5C10 */
+    { 0x800F5D40u, 16, 3, e_800F5D40 },   /* fn_800F5D40 */
+    { 0x800F5E60u, 32, 7, e_800F5E60 },   /* fn_800F5E60 */
+    { 0x800F5F40u, 32, 1, e_800F5F40 },   /* fn_800F5F40 */
+    { 0x800F6020u, 16, 3, e_800F6020 },   /* fn_800F6020 */
+    { 0x800F6130u, 112, 10, e_800F6130 },   /* fn_800F6130 */
+    { 0x800F6320u, 16, 2, e_800F6320 },   /* fn_800F6320 */
+    { 0x800F6390u, 16, 2, e_800F6390 },   /* fn_800F6390 */
+    { 0x800F6410u, 48, 2, e_800F6410 },   /* fn_800F6410 */
+    { 0x800F6810u, 96, 8, e_800F6810 },   /* fn_800F6810 */
+    { 0x800F6940u, 48, 3, e_800F6940 },   /* fn_800F6940 */
+    { 0x800F69F0u, 80, 11, e_800F69F0 },   /* fn_800F69F0 */
+    { 0x800F6D60u, 16, 3, e_800F6D60 },   /* fn_800F6D60 */
+    { 0x800F6EB0u, 32, 1, e_800F6EB0 },   /* fn_800F6EB0 */
+    { 0x800F9080u, 32, 6, e_800F9080 },   /* fn_800F9080 */
+    { 0x800F91E0u, 32, 1, e_800F91E0 },   /* fn_800F91E0 */
+    { 0x800F9270u, 16, 2, e_800F9270 },   /* GetStartPointNameFromRouteName__6dWmLibFPCcPc */
+    { 0x800F92C0u, 16, 2, e_800F92C0 },   /* GetEndPointNameFromRouteName__6dWmLibFPCcPc */
+    { 0x800F9310u, 16, 3, e_800F9310 },   /* fn_800F9310 */
+    { 0x800F9370u, 16, 3, e_800F9370 },   /* fn_800F9370 */
+    { 0x800F9930u, 16, 1, e_800F9930 },   /* fn_800F9930 */
+    { 0x800F9BE0u, 16, 3, e_800F9BE0 },   /* fn_800F9BE0 */
+    { 0x800F9C50u, 32, 4, e_800F9C50 },   /* fn_800F9C50 */
+    { 0x800F9CD0u, 32, 3, e_800F9CD0 },   /* fn_800F9CD0 */
+    { 0x800F9EA0u, 48, 4, e_800F9EA0 },   /* fn_800F9EA0 */
+    { 0x800FA350u, 80, 15, e_800FA350 },   /* fn_800FA350 */
+    { 0x800FA630u, 32, 5, e_800FA630 },   /* fn_800FA630 */
+    { 0x800FA6C0u, 32, 7, e_800FA6C0 },   /* fn_800FA6C0 */
+    { 0x800FA8C0u, 32, 4, e_800FA8C0 },   /* GetClearStatus__6dWmLibFii */
+    { 0x800FA9C0u, 32, 6, e_800FA9C0 },   /* GetCurrentPlayResultStatus__6dWmLibFiii */
+    { 0x800FAD60u, 16, 1, e_800FAD60 },   /* IsCourseOmoteClear__6dWmLibFii */
+    { 0x800FADB0u, 16, 3, e_800FADB0 },   /* IsCourseUraClear__6dWmLibFii */
+    { 0x800FAE40u, 16, 1, e_800FAE40 },   /* IsCourseClear__6dWmLibFii */
+    { 0x800FAE80u, 32, 4, e_800FAE80 },   /* IsCourseFirstOmoteClear__6dWmLibFiii */
+    { 0x800FAF70u, 32, 4, e_800FAF70 },   /* IsCourseFirstUraClear__6dWmLibFiii */
+    { 0x800FB040u, 32, 5, e_800FB040 },   /* IsCourseFirstClear__6dWmLibFii */
+    { 0x800FB150u, 16, 3, e_800FB150 },   /* IsCourseOtasukeClearSimple__6dWmLibFii */
+    { 0x800FB1A0u, 16, 3, e_800FB1A0 },   /* IsCourseUraOtasukeClearSimple__6dWmLibFii */
+    { 0x800FB1F0u, 16, 3, e_800FB1F0 },   /* IsCourseOmoteClearSimple__6dWmLibFii */
+    { 0x800FB240u, 16, 3, e_800FB240 },   /* IsCourseUraClearSimple__6dWmLibFii */
+    { 0x800FB290u, 16, 1, e_800FB290 },   /* IsCourseFailed__6dWmLibFiii */
+    { 0x800FB2D0u, 16, 2, e_800FB2D0 },   /* fn_800FB2D0 */
+    { 0x800FB350u, 16, 1, e_800FB350 },   /* getStartPointKinokoHouseKindNum__6dWmLibFv */
+    { 0x800FB4B0u, 96, 8, e_800FB4B0 },   /* fn_800FB4B0 */
+    { 0x800FBDE0u, 32, 6, e_800FBDE0 },   /* fn_800FBDE0 */
+    { 0x800FBF30u, 32, 4, e_800FBF30 },   /* fn_800FBF30 */
+    { 0x800FBFB0u, 16, 1, e_800FBFB0 },   /* fn_800FBFB0 */
+    { 0x800FC040u, 16, 1, e_800FC040 },   /* fn_800FC040 */
+    { 0x800FC0A0u, 32, 5, e_800FC0A0 },   /* fn_800FC0A0 */
+    { 0x800FC140u, 16, 3, e_800FC140 },   /* getEnemyRevivalCount__6dWmLibFii */
+    { 0x800FC5C0u, 80, 7, e_800FC5C0 },   /* fn_800FC5C0 */
+    { 0x800FCA20u, 16, 1, e_800FCA20 },   /* fn_800FCA20 */
+    { 0x800FCA50u, 32, 4, e_800FCA50 },   /* fn_800FCA50 */
+    { 0x800FCAF0u, 16, 1, e_800FCAF0 },   /* fn_800FCAF0 */
+    { 0x800FCBB0u, 32, 5, e_800FCBB0 },   /* fn_800FCBB0 */
+    { 0x800FD2E0u, 16, 1, e_800FD2E0 },   /* fn_800FD2E0 */
+    { 0x800FD310u, 16, 3, e_800FD310 },   /* fn_800FD310 */
+    { 0x800FD500u, 32, 1, e_800FD500 },   /* fn_800FD500 */
+    { 0x800FD630u, 32, 4, e_800FD630 },   /* fn_800FD630 */
+    { 0x800FD750u, 32, 5, e_800FD750 },   /* fn_800FD750 */
+    { 0x800FD9C0u, 32, 1, e_800FD9C0 },   /* fn_800FD9C0 */
+    { 0x800FDA50u, 16, 2, e_800FDA50 },   /* fn_800FDA50 */
+    { 0x800FDAC0u, 16, 3, e_800FDAC0 },   /* fn_800FDAC0 */
+    { 0x800FDC80u, 32, 4, e_800FDC80 },   /* fn_800FDC80 */
+    { 0x800FDCF0u, 16, 2, e_800FDCF0 },   /* fn_800FDCF0 */
+    { 0x800FDD60u, 16, 3, e_800FDD60 },   /* fn_800FDD60 */
+    { 0x800FDF40u, 16, 1, e_800FDF40 },   /* fn_800FDF40 */
+    { 0x800FDFA0u, 32, 1, e_800FDFA0 },   /* fn_800FDFA0 */
+    { 0x800FE060u, 32, 7, e_800FE060 },   /* fn_800FE060 */
+    { 0x800FE110u, 32, 6, e_800FE110 },   /* fn_800FE110 */
+    { 0x800FE1D0u, 16, 3, e_800FE1D0 },   /* fn_800FE1D0 */
+    { 0x800FE2E0u, 16, 3, e_800FE2E0 },   /* fn_800FE2E0 */
+    { 0x800FE360u, 16, 2, e_800FE360 },   /* fn_800FE360 */
+    { 0x800FE3B0u, 16, 2, e_800FE3B0 },   /* fn_800FE3B0 */
+    { 0x800FE560u, 80, 4, e_800FE560 },   /* fn_800FE560 */
+    { 0x800FE760u, 112, 3, e_800FE760 },   /* fn_800FE760 */
+    { 0x800FE830u, 16, 2, e_800FE830 },   /* fn_800FE830 */
+    { 0x800FE8F0u, 32, 2, e_800FE8F0 },   /* fn_800FE8F0 */
+    { 0x800FE9E0u, 16, 3, e_800FE9E0 },   /* fn_800FE9E0 */
+    { 0x800FEAA0u, 32, 4, e_800FEAA0 },   /* fn_800FEAA0 */
+    { 0x800FEB40u, 64, 7, e_800FEB40 },   /* fn_800FEB40 */
+    { 0x800FEC10u, 64, 8, e_800FEC10 },   /* fn_800FEC10 */
+    { 0x800FEDD0u, 64, 7, e_800FEDD0 },   /* fn_800FEDD0 */
+    { 0x800FEED0u, 48, 4, e_800FEED0 },   /* fn_800FEED0 */
+    { 0x800FF000u, 16, 2, e_800FF000 },   /* fn_800FF000 */
+    { 0x800FF0C0u, 16, 2, e_800FF0C0 },   /* fn_800FF0C0 */
+    { 0x800FF120u, 16, 2, e_800FF120 },   /* fn_800FF120 */
+    { 0x800FF180u, 112, 4, e_800FF180 },   /* fn_800FF180 */
+    { 0x800FF230u, 48, 4, e_800FF230 },   /* fn_800FF230 */
+    { 0x800FF590u, 16, 3, e_800FF590 },   /* fn_800FF590 */
+    { 0x800FF740u, 624, 13, e_800FF740 },   /* fn_800FF740 */
+    { 0x800FFA50u, 160, 7, e_800FFA50 },   /* fn_800FFA50 */
+    { 0x800FFC40u, 80, 3, e_800FFC40 },   /* fn_800FFC40 */
+    { 0x800FFDB0u, 48, 4, e_800FFDB0 },   /* fn_800FFDB0 */
+    { 0x800FFFE0u, 16, 1, e_800FFFE0 },   /* fn_800FFFE0 */
+    { 0x80100200u, 16, 3, e_80100200 },   /* fn_80100200 */
+    { 0x80100270u, 32, 2, e_80100270 },   /* fn_80100270 */
+    { 0x801002F0u, 32, 4, e_801002F0 },   /* fn_801002F0 */
+    { 0x80100430u, 16, 3, e_80100430 },   /* fn_80100430 */
+    { 0x801004B0u, 16, 3, e_801004B0 },   /* fn_801004B0 */
+    { 0x80100530u, 32, 5, e_80100530 },   /* fn_80100530 */
+    { 0x801005C0u, 48, 7, e_801005C0 },   /* fn_801005C0 */
+    { 0x80100720u, 32, 5, e_80100720 },   /* GetNodeCount__9daWmMap_cFi */
+    { 0x80100830u, 32, 1, e_80100830 },   /* fn_80100830 */
+    { 0x80100AA0u, 32, 4, e_80100AA0 },   /* fn_80100AA0 */
+    { 0x80100CA0u, 16, 3, e_80100CA0 },   /* fn_80100CA0 */
+    { 0x80100DA0u, 64, 3, e_80100DA0 },   /* fn_80100DA0 */
+    { 0x80101430u, 112, 1, e_80101430 },   /* fn_80101430 */
+    { 0x801015E0u, 16, 2, e_801015E0 },   /* GetCutName__11dCsSeqMng_cFv */
+    { 0x80101630u, 16, 1, e_80101630 },   /* fn_80101630 */
+    { 0x80101720u, 32, 1, e_80101720 },   /* fn_80101720 */
     { 0x80101AA0u, 64, 9, e_80101AA0 },   /* getLoopPosX__10dScStage_cFf */
+    { 0x80101C60u, 32, 4, e_80101C60 },   /* fn_80101C60 */
+    { 0x80101CE0u, 16, 2, e_80101CE0 },   /* fn_80101CE0 */
+    { 0x80101D40u, 32, 4, e_80101D40 },   /* fn_80101D40 */
+    { 0x80101DC0u, 16, 2, e_80101DC0 },   /* fn_80101DC0 */
+    { 0x80101E20u, 32, 4, e_80101E20 },   /* fn_80101E20 */
+    { 0x80101EA0u, 16, 2, e_80101EA0 },   /* fn_80101EA0 */
+    { 0x801020F0u, 16, 2, e_801020F0 },   /* fn_801020F0 */
+    { 0x801021D0u, 16, 1, e_801021D0 },   /* createReplayDataHeap__10dScStage_cFPQ23EGG4HeapUli */
+    { 0x801025D0u, 32, 1, e_801025D0 },   /* fn_801025D0 */
+    { 0x80102C10u, 32, 1, e_80102C10 },   /* fn_80102C10 */
+    { 0x80102CA0u, 16, 2, e_80102CA0 },   /* fn_80102CA0 */
+    { 0x80102E00u, 32, 2, e_80102E00 },   /* fn_80102E00 */
+    { 0x80102E80u, 32, 1, e_80102E80 },   /* fn_80102E80 */
+    { 0x80102F10u, 16, 2, e_80102F10 },   /* fn_80102F10 */
+    { 0x80102F90u, 16, 3, e_80102F90 },   /* fn_80102F90 */
+    { 0x80103000u, 32, 4, e_80103000 },   /* fn_80103000 */
+    { 0x80103090u, 16, 1, e_80103090 },   /* fn_80103090 */
+    { 0x801030E0u, 16, 3, e_801030E0 },   /* fn_801030E0 */
+    { 0x801031B0u, 32, 4, e_801031B0 },   /* fn_801031B0 */
+    { 0x80103220u, 32, 3, e_80103220 },   /* fn_80103220 */
+    { 0x80103310u, 48, 5, e_80103310 },   /* fn_80103310 */
+    { 0x80103390u, 32, 5, e_80103390 },   /* playEffect__18dWmEffectManager_cFiPC7mVec3_cPC7mAng3_cPC7mVec3_c */
+    { 0x80103440u, 48, 8, e_80103440 },   /* fn_80103440 */
+    { 0x80103730u, 32, 1, e_80103730 },   /* fn_80103730 */
+    { 0x801037C0u, 16, 1, e_801037C0 },   /* fn_801037C0 */
+    { 0x80103840u, 16, 2, e_80103840 },   /* fn_80103840 */
+    { 0x80103A30u, 32, 1, e_80103A30 },   /* fn_80103A30 */
+    { 0x80103AC0u, 16, 2, e_80103AC0 },   /* fn_80103AC0 */
+    { 0x80103B00u, 16, 2, e_80103B00 },   /* fn_80103B00 */
+    { 0x80103F10u, 16, 3, e_80103F10 },   /* fn_80103F10 */
+    { 0x80105240u, 48, 6, e_80105240 },   /* playSound__14dWmSeManager_cFiRC7mVec3_ci */
+    { 0x80105370u, 32, 4, e_80105370 },   /* fn_80105370 */
+    { 0x80105440u, 16, 1, e_80105440 },   /* playSound__14dWmSeManager_cFiiRC7mVec3_cii */
+    { 0x80105480u, 48, 9, e_80105480 },   /* fn_80105480 */
+    { 0x80105EE0u, 16, 1, e_80105EE0 },   /* fn_80105EE0 */
+    { 0x80105F40u, 32, 1, e_80105F40 },   /* fn_80105F40 */
+    { 0x80105FD0u, 64, 12, e_80105FD0 },   /* fn_80105FD0 */
+    { 0x80106190u, 16, 3, e_80106190 },   /* fn_80106190 */
+    { 0x80106200u, 16, 3, e_80106200 },   /* fn_80106200 */
+    { 0x801062B0u, 176, 19, e_801062B0 },   /* fn_801062B0 */
+    { 0x80106620u, 256, 17, e_80106620 },   /* fn_80106620 */
+    { 0x801068B0u, 256, 13, e_801068B0 },   /* fn_801068B0 */
+    { 0x80106D60u, 32, 1, e_80106D60 },   /* fn_80106D60 */
     { 0x8010C020u, 16, 1, e_8010C020 },   /* fn_8010C020 */
     { 0x8010C050u, 16, 2, e_8010C050 },   /* fn_8010C050 */
     { 0x8010C0C0u, 16, 2, e_8010C0C0 },   /* fn_8010C0C0 */
@@ -1132,6 +6470,515 @@ const gm_prologue_t gm_prologues[] = {
     { 0x8010CA90u, 32, 4, e_8010CA90 },   /* fn_8010CA90 */
     { 0x8010CCD0u, 32, 4, e_8010CCD0 },   /* fn_8010CCD0 */
     { 0x8010CD70u, 32, 4, e_8010CD70 },   /* fn_8010CD70 */
+    { 0x80126630u, 16, 2, e_80126630 },   /* fn_80126630 */
+    { 0x801267D0u, 16, 2, e_801267D0 },   /* fn_801267D0 */
+    { 0x80126810u, 16, 2, e_80126810 },   /* fn_80126810 */
+    { 0x80126860u, 16, 2, e_80126860 },   /* fn_80126860 */
+    { 0x801268A0u, 16, 2, e_801268A0 },   /* fn_801268A0 */
+    { 0x801268F0u, 16, 2, e_801268F0 },   /* fn_801268F0 */
+    { 0x80126970u, 16, 3, e_80126970 },   /* fn_80126970 */
+    { 0x80126A80u, 16, 3, e_80126A80 },   /* fn_80126A80 */
+    { 0x80126E90u, 16, 2, e_80126E90 },   /* fn_80126E90 */
+    { 0x80126F40u, 16, 2, e_80126F40 },   /* fn_80126F40 */
+    { 0x80127050u, 16, 2, e_80127050 },   /* fn_80127050 */
+    { 0x801270F0u, 16, 2, e_801270F0 },   /* fn_801270F0 */
+    { 0x80127170u, 16, 2, e_80127170 },   /* fn_80127170 */
+    { 0x80127240u, 16, 2, e_80127240 },   /* fn_80127240 */
+    { 0x80127340u, 16, 2, e_80127340 },   /* fn_80127340 */
+    { 0x80127410u, 16, 2, e_80127410 },   /* fn_80127410 */
+    { 0x80127470u, 48, 6, e_80127470 },   /* fn_80127470 */
+    { 0x801275B0u, 16, 2, e_801275B0 },   /* fn_801275B0 */
+    { 0x80127600u, 32, 4, e_80127600 },   /* fn_80127600 */
+    { 0x801278E0u, 16, 2, e_801278E0 },   /* fn_801278E0 */
+    { 0x80127990u, 16, 2, e_80127990 },   /* fn_80127990 */
+    { 0x80127B30u, 16, 2, e_80127B30 },   /* fn_80127B30 */
+    { 0x80127F10u, 16, 2, e_80127F10 },   /* fn_80127F10 */
+    { 0x80127FC0u, 32, 4, e_80127FC0 },   /* fn_80127FC0 */
+    { 0x80128190u, 16, 3, e_80128190 },   /* fn_80128190 */
+    { 0x80128220u, 16, 2, e_80128220 },   /* fn_80128220 */
+    { 0x801282E0u, 16, 2, e_801282E0 },   /* fn_801282E0 */
+    { 0x80128370u, 16, 2, e_80128370 },   /* fn_80128370 */
+    { 0x801284C0u, 16, 3, e_801284C0 },   /* fn_801284C0 */
+    { 0x801286D0u, 16, 2, e_801286D0 },   /* fn_801286D0 */
+    { 0x801287B0u, 16, 2, e_801287B0 },   /* fn_801287B0 */
+    { 0x80128830u, 48, 3, e_80128830 },   /* fn_80128830 */
+    { 0x80128B00u, 64, 4, e_80128B00 },   /* fn_80128B00 */
+    { 0x80128D20u, 16, 2, e_80128D20 },   /* fn_80128D20 */
+    { 0x80128D60u, 48, 4, e_80128D60 },   /* fn_80128D60 */
+    { 0x80128FC0u, 16, 3, e_80128FC0 },   /* fn_80128FC0 */
+    { 0x80129050u, 64, 3, e_80129050 },   /* fn_80129050 */
+    { 0x80129220u, 48, 3, e_80129220 },   /* fn_80129220 */
+    { 0x80129330u, 32, 3, e_80129330 },   /* fn_80129330 */
+    { 0x80129500u, 16, 2, e_80129500 },   /* fn_80129500 */
+    { 0x80129790u, 16, 2, e_80129790 },   /* fn_80129790 */
+    { 0x801298B0u, 16, 1, e_801298B0 },   /* fn_801298B0 */
+    { 0x80129910u, 16, 2, e_80129910 },   /* fn_80129910 */
+    { 0x80129950u, 16, 2, e_80129950 },   /* fn_80129950 */
+    { 0x80129CA0u, 16, 2, e_80129CA0 },   /* fn_80129CA0 */
+    { 0x80129DA0u, 16, 2, e_80129DA0 },   /* fn_80129DA0 */
+    { 0x80129EA0u, 32, 2, e_80129EA0 },   /* fn_80129EA0 */
+    { 0x8012AA30u, 16, 2, e_8012AA30 },   /* fn_8012AA30 */
+    { 0x8012AB40u, 16, 2, e_8012AB40 },   /* fn_8012AB40 */
+    { 0x8012AB80u, 16, 3, e_8012AB80 },   /* fn_8012AB80 */
+    { 0x8012ABF0u, 16, 2, e_8012ABF0 },   /* fn_8012ABF0 */
+    { 0x8012AC40u, 16, 2, e_8012AC40 },   /* fn_8012AC40 */
+    { 0x8012AC90u, 16, 2, e_8012AC90 },   /* fn_8012AC90 */
+    { 0x8012ADA0u, 16, 2, e_8012ADA0 },   /* fn_8012ADA0 */
+    { 0x8012AE60u, 16, 2, e_8012AE60 },   /* fn_8012AE60 */
+    { 0x8012BD90u, 16, 2, e_8012BD90 },   /* fn_8012BD90 */
+    { 0x8012BF70u, 64, 9, e_8012BF70 },   /* fn_8012BF70 */
+    { 0x8012C220u, 144, 15, e_8012C220 },   /* fn_8012C220 */
+    { 0x8012C5E0u, 16, 2, e_8012C5E0 },   /* fn_8012C5E0 */
+    { 0x8012C640u, 64, 7, e_8012C640 },   /* fn_8012C640 */
+    { 0x8012C9B0u, 16, 2, e_8012C9B0 },   /* fn_8012C9B0 */
+    { 0x8012CB10u, 16, 2, e_8012CB10 },   /* fn_8012CB10 */
+    { 0x8012CBA0u, 16, 3, e_8012CBA0 },   /* fn_8012CBA0 */
+    { 0x8012CCD0u, 16, 2, e_8012CCD0 },   /* fn_8012CCD0 */
+    { 0x8012CE40u, 16, 3, e_8012CE40 },   /* fn_8012CE40 */
+    { 0x8012CF80u, 16, 2, e_8012CF80 },   /* fn_8012CF80 */
+    { 0x8012D0C0u, 16, 2, e_8012D0C0 },   /* fn_8012D0C0 */
+    { 0x8012D110u, 32, 3, e_8012D110 },   /* fn_8012D110 */
+    { 0x8012D200u, 32, 2, e_8012D200 },   /* fn_8012D200 */
+    { 0x8012D250u, 48, 4, e_8012D250 },   /* fn_8012D250 */
+    { 0x8012D490u, 16, 2, e_8012D490 },   /* fn_8012D490 */
+    { 0x8012D5B0u, 32, 2, e_8012D5B0 },   /* fn_8012D5B0 */
+    { 0x8012D620u, 16, 2, e_8012D620 },   /* fn_8012D620 */
+    { 0x8012D7C0u, 16, 2, e_8012D7C0 },   /* fn_8012D7C0 */
+    { 0x8012D850u, 16, 2, e_8012D850 },   /* fn_8012D850 */
+    { 0x8012DA60u, 16, 2, e_8012DA60 },   /* fn_8012DA60 */
+    { 0x8012DB90u, 16, 2, e_8012DB90 },   /* fn_8012DB90 */
+    { 0x8012DBE0u, 16, 1, e_8012DBE0 },   /* fn_8012DBE0 */
+    { 0x8012DC20u, 16, 1, e_8012DC20 },   /* fn_8012DC20 */
+    { 0x8012DC60u, 16, 1, e_8012DC60 },   /* fn_8012DC60 */
+    { 0x8012DCC0u, 16, 1, e_8012DCC0 },   /* fn_8012DCC0 */
+    { 0x8012DD10u, 16, 2, e_8012DD10 },   /* fn_8012DD10 */
+    { 0x8012DE20u, 16, 2, e_8012DE20 },   /* fn_8012DE20 */
+    { 0x8012DE80u, 64, 3, e_8012DE80 },   /* fn_8012DE80 */
+    { 0x8012DFB0u, 208, 3, e_8012DFB0 },   /* fn_8012DFB0 */
+    { 0x8012E140u, 32, 4, e_8012E140 },   /* fn_8012E140 */
+    { 0x8012E360u, 64, 4, e_8012E360 },   /* fn_8012E360 */
+    { 0x8012E510u, 16, 3, e_8012E510 },   /* fn_8012E510 */
+    { 0x8012E5A0u, 16, 3, e_8012E5A0 },   /* fn_8012E5A0 */
+    { 0x8012E650u, 16, 2, e_8012E650 },   /* fn_8012E650 */
+    { 0x8012E6E0u, 16, 2, e_8012E6E0 },   /* fn_8012E6E0 */
+    { 0x8012E760u, 16, 2, e_8012E760 },   /* fn_8012E760 */
+    { 0x8012E820u, 16, 2, e_8012E820 },   /* fn_8012E820 */
+    { 0x8012E940u, 16, 2, e_8012E940 },   /* fn_8012E940 */
+    { 0x8012E9A0u, 16, 2, e_8012E9A0 },   /* fn_8012E9A0 */
+    { 0x8012EA10u, 112, 6, e_8012EA10 },   /* fn_8012EA10 */
+    { 0x8012EDC0u, 16, 1, e_8012EDC0 },   /* aramGetFirstUserAddress */
+    { 0x8012EDF0u, 16, 1, e_8012EDF0 },   /* fn_8012EDF0 */
+    { 0x8012EE20u, 16, 2, e_8012EE20 },   /* fn_8012EE20 */
+    { 0x8012F060u, 16, 2, e_8012F060 },   /* fn_8012F060 */
+    { 0x8012F1A0u, 16, 2, e_8012F1A0 },   /* fn_8012F1A0 */
+    { 0x8012F270u, 16, 3, e_8012F270 },   /* fn_8012F270 */
+    { 0x8012F340u, 16, 3, e_8012F340 },   /* fn_8012F340 */
+    { 0x8012F460u, 16, 2, e_8012F460 },   /* fn_8012F460 */
+    { 0x8012F4C0u, 64, 2, e_8012F4C0 },   /* fn_8012F4C0 */
+    { 0x8012FA00u, 16, 2, e_8012FA00 },   /* fn_8012FA00 */
+    { 0x8012FB10u, 64, 4, e_8012FB10 },   /* fn_8012FB10 */
+    { 0x8012FCF0u, 48, 2, e_8012FCF0 },   /* fn_8012FCF0 */
+    { 0x8012FE50u, 32, 3, e_8012FE50 },   /* fn_8012FE50 */
+    { 0x8012FF40u, 48, 2, e_8012FF40 },   /* fn_8012FF40 */
+    { 0x80130040u, 32, 3, e_80130040 },   /* fn_80130040 */
+    { 0x801300E0u, 64, 5, e_801300E0 },   /* fn_801300E0 */
+    { 0x80130340u, 48, 4, e_80130340 },   /* fn_80130340 */
+    { 0x80130500u, 16, 2, e_80130500 },   /* fn_80130500 */
+    { 0x801305B0u, 16, 2, e_801305B0 },   /* fn_801305B0 */
+    { 0x80130A00u, 16, 2, e_80130A00 },   /* fn_80130A00 */
+    { 0x80130B20u, 16, 3, e_80130B20 },   /* fn_80130B20 */
+    { 0x80130BC0u, 16, 2, e_80130BC0 },   /* fn_80130BC0 */
+    { 0x80130C10u, 16, 2, e_80130C10 },   /* fn_80130C10 */
+    { 0x80131790u, 16, 2, e_80131790 },   /* fn_80131790 */
+    { 0x80131870u, 16, 2, e_80131870 },   /* fn_80131870 */
+    { 0x80131990u, 48, 6, e_80131990 },   /* fn_80131990 */
+    { 0x80131DE0u, 16, 2, e_80131DE0 },   /* fn_80131DE0 */
+    { 0x80131F20u, 368, 10, e_80131F20 },   /* fn_80131F20 */
+    { 0x80132230u, 64, 2, e_80132230 },   /* fn_80132230 */
+    { 0x80132340u, 112, 2, e_80132340 },   /* fn_80132340 */
+    { 0x80132440u, 16, 2, e_80132440 },   /* fn_80132440 */
+    { 0x801327F0u, 16, 2, e_801327F0 },   /* fn_801327F0 */
+    { 0x80132A80u, 32, 4, e_80132A80 },   /* fn_80132A80 */
+    { 0x80132C70u, 16, 2, e_80132C70 },   /* fn_80132C70 */
+    { 0x80132D40u, 16, 2, e_80132D40 },   /* fn_80132D40 */
+    { 0x80132DF0u, 16, 2, e_80132DF0 },   /* fn_80132DF0 */
+    { 0x801335D0u, 16, 2, e_801335D0 },   /* fn_801335D0 */
+    { 0x801337E0u, 16, 2, e_801337E0 },   /* fn_801337E0 */
+    { 0x80133A60u, 16, 2, e_80133A60 },   /* fn_80133A60 */
+    { 0x80133B60u, 48, 5, e_80133B60 },   /* fn_80133B60 */
+    { 0x801341B0u, 16, 2, e_801341B0 },   /* fn_801341B0 */
+    { 0x80134B10u, 16, 2, e_80134B10 },   /* fn_80134B10 */
+    { 0x80134BC0u, 16, 2, e_80134BC0 },   /* fn_80134BC0 */
+    { 0x80135E70u, 16, 2, e_80135E70 },   /* fn_80135E70 */
+    { 0x80135F50u, 16, 2, e_80135F50 },   /* fn_80135F50 */
+    { 0x80135FC0u, 16, 2, e_80135FC0 },   /* sdpu_release_ccb */
+    { 0x80136000u, 16, 2, e_80136000 },   /* fn_80136000 */
+    { 0x80136190u, 16, 2, e_80136190 },   /* fn_80136190 */
+    { 0x80136340u, 16, 2, e_80136340 },   /* fn_80136340 */
+    { 0x801363C0u, 80, 6, e_801363C0 },   /* fn_801363C0 */
+    { 0x80136EB0u, 48, 6, e_80136EB0 },   /* fn_80136EB0 */
+    { 0x80137130u, 32, 2, e_80137130 },   /* fn_80137130 */
+    { 0x80137230u, 16, 2, e_80137230 },   /* fn_80137230 */
+    { 0x80137320u, 64, 7, e_80137320 },   /* fn_80137320 */
+    { 0x80137C10u, 32, 4, e_80137C10 },   /* fn_80137C10 */
+    { 0x80137E20u, 32, 5, e_80137E20 },   /* fn_80137E20 */
+    { 0x801380D0u, 16, 2, e_801380D0 },   /* fn_801380D0 */
+    { 0x80138140u, 32, 2, e_80138140 },   /* fn_80138140 */
+    { 0x80138510u, 48, 5, e_80138510 },   /* fn_80138510 */
+    { 0x801386B0u, 16, 3, e_801386B0 },   /* fn_801386B0 */
+    { 0x80138790u, 16, 2, e_80138790 },   /* fn_80138790 */
+    { 0x80138990u, 16, 2, e_80138990 },   /* fn_80138990 */
+    { 0x80138A90u, 64, 4, e_80138A90 },   /* fn_80138A90 */
+    { 0x80138D40u, 16, 2, e_80138D40 },   /* fn_80138D40 */
+    { 0x80138DD0u, 16, 2, e_80138DD0 },   /* fn_80138DD0 */
+    { 0x80138E60u, 16, 3, e_80138E60 },   /* fn_80138E60 */
+    { 0x80138F40u, 16, 3, e_80138F40 },   /* fn_80138F40 */
+    { 0x801393D0u, 32, 3, e_801393D0 },   /* fn_801393D0 */
+    { 0x80139460u, 16, 2, e_80139460 },   /* fn_80139460 */
+    { 0x801394A0u, 16, 2, e_801394A0 },   /* fn_801394A0 */
+    { 0x801395C0u, 16, 2, e_801395C0 },   /* fn_801395C0 */
+    { 0x80139640u, 16, 2, e_80139640 },   /* fn_80139640 */
+    { 0x801396C0u, 64, 6, e_801396C0 },   /* fn_801396C0 */
+    { 0x801397D0u, 16, 3, e_801397D0 },   /* fn_801397D0 */
+    { 0x80139950u, 16, 2, e_80139950 },   /* getYoshi__7dAcPy_cFv */
+    { 0x801399A0u, 16, 2, e_801399A0 },   /* fn_801399A0 */
+    { 0x80139A10u, 16, 2, e_80139A10 },   /* fn_80139A10 */
+    { 0x80139A90u, 16, 3, e_80139A90 },   /* fn_80139A90 */
+    { 0x80139B80u, 16, 3, e_80139B80 },   /* fn_80139B80 */
+    { 0x80139C50u, 16, 2, e_80139C50 },   /* fn_80139C50 */
+    { 0x80139C90u, 16, 2, e_80139C90 },   /* fn_80139C90 */
+    { 0x80139D00u, 32, 3, e_80139D00 },   /* fn_80139D00 */
+    { 0x80139D80u, 16, 2, e_80139D80 },   /* fn_80139D80 */
+    { 0x80139DE0u, 16, 2, e_80139DE0 },   /* fn_80139DE0 */
+    { 0x80139F30u, 16, 2, e_80139F30 },   /* fn_80139F30 */
+    { 0x8013A180u, 64, 3, e_8013A180 },   /* fn_8013A180 */
+    { 0x8013A430u, 16, 2, e_8013A430 },   /* fn_8013A430 */
+    { 0x8013A540u, 16, 2, e_8013A540 },   /* fn_8013A540 */
+    { 0x8013A670u, 16, 3, e_8013A670 },   /* fn_8013A670 */
+    { 0x8013AAA0u, 16, 2, e_8013AAA0 },   /* fn_8013AAA0 */
+    { 0x8013AAF0u, 128, 3, e_8013AAF0 },   /* fn_8013AAF0 */
+    { 0x8013ABA0u, 32, 3, e_8013ABA0 },   /* fn_8013ABA0 */
+    { 0x8013AC90u, 16, 3, e_8013AC90 },   /* fn_8013AC90 */
+    { 0x8013B480u, 16, 2, e_8013B480 },   /* fn_8013B480 */
+    { 0x8013B9C0u, 16, 2, e_8013B9C0 },   /* fn_8013B9C0 */
+    { 0x8013BA80u, 16, 2, e_8013BA80 },   /* fn_8013BA80 */
+    { 0x8013BB00u, 16, 2, e_8013BB00 },   /* fn_8013BB00 */
+    { 0x8013BB90u, 192, 7, e_8013BB90 },   /* PlayerProjectileShooting */
+    { 0x8013BDD0u, 16, 2, e_8013BDD0 },   /* fn_8013BDD0 */
+    { 0x8013BE80u, 16, 2, e_8013BE80 },   /* fn_8013BE80 */
+    { 0x8013BF10u, 16, 2, e_8013BF10 },   /* fn_8013BF10 */
+    { 0x8013C1B0u, 16, 2, e_8013C1B0 },   /* fn_8013C1B0 */
+    { 0x8013C280u, 16, 2, e_8013C280 },   /* fn_8013C280 */
+    { 0x8013C3A0u, 16, 2, e_8013C3A0 },   /* fn_8013C3A0 */
+    { 0x8013C3F0u, 32, 3, e_8013C3F0 },   /* fn_8013C3F0 */
+    { 0x8013C520u, 16, 3, e_8013C520 },   /* fn_8013C520 */
+    { 0x8013C5F0u, 16, 2, e_8013C5F0 },   /* fn_8013C5F0 */
+    { 0x8013C660u, 16, 2, e_8013C660 },   /* fn_8013C660 */
+    { 0x8013C6C0u, 16, 2, e_8013C6C0 },   /* fn_8013C6C0 */
+    { 0x8013C7C0u, 16, 2, e_8013C7C0 },   /* fn_8013C7C0 */
+    { 0x8013C850u, 16, 2, e_8013C850 },   /* fn_8013C850 */
+    { 0x8013CA80u, 16, 2, e_8013CA80 },   /* fn_8013CA80 */
+    { 0x8013CB90u, 16, 2, e_8013CB90 },   /* fn_8013CB90 */
+    { 0x8013CC90u, 16, 2, e_8013CC90 },   /* fn_8013CC90 */
+    { 0x8013CE00u, 64, 2, e_8013CE00 },   /* fn_8013CE00 */
+    { 0x8013CF70u, 16, 3, e_8013CF70 },   /* fn_8013CF70 */
+    { 0x8013D010u, 16, 2, e_8013D010 },   /* fn_8013D010 */
+    { 0x8013D060u, 32, 2, e_8013D060 },   /* fn_8013D060 */
+    { 0x8013D140u, 32, 2, e_8013D140 },   /* fn_8013D140 */
+    { 0x8013D1E0u, 16, 2, e_8013D1E0 },   /* fn_8013D1E0 */
+    { 0x8013D230u, 32, 3, e_8013D230 },   /* fn_8013D230 */
+    { 0x8013D3B0u, 16, 2, e_8013D3B0 },   /* fn_8013D3B0 */
+    { 0x8013D400u, 32, 2, e_8013D400 },   /* fn_8013D400 */
+    { 0x8013D4E0u, 16, 2, e_8013D4E0 },   /* fn_8013D4E0 */
+    { 0x8013D7E0u, 16, 2, e_8013D7E0 },   /* fn_8013D7E0 */
+    { 0x8013DB00u, 32, 2, e_8013DB00 },   /* fn_8013DB00 */
+    { 0x8013DC30u, 16, 2, e_8013DC30 },   /* fn_8013DC30 */
+    { 0x8013DE40u, 16, 2, e_8013DE40 },   /* fn_8013DE40 */
+    { 0x8013DF50u, 16, 2, e_8013DF50 },   /* fn_8013DF50 */
+    { 0x8013E000u, 32, 3, e_8013E000 },   /* fn_8013E000 */
+    { 0x8013E170u, 32, 2, e_8013E170 },   /* fn_8013E170 */
+    { 0x8013E850u, 32, 4, e_8013E850 },   /* fn_8013E850 */
+    { 0x8013E920u, 16, 2, e_8013E920 },   /* fn_8013E920 */
+    { 0x8013EA50u, 16, 2, e_8013EA50 },   /* fn_8013EA50 */
+    { 0x8013EA90u, 16, 3, e_8013EA90 },   /* fn_8013EA90 */
+    { 0x8013EF50u, 16, 2, e_8013EF50 },   /* fn_8013EF50 */
+    { 0x8013EFF0u, 16, 2, e_8013EFF0 },   /* fn_8013EFF0 */
+    { 0x8013F100u, 32, 2, e_8013F100 },   /* fn_8013F100 */
+    { 0x8013F1C0u, 48, 3, e_8013F1C0 },   /* fn_8013F1C0 */
+    { 0x8013F350u, 64, 2, e_8013F350 },   /* fn_8013F350 */
+    { 0x8013F4D0u, 16, 2, e_8013F4D0 },   /* fn_8013F4D0 */
+    { 0x8013F570u, 16, 1, e_8013F570 },   /* fn_8013F570 */
+    { 0x8013F620u, 16, 2, e_8013F620 },   /* fn_8013F620 */
+    { 0x8013F6E0u, 16, 2, e_8013F6E0 },   /* fn_8013F6E0 */
+    { 0x8013F750u, 32, 6, e_8013F750 },   /* fn_8013F750 */
+    { 0x8013F950u, 16, 2, e_8013F950 },   /* fn_8013F950 */
+    { 0x8013F9A0u, 16, 1, e_8013F9A0 },   /* fn_8013F9A0 */
+    { 0x8013FE00u, 16, 2, e_8013FE00 },   /* fn_8013FE00 */
+    { 0x80140590u, 16, 2, e_80140590 },   /* fn_80140590 */
+    { 0x80140A30u, 16, 2, e_80140A30 },   /* fn_80140A30 */
+    { 0x80140AF0u, 32, 4, e_80140AF0 },   /* fn_80140AF0 */
+    { 0x80140C30u, 16, 2, e_80140C30 },   /* fn_80140C30 */
+    { 0x80140FF0u, 64, 5, e_80140FF0 },   /* fn_80140FF0 */
+    { 0x80141140u, 32, 4, e_80141140 },   /* fn_80141140 */
+    { 0x80141320u, 16, 3, e_80141320 },   /* fn_80141320 */
+    { 0x80141460u, 16, 2, e_80141460 },   /* continueFromMpPauseFix2 */
+    { 0x801414C0u, 16, 2, e_801414C0 },   /* fn_801414C0 */
+    { 0x801415B0u, 16, 2, e_801415B0 },   /* fn_801415B0 */
+    { 0x80141640u, 16, 2, e_80141640 },   /* fn_80141640 */
+    { 0x801416F0u, 32, 6, e_801416F0 },   /* fn_801416F0 */
+    { 0x80141A60u, 48, 7, e_80141A60 },   /* fn_80141A60 */
+    { 0x80141BF0u, 32, 6, e_80141BF0 },   /* fn_80141BF0 */
+    { 0x80141CD0u, 32, 5, e_80141CD0 },   /* fn_80141CD0 */
+    { 0x80141FD0u, 32, 2, e_80141FD0 },   /* fn_80141FD0 */
+    { 0x80142030u, 320, 5, e_80142030 },   /* fn_80142030 */
+    { 0x80142430u, 32, 5, e_80142430 },   /* fn_80142430 */
+    { 0x80142530u, 16, 1, e_80142530 },   /* fn_80142530 */
+    { 0x80142580u, 16, 2, e_80142580 },   /* fn_80142580 */
+    { 0x80142660u, 192, 7, e_80142660 },   /* fn_80142660 */
+    { 0x80142F20u, 64, 8, e_80142F20 },   /* fn_80142F20 */
+    { 0x801430E0u, 96, 10, e_801430E0 },   /* fn_801430E0 */
+    { 0x801432F0u, 32, 4, e_801432F0 },   /* fn_801432F0 */
+    { 0x80143410u, 32, 4, e_80143410 },   /* fn_80143410 */
+    { 0x801434E0u, 16, 2, e_801434E0 },   /* fn_801434E0 */
+    { 0x80143530u, 16, 2, e_80143530 },   /* fn_80143530 */
+    { 0x80143590u, 16, 2, e_80143590 },   /* fn_80143590 */
+    { 0x801435E0u, 48, 3, e_801435E0 },   /* fn_801435E0 */
+    { 0x801436F0u, 48, 2, e_801436F0 },   /* fn_801436F0 */
+    { 0x80143790u, 16, 2, e_80143790 },   /* fn_80143790 */
+    { 0x80143A90u, 48, 2, e_80143A90 },   /* fn_80143A90 */
+    { 0x80143C30u, 16, 2, e_80143C30 },   /* fn_80143C30 */
+    { 0x80144030u, 16, 2, e_80144030 },   /* fn_80144030 */
+    { 0x80144280u, 16, 1, e_80144280 },   /* fn_80144280 */
+    { 0x801446E0u, 32, 4, e_801446E0 },   /* RealAcPyDtor */
+    { 0x80144AA0u, 16, 2, e_80144AA0 },   /* fn_80144AA0 */
+    { 0x80145040u, 16, 3, e_80145040 },   /* fn_80145040 */
+    { 0x801450A0u, 48, 4, e_801450A0 },   /* fn_801450A0 */
+    { 0x801451F0u, 16, 3, e_801451F0 },   /* fn_801451F0 */
+    { 0x80145440u, 16, 2, e_80145440 },   /* fn_80145440 */
+    { 0x80145520u, 64, 2, e_80145520 },   /* fn_80145520 */
+    { 0x80145650u, 448, 6, e_80145650 },   /* fn_80145650 */
+    { 0x801459B0u, 96, 3, e_801459B0 },   /* fn_801459B0 */
+    { 0x80145AC0u, 16, 3, e_80145AC0 },   /* dAcPy_c__ChangePowerupWithAnimation */
+    { 0x80145C50u, 16, 2, e_80145C50 },   /* fn_80145C50 */
+    { 0x80145CC0u, 32, 2, e_80145CC0 },   /* fn_80145CC0 */
+    { 0x80145E40u, 16, 2, e_80145E40 },   /* fn_80145E40 */
+    { 0x80145E90u, 32, 4, e_80145E90 },   /* fn_80145E90 */
+    { 0x80146060u, 16, 2, e_80146060 },   /* fn_80146060 */
+    { 0x801462A0u, 32, 5, e_801462A0 },   /* fn_801462A0 */
+    { 0x801465D0u, 48, 1, e_801465D0 },   /* fn_801465D0 */
+    { 0x80146770u, 16, 1, e_80146770 },   /* fn_80146770 */
+    { 0x801467B0u, 16, 2, e_801467B0 },   /* fn_801467B0 */
+    { 0x801469D0u, 96, 12, e_801469D0 },   /* fn_801469D0 */
+    { 0x80146E90u, 32, 4, e_80146E90 },   /* fn_80146E90 */
+    { 0x80146F00u, 16, 2, e_80146F00 },   /* fn_80146F00 */
+    { 0x80146FA0u, 16, 3, e_80146FA0 },   /* fn_80146FA0 */
+    { 0x80147040u, 16, 2, e_80147040 },   /* fn_80147040 */
+    { 0x80147100u, 16, 2, e_80147100 },   /* fn_80147100 */
+    { 0x80147250u, 16, 3, e_80147250 },   /* fn_80147250 */
+    { 0x801472F0u, 48, 8, e_801472F0 },   /* fn_801472F0 */
+    { 0x801473F0u, 16, 3, e_801473F0 },   /* fn_801473F0 */
+    { 0x80147450u, 16, 3, e_80147450 },   /* fn_80147450 */
+    { 0x801474F0u, 16, 2, e_801474F0 },   /* fn_801474F0 */
+    { 0x80147560u, 48, 2, e_80147560 },   /* fn_80147560 */
+    { 0x80147680u, 16, 1, e_80147680 },   /* fn_80147680 */
+    { 0x80147820u, 32, 3, e_80147820 },   /* fn_80147820 */
+    { 0x80147A80u, 16, 2, e_80147A80 },   /* fn_80147A80 */
+    { 0x80147B60u, 16, 2, e_80147B60 },   /* fn_80147B60 */
+    { 0x80147BD0u, 1888, 9, e_80147BD0 },   /* fn_80147BD0 */
+    { 0x8014A6F0u, 32, 6, e_8014A6F0 },   /* fn_8014A6F0 */
+    { 0x8014A960u, 80, 2, e_8014A960 },   /* fn_8014A960 */
+    { 0x8014AAF0u, 32, 3, e_8014AAF0 },   /* fn_8014AAF0 */
+    { 0x8014AC10u, 64, 6, e_8014AC10 },   /* fn_8014AC10 */
+    { 0x8014ADB0u, 16, 2, e_8014ADB0 },   /* fn_8014ADB0 */
+    { 0x8014AEF0u, 32, 3, e_8014AEF0 },   /* setRevivalBreakIce__10daPlyIce_cFv */
+    { 0x8014AFC0u, 16, 1, e_8014AFC0 },   /* fn_8014AFC0 */
+    { 0x8014B000u, 16, 1, e_8014B000 },   /* fn_8014B000 */
+    { 0x8014B040u, 16, 1, e_8014B040 },   /* fn_8014B040 */
+    { 0x8014B060u, 32, 2, e_8014B060 },   /* fn_8014B060 */
+    { 0x8014B130u, 32, 5, e_8014B130 },   /* fn_8014B130 */
+    { 0x8014B2C0u, 16, 1, e_8014B2C0 },   /* fn_8014B2C0 */
+    { 0x8014B2F0u, 32, 6, e_8014B2F0 },   /* fn_8014B2F0 */
+    { 0x8014B580u, 32, 4, e_8014B580 },   /* fn_8014B580 */
+    { 0x8014B850u, 16, 2, e_8014B850 },   /* fn_8014B850 */
+    { 0x8014B8C0u, 16, 2, e_8014B8C0 },   /* fn_8014B8C0 */
+    { 0x8014B920u, 32, 5, e_8014B920 },   /* YoshiStateOrig */
+    { 0x8014BA20u, 32, 2, e_8014BA20 },   /* fn_8014BA20 */
+    { 0x8014BAE0u, 16, 2, e_8014BAE0 },   /* fn_8014BAE0 */
+    { 0x8014BBF0u, 16, 2, e_8014BBF0 },   /* fn_8014BBF0 */
+    { 0x8014BE50u, 16, 3, e_8014BE50 },   /* fn_8014BE50 */
+    { 0x8014BFB0u, 16, 2, e_8014BFB0 },   /* fn_8014BFB0 */
+    { 0x8014C020u, 16, 2, e_8014C020 },   /* fn_8014C020 */
+    { 0x8014C170u, 16, 3, e_8014C170 },   /* fn_8014C170 */
+    { 0x8014C200u, 16, 2, e_8014C200 },   /* fn_8014C200 */
+    { 0x8014C240u, 16, 2, e_8014C240 },   /* fn_8014C240 */
+    { 0x8014C330u, 32, 2, e_8014C330 },   /* fn_8014C330 */
+    { 0x8014C3A0u, 16, 2, e_8014C3A0 },   /* fn_8014C3A0 */
+    { 0x8014C410u, 16, 2, e_8014C410 },   /* fn_8014C410 */
+    { 0x8014C500u, 16, 2, e_8014C500 },   /* fn_8014C500 */
+    { 0x8014C570u, 16, 2, e_8014C570 },   /* fn_8014C570 */
+    { 0x8014C690u, 16, 3, e_8014C690 },   /* fn_8014C690 */
+    { 0x8014C730u, 16, 2, e_8014C730 },   /* fn_8014C730 */
+    { 0x8014C780u, 16, 2, e_8014C780 },   /* fn_8014C780 */
+    { 0x8014C930u, 80, 10, e_8014C930 },   /* fn_8014C930 */
+    { 0x8014CC30u, 48, 7, e_8014CC30 },   /* fn_8014CC30 */
+    { 0x8014CD70u, 16, 2, e_8014CD70 },   /* fn_8014CD70 */
+    { 0x8014CDD0u, 48, 6, e_8014CDD0 },   /* fn_8014CDD0 */
+    { 0x8014CEB0u, 16, 2, e_8014CEB0 },   /* fn_8014CEB0 */
+    { 0x8014CFD0u, 48, 2, e_8014CFD0 },   /* fn_8014CFD0 */
+    { 0x8014D070u, 16, 2, e_8014D070 },   /* fn_8014D070 */
+    { 0x8014D2D0u, 16, 2, e_8014D2D0 },   /* fn_8014D2D0 */
+    { 0x8014D4A0u, 32, 4, e_8014D4A0 },   /* fn_8014D4A0 */
+    { 0x8014D5D0u, 16, 2, e_8014D5D0 },   /* fn_8014D5D0 */
+    { 0x8014D610u, 16, 2, e_8014D610 },   /* fn_8014D610 */
+    { 0x8014D6D0u, 16, 2, e_8014D6D0 },   /* fn_8014D6D0 */
+    { 0x8014D720u, 16, 2, e_8014D720 },   /* fn_8014D720 */
+    { 0x8014D760u, 16, 2, e_8014D760 },   /* fn_8014D760 */
+    { 0x8014D820u, 16, 2, e_8014D820 },   /* fn_8014D820 */
+    { 0x8014DBB0u, 16, 2, e_8014DBB0 },   /* fn_8014DBB0 */
+    { 0x8014E4E0u, 16, 2, e_8014E4E0 },   /* fn_8014E4E0 */
+    { 0x8014E6B0u, 16, 2, e_8014E6B0 },   /* fn_8014E6B0 */
+    { 0x8014E700u, 16, 2, e_8014E700 },   /* fn_8014E700 */
+    { 0x8014E760u, 16, 2, e_8014E760 },   /* fn_8014E760 */
+    { 0x8014E820u, 16, 2, e_8014E820 },   /* fn_8014E820 */
+    { 0x8014E9D0u, 16, 2, e_8014E9D0 },   /* checkRideOffAble__9daYoshi_cFv */
+    { 0x8014EB80u, 16, 2, e_8014EB80 },   /* setRideOffPlayer__9daYoshi_cFv */
+    { 0x8014EC40u, 16, 2, e_8014EC40 },   /* fn_8014EC40 */
+    { 0x8014ED50u, 16, 2, e_8014ED50 },   /* fn_8014ED50 */
+    { 0x8014ED90u, 16, 3, e_8014ED90 },   /* fn_8014ED90 */
+    { 0x8014EE10u, 16, 2, e_8014EE10 },   /* fn_8014EE10 */
+    { 0x8014EFB0u, 32, 4, e_8014EFB0 },   /* fn_8014EFB0 */
+    { 0x8014F0C0u, 16, 3, e_8014F0C0 },   /* fn_8014F0C0 */
+    { 0x8014F160u, 16, 3, e_8014F160 },   /* fn_8014F160 */
+    { 0x8014F200u, 16, 2, e_8014F200 },   /* fn_8014F200 */
+    { 0x8014F290u, 16, 2, e_8014F290 },   /* fn_8014F290 */
+    { 0x8014F3E0u, 16, 3, e_8014F3E0 },   /* fn_8014F3E0 */
+    { 0x8014F470u, 16, 2, e_8014F470 },   /* fn_8014F470 */
+    { 0x8014F540u, 16, 2, e_8014F540 },   /* fn_8014F540 */
+    { 0x8014F590u, 16, 2, e_8014F590 },   /* fn_8014F590 */
+    { 0x8014F630u, 32, 5, e_8014F630 },   /* fn_8014F630 */
+    { 0x8014F840u, 32, 3, e_8014F840 },   /* fn_8014F840 */
+    { 0x8014F9B0u, 32, 3, e_8014F9B0 },   /* fn_8014F9B0 */
+    { 0x8014FAD0u, 16, 3, e_8014FAD0 },   /* fn_8014FAD0 */
+    { 0x8014FBC0u, 32, 2, e_8014FBC0 },   /* fn_8014FBC0 */
+    { 0x8014FC50u, 16, 2, e_8014FC50 },   /* fn_8014FC50 */
+    { 0x8014FCC0u, 16, 2, e_8014FCC0 },   /* fn_8014FCC0 */
+    { 0x8014FD60u, 16, 1, e_8014FD60 },   /* fn_8014FD60 */
+    { 0x8014FF00u, 16, 2, e_8014FF00 },   /* fn_8014FF00 */
+    { 0x8014FF80u, 16, 2, e_8014FF80 },   /* fn_8014FF80 */
+    { 0x80150020u, 16, 2, e_80150020 },   /* fn_80150020 */
+    { 0x80150090u, 16, 2, e_80150090 },   /* fn_80150090 */
+    { 0x80150150u, 16, 2, e_80150150 },   /* fn_80150150 */
+    { 0x801501D0u, 32, 4, e_801501D0 },   /* fn_801501D0 */
+    { 0x801502E0u, 64, 7, e_801502E0 },   /* fn_801502E0 */
+    { 0x801506A0u, 16, 2, e_801506A0 },   /* fn_801506A0 */
+    { 0x80150760u, 16, 2, e_80150760 },   /* fn_80150760 */
+    { 0x801507C0u, 16, 2, e_801507C0 },   /* fn_801507C0 */
+    { 0x80150830u, 16, 2, e_80150830 },   /* fn_80150830 */
+    { 0x801508A0u, 32, 2, e_801508A0 },   /* fn_801508A0 */
+    { 0x80150AB0u, 16, 2, e_80150AB0 },   /* fn_80150AB0 */
+    { 0x80150B80u, 48, 2, e_80150B80 },   /* fn_80150B80 */
+    { 0x80150DB0u, 16, 1, e_80150DB0 },   /* fn_80150DB0 */
+    { 0x80150E10u, 32, 2, e_80150E10 },   /* fn_80150E10 */
+    { 0x80151040u, 80, 11, e_80151040 },   /* fn_80151040 */
+    { 0x80151270u, 16, 2, e_80151270 },   /* fn_80151270 */
+    { 0x80151320u, 32, 4, e_80151320 },   /* fn_80151320 */
+    { 0x80151470u, 32, 5, e_80151470 },   /* fn_80151470 */
+    { 0x80151630u, 16, 3, e_80151630 },   /* fn_80151630 */
+    { 0x801518D0u, 16, 2, e_801518D0 },   /* fn_801518D0 */
+    { 0x80151A70u, 16, 2, e_80151A70 },   /* fn_80151A70 */
+    { 0x80151AD0u, 80, 2, e_80151AD0 },   /* fn_80151AD0 */
+    { 0x80151C30u, 128, 2, e_80151C30 },   /* fn_80151C30 */
+    { 0x80151D00u, 16, 2, e_80151D00 },   /* fn_80151D00 */
+    { 0x80151E50u, 32, 6, e_80151E50 },   /* fn_80151E50 */
+    { 0x80152020u, 32, 5, e_80152020 },   /* fn_80152020 */
+    { 0x80152130u, 32, 5, e_80152130 },   /* fn_80152130 */
+    { 0x801522B0u, 32, 4, e_801522B0 },   /* fn_801522B0 */
+    { 0x80152360u, 16, 1, e_80152360 },   /* fn_80152360 */
+    { 0x801523A0u, 16, 1, e_801523A0 },   /* fn_801523A0 */
+    { 0x801523E0u, 16, 3, e_801523E0 },   /* fn_801523E0 */
+    { 0x80152480u, 64, 2, e_80152480 },   /* getTongueTipMtx__9daYoshi_cFP6mMtx_c */
+    { 0x80152520u, 16, 1, e_80152520 },   /* getMouthMtx__9daYoshi_cFP6mMtx_c */
+    { 0x80152560u, 16, 1, e_80152560 },   /* fn_80152560 */
+    { 0x801527A0u, 16, 1, e_801527A0 },   /* fn_801527A0 */
+    { 0x80152B30u, 16, 3, e_80152B30 },   /* fn_80152B30 */
+    { 0x80152C80u, 16, 2, e_80152C80 },   /* fn_80152C80 */
+    { 0x801531A0u, 16, 1, e_801531A0 },   /* fn_801531A0 */
+    { 0x80153210u, 16, 1, e_80153210 },   /* fn_80153210 */
+    { 0x80153240u, 16, 3, e_80153240 },   /* fn_80153240 */
+    { 0x80153400u, 736, 10, e_80153400 },   /* fn_80153400 */
+    { 0x801546C0u, 16, 2, e_801546C0 },   /* fn_801546C0 */
+    { 0x80154740u, 32, 3, e_80154740 },   /* fn_80154740 */
+    { 0x801548A0u, 64, 9, e_801548A0 },   /* fn_801548A0 */
+    { 0x80154A70u, 64, 6, e_80154A70 },   /* fn_80154A70 */
+    { 0x80154D00u, 16, 2, e_80154D00 },   /* fn_80154D00 */
+    { 0x80154D50u, 32, 5, e_80154D50 },   /* fn_80154D50 */
+    { 0x80156930u, 96, 13, e_80156930 },   /* fn_80156930 */
+    { 0x80156D70u, 32, 6, e_80156D70 },   /* fn_80156D70 */
+    { 0x80156E00u, 16, 3, e_80156E00 },   /* fn_80156E00 */
+    { 0x80158100u, 32, 1, e_80158100 },   /* fn_80158100 */
+    { 0x80159960u, 80, 3, e_80159960 },   /* fn_80159960 */
+    { 0x80159F10u, 176, 6, e_80159F10 },   /* fn_80159F10 */
+    { 0x8015A340u, 16, 1, e_8015A340 },   /* fn_8015A340 */
+    { 0x8015A370u, 16, 3, e_8015A370 },   /* fn_8015A370 */
+    { 0x8015A580u, 16, 3, e_8015A580 },   /* fn_8015A580 */
+    { 0x8015A610u, 32, 4, e_8015A610 },   /* fn_8015A610 */
+    { 0x8015A810u, 16, 2, e_8015A810 },   /* fn_8015A810 */
+    { 0x8015A890u, 16, 1, e_8015A890 },   /* fn_8015A890 */
+    { 0x8015A8D0u, 16, 1, e_8015A8D0 },   /* fn_8015A8D0 */
+    { 0x8015A910u, 32, 6, e_8015A910 },   /* fn_8015A910 */
+    { 0x8015AB20u, 16, 2, e_8015AB20 },   /* fn_8015AB20 */
+    { 0x8015B320u, 272, 6, e_8015B320 },   /* fn_8015B320 */
+    { 0x8015B930u, 16, 1, e_8015B930 },   /* fn_8015B930 */
+    { 0x8015B970u, 16, 2, e_8015B970 },   /* fn_8015B970 */
+    { 0x8015B9C0u, 16, 2, e_8015B9C0 },   /* fn_8015B9C0 */
+    { 0x8015BA10u, 16, 2, e_8015BA10 },   /* fn_8015BA10 */
+    { 0x8015BA60u, 16, 1, e_8015BA60 },   /* fn_8015BA60 */
+    { 0x8015BAF0u, 16, 1, e_8015BAF0 },   /* fn_8015BAF0 */
+    { 0x8015BB30u, 16, 1, e_8015BB30 },   /* fn_8015BB30 */
+    { 0x8015BB60u, 16, 1, e_8015BB60 },   /* fn_8015BB60 */
+    { 0x8015BB90u, 16, 1, e_8015BB90 },   /* fn_8015BB90 */
+    { 0x8015BBC0u, 16, 1, e_8015BBC0 },   /* fn_8015BBC0 */
+    { 0x8015BBF0u, 16, 1, e_8015BBF0 },   /* fn_8015BBF0 */
+    { 0x8015BC40u, 16, 2, e_8015BC40 },   /* fn_8015BC40 */
+    { 0x8015BCB0u, 16, 1, e_8015BCB0 },   /* fn_8015BCB0 */
+    { 0x8015BD10u, 16, 1, e_8015BD10 },   /* fn_8015BD10 */
+    { 0x8015BD40u, 16, 1, e_8015BD40 },   /* fn_8015BD40 */
+    { 0x8015BD80u, 16, 1, e_8015BD80 },   /* fn_8015BD80 */
+    { 0x8015BDD0u, 16, 2, e_8015BDD0 },   /* fn_8015BDD0 */
+    { 0x8015BE20u, 16, 2, e_8015BE20 },   /* fn_8015BE20 */
+    { 0x8015BE60u, 16, 1, e_8015BE60 },   /* fn_8015BE60 */
+    { 0x8015BEA0u, 16, 1, e_8015BEA0 },   /* fn_8015BEA0 */
+    { 0x8015BEE0u, 16, 1, e_8015BEE0 },   /* fn_8015BEE0 */
+    { 0x8015BF10u, 16, 1, e_8015BF10 },   /* fn_8015BF10 */
+    { 0x8015BF50u, 16, 1, e_8015BF50 },   /* fn_8015BF50 */
+    { 0x8015BF90u, 16, 1, e_8015BF90 },   /* fn_8015BF90 */
+    { 0x8015BFD0u, 16, 1, e_8015BFD0 },   /* fn_8015BFD0 */
+    { 0x8015C010u, 16, 2, e_8015C010 },   /* fn_8015C010 */
+    { 0x8015C090u, 16, 2, e_8015C090 },   /* fn_8015C090 */
+    { 0x8015C130u, 48, 8, e_8015C130 },   /* fn_8015C130 */
+    { 0x8015C370u, 16, 3, e_8015C370 },   /* fn_8015C370 */
+    { 0x8015C410u, 32, 2, e_8015C410 },   /* fn_8015C410 */
+    { 0x8015C4C0u, 16, 1, e_8015C4C0 },   /* fn_8015C4C0 */
+    { 0x8015C560u, 16, 1, e_8015C560 },   /* fn_8015C560 */
+    { 0x8015C5A0u, 16, 2, e_8015C5A0 },   /* fn_8015C5A0 */
+    { 0x8015C630u, 16, 2, e_8015C630 },   /* fn_8015C630 */
+    { 0x8015C680u, 16, 2, e_8015C680 },   /* fn_8015C680 */
+    { 0x8015CCC0u, 16, 2, e_8015CCC0 },   /* fn_8015CCC0 */
+    { 0x8015CD40u, 16, 2, e_8015CD40 },   /* fn_8015CD40 */
+    { 0x8015CDF0u, 16, 2, e_8015CDF0 },   /* fn_8015CDF0 */
+    { 0x8015CE80u, 16, 1, e_8015CE80 },   /* fn_8015CE80 */
+    { 0x8015CED0u, 16, 2, e_8015CED0 },   /* fn_8015CED0 */
+    { 0x8015CF70u, 16, 2, e_8015CF70 },   /* fn_8015CF70 */
+    { 0x8015CFC0u, 16, 2, e_8015CFC0 },   /* fn_8015CFC0 */
+    { 0x8015D030u, 16, 1, e_8015D030 },   /* fn_8015D030 */
+    { 0x8015D0A0u, 16, 2, e_8015D0A0 },   /* fn_8015D0A0 */
+    { 0x8015D1D0u, 16, 2, e_8015D1D0 },   /* fn_8015D1D0 */
+    { 0x8015D2A0u, 16, 2, e_8015D2A0 },   /* fn_8015D2A0 */
+    { 0x8015D330u, 16, 2, e_8015D330 },   /* fn_8015D330 */
+    { 0x8015D3A0u, 16, 3, e_8015D3A0 },   /* fn_8015D3A0 */
+    { 0x8015D650u, 16, 2, e_8015D650 },   /* fn_8015D650 */
+    { 0x8015DC40u, 16, 3, e_8015DC40 },   /* fn_8015DC40 */
+    { 0x8015DDD0u, 896, 6, e_8015DDD0 },   /* fn_8015DDD0 */
     { 0x8015F620u, 16, 3, e_8015F620 },   /* fn_8015F620 */
     { 0x8015F800u, 16, 2, e_8015F800 },   /* __dt__12dStateBase_cFv */
     { 0x8015F850u, 16, 3, e_8015F850 },   /* isEqualNotUsedForSomeReason__12dStateBase_cFP12dStateBase_c */
@@ -1151,9 +6998,9 @@ const gm_prologue_t gm_prologues[] = {
     { 0x80160EA0u, 32, 1, e_80160EA0 },   /* fn_80160EA0 */
     { 0x80161060u, 32, 3, e_80161060 },   /* fn_80161060 */
     { 0x801610B0u, 48, 4, e_801610B0 },   /* fn_801610B0 */
-    { 0x80161120u, 16, 2, e_80161120 },   /* fn_80161120 */
+    { 0x80161120u, 16, 1, e_80161120 },   /* fn_80161120 */
     { 0x801611C0u, 16, 1, e_801611C0 },   /* fn_801611C0 */
-    { 0x801613A0u, 32, 3, e_801613A0 },   /* MakeRandomNumberForTiles__Fi */
+    { 0x801613A0u, 32, 2, e_801613A0 },   /* MakeRandomNumberForTiles__Fi */
     { 0x80161400u, 32, 3, e_80161400 },   /* fn_80161400 */
     { 0x80161530u, 16, 2, e_80161530 },   /* fn_80161530 */
     { 0x801616C0u, 16, 1, e_801616C0 },   /* fn_801616C0 */
@@ -1371,59 +7218,3418 @@ const gm_prologue_t gm_prologues[] = {
     { 0x80170A90u, 48, 5, e_80170A90 },   /* fn_80170A90 */
     { 0x80170B40u, 48, 5, e_80170B40 },   /* fn_80170B40 */
     { 0x80170D80u, 16, 3, e_80170D80 },   /* fn_80170D80 */
+    { 0x802281D0u, 16, 2, e_802281D0 },   /* TPLBind */
     { 0x80229030u, 16, 2, e_80229030 },   /* __dt__Q44nw4r2ut6detail12LinkListImplFv */
+    { 0x80229860u, 80, 8, e_80229860 },   /* fn_80229860 */
+    { 0x80229990u, 96, 10, e_80229990 },   /* fn_80229990 */
+    { 0x80229F30u, 16, 2, e_80229F30 },   /* fn_80229F30 */
+    { 0x80229FF0u, 48, 11, e_80229FF0 },   /* fn_80229FF0 */
+    { 0x8022A1A0u, 16, 2, e_8022A1A0 },   /* fn_8022A1A0 */
+    { 0x8022A1F0u, 16, 3, e_8022A1F0 },   /* fn_8022A1F0 */
+    { 0x8022A710u, 16, 2, e_8022A710 },   /* fn_8022A710 */
     { 0x8022B310u, 16, 3, e_8022B310 },   /* fn_8022B310 */
     { 0x8022B380u, 16, 1, e_8022B380 },   /* fn_8022B380 */
+    { 0x8022B5A0u, 32, 4, e_8022B5A0 },   /* fn_8022B5A0 */
+    { 0x8022B680u, 16, 1, e_8022B680 },   /* fn_8022B680 */
     { 0x8022BE10u, 16, 1, e_8022BE10 },   /* fn_8022BE10 */
+    { 0x8022BE60u, 16, 2, e_8022BE60 },   /* fn_8022BE60 */
+    { 0x8022BF80u, 16, 3, e_8022BF80 },   /* fn_8022BF80 */
+    { 0x8022C300u, 16, 2, e_8022C300 },   /* fn_8022C300 */
+    { 0x8022C3A0u, 16, 3, e_8022C3A0 },   /* fn_8022C3A0 */
+    { 0x8022C980u, 16, 2, e_8022C980 },   /* fn_8022C980 */
+    { 0x8022C9C0u, 48, 2, e_8022C9C0 },   /* fn_8022C9C0 */
+    { 0x8022D2F0u, 64, 7, e_8022D2F0 },   /* SetFontSize__Q34nw4r2ut10CharWriterFff */
+    { 0x8022D3C0u, 48, 4, e_8022D3C0 },   /* fn_8022D3C0 */
+    { 0x8022D4A0u, 32, 2, e_8022D4A0 },   /* fn_8022D4A0 */
+    { 0x8022D500u, 32, 2, e_8022D500 },   /* fn_8022D500 */
+    { 0x8022D560u, 32, 2, e_8022D560 },   /* fn_8022D560 */
+    { 0x8022D5F0u, 80, 4, e_8022D5F0 },   /* fn_8022D5F0 */
+    { 0x8022D720u, 176, 17, e_8022D720 },   /* fn_8022D720 */
+    { 0x8022DAF0u, 32, 3, e_8022DAF0 },   /* fn_8022DAF0 */
+    { 0x802308D0u, 32, 2, e_802308D0 },   /* fn_802308D0 */
+    { 0x802310D0u, 192, 17, e_802310D0 },   /* CalcStringWidth__Q34nw4r2ut10TextWriterCFPCwi */
+    { 0x80231CF0u, 480, 23, e_80231CF0 },   /* fn_80231CF0 */
+    { 0x802322C0u, 64, 6, e_802322C0 },   /* fn_802322C0 */
+    { 0x802323E0u, 656, 32, e_802323E0 },   /* fn_802323E0 */
+    { 0x80232C10u, 432, 10, e_80232C10 },   /* fn_80232C10 */
+    { 0x80233110u, 16, 1, e_80233110 },   /* fn_80233110 */
+    { 0x80235710u, 16, 3, e_80235710 },   /* MapFile_RegistOnDvd__Q24nw4r2dbFPvPCcPC12OSModuleInfo */
+    { 0x80238270u, 16, 2, e_80238270 },   /* fn_80238270 */
+    { 0x802385D0u, 64, 3, e_802385D0 },   /* Set__Q34nw4r4math5PLANEFPCQ34nw4r4math4VEC3PCQ34nw4r4math4VEC3PCQ34nw4r4math4VEC3 */
+    { 0x80238930u, 64, 9, e_80238930 },   /* fn_80238930 */
+    { 0x802389F0u, 672, 22, e_802389F0 },   /* fn_802389F0 */
+    { 0x80239930u, 16, 1, e_80239930 },   /* fn_80239930 */
+    { 0x80239A80u, 32, 2, e_80239A80 },   /* fn_80239A80 */
+    { 0x80239B60u, 16, 2, e_80239B60 },   /* fn_80239B60 */
+    { 0x80239C40u, 16, 3, e_80239C40 },   /* fn_80239C40 */
+    { 0x80239CC0u, 32, 2, e_80239CC0 },   /* fn_80239CC0 */
+    { 0x80239D30u, 16, 3, e_80239D30 },   /* fn_80239D30 */
+    { 0x80239DC0u, 32, 2, e_80239DC0 },   /* fn_80239DC0 */
+    { 0x80239E30u, 32, 2, e_80239E30 },   /* GetResMdl__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x80239F20u, 32, 2, e_80239F20 },   /* GetResTex__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x80239F90u, 32, 2, e_80239F90 },   /* fn_80239F90 */
+    { 0x8023A010u, 32, 2, e_8023A010 },   /* fn_8023A010 */
+    { 0x8023A0B0u, 32, 2, e_8023A0B0 },   /* GetResAnmChr__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x8023A120u, 32, 2, e_8023A120 },   /* GetResAnmVis */
+    { 0x8023A190u, 32, 2, e_8023A190 },   /* GetResAnmClr__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x8023A200u, 32, 2, e_8023A200 },   /* GetResAnmTexPat__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x8023A270u, 32, 2, e_8023A270 },   /* GetResAnmTexSrt__Q34nw4r3g3d7ResFileCFPCc */
+    { 0x8023A2E0u, 32, 2, e_8023A2E0 },   /* GetAnmScn */
+    { 0x8023A350u, 96, 8, e_8023A350 },   /* Bind__Q34nw4r3g3d7ResFileFQ34nw4r3g3d7ResFile */
+    { 0x8023A590u, 96, 6, e_8023A590 },   /* Init__Q34nw4r3g3d7ResFileFv */
+    { 0x8023A860u, 208, 6, e_8023A860 },   /* CheckRevision__Q34nw4r3g3d7ResFileCFv */
+    { 0x8023B1B0u, 16, 1, e_8023B1B0 },   /* fn_8023B1B0 */
+    { 0x8023B200u, 16, 1, e_8023B200 },   /* GetResNode__Q34nw4r3g3d6ResMdlCFPCc */
+    { 0x8023B250u, 16, 1, e_8023B250 },   /* fn_8023B250 */
+    { 0x8023B760u, 16, 1, e_8023B760 },   /* GetResMat__Q34nw4r3g3d6ResMdlCFPCc */
+    { 0x8023B7B0u, 16, 1, e_8023B7B0 },   /* fn_8023B7B0 */
+    { 0x8023BA50u, 48, 8, e_8023BA50 },   /* fn_8023BA50 */
+    { 0x8023BB60u, 64, 5, e_8023BB60 },   /* fn_8023BB60 */
+    { 0x8023C100u, 16, 1, e_8023C100 },   /* fn_8023C100 */
+    { 0x8023C150u, 16, 1, e_8023C150 },   /* fn_8023C150 */
+    { 0x8023C1B0u, 16, 1, e_8023C1B0 },   /* fn_8023C1B0 */
+    { 0x8023C280u, 80, 7, e_8023C280 },   /* fn_8023C280 */
     { 0x8023C950u, 16, 2, e_8023C950 },   /* fn_8023C950 */
+    { 0x8023C9B0u, 16, 3, e_8023C9B0 },   /* fn_8023C9B0 */
+    { 0x8023CBA0u, 16, 2, e_8023CBA0 },   /* fn_8023CBA0 */
+    { 0x8023CBE0u, 16, 2, e_8023CBE0 },   /* fn_8023CBE0 */
+    { 0x8023CD00u, 32, 5, e_8023CD00 },   /* fn_8023CD00 */
+    { 0x8023CE30u, 16, 2, e_8023CE30 },   /* fn_8023CE30 */
+    { 0x8023CEC0u, 32, 7, e_8023CEC0 },   /* fn_8023CEC0 */
+    { 0x8023CFA0u, 16, 2, e_8023CFA0 },   /* fn_8023CFA0 */
+    { 0x8023D3C0u, 16, 3, e_8023D3C0 },   /* GXSetTevColor__Q34nw4r3g3d14ResMatTevColorF11_GXTevRegID8_GXColor */
+    { 0x8023D520u, 16, 3, e_8023D520 },   /* GXSetTevKColor__Q34nw4r3g3d14ResMatTevColorF14_GXTevKColorID8_GXColor */
+    { 0x8023E050u, 32, 5, e_8023E050 },   /* fn_8023E050 */
+    { 0x8023E250u, 48, 7, e_8023E250 },   /* fn_8023E250 */
+    { 0x8023E390u, 96, 8, e_8023E390 },   /* fn_8023E390 */
+    { 0x8023E740u, 16, 3, e_8023E740 },   /* fn_8023E740 */
+    { 0x8023E820u, 16, 3, e_8023E820 },   /* fn_8023E820 */
+    { 0x8023E900u, 16, 3, e_8023E900 },   /* fn_8023E900 */
+    { 0x8023EE90u, 48, 4, e_8023EE90 },   /* fn_8023EE90 */
+    { 0x8023F140u, 48, 2, e_8023F140 },   /* fn_8023F140 */
+    { 0x8023F250u, 32, 2, e_8023F250 },   /* fn_8023F250 */
+    { 0x8023F370u, 64, 9, e_8023F370 },   /* fn_8023F370 */
+    { 0x8023F5A0u, 64, 11, e_8023F5A0 },   /* fn_8023F5A0 */
+    { 0x8023F720u, 64, 11, e_8023F720 },   /* fn_8023F720 */
+    { 0x8023FA30u, 112, 18, e_8023FA30 },   /* fn_8023FA30 */
+    { 0x8023FE50u, 80, 11, e_8023FE50 },   /* fn_8023FE50 */
+    { 0x802405B0u, 144, 12, e_802405B0 },   /* fn_802405B0 */
+    { 0x80241020u, 80, 11, e_80241020 },   /* fn_80241020 */
+    { 0x802412A0u, 48, 5, e_802412A0 },   /* fn_802412A0 */
+    { 0x80241330u, 16, 2, e_80241330 },   /* fn_80241330 */
+    { 0x802413A0u, 16, 2, e_802413A0 },   /* fn_802413A0 */
     { 0x802413E0u, 48, 5, e_802413E0 },   /* fn_802413E0 */
+    { 0x80241490u, 48, 6, e_80241490 },   /* fn_80241490 */
+    { 0x80241530u, 64, 6, e_80241530 },   /* fn_80241530 */
+    { 0x802415D0u, 64, 6, e_802415D0 },   /* fn_802415D0 */
+    { 0x80241710u, 48, 7, e_80241710 },   /* fn_80241710 */
+    { 0x80241AA0u, 32, 3, e_80241AA0 },   /* fn_80241AA0 */
+    { 0x80241C70u, 48, 9, e_80241C70 },   /* fn_80241C70 */
+    { 0x80241DE0u, 32, 2, e_80241DE0 },   /* fn_80241DE0 */
+    { 0x80241EB0u, 96, 14, e_80241EB0 },   /* fn_80241EB0 */
+    { 0x802422A0u, 16, 1, e_802422A0 },   /* fn_802422A0 */
+    { 0x80242300u, 16, 1, e_80242300 },   /* fn_80242300 */
+    { 0x80242360u, 32, 2, e_80242360 },   /* fn_80242360 */
+    { 0x802423F0u, 32, 2, e_802423F0 },   /* fn_802423F0 */
+    { 0x802424A0u, 32, 2, e_802424A0 },   /* fn_802424A0 */
+    { 0x80242530u, 32, 2, e_80242530 },   /* fn_80242530 */
+    { 0x802426D0u, 64, 8, e_802426D0 },   /* BindAnmScn */
+    { 0x80242C30u, 32, 5, e_80242C30 },   /* Construct__Q34nw4r3g3d12AnmObjVisResFP12MEMAllocatorPUlQ34nw4r3g3d9ResAnmVisQ34nw4r3g3d6ResMdl */
+    { 0x80242D80u, 16, 2, e_80242D80 },   /* fn_80242D80 */
+    { 0x80242EB0u, 48, 6, e_80242EB0 },   /* fn_80242EB0 */
+    { 0x802430C0u, 32, 6, e_802430C0 },   /* fn_802430C0 */
+    { 0x80243250u, 16, 2, e_80243250 },   /* fn_80243250 */
+    { 0x80243420u, 32, 5, e_80243420 },   /* fn_80243420 */
+    { 0x80243510u, 32, 5, e_80243510 },   /* fn_80243510 */
+    { 0x80243630u, 16, 3, e_80243630 },   /* fn_80243630 */
+    { 0x80243B30u, 32, 7, e_80243B30 },   /* Construct__Q34nw4r3g3d20AnmObjMatClrOverrideFP12MEMAllocatorPUlQ34nw4r3g3d6ResMdli */
+    { 0x80243C70u, 32, 7, e_80243C70 },   /* fn_80243C70 */
+    { 0x80243D20u, 64, 10, e_80243D20 },   /* Construct__Q34nw4r3g3d15AnmObjMatClrResFP12MEMAllocatorPUlQ34nw4r3g3d9ResAnmClrQ34nw4r3g3d6ResMdlb */
+    { 0x80243F10u, 48, 6, e_80243F10 },   /* fn_80243F10 */
+    { 0x80243FE0u, 48, 6, e_80243FE0 },   /* fn_80243FE0 */
+    { 0x80244190u, 48, 6, e_80244190 },   /* fn_80244190 */
+    { 0x80244290u, 16, 2, e_80244290 },   /* fn_80244290 */
+    { 0x80244360u, 64, 3, e_80244360 },   /* fn_80244360 */
+    { 0x80244840u, 16, 2, e_80244840 },   /* fn_80244840 */
+    { 0x802449C0u, 16, 2, e_802449C0 },   /* fn_802449C0 */
+    { 0x80244BF0u, 32, 5, e_80244BF0 },   /* fn_80244BF0 */
+    { 0x80244CE0u, 32, 5, e_80244CE0 },   /* fn_80244CE0 */
+    { 0x80244E00u, 16, 3, e_80244E00 },   /* fn_80244E00 */
+    { 0x80245300u, 32, 7, e_80245300 },   /* Construct__Q34nw4r3g3d20AnmObjTexPatOverrideFP12MEMAllocatorPUlQ34nw4r3g3d6ResMdli */
+    { 0x80245440u, 32, 7, e_80245440 },   /* fn_80245440 */
+    { 0x80245500u, 64, 10, e_80245500 },   /* Construct__Q34nw4r3g3d15AnmObjTexPatResFP12MEMAllocatorPUlQ34nw4r3g3d12ResAnmTexPatQ34nw4r3g3d6ResMdlb */
+    { 0x802456F0u, 48, 6, e_802456F0 },   /* fn_802456F0 */
+    { 0x802457C0u, 48, 6, e_802457C0 },   /* fn_802457C0 */
+    { 0x80245970u, 48, 6, e_80245970 },   /* fn_80245970 */
+    { 0x80245A70u, 16, 2, e_80245A70 },   /* fn_80245A70 */
+    { 0x80245B40u, 112, 11, e_80245B40 },   /* fn_80245B40 */
+    { 0x80245E40u, 16, 2, e_80245E40 },   /* fn_80245E40 */
+    { 0x80245FC0u, 16, 2, e_80245FC0 },   /* fn_80245FC0 */
+    { 0x802461F0u, 32, 5, e_802461F0 },   /* fn_802461F0 */
+    { 0x802462E0u, 32, 5, e_802462E0 },   /* fn_802462E0 */
+    { 0x80246400u, 16, 3, e_80246400 },   /* fn_80246400 */
+    { 0x80246900u, 32, 7, e_80246900 },   /* Construct__Q34nw4r3g3d20AnmObjTexSrtOverrideFP12MEMAllocatorPUlQ34nw4r3g3d6ResMdli */
+    { 0x80246A40u, 32, 7, e_80246A40 },   /* fn_80246A40 */
+    { 0x80246B00u, 64, 10, e_80246B00 },   /* Construct__Q34nw4r3g3d15AnmObjTexSrtResFP12MEMAllocatorPUlQ34nw4r3g3d12ResAnmTexSrtQ34nw4r3g3d6ResMdlb */
+    { 0x80246CF0u, 48, 6, e_80246CF0 },   /* fn_80246CF0 */
+    { 0x80246DC0u, 48, 6, e_80246DC0 },   /* fn_80246DC0 */
+    { 0x80246F70u, 48, 6, e_80246F70 },   /* fn_80246F70 */
+    { 0x80247070u, 16, 2, e_80247070 },   /* fn_80247070 */
+    { 0x802471E0u, 112, 8, e_802471E0 },   /* fn_802471E0 */
+    { 0x80247490u, 16, 2, e_80247490 },   /* fn_80247490 */
+    { 0x80247610u, 16, 2, e_80247610 },   /* fn_80247610 */
+    { 0x80247840u, 32, 5, e_80247840 },   /* fn_80247840 */
+    { 0x80247930u, 32, 5, e_80247930 },   /* fn_80247930 */
+    { 0x80247A50u, 16, 3, e_80247A50 },   /* fn_80247A50 */
+    { 0x802481B0u, 48, 8, e_802481B0 },   /* Construct__Q34nw4r3g3d14AnmObjChrBlendFP12MEMAllocatorPUlQ34nw4r3g3d6ResMdli */
+    { 0x80248330u, 352, 29, e_80248330 },   /* fn_80248330 */
+    { 0x80248990u, 64, 10, e_80248990 },   /* Construct__Q34nw4r3g3d12AnmObjChrResFP12MEMAllocatorPUlQ34nw4r3g3d9ResAnmChrQ34nw4r3g3d6ResMdlb */
+    { 0x80248B80u, 48, 6, e_80248B80 },   /* fn_80248B80 */
+    { 0x80248C50u, 48, 6, e_80248C50 },   /* fn_80248C50 */
+    { 0x80248E00u, 48, 6, e_80248E00 },   /* fn_80248E00 */
+    { 0x80248F10u, 64, 7, e_80248F10 },   /* fn_80248F10 */
     { 0x802492E0u, 16, 2, e_802492E0 },   /* fn_802492E0 */
+    { 0x802494B0u, 16, 2, e_802494B0 },   /* fn_802494B0 */
+    { 0x80249630u, 16, 2, e_80249630 },   /* fn_80249630 */
+    { 0x80249A70u, 16, 2, e_80249A70 },   /* fn_80249A70 */
+    { 0x80249AC0u, 16, 2, e_80249AC0 },   /* Destroy__Q34nw4r3g3d6G3dObjFv */
+    { 0x80249B40u, 16, 2, e_80249B40 },   /* DetachFromParent__Q34nw4r3g3d6G3dObjFv */
     { 0x80249BF0u, 32, 3, e_80249BF0 },   /* fn_80249BF0 */
     { 0x8024A150u, 64, 1, e_8024A150 },   /* fn_8024A150 */
+    { 0x8024A1D0u, 32, 5, e_8024A1D0 },   /* fn_8024A1D0 */
     { 0x8024A2D0u, 32, 4, e_8024A2D0 },   /* fn_8024A2D0 */
+    { 0x8024A3D0u, 48, 10, e_8024A3D0 },   /* fn_8024A3D0 */
+    { 0x8024A6E0u, 96, 4, e_8024A6E0 },   /* fn_8024A6E0 */
+    { 0x8024AAC0u, 32, 6, e_8024AAC0 },   /* fn_8024AAC0 */
+    { 0x8024B0E0u, 32, 7, e_8024B0E0 },   /* fn_8024B0E0 */
+    { 0x8024B1E0u, 64, 15, e_8024B1E0 },   /* fn_8024B1E0 */
+    { 0x8024B610u, 32, 7, e_8024B610 },   /* fn_8024B610 */
     { 0x8024B6B0u, 16, 1, e_8024B6B0 },   /* fn_8024B6B0 */
+    { 0x8024B720u, 48, 9, e_8024B720 },   /* fn_8024B720 */
+    { 0x8024B990u, 48, 6, e_8024B990 },   /* fn_8024B990 */
+    { 0x8024BCB0u, 32, 4, e_8024BCB0 },   /* fn_8024BCB0 */
+    { 0x8024C2B0u, 80, 4, e_8024C2B0 },   /* fn_8024C2B0 */
     { 0x8024C8D0u, 16, 3, e_8024C8D0 },   /* fn_8024C8D0 */
+    { 0x8024C960u, 208, 13, e_8024C960 },   /* fn_8024C960 */
+    { 0x8024CC10u, 32, 6, e_8024CC10 },   /* fn_8024CC10 */
+    { 0x8024CDC0u, 96, 15, e_8024CDC0 },   /* fn_8024CDC0 */
     { 0x8024D0B0u, 16, 1, e_8024D0B0 },   /* fn_8024D0B0 */
     { 0x8024D220u, 32, 3, e_8024D220 },   /* fn_8024D220 */
     { 0x8024D2C0u, 32, 2, e_8024D2C0 },   /* fn_8024D2C0 */
     { 0x8024D3C0u, 16, 2, e_8024D3C0 },   /* fn_8024D3C0 */
     { 0x8024D420u, 32, 7, e_8024D420 },   /* fn_8024D420 */
+    { 0x8024D4F0u, 64, 13, e_8024D4F0 },   /* SetRenderModeObj__Q34nw4r3g3d8G3DStateFRC16_GXRenderModeObj */
+    { 0x8024DA70u, 32, 5, e_8024DA70 },   /* fn_8024DA70 */
+    { 0x8024DCE0u, 304, 5, e_8024DCE0 },   /* fn_8024DCE0 */
+    { 0x8024E180u, 608, 36, e_8024E180 },   /* fn_8024E180 */
+    { 0x8024EBD0u, 96, 11, e_8024EBD0 },   /* fn_8024EBD0 */
+    { 0x80250230u, 224, 21, e_80250230 },   /* fn_80250230 */
+    { 0x80250CB0u, 16, 3, e_80250CB0 },   /* fn_80250CB0 */
+    { 0x80250E70u, 208, 21, e_80250E70 },   /* fn_80250E70 */
+    { 0x80251440u, 48, 8, e_80251440 },   /* fn_80251440 */
+    { 0x80251930u, 304, 17, e_80251930 },   /* fn_80251930 */
+    { 0x80252160u, 144, 13, e_80252160 },   /* fn_80252160 */
+    { 0x80252440u, 144, 15, e_80252440 },   /* fn_80252440 */
+    { 0x802525A0u, 64, 13, e_802525A0 },   /* fn_802525A0 */
+    { 0x80252710u, 80, 7, e_80252710 },   /* fn_80252710 */
+    { 0x802529F0u, 128, 9, e_802529F0 },   /* fn_802529F0 */
+    { 0x802537E0u, 16, 2, e_802537E0 },   /* fn_802537E0 */
+    { 0x80253BE0u, 16, 2, e_80253BE0 },   /* SetCameraMtxDirectly__Q34nw4r3g3d6CameraFRA3_A4_Cf */
+    { 0x80253CB0u, 16, 2, e_80253CB0 },   /* fn_80253CB0 */
+    { 0x80253ED0u, 208, 5, e_80253ED0 },   /* fn_80253ED0 */
     { 0x802540B0u, 16, 3, e_802540B0 },   /* GetCameraMtx__Q34nw4r3g3d6CameraCFPQ34nw4r4math5MTX34 */
     { 0x80254110u, 16, 3, e_80254110 },   /* fn_80254110 */
     { 0x802541F0u, 16, 1, e_802541F0 },   /* fn_802541F0 */
     { 0x802542C0u, 16, 3, e_802542C0 },   /* fn_802542C0 */
+    { 0x80254340u, 16, 2, e_80254340 },   /* fn_80254340 */
+    { 0x802543D0u, 16, 2, e_802543D0 },   /* fn_802543D0 */
+    { 0x802544F0u, 160, 4, e_802544F0 },   /* fn_802544F0 */
+    { 0x80254A70u, 96, 7, e_80254A70 },   /* fn_80254A70 */
+    { 0x80254C20u, 32, 2, e_80254C20 },   /* fn_80254C20 */
+    { 0x80254D00u, 32, 3, e_80254D00 },   /* fn_80254D00 */
+    { 0x80254DC0u, 32, 3, e_80254DC0 },   /* fn_80254DC0 */
+    { 0x80254EC0u, 32, 3, e_80254EC0 },   /* fn_80254EC0 */
+    { 0x802556B0u, 16, 2, e_802556B0 },   /* fn_802556B0 */
+    { 0x80255750u, 112, 8, e_80255750 },   /* fn_80255750 */
+    { 0x80257030u, 16, 2, e_80257030 },   /* fn_80257030 */
+    { 0x80257100u, 64, 2, e_80257100 },   /* fn_80257100 */
+    { 0x802571F0u, 16, 2, e_802571F0 },   /* fn_802571F0 */
     { 0x802574E0u, 16, 1, e_802574E0 },   /* SetMtx__Q34nw4r3g3d6ScnObjFQ44nw4r3g3d6ScnObj13ScnObjMtxTypePCQ34nw4r4math5MTX34 */
+    { 0x80257570u, 16, 1, e_80257570 },   /* fn_80257570 */
+    { 0x802575D0u, 16, 1, e_802575D0 },   /* GetMtx__Q34nw4r3g3d6ScnObjCFQ44nw4r3g3d6ScnObj13ScnObjMtxTypePQ34nw4r4math5MTX34 */
+    { 0x80257900u, 16, 2, e_80257900 },   /* fn_80257900 */
+    { 0x80257A40u, 32, 3, e_80257A40 },   /* fn_80257A40 */
+    { 0x80257E60u, 32, 7, e_80257E60 },   /* fn_80257E60 */
+    { 0x80257FC0u, 48, 7, e_80257FC0 },   /* fn_80257FC0 */
+    { 0x80258430u, 16, 2, e_80258430 },   /* fn_80258430 */
     { 0x802585C0u, 32, 5, e_802585C0 },   /* fn_802585C0 */
+    { 0x80258710u, 32, 4, e_80258710 },   /* fn_80258710 */
+    { 0x802589E0u, 64, 11, e_802589E0 },   /* Construct__Q34nw4r3g3d7ScnRootFP12MEMAllocatorPUlUlUlUlUl */
+    { 0x80258B20u, 16, 2, e_80258B20 },   /* fn_80258B20 */
+    { 0x80258BD0u, 16, 1, e_80258BD0 },   /* GetCamera__Q34nw4r3g3d7ScnRootFi */
+    { 0x80258C30u, 16, 1, e_80258C30 },   /* GetCurrentCamera__Q34nw4r3g3d7ScnRootFv */
     { 0x80258C80u, 16, 1, e_80258C80 },   /* fn_80258C80 */
+    { 0x80258CE0u, 208, 16, e_80258CE0 },   /* fn_80258CE0 */
+    { 0x80258F10u, 48, 5, e_80258F10 },   /* fn_80258F10 */
+    { 0x802590A0u, 16, 2, e_802590A0 },   /* CalcWorld__Q34nw4r3g3d7ScnRootFv */
+    { 0x80259110u, 80, 2, e_80259110 },   /* CalcView__Q34nw4r3g3d7ScnRootFv */
+    { 0x80259190u, 320, 2, e_80259190 },   /* GatherDrawScnObj__Q34nw4r3g3d7ScnRootFv */
+    { 0x80259280u, 16, 2, e_80259280 },   /* ZSort__Q34nw4r3g3d7ScnRootFv */
+    { 0x802592E0u, 16, 2, e_802592E0 },   /* DrawOpa__Q34nw4r3g3d7ScnRootFv */
+    { 0x80259360u, 16, 2, e_80259360 },   /* DrawXlu__Q34nw4r3g3d7ScnRootFv */
+    { 0x802593E0u, 48, 9, e_802593E0 },   /* fn_802593E0 */
+    { 0x80259560u, 64, 6, e_80259560 },   /* fn_80259560 */
+    { 0x80259680u, 16, 2, e_80259680 },   /* fn_80259680 */
+    { 0x80259760u, 48, 7, e_80259760 },   /* fn_80259760 */
+    { 0x80259AE0u, 48, 8, e_80259AE0 },   /* fn_80259AE0 */
+    { 0x80259E60u, 32, 6, e_80259E60 },   /* fn_80259E60 */
+    { 0x8025A150u, 32, 5, e_8025A150 },   /* fn_8025A150 */
+    { 0x8025A1E0u, 32, 5, e_8025A1E0 },   /* fn_8025A1E0 */
+    { 0x8025A520u, 64, 7, e_8025A520 },   /* fn_8025A520 */
+    { 0x8025A7C0u, 48, 4, e_8025A7C0 },   /* fn_8025A7C0 */
+    { 0x8025B420u, 32, 4, e_8025B420 },   /* GetScnMtxPos__Q34nw4r3g3d12ScnMdlSimpleCFPQ34nw4r4math5MTX34Q44nw4r3g3d6ScnObj13ScnObjMtxTypeUl */
+    { 0x8025B500u, 64, 4, e_8025B500 },   /* fn_8025B500 */
+    { 0x8025BB10u, 16, 2, e_8025BB10 },   /* fn_8025BB10 */
+    { 0x8025BC90u, 16, 2, e_8025BC90 },   /* fn_8025BC90 */
+    { 0x8025C030u, 80, 11, e_8025C030 },   /* fn_8025C030 */
+    { 0x8025C250u, 16, 2, e_8025C250 },   /* fn_8025C250 */
+    { 0x8025C660u, 32, 5, e_8025C660 },   /* __ct__Q44nw4r3g3d6ScnMdl15CopiedMatAccessFPQ34nw4r3g3d6ScnMdlUl */
+    { 0x8025C960u, 32, 5, e_8025C960 },   /* fn_8025C960 */
+    { 0x8025CA20u, 336, 19, e_8025CA20 },   /* Construct__Q34nw4r3g3d6ScnMdlFP12MEMAllocatorPUlQ34nw4r3g3d6ResMdlUli */
+    { 0x8025D5B0u, 560, 17, e_8025D5B0 },   /* fn_8025D5B0 */
+    { 0x8025DB30u, 64, 8, e_8025DB30 },   /* fn_8025DB30 */
+    { 0x8025E060u, 144, 17, e_8025E060 },   /* fn_8025E060 */
+    { 0x8025E400u, 96, 4, e_8025E400 },   /* fn_8025E400 */
+    { 0x8025E740u, 32, 5, e_8025E740 },   /* fn_8025E740 */
+    { 0x8025E8B0u, 64, 5, e_8025E8B0 },   /* fn_8025E8B0 */
+    { 0x8025EAB0u, 16, 2, e_8025EAB0 },   /* fn_8025EAB0 */
+    { 0x8025EB40u, 16, 2, e_8025EB40 },   /* fn_8025EB40 */
+    { 0x8025EEB0u, 16, 2, e_8025EEB0 },   /* G3dInit__Q24nw4r3g3dFb */
+    { 0x8025EFB0u, 48, 8, e_8025EFB0 },   /* Construct__Q34nw4r3g3d7ScnProcFP12MEMAllocatorPUlPFPQ34nw4r3g3d7ScnProcb_vbbUl */
     { 0x8025F0C0u, 16, 2, e_8025F0C0 },   /* fn_8025F0C0 */
+    { 0x8025F270u, 16, 2, e_8025F270 },   /* fn_8025F270 */
+    { 0x8025F3B0u, 32, 2, e_8025F3B0 },   /* fn_8025F3B0 */
+    { 0x8025F440u, 16, 1, e_8025F440 },   /* fn_8025F440 */
+    { 0x8025F470u, 16, 2, e_8025F470 },   /* fn_8025F470 */
+    { 0x8025F4B0u, 16, 2, e_8025F4B0 },   /* fn_8025F4B0 */
+    { 0x8025F530u, 16, 2, e_8025F530 },   /* fn_8025F530 */
+    { 0x8025F5B0u, 16, 2, e_8025F5B0 },   /* fn_8025F5B0 */
+    { 0x8025F6D0u, 336, 10, e_8025F6D0 },   /* fn_8025F6D0 */
+    { 0x8025FAD0u, 32, 6, e_8025FAD0 },   /* fn_8025FAD0 */
+    { 0x8025FC30u, 64, 6, e_8025FC30 },   /* fn_8025FC30 */
+    { 0x802605D0u, 16, 2, e_802605D0 },   /* fn_802605D0 */
     { 0x80260860u, 16, 2, e_80260860 },   /* fn_80260860 */
+    { 0x80260AF0u, 112, 12, e_80260AF0 },   /* fn_80260AF0 */
+    { 0x802610C0u, 32, 1, e_802610C0 },   /* fn_802610C0 */
+    { 0x80261190u, 48, 8, e_80261190 },   /* fn_80261190 */
+    { 0x802614E0u, 32, 3, e_802614E0 },   /* fn_802614E0 */
+    { 0x80261740u, 64, 10, e_80261740 },   /* fn_80261740 */
+    { 0x80261DB0u, 16, 2, e_80261DB0 },   /* fn_80261DB0 */
     { 0x80262840u, 16, 3, e_80262840 },   /* fn_80262840 */
+    { 0x80263810u, 48, 1, e_80263810 },   /* fn_80263810 */
+    { 0x802640E0u, 80, 7, e_802640E0 },   /* fn_802640E0 */
+    { 0x80264AE0u, 16, 1, e_80264AE0 },   /* fn_80264AE0 */
+    { 0x80264C10u, 32, 5, e_80264C10 },   /* fn_80264C10 */
+    { 0x80265270u, 16, 2, e_80265270 },   /* fn_80265270 */
+    { 0x802652E0u, 16, 2, e_802652E0 },   /* fn_802652E0 */
+    { 0x80265330u, 16, 2, e_80265330 },   /* fn_80265330 */
+    { 0x80265390u, 16, 1, e_80265390 },   /* fn_80265390 */
+    { 0x802653D0u, 16, 2, e_802653D0 },   /* fn_802653D0 */
+    { 0x80265470u, 16, 2, e_80265470 },   /* fn_80265470 */
+    { 0x802654B0u, 16, 2, e_802654B0 },   /* fn_802654B0 */
+    { 0x802654F0u, 192, 3, e_802654F0 },   /* fn_802654F0 */
+    { 0x80265780u, 16, 3, e_80265780 },   /* fn_80265780 */
+    { 0x80265890u, 16, 3, e_80265890 },   /* fn_80265890 */
+    { 0x80265A30u, 16, 2, e_80265A30 },   /* fn_80265A30 */
+    { 0x80265B50u, 48, 4, e_80265B50 },   /* fn_80265B50 */
+    { 0x80265E80u, 16, 2, e_80265E80 },   /* fn_80265E80 */
+    { 0x80266250u, 48, 4, e_80266250 },   /* Stop__Q44nw4r3snd6detail10BasicSoundFi */
+    { 0x802667F0u, 160, 4, e_802667F0 },   /* fn_802667F0 */
+    { 0x80266DC0u, 208, 23, e_80266DC0 },   /* fn_80266DC0 */
+    { 0x80267190u, 16, 3, e_80267190 },   /* fn_80267190 */
+    { 0x80267530u, 16, 2, e_80267530 },   /* fn_80267530 */
+    { 0x80267570u, 16, 2, e_80267570 },   /* fn_80267570 */
+    { 0x802675B0u, 16, 2, e_802675B0 },   /* fn_802675B0 */
+    { 0x80267760u, 16, 2, e_80267760 },   /* fn_80267760 */
+    { 0x80267C40u, 16, 1, e_80267C40 },   /* fn_80267C40 */
+    { 0x80267DD0u, 16, 3, e_80267DD0 },   /* fn_80267DD0 */
+    { 0x80267E30u, 16, 3, e_80267E30 },   /* fn_80267E30 */
+    { 0x80267F40u, 240, 24, e_80267F40 },   /* fn_80267F40 */
+    { 0x80268620u, 32, 4, e_80268620 },   /* fn_80268620 */
+    { 0x802686A0u, 16, 2, e_802686A0 },   /* fn_802686A0 */
+    { 0x80268710u, 16, 2, e_80268710 },   /* fn_80268710 */
+    { 0x80268910u, 16, 3, e_80268910 },   /* fn_80268910 */
+    { 0x80268A50u, 48, 9, e_80268A50 },   /* fn_80268A50 */
+    { 0x80268D50u, 16, 1, e_80268D50 },   /* fn_80268D50 */
+    { 0x80268FF0u, 16, 2, e_80268FF0 },   /* fn_80268FF0 */
+    { 0x802690D0u, 384, 4, e_802690D0 },   /* fn_802690D0 */
+    { 0x80269270u, 32, 4, e_80269270 },   /* fn_80269270 */
+    { 0x80269320u, 32, 4, e_80269320 },   /* fn_80269320 */
+    { 0x802693F0u, 32, 4, e_802693F0 },   /* fn_802693F0 */
+    { 0x80269480u, 32, 4, e_80269480 },   /* fn_80269480 */
+    { 0x80269A50u, 32, 5, e_80269A50 },   /* fn_80269A50 */
+    { 0x80269AF0u, 32, 4, e_80269AF0 },   /* fn_80269AF0 */
+    { 0x80269D00u, 16, 3, e_80269D00 },   /* fn_80269D00 */
+    { 0x80269DC0u, 16, 3, e_80269DC0 },   /* fn_80269DC0 */
+    { 0x8026A010u, 48, 7, e_8026A010 },   /* fn_8026A010 */
+    { 0x8026A2A0u, 48, 6, e_8026A2A0 },   /* fn_8026A2A0 */
+    { 0x8026A350u, 32, 2, e_8026A350 },   /* fn_8026A350 */
+    { 0x8026B160u, 48, 2, e_8026B160 },   /* fn_8026B160 */
+    { 0x8026B1F0u, 16, 1, e_8026B1F0 },   /* fn_8026B1F0 */
+    { 0x8026B240u, 32, 3, e_8026B240 },   /* fn_8026B240 */
+    { 0x8026B300u, 32, 2, e_8026B300 },   /* fn_8026B300 */
+    { 0x8026B370u, 32, 4, e_8026B370 },   /* fn_8026B370 */
+    { 0x8026B560u, 32, 1, e_8026B560 },   /* fn_8026B560 */
+    { 0x8026BCF0u, 64, 2, e_8026BCF0 },   /* fn_8026BCF0 */
+    { 0x8026BDC0u, 16, 1, e_8026BDC0 },   /* fn_8026BDC0 */
+    { 0x8026BE10u, 32, 3, e_8026BE10 },   /* fn_8026BE10 */
+    { 0x8026BED0u, 32, 2, e_8026BED0 },   /* fn_8026BED0 */
+    { 0x8026BF40u, 32, 4, e_8026BF40 },   /* fn_8026BF40 */
     { 0x8026C210u, 32, 1, e_8026C210 },   /* fn_8026C210 */
+    { 0x8026DD60u, 16, 2, e_8026DD60 },   /* fn_8026DD60 */
+    { 0x8026E2B0u, 48, 10, e_8026E2B0 },   /* fn_8026E2B0 */
+    { 0x8026E940u, 64, 8, e_8026E940 },   /* fn_8026E940 */
+    { 0x8026F2D0u, 16, 3, e_8026F2D0 },   /* fn_8026F2D0 */
+    { 0x8026F480u, 16, 2, e_8026F480 },   /* fn_8026F480 */
+    { 0x8026F4E0u, 16, 3, e_8026F4E0 },   /* fn_8026F4E0 */
+    { 0x8026F540u, 16, 3, e_8026F540 },   /* fn_8026F540 */
+    { 0x8026F5B0u, 16, 3, e_8026F5B0 },   /* fn_8026F5B0 */
+    { 0x8026F690u, 16, 2, e_8026F690 },   /* fn_8026F690 */
+    { 0x80270120u, 16, 2, e_80270120 },   /* fn_80270120 */
+    { 0x80270720u, 32, 4, e_80270720 },   /* fn_80270720 */
+    { 0x80270830u, 32, 4, e_80270830 },   /* fn_80270830 */
+    { 0x80270920u, 32, 4, e_80270920 },   /* fn_80270920 */
+    { 0x80270AD0u, 32, 4, e_80270AD0 },   /* fn_80270AD0 */
+    { 0x80270C20u, 112, 4, e_80270C20 },   /* fn_80270C20 */
+    { 0x80270EB0u, 16, 2, e_80270EB0 },   /* fn_80270EB0 */
+    { 0x80271190u, 32, 4, e_80271190 },   /* fn_80271190 */
+    { 0x802723A0u, 16, 3, e_802723A0 },   /* fn_802723A0 */
+    { 0x802724A0u, 16, 2, e_802724A0 },   /* fn_802724A0 */
+    { 0x802724E0u, 32, 5, e_802724E0 },   /* fn_802724E0 */
+    { 0x80272560u, 32, 4, e_80272560 },   /* fn_80272560 */
+    { 0x80272830u, 16, 3, e_80272830 },   /* fn_80272830 */
+    { 0x802729C0u, 16, 2, e_802729C0 },   /* fn_802729C0 */
+    { 0x80272A10u, 16, 1, e_80272A10 },   /* WriteVariable__Q44nw4r3snd6detail8SeqSoundFis */
+    { 0x80272C40u, 32, 4, e_80272C40 },   /* __ct__Q34nw4r3snd14SeqSoundHandleFPQ34nw4r3snd11SoundHandle */
+    { 0x80272D90u, 16, 3, e_80272D90 },   /* fn_80272D90 */
+    { 0x80272F40u, 16, 3, e_80272F40 },   /* fn_80272F40 */
+    { 0x80275040u, 16, 2, e_80275040 },   /* fn_80275040 */
+    { 0x80275150u, 48, 2, e_80275150 },   /* fn_80275150 */
+    { 0x802751B0u, 16, 1, e_802751B0 },   /* fn_802751B0 */
+    { 0x802753F0u, 32, 5, e_802753F0 },   /* fn_802753F0 */
+    { 0x802754B0u, 32, 5, e_802754B0 },   /* fn_802754B0 */
+    { 0x802755D0u, 16, 1, e_802755D0 },   /* detail_SetupSound__Q34nw4r3snd10SoundActorFPQ34nw4r3snd11SoundHandleUlbPCQ44nw4r3snd14SoundStartable9StartInfo */
+    { 0x80275850u, 624, 8, e_80275850 },   /* fn_80275850 */
+    { 0x80275A80u, 320, 8, e_80275A80 },   /* fn_80275A80 */
+    { 0x80275BA0u, 320, 8, e_80275BA0 },   /* fn_80275BA0 */
+    { 0x80275CC0u, 16, 3, e_80275CC0 },   /* fn_80275CC0 */
+    { 0x80276100u, 32, 4, e_80276100 },   /* fn_80276100 */
+    { 0x80276300u, 32, 4, e_80276300 },   /* fn_80276300 */
+    { 0x80276410u, 32, 4, e_80276410 },   /* fn_80276410 */
+    { 0x802765A0u, 32, 4, e_802765A0 },   /* fn_802765A0 */
+    { 0x80276660u, 32, 5, e_80276660 },   /* fn_80276660 */
+    { 0x80276770u, 32, 5, e_80276770 },   /* fn_80276770 */
+    { 0x802768B0u, 16, 2, e_802768B0 },   /* fn_802768B0 */
+    { 0x80276940u, 16, 1, e_80276940 },   /* fn_80276940 */
+    { 0x80276980u, 16, 1, e_80276980 },   /* fn_80276980 */
+    { 0x802769D0u, 16, 3, e_802769D0 },   /* fn_802769D0 */
+    { 0x80276AE0u, 16, 3, e_80276AE0 },   /* fn_80276AE0 */
+    { 0x80276BA0u, 16, 1, e_80276BA0 },   /* fn_80276BA0 */
+    { 0x80276BE0u, 32, 5, e_80276BE0 },   /* fn_80276BE0 */
+    { 0x80276CE0u, 32, 5, e_80276CE0 },   /* fn_80276CE0 */
+    { 0x80276E00u, 32, 5, e_80276E00 },   /* fn_80276E00 */
+    { 0x80276F50u, 32, 4, e_80276F50 },   /* fn_80276F50 */
+    { 0x80277050u, 16, 2, e_80277050 },   /* fn_80277050 */
+    { 0x80277090u, 16, 2, e_80277090 },   /* fn_80277090 */
+    { 0x802776B0u, 16, 3, e_802776B0 },   /* fn_802776B0 */
     { 0x80277870u, 16, 3, e_80277870 },   /* fn_80277870 */
+    { 0x802778F0u, 16, 3, e_802778F0 },   /* fn_802778F0 */
+    { 0x80277970u, 16, 3, e_80277970 },   /* fn_80277970 */
+    { 0x80277AB0u, 96, 7, e_80277AB0 },   /* fn_80277AB0 */
+    { 0x80277CF0u, 64, 5, e_80277CF0 },   /* fn_80277CF0 */
+    { 0x80277E40u, 48, 2, e_80277E40 },   /* fn_80277E40 */
+    { 0x80278290u, 64, 10, e_80278290 },   /* fn_80278290 */
+    { 0x80278790u, 80, 5, e_80278790 },   /* fn_80278790 */
+    { 0x80278920u, 80, 5, e_80278920 },   /* fn_80278920 */
+    { 0x80279510u, 96, 11, e_80279510 },   /* fn_80279510 */
+    { 0x80279880u, 48, 7, e_80279880 },   /* fn_80279880 */
+    { 0x80279A30u, 48, 7, e_80279A30 },   /* fn_80279A30 */
+    { 0x80279B70u, 576, 5, e_80279B70 },   /* fn_80279B70 */
+    { 0x80279F00u, 80, 4, e_80279F00 },   /* fn_80279F00 */
+    { 0x8027A030u, 64, 9, e_8027A030 },   /* fn_8027A030 */
+    { 0x8027A160u, 16, 2, e_8027A160 },   /* fn_8027A160 */
+    { 0x8027A1B0u, 16, 2, e_8027A1B0 },   /* fn_8027A1B0 */
+    { 0x8027A250u, 16, 2, e_8027A250 },   /* fn_8027A250 */
+    { 0x8027B290u, 32, 1, e_8027B290 },   /* fn_8027B290 */
+    { 0x8027B360u, 32, 7, e_8027B360 },   /* fn_8027B360 */
+    { 0x8027B5A0u, 16, 2, e_8027B5A0 },   /* fn_8027B5A0 */
     { 0x8027B5F0u, 16, 2, e_8027B5F0 },   /* fn_8027B5F0 */
+    { 0x8027BE40u, 16, 2, e_8027BE40 },   /* fn_8027BE40 */
+    { 0x8027BF50u, 32, 4, e_8027BF50 },   /* fn_8027BF50 */
+    { 0x8027C210u, 128, 5, e_8027C210 },   /* fn_8027C210 */
+    { 0x8027C430u, 16, 1, e_8027C430 },   /* fn_8027C430 */
+    { 0x8027C470u, 16, 1, e_8027C470 },   /* fn_8027C470 */
+    { 0x8027C4B0u, 32, 5, e_8027C4B0 },   /* fn_8027C4B0 */
+    { 0x8027C7C0u, 16, 3, e_8027C7C0 },   /* fn_8027C7C0 */
+    { 0x8027C910u, 16, 3, e_8027C910 },   /* fn_8027C910 */
+    { 0x8027D520u, 16, 2, e_8027D520 },   /* fn_8027D520 */
+    { 0x8027DEC0u, 32, 4, e_8027DEC0 },   /* fn_8027DEC0 */
+    { 0x8027E3B0u, 32, 5, e_8027E3B0 },   /* fn_8027E3B0 */
+    { 0x8027EDE0u, 32, 5, e_8027EDE0 },   /* fn_8027EDE0 */
+    { 0x8027F040u, 16, 2, e_8027F040 },   /* fn_8027F040 */
+    { 0x8027F450u, 16, 3, e_8027F450 },   /* fn_8027F450 */
+    { 0x8027F510u, 32, 2, e_8027F510 },   /* fn_8027F510 */
+    { 0x8027F650u, 32, 5, e_8027F650 },   /* fn_8027F650 */
+    { 0x8027F6D0u, 16, 2, e_8027F6D0 },   /* fn_8027F6D0 */
+    { 0x8027F730u, 32, 4, e_8027F730 },   /* fn_8027F730 */
+    { 0x8027F7B0u, 64, 8, e_8027F7B0 },   /* fn_8027F7B0 */
+    { 0x8027FA80u, 16, 3, e_8027FA80 },   /* fn_8027FA80 */
+    { 0x8027FC50u, 32, 4, e_8027FC50 },   /* fn_8027FC50 */
+    { 0x8027FD90u, 16, 2, e_8027FD90 },   /* fn_8027FD90 */
+    { 0x8027FDD0u, 16, 2, e_8027FDD0 },   /* fn_8027FDD0 */
+    { 0x80280250u, 32, 4, e_80280250 },   /* fn_80280250 */
+    { 0x80280600u, 16, 2, e_80280600 },   /* fn_80280600 */
+    { 0x80280870u, 16, 3, e_80280870 },   /* fn_80280870 */
+    { 0x80280910u, 64, 10, e_80280910 },   /* fn_80280910 */
+    { 0x80281170u, 112, 17, e_80281170 },   /* fn_80281170 */
+    { 0x80281390u, 32, 6, e_80281390 },   /* fn_80281390 */
+    { 0x80281820u, 32, 6, e_80281820 },   /* fn_80281820 */
+    { 0x802818C0u, 32, 6, e_802818C0 },   /* fn_802818C0 */
+    { 0x80281950u, 32, 5, e_80281950 },   /* Voice_SetADPCMLoop */
+    { 0x802819F0u, 32, 6, e_802819F0 },   /* fn_802819F0 */
+    { 0x80281A70u, 32, 6, e_80281A70 },   /* fn_80281A70 */
+    { 0x80281AF0u, 32, 7, e_80281AF0 },   /* fn_80281AF0 */
+    { 0x80281B80u, 32, 6, e_80281B80 },   /* fn_80281B80 */
+    { 0x80281C00u, 32, 7, e_80281C00 },   /* fn_80281C00 */
+    { 0x80281C90u, 80, 13, e_80281C90 },   /* fn_80281C90 */
+    { 0x80281D80u, 80, 8, e_80281D80 },   /* fn_80281D80 */
+    { 0x80281E70u, 32, 6, e_80281E70 },   /* fn_80281E70 */
+    { 0x802821E0u, 352, 37, e_802821E0 },   /* fn_802821E0 */
+    { 0x80282EF0u, 16, 1, e_80282EF0 },   /* fn_80282EF0 */
+    { 0x80282FF0u, 48, 6, e_80282FF0 },   /* fn_80282FF0 */
+    { 0x80283B10u, 16, 1, e_80283B10 },   /* fn_80283B10 */
+    { 0x80283BD0u, 32, 6, e_80283BD0 },   /* fn_80283BD0 */
+    { 0x80283E10u, 16, 3, e_80283E10 },   /* fn_80283E10 */
+    { 0x80283EC0u, 48, 8, e_80283EC0 },   /* fn_80283EC0 */
+    { 0x80284000u, 16, 2, e_80284000 },   /* fn_80284000 */
+    { 0x802842A0u, 16, 3, e_802842A0 },   /* fn_802842A0 */
+    { 0x802843C0u, 32, 4, e_802843C0 },   /* fn_802843C0 */
+    { 0x802844E0u, 48, 4, e_802844E0 },   /* fn_802844E0 */
+    { 0x802845E0u, 16, 2, e_802845E0 },   /* fn_802845E0 */
+    { 0x80284650u, 32, 6, e_80284650 },   /* fn_80284650 */
+    { 0x802856F0u, 32, 4, e_802856F0 },   /* fn_802856F0 */
+    { 0x80285780u, 16, 3, e_80285780 },   /* fn_80285780 */
+    { 0x80285810u, 16, 2, e_80285810 },   /* __ct__Q34nw4r2ef6EffectFv */
+    { 0x802858E0u, 32, 7, e_802858E0 },   /* fn_802858E0 */
+    { 0x80285A40u, 16, 3, e_80285A40 },   /* fn_80285A40 */
+    { 0x80285B50u, 32, 6, e_80285B50 },   /* fn_80285B50 */
+    { 0x80285C50u, 16, 2, e_80285C50 },   /* fn_80285C50 */
+    { 0x80285CE0u, 4144, 8, e_80285CE0 },   /* fn_80285CE0 */
+    { 0x80285DB0u, 4128, 5, e_80285DB0 },   /* fn_80285DB0 */
+    { 0x80285E40u, 4176, 7, e_80285E40 },   /* fn_80285E40 */
+    { 0x80286430u, 16, 3, e_80286430 },   /* fn_80286430 */
+    { 0x80286640u, 32, 7, e_80286640 },   /* fn_80286640 */
+    { 0x80286750u, 16, 2, e_80286750 },   /* fn_80286750 */
+    { 0x802867A0u, 16, 3, e_802867A0 },   /* fn_802867A0 */
+    { 0x80286810u, 32, 6, e_80286810 },   /* fn_80286810 */
+    { 0x80286A30u, 4128, 5, e_80286A30 },   /* fn_80286A30 */
+    { 0x80286AC0u, 4128, 5, e_80286AC0 },   /* fn_80286AC0 */
+    { 0x80286B70u, 4128, 6, e_80286B70 },   /* fn_80286B70 */
+    { 0x80286C10u, 32, 5, e_80286C10 },   /* fn_80286C10 */
+    { 0x80286CA0u, 48, 6, e_80286CA0 },   /* fn_80286CA0 */
+    { 0x80287000u, 32, 4, e_80287000 },   /* fn_80287000 */
+    { 0x80287130u, 16, 2, e_80287130 },   /* fn_80287130 */
+    { 0x802871D0u, 4128, 5, e_802871D0 },   /* fn_802871D0 */
+    { 0x80287270u, 4128, 6, e_80287270 },   /* fn_80287270 */
+    { 0x80287360u, 16, 3, e_80287360 },   /* fn_80287360 */
+    { 0x80287410u, 4144, 8, e_80287410 },   /* fn_80287410 */
+    { 0x802874E0u, 48, 5, e_802874E0 },   /* fn_802874E0 */
+    { 0x802877C0u, 32, 7, e_802877C0 },   /* fn_802877C0 */
+    { 0x80287930u, 144, 7, e_80287930 },   /* fn_80287930 */
+    { 0x80287C10u, 720, 11, e_80287C10 },   /* fn_80287C10 */
+    { 0x80288490u, 176, 7, e_80288490 },   /* fn_80288490 */
+    { 0x802888E0u, 32, 7, e_802888E0 },   /* fn_802888E0 */
+    { 0x80288AA0u, 4128, 4, e_80288AA0 },   /* fn_80288AA0 */
+    { 0x80288B30u, 112, 3, e_80288B30 },   /* fn_80288B30 */
+    { 0x80288C50u, 224, 5, e_80288C50 },   /* fn_80288C50 */
+    { 0x80288E30u, 144, 7, e_80288E30 },   /* fn_80288E30 */
+    { 0x80289070u, 112, 3, e_80289070 },   /* fn_80289070 */
+    { 0x802891C0u, 32, 6, e_802891C0 },   /* fn_802891C0 */
+    { 0x80289410u, 144, 19, e_80289410 },   /* fn_80289410 */
+    { 0x8028A6F0u, 112, 13, e_8028A6F0 },   /* fn_8028A6F0 */
+    { 0x8028B6C0u, 128, 14, e_8028B6C0 },   /* fn_8028B6C0 */
+    { 0x8028C7A0u, 96, 12, e_8028C7A0 },   /* fn_8028C7A0 */
+    { 0x8028CD70u, 32, 3, e_8028CD70 },   /* fn_8028CD70 */
+    { 0x8028CEE0u, 112, 17, e_8028CEE0 },   /* fn_8028CEE0 */
+    { 0x8028DC70u, 96, 11, e_8028DC70 },   /* fn_8028DC70 */
+    { 0x8028DFC0u, 96, 11, e_8028DFC0 },   /* fn_8028DFC0 */
+    { 0x80291A10u, 192, 24, e_80291A10 },   /* fn_80291A10 */
+    { 0x80291D30u, 304, 12, e_80291D30 },   /* fn_80291D30 */
+    { 0x80292810u, 16, 2, e_80292810 },   /* fn_80292810 */
+    { 0x80292890u, 16, 3, e_80292890 },   /* fn_80292890 */
+    { 0x80292920u, 32, 6, e_80292920 },   /* fn_80292920 */
+    { 0x802929D0u, 16, 3, e_802929D0 },   /* fn_802929D0 */
+    { 0x80292B60u, 80, 11, e_80292B60 },   /* fn_80292B60 */
+    { 0x80292C90u, 1472, 43, e_80292C90 },   /* fn_80292C90 */
+    { 0x802941F0u, 368, 21, e_802941F0 },   /* fn_802941F0 */
+    { 0x80294440u, 64, 3, e_80294440 },   /* fn_80294440 */
+    { 0x802945E0u, 160, 2, e_802945E0 },   /* fn_802945E0 */
+    { 0x802946F0u, 64, 6, e_802946F0 },   /* fn_802946F0 */
+    { 0x80294CA0u, 32, 7, e_80294CA0 },   /* fn_80294CA0 */
+    { 0x80294E90u, 32, 7, e_80294E90 },   /* fn_80294E90 */
+    { 0x80294F50u, 16, 3, e_80294F50 },   /* fn_80294F50 */
+    { 0x80294FD0u, 32, 5, e_80294FD0 },   /* fn_80294FD0 */
+    { 0x80295090u, 32, 5, e_80295090 },   /* fn_80295090 */
+    { 0x80295160u, 16, 3, e_80295160 },   /* fn_80295160 */
+    { 0x802951E0u, 48, 9, e_802951E0 },   /* fn_802951E0 */
+    { 0x80295300u, 48, 9, e_80295300 },   /* fn_80295300 */
+    { 0x80295400u, 48, 11, e_80295400 },   /* fn_80295400 */
+    { 0x80295640u, 16, 3, e_80295640 },   /* fn_80295640 */
+    { 0x802956E0u, 16, 3, e_802956E0 },   /* fn_802956E0 */
+    { 0x80295780u, 16, 2, e_80295780 },   /* fn_80295780 */
+    { 0x802957D0u, 32, 5, e_802957D0 },   /* fn_802957D0 */
+    { 0x80295860u, 48, 7, e_80295860 },   /* fn_80295860 */
+    { 0x80295C20u, 112, 8, e_80295C20 },   /* fn_80295C20 */
+    { 0x80296820u, 272, 8, e_80296820 },   /* fn_80296820 */
+    { 0x80296DD0u, 48, 8, e_80296DD0 },   /* fn_80296DD0 */
+    { 0x80296F50u, 48, 8, e_80296F50 },   /* fn_80296F50 */
+    { 0x802970D0u, 32, 4, e_802970D0 },   /* fn_802970D0 */
+    { 0x802972F0u, 320, 33, e_802972F0 },   /* fn_802972F0 */
+    { 0x80297640u, 320, 31, e_80297640 },   /* fn_80297640 */
+    { 0x80297980u, 416, 43, e_80297980 },   /* fn_80297980 */
+    { 0x80297EC0u, 544, 53, e_80297EC0 },   /* fn_80297EC0 */
+    { 0x80299510u, 144, 10, e_80299510 },   /* fn_80299510 */
+    { 0x80299840u, 560, 52, e_80299840 },   /* fn_80299840 */
+    { 0x8029B0F0u, 16, 2, e_8029B0F0 },   /* fn_8029B0F0 */
+    { 0x8029B340u, 32, 5, e_8029B340 },   /* fn_8029B340 */
+    { 0x8029B420u, 64, 8, e_8029B420 },   /* fn_8029B420 */
+    { 0x8029B710u, 32, 4, e_8029B710 },   /* fn_8029B710 */
+    { 0x8029BAB0u, 96, 7, e_8029BAB0 },   /* fn_8029BAB0 */
+    { 0x8029C080u, 64, 8, e_8029C080 },   /* fn_8029C080 */
+    { 0x8029C820u, 400, 42, e_8029C820 },   /* fn_8029C820 */
+    { 0x8029CFC0u, 96, 4, e_8029CFC0 },   /* fn_8029CFC0 */
+    { 0x8029D2C0u, 16, 2, e_8029D2C0 },   /* fn_8029D2C0 */
+    { 0x8029D340u, 736, 55, e_8029D340 },   /* fn_8029D340 */
+    { 0x8029ED70u, 64, 2, e_8029ED70 },   /* fn_8029ED70 */
+    { 0x8029EEC0u, 32, 3, e_8029EEC0 },   /* fn_8029EEC0 */
+    { 0x8029F460u, 16, 2, e_8029F460 },   /* fn_8029F460 */
+    { 0x8029F4A0u, 80, 4, e_8029F4A0 },   /* fn_8029F4A0 */
+    { 0x8029F5F0u, 16, 2, e_8029F5F0 },   /* fn_8029F5F0 */
+    { 0x8029F640u, 80, 5, e_8029F640 },   /* fn_8029F640 */
+    { 0x8029F7E0u, 32, 4, e_8029F7E0 },   /* fn_8029F7E0 */
+    { 0x8029F900u, 1120, 43, e_8029F900 },   /* fn_8029F900 */
+    { 0x802A0660u, 64, 3, e_802A0660 },   /* fn_802A0660 */
+    { 0x802A0830u, 16, 2, e_802A0830 },   /* fn_802A0830 */
+    { 0x802A08A0u, 16, 2, e_802A08A0 },   /* fn_802A08A0 */
+    { 0x802A0A90u, 64, 2, e_802A0A90 },   /* fn_802A0A90 */
+    { 0x802A1090u, 928, 31, e_802A1090 },   /* fn_802A1090 */
+    { 0x802A16D0u, 16, 2, e_802A16D0 },   /* fn_802A16D0 */
+    { 0x802A18A0u, 16, 2, e_802A18A0 },   /* fn_802A18A0 */
+    { 0x802A18E0u, 80, 4, e_802A18E0 },   /* fn_802A18E0 */
+    { 0x802A1A20u, 528, 33, e_802A1A20 },   /* fn_802A1A20 */
+    { 0x802A22D0u, 16, 2, e_802A22D0 },   /* fn_802A22D0 */
+    { 0x802A2900u, 16, 2, e_802A2900 },   /* fn_802A2900 */
+    { 0x802A2DA0u, 16, 2, e_802A2DA0 },   /* fn_802A2DA0 */
+    { 0x802A2DE0u, 144, 22, e_802A2DE0 },   /* fn_802A2DE0 */
+    { 0x802A3160u, 320, 15, e_802A3160 },   /* fn_802A3160 */
+    { 0x802A4F70u, 688, 11, e_802A4F70 },   /* fn_802A4F70 */
+    { 0x802A5810u, 128, 3, e_802A5810 },   /* fn_802A5810 */
+    { 0x802A6470u, 16, 2, e_802A6470 },   /* fn_802A6470 */
+    { 0x802A64B0u, 304, 15, e_802A64B0 },   /* fn_802A64B0 */
+    { 0x802A6850u, 336, 16, e_802A6850 },   /* fn_802A6850 */
+    { 0x802A6CB0u, 288, 19, e_802A6CB0 },   /* fn_802A6CB0 */
+    { 0x802A71D0u, 976, 35, e_802A71D0 },   /* fn_802A71D0 */
+    { 0x802A7CA0u, 240, 24, e_802A7CA0 },   /* fn_802A7CA0 */
+    { 0x802A8020u, 320, 24, e_802A8020 },   /* fn_802A8020 */
+    { 0x802A8D10u, 352, 25, e_802A8D10 },   /* fn_802A8D10 */
+    { 0x802A9E10u, 640, 11, e_802A9E10 },   /* fn_802A9E10 */
+    { 0x802AA830u, 128, 3, e_802AA830 },   /* fn_802AA830 */
+    { 0x802AACD0u, 80, 6, e_802AACD0 },   /* fn_802AACD0 */
+    { 0x802AAF50u, 80, 6, e_802AAF50 },   /* fn_802AAF50 */
+    { 0x802AB4F0u, 16, 1, e_802AB4F0 },   /* LytInit__Q24nw4r3lytFv */
+    { 0x802AB550u, 32, 4, e_802AB550 },   /* fn_802AB550 */
+    { 0x802AB680u, 48, 6, e_802AB680 },   /* fn_802AB680 */
+    { 0x802AB7C0u, 32, 3, e_802AB7C0 },   /* fn_802AB7C0 */
+    { 0x802AB8F0u, 32, 5, e_802AB8F0 },   /* fn_802AB8F0 */
+    { 0x802AB9A0u, 32, 5, e_802AB9A0 },   /* fn_802AB9A0 */
+    { 0x802ABA60u, 224, 8, e_802ABA60 },   /* fn_802ABA60 */
     { 0x802ABD60u, 32, 4, e_802ABD60 },   /* fn_802ABD60 */
     { 0x802ABE00u, 32, 4, e_802ABE00 },   /* fn_802ABE00 */
     { 0x802ABE90u, 32, 5, e_802ABE90 },   /* fn_802ABE90 */
+    { 0x802AC020u, 16, 3, e_802AC020 },   /* fn_802AC020 */
+    { 0x802AC080u, 16, 1, e_802AC080 },   /* fn_802AC080 */
+    { 0x802AC0E0u, 32, 7, e_802AC0E0 },   /* fn_802AC0E0 */
+    { 0x802AC2E0u, 64, 1, e_802AC2E0 },   /* fn_802AC2E0 */
+    { 0x802AC480u, 32, 5, e_802AC480 },   /* FindExtUserDataByName__Q34nw4r3lyt4PaneFPCc */
+    { 0x802AC550u, 48, 9, e_802AC550 },   /* fn_802AC550 */
+    { 0x802AC670u, 48, 6, e_802AC670 },   /* fn_802AC670 */
+    { 0x802AC720u, 48, 6, e_802AC720 },   /* fn_802AC720 */
+    { 0x802AC7F0u, 16, 1, e_802AC7F0 },   /* fn_802AC7F0 */
+    { 0x802AC830u, 32, 5, e_802AC830 },   /* FindGroupByName__Q34nw4r3lyt14GroupContainerFPCc */
+    { 0x802AC8B0u, 48, 10, e_802AC8B0 },   /* fn_802AC8B0 */
+    { 0x802ACB80u, 48, 6, e_802ACB80 },   /* __dt__Q34nw4r3lyt6LayoutFv */
+    { 0x802ACCB0u, 96, 19, e_802ACCB0 },   /* Build__Q34nw4r3lyt6LayoutFPCvPQ34nw4r3lyt16ResourceAccessor */
+    { 0x802AD000u, 32, 3, e_802AD000 },   /* CreateAnimTransform__Q34nw4r3lyt6LayoutFv */
+    { 0x802AD720u, 80, 2, e_802AD720 },   /* fn_802AD720 */
+    { 0x802AD920u, 48, 5, e_802AD920 },   /* fn_802AD920 */
+    { 0x802ADA70u, 32, 4, e_802ADA70 },   /* fn_802ADA70 */
+    { 0x802ADDA0u, 32, 5, e_802ADDA0 },   /* fn_802ADDA0 */
+    { 0x802ADEA0u, 64, 6, e_802ADEA0 },   /* fn_802ADEA0 */
+    { 0x802AE190u, 64, 4, e_802AE190 },   /* fn_802AE190 */
+    { 0x802AE430u, 448, 27, e_802AE430 },   /* fn_802AE430 */
+    { 0x802AE9C0u, 208, 19, e_802AE9C0 },   /* fn_802AE9C0 */
+    { 0x802AEDA0u, 32, 4, e_802AEDA0 },   /* fn_802AEDA0 */
+    { 0x802AEE70u, 16, 2, e_802AEE70 },   /* fn_802AEE70 */
+    { 0x802AEEC0u, 32, 5, e_802AEEC0 },   /* fn_802AEEC0 */
+    { 0x802AEFA0u, 32, 4, e_802AEFA0 },   /* fn_802AEFA0 */
+    { 0x802AF080u, 80, 6, e_802AF080 },   /* SetFont__Q34nw4r3lyt7TextBoxFPCQ34nw4r2ut4Font */
+    { 0x802AF1B0u, 64, 1, e_802AF1B0 },   /* fn_802AF1B0 */
+    { 0x802AF4F0u, 80, 9, e_802AF4F0 },   /* fn_802AF4F0 */
+    { 0x802AF6F0u, 80, 9, e_802AF6F0 },   /* fn_802AF6F0 */
+    { 0x802AF980u, 48, 8, e_802AF980 },   /* fn_802AF980 */
+    { 0x802AFAD0u, 32, 6, e_802AFAD0 },   /* fn_802AFAD0 */
+    { 0x802AFC60u, 96, 3, e_802AFC60 },   /* fn_802AFC60 */
+    { 0x802AFE40u, 32, 4, e_802AFE40 },   /* fn_802AFE40 */
+    { 0x802AFF60u, 48, 6, e_802AFF60 },   /* fn_802AFF60 */
+    { 0x802B0070u, 208, 12, e_802B0070 },   /* fn_802B0070 */
+    { 0x802B0680u, 224, 10, e_802B0680 },   /* fn_802B0680 */
+    { 0x802B1D60u, 48, 5, e_802B1D60 },   /* fn_802B1D60 */
+    { 0x802B20B0u, 128, 19, e_802B20B0 },   /* fn_802B20B0 */
+    { 0x802B2BC0u, 16, 3, e_802B2BC0 },   /* fn_802B2BC0 */
+    { 0x802B2C70u, 96, 13, e_802B2C70 },   /* fn_802B2C70 */
+    { 0x802B35E0u, 16, 2, e_802B35E0 },   /* fn_802B35E0 */
+    { 0x802B3B00u, 288, 15, e_802B3B00 },   /* fn_802B3B00 */
     { 0x802B4960u, 32, 4, e_802B4960 },   /* fn_802B4960 */
+    { 0x802B49E0u, 16, 1, e_802B49E0 },   /* fn_802B49E0 */
+    { 0x802B4A40u, 16, 2, e_802B4A40 },   /* fn_802B4A40 */
+    { 0x802B4B50u, 32, 3, e_802B4B50 },   /* fn_802B4B50 */
+    { 0x802B4C60u, 32, 4, e_802B4C60 },   /* ReplaceImage__Q34nw4r3lyt6TexMapFP10TPLPaletteUl */
+    { 0x802B4D30u, 16, 2, e_802B4D30 },   /* __ct__Q34nw4r3lyt8DrawInfoFv */
+    { 0x802B4DB0u, 16, 2, e_802B4DB0 },   /* __dt__Q34nw4r3lyt8DrawInfoFv */
+    { 0x802B5110u, 16, 3, e_802B5110 },   /* fn_802B5110 */
+    { 0x802B51C0u, 48, 9, e_802B51C0 },   /* fn_802B51C0 */
+    { 0x802B5330u, 48, 8, e_802B5330 },   /* fn_802B5330 */
+    { 0x802B5620u, 96, 15, e_802B5620 },   /* fn_802B5620 */
+    { 0x802B5800u, 112, 19, e_802B5800 },   /* fn_802B5800 */
+    { 0x802B5B10u, 16, 3, e_802B5B10 },   /* Set__Q34nw4r3lyt12AnimResourceFPCv */
+    { 0x802B5CC0u, 32, 7, e_802B5CC0 },   /* fn_802B5CC0 */
+    { 0x802B5DA0u, 32, 6, e_802B5DA0 },   /* CalcAnimationNum__Q34nw4r3lyt12AnimResourceCFPQ34nw4r3lyt5Groupb */
+    { 0x802B6320u, 48, 7, e_802B6320 },   /* fn_802B6320 */
+    { 0x802B63B0u, 16, 2, e_802B63B0 },   /* __dt__Q34nw4r3lyt16ResourceAccessorFv */
+    { 0x802B6410u, 64, 4, e_802B6410 },   /* fn_802B6410 */
+    { 0x802B64E0u, 64, 7, e_802B64E0 },   /* fn_802B64E0 */
+    { 0x802B6620u, 16, 2, e_802B6620 },   /* __ct__Q34nw4r3lyt19ArcResourceAccessorFv */
+    { 0x802B6680u, 32, 4, e_802B6680 },   /* Attach__Q34nw4r3lyt19ArcResourceAccessorFPvPCc */
+    { 0x802B67B0u, 16, 1, e_802B67B0 },   /* fn_802B67B0 */
+    { 0x802B67E0u, 16, 1, e_802B67E0 },   /* fn_802B67E0 */
+    { 0x802B6860u, 16, 2, e_802B6860 },   /* fn_802B6860 */
+    { 0x802B68B0u, 16, 3, e_802B68B0 },   /* fn_802B68B0 */
+    { 0x802B6B90u, 32, 4, e_802B6B90 },   /* fn_802B6B90 */
+    { 0x802B6C80u, 32, 6, e_802B6C80 },   /* fn_802B6C80 */
+    { 0x802B71E0u, 48, 2, e_802B71E0 },   /* fn_802B71E0 */
+    { 0x802B7310u, 32, 6, e_802B7310 },   /* BindAnimation__Q24nw4r3lytFPQ34nw4r3lyt5GroupPQ34nw4r3lyt13AnimTransformbb */
+    { 0x802B7380u, 16, 2, e_802B7380 },   /* fn_802B7380 */
+    { 0x802B73F0u, 16, 3, e_802B73F0 },   /* fn_802B73F0 */
+    { 0x802B7460u, 16, 3, e_802B7460 },   /* fn_802B7460 */
+    { 0x802B74C0u, 32, 4, e_802B74C0 },   /* fn_802B74C0 */
+    { 0x802B7540u, 16, 2, e_802B7540 },   /* fn_802B7540 */
+    { 0x802B75B0u, 32, 5, e_802B75B0 },   /* mount__Q23EGG7ArchiveFPvPQ23EGG4Heapi */
+    { 0x802B76C0u, 48, 4, e_802B76C0 },   /* getFile__Q23EGG7ArchiveFPCcPQ33EGG7Archive8FileInfo */
+    { 0x802B7770u, 32, 3, e_802B7770 },   /* getFileFast__Q23EGG7ArchiveFlPQ33EGG7Archive8FileInfo */
+    { 0x802B7830u, 16, 1, e_802B7830 },   /* countFile__Q23EGG7ArchiveFv */
+    { 0x802B78F0u, 80, 11, e_802B78F0 },   /* fn_802B78F0 */
+    { 0x802B7A40u, 288, 4, e_802B7A40 },   /* searchInside__Q23EGG7ArchiveFPFPvPvPC11ARCDirEntryPCc_vPv */
+    { 0x802B7AC0u, 16, 1, e_802B7AC0 },   /* initialize__Q23EGG7DvdFileFv */
+    { 0x802B7B00u, 16, 2, e_802B7B00 },   /* __ct__Q23EGG7DvdFileFv */
+    { 0x802B7B50u, 16, 3, e_802B7B50 },   /* fn_802B7B50 */
+    { 0x802B7BC0u, 16, 2, e_802B7BC0 },   /* fn_802B7BC0 */
+    { 0x802B7C30u, 16, 2, e_802B7C30 },   /* fn_802B7C30 */
+    { 0x802B7CB0u, 16, 2, e_802B7CB0 },   /* fn_802B7CB0 */
+    { 0x802B7D10u, 16, 2, e_802B7D10 },   /* fn_802B7D10 */
+    { 0x802B7ED0u, 256, 8, e_802B7ED0 },   /* fn_802B7ED0 */
+    { 0x802B7F80u, 144, 10, e_802B7F80 },   /* fn_802B7F80 */
+    { 0x802B8150u, 64, 13, e_802B8150 },   /* fn_802B8150 */
+    { 0x802B8420u, 16, 1, e_802B8420 },   /* fn_802B8420 */
+    { 0x802B8450u, 16, 1, e_802B8450 },   /* fn_802B8450 */
+    { 0x802B8A70u, 16, 2, e_802B8A70 },   /* __ct__Q23EGG9AllocatorFPQ23EGG4Heapl */
+    { 0x802B8AD0u, 16, 2, e_802B8AD0 },   /* __dt__Q23EGG9AllocatorFv */
+    { 0x802B8B40u, 16, 1, e_802B8B40 },   /* fn_802B8B40 */
+    { 0x802B8CC0u, 64, 7, e_802B8CC0 },   /* alloc__Q23EGG4HeapFUliPQ23EGG4Heap */
+    { 0x802B8F30u, 16, 2, e_802B8F30 },   /* findContainHeap__Q23EGG4HeapFPCv */
+    { 0x802B8F70u, 32, 3, e_802B8F70 },   /* free__Q23EGG4HeapFPvPQ23EGG4Heap */
+    { 0x802B9010u, 16, 2, e_802B9010 },   /* fn_802B9010 */
+    { 0x802B91D0u, 16, 2, e_802B91D0 },   /* fn_802B91D0 */
+    { 0x802B92A0u, 16, 2, e_802B92A0 },   /* fn_802B92A0 */
+    { 0x802B9360u, 32, 6, e_802B9360 },   /* create__Q23EGG7ExpHeapFPvUlUs */
+    { 0x802B9430u, 32, 6, e_802B9430 },   /* create__Q23EGG7ExpHeapFUlPQ23EGG4HeapUs */
+    { 0x802B9590u, 32, 4, e_802B9590 },   /* fn_802B9590 */
+    { 0x802B9730u, 16, 2, e_802B9730 },   /* fn_802B9730 */
+    { 0x802B9780u, 16, 2, e_802B9780 },   /* fn_802B9780 */
+    { 0x802B97C0u, 16, 3, e_802B97C0 },   /* fn_802B97C0 */
+    { 0x802B9840u, 32, 6, e_802B9840 },   /* create__Q23EGG7FrmHeapFPvUlUs */
+    { 0x802B9910u, 16, 3, e_802B9910 },   /* fn_802B9910 */
+    { 0x802B9A10u, 16, 3, e_802B9A10 },   /* fn_802B9A10 */
+    { 0x802B9AB0u, 16, 3, e_802B9AB0 },   /* fn_802B9AB0 */
+    { 0x802B9B80u, 32, 5, e_802B9B80 },   /* create__Q23EGG8UnitHeapFPvUlUllUs */
+    { 0x802B9DF0u, 16, 1, e_802B9DF0 },   /* calcHeapSize__Q23EGG8UnitHeapFUlUll */
+    { 0x802B9E70u, 16, 2, e_802B9E70 },   /* fn_802B9E70 */
+    { 0x802B9F30u, 32, 6, e_802B9F30 },   /* fn_802B9F30 */
+    { 0x802BA000u, 32, 5, e_802BA000 },   /* create__Q23EGG10AssertHeapFUlPQ23EGG4Heap */
+    { 0x802BA2D0u, 16, 2, e_802BA2D0 },   /* fn_802BA2D0 */
+    { 0x802BA330u, 16, 3, e_802BA330 },   /* fn_802BA330 */
+    { 0x802BA480u, 16, 2, e_802BA480 },   /* __ct__Q23EGG6ThreadFP8OSThreadi */
     { 0x802BA5C0u, 16, 3, e_802BA5C0 },   /* fn_802BA5C0 */
+    { 0x802BA630u, 16, 1, e_802BA630 },   /* initialize__Q23EGG6ThreadFv */
+    { 0x802BA670u, 32, 4, e_802BA670 },   /* fn_802BA670 */
+    { 0x802BA710u, 32, 6, e_802BA710 },   /* fn_802BA710 */
+    { 0x802BA800u, 16, 2, e_802BA800 },   /* fn_802BA800 */
+    { 0x802BA870u, 32, 7, e_802BA870 },   /* initMemory__Q23EGG17ConfigurationDataFv */
+    { 0x802BAC30u, 16, 1, e_802BAC30 },   /* fn_802BAC30 */
+    { 0x802BAC70u, 16, 2, e_802BAC70 },   /* fn_802BAC70 */
+    { 0x802BAED0u, 32, 2, e_802BAED0 },   /* fn_802BAED0 */
+    { 0x802BAF70u, 32, 2, e_802BAF70 },   /* fn_802BAF70 */
     { 0x802BB030u, 32, 3, e_802BB030 },   /* fn_802BB030 */
     { 0x802BB2A0u, 160, 7, e_802BB2A0 },   /* fn_802BB2A0 */
+    { 0x802BB580u, 16, 2, e_802BB580 },   /* __ct__Q23EGG12AsyncDisplayFUc */
+    { 0x802BB9A0u, 32, 2, e_802BB9A0 },   /* clearEFB__Q23EGG12AsyncDisplayFv */
+    { 0x802BBA30u, 128, 9, e_802BBA30 },   /* fn_802BBA30 */
+    { 0x802BBDD0u, 32, 4, e_802BBDD0 },   /* initialize__Q23EGG5VideoFP16_GXRenderModeObjPCQ33EGG5Video16RenderModeObjSet */
+    { 0x802BBE30u, 32, 6, e_802BBE30 },   /* fn_802BBE30 */
+    { 0x802BBFD0u, 32, 6, e_802BBFD0 },   /* fn_802BBFD0 */
+    { 0x802BC120u, 16, 3, e_802BC120 },   /* fn_802BC120 */
+    { 0x802BC1A0u, 16, 3, e_802BC1A0 },   /* __ct__Q23EGG3XfbFPQ23EGG4Heap */
+    { 0x802BC440u, 16, 2, e_802BC440 },   /* fn_802BC440 */
+    { 0x802BC560u, 16, 3, e_802BC560 },   /* create__Q23EGG12GraphicsFifoFUlPQ23EGG4Heap */
+    { 0x802BC670u, 16, 2, e_802BC670 },   /* fn_802BC670 */
+    { 0x802BC7A0u, 16, 3, e_802BC7A0 },   /* fn_802BC7A0 */
+    { 0x802BC800u, 16, 3, e_802BC800 },   /* fn_802BC800 */
+    { 0x802BC9E0u, 192, 3, e_802BC9E0 },   /* fn_802BC9E0 */
+    { 0x802BD1E0u, 48, 2, e_802BD1E0 },   /* fn_802BD1E0 */
+    { 0x802BD310u, 16, 1, e_802BD310 },   /* createInstance__Q23EGG17CoreControllerMgrFv */
+    { 0x802BD370u, 16, 3, e_802BD370 },   /* fn_802BD370 */
+    { 0x802BD460u, 16, 1, e_802BD460 },   /* fn_802BD460 */
+    { 0x802BD4A0u, 48, 6, e_802BD4A0 },   /* fn_802BD4A0 */
+    { 0x802BD8C0u, 32, 4, e_802BD8C0 },   /* fn_802BD8C0 */
+    { 0x802BD970u, 48, 5, e_802BD970 },   /* fn_802BD970 */
+    { 0x802BDD00u, 16, 2, e_802BDD00 },   /* fn_802BDD00 */
+    { 0x802BDD60u, 48, 8, e_802BDD60 },   /* fn_802BDD60 */
+    { 0x802BDDF0u, 16, 3, e_802BDDF0 },   /* fn_802BDDF0 */
+    { 0x802BDE60u, 80, 10, e_802BDE60 },   /* fn_802BDE60 */
+    { 0x802BDFC0u, 32, 3, e_802BDFC0 },   /* fn_802BDFC0 */
+    { 0x802BE010u, 32, 4, e_802BE010 },   /* fn_802BE010 */
+    { 0x802BE210u, 16, 2, e_802BE210 },   /* fn_802BE210 */
+    { 0x802BE2F0u, 16, 2, e_802BE2F0 },   /* fn_802BE2F0 */
+    { 0x802BE3D0u, 16, 2, e_802BE3D0 },   /* fn_802BE3D0 */
+    { 0x802BE420u, 16, 2, e_802BE420 },   /* fn_802BE420 */
     { 0x802BE470u, 16, 1, e_802BE470 },   /* sqrt__Q23EGG7Math<f>Ff */
+    { 0x802BE5E0u, 32, 1, e_802BE5E0 },   /* fn_802BE5E0 */
+    { 0x802BE640u, 16, 2, e_802BE640 },   /* normalise__Q23EGG8Vector2fFv */
     { 0x802BE6B0u, 16, 2, e_802BE6B0 },   /* fn_802BE6B0 */
+    { 0x802BE880u, 16, 2, e_802BE880 },   /* assignToNW4RCamera__Q23EGG12LookAtCameraFRQ34nw4r3g3d6Camera */
+    { 0x802BEA00u, 112, 2, e_802BEA00 },   /* fn_802BEA00 */
+    { 0x802BF3D0u, 16, 2, e_802BF3D0 },   /* __ct__Q23EGG12ProjectOrthoFv */
+    { 0x802BF540u, 64, 7, e_802BF540 },   /* fn_802BF540 */
+    { 0x802BFE20u, 16, 3, e_802BFE20 },   /* fn_802BFE20 */
+    { 0x802BFF30u, 16, 2, e_802BFF30 },   /* fn_802BFF30 */
+    { 0x802C0150u, 96, 13, e_802C0150 },   /* fn_802C0150 */
+    { 0x802C0240u, 16, 2, e_802C0240 },   /* fn_802C0240 */
+    { 0x802C02C0u, 32, 5, e_802C02C0 },   /* fn_802C02C0 */
+    { 0x802C05E0u, 96, 14, e_802C05E0 },   /* fn_802C05E0 */
+    { 0x802C0AC0u, 16, 3, e_802C0AC0 },   /* __dt__10mTexture_cFv */
     { 0x802C0B60u, 48, 2, e_802C0B60 },   /* load__10mTexture_cFUi */
     { 0x802C0BA0u, 16, 3, e_802C0BA0 },   /* fn_802C0BA0 */
+    { 0x802C0C20u, 16, 2, e_802C0C20 },   /* flushDC__10mTexture_cFv */
+    { 0x802C0C70u, 176, 20, e_802C0C70 },   /* fn_802C0C70 */
+    { 0x802C0E30u, 5184, 10, e_802C0E30 },   /* makeLinearGradient__10mTexture_cFicUsUs8_GXColor8_GXColorb */
+    { 0x802C11E0u, 16, 3, e_802C11E0 },   /* allocateBuffer__10mTexture_cFPv */
+    { 0x802C1370u, 32, 6, e_802C1370 },   /* fn_802C1370 */
+    { 0x802C13F0u, 224, 20, e_802C13F0 },   /* fn_802C13F0 */
+    { 0x802C1710u, 16, 3, e_802C1710 },   /* Initialize__Q23EGG6DrawGXFPQ23EGG4Heap */
+    { 0x802C17E0u, 32, 4, e_802C17E0 },   /* fn_802C17E0 */
+    { 0x802C18C0u, 48, 3, e_802C18C0 },   /* fn_802C18C0 */
+    { 0x802C1A30u, 48, 5, e_802C1A30 },   /* fn_802C1A30 */
+    { 0x802C1F80u, 16, 1, e_802C1F80 },   /* fn_802C1F80 */
+    { 0x802C2060u, 16, 1, e_802C2060 },   /* fn_802C2060 */
+    { 0x802C20F0u, 16, 2, e_802C20F0 },   /* fn_802C20F0 */
+    { 0x802C2250u, 16, 3, e_802C2250 },   /* fn_802C2250 */
+    { 0x802C22C0u, 48, 2, e_802C22C0 },   /* fn_802C22C0 */
+    { 0x802C2360u, 32, 4, e_802C2360 },   /* fn_802C2360 */
+    { 0x802C2F00u, 16, 3, e_802C2F00 },   /* fn_802C2F00 */
+    { 0x802C2F70u, 32, 4, e_802C2F70 },   /* fn_802C2F70 */
+    { 0x802C3050u, 16, 2, e_802C3050 },   /* fn_802C3050 */
+    { 0x802C30C0u, 16, 1, e_802C30C0 },   /* fn_802C30C0 */
+    { 0x802C3210u, 16, 2, e_802C3210 },   /* fn_802C3210 */
+    { 0x802C32B0u, 32, 4, e_802C32B0 },   /* fn_802C32B0 */
+    { 0x802C3630u, 16, 2, e_802C3630 },   /* fn_802C3630 */
+    { 0x802C3CB0u, 16, 3, e_802C3CB0 },   /* fn_802C3CB0 */
+    { 0x802C3D80u, 352, 20, e_802C3D80 },   /* fn_802C3D80 */
+    { 0x802C4D80u, 128, 3, e_802C4D80 },   /* fn_802C4D80 */
+    { 0x802C4FB0u, 32, 4, e_802C4FB0 },   /* fn_802C4FB0 */
+    { 0x802C56D0u, 16, 2, e_802C56D0 },   /* fn_802C56D0 */
+    { 0x802C5760u, 224, 8, e_802C5760 },   /* fn_802C5760 */
+    { 0x802C6040u, 16, 2, e_802C6040 },   /* fn_802C6040 */
+    { 0x802C64F0u, 16, 2, e_802C64F0 },   /* fn_802C64F0 */
+    { 0x802C6550u, 16, 3, e_802C6550 },   /* __ct__Q23EGG10FogManagerFUs */
+    { 0x802C65D0u, 16, 3, e_802C65D0 },   /* fn_802C65D0 */
+    { 0x802C6660u, 32, 5, e_802C6660 },   /* CopyToG3D__Q23EGG10FogManagerCFPQ34nw4r3g3d7ScnRoot */
+    { 0x802C66F0u, 32, 5, e_802C66F0 },   /* fn_802C66F0 */
+    { 0x802C6AA0u, 16, 2, e_802C6AA0 },   /* fn_802C6AA0 */
+    { 0x802C6C70u, 32, 2, e_802C6C70 },   /* fn_802C6C70 */
+    { 0x802C6D80u, 16, 1, e_802C6D80 },   /* fn_802C6D80 */
+    { 0x802C6E20u, 48, 1, e_802C6E20 },   /* fn_802C6E20 */
+    { 0x802C6E50u, 48, 1, e_802C6E50 },   /* fn_802C6E50 */
+    { 0x802C6E80u, 80, 3, e_802C6E80 },   /* fn_802C6E80 */
+    { 0x802C6F60u, 48, 2, e_802C6F60 },   /* fn_802C6F60 */
+    { 0x802C70B0u, 32, 3, e_802C70B0 },   /* fn_802C70B0 */
+    { 0x802C7370u, 64, 13, e_802C7370 },   /* fn_802C7370 */
+    { 0x802C7560u, 160, 18, e_802C7560 },   /* fn_802C7560 */
+    { 0x802C78F0u, 32, 2, e_802C78F0 },   /* __ct__Q33EGG9GfxEngine13ConfigurationFv */
+    { 0x802C7A50u, 16, 1, e_802C7A50 },   /* beginDrawView__Q23EGG15GlobalDrawStateFUsRCQ34nw4r4math5MTX34RCQ23EGG6Screen */
+    { 0x802C7A90u, 16, 2, e_802C7A90 },   /* fn_802C7A90 */
+    { 0x802C7B70u, 48, 3, e_802C7B70 },   /* fn_802C7B70 */
+    { 0x802C7C70u, 64, 6, e_802C7C70 },   /* InitTexObjWithResTex__3m3dFP9_GXTexObjPvUiUiUiUi */
+    { 0x802C7EF0u, 96, 7, e_802C7EF0 },   /* fn_802C7EF0 */
+    { 0x802C8000u, 16, 3, e_802C8000 },   /* fn_802C8000 */
+    { 0x802C80C0u, 32, 4, e_802C80C0 },   /* fn_802C80C0 */
+    { 0x802C8150u, 16, 3, e_802C8150 },   /* fn_802C8150 */
+    { 0x802C81F0u, 32, 5, e_802C81F0 },   /* __ct__Q23EGG12LightManagerFUlUlUc */
+    { 0x802C83A0u, 16, 2, e_802C83A0 },   /* fn_802C83A0 */
+    { 0x802C8410u, 16, 2, e_802C8410 },   /* fn_802C8410 */
+    { 0x802C8450u, 16, 3, e_802C8450 },   /* fn_802C8450 */
+    { 0x802C84F0u, 32, 5, e_802C84F0 },   /* fn_802C84F0 */
+    { 0x802C8620u, 32, 6, e_802C8620 },   /* fn_802C8620 */
+    { 0x802C86F0u, 96, 8, e_802C86F0 },   /* fn_802C86F0 */
+    { 0x802C8840u, 64, 10, e_802C8840 },   /* AssignAnmScnToLightInfo */
+    { 0x802C8B00u, 48, 6, e_802C8B00 },   /* fn_802C8B00 */
+    { 0x802C8BB0u, 32, 7, e_802C8BB0 },   /* fn_802C8BB0 */
+    { 0x802C8C30u, 32, 3, e_802C8C30 },   /* fn_802C8C30 */
+    { 0x802C8D10u, 48, 11, e_802C8D10 },   /* fn_802C8D10 */
+    { 0x802C9AF0u, 48, 2, e_802C9AF0 },   /* fn_802C9AF0 */
+    { 0x802C9C40u, 48, 3, e_802C9C40 },   /* fn_802C9C40 */
+    { 0x802C9F40u, 48, 3, e_802C9F40 },   /* fn_802C9F40 */
+    { 0x802CA140u, 32, 3, e_802CA140 },   /* fn_802CA140 */
+    { 0x802CA290u, 48, 4, e_802CA290 },   /* fn_802CA290 */
+    { 0x802CA3E0u, 96, 4, e_802CA3E0 },   /* fn_802CA3E0 */
+    { 0x802CA560u, 32, 4, e_802CA560 },   /* fn_802CA560 */
+    { 0x802CA780u, 32, 4, e_802CA780 },   /* fn_802CA780 */
+    { 0x802CA8E0u, 128, 3, e_802CA8E0 },   /* fn_802CA8E0 */
+    { 0x802CB410u, 16, 1, e_802CB410 },   /* fn_802CB410 */
+    { 0x802CB4B0u, 32, 2, e_802CB4B0 },   /* fn_802CB4B0 */
+    { 0x802CB5F0u, 48, 7, e_802CB5F0 },   /* fn_802CB5F0 */
+    { 0x802CB930u, 48, 9, e_802CB930 },   /* initialize__Q23EGG12LightTextureFUsPQ23EGG4Heap */
+    { 0x802CBB90u, 32, 4, e_802CBB90 },   /* fn_802CBB90 */
+    { 0x802CBD90u, 16, 3, e_802CBD90 },   /* fn_802CBD90 */
+    { 0x802CBE20u, 16, 2, e_802CBE20 },   /* fn_802CBE20 */
+    { 0x802CBE70u, 112, 5, e_802CBE70 },   /* fn_802CBE70 */
+    { 0x802CC050u, 144, 6, e_802CC050 },   /* fn_802CC050 */
+    { 0x802CC730u, 144, 6, e_802CC730 },   /* fn_802CC730 */
     { 0x802CC9F0u, 16, 2, e_802CC9F0 },   /* fn_802CC9F0 */
+    { 0x802CCE10u, 16, 3, e_802CCE10 },   /* fn_802CCE10 */
+    { 0x802CCFC0u, 32, 4, e_802CCFC0 },   /* fn_802CCFC0 */
+    { 0x802CD050u, 32, 6, e_802CD050 },   /* fn_802CD050 */
+    { 0x802CD160u, 16, 3, e_802CD160 },   /* fn_802CD160 */
+    { 0x802CD1F0u, 2128, 6, e_802CD1F0 },   /* replaceModelTexture__Q23EGG19LightTextureManagerCFiPQ23EGG7ModelEx */
+    { 0x802CD2D0u, 32, 6, e_802CD2D0 },   /* getTextureIndex__Q23EGG19LightTextureManagerCFPCc */
+    { 0x802CD350u, 32, 7, e_802CD350 },   /* fn_802CD350 */
+    { 0x802CD470u, 16, 2, e_802CD470 },   /* fn_802CD470 */
+    { 0x802CD4B0u, 304, 16, e_802CD4B0 },   /* drawAndCaptureTexture__Q23EGG19LightTextureManagerFffff */
+    { 0x802CD970u, 32, 5, e_802CD970 },   /* fn_802CD970 */
+    { 0x802CDA80u, 48, 3, e_802CDA80 },   /* fn_802CDA80 */
+    { 0x802CDD00u, 48, 4, e_802CDD00 },   /* __ct__Q23EGG7ModelExFPQ34nw4r3g3d6ScnObj */
+    { 0x802CDED0u, 16, 1, e_802CDED0 },   /* fn_802CDED0 */
+    { 0x802CDF40u, 16, 2, e_802CDF40 },   /* fn_802CDF40 */
+    { 0x802CE010u, 64, 6, e_802CE010 },   /* fn_802CE010 */
+    { 0x802CE2A0u, 16, 3, e_802CE2A0 },   /* fn_802CE2A0 */
+    { 0x802CE410u, 128, 15, e_802CE410 },   /* fn_802CE410 */
+    { 0x802CE620u, 16, 1, e_802CE620 },   /* fn_802CE620 */
+    { 0x802CE7A0u, 48, 6, e_802CE7A0 },   /* fn_802CE7A0 */
+    { 0x802CE860u, 96, 5, e_802CE860 },   /* fn_802CE860 */
+    { 0x802CE8F0u, 16, 2, e_802CE8F0 },   /* fn_802CE8F0 */
+    { 0x802CE940u, 16, 1, e_802CE940 },   /* fn_802CE940 */
+    { 0x802CE9C0u, 32, 2, e_802CE9C0 },   /* fn_802CE9C0 */
+    { 0x802CED80u, 32, 2, e_802CED80 },   /* fn_802CED80 */
+    { 0x802CEE70u, 144, 1, e_802CEE70 },   /* fn_802CEE70 */
+    { 0x802CEF70u, 32, 2, e_802CEF70 },   /* fn_802CEF70 */
+    { 0x802CF050u, 112, 13, e_802CF050 },   /* fn_802CF050 */
+    { 0x802CF1E0u, 384, 29, e_802CF1E0 },   /* fn_802CF1E0 */
+    { 0x802CF6F0u, 16, 2, e_802CF6F0 },   /* fn_802CF6F0 */
+    { 0x802CFBA0u, 32, 5, e_802CFBA0 },   /* fn_802CFBA0 */
+    { 0x802CFD00u, 176, 19, e_802CFD00 },   /* fn_802CFD00 */
+    { 0x802D0030u, 96, 6, e_802D0030 },   /* fn_802D0030 */
+    { 0x802D01B0u, 208, 8, e_802D01B0 },   /* fn_802D01B0 */
+    { 0x802D0830u, 16, 2, e_802D0830 },   /* fn_802D0830 */
+    { 0x802D0890u, 80, 2, e_802D0890 },   /* fn_802D0890 */
+    { 0x802D0AE0u, 48, 2, e_802D0AE0 },   /* Initialize__Q23EGG6ScreenFPCUsPCUsPQ23EGG6Screen */
+    { 0x802D0CC0u, 48, 2, e_802D0CC0 },   /* __ct__Q23EGG6ScreenFv */
+    { 0x802D0E50u, 16, 3, e_802D0E50 },   /* fn_802D0E50 */
+    { 0x802D0F40u, 32, 2, e_802D0F40 },   /* SetProjectionGX__Q23EGG6ScreenCFv */
+    { 0x802D1140u, 16, 3, e_802D1140 },   /* CopyFromAnother__Q23EGG6ScreenFRCQ23EGG6Screen */
+    { 0x802D12E0u, 64, 6, e_802D12E0 },   /* fn_802D12E0 */
     { 0x802D17C0u, 16, 2, e_802D17C0 },   /* fn_802D17C0 */
     { 0x802D19F0u, 32, 5, e_802D19F0 },   /* fn_802D19F0 */
+    { 0x802D1AA0u, 32, 1, e_802D1AA0 },   /* fn_802D1AA0 */
+    { 0x802D1B50u, 16, 1, e_802D1B50 },   /* SetTVModeDefault__Q23EGG6ScreenFv */
+    { 0x802D1B90u, 48, 4, e_802D1B90 },   /* fn_802D1B90 */
+    { 0x802D1E20u, 144, 14, e_802D1E20 },   /* fn_802D1E20 */
+    { 0x802D21F0u, 32, 4, e_802D21F0 },   /* fn_802D21F0 */
+    { 0x802D2270u, 16, 2, e_802D2270 },   /* fn_802D2270 */
+    { 0x802D2310u, 272, 12, e_802D2310 },   /* fn_802D2310 */
+    { 0x802D2550u, 32, 2, e_802D2550 },   /* fn_802D2550 */
+    { 0x802D2610u, 32, 2, e_802D2610 },   /* initialize__Q23EGG7StateGXFUsUs8_GXColor11_GXPixelFmt */
+    { 0x802D2730u, 32, 2, e_802D2730 },   /* fn_802D2730 */
+    { 0x802D2800u, 16, 1, e_802D2800 },   /* fn_802D2800 */
+    { 0x802D2850u, 16, 1, e_802D2850 },   /* fn_802D2850 */
+    { 0x802D2990u, 32, 2, e_802D2990 },   /* fn_802D2990 */
+    { 0x802D2A50u, 16, 3, e_802D2A50 },   /* fn_802D2A50 */
+    { 0x802D2AD0u, 16, 2, e_802D2AD0 },   /* fn_802D2AD0 */
+    { 0x802D2B60u, 32, 4, e_802D2B60 },   /* fn_802D2B60 */
+    { 0x802D2C20u, 32, 3, e_802D2C20 },   /* fn_802D2C20 */
+    { 0x802D2DA0u, 16, 1, e_802D2DA0 },   /* fn_802D2DA0 */
+    { 0x802D2E50u, 16, 1, e_802D2E50 },   /* resetGXCache__Q23EGG7StateGXFv */
+    { 0x802D2E90u, 32, 4, e_802D2E90 },   /* fn_802D2E90 */
     { 0x802D2F20u, 32, 4, e_802D2F20 },   /* ChangeColorUpdate__Fb */
     { 0x802D2F80u, 32, 4, e_802D2F80 },   /* ChangeAlphaUpdate__Fb */
     { 0x802D2FE0u, 32, 4, e_802D2FE0 },   /* fn_802D2FE0 */
+    { 0x802D3040u, 16, 3, e_802D3040 },   /* fn_802D3040 */
+    { 0x802D3090u, 32, 3, e_802D3090 },   /* fn_802D3090 */
+    { 0x802D31A0u, 16, 1, e_802D31A0 },   /* fn_802D31A0 */
     { 0x802D31D0u, 16, 1, e_802D31D0 },   /* fn_802D31D0 */
     { 0x802D3200u, 16, 1, e_802D3200 },   /* fn_802D3200 */
     { 0x802D3230u, 16, 1, e_802D3230 },   /* fn_802D3230 */
-    { 0x802E7FBCu, 32, 2, e_802E7FBC },   /* cos */
-    { 0x802E84C4u, 32, 2, e_802E84C4 },   /* sin */
-    { 0x802E8590u, 32, 2, e_802E8590 },   /* tan */
+    { 0x802D3270u, 16, 1, e_802D3270 },   /* fn_802D3270 */
+    { 0x802D32A0u, 16, 2, e_802D32A0 },   /* fn_802D32A0 */
+    { 0x802D32F0u, 16, 2, e_802D32F0 },   /* fn_802D32F0 */
+    { 0x802D3370u, 16, 2, e_802D3370 },   /* fn_802D3370 */
+    { 0x802D3490u, 32, 5, e_802D3490 },   /* initialize__Q23EGG13TextureBufferFUlPQ23EGG4Heap */
+    { 0x802D35C0u, 32, 5, e_802D35C0 },   /* fn_802D35C0 */
+    { 0x802D3700u, 32, 4, e_802D3700 },   /* fn_802D3700 */
+    { 0x802D3810u, 32, 6, e_802D3810 },   /* fn_802D3810 */
+    { 0x802D3940u, 16, 1, e_802D3940 },   /* fn_802D3940 */
+    { 0x802D39B0u, 32, 6, e_802D39B0 },   /* fn_802D39B0 */
+    { 0x802D3E90u, 32, 5, e_802D3E90 },   /* fn_802D3E90 */
+    { 0x802D42D0u, 32, 4, e_802D42D0 },   /* fn_802D42D0 */
+    { 0x802D46E0u, 16, 3, e_802D46E0 },   /* fn_802D46E0 */
+    { 0x802D4830u, 16, 2, e_802D4830 },   /* fn_802D4830 */
+    { 0x802D48C0u, 32, 6, e_802D48C0 },   /* fn_802D48C0 */
+    { 0x802D49B0u, 32, 5, e_802D49B0 },   /* fn_802D49B0 */
+    { 0x802D4C70u, 16, 3, e_802D4C70 },   /* fn_802D4C70 */
+    { 0x802D4CD0u, 16, 1, e_802D4CD0 },   /* fn_802D4CD0 */
+    { 0x802D4DA0u, 32, 4, e_802D4DA0 },   /* fn_802D4DA0 */
+    { 0x802D4F00u, 16, 2, e_802D4F00 },   /* fn_802D4F00 */
+    { 0x802D4FD0u, 32, 5, e_802D4FD0 },   /* fn_802D4FD0 */
+    { 0x802D5290u, 32, 7, e_802D5290 },   /* fn_802D5290 */
+    { 0x802D5DD0u, 32, 7, e_802D5DD0 },   /* fn_802D5DD0 */
+    { 0x802D6110u, 16, 3, e_802D6110 },   /* fn_802D6110 */
+    { 0x802D61C0u, 16, 2, e_802D61C0 },   /* fn_802D61C0 */
+    { 0x802D6210u, 16, 3, e_802D6210 },   /* fn_802D6210 */
+    { 0x802D6400u, 80, 4, e_802D6400 },   /* fn_802D6400 */
+    { 0x802D6560u, 16, 2, e_802D6560 },   /* fn_802D6560 */
+    { 0x802D66B0u, 16, 1, e_802D66B0 },   /* fn_802D66B0 */
+    { 0x802D6860u, 16, 3, e_802D6860 },   /* fn_802D6860 */
+    { 0x802D68E0u, 16, 3, e_802D68E0 },   /* fn_802D68E0 */
+    { 0x802D6930u, 16, 1, e_802D6930 },   /* fn_802D6930 */
+    { 0x802D6A00u, 16, 1, e_802D6A00 },   /* fn_802D6A00 */
+    { 0x802D6A60u, 32, 3, e_802D6A60 },   /* fn_802D6A60 */
+    { 0x802D6B40u, 32, 3, e_802D6B40 },   /* fn_802D6B40 */
+    { 0x802D6BB0u, 32, 3, e_802D6BB0 },   /* fn_802D6BB0 */
+    { 0x802D6C30u, 16, 2, e_802D6C30 },   /* fn_802D6C30 */
+    { 0x802D6C80u, 16, 2, e_802D6C80 },   /* fn_802D6C80 */
+    { 0x802D6CD0u, 32, 5, e_802D6CD0 },   /* fn_802D6CD0 */
+    { 0x802D6E00u, 32, 5, e_802D6E00 },   /* fn_802D6E00 */
+    { 0x802D6F20u, 32, 4, e_802D6F20 },   /* fn_802D6F20 */
+    { 0x802D7070u, 48, 4, e_802D7070 },   /* fn_802D7070 */
+    { 0x802D7410u, 32, 6, e_802D7410 },   /* create__Q23EGG9ExceptionFUsUsUsPQ23EGG4Heapi */
+    { 0x802D7570u, 32, 7, e_802D7570 },   /* fn_802D7570 */
+    { 0x802D7680u, 32, 5, e_802D7680 },   /* __ct__Q23EGG6MsgResFPCv */
+    { 0x802D7860u, 16, 2, e_802D7860 },   /* getMsg__Q23EGG6MsgResFUlUl */
+    { 0x802D79A0u, 48, 8, e_802D79A0 },   /* getMsgEntry__Q23EGG6MsgResFUlUl */
+    { 0x802D7AA0u, 16, 3, e_802D7AA0 },   /* __ct__Q23EGG6EffectFv */
+    { 0x802D7B20u, 16, 3, e_802D7B20 },   /* __dt__Q23EGG6EffectFv */
+    { 0x802D7C50u, 16, 2, e_802D7C50 },   /* fade__Q23EGG6EffectFv */
+    { 0x802D7CE0u, 16, 2, e_802D7CE0 },   /* followFade__Q23EGG6EffectFv */
+    { 0x802D7D50u, 16, 2, e_802D7D50 },   /* kill__Q23EGG6EffectFv */
+    { 0x802D8140u, 16, 1, e_802D8140 },   /* setColor__Q23EGG6EffectFUcUcUcUcQ33EGG6Effect10ERecursive */
+    { 0x802D85C0u, 64, 3, e_802D85C0 },   /* update__Q23EGG6EffectFv */
+    { 0x802D8740u, 16, 2, e_802D8740 },   /* getEffect__Q23EGG6EffectCFv */
+    { 0x802D87C0u, 16, 2, e_802D87C0 },   /* getRootEmitter__Q23EGG6EffectCFv */
+    { 0x802D8840u, 16, 2, e_802D8840 },   /* reset__Q23EGG6EffectFv */
+    { 0x802D88D0u, 32, 4, e_802D88D0 },   /* fn_802D88D0 */
+    { 0x802D8B10u, 32, 4, e_802D8B10 },   /* fn_802D8B10 */
+    { 0x802D8B70u, 32, 4, e_802D8B70 },   /* fn_802D8B70 */
+    { 0x802D8D30u, 32, 4, e_802D8D30 },   /* fn_802D8D30 */
+    { 0x802D8DE0u, 32, 4, e_802D8DE0 },   /* fn_802D8DE0 */
+    { 0x802D8E70u, 48, 8, e_802D8E70 },   /* fn_802D8E70 */
+    { 0x802D9500u, 32, 4, e_802D9500 },   /* fn_802D9500 */
+    { 0x802D9570u, 48, 8, e_802D9570 },   /* fn_802D9570 */
+    { 0x802D9670u, 48, 7, e_802D9670 },   /* fn_802D9670 */
+    { 0x802D97B0u, 32, 4, e_802D97B0 },   /* fn_802D97B0 */
+    { 0x802D9B40u, 16, 3, e_802D9B40 },   /* fn_802D9B40 */
+    { 0x802D9CB0u, 16, 3, e_802D9CB0 },   /* fn_802D9CB0 */
+    { 0x802D9E20u, 16, 3, e_802D9E20 },   /* fn_802D9E20 */
+    { 0x802D9F90u, 16, 3, e_802D9F90 },   /* fn_802D9F90 */
+    { 0x802DA040u, 32, 6, e_802DA040 },   /* fn_802DA040 */
+    { 0x802DA310u, 32, 4, e_802DA310 },   /* fn_802DA310 */
+    { 0x802DA470u, 32, 5, e_802DA470 },   /* fn_802DA470 */
+    { 0x802DA500u, 32, 4, e_802DA500 },   /* fn_802DA500 */
+    { 0x802DA5A0u, 16, 2, e_802DA5A0 },   /* fn_802DA5A0 */
+    { 0x802DA670u, 32, 5, e_802DA670 },   /* fn_802DA670 */
+    { 0x802DA6F0u, 160, 19, e_802DA6F0 },   /* fn_802DA6F0 */
+    { 0x802DA970u, 16, 2, e_802DA970 },   /* fn_802DA970 */
+    { 0x802DAA20u, 32, 5, e_802DAA20 },   /* fn_802DAA20 */
+    { 0x802DAAE0u, 32, 4, e_802DAAE0 },   /* fn_802DAAE0 */
+    { 0x802DB030u, 16, 2, e_802DB030 },   /* fn_802DB030 */
+    { 0x802DB0F0u, 16, 2, e_802DB0F0 },   /* fn_802DB0F0 */
+    { 0x802DB1A0u, 32, 4, e_802DB1A0 },   /* fn_802DB1A0 */
+    { 0x802DB210u, 64, 6, e_802DB210 },   /* fn_802DB210 */
+    { 0x802DB4B0u, 16, 2, e_802DB4B0 },   /* fn_802DB4B0 */
+    { 0x802DB590u, 32, 4, e_802DB590 },   /* fn_802DB590 */
+    { 0x802DB6C0u, 16, 2, e_802DB6C0 },   /* fn_802DB6C0 */
+    { 0x802DB710u, 16, 2, e_802DB710 },   /* fn_802DB710 */
+    { 0x802DB750u, 48, 3, e_802DB750 },   /* fn_802DB750 */
+    { 0x802DB970u, 16, 2, e_802DB970 },   /* fn_802DB970 */
+    { 0x802DBB70u, 16, 2, e_802DBB70 },   /* fn_802DBB70 */
+    { 0x802DBC20u, 16, 3, e_802DBC20 },   /* fn_802DBC20 */
+    { 0x802E7FBCu, 32, 1, e_802E7FBC },   /* cos */
+    { 0x802E84C4u, 32, 1, e_802E84C4 },   /* sin */
+    { 0x802E8590u, 32, 1, e_802E8590 },   /* tan */
+    { 0x8076D8C0u, 16, 1, e_8076D8C0 },   /* fn_2_110 */
+    { 0x8076D8F0u, 16, 2, e_8076D8F0 },   /* fn_2_140 */
+    { 0x8076D940u, 16, 3, e_8076D940 },   /* fn_2_190 */
+    { 0x8076D9B0u, 32, 2, e_8076D9B0 },   /* fn_2_200 */
+    { 0x8076DAC0u, 16, 3, e_8076DAC0 },   /* fn_2_310 */
+    { 0x8076DB90u, 16, 1, e_8076DB90 },   /* fn_2_3E0 */
+    { 0x8076DC00u, 16, 2, e_8076DC00 },   /* fn_2_450 */
+    { 0x8076DC70u, 16, 1, e_8076DC70 },   /* fn_2_4C0 */
+    { 0x8076DF20u, 16, 1, e_8076DF20 },   /* fn_2_770 */
+    { 0x8076DF50u, 16, 3, e_8076DF50 },   /* fn_2_7A0 */
+    { 0x8076E2A0u, 16, 3, e_8076E2A0 },   /* fn_2_AF0 */
+    { 0x8076E330u, 16, 2, e_8076E330 },   /* fn_2_B80 */
+    { 0x8076E400u, 16, 3, e_8076E400 },   /* fn_2_C50 */
+    { 0x8076E4C0u, 16, 1, e_8076E4C0 },   /* fn_2_D10 */
+    { 0x8076E500u, 16, 2, e_8076E500 },   /* fn_2_D50 */
+    { 0x8076E5C0u, 16, 1, e_8076E5C0 },   /* fn_2_E10 */
+    { 0x8076E6D0u, 16, 2, e_8076E6D0 },   /* fn_2_F20 */
+    { 0x8076E7B0u, 16, 2, e_8076E7B0 },   /* fn_2_1000 */
+    { 0x8076E8D0u, 16, 2, e_8076E8D0 },   /* fn_2_1120 */
+    { 0x8076E930u, 16, 2, e_8076E930 },   /* fn_2_1180 */
+    { 0x8076EBC0u, 16, 2, e_8076EBC0 },   /* fn_2_1410 */
+    { 0x8076EC50u, 16, 2, e_8076EC50 },   /* fn_2_14A0 */
+    { 0x8076ECD0u, 16, 3, e_8076ECD0 },   /* fn_2_1520 */
+    { 0x8076EEA0u, 224, 6, e_8076EEA0 },   /* fn_2_16F0 */
+    { 0x8076F390u, 16, 2, e_8076F390 },   /* __dt__7mVec3_cFv */
+    { 0x8076F3D0u, 16, 2, e_8076F3D0 },   /* fn_2_1C20 */
+    { 0x8076F410u, 16, 1, e_8076F410 },   /* fn_2_1C60 */
+    { 0x8076F440u, 16, 3, e_8076F440 },   /* fn_2_1C90 */
+    { 0x8076F680u, 16, 3, e_8076F680 },   /* fn_2_1ED0 */
+    { 0x8076F720u, 32, 3, e_8076F720 },   /* fn_2_1F70 */
+    { 0x8076F820u, 16, 3, e_8076F820 },   /* fn_2_2070 */
+    { 0x8076F8E0u, 16, 1, e_8076F8E0 },   /* fn_2_2130 */
+    { 0x8076F920u, 16, 2, e_8076F920 },   /* fn_2_2170 */
+    { 0x8076FA30u, 16, 1, e_8076FA30 },   /* fn_2_2280 */
+    { 0x8076FFC0u, 48, 2, e_8076FFC0 },   /* fn_2_2810 */
+    { 0x80770230u, 16, 2, e_80770230 },   /* fn_2_2A80 */
+    { 0x80770DC0u, 16, 2, e_80770DC0 },   /* fn_2_3610 */
+    { 0x80771050u, 16, 2, e_80771050 },   /* fn_2_38A0 */
+    { 0x807718B0u, 16, 3, e_807718B0 },   /* fn_2_4100 */
+    { 0x80771A80u, 752, 6, e_80771A80 },   /* fn_2_42D0 */
+    { 0x80772AC0u, 16, 3, e_80772AC0 },   /* fn_2_5310 */
+    { 0x80772CD0u, 16, 3, e_80772CD0 },   /* fn_2_5520 */
+    { 0x80772D60u, 32, 2, e_80772D60 },   /* fn_2_55B0 */
+    { 0x80772F50u, 16, 1, e_80772F50 },   /* fn_2_57A0 */
+    { 0x80772F90u, 16, 2, e_80772F90 },   /* fn_2_57E0 */
+    { 0x80773090u, 16, 1, e_80773090 },   /* fn_2_58E0 */
+    { 0x807736F0u, 16, 2, e_807736F0 },   /* fn_2_5F40 */
+    { 0x80773800u, 16, 2, e_80773800 },   /* fn_2_6050 */
+    { 0x80773920u, 16, 2, e_80773920 },   /* fn_2_6170 */
+    { 0x807739C0u, 16, 2, e_807739C0 },   /* fn_2_6210 */
+    { 0x80773A30u, 16, 3, e_80773A30 },   /* fn_2_6280 */
+    { 0x80773C00u, 144, 6, e_80773C00 },   /* fn_2_6450 */
+    { 0x80773F70u, 16, 1, e_80773F70 },   /* fn_2_67C0 */
+    { 0x80773FA0u, 16, 3, e_80773FA0 },   /* fn_2_67F0 */
+    { 0x80774220u, 16, 3, e_80774220 },   /* fn_2_6A70 */
+    { 0x807742C0u, 16, 2, e_807742C0 },   /* fn_2_6B10 */
+    { 0x80774580u, 16, 3, e_80774580 },   /* fn_2_6DD0 */
+    { 0x80774670u, 16, 1, e_80774670 },   /* fn_2_6EC0 */
+    { 0x807746B0u, 16, 2, e_807746B0 },   /* fn_2_6F00 */
+    { 0x80774740u, 16, 1, e_80774740 },   /* fn_2_6F90 */
+    { 0x80774780u, 16, 2, e_80774780 },   /* fn_2_6FD0 */
+    { 0x807747E0u, 160, 6, e_807747E0 },   /* fn_2_7030 */
+    { 0x807749A0u, 32, 6, e_807749A0 },   /* fn_2_71F0 */
+    { 0x80774BA0u, 32, 4, e_80774BA0 },   /* fn_2_73F0 */
+    { 0x80774D40u, 16, 3, e_80774D40 },   /* fn_2_7590 */
+    { 0x80774E00u, 64, 12, e_80774E00 },   /* fn_2_7650 */
+    { 0x80775110u, 16, 3, e_80775110 },   /* fn_2_7960 */
+    { 0x807751D0u, 16, 2, e_807751D0 },   /* fn_2_7A20 */
+    { 0x80775280u, 16, 2, e_80775280 },   /* fn_2_7AD0 */
+    { 0x80775310u, 16, 2, e_80775310 },   /* fn_2_7B60 */
+    { 0x807758A0u, 16, 3, e_807758A0 },   /* fn_2_80F0 */
+    { 0x80775A70u, 304, 6, e_80775A70 },   /* fn_2_82C0 */
+    { 0x80776190u, 16, 1, e_80776190 },   /* fn_2_89E0 */
+    { 0x807761C0u, 16, 2, e_807761C0 },   /* fn_2_8A10 */
+    { 0x80776210u, 16, 3, e_80776210 },   /* fn_2_8A60 */
+    { 0x80776280u, 16, 2, e_80776280 },   /* fn_2_8AD0 */
+    { 0x80776300u, 16, 2, e_80776300 },   /* fn_2_8B50 */
+    { 0x80776390u, 16, 1, e_80776390 },   /* fn_2_8BE0 */
+    { 0x807763D0u, 16, 2, e_807763D0 },   /* fn_2_8C20 */
+    { 0x80776460u, 16, 1, e_80776460 },   /* fn_2_8CB0 */
+    { 0x807765B0u, 16, 1, e_807765B0 },   /* fn_2_8E00 */
+    { 0x807765E0u, 16, 3, e_807765E0 },   /* fn_2_8E30 */
+    { 0x807767E0u, 16, 3, e_807767E0 },   /* fn_2_9030 */
+    { 0x80776870u, 32, 2, e_80776870 },   /* fn_2_90C0 */
+    { 0x80776920u, 16, 3, e_80776920 },   /* fn_2_9170 */
+    { 0x807769F0u, 16, 1, e_807769F0 },   /* fn_2_9240 */
+    { 0x80776A30u, 16, 2, e_80776A30 },   /* fn_2_9280 */
+    { 0x80776AB0u, 16, 1, e_80776AB0 },   /* fn_2_9300 */
+    { 0x80776B00u, 48, 3, e_80776B00 },   /* fn_2_9350 */
+    { 0x80776F20u, 16, 2, e_80776F20 },   /* fn_2_9770 */
+    { 0x80776FA0u, 16, 2, e_80776FA0 },   /* fn_2_97F0 */
+    { 0x80777060u, 16, 3, e_80777060 },   /* fn_2_98B0 */
+    { 0x80777230u, 160, 6, e_80777230 },   /* fn_2_9A80 */
+    { 0x80777650u, 16, 3, e_80777650 },   /* fn_2_9EA0 */
+    { 0x80777850u, 16, 3, e_80777850 },   /* fn_2_A0A0 */
+    { 0x80777B20u, 16, 1, e_80777B20 },   /* fn_2_A370 */
+    { 0x80777B80u, 16, 2, e_80777B80 },   /* fn_2_A3D0 */
+    { 0x80777C10u, 16, 1, e_80777C10 },   /* fn_2_A460 */
+    { 0x80778D40u, 432, 6, e_80778D40 },   /* fn_2_B590 */
+    { 0x80779690u, 16, 1, e_80779690 },   /* fn_2_BEE0 */
+    { 0x807796C0u, 32, 4, e_807796C0 },   /* fn_2_BF10 */
+    { 0x807797B0u, 16, 3, e_807797B0 },   /* fn_2_C000 */
+    { 0x80779980u, 32, 4, e_80779980 },   /* fn_2_C1D0 */
+    { 0x80779A40u, 16, 2, e_80779A40 },   /* fn_2_C290 */
+    { 0x80779AC0u, 128, 3, e_80779AC0 },   /* fn_2_C310 */
+    { 0x80779CB0u, 16, 2, e_80779CB0 },   /* fn_2_C500 */
+    { 0x80779D40u, 16, 1, e_80779D40 },   /* fn_2_C590 */
+    { 0x8077A2A0u, 224, 6, e_8077A2A0 },   /* fn_2_CAF0 */
+    { 0x8077A790u, 16, 1, e_8077A790 },   /* fn_2_CFE0 */
+    { 0x8077A7C0u, 16, 3, e_8077A7C0 },   /* fn_2_D010 */
+    { 0x8077A9C0u, 16, 3, e_8077A9C0 },   /* fn_2_D210 */
+    { 0x8077ABB0u, 16, 3, e_8077ABB0 },   /* fn_2_D400 */
+    { 0x8077ACA0u, 16, 1, e_8077ACA0 },   /* fn_2_D4F0 */
+    { 0x8077ACE0u, 16, 2, e_8077ACE0 },   /* fn_2_D530 */
+    { 0x8077AD60u, 16, 1, e_8077AD60 },   /* fn_2_D5B0 */
+    { 0x8077AE00u, 16, 3, e_8077AE00 },   /* fn_2_D650 */
+    { 0x8077AED0u, 16, 2, e_8077AED0 },   /* fn_2_D720 */
+    { 0x8077AF50u, 16, 2, e_8077AF50 },   /* fn_2_D7A0 */
+    { 0x8077AFD0u, 16, 2, e_8077AFD0 },   /* fn_2_D820 */
+    { 0x8077B050u, 32, 5, e_8077B050 },   /* fn_2_D8A0 */
+    { 0x8077B200u, 16, 2, e_8077B200 },   /* fn_2_DA50 */
+    { 0x8077B270u, 16, 2, e_8077B270 },   /* fn_2_DAC0 */
+    { 0x8077B2D0u, 16, 2, e_8077B2D0 },   /* fn_2_DB20 */
+    { 0x8077B370u, 16, 3, e_8077B370 },   /* fn_2_DBC0 */
+    { 0x8077B520u, 272, 6, e_8077B520 },   /* fn_2_DD70 */
+    { 0x8077BB40u, 16, 1, e_8077BB40 },   /* fn_2_E390 */
+    { 0x8077BB70u, 32, 4, e_8077BB70 },   /* fn_2_E3C0 */
+    { 0x8077BDB0u, 32, 4, e_8077BDB0 },   /* fn_2_E600 */
+    { 0x8077BE70u, 16, 2, e_8077BE70 },   /* fn_2_E6C0 */
+    { 0x8077BF00u, 16, 3, e_8077BF00 },   /* fn_2_E750 */
+    { 0x8077BFC0u, 16, 1, e_8077BFC0 },   /* fn_2_E810 */
+    { 0x8077C020u, 16, 2, e_8077C020 },   /* fn_2_E870 */
+    { 0x8077C0C0u, 16, 1, e_8077C0C0 },   /* fn_2_E910 */
+    { 0x8077C6D0u, 176, 6, e_8077C6D0 },   /* fn_2_EF20 */
+    { 0x8077CB20u, 16, 1, e_8077CB20 },   /* fn_2_F370 */
+    { 0x8077CB50u, 32, 4, e_8077CB50 },   /* fn_2_F3A0 */
+    { 0x8077CC50u, 16, 2, e_8077CC50 },   /* fn_2_F4A0 */
+    { 0x8077CE00u, 32, 4, e_8077CE00 },   /* fn_2_F650 */
+    { 0x8077CEC0u, 16, 2, e_8077CEC0 },   /* fn_2_F710 */
+    { 0x8077CF70u, 32, 3, e_8077CF70 },   /* fn_2_F7C0 */
+    { 0x8077D0B0u, 16, 1, e_8077D0B0 },   /* fn_2_F900 */
+    { 0x8077D110u, 16, 2, e_8077D110 },   /* fn_2_F960 */
+    { 0x8077D1C0u, 16, 1, e_8077D1C0 },   /* fn_2_FA10 */
+    { 0x8077D210u, 128, 11, e_8077D210 },   /* fn_2_FA60 */
+    { 0x8077D3A0u, 32, 3, e_8077D3A0 },   /* fn_2_FBF0 */
+    { 0x8077D4E0u, 16, 2, e_8077D4E0 },   /* fn_2_FD30 */
+    { 0x8077D630u, 16, 2, e_8077D630 },   /* fn_2_FE80 */
+    { 0x8077D670u, 16, 2, e_8077D670 },   /* fn_2_FEC0 */
+    { 0x8077D6E0u, 16, 2, e_8077D6E0 },   /* fn_2_FF30 */
+    { 0x8077D720u, 16, 2, e_8077D720 },   /* fn_2_FF70 */
+    { 0x8077D9E0u, 32, 5, e_8077D9E0 },   /* fn_2_10230 */
+    { 0x8077DBD0u, 48, 8, e_8077DBD0 },   /* fn_2_10420 */
+    { 0x8077DDA0u, 16, 3, e_8077DDA0 },   /* fn_2_105F0 */
+    { 0x8077DF70u, 288, 6, e_8077DF70 },   /* fn_2_107C0 */
+    { 0x8077E5D0u, 16, 1, e_8077E5D0 },   /* fn_2_10E20 */
+    { 0x8077E600u, 16, 3, e_8077E600 },   /* fn_2_10E50 */
+    { 0x8077E800u, 16, 3, e_8077E800 },   /* fn_2_11050 */
+    { 0x8077E890u, 32, 2, e_8077E890 },   /* fn_2_110E0 */
+    { 0x8077E930u, 16, 3, e_8077E930 },   /* fn_2_11180 */
+    { 0x8077E9F0u, 16, 1, e_8077E9F0 },   /* fn_2_11240 */
+    { 0x8077EA30u, 16, 2, e_8077EA30 },   /* fn_2_11280 */
+    { 0x8077EAB0u, 16, 1, e_8077EAB0 },   /* fn_2_11300 */
+    { 0x8077EB60u, 48, 5, e_8077EB60 },   /* fn_2_113B0 */
+    { 0x8077ECB0u, 16, 2, e_8077ECB0 },   /* fn_2_11500 */
+    { 0x8077ED80u, 16, 2, e_8077ED80 },   /* fn_2_115D0 */
+    { 0x8077EDD0u, 16, 2, e_8077EDD0 },   /* fn_2_11620 */
+    { 0x8077EE50u, 16, 3, e_8077EE50 },   /* fn_2_116A0 */
+    { 0x8077F020u, 176, 6, e_8077F020 },   /* fn_2_11870 */
+    { 0x8077FE00u, 176, 6, e_8077FE00 },   /* fn_2_12650 */
+    { 0x80780230u, 16, 1, e_80780230 },   /* fn_2_12A80 */
+    { 0x80780260u, 16, 3, e_80780260 },   /* fn_2_12AB0 */
+    { 0x80780460u, 16, 3, e_80780460 },   /* fn_2_12CB0 */
+    { 0x807804F0u, 16, 2, e_807804F0 },   /* fn_2_12D40 */
+    { 0x80780580u, 16, 3, e_80780580 },   /* fn_2_12DD0 */
+    { 0x80780660u, 16, 1, e_80780660 },   /* fn_2_12EB0 */
+    { 0x80780740u, 16, 2, e_80780740 },   /* fn_2_12F90 */
+    { 0x80780800u, 16, 1, e_80780800 },   /* fn_2_13050 */
+    { 0x80780840u, 16, 1, e_80780840 },   /* fn_2_13090 */
+    { 0x80781360u, 288, 6, e_80781360 },   /* fn_2_13BB0 */
+    { 0x807819C0u, 16, 1, e_807819C0 },   /* fn_2_14210 */
+    { 0x807819F0u, 16, 3, e_807819F0 },   /* fn_2_14240 */
+    { 0x80781C00u, 16, 3, e_80781C00 },   /* fn_2_14450 */
+    { 0x80781D40u, 32, 4, e_80781D40 },   /* fn_2_14590 */
+    { 0x80781E50u, 16, 2, e_80781E50 },   /* fn_2_146A0 */
+    { 0x80781F50u, 16, 1, e_80781F50 },   /* fn_2_147A0 */
+    { 0x80782060u, 16, 2, e_80782060 },   /* fn_2_148B0 */
+    { 0x807820F0u, 16, 2, e_807820F0 },   /* fn_2_14940 */
+    { 0x80782180u, 16, 2, e_80782180 },   /* fn_2_149D0 */
+    { 0x80782200u, 16, 2, e_80782200 },   /* fn_2_14A50 */
+    { 0x80782280u, 16, 2, e_80782280 },   /* fn_2_14AD0 */
+    { 0x80782310u, 16, 2, e_80782310 },   /* fn_2_14B60 */
+    { 0x80782450u, 16, 3, e_80782450 },   /* fn_2_14CA0 */
+    { 0x80782600u, 224, 6, e_80782600 },   /* fn_2_14E50 */
+    { 0x80782AF0u, 16, 1, e_80782AF0 },   /* fn_2_15340 */
+    { 0x80782B20u, 16, 3, e_80782B20 },   /* fn_2_15370 */
+    { 0x80782D30u, 16, 3, e_80782D30 },   /* fn_2_15580 */
+    { 0x80782DC0u, 16, 2, e_80782DC0 },   /* fn_2_15610 */
+    { 0x80782EC0u, 16, 3, e_80782EC0 },   /* fn_2_15710 */
+    { 0x80783000u, 16, 1, e_80783000 },   /* fn_2_15850 */
+    { 0x80783060u, 16, 2, e_80783060 },   /* fn_2_158B0 */
+    { 0x807830F0u, 16, 1, e_807830F0 },   /* fn_2_15940 */
+    { 0x80783140u, 48, 8, e_80783140 },   /* fn_2_15990 */
+    { 0x807835C0u, 16, 2, e_807835C0 },   /* fn_2_15E10 */
+    { 0x807837D0u, 16, 2, e_807837D0 },   /* fn_2_16020 */
+    { 0x80783870u, 16, 2, e_80783870 },   /* fn_2_160C0 */
+    { 0x80783A40u, 16, 3, e_80783A40 },   /* fn_2_16290 */
+    { 0x80783B70u, 16, 2, e_80783B70 },   /* fn_2_163C0 */
+    { 0x80783C50u, 32, 5, e_80783C50 },   /* fn_2_164A0 */
+    { 0x80783FF0u, 16, 1, e_80783FF0 },   /* fn_2_16840 */
+    { 0x80784070u, 16, 2, e_80784070 },   /* fn_2_168C0 */
+    { 0x80786200u, 16, 3, e_80786200 },   /* fn_2_18A50 */
+    { 0x807863C0u, 1616, 6, e_807863C0 },   /* fn_2_18C10 */
+    { 0x807893A0u, 192, 6, e_807893A0 },   /* fn_2_1BBF0 */
+    { 0x80789850u, 16, 1, e_80789850 },   /* fn_2_1C0A0 */
+    { 0x80789880u, 16, 2, e_80789880 },   /* fn_2_1C0D0 */
+    { 0x807898D0u, 16, 3, e_807898D0 },   /* fn_2_1C120 */
+    { 0x80789940u, 16, 2, e_80789940 },   /* fn_2_1C190 */
+    { 0x807899D0u, 16, 3, e_807899D0 },   /* fn_2_1C220 */
+    { 0x80789AB0u, 16, 2, e_80789AB0 },   /* fn_2_1C300 */
+    { 0x80789BA0u, 16, 1, e_80789BA0 },   /* fn_2_1C3F0 */
+    { 0x80789BF0u, 16, 1, e_80789BF0 },   /* fn_2_1C440 */
+    { 0x80789C20u, 16, 3, e_80789C20 },   /* fn_2_1C470 */
+    { 0x80789E30u, 16, 3, e_80789E30 },   /* fn_2_1C680 */
+    { 0x80789EC0u, 16, 2, e_80789EC0 },   /* fn_2_1C710 */
+    { 0x80789F60u, 16, 3, e_80789F60 },   /* fn_2_1C7B0 */
+    { 0x8078A040u, 16, 1, e_8078A040 },   /* fn_2_1C890 */
+    { 0x8078A080u, 16, 2, e_8078A080 },   /* fn_2_1C8D0 */
+    { 0x8078A100u, 16, 1, e_8078A100 },   /* fn_2_1C950 */
+    { 0x8078A7D0u, 256, 6, e_8078A7D0 },   /* fn_2_1D020 */
+    { 0x8078AD70u, 16, 1, e_8078AD70 },   /* fn_2_1D5C0 */
+    { 0x8078ADA0u, 16, 3, e_8078ADA0 },   /* fn_2_1D5F0 */
+    { 0x8078AFA0u, 16, 3, e_8078AFA0 },   /* fn_2_1D7F0 */
+    { 0x8078B030u, 32, 2, e_8078B030 },   /* fn_2_1D880 */
+    { 0x8078B0E0u, 16, 3, e_8078B0E0 },   /* fn_2_1D930 */
+    { 0x8078B1C0u, 16, 1, e_8078B1C0 },   /* fn_2_1DA10 */
+    { 0x8078B200u, 16, 2, e_8078B200 },   /* fn_2_1DA50 */
+    { 0x8078B280u, 16, 1, e_8078B280 },   /* fn_2_1DAD0 */
+    { 0x8078B870u, 176, 6, e_8078B870 },   /* fn_2_1E0C0 */
+    { 0x8078D1D0u, 400, 6, e_8078D1D0 },   /* fn_2_1FA20 */
+    { 0x8078F6D0u, 656, 6, e_8078F6D0 },   /* fn_2_21F20 */
+    { 0x80791170u, 256, 6, e_80791170 },   /* fn_2_239C0 */
+    { 0x80791730u, 16, 1, e_80791730 },   /* fn_2_23F80 */
+    { 0x80791760u, 16, 3, e_80791760 },   /* fn_2_23FB0 */
+    { 0x80791960u, 16, 3, e_80791960 },   /* fn_2_241B0 */
+    { 0x807919F0u, 16, 2, e_807919F0 },   /* fn_2_24240 */
+    { 0x80791AC0u, 16, 3, e_80791AC0 },   /* fn_2_24310 */
+    { 0x80791BA0u, 16, 1, e_80791BA0 },   /* fn_2_243F0 */
+    { 0x80791BE0u, 16, 2, e_80791BE0 },   /* fn_2_24430 */
+    { 0x80791C60u, 16, 1, e_80791C60 },   /* fn_2_244B0 */
+    { 0x80791CB0u, 32, 4, e_80791CB0 },   /* fn_2_24500 */
+    { 0x80791E50u, 16, 2, e_80791E50 },   /* fn_2_246A0 */
+    { 0x80791ED0u, 16, 2, e_80791ED0 },   /* fn_2_24720 */
+    { 0x80791F40u, 32, 4, e_80791F40 },   /* fn_2_24790 */
+    { 0x807923D0u, 16, 3, e_807923D0 },   /* fn_2_24C20 */
+    { 0x807925A0u, 256, 6, e_807925A0 },   /* fn_2_24DF0 */
+    { 0x80793900u, 256, 6, e_80793900 },   /* fn_2_26150 */
+    { 0x80794D20u, 112, 6, e_80794D20 },   /* fn_2_27570 */
+    { 0x80797980u, 736, 6, e_80797980 },   /* fn_2_2A1D0 */
+    { 0x8079C710u, 688, 6, e_8079C710 },   /* fn_2_2EF60 */
+    { 0x8079F010u, 288, 6, e_8079F010 },   /* fn_2_31860 */
+    { 0x8079FE80u, 16, 1, e_8079FE80 },   /* fn_2_326D0 */
+    { 0x8079FEE0u, 16, 2, e_8079FEE0 },   /* fn_2_32730 */
+    { 0x8079FFD0u, 16, 1, e_8079FFD0 },   /* fn_2_32820 */
+    { 0x807A0010u, 16, 2, e_807A0010 },   /* fn_2_32860 */
+    { 0x807A23B0u, 432, 6, e_807A23B0 },   /* fn_2_34C00 */
+    { 0x807A2D30u, 16, 1, e_807A2D30 },   /* fn_2_35580 */
+    { 0x807A2D60u, 16, 3, e_807A2D60 },   /* fn_2_355B0 */
+    { 0x807A2F70u, 16, 3, e_807A2F70 },   /* fn_2_357C0 */
+    { 0x807A3040u, 16, 1, e_807A3040 },   /* fn_2_35890 */
+    { 0x807A3080u, 16, 1, e_807A3080 },   /* fn_2_358D0 */
+    { 0x807A37F0u, 336, 6, e_807A37F0 },   /* fn_2_36040 */
+    { 0x807A6AB0u, 608, 6, e_807A6AB0 },   /* fn_2_39300 */
+    { 0x807A85D0u, 176, 6, e_807A85D0 },   /* fn_2_3AE20 */
+    { 0x807AAE30u, 752, 6, e_807AAE30 },   /* fn_2_3D680 */
+    { 0x807ABE50u, 16, 3, e_807ABE50 },   /* fn_2_3E6A0 */
+    { 0x807AC050u, 16, 3, e_807AC050 },   /* fn_2_3E8A0 */
+    { 0x807AC0E0u, 16, 2, e_807AC0E0 },   /* fn_2_3E930 */
+    { 0x807AC2C0u, 16, 1, e_807AC2C0 },   /* fn_2_3EB10 */
+    { 0x807AC300u, 16, 2, e_807AC300 },   /* fn_2_3EB50 */
+    { 0x807AC380u, 16, 1, e_807AC380 },   /* fn_2_3EBD0 */
+    { 0x807ACEE0u, 320, 6, e_807ACEE0 },   /* fn_2_3F730 */
+    { 0x807AD600u, 16, 1, e_807AD600 },   /* fn_2_3FE50 */
+    { 0x807AD630u, 16, 2, e_807AD630 },   /* fn_2_3FE80 */
+    { 0x807AD680u, 16, 3, e_807AD680 },   /* fn_2_3FED0 */
+    { 0x807AD6F0u, 32, 5, e_807AD6F0 },   /* fn_2_3FF40 */
+    { 0x807AD810u, 16, 3, e_807AD810 },   /* fn_2_40060 */
+    { 0x807AD8D0u, 144, 8, e_807AD8D0 },   /* fn_2_40120 */
+    { 0x807AD9C0u, 16, 2, e_807AD9C0 },   /* fn_2_40210 */
+    { 0x807ADA20u, 16, 1, e_807ADA20 },   /* fn_2_40270 */
+    { 0x807AEC60u, 320, 6, e_807AEC60 },   /* fn_2_414B0 */
+    { 0x807AF4A0u, 16, 2, e_807AF4A0 },   /* fn_2_41CF0 */
+    { 0x807AF4E0u, 16, 3, e_807AF4E0 },   /* fn_2_41D30 */
+    { 0x807AF690u, 16, 3, e_807AF690 },   /* fn_2_41EE0 */
+    { 0x807AF740u, 32, 5, e_807AF740 },   /* fn_2_41F90 */
+    { 0x807AF9D0u, 16, 1, e_807AF9D0 },   /* fn_2_42220 */
+    { 0x807AFA10u, 16, 2, e_807AFA10 },   /* fn_2_42260 */
+    { 0x807AFAB0u, 16, 1, e_807AFAB0 },   /* fn_2_42300 */
+    { 0x807AFB00u, 32, 2, e_807AFB00 },   /* fn_2_42350 */
+    { 0x807B0480u, 96, 5, e_807B0480 },   /* fn_2_42CD0 */
+    { 0x807B05C0u, 96, 4, e_807B05C0 },   /* fn_2_42E10 */
+    { 0x807B0990u, 16, 2, e_807B0990 },   /* fn_2_431E0 */
+    { 0x807B0B00u, 32, 5, e_807B0B00 },   /* fn_2_43350 */
+    { 0x807B0BF0u, 16, 3, e_807B0BF0 },   /* fn_2_43440 */
+    { 0x807B0DA0u, 16, 2, e_807B0DA0 },   /* fn_2_435F0 */
+    { 0x807B0E40u, 16, 2, e_807B0E40 },   /* fn_2_43690 */
+    { 0x807B0F10u, 32, 4, e_807B0F10 },   /* fn_2_43760 */
+    { 0x807B1150u, 32, 3, e_807B1150 },   /* fn_2_439A0 */
+    { 0x807B1320u, 16, 2, e_807B1320 },   /* fn_2_43B70 */
+    { 0x807B1360u, 16, 2, e_807B1360 },   /* fn_2_43BB0 */
+    { 0x807B14E0u, 16, 2, e_807B14E0 },   /* fn_2_43D30 */
+    { 0x807B1530u, 16, 2, e_807B1530 },   /* fn_2_43D80 */
+    { 0x807B15C0u, 16, 2, e_807B15C0 },   /* fn_2_43E10 */
+    { 0x807B16C0u, 16, 3, e_807B16C0 },   /* fn_2_43F10 */
+    { 0x807B1870u, 336, 6, e_807B1870 },   /* fn_2_440C0 */
+    { 0x807B2040u, 16, 1, e_807B2040 },   /* fn_2_44890 */
+    { 0x807B2070u, 16, 2, e_807B2070 },   /* fn_2_448C0 */
+    { 0x807B20C0u, 16, 3, e_807B20C0 },   /* fn_2_44910 */
+    { 0x807B2130u, 16, 2, e_807B2130 },   /* fn_2_44980 */
+    { 0x807B21C0u, 16, 3, e_807B21C0 },   /* fn_2_44A10 */
+    { 0x807B2290u, 16, 1, e_807B2290 },   /* fn_2_44AE0 */
+    { 0x807B22D0u, 16, 2, e_807B22D0 },   /* fn_2_44B20 */
+    { 0x807B2330u, 16, 1, e_807B2330 },   /* fn_2_44B80 */
+    { 0x807B2380u, 64, 9, e_807B2380 },   /* fn_2_44BD0 */
+    { 0x807B2EB0u, 176, 6, e_807B2EB0 },   /* fn_2_45700 */
+    { 0x807B3C80u, 176, 6, e_807B3C80 },   /* fn_2_464D0 */
+    { 0x807B40B0u, 32, 7, e_807B40B0 },   /* fn_2_46900 */
+    { 0x807B4320u, 16, 2, e_807B4320 },   /* fn_2_46B70 */
+    { 0x807B44B0u, 32, 7, e_807B44B0 },   /* fn_2_46D00 */
+    { 0x807B4660u, 32, 7, e_807B4660 },   /* fn_2_46EB0 */
+    { 0x807B4D20u, 96, 6, e_807B4D20 },   /* fn_2_47570 */
+    { 0x807B51E0u, 16, 2, e_807B51E0 },   /* fn_2_47A30 */
+    { 0x807B5250u, 16, 2, e_807B5250 },   /* fn_2_47AA0 */
+    { 0x807B5300u, 16, 3, e_807B5300 },   /* fn_2_47B50 */
+    { 0x807B5480u, 16, 2, e_807B5480 },   /* fn_2_47CD0 */
+    { 0x807B54F0u, 32, 5, e_807B54F0 },   /* fn_2_47D40 */
+    { 0x807B56F0u, 48, 4, e_807B56F0 },   /* fn_2_47F40 */
+    { 0x807B58F0u, 16, 3, e_807B58F0 },   /* fn_2_48140 */
+    { 0x807B5990u, 16, 3, e_807B5990 },   /* fn_2_481E0 */
+    { 0x807B5A40u, 16, 2, e_807B5A40 },   /* fn_2_48290 */
+    { 0x807B5B00u, 32, 1, e_807B5B00 },   /* fn_2_48350 */
+    { 0x807B5F70u, 32, 4, e_807B5F70 },   /* fn_2_487C0 */
+    { 0x807B6CF0u, 32, 6, e_807B6CF0 },   /* fn_2_49540 */
+    { 0x807B6EC0u, 400, 6, e_807B6EC0 },   /* fn_2_49710 */
+    { 0x807B8510u, 112, 6, e_807B8510 },   /* fn_2_4AD60 */
+    { 0x807B8900u, 16, 3, e_807B8900 },   /* fn_2_4B150 */
+    { 0x807B9570u, 176, 6, e_807B9570 },   /* fn_2_4BDC0 */
+    { 0x807BA930u, 112, 6, e_807BA930 },   /* fn_2_4D180 */
+    { 0x807BB9F0u, 64, 4, e_807BB9F0 },   /* fn_2_4E240 */
+    { 0x807BBC80u, 16, 2, e_807BBC80 },   /* fn_2_4E4D0 */
+    { 0x807BBCD0u, 16, 2, e_807BBCD0 },   /* fn_2_4E520 */
+    { 0x807BBD50u, 16, 3, e_807BBD50 },   /* fn_2_4E5A0 */
+    { 0x807BD140u, 288, 6, e_807BD140 },   /* fn_2_4F990 */
+    { 0x807BDF00u, 64, 4, e_807BDF00 },   /* fn_2_50750 */
+    { 0x807BE750u, 64, 4, e_807BE750 },   /* fn_2_50FA0 */
+    { 0x807BF320u, 144, 6, e_807BF320 },   /* fn_2_51B70 */
+    { 0x807BFB60u, 64, 4, e_807BFB60 },   /* fn_2_523B0 */
+    { 0x807C0990u, 64, 5, e_807C0990 },   /* fn_2_531E0 */
+    { 0x807C1110u, 32, 5, e_807C1110 },   /* fn_2_53960 */
+    { 0x807C1300u, 16, 3, e_807C1300 },   /* fn_2_53B50 */
+    { 0x807C1420u, 16, 3, e_807C1420 },   /* fn_2_53C70 */
+    { 0x807C1530u, 80, 9, e_807C1530 },   /* fn_2_53D80 */
+    { 0x807C1990u, 48, 4, e_807C1990 },   /* fn_2_541E0 */
+    { 0x807C1A80u, 80, 2, e_807C1A80 },   /* fn_2_542D0 */
+    { 0x807C1C10u, 32, 3, e_807C1C10 },   /* fn_2_54460 */
+    { 0x807C1D00u, 16, 2, e_807C1D00 },   /* fn_2_54550 */
+    { 0x807C1D90u, 16, 2, e_807C1D90 },   /* fn_2_545E0 */
+    { 0x807C1DD0u, 64, 6, e_807C1DD0 },   /* fn_2_54620 */
+    { 0x807C1F10u, 96, 4, e_807C1F10 },   /* fn_2_54760 */
+    { 0x807C20E0u, 48, 8, e_807C20E0 },   /* fn_2_54930 */
+    { 0x807C2220u, 128, 4, e_807C2220 },   /* fn_2_54A70 */
+    { 0x807C24C0u, 32, 4, e_807C24C0 },   /* fn_2_54D10 */
+    { 0x807C25F0u, 16, 2, e_807C25F0 },   /* fn_2_54E40 */
+    { 0x807C26C0u, 16, 1, e_807C26C0 },   /* fn_2_54F10 */
+    { 0x807C26F0u, 16, 2, e_807C26F0 },   /* fn_2_54F40 */
+    { 0x807C2860u, 32, 2, e_807C2860 },   /* fn_2_550B0 */
+    { 0x807C2900u, 16, 2, e_807C2900 },   /* fn_2_55150 */
+    { 0x807C2990u, 16, 2, e_807C2990 },   /* fn_2_551E0 */
+    { 0x807C29F0u, 48, 4, e_807C29F0 },   /* fn_2_55240 */
+    { 0x807C2C30u, 32, 2, e_807C2C30 },   /* fn_2_55480 */
+    { 0x807C2D40u, 64, 6, e_807C2D40 },   /* fn_2_55590 */
+    { 0x807C2F30u, 16, 1, e_807C2F30 },   /* fn_2_55780 */
+    { 0x807C2F90u, 32, 4, e_807C2F90 },   /* fn_2_557E0 */
+    { 0x807C3060u, 192, 11, e_807C3060 },   /* fn_2_558B0 */
+    { 0x807C35B0u, 16, 2, e_807C35B0 },   /* fn_2_55E00 */
+    { 0x807C3600u, 16, 3, e_807C3600 },   /* fn_2_55E50 */
+    { 0x807C36D0u, 16, 1, e_807C36D0 },   /* fn_2_55F20 */
+    { 0x807C3840u, 16, 3, e_807C3840 },   /* fn_2_56090 */
+    { 0x807C38F0u, 48, 4, e_807C38F0 },   /* fn_2_56140 */
+    { 0x807C3B30u, 32, 2, e_807C3B30 },   /* fn_2_56380 */
+    { 0x807C3B90u, 16, 2, e_807C3B90 },   /* fn_2_563E0 */
+    { 0x807C3D80u, 16, 3, e_807C3D80 },   /* fn_2_565D0 */
+    { 0x807C3F20u, 16, 3, e_807C3F20 },   /* fn_2_56770 */
+    { 0x807C3F80u, 144, 6, e_807C3F80 },   /* fn_2_567D0 */
+    { 0x807C61A0u, 304, 8, e_807C61A0 },   /* fn_2_589F0 */
+    { 0x807C7980u, 224, 6, e_807C7980 },   /* fn_2_5A1D0 */
+    { 0x807C8610u, 112, 7, e_807C8610 },   /* fn_2_5AE60 */
+    { 0x807C9040u, 64, 5, e_807C9040 },   /* fn_2_5B890 */
+    { 0x807CF570u, 384, 9, e_807CF570 },   /* fn_2_61DC0 */
+    { 0x807D2230u, 240, 9, e_807D2230 },   /* fn_2_64A80 */
+    { 0x807D38F0u, 256, 9, e_807D38F0 },   /* fn_2_66140 */
+    { 0x807D4860u, 160, 8, e_807D4860 },   /* fn_2_670B0 */
+    { 0x807D4F30u, 16, 2, e_807D4F30 },   /* fn_2_67780 */
+    { 0x807D4F90u, 32, 3, e_807D4F90 },   /* fn_2_677E0 */
+    { 0x807D50F0u, 16, 2, e_807D50F0 },   /* fn_2_67940 */
+    { 0x807D51E0u, 48, 5, e_807D51E0 },   /* fn_2_67A30 */
+    { 0x807D5390u, 32, 2, e_807D5390 },   /* fn_2_67BE0 */
+    { 0x807D5470u, 32, 1, e_807D5470 },   /* fn_2_67CC0 */
+    { 0x807D55F0u, 32, 3, e_807D55F0 },   /* fn_2_67E40 */
+    { 0x807D56B0u, 16, 3, e_807D56B0 },   /* fn_2_67F00 */
+    { 0x807D5710u, 144, 6, e_807D5710 },   /* fn_2_67F60 */
+    { 0x807D5F70u, 320, 3, e_807D5F70 },   /* fn_2_687C0 */
+    { 0x807D6330u, 16, 2, e_807D6330 },   /* fn_2_68B80 */
+    { 0x807D6860u, 16, 3, e_807D6860 },   /* fn_2_690B0 */
+    { 0x807D7EB0u, 320, 6, e_807D7EB0 },   /* fn_2_6A700 */
+    { 0x807D8EB0u, 144, 7, e_807D8EB0 },   /* fn_2_6B700 */
+    { 0x807DA530u, 288, 6, e_807DA530 },   /* fn_2_6CD80 */
+    { 0x807DC690u, 160, 7, e_807DC690 },   /* fn_2_6EEE0 */
+    { 0x807DD800u, 64, 5, e_807DD800 },   /* fn_2_70050 */
+    { 0x807DFB90u, 304, 9, e_807DFB90 },   /* fn_2_723E0 */
+    { 0x807E0220u, 16, 2, e_807E0220 },   /* fn_2_72A70 */
+    { 0x807E0EC0u, 64, 5, e_807E0EC0 },   /* fn_2_73710 */
+    { 0x807E1DC0u, 64, 4, e_807E1DC0 },   /* fn_2_74610 */
+    { 0x807E2050u, 32, 5, e_807E2050 },   /* fn_2_748A0 */
+    { 0x807E2140u, 16, 3, e_807E2140 },   /* fn_2_74990 */
+    { 0x807E2290u, 64, 4, e_807E2290 },   /* fn_2_74AE0 */
+    { 0x807E2420u, 16, 2, e_807E2420 },   /* fn_2_74C70 */
+    { 0x807E2490u, 16, 1, e_807E2490 },   /* fn_2_74CE0 */
+    { 0x807E24E0u, 48, 2, e_807E24E0 },   /* fn_2_74D30 */
+    { 0x807E25D0u, 64, 2, e_807E25D0 },   /* fn_2_74E20 */
+    { 0x807E2620u, 16, 3, e_807E2620 },   /* fn_2_74E70 */
+    { 0x807E2680u, 16, 1, e_807E2680 },   /* fn_2_74ED0 */
+    { 0x807E2880u, 16, 3, e_807E2880 },   /* fn_2_750D0 */
+    { 0x807E2930u, 32, 4, e_807E2930 },   /* fn_2_75180 */
+    { 0x807E2CB0u, 16, 2, e_807E2CB0 },   /* fn_2_75500 */
+    { 0x807E2D40u, 32, 4, e_807E2D40 },   /* fn_2_75590 */
+    { 0x807E2DB0u, 32, 3, e_807E2DB0 },   /* fn_2_75600 */
+    { 0x807E2E20u, 32, 3, e_807E2E20 },   /* fn_2_75670 */
+    { 0x807E2EB0u, 32, 2, e_807E2EB0 },   /* fn_2_75700 */
+    { 0x807E2F40u, 32, 3, e_807E2F40 },   /* fn_2_75790 */
+    { 0x807E2FF0u, 32, 4, e_807E2FF0 },   /* fn_2_75840 */
+    { 0x807E3350u, 16, 3, e_807E3350 },   /* fn_2_75BA0 */
+    { 0x807E33F0u, 176, 6, e_807E33F0 },   /* fn_2_75C40 */
+    { 0x807E4B30u, 64, 4, e_807E4B30 },   /* fn_2_77380 */
+    { 0x807E4DC0u, 16, 2, e_807E4DC0 },   /* fn_2_77610 */
+    { 0x807E4E30u, 16, 3, e_807E4E30 },   /* fn_2_77680 */
+    { 0x807E6890u, 368, 6, e_807E6890 },   /* fn_2_790E0 */
+    { 0x807E7350u, 112, 6, e_807E7350 },   /* fn_2_79BA0 */
+    { 0x807E7690u, 32, 4, e_807E7690 },   /* fn_2_79EE0 */
+    { 0x807E7780u, 16, 3, e_807E7780 },   /* fn_2_79FD0 */
+    { 0x807E7870u, 48, 5, e_807E7870 },   /* fn_2_7A0C0 */
+    { 0x807E79C0u, 16, 2, e_807E79C0 },   /* fn_2_7A210 */
+    { 0x807E7A20u, 16, 1, e_807E7A20 },   /* fn_2_7A270 */
+    { 0x807E7A70u, 48, 2, e_807E7A70 },   /* fn_2_7A2C0 */
+    { 0x807E7B60u, 64, 2, e_807E7B60 },   /* fn_2_7A3B0 */
+    { 0x807E7BB0u, 64, 6, e_807E7BB0 },   /* fn_2_7A400 */
+    { 0x807E7E70u, 16, 2, e_807E7E70 },   /* fn_2_7A6C0 */
+    { 0x807E7ED0u, 32, 3, e_807E7ED0 },   /* fn_2_7A720 */
+    { 0x807E7F40u, 16, 2, e_807E7F40 },   /* fn_2_7A790 */
+    { 0x807E8020u, 32, 4, e_807E8020 },   /* fn_2_7A870 */
+    { 0x807E80E0u, 144, 6, e_807E80E0 },   /* fn_2_7A930 */
+    { 0x807E8C40u, 176, 6, e_807E8C40 },   /* fn_2_7B490 */
+    { 0x807E9840u, 64, 5, e_807E9840 },   /* fn_2_7C090 */
+    { 0x807EA600u, 80, 7, e_807EA600 },   /* fn_2_7CE50 */
+    { 0x807EAB80u, 16, 2, e_807EAB80 },   /* fn_2_7D3D0 */
+    { 0x807EABD0u, 16, 2, e_807EABD0 },   /* fn_2_7D420 */
+    { 0x807EACC0u, 16, 2, e_807EACC0 },   /* fn_2_7D510 */
+    { 0x807EAD10u, 16, 2, e_807EAD10 },   /* fn_2_7D560 */
+    { 0x807EAD60u, 16, 2, e_807EAD60 },   /* fn_2_7D5B0 */
+    { 0x807EADB0u, 32, 4, e_807EADB0 },   /* fn_2_7D600 */
+    { 0x807EB290u, 16, 2, e_807EB290 },   /* fn_2_7DAE0 */
+    { 0x807EB4D0u, 32, 5, e_807EB4D0 },   /* fn_2_7DD20 */
+    { 0x807EB9B0u, 48, 11, e_807EB9B0 },   /* fn_2_7E200 */
+    { 0x807EBB90u, 64, 5, e_807EBB90 },   /* fn_2_7E3E0 */
+    { 0x807EC180u, 16, 2, e_807EC180 },   /* fn_2_7E9D0 */
+    { 0x807EC410u, 16, 3, e_807EC410 },   /* fn_2_7EC60 */
+    { 0x807EC470u, 288, 6, e_807EC470 },   /* fn_2_7ECC0 */
+    { 0x807EEA00u, 64, 4, e_807EEA00 },   /* fn_2_81250 */
+    { 0x807EEC90u, 16, 2, e_807EEC90 },   /* fn_2_814E0 */
+    { 0x807EED00u, 48, 3, e_807EED00 },   /* fn_2_81550 */
+    { 0x807EEF30u, 48, 6, e_807EEF30 },   /* fn_2_81780 */
+    { 0x807EF070u, 64, 3, e_807EF070 },   /* fn_2_818C0 */
+    { 0x807EF1D0u, 16, 2, e_807EF1D0 },   /* fn_2_81A20 */
+    { 0x807EF220u, 32, 3, e_807EF220 },   /* fn_2_81A70 */
+    { 0x807EF2E0u, 80, 10, e_807EF2E0 },   /* fn_2_81B30 */
+    { 0x807EF490u, 16, 3, e_807EF490 },   /* fn_2_81CE0 */
+    { 0x807EF520u, 64, 4, e_807EF520 },   /* fn_2_81D70 */
+    { 0x807F0B20u, 64, 4, e_807F0B20 },   /* fn_2_83370 */
+    { 0x807F1560u, 144, 6, e_807F1560 },   /* fn_2_83DB0 */
+    { 0x807F2A00u, 112, 6, e_807F2A00 },   /* fn_2_85250 */
+    { 0x807F4C50u, 64, 4, e_807F4C50 },   /* fn_2_874A0 */
+    { 0x807F69E0u, 288, 6, e_807F69E0 },   /* fn_2_89230 */
+    { 0x807F7760u, 112, 6, e_807F7760 },   /* fn_2_89FB0 */
+    { 0x807F8730u, 112, 6, e_807F8730 },   /* fn_2_8AF80 */
+    { 0x807FAD00u, 320, 6, e_807FAD00 },   /* fn_2_8D550 */
+    { 0x807FC420u, 112, 6, e_807FC420 },   /* fn_2_8EC70 */
+    { 0x807FC760u, 16, 2, e_807FC760 },   /* fn_2_8EFB0 */
+    { 0x807FC7B0u, 32, 5, e_807FC7B0 },   /* fn_2_8F000 */
+    { 0x807FC870u, 16, 1, e_807FC870 },   /* fn_2_8F0C0 */
+    { 0x807FC8B0u, 80, 10, e_807FC8B0 },   /* fn_2_8F100 */
+    { 0x807FCB50u, 16, 3, e_807FCB50 },   /* fn_2_8F3A0 */
+    { 0x807FD500u, 112, 6, e_807FD500 },   /* fn_2_8FD50 */
+    { 0x807FE600u, 64, 5, e_807FE600 },   /* fn_2_90E50 */
+    { 0x807FFA30u, 224, 6, e_807FFA30 },   /* fn_2_92280 */
+    { 0x80800A00u, 112, 6, e_80800A00 },   /* fn_2_93250 */
+    { 0x80801990u, 112, 6, e_80801990 },   /* fn_2_941E0 */
+    { 0x80801F80u, 16, 3, e_80801F80 },   /* fn_2_947D0 */
+    { 0x80803AC0u, 224, 6, e_80803AC0 },   /* fn_2_96310 */
+    { 0x808048A0u, 176, 6, e_808048A0 },   /* fn_2_970F0 */
+    { 0x808062B0u, 144, 7, e_808062B0 },   /* fn_2_98B00 */
+    { 0x8080A710u, 352, 9, e_8080A710 },   /* fn_2_9CF60 */
+    { 0x8080E1C0u, 336, 9, e_8080E1C0 },   /* fn_2_A0A10 */
+    { 0x8080F3D0u, 80, 5, e_8080F3D0 },   /* fn_2_A1C20 */
+    { 0x80812F50u, 224, 9, e_80812F50 },   /* fn_2_A57A0 */
+    { 0x808138C0u, 32, 4, e_808138C0 },   /* fn_2_A6110 */
+    { 0x80815650u, 96, 5, e_80815650 },   /* fn_2_A7EA0 */
+    { 0x808167D0u, 144, 6, e_808167D0 },   /* fn_2_A9020 */
+    { 0x808185F0u, 192, 8, e_808185F0 },   /* fn_2_AAE40 */
+    { 0x80818F70u, 16, 3, e_80818F70 },   /* fn_2_AB7C0 */
+    { 0x8081B170u, 144, 7, e_8081B170 },   /* fn_2_AD9C0 */
+    { 0x8081C150u, 32, 2, e_8081C150 },   /* fn_2_AE9A0 */
+    { 0x8081C2A0u, 112, 7, e_8081C2A0 },   /* fn_2_AEAF0 */
+    { 0x8081C840u, 16, 3, e_8081C840 },   /* fn_2_AF090 */
+    { 0x8081C8D0u, 32, 2, e_8081C8D0 },   /* fn_2_AF120 */
+    { 0x8081C980u, 16, 2, e_8081C980 },   /* fn_2_AF1D0 */
+    { 0x8081C9D0u, 48, 2, e_8081C9D0 },   /* fn_2_AF220 */
+    { 0x8081CAE0u, 48, 4, e_8081CAE0 },   /* fn_2_AF330 */
+    { 0x8081CC30u, 16, 3, e_8081CC30 },   /* fn_2_AF480 */
+    { 0x8081CCC0u, 64, 4, e_8081CCC0 },   /* fn_2_AF510 */
+    { 0x8081D5C0u, 112, 6, e_8081D5C0 },   /* fn_2_AFE10 */
+    { 0x8081DA20u, 16, 2, e_8081DA20 },   /* fn_2_B0270 */
+    { 0x8081DA70u, 16, 1, e_8081DA70 },   /* fn_2_B02C0 */
+    { 0x8081DB10u, 16, 1, e_8081DB10 },   /* fn_2_B0360 */
+    { 0x8081DB70u, 48, 2, e_8081DB70 },   /* fn_2_B03C0 */
+    { 0x8081DD40u, 32, 2, e_8081DD40 },   /* fn_2_B0590 */
+    { 0x8081DE70u, 16, 2, e_8081DE70 },   /* fn_2_B06C0 */
+    { 0x8081DF00u, 16, 2, e_8081DF00 },   /* fn_2_B0750 */
+    { 0x8081DF90u, 16, 2, e_8081DF90 },   /* fn_2_B07E0 */
+    { 0x8081E0F0u, 16, 2, e_8081E0F0 },   /* fn_2_B0940 */
+    { 0x8081E160u, 16, 3, e_8081E160 },   /* fn_2_B09B0 */
+    { 0x8081E240u, 16, 2, e_8081E240 },   /* fn_2_B0A90 */
+    { 0x8081E2B0u, 16, 3, e_8081E2B0 },   /* fn_2_B0B00 */
+    { 0x8081E320u, 16, 3, e_8081E320 },   /* fn_2_B0B70 */
+    { 0x8081E440u, 16, 3, e_8081E440 },   /* fn_2_B0C90 */
+    { 0x8081E4A0u, 288, 6, e_8081E4A0 },   /* fn_2_B0CF0 */
+    { 0x8081EB90u, 16, 3, e_8081EB90 },   /* fn_2_B13E0 */
+    { 0x8081EC30u, 32, 3, e_8081EC30 },   /* fn_2_B1480 */
+    { 0x8081EDC0u, 48, 4, e_8081EDC0 },   /* fn_2_B1610 */
+    { 0x8081EEC0u, 48, 3, e_8081EEC0 },   /* fn_2_B1710 */
+    { 0x8081EFB0u, 16, 1, e_8081EFB0 },   /* fn_2_B1800 */
+    { 0x8081F000u, 48, 2, e_8081F000 },   /* fn_2_B1850 */
+    { 0x8081F0F0u, 64, 2, e_8081F0F0 },   /* fn_2_B1940 */
+    { 0x8081F1A0u, 32, 4, e_8081F1A0 },   /* KazanRock_Explode */
+    { 0x8081F270u, 32, 1, e_8081F270 },   /* fn_2_B1AC0 */
+    { 0x8081F320u, 48, 1, e_8081F320 },   /* fn_2_B1B70 */
+    { 0x8081F3D0u, 32, 1, e_8081F3D0 },   /* fn_2_B1C20 */
+    { 0x8081F430u, 32, 3, e_8081F430 },   /* KazanRock_OriginalCollisionCallback */
+    { 0x8081F540u, 16, 1, e_8081F540 },   /* fn_2_B1D90 */
+    { 0x8081F6A0u, 32, 3, e_8081F6A0 },   /* fn_2_B1EF0 */
+    { 0x8081F8C0u, 32, 3, e_8081F8C0 },   /* fn_2_B2110 */
+    { 0x8081FA00u, 16, 3, e_8081FA00 },   /* fn_2_B2250 */
+    { 0x8081FA80u, 112, 6, e_8081FA80 },   /* fn_2_B22D0 */
+    { 0x80820650u, 144, 6, e_80820650 },   /* fn_2_B2EA0 */
+    { 0x80820A50u, 32, 7, e_80820A50 },   /* fn_2_B32A0 */
+    { 0x80820BC0u, 16, 2, e_80820BC0 },   /* fn_2_B3410 */
+    { 0x80820E00u, 80, 9, e_80820E00 },   /* fn_2_B3650 */
+    { 0x80820F40u, 16, 3, e_80820F40 },   /* fn_2_B3790 */
+    { 0x80820F90u, 16, 3, e_80820F90 },   /* fn_2_B37E0 */
+    { 0x80820FF0u, 16, 3, e_80820FF0 },   /* fn_2_B3840 */
+    { 0x80821150u, 32, 5, e_80821150 },   /* fn_2_B39A0 */
+    { 0x808211E0u, 16, 2, e_808211E0 },   /* fn_2_B3A30 */
+    { 0x80821270u, 16, 3, e_80821270 },   /* fn_2_B3AC0 */
+    { 0x808212D0u, 128, 13, e_808212D0 },   /* fn_2_B3B20 */
+    { 0x80821640u, 64, 6, e_80821640 },   /* fn_2_B3E90 */
+    { 0x80821840u, 16, 1, e_80821840 },   /* fn_2_B4090 */
+    { 0x80821880u, 16, 2, e_80821880 },   /* fn_2_B40D0 */
+    { 0x80821960u, 16, 2, e_80821960 },   /* fn_2_B41B0 */
+    { 0x808219D0u, 32, 6, e_808219D0 },   /* fn_2_B4220 */
+    { 0x80821B00u, 144, 6, e_80821B00 },   /* fn_2_B4350 */
+    { 0x80821F00u, 16, 2, e_80821F00 },   /* fn_2_B4750 */
+    { 0x80821F90u, 16, 3, e_80821F90 },   /* fn_2_B47E0 */
+    { 0x80823BF0u, 224, 8, e_80823BF0 },   /* fn_2_B6440 */
+    { 0x80826100u, 144, 6, e_80826100 },   /* fn_2_B8950 */
+    { 0x808274D0u, 176, 6, e_808274D0 },   /* fn_2_B9D20 */
+    { 0x80827DA0u, 64, 4, e_80827DA0 },   /* fn_2_BA5F0 */
+    { 0x80829500u, 208, 9, e_80829500 },   /* fn_2_BBD50 */
+    { 0x8082B880u, 288, 7, e_8082B880 },   /* fn_2_BE0D0 */
+    { 0x8082CA30u, 64, 4, e_8082CA30 },   /* fn_2_BF280 */
+    { 0x8082DC80u, 112, 7, e_8082DC80 },   /* fn_2_C04D0 */
+    { 0x8082E200u, 16, 3, e_8082E200 },   /* fn_2_C0A50 */
+    { 0x8082E4A0u, 32, 3, e_8082E4A0 },   /* fn_2_C0CF0 */
+    { 0x8082E590u, 64, 7, e_8082E590 },   /* fn_2_C0DE0 */
+    { 0x8082E6D0u, 32, 7, e_8082E6D0 },   /* fn_2_C0F20 */
+    { 0x8082EA40u, 32, 4, e_8082EA40 },   /* fn_2_C1290 */
+    { 0x8082EB30u, 32, 5, e_8082EB30 },   /* fn_2_C1380 */
+    { 0x8082EC30u, 16, 2, e_8082EC30 },   /* fn_2_C1480 */
+    { 0x8082ECC0u, 16, 3, e_8082ECC0 },   /* fn_2_C1510 */
+    { 0x8082ED70u, 32, 6, e_8082ED70 },   /* fn_2_C15C0 */
+    { 0x8082EEB0u, 32, 3, e_8082EEB0 },   /* fn_2_C1700 */
+    { 0x8082EFE0u, 48, 4, e_8082EFE0 },   /* fn_2_C1830 */
+    { 0x8082F130u, 16, 2, e_8082F130 },   /* fn_2_C1980 */
+    { 0x8082F190u, 16, 2, e_8082F190 },   /* fn_2_C19E0 */
+    { 0x8082F210u, 16, 1, e_8082F210 },   /* fn_2_C1A60 */
+    { 0x8082F260u, 48, 2, e_8082F260 },   /* fn_2_C1AB0 */
+    { 0x8082F350u, 80, 2, e_8082F350 },   /* fn_2_C1BA0 */
+    { 0x8082F3D0u, 64, 6, e_8082F3D0 },   /* fn_2_C1C20 */
+    { 0x8082F630u, 16, 2, e_8082F630 },   /* fn_2_C1E80 */
+    { 0x8082F6F0u, 16, 1, e_8082F6F0 },   /* fn_2_C1F40 */
+    { 0x8082F870u, 16, 2, e_8082F870 },   /* fn_2_C20C0 */
+    { 0x8082FB10u, 16, 2, e_8082FB10 },   /* fn_2_C2360 */
+    { 0x8082FBC0u, 32, 3, e_8082FBC0 },   /* fn_2_C2410 */
+    { 0x8082FC50u, 16, 2, e_8082FC50 },   /* fn_2_C24A0 */
+    { 0x8082FF00u, 16, 2, e_8082FF00 },   /* fn_2_C2750 */
+    { 0x8082FF80u, 192, 8, e_8082FF80 },   /* fn_2_C27D0 */
+    { 0x80830BC0u, 16, 1, e_80830BC0 },   /* fn_2_C3410 */
+    { 0x80832600u, 512, 9, e_80832600 },   /* fn_2_C4E50 */
+    { 0x808340A0u, 224, 7, e_808340A0 },   /* fn_2_C68F0 */
+    { 0x80835610u, 144, 6, e_80835610 },   /* fn_2_C7E60 */
+    { 0x808363D0u, 112, 6, e_808363D0 },   /* fn_2_C8C20 */
+    { 0x80836710u, 16, 2, e_80836710 },   /* fn_2_C8F60 */
+    { 0x80836790u, 32, 3, e_80836790 },   /* fn_2_C8FE0 */
+    { 0x80836840u, 80, 4, e_80836840 },   /* fn_2_C9090 */
+    { 0x808369C0u, 16, 2, e_808369C0 },   /* fn_2_C9210 */
+    { 0x80836A20u, 80, 2, e_80836A20 },   /* fn_2_C9270 */
+    { 0x80836AA0u, 16, 3, e_80836AA0 },   /* fn_2_C92F0 */
+    { 0x80836C20u, 16, 3, e_80836C20 },   /* fn_2_C9470 */
+    { 0x80837BF0u, 160, 6, e_80837BF0 },   /* fn_2_CA440 */
+    { 0x80838FC0u, 112, 6, e_80838FC0 },   /* fn_2_CB810 */
+    { 0x8083A2E0u, 144, 6, e_8083A2E0 },   /* fn_2_CCB30 */
+    { 0x8083B1B0u, 112, 6, e_8083B1B0 },   /* fn_2_CDA00 */
+    { 0x8083BCF0u, 112, 6, e_8083BCF0 },   /* fn_2_CE540 */
+    { 0x8083C1D0u, 64, 6, e_8083C1D0 },   /* fn_2_CEA20 */
+    { 0x8083C470u, 16, 2, e_8083C470 },   /* fn_2_CECC0 */
+    { 0x8083C550u, 16, 1, e_8083C550 },   /* fn_2_CEDA0 */
+    { 0x8083C580u, 16, 2, e_8083C580 },   /* fn_2_CEDD0 */
+    { 0x8083C5F0u, 16, 1, e_8083C5F0 },   /* fn_2_CEE40 */
+    { 0x8083C650u, 80, 2, e_8083C650 },   /* fn_2_CEEA0 */
+    { 0x8083C6F0u, 112, 2, e_8083C6F0 },   /* fn_2_CEF40 */
+    { 0x8083C7F0u, 112, 2, e_8083C7F0 },   /* fn_2_CF040 */
+    { 0x8083C8E0u, 144, 4, e_8083C8E0 },   /* fn_2_CF130 */
+    { 0x8083C9E0u, 32, 3, e_8083C9E0 },   /* fn_2_CF230 */
+    { 0x8083CA90u, 80, 9, e_8083CA90 },   /* fn_2_CF2E0 */
+    { 0x8083CC60u, 64, 5, e_8083CC60 },   /* fn_2_CF4B0 */
+    { 0x8083CD90u, 48, 5, e_8083CD90 },   /* fn_2_CF5E0 */
+    { 0x8083CF10u, 80, 6, e_8083CF10 },   /* fn_2_CF760 */
+    { 0x8083D1C0u, 64, 10, e_8083D1C0 },   /* fn_2_CFA10 */
+    { 0x8083D620u, 16, 1, e_8083D620 },   /* fn_2_CFE70 */
+    { 0x8083DEB0u, 16, 2, e_8083DEB0 },   /* fn_2_D0700 */
+    { 0x8083DF60u, 32, 2, e_8083DF60 },   /* fn_2_D07B0 */
+    { 0x8083E630u, 16, 3, e_8083E630 },   /* fn_2_D0E80 */
+    { 0x8083E700u, 144, 6, e_8083E700 },   /* fn_2_D0F50 */
+    { 0x8083EB00u, 16, 2, e_8083EB00 },   /* fn_2_D1350 */
+    { 0x8083EB70u, 16, 3, e_8083EB70 },   /* fn_2_D13C0 */
+    { 0x8083EBD0u, 16, 1, e_8083EBD0 },   /* fn_2_D1420 */
+    { 0x8083EC30u, 32, 4, e_8083EC30 },   /* fn_2_D1480 */
+    { 0x8083ED40u, 48, 6, e_8083ED40 },   /* fn_2_D1590 */
+    { 0x8083EE90u, 16, 2, e_8083EE90 },   /* fn_2_D16E0 */
+    { 0x8083EF20u, 16, 1, e_8083EF20 },   /* fn_2_D1770 */
+    { 0x8083EF50u, 16, 1, e_8083EF50 },   /* fn_2_D17A0 */
+    { 0x8083EF80u, 80, 6, e_8083EF80 },   /* fn_2_D17D0 */
+    { 0x8083F120u, 32, 2, e_8083F120 },   /* fn_2_D1970 */
+    { 0x8083F1A0u, 64, 5, e_8083F1A0 },   /* fn_2_D19F0 */
+    { 0x8083F3C0u, 32, 3, e_8083F3C0 },   /* fn_2_D1C10 */
+    { 0x8083F580u, 48, 7, e_8083F580 },   /* fn_2_D1DD0 */
+    { 0x8083F860u, 32, 4, e_8083F860 },   /* fn_2_D20B0 */
+    { 0x8083F9C0u, 16, 2, e_8083F9C0 },   /* fn_2_D2210 */
+    { 0x8083FA20u, 48, 5, e_8083FA20 },   /* fn_2_D2270 */
+    { 0x8083FB90u, 16, 3, e_8083FB90 },   /* fn_2_D23E0 */
+    { 0x8083FC40u, 64, 4, e_8083FC40 },   /* fn_2_D2490 */
+    { 0x80841740u, 144, 6, e_80841740 },   /* fn_2_D3F90 */
+    { 0x80841B40u, 32, 4, e_80841B40 },   /* fn_2_D4390 */
+    { 0x80841BE0u, 48, 3, e_80841BE0 },   /* fn_2_D4430 */
+    { 0x80841F00u, 32, 2, e_80841F00 },   /* fn_2_D4750 */
+    { 0x80841FF0u, 16, 1, e_80841FF0 },   /* fn_2_D4840 */
+    { 0x80842070u, 16, 1, e_80842070 },   /* fn_2_D48C0 */
+    { 0x808422A0u, 32, 3, e_808422A0 },   /* fn_2_D4AF0 */
+    { 0x80842520u, 144, 6, e_80842520 },   /* fn_2_D4D70 */
+    { 0x80842920u, 32, 5, e_80842920 },   /* fn_2_D5170 */
+    { 0x80842AE0u, 16, 3, e_80842AE0 },   /* fn_2_D5330 */
+    { 0x80842D10u, 64, 5, e_80842D10 },   /* fn_2_D5560 */
+    { 0x80842EA0u, 48, 5, e_80842EA0 },   /* fn_2_D56F0 */
+    { 0x80842F40u, 48, 2, e_80842F40 },   /* fn_2_D5790 */
+    { 0x80843000u, 144, 21, e_80843000 },   /* fn_2_D5850 */
+    { 0x80843120u, 144, 21, e_80843120 },   /* fn_2_D5970 */
+    { 0x80843240u, 16, 3, e_80843240 },   /* fn_2_D5A90 */
+    { 0x80843290u, 32, 4, e_80843290 },   /* fn_2_D5AE0 */
+    { 0x808432F0u, 32, 5, e_808432F0 },   /* fn_2_D5B40 */
+    { 0x80843390u, 16, 3, e_80843390 },   /* fn_2_D5BE0 */
+    { 0x808433E0u, 16, 3, e_808433E0 },   /* fn_2_D5C30 */
+    { 0x80843430u, 32, 4, e_80843430 },   /* fn_2_D5C80 */
+    { 0x808434C0u, 32, 4, e_808434C0 },   /* fn_2_D5D10 */
+    { 0x80843540u, 32, 4, e_80843540 },   /* fn_2_D5D90 */
+    { 0x808435B0u, 48, 9, e_808435B0 },   /* fn_2_D5E00 */
+    { 0x80843640u, 288, 12, e_80843640 },   /* fn_2_D5E90 */
+    { 0x80843850u, 16, 3, e_80843850 },   /* fn_2_D60A0 */
+    { 0x808438A0u, 16, 3, e_808438A0 },   /* fn_2_D60F0 */
+    { 0x80843900u, 16, 3, e_80843900 },   /* fn_2_D6150 */
+    { 0x80843BC0u, 32, 2, e_80843BC0 },   /* fn_2_D6410 */
+    { 0x80843C30u, 32, 2, e_80843C30 },   /* fn_2_D6480 */
+    { 0x80843CA0u, 16, 2, e_80843CA0 },   /* fn_2_D64F0 */
+    { 0x80843D10u, 64, 6, e_80843D10 },   /* fn_2_D6560 */
+    { 0x80844200u, 544, 5, e_80844200 },   /* fn_2_D6A50 */
+    { 0x808442A0u, 32, 4, e_808442A0 },   /* fn_2_D6AF0 */
+    { 0x808443E0u, 16, 2, e_808443E0 },   /* fn_2_D6C30 */
+    { 0x80844490u, 16, 1, e_80844490 },   /* fn_2_D6CE0 */
+    { 0x808444C0u, 16, 1, e_808444C0 },   /* fn_2_D6D10 */
+    { 0x80844520u, 16, 2, e_80844520 },   /* fn_2_D6D70 */
+    { 0x808445B0u, 32, 4, e_808445B0 },   /* fn_2_D6E00 */
+    { 0x808446E0u, 16, 3, e_808446E0 },   /* fn_2_D6F30 */
+    { 0x808447A0u, 144, 6, e_808447A0 },   /* fn_2_D6FF0 */
+    { 0x80845550u, 144, 6, e_80845550 },   /* fn_2_D7DA0 */
+    { 0x808464F0u, 144, 6, e_808464F0 },   /* fn_2_D8D40 */
+    { 0x80848110u, 256, 6, e_80848110 },   /* fn_2_DA960 */
+    { 0x80849560u, 176, 6, e_80849560 },   /* fn_2_DBDB0 */
+    { 0x8084A190u, 112, 6, e_8084A190 },   /* fn_2_DC9E0 */
+    { 0x8084A4D0u, 32, 4, e_8084A4D0 },   /* fn_2_DCD20 */
+    { 0x8084A5A0u, 96, 8, e_8084A5A0 },   /* fn_2_DCDF0 */
+    { 0x8084A830u, 48, 4, e_8084A830 },   /* fn_2_DD080 */
+    { 0x8084A980u, 64, 3, e_8084A980 },   /* fn_2_DD1D0 */
+    { 0x8084AB50u, 16, 2, e_8084AB50 },   /* fn_2_DD3A0 */
+    { 0x8084ABE0u, 144, 4, e_8084ABE0 },   /* fn_2_DD430 */
+    { 0x8084ACE0u, 32, 3, e_8084ACE0 },   /* fn_2_DD530 */
+    { 0x8084ADC0u, 32, 4, e_8084ADC0 },   /* fn_2_DD610 */
+    { 0x8084B0A0u, 32, 3, e_8084B0A0 },   /* fn_2_DD8F0 */
+    { 0x8084B100u, 16, 1, e_8084B100 },   /* fn_2_DD950 */
+    { 0x8084B180u, 48, 6, e_8084B180 },   /* fn_2_DD9D0 */
+    { 0x8084B230u, 48, 8, e_8084B230 },   /* fn_2_DDA80 */
+    { 0x8084B3D0u, 48, 7, e_8084B3D0 },   /* fn_2_DDC20 */
+    { 0x8084B5E0u, 32, 4, e_8084B5E0 },   /* fn_2_DDE30 */
+    { 0x8084B740u, 32, 2, e_8084B740 },   /* fn_2_DDF90 */
+    { 0x8084B850u, 32, 4, e_8084B850 },   /* fn_2_DE0A0 */
+    { 0x8084B9B0u, 32, 2, e_8084B9B0 },   /* fn_2_DE200 */
+    { 0x8084BA90u, 32, 4, e_8084BA90 },   /* fn_2_DE2E0 */
+    { 0x8084BB60u, 320, 6, e_8084BB60 },   /* fn_2_DE3B0 */
+    { 0x8084C310u, 16, 3, e_8084C310 },   /* fn_2_DEB60 */
+    { 0x8084C3B0u, 64, 7, e_8084C3B0 },   /* fn_2_DEC00 */
+    { 0x8084C660u, 32, 2, e_8084C660 },   /* fn_2_DEEB0 */
+    { 0x8084C790u, 16, 2, e_8084C790 },   /* fn_2_DEFE0 */
+    { 0x8084C800u, 16, 2, e_8084C800 },   /* fn_2_DF050 */
+    { 0x8084C850u, 48, 2, e_8084C850 },   /* fn_2_DF0A0 */
+    { 0x8084C950u, 48, 2, e_8084C950 },   /* fn_2_DF1A0 */
+    { 0x8084CA40u, 48, 2, e_8084CA40 },   /* fn_2_DF290 */
+    { 0x8084CB40u, 32, 3, e_8084CB40 },   /* fn_2_DF390 */
+    { 0x8084CC00u, 32, 3, e_8084CC00 },   /* fn_2_DF450 */
+    { 0x8084CCC0u, 64, 10, e_8084CCC0 },   /* fn_2_DF510 */
+    { 0x8084CE00u, 32, 5, e_8084CE00 },   /* fn_2_DF650 */
+    { 0x8084CEB0u, 64, 10, e_8084CEB0 },   /* fn_2_DF700 */
+    { 0x8084D0F0u, 48, 7, e_8084D0F0 },   /* fn_2_DF940 */
+    { 0x8084D350u, 16, 2, e_8084D350 },   /* fn_2_DFBA0 */
+    { 0x8084D9C0u, 16, 3, e_8084D9C0 },   /* fn_2_E0210 */
+    { 0x8084DA70u, 176, 6, e_8084DA70 },   /* fn_2_E02C0 */
+    { 0x8084DF30u, 16, 3, e_8084DF30 },   /* fn_2_E0780 */
+    { 0x8084DFE0u, 64, 6, e_8084DFE0 },   /* fn_2_E0830 */
+    { 0x8084E220u, 32, 2, e_8084E220 },   /* fn_2_E0A70 */
+    { 0x8084E340u, 16, 2, e_8084E340 },   /* fn_2_E0B90 */
+    { 0x8084E3A0u, 16, 2, e_8084E3A0 },   /* fn_2_E0BF0 */
+    { 0x8084E3F0u, 16, 2, e_8084E3F0 },   /* fn_2_E0C40 */
+    { 0x8084E450u, 16, 2, e_8084E450 },   /* fn_2_E0CA0 */
+    { 0x8084E4C0u, 16, 2, e_8084E4C0 },   /* fn_2_E0D10 */
+    { 0x8084E590u, 16, 3, e_8084E590 },   /* fn_2_E0DE0 */
+    { 0x8084E640u, 64, 4, e_8084E640 },   /* fn_2_E0E90 */
+    { 0x8084EAD0u, 112, 6, e_8084EAD0 },   /* fn_2_E1320 */
+    { 0x80850CC0u, 112, 6, e_80850CC0 },   /* fn_2_E3510 */
+    { 0x808518B0u, 64, 4, e_808518B0 },   /* fn_2_E4100 */
+    { 0x80851E10u, 48, 1, e_80851E10 },   /* fn_2_E4660 */
+    { 0x808521A0u, 32, 1, e_808521A0 },   /* fn_2_E49F0 */
+    { 0x80852E10u, 112, 6, e_80852E10 },   /* fn_2_E5660 */
+    { 0x80853EA0u, 144, 6, e_80853EA0 },   /* fn_2_E66F0 */
+    { 0x80854BC0u, 112, 6, e_80854BC0 },   /* fn_2_E7410 */
+    { 0x808551D0u, 96, 1, e_808551D0 },   /* fn_2_E7A20 */
+    { 0x808552F0u, 16, 3, e_808552F0 },   /* fn_2_E7B40 */
+    { 0x80855390u, 32, 4, e_80855390 },   /* fn_2_E7BE0 */
+    { 0x808554C0u, 16, 2, e_808554C0 },   /* fn_2_E7D10 */
+    { 0x80855540u, 16, 2, e_80855540 },   /* fn_2_E7D90 */
+    { 0x80855580u, 16, 1, e_80855580 },   /* fn_2_E7DD0 */
+    { 0x808555B0u, 16, 1, e_808555B0 },   /* fn_2_E7E00 */
+    { 0x808555E0u, 80, 3, e_808555E0 },   /* fn_2_E7E30 */
+    { 0x80855680u, 48, 2, e_80855680 },   /* fn_2_E7ED0 */
+    { 0x808557D0u, 32, 3, e_808557D0 },   /* fn_2_E8020 */
+    { 0x80855880u, 32, 1, e_80855880 },   /* fn_2_E80D0 */
+    { 0x808558F0u, 16, 2, e_808558F0 },   /* fn_2_E8140 */
+    { 0x80855B20u, 16, 2, e_80855B20 },   /* fn_2_E8370 */
+    { 0x80855E10u, 16, 1, e_80855E10 },   /* fn_2_E8660 */
+    { 0x80855E60u, 16, 3, e_80855E60 },   /* fn_2_E86B0 */
+    { 0x80855ED0u, 32, 2, e_80855ED0 },   /* fn_2_E8720 */
+    { 0x80856030u, 32, 3, e_80856030 },   /* fn_2_E8880 */
+    { 0x808560C0u, 48, 4, e_808560C0 },   /* fn_2_E8910 */
+    { 0x808562D0u, 48, 4, e_808562D0 },   /* fn_2_E8B20 */
+    { 0x80856470u, 16, 2, e_80856470 },   /* fn_2_E8CC0 */
+    { 0x808564C0u, 16, 2, e_808564C0 },   /* fn_2_E8D10 */
+    { 0x80856510u, 16, 3, e_80856510 },   /* fn_2_E8D60 */
+    { 0x80856660u, 16, 3, e_80856660 },   /* fn_2_E8EB0 */
+    { 0x80856770u, 16, 3, e_80856770 },   /* fn_2_E8FC0 */
+    { 0x80856C10u, 16, 3, e_80856C10 },   /* fn_2_E9460 */
+    { 0x80856CA0u, 240, 7, e_80856CA0 },   /* fn_2_E94F0 */
+    { 0x80857DB0u, 144, 6, e_80857DB0 },   /* fn_2_EA600 */
+    { 0x80859050u, 144, 6, e_80859050 },   /* fn_2_EB8A0 */
+    { 0x8085B800u, 176, 6, e_8085B800 },   /* fn_2_EE050 */
+    { 0x8085C850u, 64, 5, e_8085C850 },   /* fn_2_EF0A0 */
+    { 0x8085D240u, 112, 6, e_8085D240 },   /* fn_2_EFA90 */
+    { 0x8085D6F0u, 16, 2, e_8085D6F0 },   /* __ct__Q23m3d8anmChr_cFv */
+    { 0x8085EE60u, 176, 6, e_8085EE60 },   /* fn_2_F16B0 */
+    { 0x808601A0u, 112, 6, e_808601A0 },   /* fn_2_F29F0 */
+    { 0x808604E0u, 16, 2, e_808604E0 },   /* fn_2_F2D30 */
+    { 0x808606A0u, 16, 3, e_808606A0 },   /* __ct__Q23m3d11anmTexSrt_cFv */
+    { 0x80860710u, 16, 3, e_80860710 },   /* fn_2_F2F60 */
+    { 0x80860780u, 112, 10, e_80860780 },   /* fn_2_F2FD0 */
+    { 0x808609E0u, 160, 19, e_808609E0 },   /* fn_2_F3230 */
+    { 0x80861210u, 112, 19, e_80861210 },   /* fn_2_F3A60 */
+    { 0x80861980u, 80, 7, e_80861980 },   /* fn_2_F41D0 */
+    { 0x80861AE0u, 16, 3, e_80861AE0 },   /* fn_2_F4330 */
+    { 0x80862570u, 112, 6, e_80862570 },   /* fn_2_F4DC0 */
+    { 0x80863400u, 64, 5, e_80863400 },   /* fn_2_F5C50 */
+    { 0x80864690u, 144, 6, e_80864690 },   /* fn_2_F6EE0 */
+    { 0x808659F0u, 192, 8, e_808659F0 },   /* fn_2_F8240 */
+    { 0x80866F50u, 144, 6, e_80866F50 },   /* fn_2_F97A0 */
+    { 0x80867E00u, 128, 6, e_80867E00 },   /* fn_2_FA650 */
+    { 0x80869AD0u, 224, 6, e_80869AD0 },   /* fn_2_FC320 */
+    { 0x8086C410u, 224, 6, e_8086C410 },   /* fn_2_FEC60 */
+    { 0x8086DF80u, 176, 7, e_8086DF80 },   /* fn_2_1007D0 */
+    { 0x8086E6D0u, 80, 7, e_8086E6D0 },   /* fn_2_100F20 */
+    { 0x8086E880u, 16, 2, e_8086E880 },   /* fn_2_1010D0 */
+    { 0x8086EC20u, 64, 4, e_8086EC20 },   /* fn_2_101470 */
+    { 0x8086F090u, 16, 3, e_8086F090 },   /* fn_2_1018E0 */
+    { 0x8086F120u, 16, 3, e_8086F120 },   /* fn_2_101970 */
+    { 0x8086F1A0u, 16, 2, e_8086F1A0 },   /* fn_2_1019F0 */
+    { 0x8086F200u, 16, 3, e_8086F200 },   /* fn_2_101A50 */
+    { 0x8086F2A0u, 16, 2, e_8086F2A0 },   /* fn_2_101AF0 */
+    { 0x8086F4A0u, 16, 2, e_8086F4A0 },   /* fn_2_101CF0 */
+    { 0x8086F4F0u, 32, 5, e_8086F4F0 },   /* fn_2_101D40 */
+    { 0x8086F610u, 48, 4, e_8086F610 },   /* fn_2_101E60 */
+    { 0x8086F750u, 16, 2, e_8086F750 },   /* fn_2_101FA0 */
+    { 0x8086F7A0u, 192, 5, e_8086F7A0 },   /* fn_2_101FF0 */
+    { 0x8086F960u, 16, 2, e_8086F960 },   /* fn_2_1021B0 */
+    { 0x8086FA10u, 16, 3, e_8086FA10 },   /* fn_2_102260 */
+    { 0x8086FB00u, 16, 2, e_8086FB00 },   /* fn_2_102350 */
+    { 0x8086FB50u, 16, 2, e_8086FB50 },   /* fn_2_1023A0 */
+    { 0x8086FBB0u, 16, 2, e_8086FBB0 },   /* fn_2_102400 */
+    { 0x8086FDE0u, 64, 5, e_8086FDE0 },   /* fn_2_102630 */
+    { 0x80870000u, 48, 2, e_80870000 },   /* fn_2_102850 */
+    { 0x808700C0u, 32, 1, e_808700C0 },   /* fn_2_102910 */
+    { 0x80870130u, 144, 21, e_80870130 },   /* fn_2_102980 */
+    { 0x80870250u, 144, 21, e_80870250 },   /* fn_2_102AA0 */
+    { 0x80870370u, 112, 7, e_80870370 },   /* fn_2_102BC0 */
+    { 0x80870420u, 16, 3, e_80870420 },   /* fn_2_102C70 */
+    { 0x80870480u, 16, 3, e_80870480 },   /* fn_2_102CD0 */
+    { 0x808704D0u, 32, 4, e_808704D0 },   /* fn_2_102D20 */
+    { 0x808705D0u, 48, 9, e_808705D0 },   /* fn_2_102E20 */
+    { 0x80870660u, 288, 12, e_80870660 },   /* fn_2_102EB0 */
+    { 0x80870870u, 16, 3, e_80870870 },   /* fn_2_1030C0 */
+    { 0x808708C0u, 16, 3, e_808708C0 },   /* fn_2_103110 */
+    { 0x80870920u, 16, 3, e_80870920 },   /* fn_2_103170 */
+    { 0x80870A20u, 208, 2, e_80870A20 },   /* fn_2_103270 */
+    { 0x80870AF0u, 32, 3, e_80870AF0 },   /* fn_2_103340 */
+    { 0x80870CD0u, 32, 3, e_80870CD0 },   /* fn_2_103520 */
+    { 0x80870DE0u, 48, 6, e_80870DE0 },   /* fn_2_103630 */
+    { 0x808711D0u, 112, 7, e_808711D0 },   /* fn_2_103A20 */
+    { 0x80871290u, 16, 3, e_80871290 },   /* fn_2_103AE0 */
+    { 0x808712E0u, 16, 3, e_808712E0 },   /* fn_2_103B30 */
+    { 0x80871400u, 16, 3, e_80871400 },   /* fn_2_103C50 */
+    { 0x808716E0u, 32, 2, e_808716E0 },   /* fn_2_103F30 */
+    { 0x80871750u, 32, 2, e_80871750 },   /* fn_2_103FA0 */
+    { 0x808717C0u, 80, 2, e_808717C0 },   /* fn_2_104010 */
+    { 0x80871840u, 32, 4, e_80871840 },   /* fn_2_104090 */
+    { 0x80871A80u, 16, 2, e_80871A80 },   /* fn_2_1042D0 */
+    { 0x80871BD0u, 16, 2, e_80871BD0 },   /* fn_2_104420 */
+    { 0x80871C40u, 16, 2, e_80871C40 },   /* fn_2_104490 */
+    { 0x80871DA0u, 16, 3, e_80871DA0 },   /* fn_2_1045F0 */
+    { 0x80871E20u, 32, 3, e_80871E20 },   /* fn_2_104670 */
+    { 0x80871EF0u, 32, 4, e_80871EF0 },   /* fn_2_104740 */
+    { 0x80872030u, 176, 6, e_80872030 },   /* fn_2_104880 */
+    { 0x808724F0u, 16, 2, e_808724F0 },   /* fn_2_104D40 */
+    { 0x80872540u, 16, 2, e_80872540 },   /* fn_2_104D90 */
+    { 0x80872590u, 32, 2, e_80872590 },   /* fn_2_104DE0 */
+    { 0x808726A0u, 16, 1, e_808726A0 },   /* fn_2_104EF0 */
+    { 0x80872710u, 32, 2, e_80872710 },   /* fn_2_104F60 */
+    { 0x80872830u, 16, 3, e_80872830 },   /* fn_2_105080 */
+    { 0x80872890u, 112, 6, e_80872890 },   /* fn_2_1050E0 */
+    { 0x808740A0u, 112, 6, e_808740A0 },   /* fn_2_1068F0 */
+    { 0x808743E0u, 16, 2, e_808743E0 },   /* fn_2_106C30 */
+    { 0x808744E0u, 48, 2, e_808744E0 },   /* fn_2_106D30 */
+    { 0x80874620u, 16, 3, e_80874620 },   /* fn_2_106E70 */
+    { 0x80874680u, 16, 2, e_80874680 },   /* fn_2_106ED0 */
+    { 0x808746D0u, 32, 2, e_808746D0 },   /* fn_2_106F20 */
+    { 0x80874730u, 16, 3, e_80874730 },   /* fn_2_106F80 */
+    { 0x80874940u, 48, 2, e_80874940 },   /* fn_2_107190 */
+    { 0x80874A90u, 16, 2, e_80874A90 },   /* fn_2_1072E0 */
+    { 0x80874B40u, 32, 4, e_80874B40 },   /* fn_2_107390 */
+    { 0x80874E90u, 16, 3, e_80874E90 },   /* fn_2_1076E0 */
+    { 0x80874F70u, 16, 3, e_80874F70 },   /* fn_2_1077C0 */
+    { 0x80874FD0u, 144, 6, e_80874FD0 },   /* fn_2_107820 */
+    { 0x80875850u, 64, 4, e_80875850 },   /* fn_2_1080A0 */
+    { 0x80876290u, 96, 5, e_80876290 },   /* fn_2_108AE0 */
+    { 0x808772D0u, 16, 2, e_808772D0 },   /* fn_2_109B20 */
+    { 0x80877350u, 16, 2, e_80877350 },   /* fn_2_109BA0 */
+    { 0x80877410u, 32, 4, e_80877410 },   /* fn_2_109C60 */
+    { 0x808783C0u, 112, 6, e_808783C0 },   /* fn_2_10AC10 */
+    { 0x8087C130u, 320, 6, e_8087C130 },   /* fn_2_10E980 */
+    { 0x8087EF20u, 240, 7, e_8087EF20 },   /* fn_2_111770 */
+    { 0x8087F520u, 16, 3, e_8087F520 },   /* fn_2_111D70 */
+    { 0x8087F5F0u, 48, 6, e_8087F5F0 },   /* fn_2_111E40 */
+    { 0x8087F6C0u, 16, 3, e_8087F6C0 },   /* fn_2_111F10 */
+    { 0x8087F710u, 16, 3, e_8087F710 },   /* fn_2_111F60 */
+    { 0x8087F770u, 16, 3, e_8087F770 },   /* fn_2_111FC0 */
+    { 0x8087F8E0u, 112, 12, e_8087F8E0 },   /* original_onCreate__13daObjKinoko_cFv */
+    { 0x8087FBB0u, 16, 3, e_8087FBB0 },   /* fn_2_112400 */
+    { 0x8087FCA0u, 32, 2, e_8087FCA0 },   /* fn_2_1124F0 */
+    { 0x8087FD20u, 16, 1, e_8087FD20 },   /* fn_2_112570 */
+    { 0x8087FD50u, 32, 4, e_8087FD50 },   /* fn_2_1125A0 */
+    { 0x808813E0u, 192, 8, e_808813E0 },   /* fn_2_113C30 */
+    { 0x808829E0u, 176, 6, e_808829E0 },   /* fn_2_115230 */
+    { 0x80884320u, 656, 6, e_80884320 },   /* fn_2_116B70 */
+    { 0x80886F30u, 160, 6, e_80886F30 },   /* fn_2_119780 */
+    { 0x80887390u, 16, 3, e_80887390 },   /* fn_2_119BE0 */
+    { 0x80887420u, 64, 5, e_80887420 },   /* fn_2_119C70 */
+    { 0x808875E0u, 16, 2, e_808875E0 },   /* fn_2_119E30 */
+    { 0x808876B0u, 96, 3, e_808876B0 },   /* fn_2_119F00 */
+    { 0x80887870u, 16, 2, e_80887870 },   /* fn_2_11A0C0 */
+    { 0x808878C0u, 16, 3, e_808878C0 },   /* fn_2_11A110 */
+    { 0x80887950u, 16, 3, e_80887950 },   /* fn_2_11A1A0 */
+    { 0x80887A90u, 48, 3, e_80887A90 },   /* fn_2_11A2E0 */
+    { 0x80887BF0u, 400, 43, e_80887BF0 },   /* fn_2_11A440 */
+    { 0x808883F0u, 16, 1, e_808883F0 },   /* fn_2_11AC40 */
+    { 0x80888420u, 16, 2, e_80888420 },   /* fn_2_11AC70 */
+    { 0x80888490u, 32, 4, e_80888490 },   /* fn_2_11ACE0 */
+    { 0x80888540u, 16, 3, e_80888540 },   /* fn_2_11AD90 */
+    { 0x80888680u, 32, 4, e_80888680 },   /* fn_2_11AED0 */
+    { 0x808887C0u, 464, 52, e_808887C0 },   /* fn_2_11B010 */
+    { 0x80888D90u, 16, 1, e_80888D90 },   /* fn_2_11B5E0 */
+    { 0x80888DC0u, 16, 2, e_80888DC0 },   /* fn_2_11B610 */
+    { 0x80888E30u, 32, 4, e_80888E30 },   /* fn_2_11B680 */
+    { 0x8088BCD0u, 224, 7, e_8088BCD0 },   /* fn_2_11E520 */
+    { 0x8088C2B0u, 16, 3, e_8088C2B0 },   /* fn_2_11EB00 */
+    { 0x8088C440u, 48, 5, e_8088C440 },   /* fn_2_11EC90 */
+    { 0x8088C570u, 144, 4, e_8088C570 },   /* fn_2_11EDC0 */
+    { 0x8088C640u, 48, 5, e_8088C640 },   /* fn_2_11EE90 */
+    { 0x8088C6E0u, 16, 2, e_8088C6E0 },   /* fn_2_11EF30 */
+    { 0x8088C740u, 80, 2, e_8088C740 },   /* fn_2_11EF90 */
+    { 0x8088C7B0u, 96, 12, e_8088C7B0 },   /* fn_2_11F000 */
+    { 0x8088C920u, 16, 3, e_8088C920 },   /* fn_2_11F170 */
+    { 0x8088C970u, 16, 3, e_8088C970 },   /* fn_2_11F1C0 */
+    { 0x8088C9D0u, 16, 3, e_8088C9D0 },   /* fn_2_11F220 */
+    { 0x8088CA20u, 64, 12, e_8088CA20 },   /* fn_2_11F270 */
+    { 0x8088CBC0u, 64, 5, e_8088CBC0 },   /* fn_2_11F410 */
+    { 0x8088CCC0u, 48, 4, e_8088CCC0 },   /* fn_2_11F510 */
+    { 0x8088CE10u, 16, 1, e_8088CE10 },   /* fn_2_11F660 */
+    { 0x8088CE40u, 16, 1, e_8088CE40 },   /* fn_2_11F690 */
+    { 0x8088CE70u, 16, 3, e_8088CE70 },   /* fn_2_11F6C0 */
+    { 0x8088D6E0u, 112, 7, e_8088D6E0 },   /* fn_2_11FF30 */
+    { 0x8088E480u, 64, 4, e_8088E480 },   /* fn_2_120CD0 */
+    { 0x8088F950u, 144, 7, e_8088F950 },   /* fn_2_1221A0 */
+    { 0x80890BA0u, 192, 8, e_80890BA0 },   /* fn_2_1233F0 */
+    { 0x808912C0u, 16, 3, e_808912C0 },   /* fn_2_123B10 */
+    { 0x80891350u, 32, 3, e_80891350 },   /* fn_2_123BA0 */
+    { 0x80891490u, 48, 4, e_80891490 },   /* fn_2_123CE0 */
+    { 0x80891580u, 16, 2, e_80891580 },   /* fn_2_123DD0 */
+    { 0x808915E0u, 16, 1, e_808915E0 },   /* fn_2_123E30 */
+    { 0x808916B0u, 64, 2, e_808916B0 },   /* fn_2_123F00 */
+    { 0x80891800u, 64, 2, e_80891800 },   /* fn_2_124050 */
+    { 0x80891850u, 48, 7, e_80891850 },   /* fn_2_1240A0 */
+    { 0x80891A10u, 16, 3, e_80891A10 },   /* fn_2_124260 */
+    { 0x80891AF0u, 160, 6, e_80891AF0 },   /* fn_2_124340 */
+    { 0x80891D60u, 32, 4, e_80891D60 },   /* fn_2_1245B0 */
+    { 0x80891E60u, 32, 6, e_80891E60 },   /* fn_2_1246B0 */
+    { 0x808920B0u, 32, 5, e_808920B0 },   /* fn_2_124900 */
+    { 0x808921F0u, 32, 2, e_808921F0 },   /* fn_2_124A40 */
+    { 0x80892290u, 16, 2, e_80892290 },   /* fn_2_124AE0 */
+    { 0x80892310u, 16, 2, e_80892310 },   /* fn_2_124B60 */
+    { 0x80892360u, 80, 8, e_80892360 },   /* fn_2_124BB0 */
+    { 0x80892800u, 32, 5, e_80892800 },   /* fn_2_125050 */
+    { 0x80892900u, 144, 4, e_80892900 },   /* fn_2_125150 */
+    { 0x80892C60u, 80, 4, e_80892C60 },   /* fn_2_1254B0 */
+    { 0x80892E20u, 16, 3, e_80892E20 },   /* fn_2_125670 */
+    { 0x80892EC0u, 80, 4, e_80892EC0 },   /* fn_2_125710 */
+    { 0x80893070u, 16, 3, e_80893070 },   /* fn_2_1258C0 */
+    { 0x80893110u, 16, 2, e_80893110 },   /* fn_2_125960 */
+    { 0x80893160u, 16, 1, e_80893160 },   /* fn_2_1259B0 */
+    { 0x808931C0u, 16, 3, e_808931C0 },   /* fn_2_125A10 */
+    { 0x80893250u, 288, 6, e_80893250 },   /* fn_2_125AA0 */
+    { 0x808953F0u, 192, 7, e_808953F0 },   /* fn_2_127C40 */
+    { 0x80895E80u, 144, 6, e_80895E80 },   /* fn_2_1286D0 */
+    { 0x80897180u, 176, 6, e_80897180 },   /* fn_2_1299D0 */
+    { 0x80897B70u, 144, 6, e_80897B70 },   /* fn_2_12A3C0 */
+    { 0x80899D00u, 112, 6, e_80899D00 },   /* fn_2_12C550 */
+    { 0x8089A040u, 16, 3, e_8089A040 },   /* fn_2_12C890 */
+    { 0x8089A140u, 48, 4, e_8089A140 },   /* fn_2_12C990 */
+    { 0x8089A270u, 32, 2, e_8089A270 },   /* fn_2_12CAC0 */
+    { 0x8089A2F0u, 16, 3, e_8089A2F0 },   /* fn_2_12CB40 */
+    { 0x8089A380u, 16, 3, e_8089A380 },   /* fn_2_12CBD0 */
+    { 0x8089A850u, 16, 2, e_8089A850 },   /* fn_2_12D0A0 */
+    { 0x8089A900u, 32, 3, e_8089A900 },   /* fn_2_12D150 */
+    { 0x8089A9C0u, 32, 2, e_8089A9C0 },   /* fn_2_12D210 */
+    { 0x8089AA40u, 16, 3, e_8089AA40 },   /* fn_2_12D290 */
+    { 0x8089AAE0u, 16, 3, e_8089AAE0 },   /* fn_2_12D330 */
+    { 0x8089B000u, 64, 4, e_8089B000 },   /* fn_2_12D850 */
+    { 0x8089C4E0u, 144, 6, e_8089C4E0 },   /* fn_2_12ED30 */
+    { 0x8089DD80u, 144, 6, e_8089DD80 },   /* fn_2_1305D0 */
+    { 0x8089FA60u, 144, 6, e_8089FA60 },   /* fn_2_1322B0 */
+    { 0x808A0590u, 176, 6, e_808A0590 },   /* fn_2_132DE0 */
+    { 0x808A0A50u, 16, 2, e_808A0A50 },   /* fn_2_1332A0 */
+    { 0x808A0B20u, 96, 4, e_808A0B20 },   /* fn_2_133370 */
+    { 0x808A0D80u, 16, 2, e_808A0D80 },   /* fn_2_1335D0 */
+    { 0x808A0DF0u, 16, 1, e_808A0DF0 },   /* fn_2_133640 */
+    { 0x808A0E20u, 16, 2, e_808A0E20 },   /* fn_2_133670 */
+    { 0x808A0E60u, 144, 2, e_808A0E60 },   /* fn_2_1336B0 */
+    { 0x808A0F90u, 80, 7, e_808A0F90 },   /* fn_2_1337E0 */
+    { 0x808A10D0u, 32, 3, e_808A10D0 },   /* fn_2_133920 */
+    { 0x808A12C0u, 64, 4, e_808A12C0 },   /* fn_2_133B10 */
+    { 0x808A14B0u, 16, 2, e_808A14B0 },   /* fn_2_133D00 */
+    { 0x808A1600u, 32, 4, e_808A1600 },   /* fn_2_133E50 */
+    { 0x808A1A90u, 16, 3, e_808A1A90 },   /* fn_2_1342E0 */
+    { 0x808A1B20u, 176, 6, e_808A1B20 },   /* fn_2_134370 */
+    { 0x808A26C0u, 64, 4, e_808A26C0 },   /* fn_2_134F10 */
+    { 0x808A7280u, 288, 6, e_808A7280 },   /* fn_2_139AD0 */
+    { 0x808A7EE0u, 112, 6, e_808A7EE0 },   /* fn_2_13A730 */
+    { 0x808A89C0u, 64, 4, e_808A89C0 },   /* fn_2_13B210 */
+    { 0x808A95F0u, 112, 6, e_808A95F0 },   /* fn_2_13BE40 */
+    { 0x808AA000u, 80, 5, e_808AA000 },   /* fn_2_13C850 */
+    { 0x808ABBF0u, 320, 6, e_808ABBF0 },   /* fn_2_13E440 */
+    { 0x808AC3A0u, 16, 2, e_808AC3A0 },   /* fn_2_13EBF0 */
+    { 0x808AC400u, 16, 2, e_808AC400 },   /* fn_2_13EC50 */
+    { 0x808AC460u, 16, 1, e_808AC460 },   /* fn_2_13ECB0 */
+    { 0x808AC5C0u, 16, 3, e_808AC5C0 },   /* fn_2_13EE10 */
+    { 0x808AC9B0u, 16, 2, e_808AC9B0 },   /* fn_2_13F200 */
+    { 0x808ACAD0u, 32, 3, e_808ACAD0 },   /* fn_2_13F320 */
+    { 0x808ACC80u, 16, 3, e_808ACC80 },   /* fn_2_13F4D0 */
+    { 0x808AFD80u, 64, 4, e_808AFD80 },   /* fn_2_1425D0 */
+    { 0x808B0760u, 64, 5, e_808B0760 },   /* fn_2_142FB0 */
+    { 0x808B1350u, 64, 4, e_808B1350 },   /* fn_2_143BA0 */
+    { 0x808B15E0u, 16, 2, e_808B15E0 },   /* fn_2_143E30 */
+    { 0x808B1720u, 32, 4, e_808B1720 },   /* fn_2_143F70 */
+    { 0x808B1BA0u, 16, 3, e_808B1BA0 },   /* fn_2_1443F0 */
+    { 0x808B1C00u, 112, 7, e_808B1C00 },   /* fn_2_144450 */
+    { 0x808B2680u, 16, 2, e_808B2680 },   /* fn_2_144ED0 */
+    { 0x808B26E0u, 16, 2, e_808B26E0 },   /* fn_2_144F30 */
+    { 0x808B27E0u, 16, 2, e_808B27E0 },   /* fn_2_145030 */
+    { 0x808B2840u, 16, 2, e_808B2840 },   /* fn_2_145090 */
+    { 0x808B2900u, 16, 1, e_808B2900 },   /* fn_2_145150 */
+    { 0x808B2930u, 48, 2, e_808B2930 },   /* fn_2_145180 */
+    { 0x808B2A10u, 32, 4, e_808B2A10 },   /* fn_2_145260 */
+    { 0x808B2AA0u, 16, 1, e_808B2AA0 },   /* fn_2_1452F0 */
+    { 0x808B2B20u, 48, 4, e_808B2B20 },   /* fn_2_145370 */
+    { 0x808B2BE0u, 32, 4, e_808B2BE0 },   /* fn_2_145430 */
+    { 0x808B2CA0u, 16, 3, e_808B2CA0 },   /* fn_2_1454F0 */
+    { 0x808B2D20u, 320, 7, e_808B2D20 },   /* fn_2_145570 */
+    { 0x808B4AC0u, 144, 6, e_808B4AC0 },   /* fn_2_147310 */
+    { 0x808B53A0u, 64, 4, e_808B53A0 },   /* fn_2_147BF0 */
+    { 0x808B6580u, 64, 4, e_808B6580 },   /* fn_2_148DD0 */
+    { 0x808B6810u, 16, 2, e_808B6810 },   /* fn_2_149060 */
+    { 0x808B6860u, 16, 2, e_808B6860 },   /* fn_2_1490B0 */
+    { 0x808B68E0u, 16, 1, e_808B68E0 },   /* fn_2_149130 */
+    { 0x808B6940u, 32, 2, e_808B6940 },   /* fn_2_149190 */
+    { 0x808B69A0u, 16, 1, e_808B69A0 },   /* fn_2_1491F0 */
+    { 0x808B6AC0u, 32, 5, e_808B6AC0 },   /* fn_2_149310 */
+    { 0x808B6BA0u, 32, 2, e_808B6BA0 },   /* fn_2_1493F0 */
+    { 0x808B6DE0u, 96, 10, e_808B6DE0 },   /* fn_2_149630 */
+    { 0x808B6F50u, 64, 4, e_808B6F50 },   /* fn_2_1497A0 */
+    { 0x808B7060u, 112, 3, e_808B7060 },   /* fn_2_1498B0 */
+    { 0x808B7290u, 16, 2, e_808B7290 },   /* fn_2_149AE0 */
+    { 0x808B75F0u, 48, 3, e_808B75F0 },   /* fn_2_149E40 */
+    { 0x808B7730u, 64, 4, e_808B7730 },   /* fn_2_149F80 */
+    { 0x808B86A0u, 112, 7, e_808B86A0 },   /* fn_2_14AEF0 */
+    { 0x808B9340u, 144, 6, e_808B9340 },   /* fn_2_14BB90 */
+    { 0x808BA510u, 112, 6, e_808BA510 },   /* fn_2_14CD60 */
+    { 0x808BAAA0u, 64, 4, e_808BAAA0 },   /* fn_2_14D2F0 */
+    { 0x808BB520u, 64, 4, e_808BB520 },   /* fn_2_14DD70 */
+    { 0x808BC180u, 80, 4, e_808BC180 },   /* fn_2_14E9D0 */
+    { 0x808BD960u, 400, 6, e_808BD960 },   /* fn_2_1501B0 */
+    { 0x808BE6F0u, 144, 6, e_808BE6F0 },   /* fn_2_150F40 */
+    { 0x808BECC0u, 64, 4, e_808BECC0 },   /* fn_2_151510 */
+    { 0x808BF450u, 112, 6, e_808BF450 },   /* fn_2_151CA0 */
+    { 0x808BF790u, 16, 3, e_808BF790 },   /* fn_2_151FE0 */
+    { 0x808BF8D0u, 80, 5, e_808BF8D0 },   /* fn_2_152120 */
+    { 0x808BFB20u, 32, 2, e_808BFB20 },   /* fn_2_152370 */
+    { 0x808BFC00u, 16, 1, e_808BFC00 },   /* fn_2_152450 */
+    { 0x808BFC30u, 16, 1, e_808BFC30 },   /* fn_2_152480 */
+    { 0x808BFC70u, 48, 4, e_808BFC70 },   /* fn_2_1524C0 */
+    { 0x808BFDC0u, 272, 8, e_808BFDC0 },   /* fn_2_152610 */
+    { 0x808C0040u, 48, 6, e_808C0040 },   /* fn_2_152890 */
+    { 0x808C0220u, 32, 4, e_808C0220 },   /* fn_2_152A70 */
+    { 0x808C0330u, 16, 2, e_808C0330 },   /* fn_2_152B80 */
+    { 0x808C03E0u, 16, 3, e_808C03E0 },   /* fn_2_152C30 */
+    { 0x808C0460u, 144, 6, e_808C0460 },   /* fn_2_152CB0 */
+    { 0x808C1370u, 144, 6, e_808C1370 },   /* fn_2_153BC0 */
+    { 0x808C1770u, 32, 7, e_808C1770 },   /* fn_2_153FC0 */
+    { 0x808C1920u, 16, 3, e_808C1920 },   /* fn_2_154170 */
+    { 0x808C1A00u, 16, 2, e_808C1A00 },   /* fn_2_154250 */
+    { 0x808C1A50u, 16, 2, e_808C1A50 },   /* fn_2_1542A0 */
+    { 0x808C1A90u, 16, 1, e_808C1A90 },   /* fn_2_1542E0 */
+    { 0x808C1AC0u, 64, 6, e_808C1AC0 },   /* fn_2_154310 */
+    { 0x808C1CB0u, 16, 1, e_808C1CB0 },   /* fn_2_154500 */
+    { 0x808C1D00u, 16, 1, e_808C1D00 },   /* fn_2_154550 */
+    { 0x808C1D50u, 16, 2, e_808C1D50 },   /* fn_2_1545A0 */
+    { 0x808C1DD0u, 16, 2, e_808C1DD0 },   /* fn_2_154620 */
+    { 0x808C1E60u, 16, 2, e_808C1E60 },   /* fn_2_1546B0 */
+    { 0x808C1F60u, 32, 6, e_808C1F60 },   /* fn_2_1547B0 */
+    { 0x808C20C0u, 144, 6, e_808C20C0 },   /* fn_2_154910 */
+    { 0x808C2920u, 64, 4, e_808C2920 },   /* fn_2_155170 */
+    { 0x808C2FE0u, 16, 2, e_808C2FE0 },   /* fn_2_155830 */
+    { 0x808C3050u, 48, 5, e_808C3050 },   /* fn_2_1558A0 */
+    { 0x808C32D0u, 32, 2, e_808C32D0 },   /* fn_2_155B20 */
+    { 0x808C3360u, 16, 1, e_808C3360 },   /* fn_2_155BB0 */
+    { 0x808C33C0u, 32, 3, e_808C33C0 },   /* fn_2_155C10 */
+    { 0x808C3480u, 48, 2, e_808C3480 },   /* fn_2_155CD0 */
+    { 0x808C3760u, 16, 2, e_808C3760 },   /* fn_2_155FB0 */
+    { 0x808C37F0u, 16, 2, e_808C37F0 },   /* fn_2_156040 */
+    { 0x808C38D0u, 208, 7, e_808C38D0 },   /* fn_2_156120 */
+    { 0x808C4E80u, 64, 4, e_808C4E80 },   /* fn_2_1576D0 */
+    { 0x808C5110u, 16, 1, e_808C5110 },   /* fn_2_157960 */
+    { 0x808C5140u, 32, 5, e_808C5140 },   /* fn_2_157990 */
+    { 0x808C5510u, 32, 4, e_808C5510 },   /* RealWm2dPlayerDtor */
+    { 0x808C55E0u, 16, 3, e_808C55E0 },   /* fn_2_157E30 */
+    { 0x808C57E0u, 16, 1, e_808C57E0 },   /* fn_2_158030 */
+    { 0x808C5820u, 16, 2, e_808C5820 },   /* fn_2_158070 */
+    { 0x808C5940u, 16, 2, e_808C5940 },   /* fn_2_158190 */
+    { 0x808C5D60u, 16, 3, e_808C5D60 },   /* fn_2_1585B0 */
+    { 0x808C5F10u, 80, 9, e_808C5F10 },   /* fn_2_158760 */
+    { 0x808C6100u, 16, 2, e_808C6100 },   /* fn_2_158950 */
+    { 0x808C6D40u, 16, 2, e_808C6D40 },   /* fn_2_159590 */
+    { 0x808C6EF0u, 80, 5, e_808C6EF0 },   /* fn_2_159740 */
+    { 0x808C7130u, 16, 3, e_808C7130 },   /* fn_2_159980 */
+    { 0x808C72F0u, 464, 10, e_808C72F0 },   /* fn_2_159B40 */
+    { 0x808C8350u, 32, 1, e_808C8350 },   /* fn_2_15ABA0 */
+    { 0x808C8C60u, 32, 1, e_808C8C60 },   /* fn_2_15B4B0 */
+    { 0x808C98D0u, 32, 1, e_808C98D0 },   /* fn_2_15C120 */
+    { 0x808CA140u, 32, 1, e_808CA140 },   /* fn_2_15C990 */
+    { 0x808CA1F0u, 16, 1, e_808CA1F0 },   /* fn_2_15CA40 */
+    { 0x808CA220u, 16, 2, e_808CA220 },   /* fn_2_15CA70 */
+    { 0x808CA340u, 16, 3, e_808CA340 },   /* fn_2_15CB90 */
+    { 0x808CA3B0u, 16, 3, e_808CA3B0 },   /* fn_2_15CC00 */
+    { 0x808CA420u, 16, 3, e_808CA420 },   /* fn_2_15CC70 */
+    { 0x808CA540u, 16, 2, e_808CA540 },   /* fn_2_15CD90 */
+    { 0x808CA580u, 16, 3, e_808CA580 },   /* fn_2_15CDD0 */
+    { 0x808CA680u, 16, 2, e_808CA680 },   /* fn_2_15CED0 */
+    { 0x808CA770u, 16, 3, e_808CA770 },   /* fn_2_15CFC0 */
+    { 0x808CA8D0u, 32, 4, e_808CA8D0 },   /* fn_2_15D120 */
+    { 0x808CA990u, 112, 13, e_808CA990 },   /* fn_2_15D1E0 */
+    { 0x808CAC50u, 320, 15, e_808CAC50 },   /* fn_2_15D4A0 */
+    { 0x808CB2D0u, 32, 2, e_808CB2D0 },   /* fn_2_15DB20 */
+    { 0x808CB3F0u, 64, 2, e_808CB3F0 },   /* fn_2_15DC40 */
+    { 0x808CB6A0u, 48, 3, e_808CB6A0 },   /* fn_2_15DEF0 */
+    { 0x808CB8E0u, 48, 3, e_808CB8E0 },   /* fn_2_15E130 */
+    { 0x808CB9A0u, 32, 4, e_808CB9A0 },   /* fn_2_15E1F0 */
+    { 0x808CBAC0u, 32, 2, e_808CBAC0 },   /* fn_2_15E310 */
+    { 0x808CBC70u, 272, 3, e_808CBC70 },   /* fn_2_15E4C0 */
+    { 0x808CC390u, 32, 1, e_808CC390 },   /* fn_2_15EBE0 */
+    { 0x808CD260u, 48, 3, e_808CD260 },   /* fn_2_15FAB0 */
+    { 0x808CDB70u, 32, 1, e_808CDB70 },   /* fn_2_1603C0 */
+    { 0x808CDC20u, 16, 1, e_808CDC20 },   /* fn_2_160470 */
+    { 0x808CDC50u, 16, 3, e_808CDC50 },   /* fn_2_1604A0 */
+    { 0x808CDCE0u, 16, 3, e_808CDCE0 },   /* fn_2_160530 */
+    { 0x808CDD90u, 80, 4, e_808CDD90 },   /* fn_2_1605E0 */
+    { 0x808CE110u, 16, 3, e_808CE110 },   /* fn_2_160960 */
+    { 0x808CE1E0u, 16, 1, e_808CE1E0 },   /* fn_2_160A30 */
+    { 0x808CE220u, 64, 8, e_808CE220 },   /* fn_2_160A70 */
+    { 0x808CE5D0u, 48, 2, e_808CE5D0 },   /* fn_2_160E20 */
+    { 0x808CE6D0u, 16, 3, e_808CE6D0 },   /* fn_2_160F20 */
+    { 0x808CE8F0u, 48, 6, e_808CE8F0 },   /* fn_2_161140 */
+    { 0x808CEBA0u, 64, 9, e_808CEBA0 },   /* fn_2_1613F0 */
+    { 0x808CED70u, 48, 5, e_808CED70 },   /* fn_2_1615C0 */
+    { 0x808CEF10u, 32, 4, e_808CEF10 },   /* fn_2_161760 */
+    { 0x808CF010u, 32, 1, e_808CF010 },   /* fn_2_161860 */
+    { 0x808CF940u, 48, 3, e_808CF940 },   /* fn_2_162190 */
+    { 0x808CFC50u, 32, 1, e_808CFC50 },   /* fn_2_1624A0 */
+    { 0x808D0C30u, 112, 3, e_808D0C30 },   /* fn_2_163480 */
+    { 0x808D1900u, 32, 1, e_808D1900 },   /* fn_2_164150 */
+    { 0x808D1B00u, 32, 1, e_808D1B00 },   /* fn_2_164350 */
+    { 0x808D32A0u, 80, 3, e_808D32A0 },   /* fn_2_165AF0 */
+    { 0x808D33F0u, 16, 1, e_808D33F0 },   /* fn_2_165C40 */
+    { 0x808D3420u, 32, 5, e_808D3420 },   /* fn_2_165C70 */
+    { 0x808D3520u, 16, 3, e_808D3520 },   /* fn_2_165D70 */
+    { 0x808D35D0u, 48, 3, e_808D35D0 },   /* fn_2_165E20 */
+    { 0x808D3750u, 16, 2, e_808D3750 },   /* fn_2_165FA0 */
+    { 0x808D3870u, 16, 2, e_808D3870 },   /* fn_2_1660C0 */
+    { 0x808D38E0u, 48, 3, e_808D38E0 },   /* fn_2_166130 */
+    { 0x808D39D0u, 48, 3, e_808D39D0 },   /* fn_2_166220 */
+    { 0x808D3AC0u, 48, 3, e_808D3AC0 },   /* fn_2_166310 */
+    { 0x808D3C30u, 64, 5, e_808D3C30 },   /* fn_2_166480 */
+    { 0x808D4040u, 64, 8, e_808D4040 },   /* fn_2_166890 */
+    { 0x808D4100u, 64, 8, e_808D4100 },   /* fn_2_166950 */
+    { 0x808D48A0u, 16, 1, e_808D48A0 },   /* fn_2_1670F0 */
+    { 0x808D48D0u, 32, 4, e_808D48D0 },   /* fn_2_167120 */
+    { 0x808D4990u, 16, 3, e_808D4990 },   /* fn_2_1671E0 */
+    { 0x808D4A20u, 16, 3, e_808D4A20 },   /* fn_2_167270 */
+    { 0x808D4AD0u, 16, 2, e_808D4AD0 },   /* fn_2_167320 */
+    { 0x808D4B40u, 16, 2, e_808D4B40 },   /* fn_2_167390 */
+    { 0x808D4BB0u, 16, 2, e_808D4BB0 },   /* fn_2_167400 */
+    { 0x808D4C30u, 192, 8, e_808D4C30 },   /* fn_2_167480 */
+    { 0x808D4ED0u, 32, 2, e_808D4ED0 },   /* fn_2_167720 */
+    { 0x808D5DB0u, 32, 1, e_808D5DB0 },   /* fn_2_168600 */
+    { 0x808D7720u, 32, 2, e_808D7720 },   /* fn_2_169F70 */
+    { 0x808D78D0u, 16, 1, e_808D78D0 },   /* fn_2_16A120 */
+    { 0x808D7900u, 16, 2, e_808D7900 },   /* fn_2_16A150 */
+    { 0x808D7980u, 16, 3, e_808D7980 },   /* fn_2_16A1D0 */
+    { 0x808D7A30u, 16, 2, e_808D7A30 },   /* fn_2_16A280 */
+    { 0x808D7AC0u, 16, 3, e_808D7AC0 },   /* fn_2_16A310 */
+    { 0x808D7BF0u, 48, 6, e_808D7BF0 },   /* fn_2_16A440 */
+    { 0x808D7D30u, 48, 2, e_808D7D30 },   /* fn_2_16A580 */
+    { 0x808D7DE0u, 48, 3, e_808D7DE0 },   /* fn_2_16A630 */
+    { 0x808D81C0u, 48, 5, e_808D81C0 },   /* fn_2_16AA10 */
+    { 0x808D8510u, 16, 2, e_808D8510 },   /* fn_2_16AD60 */
+    { 0x808D87C0u, 32, 1, e_808D87C0 },   /* fn_2_16B010 */
+    { 0x808D89A0u, 32, 1, e_808D89A0 },   /* fn_2_16B1F0 */
+    { 0x808D9470u, 32, 1, e_808D9470 },   /* fn_2_16BCC0 */
+    { 0x808D9640u, 32, 1, e_808D9640 },   /* fn_2_16BE90 */
+    { 0x808D9820u, 32, 1, e_808D9820 },   /* fn_2_16C070 */
+    { 0x808DA960u, 32, 1, e_808DA960 },   /* fn_2_16D1B0 */
+    { 0x808DBC10u, 32, 1, e_808DBC10 },   /* fn_2_16E460 */
+    { 0x808DBCC0u, 16, 1, e_808DBCC0 },   /* fn_2_16E510 */
+    { 0x808DBCF0u, 16, 2, e_808DBCF0 },   /* fn_2_16E540 */
+    { 0x808DBD50u, 16, 2, e_808DBD50 },   /* fn_2_16E5A0 */
+    { 0x808DBDF0u, 16, 3, e_808DBDF0 },   /* fn_2_16E640 */
+    { 0x808DBEF0u, 80, 3, e_808DBEF0 },   /* fn_2_16E740 */
+    { 0x808DC130u, 16, 3, e_808DC130 },   /* fn_2_16E980 */
+    { 0x808DC2E0u, 16, 2, e_808DC2E0 },   /* fn_2_16EB30 */
+    { 0x808DC380u, 64, 9, e_808DC380 },   /* fn_2_16EBD0 */
+    { 0x808DC4F0u, 48, 2, e_808DC4F0 },   /* fn_2_16ED40 */
+    { 0x808DD000u, 16, 3, e_808DD000 },   /* fn_2_16F850 */
+    { 0x808DD2F0u, 64, 5, e_808DD2F0 },   /* fn_2_16FB40 */
+    { 0x808DD430u, 48, 6, e_808DD430 },   /* fn_2_16FC80 */
+    { 0x808DD610u, 48, 7, e_808DD610 },   /* fn_2_16FE60 */
+    { 0x808DD850u, 32, 4, e_808DD850 },   /* fn_2_1700A0 */
+    { 0x808DE2E0u, 32, 6, e_808DE2E0 },   /* fn_2_170B30 */
+    { 0x808DE500u, 48, 3, e_808DE500 },   /* fn_2_170D50 */
+    { 0x808DEAA0u, 64, 3, e_808DEAA0 },   /* fn_2_1712F0 */
+    { 0x808DEB90u, 16, 1, e_808DEB90 },   /* fn_2_1713E0 */
+    { 0x808DEBD0u, 16, 2, e_808DEBD0 },   /* fn_2_171420 */
+    { 0x808DEC80u, 32, 4, e_808DEC80 },   /* fn_2_1714D0 */
+    { 0x808DED80u, 16, 3, e_808DED80 },   /* fn_2_1715D0 */
+    { 0x808DEE90u, 16, 2, e_808DEE90 },   /* fn_2_1716E0 */
+    { 0x808DEF00u, 16, 2, e_808DEF00 },   /* fn_2_171750 */
+    { 0x808DEF40u, 16, 3, e_808DEF40 },   /* fn_2_171790 */
+    { 0x808DEFB0u, 16, 3, e_808DEFB0 },   /* fn_2_171800 */
+    { 0x808DF0A0u, 24672, 12, e_808DF0A0 },   /* fn_2_1718F0 */
+    { 0x808DF3B0u, 16, 2, e_808DF3B0 },   /* fn_2_171C00 */
+    { 0x808DF430u, 16, 2, e_808DF430 },   /* fn_2_171C80 */
+    { 0x808DF4C0u, 48, 5, e_808DF4C0 },   /* fn_2_171D10 */
+    { 0x808DF910u, 16, 3, e_808DF910 },   /* fn_2_172160 */
+    { 0x808DF990u, 16, 3, e_808DF990 },   /* fn_2_1721E0 */
+    { 0x808DFA00u, 64, 14, e_808DFA00 },   /* fn_2_172250 */
+    { 0x808E1160u, 32, 4, e_808E1160 },   /* fn_2_1739B0 */
+    { 0x808E1400u, 48, 11, e_808E1400 },   /* fn_2_173C50 */
+    { 0x808E1580u, 80, 14, e_808E1580 },   /* fn_2_173DD0 */
+    { 0x808E1720u, 16, 1, e_808E1720 },   /* fn_2_173F70 */
+    { 0x808E1DE0u, 48, 4, e_808E1DE0 },   /* fn_2_174630 */
+    { 0x808E1F10u, 48, 7, e_808E1F10 },   /* fn_2_174760 */
+    { 0x808E20F0u, 48, 7, e_808E20F0 },   /* fn_2_174940 */
+    { 0x808E2480u, 48, 8, e_808E2480 },   /* fn_2_174CD0 */
+    { 0x808E2630u, 16, 3, e_808E2630 },   /* fn_2_174E80 */
+    { 0x808E26C0u, 16, 2, e_808E26C0 },   /* fn_2_174F10 */
+    { 0x808E2710u, 16, 1, e_808E2710 },   /* fn_2_174F60 */
+    { 0x808E2790u, 16, 1, e_808E2790 },   /* fn_2_174FE0 */
+    { 0x808E27E0u, 16, 1, e_808E27E0 },   /* fn_2_175030 */
+    { 0x808E2DC0u, 32, 6, e_808E2DC0 },   /* fn_2_175610 */
+    { 0x808E2E90u, 16, 2, e_808E2E90 },   /* fn_2_1756E0 */
+    { 0x808E2F60u, 32, 4, e_808E2F60 },   /* fn_2_1757B0 */
+    { 0x808E3170u, 48, 9, e_808E3170 },   /* fn_2_1759C0 */
+    { 0x808E3240u, 64, 9, e_808E3240 },   /* fn_2_175A90 */
+    { 0x808E3660u, 32, 1, e_808E3660 },   /* fn_2_175EB0 */
+    { 0x808E3D00u, 32, 1, e_808E3D00 },   /* fn_2_176550 */
+    { 0x808E43A0u, 32, 1, e_808E43A0 },   /* fn_2_176BF0 */
+    { 0x808E4D60u, 32, 1, e_808E4D60 },   /* fn_2_1775B0 */
+    { 0x808E62B0u, 368, 6, e_808E62B0 },   /* fn_2_178B00 */
+    { 0x808E6EB0u, 32, 1, e_808E6EB0 },   /* fn_2_179700 */
+    { 0x808E76C0u, 32, 1, e_808E76C0 },   /* fn_2_179F10 */
+    { 0x808E7770u, 16, 1, e_808E7770 },   /* fn_2_179FC0 */
+    { 0x808E77A0u, 16, 3, e_808E77A0 },   /* fn_2_179FF0 */
+    { 0x808E7840u, 16, 3, e_808E7840 },   /* fn_2_17A090 */
+    { 0x808E78F0u, 48, 3, e_808E78F0 },   /* fn_2_17A140 */
+    { 0x808E7FF0u, 16, 3, e_808E7FF0 },   /* fn_2_17A840 */
+    { 0x808E8080u, 16, 1, e_808E8080 },   /* fn_2_17A8D0 */
+    { 0x808E80C0u, 48, 4, e_808E80C0 },   /* fn_2_17A910 */
+    { 0x808E8210u, 48, 2, e_808E8210 },   /* fn_2_17AA60 */
+    { 0x808E82C0u, 64, 6, e_808E82C0 },   /* fn_2_17AB10 */
+    { 0x808E86C0u, 32, 1, e_808E86C0 },   /* fn_2_17AF10 */
+    { 0x808E8AB0u, 16, 1, e_808E8AB0 },   /* fn_2_17B300 */
+    { 0x808EAFF0u, 16, 2, e_808EAFF0 },   /* fn_2_17D840 */
+    { 0x808EB170u, 32, 4, e_808EB170 },   /* fn_2_17D9C0 */
+    { 0x808EB310u, 160, 12, e_808EB310 },   /* fn_2_17DB60 */
+    { 0x808EB730u, 32, 4, e_808EB730 },   /* fn_2_17DF80 */
+    { 0x808EB8E0u, 48, 5, e_808EB8E0 },   /* fn_2_17E130 */
+    { 0x808EBAA0u, 80, 11, e_808EBAA0 },   /* fn_2_17E2F0 */
+    { 0x808EBC00u, 16, 2, e_808EBC00 },   /* fn_2_17E450 */
+    { 0x808EBD10u, 16, 3, e_808EBD10 },   /* fn_2_17E560 */
+    { 0x808EE260u, 128, 7, e_808EE260 },   /* fn_2_180AB0 */
+    { 0x808EE5E0u, 16, 3, e_808EE5E0 },   /* fn_2_180E30 */
+    { 0x808EF830u, 32, 1, e_808EF830 },   /* fn_2_182080 */
+    { 0x808F00D0u, 32, 1, e_808F00D0 },   /* fn_2_182920 */
+    { 0x808F1660u, 48, 3, e_808F1660 },   /* fn_2_183EB0 */
+    { 0x808F1E70u, 32, 1, e_808F1E70 },   /* fn_2_1846C0 */
+    { 0x808F1F20u, 16, 1, e_808F1F20 },   /* fn_2_184770 */
+    { 0x808F1F50u, 16, 3, e_808F1F50 },   /* fn_2_1847A0 */
+    { 0x808F2000u, 16, 3, e_808F2000 },   /* fn_2_184850 */
+    { 0x808F20C0u, 16, 3, e_808F20C0 },   /* fn_2_184910 */
+    { 0x808F21F0u, 32, 4, e_808F21F0 },   /* fn_2_184A40 */
+    { 0x808F22C0u, 16, 1, e_808F22C0 },   /* fn_2_184B10 */
+    { 0x808F2300u, 64, 11, e_808F2300 },   /* fn_2_184B50 */
+    { 0x808F24E0u, 48, 2, e_808F24E0 },   /* fn_2_184D30 */
+    { 0x808F2590u, 32, 4, e_808F2590 },   /* fn_2_184DE0 */
+    { 0x808F27C0u, 32, 5, e_808F27C0 },   /* fn_2_185010 */
+    { 0x808F2D70u, 16, 3, e_808F2D70 },   /* fn_2_1855C0 */
+    { 0x808F2DE0u, 32, 1, e_808F2DE0 },   /* fn_2_185630 */
+    { 0x808F3240u, 32, 1, e_808F3240 },   /* fn_2_185A90 */
+    { 0x808F3AF0u, 32, 1, e_808F3AF0 },   /* fn_2_186340 */
+    { 0x808F3BA0u, 16, 1, e_808F3BA0 },   /* fn_2_1863F0 */
+    { 0x808F3BD0u, 32, 6, e_808F3BD0 },   /* fn_2_186420 */
+    { 0x808F3E80u, 32, 4, e_808F3E80 },   /* fn_2_1866D0 */
+    { 0x808F4010u, 32, 4, e_808F4010 },   /* fn_2_186860 */
+    { 0x808F4180u, 16, 3, e_808F4180 },   /* fn_2_1869D0 */
+    { 0x808F4290u, 48, 2, e_808F4290 },   /* fn_2_186AE0 */
+    { 0x808F4350u, 16, 1, e_808F4350 },   /* fn_2_186BA0 */
+    { 0x808F4380u, 48, 4, e_808F4380 },   /* fn_2_186BD0 */
+    { 0x808F44A0u, 16, 3, e_808F44A0 },   /* fn_2_186CF0 */
+    { 0x808F4530u, 80, 7, e_808F4530 },   /* fn_2_186D80 */
+    { 0x808F49C0u, 32, 2, e_808F49C0 },   /* fn_2_187210 */
+    { 0x808F4A30u, 32, 2, e_808F4A30 },   /* fn_2_187280 */
+    { 0x808F4AA0u, 16, 2, e_808F4AA0 },   /* fn_2_1872F0 */
+    { 0x808F4AF0u, 16, 3, e_808F4AF0 },   /* fn_2_187340 */
+    { 0x808F4CC0u, 128, 6, e_808F4CC0 },   /* fn_2_187510 */
+    { 0x808F7910u, 32, 3, e_808F7910 },   /* fn_2_18A160 */
+    { 0x808F7B00u, 32, 3, e_808F7B00 },   /* fn_2_18A350 */
+    { 0x808F8AF0u, 32, 3, e_808F8AF0 },   /* fn_2_18B340 */
+    { 0x808F8D10u, 32, 3, e_808F8D10 },   /* fn_2_18B560 */
+    { 0x808F8F30u, 32, 3, e_808F8F30 },   /* fn_2_18B780 */
+    { 0x808F9150u, 32, 3, e_808F9150 },   /* fn_2_18B9A0 */
+    { 0x808F9370u, 32, 3, e_808F9370 },   /* fn_2_18BBC0 */
+    { 0x808F95A0u, 32, 3, e_808F95A0 },   /* fn_2_18BDF0 */
+    { 0x808F97C0u, 32, 3, e_808F97C0 },   /* fn_2_18C010 */
+    { 0x808FA840u, 32, 1, e_808FA840 },   /* fn_2_18D090 */
+    { 0x808FAEA0u, 32, 1, e_808FAEA0 },   /* fn_2_18D6F0 */
+    { 0x808FAF50u, 16, 1, e_808FAF50 },   /* fn_2_18D7A0 */
+    { 0x808FAF80u, 16, 2, e_808FAF80 },   /* fn_2_18D7D0 */
+    { 0x808FAFD0u, 16, 3, e_808FAFD0 },   /* fn_2_18D820 */
+    { 0x808FB070u, 16, 2, e_808FB070 },   /* fn_2_18D8C0 */
+    { 0x808FB0B0u, 16, 3, e_808FB0B0 },   /* fn_2_18D900 */
+    { 0x808FB150u, 16, 2, e_808FB150 },   /* fn_2_18D9A0 */
+    { 0x808FB210u, 16, 3, e_808FB210 },   /* fn_2_18DA60 */
+    { 0x808FB300u, 48, 7, e_808FB300 },   /* fn_2_18DB50 */
+    { 0x808FBD60u, 16, 3, e_808FBD60 },   /* fn_2_18E5B0 */
+    { 0x808FBFA0u, 16, 1, e_808FBFA0 },   /* fn_2_18E7F0 */
+    { 0x808FC6F0u, 16, 3, e_808FC6F0 },   /* fn_2_18EF40 */
+    { 0x808FC770u, 32, 4, e_808FC770 },   /* fn_2_18EFC0 */
+    { 0x808FCAB0u, 32, 1, e_808FCAB0 },   /* fn_2_18F300 */
+    { 0x808FDA20u, 32, 1, e_808FDA20 },   /* fn_2_190270 */
+    { 0x808FE7A0u, 32, 1, e_808FE7A0 },   /* fn_2_190FF0 */
+    { 0x808FE850u, 16, 1, e_808FE850 },   /* fn_2_1910A0 */
+    { 0x808FE880u, 16, 3, e_808FE880 },   /* fn_2_1910D0 */
+    { 0x808FE910u, 16, 3, e_808FE910 },   /* fn_2_191160 */
+    { 0x808FE9C0u, 16, 2, e_808FE9C0 },   /* fn_2_191210 */
+    { 0x808FEA30u, 16, 3, e_808FEA30 },   /* fn_2_191280 */
+    { 0x808FEB60u, 64, 9, e_808FEB60 },   /* fn_2_1913B0 */
+    { 0x808FECA0u, 48, 2, e_808FECA0 },   /* fn_2_1914F0 */
+    { 0x808FED50u, 32, 4, e_808FED50 },   /* fn_2_1915A0 */
+    { 0x808FEF60u, 16, 3, e_808FEF60 },   /* fn_2_1917B0 */
+    { 0x808FF370u, 16, 1, e_808FF370 },   /* fn_2_191BC0 */
+    { 0x808FF3B0u, 64, 3, e_808FF3B0 },   /* fn_2_191C00 */
+    { 0x809005E0u, 32, 1, e_809005E0 },   /* fn_2_192E30 */
+    { 0x80901310u, 32, 1, e_80901310 },   /* fn_2_193B60 */
+    { 0x80902670u, 64, 3, e_80902670 },   /* fn_2_194EC0 */
+    { 0x809027A0u, 16, 1, e_809027A0 },   /* fn_2_194FF0 */
+    { 0x809029F0u, 16, 2, e_809029F0 },   /* fn_2_195240 */
+    { 0x80902AD0u, 16, 2, e_80902AD0 },   /* fn_2_195320 */
+    { 0x809030B0u, 32, 2, e_809030B0 },   /* fn_2_195900 */
+    { 0x80903130u, 64, 6, e_80903130 },   /* fn_2_195980 */
+    { 0x809032D0u, 48, 2, e_809032D0 },   /* fn_2_195B20 */
+    { 0x80903810u, 32, 5, e_80903810 },   /* fn_2_196060 */
+    { 0x809040A0u, 16, 2, e_809040A0 },   /* fn_2_1968F0 */
+    { 0x80904B10u, 16, 2, e_80904B10 },   /* fn_2_197360 */
+    { 0x80904C70u, 16, 2, e_80904C70 },   /* fn_2_1974C0 */
+    { 0x80904D90u, 16, 2, e_80904D90 },   /* fn_2_1975E0 */
+    { 0x80904EA0u, 32, 2, e_80904EA0 },   /* fn_2_1976F0 */
+    { 0x80904FF0u, 144, 7, e_80904FF0 },   /* fn_2_197840 */
+    { 0x809053C0u, 48, 6, e_809053C0 },   /* fn_2_197C10 */
+    { 0x80905780u, 112, 16, e_80905780 },   /* fn_2_197FD0 */
+    { 0x809061A0u, 32, 4, e_809061A0 },   /* fn_2_1989F0 */
+    { 0x809062C0u, 32, 4, e_809062C0 },   /* fn_2_198B10 */
+    { 0x80906350u, 16, 2, e_80906350 },   /* fn_2_198BA0 */
+    { 0x809063D0u, 64, 4, e_809063D0 },   /* fn_2_198C20 */
+    { 0x809064B0u, 32, 4, e_809064B0 },   /* fn_2_198D00 */
+    { 0x809065A0u, 128, 6, e_809065A0 },   /* fn_2_198DF0 */
+    { 0x80906890u, 32, 4, e_80906890 },   /* fn_2_1990E0 */
+    { 0x809069D0u, 48, 9, e_809069D0 },   /* fn_2_199220 */
+    { 0x80906C70u, 48, 9, e_80906C70 },   /* fn_2_1994C0 */
+    { 0x80906DE0u, 32, 5, e_80906DE0 },   /* fn_2_199630 */
+    { 0x80906EF0u, 32, 4, e_80906EF0 },   /* fn_2_199740 */
+    { 0x80907190u, 32, 7, e_80907190 },   /* fn_2_1999E0 */
+    { 0x80907320u, 16, 2, e_80907320 },   /* fn_2_199B70 */
+    { 0x809073A0u, 16, 1, e_809073A0 },   /* fn_2_199BF0 */
+    { 0x80907420u, 64, 7, e_80907420 },   /* fn_2_199C70 */
+    { 0x80907540u, 16, 1, e_80907540 },   /* fn_2_199D90 */
+    { 0x809076D0u, 48, 7, e_809076D0 },   /* fn_2_199F20 */
+    { 0x809079E0u, 32, 4, e_809079E0 },   /* fn_2_19A230 */
+    { 0x80907B40u, 32, 4, e_80907B40 },   /* fn_2_19A390 */
+    { 0x80907C60u, 32, 5, e_80907C60 },   /* fn_2_19A4B0 */
+    { 0x80907DE0u, 16, 2, e_80907DE0 },   /* fn_2_19A630 */
+    { 0x80907E60u, 32, 4, e_80907E60 },   /* fn_2_19A6B0 */
+    { 0x80907F00u, 48, 5, e_80907F00 },   /* fn_2_19A750 */
+    { 0x80907FC0u, 176, 13, e_80907FC0 },   /* fn_2_19A810 */
+    { 0x809082F0u, 64, 12, e_809082F0 },   /* fn_2_19AB40 */
+    { 0x80908490u, 48, 10, e_80908490 },   /* fn_2_19ACE0 */
+    { 0x80908640u, 48, 4, e_80908640 },   /* fn_2_19AE90 */
+    { 0x809086F0u, 16, 3, e_809086F0 },   /* fn_2_19AF40 */
+    { 0x809087F0u, 16, 2, e_809087F0 },   /* fn_2_19B040 */
+    { 0x80908860u, 16, 2, e_80908860 },   /* fn_2_19B0B0 */
+    { 0x809088F0u, 48, 6, e_809088F0 },   /* fn_2_19B140 */
+    { 0x80908CF0u, 32, 4, e_80908CF0 },   /* fn_2_19B540 */
+    { 0x80908E50u, 160, 8, e_80908E50 },   /* fn_2_19B6A0 */
+    { 0x80909090u, 64, 5, e_80909090 },   /* fn_2_19B8E0 */
+    { 0x80909150u, 32, 5, e_80909150 },   /* fn_2_19B9A0 */
+    { 0x809091F0u, 48, 4, e_809091F0 },   /* fn_2_19BA40 */
+    { 0x80909510u, 16, 3, e_80909510 },   /* fn_2_19BD60 */
+    { 0x80909590u, 80, 7, e_80909590 },   /* fn_2_19BDE0 */
+    { 0x80909950u, 16, 3, e_80909950 },   /* fn_2_19C1A0 */
+    { 0x809099C0u, 320, 8, e_809099C0 },   /* fn_2_19C210 */
+    { 0x8090AA50u, 160, 3, e_8090AA50 },   /* fn_2_19D2A0 */
+    { 0x8090BE40u, 80, 7, e_8090BE40 },   /* fn_2_19E690 */
+    { 0x8090C170u, 16, 2, e_8090C170 },   /* fn_2_19E9C0 */
+    { 0x8090C500u, 32, 5, e_8090C500 },   /* fn_2_19ED50 */
+    { 0x8090C8F0u, 16, 3, e_8090C8F0 },   /* fn_2_19F140 */
+    { 0x8090C950u, 16, 3, e_8090C950 },   /* fn_2_19F1A0 */
+    { 0x8090C9B0u, 16, 3, e_8090C9B0 },   /* fn_2_19F200 */
+    { 0x8090CA20u, 32, 6, e_8090CA20 },   /* fn_2_19F270 */
+    { 0x8090CC80u, 64, 6, e_8090CC80 },   /* fn_2_19F4D0 */
+    { 0x8090D180u, 32, 1, e_8090D180 },   /* fn_2_19F9D0 */
+    { 0x8090E800u, 176, 3, e_8090E800 },   /* fn_2_1A1050 */
+    { 0x8090F2E0u, 32, 1, e_8090F2E0 },   /* fn_2_1A1B30 */
+    { 0x8090F390u, 32, 6, e_8090F390 },   /* fn_2_1A1BE0 */
+    { 0x8090F520u, 16, 3, e_8090F520 },   /* fn_2_1A1D70 */
+    { 0x8090F650u, 48, 4, e_8090F650 },   /* fn_2_1A1EA0 */
+    { 0x8090F740u, 48, 4, e_8090F740 },   /* fn_2_1A1F90 */
+    { 0x8090F890u, 16, 1, e_8090F890 },   /* fn_2_1A20E0 */
+    { 0x8090F9B0u, 48, 2, e_8090F9B0 },   /* fn_2_1A2200 */
+    { 0x8090FAE0u, 80, 2, e_8090FAE0 },   /* fn_2_1A2330 */
+    { 0x8090FBC0u, 16, 2, e_8090FBC0 },   /* fn_2_1A2410 */
+    { 0x8090FC30u, 32, 3, e_8090FC30 },   /* fn_2_1A2480 */
+    { 0x8090FDC0u, 32, 3, e_8090FDC0 },   /* fn_2_1A2610 */
+    { 0x8090FE60u, 16, 2, e_8090FE60 },   /* fn_2_1A26B0 */
+    { 0x8090FF40u, 64, 7, e_8090FF40 },   /* fn_2_1A2790 */
+    { 0x80910150u, 32, 5, e_80910150 },   /* fn_2_1A29A0 */
+    { 0x80910330u, 64, 9, e_80910330 },   /* fn_2_1A2B80 */
+    { 0x80910690u, 32, 4, e_80910690 },   /* fn_2_1A2EE0 */
+    { 0x80910820u, 288, 6, e_80910820 },   /* fn_2_1A3070 */
+    { 0x80910F10u, 32, 4, e_80910F10 },   /* fn_2_1A3760 */
+    { 0x80910FD0u, 32, 6, e_80910FD0 },   /* fn_2_1A3820 */
+    { 0x809111F0u, 16, 2, e_809111F0 },   /* fn_2_1A3A40 */
+    { 0x80911250u, 16, 1, e_80911250 },   /* fn_2_1A3AA0 */
+    { 0x80911290u, 96, 2, e_80911290 },   /* fn_2_1A3AE0 */
+    { 0x80911550u, 32, 4, e_80911550 },   /* fn_2_1A3DA0 */
+    { 0x809119F0u, 16, 3, e_809119F0 },   /* fn_2_1A4240 */
+    { 0x80911DD0u, 32, 2, e_80911DD0 },   /* fn_2_1A4620 */
+    { 0x80911E30u, 16, 2, e_80911E30 },   /* fn_2_1A4680 */
+    { 0x80911F30u, 16, 3, e_80911F30 },   /* fn_2_1A4780 */
+    { 0x80911FC0u, 256, 6, e_80911FC0 },   /* fn_2_1A4810 */
+    { 0x80913470u, 224, 6, e_80913470 },   /* fn_2_1A5CC0 */
+    { 0x80913E60u, 16, 1, e_80913E60 },   /* fn_2_1A66B0 */
+    { 0x80913E90u, 32, 4, e_80913E90 },   /* fn_2_1A66E0 */
+    { 0x80913FD0u, 32, 2, e_80913FD0 },   /* fn_2_1A6820 */
+    { 0x809140D0u, 16, 1, e_809140D0 },   /* fn_2_1A6920 */
+    { 0x80914100u, 16, 2, e_80914100 },   /* fn_2_1A6950 */
+    { 0x80914150u, 32, 2, e_80914150 },   /* fn_2_1A69A0 */
+    { 0x80914270u, 128, 12, e_80914270 },   /* fn_2_1A6AC0 */
+    { 0x80914520u, 32, 2, e_80914520 },   /* fn_2_1A6D70 */
+    { 0x809145E0u, 16, 3, e_809145E0 },   /* fn_2_1A6E30 */
+    { 0x80914640u, 16, 2, e_80914640 },   /* fn_2_1A6E90 */
+    { 0x80914690u, 16, 1, e_80914690 },   /* fn_2_1A6EE0 */
+    { 0x809146C0u, 16, 2, e_809146C0 },   /* fn_2_1A6F10 */
+    { 0x80914710u, 16, 3, e_80914710 },   /* fn_2_1A6F60 */
+    { 0x80914790u, 16, 2, e_80914790 },   /* fn_2_1A6FE0 */
+    { 0x80914800u, 16, 2, e_80914800 },   /* fn_2_1A7050 */
+    { 0x80914860u, 16, 1, e_80914860 },   /* fn_2_1A70B0 */
+    { 0x809148B0u, 64, 8, e_809148B0 },   /* fn_2_1A7100 */
+    { 0x80914BF0u, 16, 3, e_80914BF0 },   /* fn_2_1A7440 */
+    { 0x80914F60u, 32, 4, e_80914F60 },   /* fn_2_1A77B0 */
+    { 0x80915380u, 16, 2, e_80915380 },   /* fn_2_1A7BD0 */
+    { 0x809153C0u, 16, 2, e_809153C0 },   /* fn_2_1A7C10 */
+    { 0x80915400u, 32, 2, e_80915400 },   /* fn_2_1A7C50 */
+    { 0x80915480u, 32, 2, e_80915480 },   /* fn_2_1A7CD0 */
+    { 0x809154F0u, 16, 3, e_809154F0 },   /* fn_2_1A7D40 */
+    { 0x80915540u, 16, 2, e_80915540 },   /* fn_2_1A7D90 */
+    { 0x809155A0u, 16, 2, e_809155A0 },   /* fn_2_1A7DF0 */
+    { 0x809156A0u, 32, 1, e_809156A0 },   /* fn_2_1A7EF0 */
+    { 0x809157A0u, 16, 1, e_809157A0 },   /* fn_2_1A7FF0 */
+    { 0x809157D0u, 32, 4, e_809157D0 },   /* fn_2_1A8020 */
+    { 0x809158D0u, 32, 2, e_809158D0 },   /* fn_2_1A8120 */
+    { 0x809159D0u, 16, 1, e_809159D0 },   /* fn_2_1A8220 */
+    { 0x80915A00u, 16, 2, e_80915A00 },   /* fn_2_1A8250 */
+    { 0x80915A70u, 32, 2, e_80915A70 },   /* fn_2_1A82C0 */
+    { 0x80915B40u, 272, 11, e_80915B40 },   /* fn_2_1A8390 */
+    { 0x80915FB0u, 32, 2, e_80915FB0 },   /* fn_2_1A8800 */
+    { 0x80916040u, 16, 3, e_80916040 },   /* fn_2_1A8890 */
+    { 0x809160A0u, 16, 2, e_809160A0 },   /* fn_2_1A88F0 */
+    { 0x809160F0u, 16, 1, e_809160F0 },   /* fn_2_1A8940 */
+    { 0x80916120u, 16, 3, e_80916120 },   /* fn_2_1A8970 */
+    { 0x80916320u, 16, 3, e_80916320 },   /* fn_2_1A8B70 */
+    { 0x809163B0u, 16, 2, e_809163B0 },   /* fn_2_1A8C00 */
+    { 0x80916440u, 16, 3, e_80916440 },   /* fn_2_1A8C90 */
+    { 0x80916520u, 16, 1, e_80916520 },   /* fn_2_1A8D70 */
+    { 0x809165C0u, 16, 2, e_809165C0 },   /* fn_2_1A8E10 */
+    { 0x80916640u, 16, 1, e_80916640 },   /* fn_2_1A8E90 */
+    { 0x809166B0u, 32, 5, e_809166B0 },   /* fn_2_1A8F00 */
+    { 0x80917250u, 320, 6, e_80917250 },   /* fn_2_1A9AA0 */
+    { 0x80917970u, 16, 1, e_80917970 },   /* fn_2_1AA1C0 */
+    { 0x809179A0u, 16, 2, e_809179A0 },   /* _Z17GameSetupDrawFuncv */
+    { 0x80917A80u, 16, 1, e_80917A80 },   /* fn_2_1AA2D0 */
+    { 0x80917BC0u, 16, 1, e_80917BC0 },   /* fn_2_1AA410 */
+    { 0x80917BF0u, 16, 1, e_80917BF0 },   /* fn_2_1AA440 */
+    { 0x80917C40u, 16, 1, e_80917C40 },   /* fn_2_1AA490 */
+    { 0x80917F60u, 16, 2, e_80917F60 },   /* fn_2_1AA7B0 */
+    { 0x80917FB0u, 16, 1, e_80917FB0 },   /* fn_2_1AA800 */
+    { 0x80917FE0u, 16, 1, e_80917FE0 },   /* fn_2_1AA830 */
+    { 0x80918030u, 16, 3, e_80918030 },   /* fn_2_1AA880 */
+    { 0x809182B0u, 16, 3, e_809182B0 },   /* fn_2_1AAB00 */
+    { 0x80918340u, 32, 2, e_80918340 },   /* fn_2_1AAB90 */
+    { 0x809183C0u, 16, 1, e_809183C0 },   /* fn_2_1AAC10 */
+    { 0x80918400u, 16, 2, e_80918400 },   /* fn_2_1AAC50 */
+    { 0x809185D0u, 32, 7, e_809185D0 },   /* fn_2_1AAE20 */
+    { 0x809186A0u, 16, 2, e_809186A0 },   /* fn_2_1AAEF0 */
+    { 0x80918730u, 16, 2, e_80918730 },   /* fn_2_1AAF80 */
+    { 0x80918920u, 16, 1, e_80918920 },   /* fn_2_1AB170 */
+    { 0x80918F90u, 16, 2, e_80918F90 },   /* fn_2_1AB7E0 */
+    { 0x80919140u, 16, 2, e_80919140 },   /* fn_2_1AB990 */
+    { 0x80919280u, 16, 1, e_80919280 },   /* fn_2_1ABAD0 */
+    { 0x809193F0u, 48, 8, e_809193F0 },   /* fn_2_1ABC40 */
+    { 0x809194B0u, 48, 6, e_809194B0 },   /* fn_2_1ABD00 */
+    { 0x80919570u, 16, 2, e_80919570 },   /* _Z20GameSetup__LoadScenePv */
+    { 0x809195E0u, 80, 8, e_809195E0 },   /* fn_2_1ABE30 */
+    { 0x809197B0u, 16, 3, e_809197B0 },   /* fn_2_1AC000 */
+    { 0x809199B0u, 432, 6, e_809199B0 },   /* fn_2_1AC200 */
+    { 0x8091B630u, 176, 6, e_8091B630 },   /* fn_2_1ADE80 */
+    { 0x8091C8D0u, 112, 6, e_8091C8D0 },   /* fn_2_1AF120 */
+    { 0x8091E2E0u, 400, 6, e_8091E2E0 },   /* fn_2_1B0B30 */
+    { 0x8091EC20u, 16, 1, e_8091EC20 },   /* fn_2_1B1470 */
+    { 0x8091ECB0u, 16, 1, e_8091ECB0 },   /* fn_2_1B1500 */
+    { 0x8091ED00u, 16, 1, e_8091ED00 },   /* fn_2_1B1550 */
+    { 0x8091ED40u, 16, 1, e_8091ED40 },   /* fn_2_1B1590 */
+    { 0x8091ED90u, 16, 2, e_8091ED90 },   /* fn_2_1B15E0 */
+    { 0x8091F080u, 32, 3, e_8091F080 },   /* fn_2_1B18D0 */
+    { 0x8091F180u, 16, 2, e_8091F180 },   /* fn_2_1B19D0 */
+    { 0x8091F210u, 16, 2, e_8091F210 },   /* fn_2_1B1A60 */
+    { 0x8091F2B0u, 32, 5, e_8091F2B0 },   /* fn_2_1B1B00 */
+    { 0x8091F4A0u, 16, 2, e_8091F4A0 },   /* fn_2_1B1CF0 */
+    { 0x8091F540u, 16, 1, e_8091F540 },   /* fn_2_1B1D90 */
+    { 0x8091F570u, 16, 1, e_8091F570 },   /* fn_2_1B1DC0 */
+    { 0x8091F5D0u, 16, 2, e_8091F5D0 },   /* fn_2_1B1E20 */
+    { 0x8091F670u, 16, 2, e_8091F670 },   /* fn_2_1B1EC0 */
+    { 0x8091F970u, 16, 3, e_8091F970 },   /* fn_2_1B21C0 */
+    { 0x8091FA40u, 48, 8, e_8091FA40 },   /* fn_2_1B2290 */
+    { 0x8091FBE0u, 96, 12, e_8091FBE0 },   /* fn_2_1B2430 */
+    { 0x80920030u, 64, 6, e_80920030 },   /* fn_2_1B2880 */
+    { 0x809201A0u, 32, 7, e_809201A0 },   /* fn_2_1B29F0 */
+    { 0x809203D0u, 48, 8, e_809203D0 },   /* fn_2_1B2C20 */
+    { 0x80920600u, 16, 3, e_80920600 },   /* fn_2_1B2E50 */
+    { 0x809207D0u, 400, 6, e_809207D0 },   /* fn_2_1B3020 */
+    { 0x80921AD0u, 256, 6, e_80921AD0 },   /* fn_2_1B4320 */
+    { 0x80922070u, 16, 1, e_80922070 },   /* fn_2_1B48C0 */
+    { 0x809220A0u, 16, 1, e_809220A0 },   /* fn_2_1B48F0 */
+    { 0x80922120u, 32, 5, e_80922120 },   /* fn_2_1B4970 */
+    { 0x80922240u, 16, 1, e_80922240 },   /* fn_2_1B4A90 */
+    { 0x80922280u, 16, 2, e_80922280 },   /* fn_2_1B4AD0 */
+    { 0x80922300u, 16, 2, e_80922300 },   /* fn_2_1B4B50 */
+    { 0x80922360u, 16, 3, e_80922360 },   /* fn_2_1B4BB0 */
+    { 0x809223F0u, 16, 1, e_809223F0 },   /* fn_2_1B4C40 */
+    { 0x80922420u, 16, 1, e_80922420 },   /* fn_2_1B4C70 */
+    { 0x80922470u, 16, 3, e_80922470 },   /* fn_2_1B4CC0 */
+    { 0x80922570u, 16, 3, e_80922570 },   /* fn_2_1B4DC0 */
+    { 0x80922750u, 32, 4, e_80922750 },   /* fn_2_1B4FA0 */
+    { 0x80922810u, 32, 2, e_80922810 },   /* fn_2_1B5060 */
+    { 0x809228F0u, 16, 1, e_809228F0 },   /* fn_2_1B5140 */
+    { 0x80923140u, 32, 4, e_80923140 },   /* fn_2_1B5990 */
+    { 0x80923280u, 16, 2, e_80923280 },   /* fn_2_1B5AD0 */
+    { 0x809232F0u, 48, 6, e_809232F0 },   /* fn_2_1B5B40 */
+    { 0x809233B0u, 160, 6, e_809233B0 },   /* fn_2_1B5C00 */
+    { 0x80923980u, 16, 1, e_80923980 },   /* fn_2_1B61D0 */
+    { 0x809239B0u, 16, 2, e_809239B0 },   /* fn_2_1B6200 */
+    { 0x809239F0u, 16, 3, e_809239F0 },   /* fn_2_1B6240 */
+    { 0x80923A50u, 16, 1, e_80923A50 },   /* fn_2_1B62A0 */
+    { 0x80923AC0u, 16, 1, e_80923AC0 },   /* fn_2_1B6310 */
+    { 0x80923AF0u, 16, 1, e_80923AF0 },   /* fn_2_1B6340 */
+    { 0x80923B30u, 16, 1, e_80923B30 },   /* fn_2_1B6380 */
+    { 0x80923C20u, 16, 1, e_80923C20 },   /* fn_2_1B6470 */
+    { 0x80923C50u, 16, 2, e_80923C50 },   /* fn_2_1B64A0 */
+    { 0x80923CF0u, 16, 2, e_80923CF0 },   /* fn_2_1B6540 */
+    { 0x80923D90u, 528, 21, e_80923D90 },   /* fn_2_1B65E0 */
+    { 0x80924240u, 16, 1, e_80924240 },   /* fn_2_1B6A90 */
+    { 0x80924270u, 16, 1, e_80924270 },   /* fn_2_1B6AC0 */
+    { 0x809243F0u, 48, 2, e_809243F0 },   /* fn_2_1B6C40 */
+    { 0x80924450u, 64, 6, e_80924450 },   /* fn_2_1B6CA0 */
+    { 0x80924640u, 16, 1, e_80924640 },   /* fn_2_1B6E90 */
+    { 0x80924710u, 32, 6, e_80924710 },   /* fn_2_1B6F60 */
+    { 0x80924A60u, 32, 4, e_80924A60 },   /* fn_2_1B72B0 */
+    { 0x80924B90u, 16, 2, e_80924B90 },   /* fn_2_1B73E0 */
+    { 0x80924BD0u, 16, 3, e_80924BD0 },   /* fn_2_1B7420 */
+    { 0x80924DD0u, 16, 2, e_80924DD0 },   /* fn_2_1B7620 */
+    { 0x80925A00u, 16, 2, e_80925A00 },   /* fn_2_1B8250 */
+    { 0x80925A40u, 16, 1, e_80925A40 },   /* fn_2_1B8290 */
+    { 0x80925A70u, 16, 2, e_80925A70 },   /* fn_2_1B82C0 */
+    { 0x80925B50u, 32, 6, e_80925B50 },   /* fn_2_1B83A0 */
+    { 0x80925E80u, 32, 4, e_80925E80 },   /* fn_2_1B86D0 */
+    { 0x80926120u, 16, 2, e_80926120 },   /* fn_2_1B8970 */
+    { 0x80926220u, 48, 2, e_80926220 },   /* fn_2_1B8A70 */
+    { 0x809262E0u, 16, 2, e_809262E0 },   /* fn_2_1B8B30 */
+    { 0x80926340u, 336, 8, e_80926340 },   /* fn_2_1B8B90 */
+    { 0x80926560u, 16, 3, e_80926560 },   /* fn_2_1B8DB0 */
+    { 0x809266A0u, 32, 1, e_809266A0 },   /* fn_2_1B8EF0 */
+    { 0x80926750u, 16, 1, e_80926750 },   /* fn_2_1B8FA0 */
+    { 0x80926780u, 16, 2, e_80926780 },   /* _Z16WorldMapDrawFuncv */
+    { 0x80926AF0u, 16, 1, e_80926AF0 },   /* fn_2_1B9340 */
+    { 0x80926B20u, 16, 3, e_80926B20 },   /* StockWMInit_LoadEffects__FPv */
+    { 0x80926BB0u, 48, 5, e_80926BB0 },   /* fn_2_1B9400 */
+    { 0x80926DA0u, 16, 1, e_80926DA0 },   /* fn_2_1B95F0 */
+    { 0x80926DF0u, 16, 1, e_80926DF0 },   /* fn_2_1B9640 */
+    { 0x809271A0u, 16, 1, e_809271A0 },   /* fn_2_1B99F0 */
+    { 0x80927340u, 16, 1, e_80927340 },   /* fn_2_1B9B90 */
+    { 0x809273B0u, 32, 4, e_809273B0 },   /* fn_2_1B9C00 */
+    { 0x80927430u, 16, 2, e_80927430 },   /* fn_2_1B9C80 */
+    { 0x809274D0u, 16, 2, e_809274D0 },   /* fn_2_1B9D20 */
+    { 0x80927540u, 16, 3, e_80927540 },   /* fn_2_1B9D90 */
+    { 0x809275D0u, 48, 6, e_809275D0 },   /* fn_2_1B9E20 */
+    { 0x80927760u, 16, 3, e_80927760 },   /* fn_2_1B9FB0 */
+    { 0x80927820u, 16, 1, e_80927820 },   /* fn_2_1BA070 */
+    { 0x80927880u, 64, 10, e_80927880 },   /* fn_2_1BA0D0 */
+    { 0x80927AD0u, 160, 4, e_80927AD0 },   /* fn_2_1BA320 */
+    { 0x80927BA0u, 48, 8, e_80927BA0 },   /* fn_2_1BA3F0 */
+    { 0x80927C60u, 16, 3, e_80927C60 },   /* fn_2_1BA4B0 */
+    { 0x80927CF0u, 48, 6, e_80927CF0 },   /* fn_2_1BA540 */
+    { 0x80927DE0u, 48, 2, e_80927DE0 },   /* fn_2_1BA630 */
+    { 0x80927EF0u, 16, 3, e_80927EF0 },   /* fn_2_1BA740 */
+    { 0x80927FB0u, 32, 4, e_80927FB0 },   /* fn_2_1BA800 */
+    { 0x809280C0u, 32, 4, e_809280C0 },   /* fn_2_1BA910 */
+    { 0x809281B0u, 32, 3, e_809281B0 },   /* fn_2_1BAA00 */
+    { 0x809282D0u, 112, 13, e_809282D0 },   /* fn_2_1BAB20 */
+    { 0x809285E0u, 64, 12, e_809285E0 },   /* fn_2_1BAE30 */
+    { 0x80928770u, 32, 1, e_80928770 },   /* fn_2_1BAFC0 */
+    { 0x80928820u, 16, 1, e_80928820 },   /* fn_2_1BB070 */
+    { 0x80928850u, 16, 3, e_80928850 },   /* fn_2_1BB0A0 */
+    { 0x80928A50u, 16, 3, e_80928A50 },   /* fn_2_1BB2A0 */
+    { 0x80928AE0u, 16, 2, e_80928AE0 },   /* fn_2_1BB330 */
+    { 0x80928BA0u, 16, 3, e_80928BA0 },   /* fn_2_1BB3F0 */
+    { 0x80928C80u, 16, 1, e_80928C80 },   /* fn_2_1BB4D0 */
+    { 0x80928CC0u, 16, 2, e_80928CC0 },   /* fn_2_1BB510 */
+    { 0x80928D50u, 16, 1, e_80928D50 },   /* fn_2_1BB5A0 */
+    { 0x8092A7A0u, 608, 16, e_8092A7A0 },   /* fn_2_1BCFF0 */
+    { 0x8092B3F0u, 16, 1, e_8092B3F0 },   /* fn_2_1BDC40 */
+    { 0x8092B420u, 16, 2, e_8092B420 },   /* fn_2_1BDC70 */
+    { 0x8092B470u, 16, 3, e_8092B470 },   /* fn_2_1BDCC0 */
+    { 0x8092B4E0u, 16, 3, e_8092B4E0 },   /* fn_2_1BDD30 */
+    { 0x8092B5B0u, 16, 3, e_8092B5B0 },   /* fn_2_1BDE00 */
+    { 0x8092B6C0u, 16, 1, e_8092B6C0 },   /* fn_2_1BDF10 */
+    { 0x8092B700u, 16, 2, e_8092B700 },   /* fn_2_1BDF50 */
+    { 0x8092B770u, 16, 1, e_8092B770 },   /* fn_2_1BDFC0 */
+    { 0x8092BB20u, 16, 1, e_8092BB20 },   /* fn_2_1BE370 */
+    { 0x8092BB50u, 32, 4, e_8092BB50 },   /* fn_2_1BE3A0 */
+    { 0x8092BD40u, 16, 3, e_8092BD40 },   /* fn_2_1BE590 */
+    { 0x8092BDE0u, 128, 11, e_8092BDE0 },   /* fn_2_1BE630 */
+    { 0x8092C030u, 16, 1, e_8092C030 },   /* fn_2_1BE880 */
+    { 0x8092C060u, 16, 3, e_8092C060 },   /* fn_2_1BE8B0 */
+    { 0x8092C0D0u, 80, 2, e_8092C0D0 },   /* fn_2_1BE920 */
+    { 0x8092C180u, 16, 3, e_8092C180 },   /* fn_2_1BE9D0 */
+    { 0x8092C2A0u, 352, 26, e_8092C2A0 },   /* fn_2_1BEAF0 */
+    { 0x8092C5F0u, 112, 8, e_8092C5F0 },   /* fn_2_1BEE40 */
+    { 0x8092CA40u, 16, 3, e_8092CA40 },   /* fn_2_1BF290 */
+    { 0x8092CC30u, 96, 7, e_8092CC30 },   /* fn_2_1BF480 */
+    { 0x8092CD40u, 48, 3, e_8092CD40 },   /* fn_2_1BF590 */
+    { 0x8092E8B0u, 16, 2, e_8092E8B0 },   /* fn_2_1C1100 */
+    { 0x8092EB20u, 512, 3, e_8092EB20 },   /* fn_2_1C1370 */
+    { 0x8092F060u, 16, 3, e_8092F060 },   /* fn_2_1C18B0 */
+    { 0x8092F280u, 16, 3, e_8092F280 },   /* fn_2_1C1AD0 */
+    { 0x8092F310u, 16, 2, e_8092F310 },   /* fn_2_1C1B60 */
+    { 0x8092F4B0u, 32, 4, e_8092F4B0 },   /* fn_2_1C1D00 */
+    { 0x8092F560u, 16, 1, e_8092F560 },   /* fn_2_1C1DB0 */
+    { 0x8092F5A0u, 16, 2, e_8092F5A0 },   /* fn_2_1C1DF0 */
+    { 0x8092F670u, 16, 2, e_8092F670 },   /* fn_2_1C1EC0 */
+    { 0x8092F700u, 16, 3, e_8092F700 },   /* fn_2_1C1F50 */
+    { 0x8092FC40u, 16, 3, e_8092FC40 },   /* fn_2_1C2490 */
+    { 0x8092FDA0u, 16, 2, e_8092FDA0 },   /* fn_2_1C25F0 */
+    { 0x8092FEA0u, 16, 2, e_8092FEA0 },   /* fn_2_1C26F0 */
+    { 0x80930000u, 16, 2, e_80930000 },   /* fn_2_1C2850 */
+    { 0x80931230u, 16, 3, e_80931230 },   /* fn_2_1C3A80 */
+    { 0x80931400u, 1312, 6, e_80931400 },   /* fn_2_1C3C50 */
+    { 0x809A2EE0u, 16, 2, e_809A2EE0 },   /* fn_3_110 */
+    { 0x809A2F20u, 16, 2, e_809A2F20 },   /* fn_3_150 */
+    { 0x809A3040u, 16, 3, e_809A3040 },   /* fn_3_270 */
+    { 0x809A5650u, 416, 7, e_809A5650 },   /* fn_3_2880 */
+    { 0x809A5FB0u, 16, 2, e_809A5FB0 },   /* fn_3_31E0 */
+    { 0x809A6090u, 16, 3, e_809A6090 },   /* fn_3_32C0 */
+    { 0x809A81E0u, 224, 6, e_809A81E0 },   /* fn_3_5410 */
+    { 0x809A9A80u, 64, 5, e_809A9A80 },   /* fn_3_6CB0 */
+    { 0x809AAB80u, 112, 7, e_809AAB80 },   /* fn_3_7DB0 */
+    { 0x809AC780u, 400, 6, e_809AC780 },   /* fn_3_99B0 */
+    { 0x809AF6D0u, 288, 7, e_809AF6D0 },   /* fn_3_C900 */
+    { 0x809B17F0u, 176, 6, e_809B17F0 },   /* fn_3_EA20 */
+    { 0x809B3CA0u, 112, 7, e_809B3CA0 },   /* fn_3_10ED0 */
+    { 0x809B5B80u, 368, 6, e_809B5B80 },   /* fn_3_12DB0 */
+    { 0x809B70A0u, 112, 6, e_809B70A0 },   /* fn_3_142D0 */
+    { 0x809B8360u, 96, 5, e_809B8360 },   /* fn_3_15590 */
+    { 0x809B96D0u, 208, 8, e_809B96D0 },   /* fn_3_16900 */
+    { 0x809BBC80u, 256, 8, e_809BBC80 },   /* fn_3_18EB0 */
+    { 0x809BD430u, 144, 6, e_809BD430 },   /* fn_3_1A660 */
+    { 0x809BEA80u, 112, 6, e_809BEA80 },   /* fn_3_1BCB0 */
+    { 0x809BEDC0u, 16, 2, e_809BEDC0 },   /* fn_3_1BFF0 */
+    { 0x809BF2B0u, 32, 2, e_809BF2B0 },   /* fn_3_1C4E0 */
+    { 0x809BF410u, 16, 2, e_809BF410 },   /* fn_3_1C640 */
+    { 0x809BF480u, 32, 4, e_809BF480 },   /* fn_3_1C6B0 */
+    { 0x809BF9C0u, 32, 2, e_809BF9C0 },   /* fn_3_1CBF0 */
+    { 0x809BFA50u, 16, 2, e_809BFA50 },   /* fn_3_1CC80 */
+    { 0x809BFCC0u, 48, 5, e_809BFCC0 },   /* fn_3_1CEF0 */
+    { 0x809C0010u, 16, 2, e_809C0010 },   /* fn_3_1D240 */
+    { 0x809C0050u, 16, 2, e_809C0050 },   /* fn_3_1D280 */
+    { 0x809C0460u, 16, 3, e_809C0460 },   /* fn_3_1D690 */
+    { 0x809C0520u, 64, 4, e_809C0520 },   /* fn_3_1D750 */
+    { 0x809C1D30u, 176, 6, e_809C1D30 },   /* fn_3_1EF60 */
+    { 0x809C21F0u, 16, 3, e_809C21F0 },   /* fn_3_1F420 */
+    { 0x809C2290u, 16, 3, e_809C2290 },   /* fn_3_1F4C0 */
+    { 0x809C2440u, 16, 2, e_809C2440 },   /* fn_3_1F670 */
+    { 0x809C24F0u, 96, 2, e_809C24F0 },   /* fn_3_1F720 */
+    { 0x809C2600u, 16, 1, e_809C2600 },   /* fn_3_1F830 */
+    { 0x809C2630u, 48, 4, e_809C2630 },   /* fn_3_1F860 */
+    { 0x809C2750u, 48, 3, e_809C2750 },   /* fn_3_1F980 */
+    { 0x809C29C0u, 16, 2, e_809C29C0 },   /* fn_3_1FBF0 */
+    { 0x809C2A30u, 16, 3, e_809C2A30 },   /* fn_3_1FC60 */
+    { 0x809C2AD0u, 112, 6, e_809C2AD0 },   /* fn_3_1FD00 */
+    { 0x809C2E10u, 16, 2, e_809C2E10 },   /* fn_3_20040 */
+    { 0x809C2F10u, 48, 4, e_809C2F10 },   /* fn_3_20140 */
+    { 0x809C3330u, 16, 2, e_809C3330 },   /* fn_3_20560 */
+    { 0x809C33F0u, 16, 2, e_809C33F0 },   /* fn_3_20620 */
+    { 0x809C3450u, 16, 2, e_809C3450 },   /* fn_3_20680 */
+    { 0x809C38B0u, 80, 2, e_809C38B0 },   /* fn_3_20AE0 */
+    { 0x809C3B50u, 16, 2, e_809C3B50 },   /* fn_3_20D80 */
+    { 0x809C3BD0u, 16, 3, e_809C3BD0 },   /* fn_3_20E00 */
+    { 0x809C3C80u, 128, 6, e_809C3C80 },   /* fn_3_20EB0 */
+    { 0x809C4B60u, 64, 4, e_809C4B60 },   /* fn_3_21D90 */
+    { 0x809C57C0u, 16, 2, e_809C57C0 },   /* fn_3_229F0 */
+    { 0x809C5CA0u, 112, 6, e_809C5CA0 },   /* fn_3_22ED0 */
+    { 0x809C69E0u, 112, 6, e_809C69E0 },   /* fn_3_23C10 */
+    { 0x809C7A40u, 112, 6, e_809C7A40 },   /* fn_3_24C70 */
+    { 0x809C88D0u, 112, 6, e_809C88D0 },   /* fn_3_25B00 */
+    { 0x809CD030u, 544, 9, e_809CD030 },   /* fn_3_2A260 */
+    { 0x809CF920u, 64, 5, e_809CF920 },   /* fn_3_2CB50 */
+    { 0x809CFB30u, 16, 2, e_809CFB30 },   /* fn_3_2CD60 */
+    { 0x809D00D0u, 16, 2, e_809D00D0 },   /* fn_3_2D300 */
+    { 0x809D0340u, 16, 2, e_809D0340 },   /* fn_3_2D570 */
+    { 0x809D03E0u, 16, 1, e_809D03E0 },   /* fn_3_2D610 */
+    { 0x809D0420u, 16, 3, e_809D0420 },   /* fn_3_2D650 */
+    { 0x809D20A0u, 144, 7, e_809D20A0 },   /* fn_3_2F2D0 */
+    { 0x809D2710u, 32, 5, e_809D2710 },   /* fn_3_2F940 */
+    { 0x809D2A20u, 32, 3, e_809D2A20 },   /* fn_3_2FC50 */
+    { 0x809D2B80u, 656, 55, e_809D2B80 },   /* fn_3_2FDB0 */
+    { 0x809D3990u, 16, 1, e_809D3990 },   /* fn_3_30BC0 */
+    { 0x809D39C0u, 16, 2, e_809D39C0 },   /* fn_3_30BF0 */
+    { 0x809D3A20u, 32, 5, e_809D3A20 },   /* fn_3_30C50 */
+    { 0x809D43D0u, 64, 4, e_809D43D0 },   /* fn_3_31600 */
+    { 0x809D57F0u, 144, 6, e_809D57F0 },   /* fn_3_32A20 */
+    { 0x809D7250u, 176, 6, e_809D7250 },   /* fn_3_34480 */
+    { 0x809D8540u, 144, 7, e_809D8540 },   /* fn_3_35770 */
+    { 0x809DB1A0u, 400, 7, e_809DB1A0 },   /* fn_3_383D0 */
+    { 0x809DC6C0u, 144, 6, e_809DC6C0 },   /* fn_3_398F0 */
+    { 0x809DCAC0u, 32, 6, e_809DCAC0 },   /* fn_3_39CF0 */
+    { 0x809DCCE0u, 16, 3, e_809DCCE0 },   /* fn_3_39F10 */
+    { 0x809DCD80u, 32, 1, e_809DCD80 },   /* fn_3_39FB0 */
+    { 0x809DCDE0u, 80, 8, e_809DCDE0 },   /* fn_3_3A010 */
+    { 0x809DF6E0u, 16, 1, e_809DF6E0 },   /* fn_3_3C910 */
+    { 0x809DF710u, 16, 2, e_809DF710 },   /* fn_3_3C940 */
+    { 0x809DF760u, 32, 5, e_809DF760 },   /* fn_3_3C990 */
+    { 0x809DF8A0u, 32, 6, e_809DF8A0 },   /* fn_3_3CAD0 */
+    { 0x809DFAB0u, 16, 3, e_809DFAB0 },   /* fn_3_3CCE0 */
+    { 0x809DFB50u, 32, 1, e_809DFB50 },   /* fn_3_3CD80 */
+    { 0x809DFBB0u, 48, 5, e_809DFBB0 },   /* fn_3_3CDE0 */
+    { 0x809E0840u, 16, 1, e_809E0840 },   /* fn_3_3DA70 */
+    { 0x809E0870u, 16, 2, e_809E0870 },   /* fn_3_3DAA0 */
+    { 0x809E08C0u, 32, 5, e_809E08C0 },   /* fn_3_3DAF0 */
+    { 0x809E0A00u, 48, 8, e_809E0A00 },   /* fn_3_3DC30 */
+    { 0x809E0B80u, 112, 8, e_809E0B80 },   /* fn_3_3DDB0 */
+    { 0x809E1700u, 80, 8, e_809E1700 },   /* fn_3_3E930 */
+    { 0x809E1F60u, 16, 1, e_809E1F60 },   /* fn_3_3F190 */
+    { 0x809E1FD0u, 16, 2, e_809E1FD0 },   /* fn_3_3F200 */
+    { 0x809E2040u, 32, 2, e_809E2040 },   /* fn_3_3F270 */
+    { 0x809E3CF0u, 16, 3, e_809E3CF0 },   /* fn_3_40F20 */
+    { 0x809E3E60u, 608, 7, e_809E3E60 },   /* fn_3_41090 */
+    { 0x809E4E60u, 48, 8, e_809E4E60 },   /* fn_3_42090 */
+    { 0x809E4FE0u, 48, 4, e_809E4FE0 },   /* fn_3_42210 */
+    { 0x809E5220u, 16, 2, e_809E5220 },   /* fn_3_42450 */
+    { 0x809E52E0u, 16, 2, e_809E52E0 },   /* fn_3_42510 */
+    { 0x809E53D0u, 16, 3, e_809E53D0 },   /* fn_3_42600 */
+    { 0x809E54F0u, 16, 2, e_809E54F0 },   /* fn_3_42720 */
+    { 0x809E5590u, 48, 3, e_809E5590 },   /* fn_3_427C0 */
+    { 0x809E56A0u, 96, 7, e_809E56A0 },   /* fn_3_428D0 */
+    { 0x809E5AC0u, 16, 3, e_809E5AC0 },   /* fn_3_42CF0 */
+    { 0x809E5C70u, 112, 6, e_809E5C70 },   /* fn_3_42EA0 */
+    { 0x809E5FB0u, 32, 6, e_809E5FB0 },   /* fn_3_431E0 */
+    { 0x809E60D0u, 32, 4, e_809E60D0 },   /* fn_3_43300 */
+    { 0x809E62A0u, 16, 1, e_809E62A0 },   /* fn_3_434D0 */
+    { 0x809E62E0u, 16, 2, e_809E62E0 },   /* fn_3_43510 */
+    { 0x809E6340u, 16, 2, e_809E6340 },   /* fn_3_43570 */
+    { 0x809E63A0u, 64, 4, e_809E63A0 },   /* fn_3_435D0 */
+    { 0x809E64F0u, 48, 4, e_809E64F0 },   /* fn_3_43720 */
+    { 0x809E65F0u, 16, 2, e_809E65F0 },   /* fn_3_43820 */
+    { 0x809E6720u, 32, 2, e_809E6720 },   /* fn_3_43950 */
+    { 0x809E67C0u, 16, 3, e_809E67C0 },   /* fn_3_439F0 */
+    { 0x809E68E0u, 112, 6, e_809E68E0 },   /* fn_3_43B10 */
+    { 0x809E6C20u, 32, 6, e_809E6C20 },   /* fn_3_43E50 */
+    { 0x809E6D60u, 16, 2, e_809E6D60 },   /* fn_3_43F90 */
+    { 0x809E6DF0u, 16, 2, e_809E6DF0 },   /* fn_3_44020 */
+    { 0x809E6E40u, 16, 2, e_809E6E40 },   /* fn_3_44070 */
+    { 0x809E6E90u, 16, 1, e_809E6E90 },   /* fn_3_440C0 */
+    { 0x809E6EC0u, 16, 2, e_809E6EC0 },   /* fn_3_440F0 */
+    { 0x809E6FB0u, 32, 2, e_809E6FB0 },   /* fn_3_441E0 */
+    { 0x809E70B0u, 32, 4, e_809E70B0 },   /* fn_3_442E0 */
+    { 0x809E71D0u, 112, 6, e_809E71D0 },   /* fn_3_44400 */
+    { 0x809E7B50u, 64, 4, e_809E7B50 },   /* fn_3_44D80 */
+    { 0x809E8680u, 64, 4, e_809E8680 },   /* fn_3_458B0 */
+    { 0x809E9280u, 80, 5, e_809E9280 },   /* fn_3_464B0 */
+    { 0x809E9550u, 48, 8, e_809E9550 },   /* fn_3_46780 */
+    { 0x809E96D0u, 16, 3, e_809E96D0 },   /* fn_3_46900 */
+    { 0x809E9790u, 16, 2, e_809E9790 },   /* fn_3_469C0 */
+    { 0x809E97E0u, 16, 1, e_809E97E0 },   /* fn_3_46A10 */
+    { 0x809E9810u, 16, 1, e_809E9810 },   /* fn_3_46A40 */
+    { 0x809E9840u, 16, 2, e_809E9840 },   /* fn_3_46A70 */
+    { 0x809E98D0u, 32, 2, e_809E98D0 },   /* fn_3_46B00 */
+    { 0x809E99A0u, 16, 2, e_809E99A0 },   /* fn_3_46BD0 */
+    { 0x809E99F0u, 32, 4, e_809E99F0 },   /* fn_3_46C20 */
+    { 0x809E9AD0u, 32, 3, e_809E9AD0 },   /* fn_3_46D00 */
+    { 0x809E9C70u, 16, 3, e_809E9C70 },   /* fn_3_46EA0 */
+    { 0x809E9DF0u, 112, 6, e_809E9DF0 },   /* fn_3_47020 */
+    { 0x809EC940u, 368, 7, e_809EC940 },   /* fn_3_49B70 */
+    { 0x809EEE60u, 320, 7, e_809EEE60 },   /* fn_3_4C090 */
+    { 0x809EFF40u, 16, 2, e_809EFF40 },   /* fn_3_4D170 */
+    { 0x809EFF80u, 16, 2, e_809EFF80 },   /* fn_3_4D1B0 */
+    { 0x809F00E0u, 64, 5, e_809F00E0 },   /* fn_3_4D310 */
+    { 0x809F0C00u, 64, 5, e_809F0C00 },   /* fn_3_4DE30 */
+    { 0x809F1780u, 64, 5, e_809F1780 },   /* fn_3_4E9B0 */
+    { 0x809F2430u, 64, 5, e_809F2430 },   /* fn_3_4F660 */
+    { 0x809F2F80u, 64, 5, e_809F2F80 },   /* fn_3_501B0 */
+    { 0x809F3A80u, 64, 5, e_809F3A80 },   /* fn_3_50CB0 */
+    { 0x809F4580u, 64, 5, e_809F4580 },   /* fn_3_517B0 */
+    { 0x809F4A60u, 16, 3, e_809F4A60 },   /* fn_3_51C90 */
+    { 0x809F4B10u, 16, 3, e_809F4B10 },   /* fn_3_51D40 */
+    { 0x809F4E10u, 48, 7, e_809F4E10 },   /* fn_3_52040 */
+    { 0x809F4ED0u, 96, 2, e_809F4ED0 },   /* fn_3_52100 */
+    { 0x809F4FA0u, 32, 4, e_809F4FA0 },   /* fn_3_521D0 */
+    { 0x809F50E0u, 16, 3, e_809F50E0 },   /* fn_3_52310 */
+    { 0x809F5180u, 64, 5, e_809F5180 },   /* fn_3_523B0 */
+    { 0x809F71D0u, 368, 7, e_809F71D0 },   /* fn_3_54400 */
+    { 0x809F80A0u, 64, 5, e_809F80A0 },   /* fn_3_552D0 */
+    { 0x809F8580u, 16, 2, e_809F8580 },   /* fn_3_557B0 */
+    { 0x809F85E0u, 32, 1, e_809F85E0 },   /* fn_3_55810 */
+    { 0x809F8680u, 16, 3, e_809F8680 },   /* fn_3_558B0 */
+    { 0x809F9C70u, 64, 4, e_809F9C70 },   /* fn_3_56EA0 */
+    { 0x809FD030u, 544, 6, e_809FD030 },   /* fn_3_5A260 */
+    { 0x809FE5E0u, 64, 4, e_809FE5E0 },   /* fn_3_5B810 */
+    { 0x809FE870u, 32, 5, e_809FE870 },   /* fn_3_5BAA0 */
+    { 0x809FE9C0u, 16, 3, e_809FE9C0 },   /* fn_3_5BBF0 */
+    { 0x809FEB20u, 32, 3, e_809FEB20 },   /* fn_3_5BD50 */
+    { 0x809FEC40u, 16, 2, e_809FEC40 },   /* fn_3_5BE70 */
+    { 0x809FEC90u, 48, 2, e_809FEC90 },   /* fn_3_5BEC0 */
+    { 0x809FEDA0u, 48, 4, e_809FEDA0 },   /* fn_3_5BFD0 */
+    { 0x809FEEF0u, 48, 4, e_809FEEF0 },   /* fn_3_5C120 */
+    { 0x809FEFA0u, 16, 3, e_809FEFA0 },   /* fn_3_5C1D0 */
+    { 0x809FF010u, 48, 3, e_809FF010 },   /* fn_3_5C240 */
+    { 0x809FF190u, 32, 3, e_809FF190 },   /* fn_3_5C3C0 */
+    { 0x809FF280u, 32, 4, e_809FF280 },   /* fn_3_5C4B0 */
+    { 0x809FFD80u, 64, 4, e_809FFD80 },   /* fn_3_5CFB0 */
+    { 0x80A01C50u, 256, 7, e_80A01C50 },   /* fn_3_5EE80 */
+    { 0x80A03750u, 320, 6, e_80A03750 },   /* fn_3_60980 */
+    { 0x80A07050u, 800, 7, e_80A07050 },   /* fn_3_64280 */
+    { 0x80A08E80u, 224, 7, e_80A08E80 },   /* fn_3_660B0 */
+    { 0x80A09750u, 32, 5, e_80A09750 },   /* fn_3_66980 */
+    { 0x80A09920u, 16, 2, e_80A09920 },   /* fn_3_66B50 */
+    { 0x80A09CB0u, 16, 3, e_80A09CB0 },   /* fn_3_66EE0 */
+    { 0x80A09D90u, 128, 3, e_80A09D90 },   /* fn_3_66FC0 */
+    { 0x80A0A050u, 16, 2, e_80A0A050 },   /* fn_3_67280 */
+    { 0x80A0A0B0u, 144, 9, e_80A0A0B0 },   /* fn_3_672E0 */
+    { 0x80A0A4F0u, 32, 3, e_80A0A4F0 },   /* fn_3_67720 */
+    { 0x80A0A6B0u, 16, 3, e_80A0A6B0 },   /* fn_3_678E0 */
+    { 0x80A0A7C0u, 32, 1, e_80A0A7C0 },   /* fn_3_679F0 */
+    { 0x80A0A820u, 64, 10, e_80A0A820 },   /* fn_3_67A50 */
+    { 0x80A0AE50u, 48, 5, e_80A0AE50 },   /* fn_3_68080 */
+    { 0x80A0B140u, 16, 2, e_80A0B140 },   /* fn_3_68370 */
+    { 0x80A0B530u, 16, 3, e_80A0B530 },   /* fn_3_68760 */
+    { 0x80A0B5F0u, 16, 2, e_80A0B5F0 },   /* fn_3_68820 */
+    { 0x80A0B6A0u, 16, 1, e_80A0B6A0 },   /* fn_3_688D0 */
+    { 0x80A0B730u, 32, 4, e_80A0B730 },   /* fn_3_68960 */
+    { 0x80A0B850u, 16, 3, e_80A0B850 },   /* fn_3_68A80 */
+    { 0x80A0B980u, 192, 7, e_80A0B980 },   /* fn_3_68BB0 */
+    { 0x80A0CD90u, 112, 7, e_80A0CD90 },   /* fn_3_69FC0 */
+    { 0x80A0E1A0u, 112, 7, e_80A0E1A0 },   /* fn_3_6B3D0 */
+    { 0x80A0F1E0u, 112, 6, e_80A0F1E0 },   /* fn_3_6C410 */
+    { 0x80A0FE60u, 144, 6, e_80A0FE60 },   /* fn_3_6D090 */
+    { 0x80A10F20u, 64, 4, e_80A10F20 },   /* fn_3_6E150 */
+    { 0x80A118E0u, 64, 4, e_80A118E0 },   /* fn_3_6EB10 */
+    { 0x80A12C40u, 112, 7, e_80A12C40 },   /* fn_3_6FE70 */
+    { 0x80A156C0u, 256, 6, e_80A156C0 },   /* fn_3_728F0 */
+    { 0x80A184E0u, 432, 7, e_80A184E0 },   /* fn_3_75710 */
+    { 0x80A1B990u, 320, 6, e_80A1B990 },   /* fn_3_78BC0 */
+    { 0x80A1F830u, 224, 9, e_80A1F830 },   /* fn_3_7CA60 */
+    { 0x80A20740u, 64, 4, e_80A20740 },   /* fn_3_7D970 */
+    { 0x80A21C20u, 320, 6, e_80A21C20 },   /* fn_3_7EE50 */
+    { 0x80A24130u, 288, 6, e_80A24130 },   /* fn_3_81360 */
+    { 0x80A26300u, 224, 6, e_80A26300 },   /* fn_3_83530 */
+    { 0x80A26AC0u, 32, 6, e_80A26AC0 },   /* fn_3_83CF0 */
+    { 0x80A27490u, 160, 3, e_80A27490 },   /* fn_3_846C0 */
+    { 0x80A276E0u, 112, 8, e_80A276E0 },   /* fn_3_84910 */
+    { 0x80A27880u, 16, 3, e_80A27880 },   /* fn_3_84AB0 */
+    { 0x80A27BF0u, 96, 8, e_80A27BF0 },   /* fn_3_84E20 */
+    { 0x80A27F40u, 32, 5, e_80A27F40 },   /* fn_3_85170 */
+    { 0x80A28200u, 16, 2, e_80A28200 },   /* fn_3_85430 */
+    { 0x80A28280u, 32, 1, e_80A28280 },   /* fn_3_854B0 */
+    { 0x80A28A40u, 16, 3, e_80A28A40 },   /* fn_3_85C70 */
+    { 0x80A28BF0u, 32, 2, e_80A28BF0 },   /* fn_3_85E20 */
+    { 0x80A28D50u, 48, 3, e_80A28D50 },   /* fn_3_85F80 */
+    { 0x80A28E40u, 32, 3, e_80A28E40 },   /* fn_3_86070 */
+    { 0x80A28EC0u, 16, 2, e_80A28EC0 },   /* fn_3_860F0 */
+    { 0x80A28F60u, 16, 2, e_80A28F60 },   /* fn_3_86190 */
+    { 0x80A29100u, 16, 2, e_80A29100 },   /* fn_3_86330 */
+    { 0x80A29150u, 32, 4, e_80A29150 },   /* fn_3_86380 */
+    { 0x80A29220u, 32, 4, e_80A29220 },   /* fn_3_86450 */
+    { 0x80A29D10u, 48, 7, e_80A29D10 },   /* fn_3_86F40 */
+    { 0x80A29FF0u, 16, 2, e_80A29FF0 },   /* fn_3_87220 */
+    { 0x80A2A0A0u, 64, 4, e_80A2A0A0 },   /* fn_3_872D0 */
+    { 0x80A2AAC0u, 32, 3, e_80A2AAC0 },   /* fn_3_87CF0 */
+    { 0x80A2AC00u, 16, 2, e_80A2AC00 },   /* fn_3_87E30 */
+    { 0x80A2AEB0u, 16, 3, e_80A2AEB0 },   /* fn_3_880E0 */
+    { 0x80A2AFE0u, 32, 4, e_80A2AFE0 },   /* fn_3_88210 */
+    { 0x80A2BF20u, 16, 2, e_80A2BF20 },   /* fn_3_89150 */
+    { 0x80A2C170u, 32, 4, e_80A2C170 },   /* fn_3_893A0 */
+    { 0x80A2C2D0u, 800, 6, e_80A2C2D0 },   /* fn_3_89500 */
+    { 0x80A2E330u, 144, 6, e_80A2E330 },   /* fn_3_8B560 */
+    { 0x80A310D0u, 224, 7, e_80A310D0 },   /* fn_3_8E300 */
+    { 0x80A33420u, 144, 6, e_80A33420 },   /* fn_3_90650 */
+    { 0x80A33D80u, 112, 7, e_80A33D80 },   /* fn_3_90FB0 */
+    { 0x80A34320u, 32, 5, e_80A34320 },   /* fn_3_91550 */
+    { 0x80A343F0u, 32, 5, e_80A343F0 },   /* fn_3_91620 */
+    { 0x80A344C0u, 32, 4, e_80A344C0 },   /* fn_3_916F0 */
+    { 0x80A346E0u, 16, 2, e_80A346E0 },   /* fn_3_91910 */
+    { 0x80A34760u, 16, 2, e_80A34760 },   /* fn_3_91990 */
+    { 0x80A347F0u, 16, 1, e_80A347F0 },   /* fn_3_91A20 */
+    { 0x80A34820u, 16, 2, e_80A34820 },   /* fn_3_91A50 */
+    { 0x80A34890u, 112, 2, e_80A34890 },   /* fn_3_91AC0 */
+    { 0x80A34C20u, 32, 7, e_80A34C20 },   /* fn_3_91E50 */
+    { 0x80A34D30u, 16, 2, e_80A34D30 },   /* fn_3_91F60 */
+    { 0x80A34DB0u, 48, 4, e_80A34DB0 },   /* fn_3_91FE0 */
+    { 0x80A34ED0u, 16, 3, e_80A34ED0 },   /* fn_3_92100 */
+    { 0x80A35000u, 32, 3, e_80A35000 },   /* fn_3_92230 */
+    { 0x80A35090u, 32, 2, e_80A35090 },   /* fn_3_922C0 */
+    { 0x80A35130u, 48, 3, e_80A35130 },   /* fn_3_92360 */
+    { 0x80A352A0u, 32, 3, e_80A352A0 },   /* fn_3_924D0 */
+    { 0x80A353F0u, 48, 2, e_80A353F0 },   /* fn_3_92620 */
+    { 0x80A354E0u, 48, 5, e_80A354E0 },   /* fn_3_92710 */
+    { 0x80A35690u, 32, 3, e_80A35690 },   /* fn_3_928C0 */
+    { 0x80A35730u, 32, 3, e_80A35730 },   /* fn_3_92960 */
+    { 0x80A358A0u, 32, 2, e_80A358A0 },   /* fn_3_92AD0 */
+    { 0x80A35980u, 32, 3, e_80A35980 },   /* fn_3_92BB0 */
+    { 0x80A36100u, 32, 4, e_80A36100 },   /* fn_3_93330 */
+    { 0x80A361C0u, 256, 6, e_80A361C0 },   /* fn_3_933F0 */
+    { 0x80A367F0u, 32, 6, e_80A367F0 },   /* fn_3_93A20 */
+    { 0x80A368E0u, 16, 3, e_80A368E0 },   /* fn_3_93B10 */
+    { 0x80A36A00u, 16, 2, e_80A36A00 },   /* fn_3_93C30 */
+    { 0x80A36AD0u, 16, 1, e_80A36AD0 },   /* fn_3_93D00 */
+    { 0x80A36B00u, 16, 1, e_80A36B00 },   /* fn_3_93D30 */
+    { 0x80A36B40u, 48, 6, e_80A36B40 },   /* fn_3_93D70 */
+    { 0x80A372D0u, 16, 3, e_80A372D0 },   /* fn_3_94500 */
+    { 0x80A374D0u, 16, 2, e_80A374D0 },   /* fn_3_94700 */
+    { 0x80A37560u, 112, 2, e_80A37560 },   /* fn_3_94790 */
+    { 0x80A37690u, 48, 4, e_80A37690 },   /* fn_3_948C0 */
+    { 0x80A377B0u, 32, 4, e_80A377B0 },   /* fn_3_949E0 */
+    { 0x80A37850u, 16, 2, e_80A37850 },   /* fn_3_94A80 */
+    { 0x80A378D0u, 16, 3, e_80A378D0 },   /* fn_3_94B00 */
+    { 0x80A379F0u, 80, 7, e_80A379F0 },   /* fn_3_94C20 */
+    { 0x80A37B90u, 16, 2, e_80A37B90 },   /* fn_3_94DC0 */
+    { 0x80A37E30u, 16, 3, e_80A37E30 },   /* fn_3_95060 */
+    { 0x80A37F60u, 16, 2, e_80A37F60 },   /* fn_3_95190 */
+    { 0x80A37FB0u, 16, 2, e_80A37FB0 },   /* fn_3_951E0 */
+    { 0x80A38220u, 32, 4, e_80A38220 },   /* fn_3_95450 */
+    { 0x80A38310u, 176, 7, e_80A38310 },   /* fn_3_95540 */
+    { 0x80A3A820u, 176, 6, e_80A3A820 },   /* fn_3_97A50 */
+    { 0x80A3CAA0u, 320, 7, e_80A3CAA0 },   /* fn_3_99CD0 */
+    { 0x80A3FDD0u, 256, 7, e_80A3FDD0 },   /* fn_3_9D000 */
+    { 0x80A441C0u, 368, 7, e_80A441C0 },   /* fn_3_A13F0 */
+    { 0x80A45A70u, 224, 6, e_80A45A70 },   /* fn_3_A2CA0 */
+    { 0x80A48470u, 368, 7, e_80A48470 },   /* fn_3_A56A0 */
+    { 0x80A4D2E0u, 400, 8, e_80A4D2E0 },   /* fn_3_AA510 */
+    { 0x80A50CA0u, 144, 6, e_80A50CA0 },   /* fn_3_ADED0 */
+    { 0x80A526B0u, 112, 6, e_80A526B0 },   /* fn_3_AF8E0 */
+    { 0x80A55930u, 256, 6, e_80A55930 },   /* fn_3_B2B60 */
+    { 0x80A55F60u, 32, 5, e_80A55F60 },   /* fn_3_B3190 */
+    { 0x80A560B0u, 32, 5, e_80A560B0 },   /* fn_3_B32E0 */
+    { 0x80A564B0u, 32, 4, e_80A564B0 },   /* fn_3_B36E0 */
+    { 0x80A56DD0u, 32, 3, e_80A56DD0 },   /* fn_3_B4000 */
+    { 0x80A56E80u, 16, 2, e_80A56E80 },   /* fn_3_B40B0 */
+    { 0x80A56F30u, 32, 3, e_80A56F30 },   /* fn_3_B4160 */
+    { 0x80A57060u, 32, 2, e_80A57060 },   /* fn_3_B4290 */
+    { 0x80A57450u, 16, 2, e_80A57450 },   /* fn_3_B4680 */
+    { 0x80A57560u, 16, 3, e_80A57560 },   /* fn_3_B4790 */
+    { 0x80A57630u, 32, 4, e_80A57630 },   /* fn_3_B4860 */
+    { 0x80A57730u, 288, 6, e_80A57730 },   /* fn_3_B4960 */
+    { 0x80A593F0u, 176, 6, e_80A593F0 },   /* fn_3_B6620 */
+    { 0x80A5A070u, 112, 7, e_80A5A070 },   /* fn_3_B72A0 */
+    { 0x80A5C310u, 144, 6, e_80A5C310 },   /* fn_3_B9540 */
+    { 0x80A5DEF0u, 112, 6, e_80A5DEF0 },   /* fn_3_BB120 */
+    { 0x80A5EBE0u, 352, 6, e_80A5EBE0 },   /* fn_3_BBE10 */
+    { 0x80A5FA50u, 64, 4, e_80A5FA50 },   /* fn_3_BCC80 */
+    { 0x80A62770u, 400, 8, e_80A62770 },   /* fn_3_BF9A0 */
+    { 0x80A63CA0u, 16, 2, e_80A63CA0 },   /* fn_3_C0ED0 */
+    { 0x80A63CF0u, 16, 2, e_80A63CF0 },   /* fn_3_C0F20 */
+    { 0x80A63DE0u, 128, 6, e_80A63DE0 },   /* fn_3_C1010 */
+    { 0x80A640F0u, 16, 3, e_80A640F0 },   /* fn_3_C1320 */
+    { 0x80A66980u, 384, 9, e_80A66980 },   /* fn_3_C3BB0 */
+    { 0x80A69200u, 336, 8, e_80A69200 },   /* fn_3_C6430 */
+    { 0x80A6AA20u, 64, 4, e_80A6AA20 },   /* fn_3_C7C50 */
+    { 0x80A6D110u, 288, 6, e_80A6D110 },   /* fn_3_CA340 */
+    { 0x80A6FD00u, 304, 8, e_80A6FD00 },   /* fn_3_CCF30 */
+    { 0x80A70EB0u, 112, 6, e_80A70EB0 },   /* fn_3_CE0E0 */
+    { 0x80A71DB0u, 176, 6, e_80A71DB0 },   /* fn_3_CEFE0 */
+    { 0x80A724E0u, 32, 4, e_80A724E0 },   /* fn_3_CF710 */
+    { 0x80A72630u, 64, 9, e_80A72630 },   /* fn_3_CF860 */
+    { 0x80A72900u, 48, 4, e_80A72900 },   /* fn_3_CFB30 */
+    { 0x80A72A60u, 16, 3, e_80A72A60 },   /* fn_3_CFC90 */
+    { 0x80A72B40u, 16, 2, e_80A72B40 },   /* fn_3_CFD70 */
+    { 0x80A72C20u, 16, 2, e_80A72C20 },   /* fn_3_CFE50 */
+    { 0x80A72D50u, 16, 2, e_80A72D50 },   /* fn_3_CFF80 */
+    { 0x80A72DF0u, 16, 2, e_80A72DF0 },   /* fn_3_D0020 */
+    { 0x80A72E90u, 32, 3, e_80A72E90 },   /* fn_3_D00C0 */
+    { 0x80A72FA0u, 16, 3, e_80A72FA0 },   /* fn_3_D01D0 */
+    { 0x80A73120u, 64, 2, e_80A73120 },   /* fn_3_D0350 */
+    { 0x80A73230u, 80, 3, e_80A73230 },   /* fn_3_D0460 */
+    { 0x80A732D0u, 16, 3, e_80A732D0 },   /* fn_3_D0500 */
+    { 0x80A73370u, 16, 2, e_80A73370 },   /* fn_3_D05A0 */
+    { 0x80A734B0u, 16, 2, e_80A734B0 },   /* fn_3_D06E0 */
+    { 0x80A73540u, 32, 4, e_80A73540 },   /* fn_3_D0770 */
+    { 0x80A73640u, 80, 11, e_80A73640 },   /* fn_3_D0870 */
+    { 0x80A73790u, 112, 3, e_80A73790 },   /* fn_3_D09C0 */
+    { 0x80A73AE0u, 16, 1, e_80A73AE0 },   /* fn_3_D0D10 */
+    { 0x80A73B20u, 32, 4, e_80A73B20 },   /* fn_3_D0D50 */
+    { 0x80A73C00u, 32, 3, e_80A73C00 },   /* fn_3_D0E30 */
+    { 0x80A73CF0u, 32, 1, e_80A73CF0 },   /* fn_3_D0F20 */
+    { 0x80A73D80u, 32, 4, e_80A73D80 },   /* fn_3_D0FB0 */
+    { 0x80A73F20u, 32, 4, e_80A73F20 },   /* fn_3_D1150 */
+    { 0x80A74380u, 16, 2, e_80A74380 },   /* fn_3_D15B0 */
+    { 0x80A746A0u, 16, 2, e_80A746A0 },   /* fn_3_D18D0 */
+    { 0x80A74730u, 16, 2, e_80A74730 },   /* fn_3_D1960 */
+    { 0x80A74800u, 16, 3, e_80A74800 },   /* fn_3_D1A30 */
+    { 0x80A74890u, 16, 3, e_80A74890 },   /* fn_3_D1AC0 */
+    { 0x80A74AD0u, 16, 2, e_80A74AD0 },   /* fn_3_D1D00 */
+    { 0x80A74B60u, 32, 4, e_80A74B60 },   /* fn_3_D1D90 */
+    { 0x80A74C30u, 368, 7, e_80A74C30 },   /* fn_3_D1E60 */
+    { 0x80A75700u, 32, 4, e_80A75700 },   /* fn_3_D2930 */
+    { 0x80A757A0u, 48, 4, e_80A757A0 },   /* fn_3_D29D0 */
+    { 0x80A75860u, 32, 3, e_80A75860 },   /* fn_3_D2A90 */
+    { 0x80A75920u, 16, 2, e_80A75920 },   /* fn_3_D2B50 */
+    { 0x80A75960u, 16, 2, e_80A75960 },   /* fn_3_D2B90 */
+    { 0x80A759A0u, 16, 3, e_80A759A0 },   /* fn_3_D2BD0 */
+    { 0x80A759F0u, 32, 2, e_80A759F0 },   /* fn_3_D2C20 */
+    { 0x80A75A40u, 32, 2, e_80A75A40 },   /* fn_3_D2C70 */
+    { 0x80A75AA0u, 16, 1, e_80A75AA0 },   /* fn_3_D2CD0 */
+    { 0x80A75AF0u, 16, 3, e_80A75AF0 },   /* fn_3_D2D20 */
+    { 0x80A75B80u, 16, 2, e_80A75B80 },   /* fn_3_D2DB0 */
+    { 0x80A75D30u, 16, 2, e_80A75D30 },   /* fn_3_D2F60 */
+    { 0x80A75EE0u, 64, 7, e_80A75EE0 },   /* fn_3_D3110 */
+    { 0x80A76670u, 48, 3, e_80A76670 },   /* fn_3_D38A0 */
+    { 0x80A76890u, 16, 2, e_80A76890 },   /* fn_3_D3AC0 */
+    { 0x80A76A30u, 64, 3, e_80A76A30 },   /* fn_3_D3C60 */
+    { 0x80A76CE0u, 48, 3, e_80A76CE0 },   /* fn_3_D3F10 */
+    { 0x80A76F00u, 16, 2, e_80A76F00 },   /* fn_3_D4130 */
+    { 0x80A76FC0u, 48, 2, e_80A76FC0 },   /* fn_3_D41F0 */
+    { 0x80A77100u, 16, 3, e_80A77100 },   /* fn_3_D4330 */
+    { 0x80A775A0u, 16, 2, e_80A775A0 },   /* fn_3_D47D0 */
+    { 0x80A77630u, 32, 5, e_80A77630 },   /* fn_3_D4860 */
+    { 0x80A77760u, 176, 6, e_80A77760 },   /* fn_3_D4990 */
+    { 0x80A78C60u, 144, 6, e_80A78C60 },   /* fn_3_D5E90 */
+    { 0x80A7B8F0u, 144, 6, e_80A7B8F0 },   /* fn_3_D8B20 */
+    { 0x80A7CB40u, 176, 6, e_80A7CB40 },   /* fn_3_D9D70 */
+    { 0x80A7DE30u, 144, 6, e_80A7DE30 },   /* fn_3_DB060 */
+    { 0x80A7E910u, 176, 6, e_80A7E910 },   /* fn_3_DBB40 */
+    { 0x80A7FB40u, 144, 6, e_80A7FB40 },   /* fn_3_DCD70 */
+    { 0x80A81310u, 176, 6, e_80A81310 },   /* fn_3_DE540 */
+    { 0x80A82770u, 112, 6, e_80A82770 },   /* fn_3_DF9A0 */
+    { 0x80A82AB0u, 32, 4, e_80A82AB0 },   /* fn_3_DFCE0 */
+    { 0x80A82B90u, 32, 4, e_80A82B90 },   /* fn_3_DFDC0 */
+    { 0x80A82C70u, 32, 3, e_80A82C70 },   /* fn_3_DFEA0 */
+    { 0x80A82F10u, 16, 2, e_80A82F10 },   /* fn_3_E0140 */
+    { 0x80A83060u, 96, 2, e_80A83060 },   /* fn_3_E0290 */
+    { 0x80A83240u, 64, 4, e_80A83240 },   /* fn_3_E0470 */
+    { 0x80A83700u, 32, 7, e_80A83700 },   /* fn_3_E0930 */
+    { 0x80A83A10u, 32, 7, e_80A83A10 },   /* fn_3_E0C40 */
+    { 0x80A83D60u, 16, 2, e_80A83D60 },   /* fn_3_E0F90 */
+    { 0x80A84000u, 64, 4, e_80A84000 },   /* fn_3_E1230 */
+    { 0x80A84290u, 32, 5, e_80A84290 },   /* fn_3_E14C0 */
+    { 0x80A843E0u, 32, 3, e_80A843E0 },   /* fn_3_E1610 */
+    { 0x80A845D0u, 48, 4, e_80A845D0 },   /* fn_3_E1800 */
+    { 0x80A84690u, 16, 2, e_80A84690 },   /* fn_3_E18C0 */
+    { 0x80A846E0u, 16, 2, e_80A846E0 },   /* fn_3_E1910 */
+    { 0x80A84730u, 80, 2, e_80A84730 },   /* fn_3_E1960 */
+    { 0x80A849A0u, 32, 3, e_80A849A0 },   /* fn_3_E1BD0 */
+    { 0x80A84A10u, 16, 2, e_80A84A10 },   /* fn_3_E1C40 */
+    { 0x80A84B80u, 16, 1, e_80A84B80 },   /* fn_3_E1DB0 */
+    { 0x80A84BF0u, 32, 4, e_80A84BF0 },   /* fn_3_E1E20 */
+    { 0x80A851D0u, 16, 2, e_80A851D0 },   /* fn_3_E2400 */
+    { 0x80A85250u, 32, 4, e_80A85250 },   /* fn_3_E2480 */
+    { 0x80A85750u, 16, 3, e_80A85750 },   /* fn_3_E2980 */
+    { 0x80A85830u, 16, 3, e_80A85830 },   /* fn_3_E2A60 */
+    { 0x80A859E0u, 16, 3, e_80A859E0 },   /* fn_3_E2C10 */
+    { 0x80A85BA0u, 16, 3, e_80A85BA0 },   /* fn_3_E2DD0 */
+    { 0x80A85C70u, 32, 4, e_80A85C70 },   /* fn_3_E2EA0 */
+    { 0x80A85D60u, 176, 6, e_80A85D60 },   /* fn_3_E2F90 */
+    { 0x80A87EB0u, 320, 6, e_80A87EB0 },   /* fn_3_E50E0 */
+    { 0x80A88660u, 32, 4, e_80A88660 },   /* fn_3_E5890 */
+    { 0x80A88720u, 32, 4, e_80A88720 },   /* fn_3_E5950 */
+    { 0x80A88960u, 64, 6, e_80A88960 },   /* fn_3_E5B90 */
+    { 0x80A88FE0u, 16, 2, e_80A88FE0 },   /* fn_3_E6210 */
+    { 0x80A89070u, 16, 1, e_80A89070 },   /* fn_3_E62A0 */
+    { 0x80A890B0u, 208, 3, e_80A890B0 },   /* fn_3_E62E0 */
+    { 0x80A89F90u, 16, 2, e_80A89F90 },   /* fn_3_E71C0 */
+    { 0x80A8A000u, 48, 5, e_80A8A000 },   /* fn_3_E7230 */
+    { 0x80A8A3A0u, 16, 2, e_80A8A3A0 },   /* fn_3_E75D0 */
+    { 0x80A8A400u, 16, 2, e_80A8A400 },   /* fn_3_E7630 */
+    { 0x80A8B980u, 16, 2, e_80A8B980 },   /* fn_3_E8BB0 */
+    { 0x80A8B9D0u, 16, 3, e_80A8B9D0 },   /* fn_3_E8C00 */
+    { 0x80A8BB20u, 32, 2, e_80A8BB20 },   /* fn_3_E8D50 */
+    { 0x80A8C5E0u, 16, 3, e_80A8C5E0 },   /* fn_3_E9810 */
+    { 0x80A8C670u, 592, 8, e_80A8C670 },   /* fn_3_E98A0 */
+    { 0x80A8E450u, 64, 4, e_80A8E450 },   /* fn_3_EB680 */
+    { 0x80A8FA20u, 112, 6, e_80A8FA20 },   /* fn_3_ECC50 */
+    { 0x80A91070u, 176, 6, e_80A91070 },   /* fn_3_EE2A0 */
+    { 0x80A92370u, 144, 6, e_80A92370 },   /* fn_3_EF5A0 */
+    { 0x80A935D0u, 144, 6, e_80A935D0 },   /* fn_3_F0800 */
+    { 0x80A93A40u, 16, 3, e_80A93A40 },   /* fn_3_F0C70 */
+    { 0x80A93BD0u, 16, 2, e_80A93BD0 },   /* fn_3_F0E00 */
+    { 0x80A93C40u, 64, 2, e_80A93C40 },   /* fn_3_F0E70 */
+    { 0x80A93D90u, 16, 1, e_80A93D90 },   /* fn_3_F0FC0 */
+    { 0x80A941E0u, 32, 3, e_80A941E0 },   /* fn_3_F1410 */
+    { 0x80A94860u, 16, 3, e_80A94860 },   /* fn_3_F1A90 */
+    { 0x80A948E0u, 192, 6, e_80A948E0 },   /* fn_3_F1B10 */
+    { 0x80A97420u, 256, 6, e_80A97420 },   /* fn_3_F4650 */
+    { 0x80A98CB0u, 112, 6, e_80A98CB0 },   /* fn_3_F5EE0 */
+    { 0x80A9A200u, 64, 4, e_80A9A200 },   /* fn_3_F7430 */
+    { 0x80A9B160u, 112, 7, e_80A9B160 },   /* fn_3_F8390 */
+    { 0x80A9C580u, 144, 6, e_80A9C580 },   /* fn_3_F97B0 */
+    { 0x80A9F020u, 288, 14, e_80A9F020 },   /* fn_3_FC250 */
+    { 0x80AA10A0u, 576, 38, e_80AA10A0 },   /* fn_3_FE2D0 */
+    { 0x80AA20C0u, 64, 4, e_80AA20C0 },   /* fn_3_FF2F0 */
+    { 0x80AA5CA0u, 368, 7, e_80AA5CA0 },   /* fn_3_102ED0 */
+    { 0x80AA9000u, 288, 6, e_80AA9000 },   /* fn_3_106230 */
+    { 0x80AA9730u, 16, 2, e_80AA9730 },   /* fn_3_106960 */
+    { 0x80AA9880u, 32, 5, e_80AA9880 },   /* fn_3_106AB0 */
+    { 0x80AA9CD0u, 16, 2, e_80AA9CD0 },   /* fn_3_106F00 */
+    { 0x80AA9DD0u, 48, 2, e_80AA9DD0 },   /* fn_3_107000 */
+    { 0x80AAA0B0u, 32, 4, e_80AAA0B0 },   /* fn_3_1072E0 */
+    { 0x80AAA150u, 32, 3, e_80AAA150 },   /* fn_3_107380 */
+    { 0x80AAA560u, 16, 1, e_80AAA560 },   /* fn_3_107790 */
+    { 0x80AAAA50u, 48, 5, e_80AAAA50 },   /* fn_3_107C80 */
+    { 0x80AAAE60u, 32, 5, e_80AAAE60 },   /* fn_3_108090 */
+    { 0x80AAAF50u, 176, 6, e_80AAAF50 },   /* fn_3_108180 */
+    { 0x80AABCF0u, 112, 7, e_80AABCF0 },   /* fn_3_108F20 */
+    { 0x80AACB50u, 112, 7, e_80AACB50 },   /* fn_3_109D80 */
+    { 0x80AADE80u, 144, 7, e_80AADE80 },   /* fn_3_10B0B0 */
+    { 0x80AAE5B0u, 32, 6, e_80AAE5B0 },   /* fn_3_10B7E0 */
+    { 0x80AAE8D0u, 32, 3, e_80AAE8D0 },   /* fn_3_10BB00 */
+    { 0x80AAEB60u, 16, 2, e_80AAEB60 },   /* fn_3_10BD90 */
+    { 0x80AAED30u, 16, 2, e_80AAED30 },   /* fn_3_10BF60 */
+    { 0x80AAEDB0u, 16, 1, e_80AAEDB0 },   /* fn_3_10BFE0 */
+    { 0x80AAEE10u, 16, 3, e_80AAEE10 },   /* fn_3_10C040 */
+    { 0x80AAF220u, 128, 3, e_80AAF220 },   /* fn_3_10C450 */
+    { 0x80AAF570u, 16, 2, e_80AAF570 },   /* fn_3_10C7A0 */
+    { 0x80AAF5E0u, 144, 6, e_80AAF5E0 },   /* fn_3_10C810 */
+    { 0x80AAFA60u, 48, 7, e_80AAFA60 },   /* fn_3_10CC90 */
+    { 0x80AAFCB0u, 16, 2, e_80AAFCB0 },   /* fn_3_10CEE0 */
+    { 0x80AAFD50u, 16, 3, e_80AAFD50 },   /* fn_3_10CF80 */
+    { 0x80AAFDC0u, 16, 3, e_80AAFDC0 },   /* fn_3_10CFF0 */
+    { 0x80AAFE30u, 16, 2, e_80AAFE30 },   /* fn_3_10D060 */
+    { 0x80AAFE90u, 32, 1, e_80AAFE90 },   /* fn_3_10D0C0 */
+    { 0x80AAFF80u, 48, 4, e_80AAFF80 },   /* fn_3_10D1B0 */
+    { 0x80AB03C0u, 64, 6, e_80AB03C0 },   /* fn_3_10D5F0 */
+    { 0x80AB0680u, 48, 4, e_80AB0680 },   /* fn_3_10D8B0 */
+    { 0x80AB07D0u, 16, 2, e_80AB07D0 },   /* fn_3_10DA00 */
+    { 0x80AB0830u, 16, 2, e_80AB0830 },   /* fn_3_10DA60 */
+    { 0x80AB0870u, 32, 3, e_80AB0870 },   /* fn_3_10DAA0 */
+    { 0x80AB0920u, 16, 3, e_80AB0920 },   /* fn_3_10DB50 */
+    { 0x80AB0A60u, 32, 2, e_80AB0A60 },   /* fn_3_10DC90 */
+    { 0x80AB0AF0u, 16, 2, e_80AB0AF0 },   /* fn_3_10DD20 */
+    { 0x80AB0C20u, 32, 4, e_80AB0C20 },   /* fn_3_10DE50 */
+    { 0x80AB0D70u, 144, 6, e_80AB0D70 },   /* fn_3_10DFA0 */
+    { 0x80AB1890u, 112, 6, e_80AB1890 },   /* fn_3_10EAC0 */
+    { 0x80AB27C0u, 64, 4, e_80AB27C0 },   /* fn_3_10F9F0 */
+    { 0x80AB5380u, 256, 7, e_80AB5380 },   /* fn_3_1125B0 */
+    { 0x80AB6F00u, 176, 6, e_80AB6F00 },   /* fn_3_114130 */
+    { 0x80AB73C0u, 32, 4, e_80AB73C0 },   /* fn_3_1145F0 */
+    { 0x80AB74B0u, 32, 6, e_80AB74B0 },   /* fn_3_1146E0 */
+    { 0x80AB7950u, 16, 2, e_80AB7950 },   /* fn_3_114B80 */
+    { 0x80AB7A90u, 16, 3, e_80AB7A90 },   /* fn_3_114CC0 */
+    { 0x80AB7BD0u, 16, 2, e_80AB7BD0 },   /* fn_3_114E00 */
+    { 0x80AB7C50u, 16, 1, e_80AB7C50 },   /* fn_3_114E80 */
+    { 0x80AB7CB0u, 32, 4, e_80AB7CB0 },   /* fn_3_114EE0 */
+    { 0x80AB7D80u, 64, 4, e_80AB7D80 },   /* fn_3_114FB0 */
+    { 0x80AB8AC0u, 32, 4, e_80AB8AC0 },   /* fn_3_115CF0 */
+    { 0x80AB8CB0u, 16, 3, e_80AB8CB0 },   /* fn_3_115EE0 */
+    { 0x80AB8D40u, 48, 6, e_80AB8D40 },   /* fn_3_115F70 */
+    { 0x80AB8FA0u, 32, 5, e_80AB8FA0 },   /* fn_3_1161D0 */
+    { 0x80AB9260u, 16, 1, e_80AB9260 },   /* fn_3_116490 */
+    { 0x80AB9880u, 112, 2, e_80AB9880 },   /* fn_3_116AB0 */
+    { 0x80AB99C0u, 64, 6, e_80AB99C0 },   /* fn_3_116BF0 */
+    { 0x80AB9BC0u, 16, 2, e_80AB9BC0 },   /* fn_3_116DF0 */
+    { 0x80AB9C20u, 80, 5, e_80AB9C20 },   /* fn_3_116E50 */
+    { 0x80AB9E90u, 16, 3, e_80AB9E90 },   /* fn_3_1170C0 */
+    { 0x80ABA020u, 16, 2, e_80ABA020 },   /* fn_3_117250 */
+    { 0x80ABAD80u, 256, 7, e_80ABAD80 },   /* fn_3_117FB0 */
+    { 0x80ABB620u, 16, 2, e_80ABB620 },   /* fn_3_118850 */
+    { 0x80ABB6A0u, 32, 1, e_80ABB6A0 },   /* fn_3_1188D0 */
+    { 0x80ABB7E0u, 16, 2, e_80ABB7E0 },   /* fn_3_118A10 */
+    { 0x80ABB910u, 16, 2, e_80ABB910 },   /* fn_3_118B40 */
+    { 0x80ABB9A0u, 32, 2, e_80ABB9A0 },   /* fn_3_118BD0 */
+    { 0x80ABBA70u, 16, 1, e_80ABBA70 },   /* fn_3_118CA0 */
+    { 0x80ABBC00u, 48, 2, e_80ABBC00 },   /* fn_3_118E30 */
+    { 0x80ABBCF0u, 16, 3, e_80ABBCF0 },   /* fn_3_118F20 */
+    { 0x80ABC480u, 144, 6, e_80ABC480 },   /* fn_3_1196B0 */
+    { 0x80ABC880u, 16, 2, e_80ABC880 },   /* fn_3_119AB0 */
+    { 0x80ABC8D0u, 16, 2, e_80ABC8D0 },   /* fn_3_119B00 */
+    { 0x80ABC940u, 16, 2, e_80ABC940 },   /* fn_3_119B70 */
+    { 0x80ABC990u, 32, 3, e_80ABC990 },   /* fn_3_119BC0 */
+    { 0x80ABCB10u, 32, 2, e_80ABCB10 },   /* fn_3_119D40 */
+    { 0x80ABCBC0u, 16, 2, e_80ABCBC0 },   /* fn_3_119DF0 */
+    { 0x80ABCD30u, 16, 3, e_80ABCD30 },   /* fn_3_119F60 */
+    { 0x80ABCD90u, 64, 4, e_80ABCD90 },   /* fn_3_119FC0 */
+    { 0x80ABEB50u, 256, 6, e_80ABEB50 },   /* fn_3_11BD80 */
+    { 0x80AC1FF0u, 320, 7, e_80AC1FF0 },   /* fn_3_11F220 */
+    { 0x80AC3380u, 112, 6, e_80AC3380 },   /* fn_3_1205B0 */
+    { 0x80AC36C0u, 16, 3, e_80AC36C0 },   /* fn_3_1208F0 */
+    { 0x80AC37A0u, 32, 6, e_80AC37A0 },   /* fn_3_1209D0 */
+    { 0x80AC3B40u, 16, 1, e_80AC3B40 },   /* fn_3_120D70 */
+    { 0x80AC4010u, 16, 3, e_80AC4010 },   /* fn_3_121240 */
+    { 0x80AC40B0u, 64, 4, e_80AC40B0 },   /* fn_3_1212E0 */
+    { 0x80AC4C20u, 64, 4, e_80AC4C20 },   /* fn_3_121E50 */
+    { 0x80AC5540u, 112, 6, e_80AC5540 },   /* fn_3_122770 */
+    { 0x80AC6FC0u, 256, 6, e_80AC6FC0 },   /* fn_3_1241F0 */
+    { 0x80AC9830u, 192, 9, e_80AC9830 },   /* fn_3_126A60 */
+    { 0x80ACB4C0u, 112, 6, e_80ACB4C0 },   /* fn_3_1286F0 */
+    { 0x80ACC7C0u, 112, 6, e_80ACC7C0 },   /* fn_3_1299F0 */
+    { 0x80B1CB60u, 16, 2, e_80B1CB60 },   /* fn_4_110 */
+    { 0x80B1FB50u, 16, 2, e_80B1FB50 },   /* fn_4_3100 */
+    { 0x80B201E0u, 704, 10, e_80B201E0 },   /* fn_4_3790 */
+    { 0x80B21570u, 16, 3, e_80B21570 },   /* fn_4_4B20 */
+    { 0x80B229D0u, 352, 9, e_80B229D0 },   /* fn_4_5F80 */
+    { 0x80B25B30u, 16, 2, e_80B25B30 },   /* fn_4_90E0 */
+    { 0x80B25D80u, 448, 10, e_80B25D80 },   /* fn_4_9330 */
+    { 0x80B29CE0u, 592, 10, e_80B29CE0 },   /* fn_4_D290 */
+    { 0x80B2D530u, 624, 10, e_80B2D530 },   /* fn_4_10AE0 */
+    { 0x80B31010u, 832, 9, e_80B31010 },   /* fn_4_145C0 */
+    { 0x80B343C0u, 352, 9, e_80B343C0 },   /* fn_4_17970 */
+    { 0x80B37C00u, 768, 19, e_80B37C00 },   /* fn_4_1B1B0 */
+    { 0x80B3C490u, 1216, 29, e_80B3C490 },   /* fn_4_1FA40 */
+    { 0x80B44BB0u, 880, 19, e_80B44BB0 },   /* fn_4_28160 */
+    { 0x80B46620u, 192, 9, e_80B46620 },   /* fn_4_29BD0 */
+    { 0x80B484D0u, 256, 9, e_80B484D0 },   /* fn_4_2BA80 */
+    { 0x80B4A4D0u, 288, 9, e_80B4A4D0 },   /* fn_4_2DA80 */
+    { 0x80B4C2E0u, 192, 9, e_80B4C2E0 },   /* fn_4_2F890 */
+    { 0x80B4E290u, 336, 9, e_80B4E290 },   /* fn_4_31840 */
+    { 0x80B50E10u, 224, 8, e_80B50E10 },   /* fn_4_343C0 */
+    { 0x80B51630u, 16, 2, e_80B51630 },   /* fn_4_34BE0 */
+    { 0x80B516F0u, 32, 4, e_80B516F0 },   /* fn_4_34CA0 */
+    { 0x80B51870u, 80, 4, e_80B51870 },   /* fn_4_34E20 */
+    { 0x80B51A40u, 16, 2, e_80B51A40 },   /* fn_4_34FF0 */
+    { 0x80B51AB0u, 144, 3, e_80B51AB0 },   /* fn_4_35060 */
+    { 0x80B51D50u, 64, 3, e_80B51D50 },   /* fn_4_35300 */
+    { 0x80B51DB0u, 80, 2, e_80B51DB0 },   /* fn_4_35360 */
+    { 0x80B51ED0u, 32, 1, e_80B51ED0 },   /* fn_4_35480 */
+    { 0x80B51F40u, 16, 1, e_80B51F40 },   /* fn_4_354F0 */
+    { 0x80B51FA0u, 32, 3, e_80B51FA0 },   /* fn_4_35550 */
+    { 0x80B52110u, 16, 3, e_80B52110 },   /* fn_4_356C0 */
+    { 0x80B52200u, 16, 3, e_80B52200 },   /* fn_4_357B0 */
+    { 0x80B522F0u, 16, 3, e_80B522F0 },   /* fn_4_358A0 */
+    { 0x80B523E0u, 32, 1, e_80B523E0 },   /* fn_4_35990 */
+    { 0x80B538C0u, 64, 5, e_80B538C0 },   /* fn_4_36E70 */
+    { 0x80B53990u, 432, 8, e_80B53990 },   /* fn_4_36F40 */
+    { 0x80B58780u, 896, 8, e_80B58780 },   /* fn_4_3BD30 */
+    { 0x80B5DEE0u, 896, 8, e_80B5DEE0 },   /* fn_4_41490 */
+    { 0x80B62170u, 608, 15, e_80B62170 },   /* fn_4_45720 */
+    { 0x80B65EA0u, 720, 8, e_80B65EA0 },   /* fn_4_49450 */
+    { 0x80B6A970u, 736, 8, e_80B6A970 },   /* fn_4_4DF20 */
+    { 0x80B6BE10u, 32, 6, e_80B6BE10 },   /* fn_4_4F3C0 */
+    { 0x80B6C4D0u, 16, 2, e_80B6C4D0 },   /* fn_4_4FA80 */
+    { 0x80B6C5D0u, 32, 5, e_80B6C5D0 },   /* fn_4_4FB80 */
+    { 0x80B6CDC0u, 16, 2, e_80B6CDC0 },   /* fn_4_50370 */
+    { 0x80B6D110u, 32, 1, e_80B6D110 },   /* fn_4_506C0 */
+    { 0x80B6D310u, 64, 2, e_80B6D310 },   /* fn_4_508C0 */
+    { 0x80B6E1A0u, 512, 3, e_80B6E1A0 },   /* fn_4_51750 */
+    { 0x80B70120u, 16, 2, e_80B70120 },   /* fn_4_536D0 */
+    { 0x80B70160u, 16, 3, e_80B70160 },   /* fn_4_53710 */
+    { 0x80B701C0u, 128, 6, e_80B701C0 },   /* fn_4_53770 */
+    { 0x80B705C0u, 96, 2, e_80B705C0 },   /* fn_4_53B70 */
+    { 0x80B71410u, 48, 3, e_80B71410 },   /* fn_4_549C0 */
+    { 0x80B71520u, 160, 6, e_80B71520 },   /* fn_4_54AD0 */
+    { 0x80B717C0u, 160, 9, e_80B717C0 },   /* fn_4_54D70 */
+    { 0x80B71F20u, 16, 2, e_80B71F20 },   /* fn_4_554D0 */
+    { 0x80B71F70u, 16, 3, e_80B71F70 },   /* fn_4_55520 */
+    { 0x80B71FD0u, 128, 5, e_80B71FD0 },   /* fn_4_55580 */
+    { 0x80B721F0u, 16, 2, e_80B721F0 },   /* fn_4_557A0 */
+    { 0x80B72240u, 64, 3, e_80B72240 },   /* fn_4_557F0 */
+    { 0x80B722E0u, 64, 2, e_80B722E0 },   /* fn_4_55890 */
+    { 0x80B72360u, 32, 3, e_80B72360 },   /* fn_4_55910 */
+    { 0x80B72660u, 32, 1, e_80B72660 },   /* fn_4_55C10 */
+    { 0x80B72710u, 96, 5, e_80B72710 },   /* fn_4_55CC0 */
+    { 0x80B72890u, 32, 4, e_80B72890 },   /* fn_4_55E40 */
+    { 0x80B72920u, 16, 2, e_80B72920 },   /* fn_4_55ED0 */
+    { 0x80B72A10u, 16, 2, e_80B72A10 },   /* fn_4_55FC0 */
+    { 0x80B72AC0u, 16, 2, e_80B72AC0 },   /* fn_4_56070 */
+    { 0x80B72C00u, 16, 2, e_80B72C00 },   /* fn_4_561B0 */
+    { 0x80B72CF0u, 144, 7, e_80B72CF0 },   /* fn_4_562A0 */
+    { 0x80B72F60u, 48, 3, e_80B72F60 },   /* fn_4_56510 */
+    { 0x80B73080u, 80, 2, e_80B73080 },   /* fn_4_56630 */
+    { 0x80B731D0u, 48, 2, e_80B731D0 },   /* fn_4_56780 */
+    { 0x80B73370u, 32, 3, e_80B73370 },   /* fn_4_56920 */
+    { 0x80B734F0u, 16, 1, e_80B734F0 },   /* fn_4_56AA0 */
+    { 0x80B73820u, 48, 8, e_80B73820 },   /* fn_4_56DD0 */
+    { 0x80B73990u, 32, 3, e_80B73990 },   /* fn_4_56F40 */
+    { 0x81800564u, 32, 4, e_81800564 },   /* mod_fn_80010140 */
+    { 0x818005F4u, 32, 4, e_818005F4 },   /* mod_fn_80010290 */
+    { 0x818006BCu, 48, 8, e_818006BC },   /* mod_fn_80010690 */
+    { 0x818008D8u, 80, 12, e_818008D8 },   /* mod_fn_80010800 */
+    { 0x81800A9Cu, 48, 5, e_81800A9C },   /* mod_fn_80015210 */
+    { 0x81800B78u, 32, 3, e_81800B78 },   /* mod_fn_800153B0 */
+    { 0x81800C04u, 32, 3, e_81800C04 },   /* mod_fn_800154E0 */
+    { 0x81800CD4u, 16, 2, e_81800CD4 },   /* mod_fn_80015AD0 */
+    { 0x81800DFCu, 32, 4, e_81800DFC },   /* mod_beginState_BattleIn__12daBossDemo_cFv */
+    { 0x81800EC0u, 32, 4, e_81800EC0 },   /* mod_fn_80021AB0 */
+    { 0x81800F48u, 32, 4, e_81800F48 },   /* mod_fn_80021B30 */
+    { 0x81800FF8u, 64, 10, e_81800FF8 },   /* mfn_81800FF8 */
+    { 0x81801148u, 64, 6, e_81801148 },   /* mod_fn_80022810 */
+    { 0x81801514u, 32, 4, e_81801514 },   /* mod_fn_8002DAB0 */
+    { 0x81801594u, 32, 4, e_81801594 },   /* mod_fn_8002F870 */
+    { 0x818016E4u, 48, 7, e_818016E4 },   /* mod_fn_800389E0 */
+    { 0x81801CB0u, 48, 4, e_81801CB0 },   /* mod_fn_800396A0 */
+    { 0x81802020u, 32, 3, e_81802020 },   /* mod_fn_8003B3E0 */
+    { 0x81802318u, 64, 2, e_81802318 },   /* mod_fn_8003B830 */
+    { 0x81802600u, 64, 11, e_81802600 },   /* mod_fn_800441E0 */
+    { 0x81802840u, 32, 4, e_81802840 },   /* mod_fn_8004EDE0 */
+    { 0x81802A68u, 48, 3, e_81802A68 },   /* mod_fn_80050870 */
+    { 0x81802BE4u, 32, 3, e_81802BE4 },   /* mod_fn_80050A00 */
+    { 0x81802CC4u, 32, 3, e_81802CC4 },   /* mod_fn_800510F0 */
+    { 0x81802D7Cu, 32, 4, e_81802D7C },   /* mod_fn_800511A0 */
+    { 0x81802E38u, 32, 5, e_81802E38 },   /* mod_moveInDirection__10daPlBase_cFPfPf */
+    { 0x81802EF0u, 32, 3, e_81802EF0 },   /* mod_fn_80052900 */
     { 0x81803CFCu, 16, 2, e_81803CFC },   /* mod_fn_8005B4A0 */
     { 0x81803D4Cu, 16, 3, e_81803D4C },   /* mod_fn_8005B6A0 */
     { 0x81803EF4u, 160, 14, e_81803EF4 },   /* mod_fn_8005B8A0 */
@@ -1446,11 +10652,13 @@ const gm_prologue_t gm_prologues[] = {
     { 0x81804ECCu, 32, 5, e_81804ECC },   /* mod_fn_8005CE50 */
     { 0x81804F54u, 32, 5, e_81804F54 },   /* mod_fn_8005CED0 */
     { 0x81805168u, 96, 7, e_81805168 },   /* mod_fn_8005D280 */
+    { 0x81805380u, 32, 4, e_81805380 },   /* mod_fn_8005E040 */
     { 0x8180574Cu, 16, 1, e_8180574C },   /* mod_fn_8005EA60 */
     { 0x81805870u, 32, 6, e_81805870 },   /* mod_fn_8005EB10 */
     { 0x81805BE8u, 16, 2, e_81805BE8 },   /* mod_addNum__9daPyMng_cFi */
     { 0x81805D38u, 16, 2, e_81805D38 },   /* mod_fn_8005EEE0 */
     { 0x81805DA0u, 240, 10, e_81805DA0 },   /* mod_fn_8005EF50 */
+    { 0x8180637Cu, 112, 9, e_8180637C },   /* mfn_8180637C */
     { 0x81806528u, 48, 7, e_81806528 },   /* mod_fn_8005F5C0 */
     { 0x81806928u, 32, 5, e_81806928 },   /* mod_getYoshi__9daPyMng_cFi */
     { 0x818069C4u, 32, 4, e_818069C4 },   /* mod_fn_8005FB00 */
@@ -1467,19 +10675,59 @@ const gm_prologue_t gm_prologues[] = {
     { 0x81807380u, 32, 3, e_81807380 },   /* mod_fn_80060A10 */
     { 0x81807420u, 16, 1, e_81807420 },   /* mod_setHipAttackQuake__9daPyMng_cFiUc */
     { 0x81807590u, 80, 12, e_81807590 },   /* mod_fn_80060DB0 */
+    { 0x8180774Cu, 16, 2, e_8180774C },   /* ctor_8180774C */
+    { 0x818077B0u, 208, 9, e_818077B0 },   /* mod_fn_800651C0 */
+    { 0x81807A78u, 32, 5, e_81807A78 },   /* mod_fn_80065480 */
+    { 0x81807B10u, 64, 8, e_81807B10 },   /* mod_fn_80065520 */
+    { 0x81807C9Cu, 16, 2, e_81807C9C },   /* mod_getRemotePlayer__6dAudioFi */
+    { 0x81807CF0u, 32, 3, e_81807CF0 },   /* mod_fn_80104050 */
+    { 0x81807D44u, 16, 1, e_81807D44 },   /* mod_fn_8006C0B0 */
+    { 0x81807E2Cu, 32, 5, e_81807E2C },   /* mod_fn_8006C1C0 */
+    { 0x8180843Cu, 32, 5, e_8180843C },   /* mod_fn_800785E0 */
+    { 0x818085E8u, 224, 13, e_818085E8 },   /* mod_fn_8007BEF0 */
+    { 0x81808EECu, 80, 11, e_81808EEC },   /* mod_fn_8007CA90 */
+    { 0x818091F0u, 48, 2, e_818091F0 },   /* mod_fn_80087F40 */
+    { 0x818093CCu, 208, 17, e_818093CC },   /* mod_fn_800883E0 */
+    { 0x818099B0u, 16, 2, e_818099B0 },   /* mod_beforeExecute__5dEn_cFv */
+    { 0x81809BACu, 32, 5, e_81809BAC },   /* mod_collisionCallback__5dEn_cFP13ActivePhysicsP13ActivePhysics */
+    { 0x81809F98u, 32, 3, e_81809F98 },   /* mfn_81809F98 */
+    { 0x8180A038u, 16, 2, e_8180A038 },   /* mfn_8180A038 */
+    { 0x8180A164u, 32, 5, e_8180A164 },   /* mod_fn_80098B60 */
     { 0x8180A3F0u, 16, 2, e_8180A3F0 },   /* mod_fn_800B1990 */
     { 0x8180A480u, 64, 9, e_8180A480 },   /* mod_fn_800B1BD0 */
     { 0x8180A788u, 16, 3, e_8180A788 },   /* mod_fn_800B2230 */
     { 0x8180A8ACu, 16, 2, e_8180A8AC },   /* mod_fn_800B2370 */
     { 0x8180A974u, 16, 2, e_8180A974 },   /* mod_fn_800B24B0 */
     { 0x8180AAA8u, 16, 1, e_8180AAA8 },   /* mod_CreateSmallScore__8dGameComFRC7mVec3_ciib */
+    { 0x8180AB68u, 16, 1, e_8180AB68 },   /* mfn_8180AB68 */
     { 0x8180AD10u, 32, 3, e_8180AD10 },   /* mod_WindowPaneColorSet__8dGameComFPQ34nw4r3lyt6Windowi */
     { 0x8180ADF0u, 48, 6, e_8180ADF0 },   /* mod_Player1upColor__8dGameComFP12LytTextBox_ci */
     { 0x8180AFF0u, 16, 1, e_8180AFF0 },   /* mod_isNowCourseClear__8dGameComFv */
+    { 0x8180B158u, 32, 6, e_8180B158 },   /* mod_fn_800B5930 */
+    { 0x8180B1E8u, 48, 7, e_8180B1E8 },   /* mfn_8180B1E8 */
+    { 0x8180B2C0u, 32, 5, e_8180B2C0 },   /* mod_fn_800B59B0 */
+    { 0x8180B35Cu, 32, 3, e_8180B35C },   /* mod_fn_800B5A60 */
+    { 0x8180B3A4u, 32, 3, e_8180B3A4 },   /* mod_read__10dGameKey_cFv */
+    { 0x8180B3F0u, 32, 4, e_8180B3F0 },   /* ctor_8180B3F0 */
+    { 0x8180B470u, 16, 1, e_8180B470 },   /* ctor_8180B470 */
+    { 0x8180B514u, 16, 1, e_8180B514 },   /* ctor_8180B514 */
+    { 0x8180B564u, 16, 1, e_8180B564 },   /* ctor_8180B564 */
+    { 0x8180B5B4u, 48, 4, e_8180B5B4 },   /* mod_fn_800B5C60 */
+    { 0x8180BC78u, 32, 1, e_8180BC78 },   /* mod_fn_800B61A0 */
+    { 0x8180BF3Cu, 2944, 3, e_8180BF3C },   /* mfn_8180BF3C */
     { 0x8180C06Cu, 16, 2, e_8180C06C },   /* mod_AddStockPowerup */
     { 0x8180C0BCu, 16, 2, e_8180C0BC },   /* mod_fn_800BB330 */
     { 0x8180C10Cu, 16, 2, e_8180C10C },   /* mod_fn_800BB380 */
     { 0x8180C1ECu, 32, 5, e_8180C1EC },   /* mod_fn_800BB8F0 */
+    { 0x8180C414u, 16, 1, e_8180C414 },   /* ctor_8180C414 */
+    { 0x8180C48Cu, 16, 2, e_8180C48C },   /* mfn_8180C48C */
+    { 0x8180C4ECu, 32, 3, e_8180C4EC },   /* mfn_8180C4EC */
+    { 0x8180C540u, 64, 7, e_8180C540 },   /* mfn_8180C540 */
+    { 0x8180C614u, 32, 3, e_8180C614 },   /* mfn_8180C614 */
+    { 0x8180C6C8u, 80, 10, e_8180C6C8 },   /* mfn_8180C6C8 */
+    { 0x8180C904u, 32, 5, e_8180C904 },   /* mfn_8180C904 */
+    { 0x8180CB80u, 32, 1, e_8180CB80 },   /* mfn_8180CB80 */
+    { 0x8180CF04u, 48, 4, e_8180CF04 },   /* mod_fn_800CD1A0 */
     { 0x8180CF80u, 16, 2, e_8180CF80 },   /* mod_fn_800CDED0 */
     { 0x8180D104u, 16, 2, e_8180D104 },   /* mod_fn_800CE020 */
     { 0x8180D1C4u, 16, 1, e_8180D1C4 },   /* mod_fn_800CE150 */
@@ -1487,18 +10735,62 @@ const gm_prologue_t gm_prologues[] = {
     { 0x8180D230u, 16, 1, e_8180D230 },   /* mod_fn_800CE160 */
     { 0x8180D66Cu, 16, 1, e_8180D66C },   /* mfn_8180D66C */
     { 0x8180D6E8u, 16, 1, e_8180D6E8 },   /* mfn_8180D6E8 */
+    { 0x8180D868u, 16, 1, e_8180D868 },   /* mfn_8180D868 */
+    { 0x8180D8B4u, 32, 3, e_8180D8B4 },   /* mfn_8180D8B4 */
+    { 0x8180DC20u, 16, 1, e_8180DC20 },   /* mfn_8180DC20 */
+    { 0x8180DCFCu, 16, 2, e_8180DCFC },   /* mfn_8180DCFC */
+    { 0x8180DF80u, 48, 8, e_8180DF80 },   /* mfn_8180DF80 */
+    { 0x8180E5E0u, 16, 2, e_8180E5E0 },   /* mfn_8180E5E0 */
+    { 0x8180E6C0u, 48, 6, e_8180E6C0 },   /* mfn_8180E6C0 */
+    { 0x8180F330u, 16, 1, e_8180F330 },   /* mfn_8180F330 */
+    { 0x8180F39Cu, 16, 2, e_8180F39C },   /* mfn_8180F39C */
     { 0x818118ECu, 32, 4, e_818118EC },   /* mod_fn_800CEE90 */
+    { 0x818119ACu, 32, 3, e_818119AC },   /* mfn_818119AC */
     { 0x81811A10u, 32, 5, e_81811A10 },   /* mod_fn_800CF080 */
     { 0x81811AC0u, 544, 10, e_81811AC0 },   /* mod_fn_800CF110 */
     { 0x81811EB4u, 80, 6, e_81811EB4 },   /* mod_fn_800CF590 */
     { 0x818120C0u, 16, 2, e_818120C0 },   /* mod_fn_800CF960 */
+    { 0x81812100u, 16, 2, e_81812100 },   /* mfn_81812100 */
+    { 0x81812310u, 16, 2, e_81812310 },   /* mod_fn_800D0270 */
+    { 0x8181245Cu, 16, 2, e_8181245C },   /* mod_fn_800D2610 */
+    { 0x8181273Cu, 48, 8, e_8181273C },   /* mfn_8181273C */
+    { 0x818128F0u, 32, 6, e_818128F0 },   /* mod_fn_800DC570 */
+    { 0x81812BA4u, 48, 7, e_81812BA4 },   /* mod_execute__13dRemoconMng_cFv */
+    { 0x81812E2Cu, 32, 3, e_81812E2C },   /* mfn_81812E2C */
+    { 0x81812FC8u, 32, 5, e_81812FC8 },   /* mod_fn_800DC6F0 */
+    { 0x81813150u, 16, 2, e_81813150 },   /* mod_fn_800DC820 */
+    { 0x818132C4u, 16, 2, e_818132C4 },   /* mod_fn_800DC8E0 */
+    { 0x818133E8u, 32, 5, e_818133E8 },   /* mfn_818133E8 */
+    { 0x81813558u, 16, 1, e_81813558 },   /* mod_fn_800DCA20 */
+    { 0x81813584u, 16, 1, e_81813584 },   /* mod_fn_800DCB70 */
+    { 0x81813960u, 16, 1, e_81813960 },   /* mfn_81813960 */
+    { 0x81813A0Cu, 32, 3, e_81813A0C },   /* mfn_81813A0C */
+    { 0x81813AB4u, 16, 1, e_81813AB4 },   /* mfn_81813AB4 */
+    { 0x81813B04u, 16, 1, e_81813B04 },   /* mfn_81813B04 */
     { 0x81813BC4u, 32, 3, e_81813BC4 },   /* mod_create__10dSaveMng_cFPQ23EGG4Heap */
     { 0x81813C1Cu, 32, 3, e_81813C1C },   /* mod_fn_800E02D0 */
     { 0x81813CE4u, 16, 1, e_81813CE4 },   /* mod_fn_800E03E0 */
     { 0x81813D38u, 16, 2, e_81813D38 },   /* mod_startNandSave__10dSaveMng_cFv */
     { 0x81814148u, 64, 12, e_81814148 },   /* mod_fn_800E1690 */
     { 0x81814388u, 64, 11, e_81814388 },   /* mod_fn_800E1840 */
+    { 0x818145A4u, 16, 2, e_818145A4 },   /* mod_fn_800E3AB0 */
+    { 0x8181468Cu, 16, 1, e_8181468C },   /* ctor_8181468C */
+    { 0x81814708u, 48, 3, e_81814708 },   /* mod_fn_800FE400 */
+    { 0x81814868u, 32, 5, e_81814868 },   /* mfn_81814868 */
+    { 0x81814904u, 16, 2, e_81814904 },   /* mod_fn_2_1C1880 */
+    { 0x8181493Cu, 16, 2, e_8181493C },   /* mod_fn_2_1C1C30 */
+    { 0x818149B8u, 16, 1, e_818149B8 },   /* mod_fn_2_1C1FD0 */
+    { 0x81814A1Cu, 48, 7, e_81814A1C },   /* mod_fn_2_1C2090 */
+    { 0x81814AFCu, 32, 7, e_81814AFC },   /* mod_fn_2_1C21A0 */
+    { 0x81814D3Cu, 16, 1, e_81814D3C },   /* mod_fn_2_1C2650 */
+    { 0x81814DA0u, 16, 1, e_81814DA0 },   /* mod_fn_2_1C2C90 */
+    { 0x81814DC0u, 16, 1, e_81814DC0 },   /* mod_fn_2_1C2CE0 */
+    { 0x81814DE0u, 16, 1, e_81814DE0 },   /* mod_fn_2_1C2D10 */
+    { 0x81814E00u, 32, 3, e_81814E00 },   /* mod_fn_2_1C31C0 */
+    { 0x81814E48u, 16, 1, e_81814E48 },   /* mod_fn_2_1C3270 */
     { 0x81815110u, 16, 2, e_81815110 },   /* mod_fn_80100B40 */
+    { 0x818154A4u, 32, 1, e_818154A4 },   /* mod_fn_80101990 */
+    { 0x8181558Cu, 32, 6, e_8181558C },   /* mod_setNextScene__10dScStage_cFUsiQ210dScStage_c6Exit_eQ28dFader_c12fader_type_e */
     { 0x818157F4u, 64, 9, e_818157F4 },   /* mod_fn_2_1B9670 */
     { 0x81815C64u, 64, 10, e_81815C64 },   /* mod_fn_2_1B9A20 */
     { 0x81815FE8u, 16, 1, e_81815FE8 },   /* mod_fn_80102A40 */
@@ -1510,6 +10802,112 @@ const gm_prologue_t gm_prologues[] = {
     { 0x81816CE0u, 64, 4, e_81816CE0 },   /* mod_fn_80104CC0 */
     { 0x81816FB8u, 32, 5, e_81816FB8 },   /* mod_fn_80104FD0 */
     { 0x81817044u, 48, 7, e_81817044 },   /* mod_fn_80105060 */
+    { 0x8181723Cu, 32, 5, e_8181723C },   /* mod_fn_2_510 */
+    { 0x818176CCu, 32, 5, e_818176CC },   /* mod_fn_2_2370 */
+    { 0x81817AF0u, 32, 3, e_81817AF0 },   /* mod_fn_2_2920 */
+    { 0x81817D74u, 16, 1, e_81817D74 },   /* mod_fn_2_2B30 */
+    { 0x81818110u, 48, 3, e_81818110 },   /* mod_fn_2_3770 */
+    { 0x81818208u, 32, 4, e_81818208 },   /* mod_fn_2_3920 */
+    { 0x818185D8u, 16, 2, e_818185D8 },   /* mod_fn_2_52E0 */
+    { 0x81818610u, 80, 7, e_81818610 },   /* mod_fn_2_56C0 */
+    { 0x81818A30u, 16, 2, e_81818A30 },   /* mod_fn_2_9E70 */
+    { 0x81818A68u, 32, 6, e_81818A68 },   /* mod_fn_2_A130 */
+    { 0x81818B74u, 80, 7, e_81818B74 },   /* mod_fn_2_A260 */
+    { 0x81818D68u, 64, 11, e_81818D68 },   /* mod_fn_2_A750 */
+    { 0x81818E88u, 32, 5, e_81818E88 },   /* mod_fn_2_A630 */
+    { 0x81818F08u, 0, 0, 0 },   /* mod_fn_2_A4B0 */
+    { 0x81818F2Cu, 32, 2, e_81818F2C },   /* mod_fn_2_A4E0 */
+    { 0x81819000u, 32, 5, e_81819000 },   /* mod_fn_2_A6C0 */
+    { 0x81819080u, 64, 2, e_81819080 },   /* mod_fn_2_A860 */
+    { 0x818191A8u, 48, 7, e_818191A8 },   /* mod_fn_2_AC70 */
+    { 0x818192A4u, 32, 3, e_818192A4 },   /* mod_fn_2_AE30 */
+    { 0x81819378u, 64, 11, e_81819378 },   /* mod_fn_2_AF30 */
+    { 0x81819468u, 32, 5, e_81819468 },   /* mod_fn_2_B0F0 */
+    { 0x81819580u, 32, 5, e_81819580 },   /* mod_fn_2_B240 */
+    { 0x8181960Cu, 32, 3, e_8181960C },   /* mod_fn_2_D2A0 */
+    { 0x8181B370u, 16, 2, e_8181B370 },   /* mod_fn_2_2B1B0 */
+    { 0x8181B3A8u, 32, 4, e_8181B3A8 },   /* mod_fn_2_2B960 */
+    { 0x8181B458u, 64, 11, e_8181B458 },   /* mod_fn_2_2BFC0 */
+    { 0x8181BA1Cu, 48, 7, e_8181BA1C },   /* mod_fn_2_2D030 */
+    { 0x8181BAFCu, 16, 2, e_8181BAFC },   /* mod_fn_2_31EC0 */
+    { 0x8181BB34u, 32, 3, e_8181BB34 },   /* mod_fn_2_31EF0 */
+    { 0x8181BC64u, 32, 3, e_8181BC64 },   /* mod_fn_2_32160 */
+    { 0x8181BCCCu, 32, 3, e_8181BCCC },   /* mod_fn_2_32220 */
+    { 0x8181C000u, 192, 7, e_8181C000 },   /* mod_fn_2_32560 */
+    { 0x8181C278u, 32, 5, e_8181C278 },   /* mod_fn_2_328F0 */
+    { 0x8181C510u, 80, 9, e_8181C510 },   /* mod_fn_2_32CD0 */
+    { 0x8181C8F0u, 32, 5, e_8181C8F0 },   /* mod_fn_2_33260 */
+    { 0x8181C980u, 96, 12, e_8181C980 },   /* mod_fn_2_332E0 */
+    { 0x8181CB30u, 32, 1, e_8181CB30 },   /* mod_fn_2_33480 */
+    { 0x8181CD04u, 32, 5, e_8181CD04 },   /* mod_fn_2_33640 */
+    { 0x8181CFD8u, 16, 1, e_8181CFD8 },   /* mfn_8181CFD8 */
+    { 0x8181D020u, 32, 5, e_8181D020 },   /* mod_fn_2_33A30 */
+    { 0x8181D11Cu, 32, 3, e_8181D11C },   /* mod_fn_2_33B60 */
+    { 0x8181D1ACu, 48, 7, e_8181D1AC },   /* mod_fn_2_33C10 */
+    { 0x8181D2D4u, 16, 1, e_8181D2D4 },   /* mod_fn_2_33D60 */
+    { 0x8181D5E0u, 16, 1, e_8181D5E0 },   /* mod_fn_2_340C0 */
+    { 0x8181D60Cu, 32, 3, e_8181D60C },   /* mod_fn_2_340F0 */
+    { 0x8181D6F4u, 32, 3, e_8181D6F4 },   /* mod_fn_2_34220 */
+    { 0x8181D798u, 32, 3, e_8181D798 },   /* mod_fn_2_342E0 */
+    { 0x8181D7FCu, 32, 3, e_8181D7FC },   /* mod_fn_2_34340 */
+    { 0x8181D878u, 16, 1, e_8181D878 },   /* mod_fn_2_343D0 */
+    { 0x8181DA2Cu, 16, 1, e_8181DA2C },   /* mod_fn_2_345A0 */
+    { 0x8181DAA8u, 32, 3, e_8181DAA8 },   /* mod_fn_2_34630 */
+    { 0x8181DB64u, 48, 7, e_8181DB64 },   /* mod_fn_2_34710 */
+    { 0x8181DE64u, 16, 1, e_8181DE64 },   /* mfn_8181DE64 */
+    { 0x8181DF18u, 32, 3, e_8181DF18 },   /* mfn_8181DF18 */
+    { 0x8181DFC0u, 16, 1, e_8181DFC0 },   /* mfn_8181DFC0 */
+    { 0x8181E014u, 16, 1, e_8181E014 },   /* mfn_8181E014 */
+    { 0x8181E068u, 16, 1, e_8181E068 },   /* mfn_8181E068 */
+    { 0x8181E1F4u, 16, 2, e_8181E1F4 },   /* mod_fn_2_3E670 */
+    { 0x8181E22Cu, 208, 8, e_8181E22C },   /* mod_fn_2_3E9D0 */
+    { 0x8181E414u, 16, 1, e_8181E414 },   /* mod_fn_2_3EC30 */
+    { 0x8181E4ACu, 32, 4, e_8181E4AC },   /* mod_fn_2_3ED00 */
+    { 0x8181E524u, 32, 3, e_8181E524 },   /* mod_fn_2_3EE70 */
+    { 0x8181E5C8u, 16, 2, e_8181E5C8 },   /* mod_fn_2_3EF40 */
+    { 0x8181E62Cu, 16, 1, e_8181E62C },   /* mod_fn_2_3EFE0 */
+    { 0x8181E664u, 16, 2, e_8181E664 },   /* mod_fn_2_3F000 */
+    { 0x8181E7B8u, 16, 1, e_8181E7B8 },   /* mod_fn_2_3F1C0 */
+    { 0x8181E804u, 16, 2, e_8181E804 },   /* mod_fn_2_3F330 */
+    { 0x8181E884u, 32, 3, e_8181E884 },   /* mod_fn_2_3F430 */
+    { 0x8181E8E8u, 32, 3, e_8181E8E8 },   /* mod_fn_2_3F4A0 */
+    { 0x8181E968u, 16, 2, e_8181E968 },   /* mod_fn_2_40330 */
+    { 0x8181E9A0u, 144, 7, e_8181E9A0 },   /* mod_fn_2_40770 */
+    { 0x8181EB3Cu, 32, 2, e_8181EB3C },   /* mod_fn_2_409A0 */
+    { 0x8181EBBCu, 48, 7, e_8181EBBC },   /* mod_fn_2_40A20 */
+    { 0x8181EC94u, 16, 2, e_8181EC94 },   /* mod_fn_2_40A90 */
+    { 0x8181ED04u, 32, 5, e_8181ED04 },   /* mod_fn_2_40B60 */
+    { 0x8181ED90u, 48, 8, e_8181ED90 },   /* mod_fn_2_40D80 */
+    { 0x8181EED8u, 32, 3, e_8181EED8 },   /* mod_fn_2_40FB0 */
+    { 0x8181EF6Cu, 32, 4, e_8181EF6C },   /* mod_fn_2_41160 */
+    { 0x8181EFECu, 32, 6, e_8181EFEC },   /* mod_fn_2_411E0 */
+    { 0x8181F0A8u, 16, 2, e_8181F0A8 },   /* mod_fn_2_41BD0 */
+    { 0x8181F0E0u, 160, 7, e_8181F0E0 },   /* mod_fn_2_42130 */
+    { 0x8181F274u, 0, 0, 0 },   /* mod_getIconPictureIDforPlayer__12dStockItem_cFi */
+    { 0x8181F2A8u, 464, 21, e_8181F2A8 },   /* mod_fn_2_42420 */
+    { 0x8181F77Cu, 112, 12, e_8181F77C },   /* mod_fn_2_42900 */
+    { 0x8181FA20u, 64, 7, e_8181FA20 },   /* mod_fn_2_42C00 */
+    { 0x8181FB40u, 48, 8, e_8181FB40 },   /* mod_fn_2_42F20 */
+    { 0x8181FD44u, 32, 6, e_8181FD44 },   /* mod_fn_2_43230 */
+    { 0x8181FE3Cu, 32, 5, e_8181FE3C },   /* mod_fn_2_43C20 */
+    { 0x81823708u, 48, 6, e_81823708 },   /* mod_fn_2_74F70 */
+    { 0x81823C84u, 16, 2, e_81823C84 },   /* mod_fn_2_C2EF0 */
+    { 0x81823D00u, 32, 5, e_81823D00 },   /* mod_fn_2_C2F80 */
+    { 0x81824050u, 32, 3, e_81824050 },   /* mfn_81824050 */
+    { 0x81824198u, 16, 2, e_81824198 },   /* mod_fn_2_CE880 */
+    { 0x818241D0u, 32, 3, e_818241D0 },   /* mfn_818241D0 */
+    { 0x81824318u, 48, 6, e_81824318 },   /* mod_fn_2_CFBE0 */
+    { 0x8182661Cu, 16, 2, e_8182661C },   /* mod_fn_2_100ED0 */
+    { 0x81826668u, 32, 5, e_81826668 },   /* mod_fn_2_101130 */
+    { 0x81826764u, 80, 13, e_81826764 },   /* mod_fn_2_101270 */
+    { 0x81826904u, 32, 3, e_81826904 },   /* mod_fn_2_101410 */
+    { 0x81826954u, 32, 4, e_81826954 },   /* mod_fn_2_101700 */
+    { 0x81826B30u, 32, 3, e_81826B30 },   /* mod_fn_2_103920 */
+    { 0x81826C44u, 80, 15, e_81826C44 },   /* mod_fn_2_103CA0 */
+    { 0x81826EC0u, 48, 8, e_81826EC0 },   /* mod_fn_2_108940 */
+    { 0x81826FBCu, 640, 54, e_81826FBC },   /* mod_fn_2_108EE0 */
+    { 0x81828600u, 80, 3, e_81828600 },   /* mod_fn_2_157EF0 */
+    { 0x81828748u, 32, 4, e_81828748 },   /* mod_fn_2_1581F0 */
     { 0x81828808u, 16, 1, e_81828808 },   /* mod_fn_2_174AB0 */
     { 0x81828848u, 16, 1, e_81828848 },   /* mod_fn_2_174BE0 */
     { 0x81828914u, 16, 2, e_81828914 },   /* mod_fn_2_17DA80 */
@@ -1529,12 +10927,58 @@ const gm_prologue_t gm_prologues[] = {
     { 0x81829738u, 32, 3, e_81829738 },   /* mod_fn_2_196980 */
     { 0x818299ACu, 16, 1, e_818299AC },   /* mod_fn_2_19A570 */
     { 0x81829A5Cu, 96, 14, e_81829A5C },   /* mod_fn_2_19F670 */
+    { 0x81829BD0u, 80, 8, e_81829BD0 },   /* mod_fn_2_1A3BE0 */
+    { 0x81829DDCu, 32, 3, e_81829DDC },   /* mod_fn_2_1A3EE0 */
+    { 0x81829E50u, 16, 2, e_81829E50 },   /* mod_fn_2_1A4330 */
+    { 0x8182AA74u, 32, 3, e_8182AA74 },   /* mfn_8182AA74 */
+    { 0x8182AAE8u, 16, 1, e_8182AAE8 },   /* mod_fn_2_1B14B0 */
+    { 0x8182AB30u, 32, 3, e_8182AB30 },   /* mod_fn_2_1B1830 */
+    { 0x8182AB98u, 16, 1, e_8182AB98 },   /* mod_fn_2_1B21A0 */
+    { 0x8182AEDCu, 16, 2, e_8182AEDC },   /* mod_fn_2_1B2DB0 */
+    { 0x8182AFA4u, 64, 7, e_8182AFA4 },   /* mod_fn_2_1B5170 */
+    { 0x8182B77Cu, 16, 2, e_8182B77C },   /* mod_fn_2_1B71B0 */
+    { 0x8182B830u, 16, 1, e_8182B830 },   /* mod_fn_2_1B7A20 */
+    { 0x8182B880u, 48, 7, e_8182B880 },   /* mod_fn_2_1B7A50 */
+    { 0x8182BA94u, 32, 3, e_8182BA94 },   /* mod_fn_2_1B7C40 */
+    { 0x8182BF34u, 64, 10, e_8182BF34 },   /* mod_fn_4_4F2B0 */
+    { 0x8182C0ACu, 32, 5, e_8182C0AC },   /* mfn_8182C0AC */
+    { 0x8182C14Cu, 32, 6, e_8182C14C },   /* mod_fn_4_4F630 */
+    { 0x8182C5A0u, 208, 7, e_8182C5A0 },   /* mod_fn_4_4FE20 */
+    { 0x8182CA00u, 192, 14, e_8182CA00 },   /* mod_fn_80111850 */
+    { 0x8182D144u, 32, 3, e_8182D144 },   /* mod_fn_801133B0 */
+    { 0x8182D244u, 16, 2, e_8182D244 },   /* mod_fn_8011A570 */
+    { 0x8182D2C0u, 64, 4, e_8182D2C0 },   /* mod_fn_80123330 */
+    { 0x8182D5B0u, 32, 3, e_8182D5B0 },   /* mod_fn_80128980 */
+    { 0x8182D73Cu, 64, 8, e_8182D73C },   /* mod_fn_8012E1F0 */
+    { 0x8182DA4Cu, 16, 2, e_8182DA4C },   /* mod_fn_80136650 */
+    { 0x8182DAE0u, 16, 1, e_8182DAE0 },   /* mod_fn_801391F0 */
+    { 0x8182DB08u, 48, 7, e_8182DB08 },   /* mod_fn_80139210 */
+    { 0x8182DD14u, 16, 1, e_8182DD14 },   /* mod_fn_80139200 */
+    { 0x8182DD3Cu, 16, 2, e_8182DD3C },   /* mfn_8182DD3C */
+    { 0x8182DDA4u, 16, 2, e_8182DDA4 },   /* mod_fn_8013D670 */
+    { 0x8182DE9Cu, 32, 4, e_8182DE9C },   /* mod_fn_8013D8F0 */
+    { 0x8182DFFCu, 16, 2, e_8182DFFC },   /* mod_fn_8013D9F0 */
+    { 0x8182E094u, 16, 2, e_8182E094 },   /* mod_fn_8013DDD0 */
+    { 0x8182E0F8u, 32, 3, e_8182E0F8 },   /* mod_fn_8013FF70 */
+    { 0x8182E498u, 16, 2, e_8182E498 },   /* mod_fn_80140EE0 */
+    { 0x8182E520u, 16, 2, e_8182E520 },   /* mod_fn_80140F40 */
+    { 0x8182E5F0u, 32, 5, e_8182E5F0 },   /* mod_fn_80144B20 */
+    { 0x8182E834u, 16, 2, e_8182E834 },   /* mod_fn_80144D60 */
+    { 0x8182EAD0u, 32, 6, e_8182EAD0 },   /* mod_dAcPy_vf3F4 */
+    { 0x8182EBE4u, 32, 6, e_8182EBE4 },   /* mod_dAcPy_vf3F8 */
+    { 0x8182ECECu, 16, 2, e_8182ECEC },   /* mod_fn_80150CD0 */
+    { 0x8182EF38u, 448, 43, e_8182EF38 },   /* mod_fn_80154F60 */
+    { 0x818307C0u, 16, 2, e_818307C0 },   /* mod_fn_80156820 */
+    { 0x81830828u, 16, 1, e_81830828 },   /* mod_fn_801568D0 */
+    { 0x818309E4u, 48, 7, e_818309E4 },   /* mod_fn_80156C30 */
+    { 0x818310FCu, 16, 2, e_818310FC },   /* mod_fn_80156EA0 */
     { 0x81831134u, 16, 2, e_81831134 },   /* mod_fn_80156ED0 */
     { 0x8183119Cu, 32, 5, e_8183119C },   /* mod_fn_80156F40 */
     { 0x81831240u, 32, 4, e_81831240 },   /* mod_fn_80156FD0 */
     { 0x818312D0u, 16, 3, e_818312D0 },   /* mod_fn_80157060 */
     { 0x8183133Cu, 16, 3, e_8183133C },   /* mod_fn_801570D0 */
     { 0x8183138Cu, 16, 3, e_8183138C },   /* mod_fn_80157120 */
+    { 0x818314E4u, 16, 2, e_818314E4 },   /* mod_fn_801576E0 */
     { 0x8183151Cu, 32, 3, e_8183151C },   /* mod_fn_80157710 */
     { 0x81831650u, 32, 4, e_81831650 },   /* mod_fn_80157960 */
     { 0x818316D8u, 16, 2, e_818316D8 },   /* mod_fn_80157F90 */
@@ -1553,11 +10997,97 @@ const gm_prologue_t gm_prologues[] = {
     { 0x818324FCu, 80, 3, e_818324FC },   /* mod_fn_801590B0 */
     { 0x81832674u, 112, 6, e_81832674 },   /* mod_fn_80159250 */
     { 0x818328ECu, 32, 5, e_818328EC },   /* mod_fn_801594E0 */
+    { 0x81832A24u, 96, 17, e_81832A24 },   /* mfn_81832A24 */
     { 0x81832C40u, 32, 2, e_81832C40 },   /* mod_fn_80159AC0 */
     { 0x81832CB4u, 96, 18, e_81832CB4 },   /* mod_fn_80159AF0 */
     { 0x81832EE4u, 32, 2, e_81832EE4 },   /* mod_fn_80159CB0 */
+    { 0x81833024u, 16, 1, e_81833024 },   /* mfn_81833024 */
+    { 0x818330D8u, 32, 3, e_818330D8 },   /* mfn_818330D8 */
+    { 0x81833180u, 16, 1, e_81833180 },   /* mfn_81833180 */
+    { 0x818331D4u, 16, 1, e_818331D4 },   /* mfn_818331D4 */
+    { 0x8183327Cu, 96, 12, e_8183327C },   /* mod_fn_8015D710 */
+    { 0x818339F4u, 32, 5, e_818339F4 },   /* mod_fn_3_1C070 */
+    { 0x81833E58u, 96, 9, e_81833E58 },   /* mod_fn_3_1C800 */
+    { 0x818341D0u, 48, 4, e_818341D0 },   /* mod_fn_3_1D040 */
+    { 0x81834870u, 32, 6, e_81834870 },   /* mod_fn_3_2D390 */
+    { 0x81835AACu, 64, 7, e_81835AAC },   /* mod_fn_3_85560 */
+    { 0x81835DD8u, 32, 3, e_81835DD8 },   /* mod_fn_3_88390 */
+    { 0x818361ECu, 208, 9, e_818361EC },   /* mod_fn_3_968D0 */
+    { 0x818383D0u, 16, 1, e_818383D0 },   /* ctor_818383D0 */
+    { 0x81838720u, 64, 12, e_81838720 },   /* mfn_81838720 */
+    { 0x81838BF0u, 16, 2, e_81838BF0 },   /* mfn_81838BF0 */
+    { 0x81838C84u, 32, 3, e_81838C84 },   /* mfn_81838C84 */
+    { 0x81838DBCu, 32, 3, e_81838DBC },   /* mfn_81838DBC */
+    { 0x81839FFCu, 336, 12, e_81839FFC },   /* mod_fn_8016B2A0 */
+    { 0x8183A2F8u, 48, 8, e_8183A2F8 },   /* mfn_8183A2F8 */
+    { 0x8183A3BCu, 544, 4, e_8183A3BC },   /* mod_fn_8016BC30 */
+    { 0x8183A4A4u, 32, 3, e_8183A4A4 },   /* mfn_8183A4A4 */
+    { 0x8183A518u, 16, 2, e_8183A518 },   /* mod_create__16mDvd_toMainRam_cFPCcUcPQ23EGG4Heap */
+    { 0x8183A558u, 288, 5, e_8183A558 },   /* mfn_8183A558 */
+    { 0x8183A600u, 16, 1, e_8183A600 },   /* ctor_8183A600 */
+    { 0x8183A720u, 32, 3, e_8183A720 },   /* mfn_8183A720 */
+    { 0x8183A78Cu, 32, 5, e_8183A78C },   /* mfn_8183A78C */
+    { 0x8183A894u, 48, 7, e_8183A894 },   /* mfn_8183A894 */
+    { 0x8183AA6Cu, 112, 16, e_8183AA6C },   /* mfn_8183AA6C */
+    { 0x8183AE28u, 48, 9, e_8183AE28 },   /* mfn_8183AE28 */
+    { 0x8183BA58u, 32, 5, e_8183BA58 },   /* mod_create__4mPadFv */
+    { 0x8183BB38u, 32, 5, e_8183BB38 },   /* mod_fn_8016F550 */
+    { 0x8183BBB4u, 80, 18, e_8183BBB4 },   /* mod_beginPad__4mPadFv */
+    { 0x8183C03Cu, 16, 1, e_8183C03C },   /* mod_endPad__4mPadFv */
+    { 0x8183C114u, 32, 3, e_8183C114 },   /* mfn_8183C114 */
+    { 0x8183C1C4u, 32, 3, e_8183C1C4 },   /* ctor_8183C1C4 */
+    { 0x8183C5ACu, 48, 4, e_8183C5AC },   /* mfn_8183C5AC */
+    { 0x8183C768u, 32, 3, e_8183C768 },   /* mfn_8183C768 */
+    { 0x8183C7C8u, 32, 3, e_8183C7C8 },   /* mfn_8183C7C8 */
+    { 0x8183C828u, 32, 3, e_8183C828 },   /* mod_fn_80198BB0 */
+    { 0x8183CB74u, 32, 3, e_8183CB74 },   /* mfn_8183CB74 */
+    { 0x8183CEC4u, 16, 1, e_8183CEC4 },   /* ctor_8183CEC4 */
+    { 0x8183D078u, 16, 1, e_8183D078 },   /* ctor_8183D078 */
+    { 0x8183EA10u, 16, 1, e_8183EA10 },   /* mfn_8183EA10 */
+    { 0x818409A4u, 80, 6, e_818409A4 },   /* mfn_818409A4 */
+    { 0x81840AB0u, 32, 5, e_81840AB0 },   /* mfn_81840AB0 */
+    { 0x81840B68u, 32, 5, e_81840B68 },   /* mfn_81840B68 */
+    { 0x81840BE8u, 32, 3, e_81840BE8 },   /* mfn_81840BE8 */
+    { 0x81840C54u, 32, 5, e_81840C54 },   /* mfn_81840C54 */
+    { 0x81840F24u, 16, 1, e_81840F24 },   /* preinit */
+    { 0x81840F88u, 16, 1, e_81840F88 },   /* mfn_81840F88 */
+    { 0x81841364u, 32, 5, e_81841364 },   /* mfn_81841364 */
+    { 0x81841460u, 16, 2, e_81841460 },   /* mfn_81841460 */
+    { 0x818414E4u, 16, 2, e_818414E4 },   /* mod__Z24DVDConvertPathToEntrynumPKc */
+    { 0x81841554u, 48, 3, e_81841554 },   /* mod__Z11DVDFastOpeniP9DVDHandle */
+    { 0x81841640u, 48, 9, e_81841640 },   /* mfn_81841640 */
+    { 0x818417C4u, 16, 1, e_818417C4 },   /* mfn_818417C4 */
+    { 0x81841D6Cu, 16, 1, e_81841D6C },   /* mfn_81841D6C */
+    { 0x81841E14u, 16, 2, e_81841E14 },   /* mfn_81841E14 */
+    { 0x818423A0u, 32, 3, e_818423A0 },   /* mfn_818423A0 */
+    { 0x818425A0u, 16, 2, e_818425A0 },   /* mfn_818425A0 */
+    { 0x81842714u, 128, 19, e_81842714 },   /* mfn_81842714 */
+    { 0x81842F7Cu, 32, 4, e_81842F7C },   /* mfn_81842F7C */
+    { 0x8184311Cu, 16, 2, e_8184311C },   /* mod_fn_80275EE0 */
+    { 0x81843158u, 32, 3, e_81843158 },   /* mod_fn_80275FD0 */
+    { 0x818431A4u, 32, 4, e_818431A4 },   /* mod_fn_80276210 */
+    { 0x81843218u, 16, 2, e_81843218 },   /* mod_fn_802764F0 */
+    { 0x8184326Cu, 32, 3, e_8184326C },   /* mfn_8184326C */
+    { 0x81843378u, 16, 1, e_81843378 },   /* mod___nw__FUlPQ23EGG4Heapi */
+    { 0x818433C8u, 16, 1, e_818433C8 },   /* mod___nwa__FUl */
+    { 0x81843414u, 16, 1, e_81843414 },   /* mod_fn_802B9260 */
+    { 0x8184345Cu, 16, 1, e_8184345C },   /* mod___nwa__FUlPQ23EGG4Heapi */
+    { 0x818437A4u, 16, 1, e_818437A4 },   /* mod_fn_802BC900 */
+    { 0x81843840u, 16, 1, e_81843840 },   /* mod_fn_802BC910 */
+    { 0x818438DCu, 32, 4, e_818438DC },   /* mod_fn_802BC920 */
+    { 0x818439A4u, 16, 1, e_818439A4 },   /* mod_startPatternRumble__Q23EGG14CoreControllerFPCcib */
+    { 0x81843A40u, 16, 1, e_81843A40 },   /* mod_fn_802BC9A0 */
+    { 0x81843ADCu, 16, 1, e_81843ADC },   /* mod_fn_802BC9C0 */
+    { 0x81843B78u, 64, 3, e_81843B78 },   /* mod_fn_802BCDE0 */
+    { 0x81844184u, 16, 2, e_81844184 },   /* mfn_81844184 */
+    { 0x81844244u, 64, 2, e_81844244 },   /* mfn_81844244 */
+    { 0x81844664u, 32, 3, e_81844664 },   /* mfn_81844664 */
+    { 0x818446D4u, 32, 4, e_818446D4 },   /* mfn_818446D4 */
+    { 0x818448D8u, 32, 3, e_818448D8 },   /* mfn_818448D8 */
+    { 0x8184499Cu, 32, 5, e_8184499C },   /* mfn_8184499C */
+    { 0x81844A50u, 48, 8, e_81844A50 },   /* mfn_81844A50 */
 };
-const int gm_prologue_count = 780;
+const int gm_prologue_count = 5546;
 
 uint32_t gm_psq_last_;
 uint32_t gm_prologue_(ppc_context *ctx, uint8_t *base, uint32_t addr) {

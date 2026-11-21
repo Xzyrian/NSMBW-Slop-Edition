@@ -6,6 +6,928 @@ without re-deriving it.
 
 ---
 
+## 2026-11-19 (118) - Claude (instance 2): the player family and the world map in the DOL - 698 functions native (`runtime/gm_pf_family.c`, `runtime/gm_wmc_worldmap.c`, new)
+
+- **Claimed (TODO.md), by address range in E2** - the classes next to instance 2's player and
+  world-map work, none on instance 1's list:
+  - the player family: 0x8014A6F0-0x8015F4F0 (after dAcPy_c: daPlyIce_c, daYoshi_c and their
+    parts), 0x800D1500-0x800D8400 (dPc_c, dPyEffectMng_c, dPyMdlBase_c, dPyMdlMng_c,
+    dPlayerOrchestra_c, dPropelParts_c), 0x800CAA10-0x800CCA40 (dMarioMdl_c ...);
+  - the world map and the scenes: 0x800F32F0-0x80106DF0 (dWmConnect_c, dWmLib, dWmViewClip_c,
+    daWmMap_c, daWmPlayer_c, dCsSeqMng_c, dScStage_c, dScWMap_c, dWmBgmSync_c,
+    dWmEffectManager_c, dWmSeManager_c).
+- **What.** Of the functions there the 16 inputs reach (470 / 312), 430 + 268 native by
+  `tools/gm_conv.py` (11 refused: mod wrappers, r1 used other than r1 + n; the rest already
+  native or used by other files). Ranges in `tools/gm_prologues.py`, the files in build.py /
+  build_linux_clang.sh before rt_plat_*, two `# track B` sections in hle_funcs.txt. Flags
+  `-DGM_PF_COUNT` / `-DGM_PF_VERIFY`, `-DGM_WMC_COUNT` / `-DGM_WMC_VERIFY`; names `pf_m_` /
+  `wm_m_<addr>` (owed). gm_py_player.c / gm_py_mng.c / gm_d_player.c / gm_d_player_base.c call 10
+  of them through `hle_` now.
+- **Checks:** no prologue table of these lists a register twice. Strict A/B against (117) on all
+  16 inputs: 0 differ. Linux and Windows builds.
+
+---
+
+## 2026-11-19 (117) - Claude (instance 2): the 8-player module - 312 more functions native by the converter (`runtime/gm_mj_conv.c`, new)
+
+- **What.** The 8-player module's (d_project, 0x81800000) functions the 16 inputs reach that no
+  hand-written native covers: 361 reached, 312 native by `tools/gm_conv.py` (9 refused: tail calls
+  out of a frame, r1 used other than r1 + n; the rest already native or called by symbol from
+  other files). `tools/gm_prologues.py` gets the whole module's range (the single ranges of the
+  hand-written natives predate it); build.py / build_linux_clang.sh list the file before
+  rt_plat_*; a `# track B` section in hle_funcs.txt. Flags `-DGM_MJ_COUNT` / `-DGM_MJ_VERIFY`;
+  names `mj_m_<addr>` (owed). gm_py_mng.c / gm_py_player.c / gm_py_demo.c call 6 of them through
+  `hle_` now.
+- **Checks:** no prologue table of these lists a register twice. Strict A/B against (116) on all
+  16 inputs: 0 differ. Linux and Windows builds.
+
+---
+
+## 2026-11-19 (116) - Claude (instance 2): the boss module d_en_bossNP begins - 380 functions native (`runtime/gm_eb_boss.c`, new)
+
+- **What.** `d_en_bossNP` (fn_4_*, linked at 0x80B1CA50-0x80B74000: the castle / tower / airship
+  bosses and their parts, plus what every level uses from it) had no owner and nothing native.
+  Claimed in TODO.md. Of the 387 functions the 16 inputs reach (every input reaches 293-387 of
+  them), 380 are native by `tools/gm_conv.py` as in (112); 1 refused (a mod wrapper), the rest
+  already native or used by other files. `tools/gm_prologues.py` gets the range; build.py /
+  build_linux_clang.sh list the file before rt_plat_*; a `# track B` section in hle_funcs.txt.
+  Build flags `-DGM_EB_COUNT` / `-DGM_EB_VERIFY`; names `eb_m_<addr>` (owed).
+- **Checks:** no prologue table of these lists a register twice (the scanner case of (110)).
+  Strict A/B against the build of (115) on all 16 inputs: 0 differ - so on a, c, e, hm, wm, p4,
+  s1 it is also identical to the build with no natives (CHANGELOG (115)). Linux and Windows builds.
+
+---
+
+## 2026-11-19 (115) - Claude (instance 2): the end-to-end check - every native against a build with none; three bugs fixed in instance 2's module natives; findings for instance 1
+
+- **The check.** A tree with every native dropped (every `hle_` name that a `gm_*.c` file defines
+  taken out of hle_funcs.txt, the gm_* files out of the build but gm_verify / gm_prologue: 10,257
+  of 10,465 names; the 208 left are the runtime's hooks) is the recompiled original game. Each A/B
+  so far compared against the build before it; this compares all ~10,300 natives at once against
+  the original, on all 16 inputs (instance 2's bench: `wt_pure`). Before: 11 of 16 inputs differed.
+- **Found and fixed (instance 2's files):**
+  - `gm_d_gamedisplay.c` AreaCheck (mod_fn_80158910, part 79): the player-behind-the-HUD box test
+    read the right edge at +8 instead of +20, and all four comparisons were inverted (proceeded on
+    a clear bit where the PowerPC code proceeds on a set one). `RT_GM_VERIFY=mod_fn_80158910`:
+    480 of 3,841 calls different before, 0 after.
+  - `gm_d_gamedisplay.c` AlphaEnterAndExit (mod_fn_80158A90): the "done" test was swapped
+    between fading in (done at 255) and fading out (done below 71). 256 of 3,841 -> 0.
+  - `gm_d_sc_wmap.c` createLayoutPhase / createActorsPhase (mod_fn_2_1B9670 / 1B9A20, part 83):
+    the PowerPC code saves CR (mfcr r12, stw to its frame) and puts cr2-cr3 (cr2-cr4) back at the
+    end; the natives set those fields and left them - the main thread's saved CR (0x803599B8) then
+    differed for thousands of fields. Now saved, stored and restored as the original does. (A scan
+    of the other hand-written natives whose originals save CR: the other six already do this.)
+  - Found by `RT_GM_VERIFY=orig:<list>` bisection over the switchable natives at the first
+    differing field (memory dumps, `RT_DET_DUMP_AT` / `RT_DET_DUMP_MEM`), then
+    `RT_GM_VERIFY=<name>` on the culprit. After the fixes: c, p4 identical to the original; the
+    built-in verification of all 447 switchable hand-written natives on f1 and r_w8-7 finds only
+    fukidashi's constructor / create (allocations: a second invocation gets other addresses).
+- **For instance 1** (your files - not changed):
+  - `gm_m3d.c` `fanm_c::set` (fn_80168F10): switching it alone to its PowerPC version
+    (`-DGM_M3D_VERIFY`, `RT_GM_VERIFY=orig:fn_80168F10`) makes f1, p1, p2, p5, s2 identical to the
+    original and moves d's first difference from field 7661 to 8241 and r_w8-7's from 1256 to
+    11221. At d 7661 the blend results array (0x81220B38, stride 76: ExecCallbackA's stored
+    results) gets 1.0 instead of 29.0. The C reads the same as the PowerPC code to me; maybe a
+    paired-single half (NV_F sets ps0 only where the frsp path sets both) or the callee's view of
+    f1 - not found.
+  - Still different with every switchable native on its PowerPC version (all `*_VERIFY` flags,
+    `RT_GM_VERIFY=orig`): input b field 4933, word 0x81220B54 (the same results array: a pointer
+    0x8043F9C0 in the original, 0 here); input p3 field 2452, stack word 0x80DFFF04 (0x43300000 -
+    an int-to-float temp - in the original; fn_802DA6F0 effect_params_copy_da6f0's frame doesn't
+    store it: dead stack, but hashed until 7144). So: plain `GM_HLE` natives.
+- **Inputs now identical to the original build:** a, c, e, hm, wm, p4, s1 (and f1, p1, p2, p5, s2
+  with fanm_c::set on its PowerPC version).
+
+---
+
+## 2026-11-19 (114) - Claude (instance 2): the first recorded play (the user's 8-7, `r_w8-7`) as A/B input; 160 more converted functions on
+
+- **The recording** (`tools/record_play.bat`, part 113): the user's 8-7 - a death, the level
+  again, the clear, the world map; 11,580 fields. Replayed on Linux it plays the same scenes in the
+  same order. Its `check.hash` does not match a Linux replay from field 60 on (a Windows build and
+  game folder against a Linux one: something outside the game's state that the live hash still
+  takes in - to be found; the A/B compares two Linux builds on the same replay, which doesn't need
+  it). Kept in instance 2's bench (`recs/w8-7`: input.rec + start/), run for 360 s.
+- **What it reaches** that the 15 inputs don't: 269 functions, among them 41 converted player
+  functions (109) and 119 more convertible ones of d_basesNP. All on now (`gm_d_player_conv.c` +41,
+  `gm_bs_bases.c` +119; a new `# track B` section in hle_funcs.txt; gm_d_player.c's call of
+  fn_8013C520 through `hle_`).
+- **Checks:** strict A/B against the base of (108) on the 15 inputs: 0 differ; on r_w8-7 against
+  the build of (113) (the base predates `RT_REPLAY`): 0 differ.
+- **Next:** an A/B against a build with nothing native at all (every gm_* native dropped from
+  hle_funcs.txt, the files out of the build): the end-to-end check that the natives as a whole
+  match the recompiled original on every input.
+
+---
+
+## 2026-11-19 (113) - Claude (instance 2): recorded play as A/B input - `RT_REC` / `RT_REPLAY` (rt_det.c), `tools/record_play.bat`
+
+- **Why.** Almost everything the 15 inputs reach is native; what's left needs play the scripted
+  inputs can't do (Yoshi, water, vines, bosses, airships). The user offered to play it.
+- **What.** In deterministic mode the game sees the keyboard only as latched per video field
+  (det_field), so recording those words is enough to replay a game exactly. `RT_REC=file` writes
+  "field mask" lines (hex) where they change; `RT_REPLAY=file` ORs them into the latched keyboard
+  instead. `tools/record_play.bat NAME` saves the starting state (nand, settings.ini,
+  wiimotes.ini, profiles.json) to `game\recordings\NAME\start\`, sets `RT_DETERMINISTIC=1
+  RT_UPDATE=0`, the recording, and a memory hash every 60 fields (`check.hash`) to check the replay
+  against. Keyboard only (a real remote's reports aren't latched per field), no save states, not
+  online, not our Options / Controls menus. Documented in `tools/ab_inputs/README.md`.
+- **Checked:** a recording made from input f1's scripted presses replayed with `RT_REPLAY`: the same
+  hash on all 9,469 fields. Inert without the variables.
+
+---
+
+## 2026-11-19 (112) - Claude (instance 2): the stage-objects module d_basesNP begins - 2,327 functions native (`runtime/gm_bs_bases.c`, new)
+
+- **What.** `d_basesNP` (fn_2_*, linked at 0x8076D8C0-0x80933800: course objects, items,
+  platforms, the scenes' actors) had no owner and nothing native but the menus and world-map
+  classes of parts 82-96 and the state-ID templates. Claimed in TODO.md (instance 1: tell me in
+  CHANGELOG if you need one of its functions). Of the 2,504 functions the 15 A/B inputs reach
+  (coverage build, part 111), 2,327 are native, by `tools/gm_conv.py` as in (109) / (110).
+- **Left out:** 28 refused by the converter (21 mod wrappers, 7 using r1 other than r1 + n);
+  31 that other runtime files call by symbol (`gm_d_sc_wmap.c`, `gm_d_wm_*.c`, `gm_d_stock_item.c`,
+  `gm_d_course_manager.c`, `gm_d_sc_stage.c` - left to those files); 4 whose recompiled name the
+  DOL has too (a REL's own copy of `dEn_c::calcBoyonScale` / `isQuakeDamage`, `m3d::banm_c::play`,
+  `anmChrBlend_c::getType` - the hle list is by name, so listing one makes two `orig_` symbols);
+  the rest already native or hle. A check of `gm_prologue.c` for the scanner case of (110): no
+  table of these lists a register twice.
+- **`runtime/gm_bs_bases.c`** (141k lines), build flags `-DGM_BS_COUNT` / `-DGM_BS_VERIFY` as the
+  others; names `bs_m_<addr>` - naming owed. `tools/gm_prologues.py` gets the module's range;
+  build.py / build_linux_clang.sh list the file before rt_plat_*.
+- **Checks:** strict A/B against the base of (108) on all 15 inputs (`tools/ab_inputs/`): 0 fields
+  differ. Linux and Windows builds.
+
+---
+
+## 2026-11-19 (111) - Claude (instance 2): eight more A/B inputs chosen by coverage (`tools/ab_inputs/`, +1,390 functions reached); 87 more converted player / camera functions on
+
+- **Why.** The seven inputs reach 7,345 recompiled functions, and a converted function goes on
+  only when an input reaches it - 511 of the converted player functions (109) and 41 camera
+  ones (110) were waiting for input. They were the ceiling, for instance 1's work too.
+- **How they were picked.** A coverage build (`PPC_ENTER` counting each recompiled function's
+  entries, dumped at exit; bench only, not in the tree) ran input a's pattern on all 74 regular /
+  ghost house / tower / castle / airship stages (`RT_WARP`), then a new mixed pattern on all of
+  them, then one level entrance of each entrance type (from the stages' course files; `RT_WARP`'s
+  area / entrance numbers start the level there, so pipe / door / vine / water exits play), and a
+  power-up run (the copied `nsmbw-save.json`'s `powerup` edited). A greedy pick over those runs;
+  the eight that add the most:
+  f1 6-6 with fire, p1-p5 five entrances (1-5, 1-22, 1-20, 2-22's boss room, a 1-2 pipe), s1 7-2,
+  s2 3-3 - all with the new `x_mixed.txt` (right held, running in segments, jumps of varied length,
+  ground pounds, shakes, up presses). Rows, settings and the save edit in
+  `tools/ab_inputs/README.md` (a new section after instance 1's table). 240 s each.
+- **Checks.** Each new input run twice with the same build: 0 fields differ (deterministic). The
+  PC build of (110) against the base of (108) on them: 0 differ. Together the eight reach 1,393
+  functions the seven don't (8,738 in all, +19%).
+- **Switched on:** the 74 converted player functions and 13 camera functions the new inputs reach
+  and the old don't (`gm_d_player_conv.c`, `gm_bg_scroll.c`, a new `# track B` section in
+  hle_funcs.txt; fn_80078EF0 of the prologue-scan case in (110) stays off). gm_py_demo.c's calls of
+  three of them go through `hle_`. A/B against the base on all 15 inputs: 0 differ.
+- **Open:** 437 converted player functions and 28 camera ones still unreached (demos, swimming,
+  vines, poles, Yoshi ... need inputs that do those); the 155 camera functions' names
+  (`bg_m_<addr>`); the coverage data is in instance 2's bench (ask for a list of what the 15
+  inputs reach - useful for picking what to convert next).
+
+---
+
+## 2026-11-18 (110) - Claude (instance 2): camera / scroll begins - 157 dBg_c / dBg_ctr_c / dBgParameter_c functions native (`runtime/gm_bg_scroll.c`, new); the 243 player natives of (109) named and described
+
+- **Camera / scroll (track B item 3 of instance 2's list).** The background manager `dBg_c` (scroll
+  position and limits, loop / auto scroll, water and wave levels, the coin bitfield), its
+  collision objects `dBg_ctr_c` and `dBgParameter_c` (the screen / zoom parameters), E2
+  0x80076800-0x80084000 (after dBc_c's checks). Claimed in TODO.md. Same method as (109):
+  `tools/gm_conv.py` over the range - 204 converted (2 refused: mod wrappers; functions another
+  runtime file defines or calls by symbol left to their owners - gm_bg.c's tile lookups), a COUNT
+  probe build, the 163 the seven inputs reach, strict A/B.
+- **A prologue-scan case for instance 1** (`tools/gm_prologues.py` / gm_conv.py): fn_80078EF0
+  saves r21-r31 through `_savegpr_21`, then loads a table into r21-r31 and stores those words to
+  its own frame (`stw r21, 40(r1)` ...) as a local array. The scan takes that later `stw r21,40(r1)`
+  for a second save of r21 (the table gets `40, 0x115` besides `100, 0x115`), so the generated
+  prologue stores the *incoming* r21 there and gm_conv.py drops the real store - the probe differed
+  from field 674 on (found by bisecting with `RT_GM_VERIFY=orig:`). Five more functions of the range
+  have a register twice in their table (0x80079060, 0x80079250, 0x80079380, 0x800794B0,
+  0x800795E0) - all six are left out (157 on). A check over the whole `gm_prologue.c`: no other
+  table has a register twice. Suggested fix: a store of a register the scan already took as saved
+  (or that was written in between) is not a save.
+- **`runtime/gm_bg_scroll.c`**: the 157, with build flags `-DGM_BG_COUNT` / `-DGM_BG_VERIFY` as
+  gm_d_player_conv.c; names are the ported symbols where they exist (getLeftLimit, setWaterInWave,
+  dBg_ctr_c::calc / set / setOfs / addDokanMoveDiff, getLoopScrollDispPosX ...), else `bg_m_<addr>` -
+  naming owed, as for (109). `tools/gm_prologues.py` has the range. `gm_py_player.c`: one call
+  site renamed to `hle_placeTile__8BgGmBaseFUsUsii`.
+- **The (109) player natives named.** All 243 in `gm_d_player_conv.c` now carry the decomp's name
+  and a one-line description (202 confirmed from the state objects / source order, 41
+  identified: the constructor / destructor, pre / post execute, the background-check chain, the
+  two `__sinit`s ...). Names and comments only: the object's .text compared identical before and
+  after. Notes from that pass: dAcPy_c's E2 vtable is 0x80325420 (not 0x80326794 as (103) said);
+  the hand files' `setFlag` / `clearFlag` / `testFlag` are the decomp's onStatus / offStatus /
+  isStatus.
+- **Verified.** Strict A/B of the final build (player names + 157 bg natives) against the (108)
+  reference, 300 s per input: a 12,405 / b 15,378 / c 10,320 / d 12,147 / e 12,390 / hm 14,866 /
+  wm 13,830 fields, **0 differ**; no "no prologue", no fatal. Windows build links.
+- Open: names for the 157; the six left out (after the scan fix); the 41 converted-but-unreached
+  of the range; the camera's other half (the per-scene camera / zoom objects outside this range).
+
+---
+
+## 2026-11-18 (109) - Claude (instance 2): the player classes by the converter - 243 more daPlBase_c / dAcPy_c functions native (`runtime/gm_d_player_conv.c`, new)
+
+- **Method change.** Waves 1-2 ((103), (104)) were written by hand: 357 functions.
+  The rest now goes through instance 1's `tools/gm_conv.py`, as instance 1 does for the library
+  and the enemies ((105), (108)). Every function of the game's daPlBase_c (E2 0x800460D0-0x8005B3A0)
+  and dAcPy_c (E2 0x80126510-0x8014A6F0) that is not native yet, not listed in hle_funcs.txt and
+  not replaced by the 8-player module: 758; the converter takes 755 (3 refused: module
+  wrappers), 1 is left out because a file of another author calls its recompiled symbol
+  (`setAnimePlayStandardType__10daPlBase_cFi`, 0x80052290, from `gm_d_staff_credit.c` - it can go
+  in once that call names `hle_`).
+- **Probe.** A build with all 754 on, `GM_PL_COUNT` (first-call log): **identical on every field
+  of all seven `tools/ab_inputs/`** against the (108) reference, and the seven inputs reach
+  **243** of them (daPlBase_c 89, dAcPy_c 154).
+- **The file.** `runtime/gm_d_player_conv.c` (in both builds' lists, after gm_en_enemies): the 243,
+  each with its recompiled name and size in a comment; build flags `-DGM_PL_COUNT` (first-call
+  log) and `-DGM_PL_VERIFY` (switchable through `RT_GM_VERIFY=orig:<names>`), the same scheme as
+  gm_en_enemies.c. **Not yet named or described** (`pb_m_<addr>` / `py_m_<addr>`, or the ported
+  symbol where one exists): that is owed, as (105) did for the library - from the StateID objects,
+  the vtables and NSMBW-Decomp's source order, as in (103).
+- **Call sites renamed** to the `hle_` entries in instance 2's own files (a function in
+  hle_funcs.txt loses its recompiled symbol): gm_d_player.c 23 symbols, gm_d_player_base.c 18,
+  gm_py_player.c 10, gm_py_demo.c 1. Names only.
+- With (103)/(104) that is **600 of the two classes' 1,165 functions native**: everything the
+  seven inputs reach, except the 8 written-but-off hand natives and 0x80052290.
+- **Verified.** Strict A/B (memory hashed every field) of the final build against the (108)
+  reference, 300 s per input: a 13,311 / b 14,608 / c 10,320 / d 12,147 / e 12,685 / hm 14,866 /
+  wm 14,364 fields, **0 differ**; no "no prologue", no fatal. Windows build links.
+- Open: names and descriptions for the 243; the 511 converted but unreached (other power-ups,
+  Yoshi, vines / ropes / poles, water currents ... - inputs that use them); camera / scroll next.
+
+---
+
+## 2026-11-15 (108) - Claude (instance 1): track B - the enemy module begins: 855 `d_enemiesNP` functions native (`runtime/gm_en_enemies.c`, new)
+
+- **What.** The user's choice for instance 1 after the library: the game code. The enemy module
+  `d_enemiesNP` (`fn_3_*`, linked at 0x809A2EE0-0x80ACD1F8: 7,698 functions - the enemy actor
+  classes on `dEn_c`, plus the module's blocks, coins, items, the goal pole, effect actors) is
+  claimed in TODO.md (instance 2 / Kimi: not this module, please). New file
+  **`runtime/gm_en_enemies.c`** (in both builds' lists): the **855** module functions that the
+  seven A/B inputs reach, through `tools/gm_conv.py` (556 with a frame and calls, 298 leaves, 1
+  computed frame), each named and described.
+- **How the set was chosen.** `gm_conv.py` converts 6,562 of the 7,698 (1,029 are native already -
+  the generated state-ID copies of `gm_state_ids.c` - and 107 are refused: 104 are the 8-player
+  module's wrappers, 3 have no body of their own). A probe build with all 6,562 as COUNT natives:
+  the seven inputs reach 855, and the probe was **identical on every field of all seven** (so
+  the converter is sound on this module too). The final build has the 855 only.
+- **Names.** The classes have no symbols, but each class's static initialiser passes its state
+  names as strings (`"daEnJugem_c::StateID_CloudMove"`), which name the class and its states;
+  resource names ("kuribo", "goal_set", "I_kinoko") and build functions (profile numbers) tie
+  vtables to classes. So far: daEnBlock_c, daEnBlockCloud_c, daEnBlockHatenaPlayer_c, daEnCoin_c
+  and its Angle / Floor / Jugem / Wind kin, the eight daEnDokan(F)Pakkun* classes, daEnFruit_c,
+  daEnGlpole_c, daEnItem_c, daEnJugem_c / daEnJugemBody_c, daEnKuribo_c, daEnNoko_c, daEnPata_c,
+  daEnPataMet_c, daEnObjBlock_c, daEnPuku_c, daEnRedcoin_c, daEnStarCoin_c, daEnTeresa_c,
+  daEnTogezo_c / daEnSakasaTogezo_c, daEnUnizoo_c, daEnWakiJugem_c, daEnBlockHelp_c, the ghost-house
+  door; ~100 more classes appear only through their static initialisers (which name them and
+  their states). A cname starting with `en_<vtable>_` is a class not identified yet (5 of them).
+  The descriptions were written by helper agents from the recompiled code (four chunks, address
+  order), merged by script (.text unchanged); where they were unsure the description says what
+  the code does without a purpose.
+- **Tools.** `gm_conv.py` resolves the RELs' `fn_<module>_<offset>` callees by their linked address
+  (from the recompiled headers); `tools/gm_prologues.py` has the enemy module's range
+  (0x809A2000-0x80ACE000).
+- **Verified.** Strict A/B against the (104) reference, all seven `tools/ab_inputs/`: identical on
+  every field (a 28,624 / b 29,703 / c 28,534 / d 30,282 / e 29,152 / hm 31,827 / wm 40,461
+  fields); no "no prologue". Windows build links.
+- **Next (instance 1).** The other 5,700 convertible: most are enemies none of the seven inputs
+  meets (other worlds' enemies - the next test inputs will be levels chosen by which classes
+  they create), then the 104 the 8-player module wraps (with their module handover), and class by
+  class reading where a class is complete.
+
+---
+
+## 2026-11-15 (107) - Claude (instance 1): track B - 28 more library natives (`gm_nw4r_g3d.c`: 1,939 on): two new test inputs (HOME / pause menus, the world map), `gm_conv.py` takes jump tables and computed frames
+
+- **Where the 1,242 unreached of (105) are.** A reach survey with the COUNT build (every
+  convertible library function as a native that logs its first call) over eleven more runs:
+  eight other kinds of level by `RT_WARP` (World 1's tower and castle, a ghost house, the 4-airship,
+  4-2, a Toad house, an enemy-ambush stage, 3-ghost house), the HOME / pause menus inside 1-1,
+  the world map after the 1-1 clear, the title menu's other entries. Together they reach **21**
+  of the 1,242. A static call graph says why: 792 have no direct caller (virtual methods of
+  classes the game does not use, or tables), the rest are called from the disc-error screen
+  (`dDvdErr_c::draw`), the HOME-button menu's draw paths, debugger hooks (`gdev_cc_*`), shutdown
+  and destructors. They are left recompiled: a native nobody runs is not tested.
+- **`tools/gm_conv.py`** takes two more shapes:
+  - jump tables (`switch (ctx->ctr)` from a bctr): the cases stay gotos; a target outside the table
+    (impossible) is `rt_fatal`. 8 functions.
+  - **raw mode** (`--raw`, or `convert(..., raw=True)`; applybatch uses it when the only refusal is
+    r1): functions whose frame size is computed (stwux - nw4r::ut's printf variants with a stack
+    buffer of the text writer's size, aligned frames in snd / ef / EGG). The whole body as the
+    recompiler wrote it, the stwu / saves / reloads / r1 included, only the calls changed to
+    `GM_CALLV`; no GM_FN / GM_NV_KEEP (the code restores what it saves). 22 functions.
+  Left refused: 202 under the interrupt lock, 20 mod wrappers, the 3 `_entry` second entries of
+  mod-wrapped functions, 5 whose names are not C identifiers (`TextWriterBase<w>` ...).
+- **Batch 23** (28): 15 of the survey's 21 finds (the other 6 only the extra levels reach, which are
+  not A/B inputs) and 13 of the 30 newly convertible that the seven inputs reach - all 8 jump
+  tables (texture-coordinate display lists, the MML sequence parser's command switch, the snd
+  output-mode switch, ef's field-kind switch, GX state switches) and 5 raw (snd / ef / EGG aligned
+  or computed frames; the 16 printf variants and 802A47C0 are not reached). Named and described
+  like the rest (a helper agent from the code; merged by script, .text unchanged).
+- **Two new A/B inputs** (instance 2 / Kimi: use them if your classes are on these paths):
+  - **hm** - 1-1 with the HOME menu and the pause menu opened and closed four times, d-pad / A / 2
+    inside them (`hm_home_pause.txt`: input a's start, then from 82 s every 40 s: `8000` HOME,
+    `100`, `004`, `800`, `8000`, `0010` plus, `004`, `001`, `0010`, a run right).
+  - **wm** - the 1-1 clear (input e + `RT_TEST_POS=2700,6640,-560`), then on the world map from 110 s
+    every 36 s: plus (the map menu), d-pad, 2, 1, plus, HOME twice, d-pad, 2, 1.
+  All seven inputs are now in the tree: **`tools/ab_inputs/`** (one `RT_AUTOPRESS` string per
+  file, the README gives the settings per input).
+- **Verified.** Reach: the COUNT build with the 51 candidates over the seven inputs (28 reached).
+  Strict A/B of the final build (28 added) against the (104) reference on all seven inputs:
+  **identical on every field** (a 26,605 / b 27,030 / c 28,534 / d 30,282 / e 29,152 / hm 33,249
+  / wm 39,990 fields); no "no prologue", no jump-table fatal. Windows build links. The COUNT
+  build with all 51 was identical too (a-wm, 28,624-43,710 fields).
+- Open: as (105).
+
+---
+
+## 2026-11-14 (106) - Claude (instance 1): every native of (105) named and described (`gm_nw4r_g3d.c`: 0 placeholders)
+
+- The 969 `p_<ADDR>` natives that (105) left undescribed now have a name and a one-line
+  description each, like the rest of the file (0x80275BA0-0x802DB970: snd - the wave-sound file
+  reader and players, voices, the sound archive / stream / DVD paths, AXFX effects; nw4r::ef -
+  Effect, EffectSystem, Emitter, Particle, the key-frame evaluators and emit forms; lyt -
+  Layout, panes, ext user data; EGG - heaps, archives, the decompressor, Display / Video,
+  screen effects (DoF, blur), lights, the controller / rumble). Written by helper agents from the
+  recompiled code (one chunk at a time), each chunk merged by script and checked by instance 1;
+  the object code of `gm_nw4r_g3d.c` was compared identical (.text) before and after every
+  merge, so (105)'s A/B stands unchanged.
+- Functions the helpers called copies were compared line by line: 0x802A18E0 = 0x8029F4A0;
+  0x802AA830 is 0x802A5810 with two other float constants (its description says which);
+  0x802D5DD0 is 0x802D5290 for the other effect class (size 396 against 132, other callees).
+- How sure the descriptions are: they say what the code does (offsets, callees, constants); the
+  *purpose* in a name is the helper's reading where no symbol exists - mostly the snd / ef / EGG
+  internals whose callees are unnamed (`grep` an address in the file to see its line). Treat a
+  cname like `snd_fx_...` or `..._dof_...` as a label, not a confirmed class name.
+- Open: as (105) - the 1,242 unreached convertible, the 260 refused.
+
+---
+
+## 2026-11-13 (105) - Claude (instance 1): track B - the nw4r / EGG library by the converter: 1,713 more natives (`gm_nw4r_g3d.c`: 1,911 on), `tools/gm_conv.py`, three prologue-scanner fixes
+
+- **What is new.** `runtime/gm_nw4r_g3d.c` goes from 198 to **1,911** natives: every function of
+  the library range 0x80228000-0x802DC000 (nw4r g3d / lyt / snd / ut / math, EGG) that the
+  converter can take *and* that one of the five A/B inputs reaches. 399,000 bytes of PowerPC code
+  (99,750 instructions); 977 of the 1,713 have a frame and calls, the rest are leaves.
+  - Batch 19 (115) and batch 20 (12): converted, then read, named and described by hand, as the
+    batches before.
+  - Batch 21p (1,586): converted and A/B-tested, **named and described afterwards**. 617 are done
+    (0x802281D0-0x80275BA0, by helper agents reading the recompiled code, one line each, merged
+    with a script - names and comments only, the object code compared identical before and
+    after); **969 still carry the placeholder name `p_<ADDR>` and the comment
+    `/* (not yet described) */`**. They are on and tested; the description is what is owed.
+    `grep -c "not yet described" runtime/gm_nw4r_g3d.c` is the count.
+- **`tools/gm_conv.py ADDR CNAME ...`** (new; replaces gm_leafconv.py's job): a recompiled function
+  as a native body in the natives' macros. Leaves as before; new: functions with a frame and
+  calls - `GM_FN(addr) + GM_NV_KEEP + GM_LR_KEEP`, the prologue's saves and the epilogue's
+  reloads dropped (gm_prologue.c replays them; the scan is gm_prologues.py's own), calls as
+  `GM_CALLV(return address, target, 0)`, virtual calls as `GM_CALLV(ret, ctx->ctr, 0)`, frameless
+  tail calls as `GM_TAIL`, `R(0) = lr` where the epilogue reloads LR. The statements (the
+  floating point above all) stay as the recompiler wrote them. It refuses what wants a hand: code
+  before the stwu, a tail call out of a frame, a callee without an address, r1 used other than
+  as r1 + n, the mod's wrappers (`g_mod_on`).
+  - Of the library range's 3,226 functions: 2,966 convert, 260 are refused (202 take the
+    interrupt lock - OSDisableInterrupts / mutexes, left recompiled on purpose; 24 use r1 in
+    other ways - alloca, frame chains; 20 are mod wrappers; 9 have indirect jumps; 5 by name).
+  - Of the 2,966: 1,911 are reached by the tests and on (with the 198 older ones); **1,242
+    convert but no input reaches them - not added** (a native nobody ran is not tested).
+    11 are excluded because another runtime file names them or the recompiled symbol
+    (0x80267390, 0x80267420, 0x802674C0, 0x80275560 GetPlayingSoundCount - `gm_d_wm_se.c`
+    calls the recompiled symbol, 0x80275780, 0x8027A200, 0x802B3300 - `BL(0x81831B10u,
+    fn_802B3300)`, 0x802B9280, 0x802BB0E0 / 0x802BB150 / 0x802BB180 - defined in gm_egg.c).
+- **Three fixes to the prologue scan** (`tools/gm_prologues.py`; gm_conv.py has the same scan):
+  1. `_savegpr_NN` called through its own symbol (`__save_gpr_<addr>` without `_entry`) was not
+     seen: fn_80068320 / fn_80068850 (gm_d_actorcreate.c) had incomplete tables.
+  2. One wide range for the library, 0x80228000-0x802DC000.
+  3. **A store of f0-f13 is never a saved register.** The scan runs past the first call, and in
+     0x8023F140 it took an `fctiw` spill of f0 (`stfd f0, 32(r1)`) for an FPR save; the
+     generated prologue then stored f0 at entry and the converter dropped the real store. Only
+     f14-f31 (stfd / psq_st) count now. Nine existing hand natives' tables changed with this
+     (gm_bg, gm_d_cd, gm_c_lib, the libm sin / cos / tan); each was checked: they do those
+     stores themselves, so nothing changes for them.
+  `runtime/gm_prologue.c` is regenerated (2,079 functions).
+- **Verified.**
+  - Reach: a `-DGM_G3D_COUNT` build over the five inputs; only reached functions were kept.
+  - Strict A/B (`RT_DET_HASH_LIVE`, memory hash per field) against a **new reference: a build of
+    the tree at (104)** (see "Environment" below), five inputs - a: 1-1 play, b: title demos
+    with A presses, c: `RT_WARP=3,0,0,0` play, d: no input, e: instance 2's 1-1 clear
+    (`RT_TEST_POS=2700,6640,-560`): **identical on every field of all five**
+    (a 27,767 / b 28,865 / c 27,282 / d 29,416 / e 24,169 fields - each run's whole length; the
+    reference was re-recorded at full length, its first 16,000 fields equal to its first pass).
+  - The one failure on the way: fields 1677+ of inputs a / c / e, bisected at run time with
+    `RT_GM_VERIFY=orig:<names>` on a `-DGM_G3D_VERIFY` build (halving the list of 1,713) to
+    0x8023F140 - scanner fix 3 above. After it: clean.
+  - No "no prologue" lines; compile `-Wall` clean. Windows build
+    links (`build.py --no-deploy`, 700 s).
+  - Not done: the per-function `RT_GM_VERIFY_REGS=1` double run for the converted natives (they
+    are statement-for-statement the recompiled code; the A/B is the gate).
+- **Environment (for whoever tests next).** My container was reset on 2026-11-11: working tree,
+  toolchain, game data and the Oct-27 base0 reference were lost. Rebuilt from the user's folder
+  (it is the only master copy - nothing unsynced survives a reset). The A/B reference is now the
+  (104) tree; the frame counts of entries up to (101) (s81 / s82) are from the old rig and do not
+  compare with the new field counts. `_sync/env/tree.tar.zst` and `_sync/env/extracted.tar` in
+  the user's folder are my transfer archives for that rebuild (390 MB) - safe to delete, no
+  instance needs them.
+- **For the other instances.** `runtime/hle_funcs.txt` gains 1,713 names (after
+  `GetCamera__Q34nw4r3g3d7ScnRootFi`); any native of yours that calls one of these library
+  functions through `GM_CALL*` is unaffected (the call goes to the native). If you reference a
+  *recompiled symbol* of the library by name (`fn_802xxxxx(ctx, base)` or `BL(..., fn_802xxxxx)`)
+  and it is now native, the link fails with an undefined symbol - call `hle_<name>` instead, or
+  tell me and I take it out (the 11 above are such cases).
+- Open: 969 descriptions (in progress, in address order); the 1,242 unreached convertible
+  functions (need test inputs that reach them: more of snd, lyt animation, EGG's heaps / screens
+  / effects); the 260 refused; `EGG::Math<float>::sqrt` (no hle_funcs.txt name).
+
+---
+
+## 2026-11-12 (104) - Claude (instance 2): player classes wave 2 - 103 more daPlBase_c / dAcPy_c methods (97-160 bytes) native
+
+- Same method and helpers as (103): two helper agents, one per class, merged and re-checked by
+  instance 2. Batch = every function of 97-160 bytes that the five A/B inputs reach.
+- **`gm_d_player_base.c`** (daPlBase_c): 55 on, 4 written but off (`#ifdef PL_BASE_UNREACHED2`, no
+  input reaches them: initializeState_Slip, executeState_WaitJump, the wind scaling fn_8004c700,
+  setWaitJump). Covers preDraw, changeState (`dAcPy_vf294`), the crouch jump / slip actions, the
+  hip-attack actions and initializeState_HipAttack, jump-pad position, grandPowerSet /
+  gravitySet / setJumpGravity / getPowerChangeType, jump / land / brake effects, the demo flags
+  (isDemo, isControlDemoAll, onDemo / offDemo, changeNormalAction, DemoNone / DemoStartWait), the
+  goal demo (getDemoGoalLandPos, executeDemoGoal_Wait, executeState_DemoGoal, initGoalJump),
+  initCollision, setStampReduction, the background bookkeeping (setOldBGCross, clearBgCheckInfo,
+  the side-limit multipliers, isRideCheckEnable ...), setZPosition, setAddLiftSpeedF,
+  updateRideNat and the sound wrappers (suppressSound, startSound / holdSound with mode).
+  New static helper `pb_setAnm` (model setAnm through vtable +92 with the rate / blend table
+  0x80370DA0).
+- **`gm_d_player.c`** (dAcPy_c): all 48 on: Fall / Land / Crouch / Throw state methods, walk and
+  swim actions, hip-attack and crouch effects, carry (cancelCarry, checkEnableThrow,
+  checkSpinLiftUpRoofHeight), Yoshi / balloon (setRideOnYoshi, setBalloonHelpVoice), star end,
+  isNoDamage, propeller checks, doDelete, the 1-1 hint check, ...
+- Map / symbol names corrected by the helpers (in the files' comments): 0x80128190 is the decomp's
+  fn_801282d0 (not initializeState_Land), 0x801282E0 finalizeState_Land, 0x8012E510 cancelCarry
+  (not setFireBallDamage), 0x80138D40 setBalloonHelpVoice, 0x801399A0 setRideOnYoshi, 0x801415B0
+  executeState_DemoStartWait, symbol `dAcPy_c__ChangePowerupWithAnimation` (0x80145AC0) is the
+  decomp's fn_80145c00, 0x80144B20 is setSceneChangeInfo.
+- Bugs caught before merge: isEnableDokanInStatus returned its STATUS_53 test inverted (self-test,
+  41/400); setSwimAction_Walk had its blend branch backwards (strict A/B input 3, 33 fields,
+  bisected with `RT_GM_VERIFY=orig:`). Both fixed; every conditional of the dAcPy_c batch
+  re-checked against the recompiled code.
+- Call sites renamed to the `hle_` entries (names only): gm_py_player.c (isDemo, onDemo-type
+  fn_8004E100, fn_8004E980), gm_d_player_base.c's wave-1 part (7), gm_d_player.c's wave-1 part (3).
+- Verified: self-tests pl_base 97 x 400 and pl_acpy 62 x 400, 0 different (`RT_GM_VERIFY_REGS=1`);
+  live verify 0 different except functions that run states / animations / effects when run
+  twice (listed in the files); strict A/B against (103): each helper's final build 0 differ on
+  all five inputs; merged build 12,940 / 13,624 / 13,413 / 14,540 / 13,587 fields, 0 differ.
+  Windows build links.
+- Open: the 4 off functions; wave 3 (161-256 bytes) next.
+
+---
+
+## 2026-11-12 (103) - Claude (instance 2): the game's own player classes begin - 254 small daPlBase_c / dAcPy_c methods native (`gm_d_player_base.c`, `gm_d_player.c`)
+
+- Track B's next class after the module: the game's own `daPlBase_c` (E2 0x800460D0-0x8005B3A0,
+  same as PAL) and `dAcPy_c` (E2 0x80126510-0x8014A6F0 = PAL - 0x140). 1,165 functions, about
+  36,000 instructions. Wave 1 = every function of at most 96 bytes that the five A/B inputs reach
+  (258), written by two helper agents in parallel, merged and re-checked by instance 2.
+- **Names.** Most of the two classes are unnamed `fn_` in the recompiled code. A map was built
+  (kept with instance 2's bench tools, not in the tree) from: the StateID objects in live memory
+  (every initializeState_ / executeState_ / finalizeState_ of 36 daPlBase_c and 49 dAcPy_c states;
+  `RT_STATESCAN` + `RT_DUMPMEM`), the vtables (daPlBase_c 0x803084C8; dAcPy_c 0x80326794 / the
+  helper found 0x80325420 through setDamage at +0x3F4 - two candidates, see Open), the module's
+  annotated headers ported PAL -> E2 with `tools/versions-nsmbw.txt`, and NSMBW-Decomp's source
+  order between known functions. About 735 of 1,165 named before the helpers checked them; the
+  helpers named every function of their batches from the code. Several recompiled symbol names
+  in this range are wrong (ported from other games' maps): `HurtMarioBecauseOfBeingSquashed` is
+  setBgPressReq, `modifyPlayerPropertiesWithRollingObject` setJumpAddSpeedF,
+  `aramGetFirstUserAddress` (0x8012EDC0) getWallBgPointData, `sdpu_release_ccb` (0x80135FC0)
+  releasePoleCheck, `continueFromMpPauseFix2` (0x80141460) setChange, `getYoshi__7dAcPy_cFv`
+  (0x80139950) getRideYoshi; the Kamek map's getYoshi at 0x80139A90 is finalizeState_RideYoshi.
+- **`runtime/gm_d_player_base.c`** - daPlBase_c: 150 on, 4 written but off (`#ifdef
+  PL_BASE_UNREACHED`: finalizeState_Slip, calcTimer<s8>, setCcAtSlip, isEnablePressLR - reached
+  only late in the title demos, past the 300 s A/B window). Status flags (setFlag / clearFlag /
+  testFlag / setStatus), the state-machine plumbing (sStateMgr_c execute / finalize / getStateID,
+  the state factory and state object, the 36 `baseID_<state>` getters), angles, slopes / speed,
+  hip attack, demo queries, collision (setCcAt*, clearCcData, getCcLineKind ...), squish /
+  no-hit / press, counters, effects / quake / rumble, sounds (the SoundHandlePrm ctor / dtor,
+  the sound object's startSound / holdSound thunks). `startPatternRumble` follows the recompiled
+  code's `g_mod_on` choice of table (0x8185FB1C module / 0x80377C88 game).
+- **`runtime/gm_d_player.c`** - dAcPy_c: all 104 on: getters / setters, jump speed, timers
+  (calcTimer<s16> / <u8>), the Cc / Bc setup (initCcData, initBcData, setCcAtSpin*, getCcBounds
+  ...), carry / Yoshi / balloon queries (getCarryPlayer, getRideYoshi, isNotBalloonCourse - which
+  reads the module's or the game's tables by `g_mod_on`, as the PowerPC code does), the 13
+  `baseID_<X><daPlBase_c>` getters, the profile's create function. Calls into daPlBase_c go
+  through weak `hle_` / recompiled pairs, so the file builds with or without the other file.
+- **Call sites renamed** in `gm_py_player.c`, `gm_py_mng.c`, `gm_py_demo.c` (instance 2's files):
+  a function listed in hle_funcs.txt loses its recompiled symbol, so the direct calls to testFlag /
+  setFlag / clearFlag, getYoshi, setChange and 14 `fn_` now name the `hle_` entry - the same
+  function the recompiled callers reach. Names only. (`PL_MAX_SPEED_F` (+280) in gm_py_player.c is
+  mMaxFallSpeed by the decomp; `PL_STATE_MGR` 5272 vs the decomp's mStateMgr 5220 - the code is
+  right, the names are to be fixed.)
+- **`tools/gm_prologues.py`**: RANGES also cover the game's daPlBase_c and dAcPy_c (E2).
+- Verified:
+  - Self-tests (`RT_GM_VERIFY_REGS=1`) on a live player (scratch memory player+0x2B00..0x2BFF,
+    restored): `RT_GM_SELFTEST=pl_base` 85 functions x 400 rounds (74,832 checked calls,
+    0 different); `RT_GM_SELFTEST=pl_acpy` 48 x 400, 0 different.
+  - Live `RT_GM_VERIFY` + `RT_GM_VERIFY_REGS=1`: daPlBase_c ~23.8M calls on inputs 1-5, 0 different
+    except 7 functions that run a state frame / start a jump / a sound when run twice; dAcPy_c
+    3.43M calls, differences only in functions that set animations or start sounds / effects,
+    and identical in a control build that verifies the PowerPC code against itself.
+  - Strict A/B (memory hashed every field) against the build without them (base = CHANGELOG
+    (102)), 300 s per input: each helper's build 0 differ on all five inputs; the merged build:
+    12,940 / 13,624 / 13,049 / 14,416 / 9,799 fields compared on inputs 1-5, 0 differ
+    (merged_2 vs base102); no "GM_FN: no prologue" lines. Windows build (`build.py`) links.
+- Open: the 4 off functions; the larger player methods (wave 2 on); the dAcPy_c vtable
+  address (two candidates above - check which one the live player uses); the map of the
+  remaining ~430 unnamed functions.
+
+---
+
+## 2026-11-11 (102) - Claude (instance 2): the module's controller input (`gm_py_key.c`) and player overrides (`gm_py_player.c`); 25 more module natives (358 on)
+
+- Written by two helper agents working in parallel, each in its own copy of the tree, from a
+  brief (method: `docs/DECOMP.md`; checks below); merged, re-checked and deployed by instance 2.
+- **`runtime/gm_py_key.c`** - `dGameKey_c` / `dGameKeyCore_c` / `dAcPyKey_c` (the module's
+  controller reading, every frame): 9 on - allclear, read, core read, setConfigKey,
+  handleTilting, setShakeY, dAcPyKey_c::update, triggerOne, triggerJumpBuf. Written but off
+  (`#ifdef GM_PY_KEY_OFF`, no input reaches them): the ctor, the dtor, buttonOne.
+  - The `rt_menu.c` wrapper on `read__10dGameKey_cFv` is unchanged: hle_read -> orig_read ->
+    (module on) the native; the run-key OR still applies after it.
+  - Notes: the ctor's channel table is 0x818498D0; the core read tells the controllers apart by
+    vtable (0x80350030 EGG::CoreController, 0x8185E738 GameCube pad, 0x8185E770 wrapper with the
+    core at +44) and calls `sqrt__Q23EGG7Math_f_Ff_802BE470` directly. Two module quirks are kept:
+    the non-replay path stores `mType = CORE` before looking at the extension, and
+    `mTriggered |= m0x30` runs after `m0x30` was cleared.
+- **`runtime/gm_py_player.c`** - the module's `daPlBase_c` / `dAcPy_c` overrides: 16 on -
+  create, executeChangeInit, initChangeInit, setSpinLiftUpReserve, setSceneChangeInfo, setDamage
+  (vf3F4), stopOtherDownDemo, playOtherDownDemo, checkRest, executeState_WallSlide,
+  setBalloonInDispOut, setBalloonInDispOutBase, setFallDownDemo, initDemoInDokanUD,
+  stopGoalOther, executeDemoGoal_Run. Written but off (`#ifdef PY_PLAYER_UNREACHED`, no input
+  reaches them; all were on in an earlier all-24 build whose A/B was clean): the rail-pipe demo
+  (initializeState_DemoRailDokan, setExitRailDokan), playGoalOther, the control demo
+  (setControlDemoWalk, executeState_DemoControl), updateRopeAngle, setBalloonInDispOutByYoshi,
+  setForcedDamage.
+  - Every virtual call goes through `ppc_call_indirect`, and WallSlide calls `hle_fn_801266B0` as
+    the recompiled code did, so `rt_retro.c`'s hooks (setJump, setHipAttackAction, changeState)
+    see the same calls. `dAcPy_vf3FC` (wrapped in rt_retro.c) is not replaced.
+  - `RT_GM_REACH=1` logs the first call of each of this file's natives (the reached-functions
+    list below came from it).
+- **`gm_py_mng.c`**: `PY_STAR_COUNT` / `PY_STAR_TIME` were named the wrong way round
+  (setSceneChangeInfo stores the star time at 0x8185EAD0 and the count at 0x8185EAE0); renamed,
+  and the comment on vtable +224 now says isItemKinopio (module source). Names only: the
+  preprocessed file is byte-identical.
+- **`tools/gm_prologues.py`**: RANGES now also cover the module's dGameKey_c / dGameKeyCore_c
+  (0x81815400-0x81815800, 0x8182B700-0x8182BC0C), daPlBase_c (0x8180B100-0x8180BE80,
+  0x81802800-0x81803400) and dAcPy_c (0x8182D500-0x8182ED00).
+- **A fifth A/B input**: Kimi's genuine 1-1 clear (`RT_TEST_POS=2700,6640,-560`, input
+  `8..32 step 2 :100:300, 60:204:300000`; goal pole near field 7,300, then castle and world map)
+  is now part of instance 2's strict A/B set, so the goal-run code is compared too.
+- Verified:
+  - Self-tests (`RT_GM_VERIFY_REGS=1`): `RT_GM_SELFTEST=py_key` 9 functions x 300 rounds,
+    0 different (buttonOne also 300 / 0 in the build where it was on); `RT_GM_SELFTEST=py_player`
+    setSceneChangeInfo 400 rounds, 0 different (updateRopeAngle and setControlDemoWalk 400 / 0
+    in the all-24 build; a deliberate one-instruction error in each was caught at 126/400 and
+    196/400).
+  - Live `RT_GM_VERIFY` + `RT_GM_VERIFY_REGS=1`: all 9 key natives 0 different on inputs 1-5
+    (input 5: 12,974 read / 207,584 core read calls through goal, castle and map).
+    setSpinLiftUpReserve, setSceneChangeInfo, stopGoalOther, stop/playOtherDownDemo: 0 different;
+    executeChangeInit (~79,000 calls) and executeDemoGoal_Run (192) differ only in poll counts on
+    the calls where the double run itself changes state (setPowerup / setAnm run twice). The
+    others change the world when run twice (allocation, state changes, death messages) and rely
+    on the strict A/B, as DECOMP.md allows.
+  - Reached: inputs 1-5 all reach the 9 key natives (triggerJumpBuf: inputs 2 and 4); the player
+    natives - create, executeChangeInit, setSpinLiftUpReserve, setSceneChangeInfo on all;
+    setDamage, stop/playOtherDownDemo, checkRest, WallSlide, both balloon methods on 1-4;
+    initChangeInit and setFallDownDemo on 2 and 4; initDemoInDokanUD on 4; stopGoalOther and
+    executeDemoGoal_Run on 5.
+  - Strict A/B (memory hashed every field, `RT_DET_HASH_LIVE`) against the build without them,
+    300 s per input: each helper's own build 0 differ on all five inputs; the merged build:
+    12,814 / 12,829 / 11,948 / 13,093 / 12,899 fields compared on inputs 1-5, 0 differ
+    (merged_1 vs base68); no "GM_FN: no prologue" lines. Windows build (`build.py`) links.
+- Open: the 8 player functions and 3 key functions that no input reaches; the game-side
+  `dAcPy_c` / `daPlBase_c` (in the DOL, mostly unnamed) are next.
+
+---
+
+## 2026-11-10 (101) - Claude (instance 1): the open frame of (97) found and fixed (`gm_d_actor.c`); 11 more library natives (198 on)
+
+- **P2's frame 29,443** (the one frame of the strict A/B that differed since (97)) is fixed; all
+  four inputs are identical on every frame again (s81: 41,820 / 46,584 / 42,201 / 42,797 frames,
+  memory identical at 12,000).
+  - What it was: `dActor_c::searchNearPlayer` (0x80064740) keeps its `delta` argument in r31
+    over its two calls; the callee `searchNearPlayerNormal`'s prologue saves r31 into its frame.
+    The native (`dActor_searchNearPlayer`, an early one, not written register by register) left
+    r31 alone, so a different word (1 instead of the stack address 0x8043F9E0) stayed behind in
+    that dead stack slot, 0x8043F994. Dead stack is invisible to the game - except that nw4r's
+    CalcWorld (0x80250E70) keeps a 76-byte ChrAnmResult local at the same depth, 0x8023EE90
+    fills it and leaves the rotation angles (+16..+24) unwritten for a node without rotation, and
+    the CalcWorld callback (m3d's `copy_result`, 0x80169600) copies all 76 bytes to the heap.
+    For one frame an uninitialised word of the heap copy held the leftover; the game never reads
+    it (the flags say "no rotation"), so nothing followed from it.
+  - How it was found (the method, since (97) misread the first watch log): `RT_DET_WATCHW` on
+    the heap word showed one store per frame, and in that frame the store itself carried the odd
+    value (val-before of the *next* store). addr2line on the store's backtrace in both builds:
+    fn_80169600 / `copy_result` - a copy from the caller's stack. Then the watch on the source
+    stack word (0x8043F994) in both builds, the two logs' stores paired one to one (272 each in
+    the frame): exactly one store differs, the r31 save in 0x800647A0's prologue.
+  - The fix: `dActor_searchNearPlayer` holds `delta` in r31 over its calls, as the PowerPC code.
+  - What it says about the older natives: any native that calls out without the PowerPC code's
+    non-volatile registers leaves different dead stack behind. `RT_DET_HASH_LIVE` leaves the
+    stacks out for that reason, and this is the first time in ~47k frames x 4 inputs that such a
+    word reached hashed memory - through an uninitialised local copied out. If a single-frame
+    difference of this kind shows again, this is the recipe.
+- Batch 18 (11) in `gm_nw4r_g3d.c`: ScnRoot::GetCamera, ResMatTevColor::GXSetTevColor,
+  G3DState::GetRenderModeObj, the 2D objects' scissor / projection type (0x802C6D60, 0x802C6E50,
+  0x802D1250), the 2D draw state restore (0x802C7A90), a list to an array (0x802957D0), a
+  pointer array read (0x802BD370), an interpolation step (0x80260A80), 0x802432E0.
+  Verified: all reached; `RT_GM_VERIFY_REGS=1`: 0 different for 10, 0x802D1250 (a setter) only as
+  the double run makes it. Strict A/B s82: identical on all four inputs (39,024 - 44,446 frames).
+  (Windows build: with the next entry.)
+
+## 2026-11-10 (100) - Claude (instance 1): track B - 20 more nw4r / EGG library natives (`gm_nw4r_g3d.c`: 187 on), `tools/gm_leafconv.py`
+
+- Batch 15 (8): G3DState's material flush (0x8024CC10) and gen-mode cache (0x8024BAE0), a
+  material's buffer pointers (0x80251E50), a ResNode's SRT read (0x8023EE90), the second node
+  world-matrix builder (0x80255750), ScnObj::SetScnObjOption (0x80257270, by the jump table),
+  a u16 x 12 compare (0x80262FE0), a 2D position to screen units (0x802D1B90).
+- Batch 16 (5): a light object into a light setting (0x802CA290 position / direction, 0x802CA140
+  parameters), a material's tev order entry (0x8023C760), ScnObj::GetScnObjOption (0x80257410),
+  the paired-single rotation matrix from table angles (0x802382B0).
+- Batch 17 (7): the three hermite keyframe evaluators (0x802403C0 32-bit keys, 0x80240240 48-bit,
+  0x80240100 float keys - the hottest functions left in the profile), a 3x4 matrix inverse
+  (0x80242840), a 12-float matrix set (0x802BE580, four on the caller's stack), a light's
+  direction / scaled colour (0x802C9E30), a 2D rectangle (0x802C7190).
+- New: `tools/gm_leafconv.py ADDR NAME` (stdin: the function's text from `out/*.c`) turns a
+  recompiled *leaf* into a native body in the natives' macros (R(n), GM_FRAME, GM_LOOP), its
+  floating-point statements untouched. For the paired-single / GQR leaves, where rewriting the
+  expressions by hand risks a different rounding; batch 16's rotation matrix and all of batch 17
+  were made with it. Not for functions that call (those want GM_FN / GM_CALLV by hand).
+- Verified (`RT_GM_VERIFY_REGS=1` over P3 / P2, 0.4 - 3.9 M calls each): 0 different for all of
+  batch 16 and 6 of batch 15's 8; the two G3DState cache functions (0x8024CC10, 0x8024BAE0)
+  differ only as the double run makes them (the PowerPC pass marks the cache loaded, the native
+  then takes the loaded path). Batch 17: 0 different for all 7.
+- Strict A/B (`ab4.sh`, 600 s, against base0): batch 15 (s78) and batch 16 (s79) clean on all 4
+  inputs - the one difference is still P2's frame 29443 of (97). Batch 17 (s80): the same (P2 compared
+  over 20.6k frames only: the reference run was slow).
+  Windows build OK.
+
+## 2026-11-10 (99) - Claude (instance 1): track B - 23 more nw4r / EGG library natives (`gm_nw4r_g3d.c`: 167 on)
+
+- Batch 13 (19, the small hot leaves of the call profile): ScnObj's scale kind (0x80257A00) and
+  option read (0x802578B0), the 2D state keeper's dst-alpha / scissor (0x802D3040 / 0x802D3270 /
+  0x802D3260), two FIFO writers (0x8024A070, 0x80249CB0), ResMatTevColor::DCStore, a text
+  writer's line height (0x802308D0), a snd table lookup (0x80283940), an empty deleting
+  destructor (0x8022C980), getters and tail calls (0x8023CC90, 0x80260EC0, 0x80248C40,
+  0x80248D10, 0x8022BCF0, 0x802CE6B0, 0x80283A60, 0x802570E0).
+- Batch 14 (4): G3DState::Invalidate, mTexture_c's EFB copy (0x802C02C0), a node's world matrix
+  from its SRT and the parent (0x80254A70), the texture-matrix cache loader (0x8024B990).
+- Not taken: SoundActor::GetPlayingSoundCount - `gm_d_wm_se.c` (Kimi) calls the recompiled
+  function by its name (`..._80275560`), so an hle entry for it breaks the link. Natives should
+  call through GM_CALL / the hle name, not the recompiled symbol.
+- Verified: all reached (`GM_G3D_COUNT`); `RT_GM_VERIFY_REGS=1` over P3 / P2: 0 different for 22
+  of the 23 (0.3 - 4.8 M calls each); 0x80254A70 differs in f10 only, and only when it works in
+  place (r3 == r5: the double run's second pass starts from the first one's result).
+- Strict A/B (`ab4.sh`, against base0): batch 13 (s76) and batch 14 (s77, 600 s) clean on
+  all 4 inputs. Windows build OK.
+  (After a container restart the test box is slower: s76 covered ~21k frames per input instead
+  of 28-40k, so P2 did not get to the open frame 29443.)
+
+## 2026-11-09 (98) - Claude (instance 1): track B - 14 more nw4r / EGG library natives (`gm_nw4r_g3d.c`: 144 on)
+
+- Batch 11 (11): the texture-buffer manager (free-list pop 0x802D3590, init 0x802D32F0, get
+  0x802D3700), mTexture_c's init (0x802C0240), the two static-buffer getters 0x80250DA0 /
+  0x80250DB0, a pane's copy-out (0x802C60D0), the cached animation key lookup (0x8022BF80), a
+  32-byte FPR copy (0x8024A530), the scene change (0x802BA710), ScnObj's world matrix calc
+  (0x80257900).
+- Batch 12 (3): the texture animation entry (0x8022C1F0: frame split into page / column / row,
+  then the range-list search), the texture-buffer allocator (0x802D35C0: 32-aligned, low-water
+  mark at r13-18196, free-block / free-entry lists), the animation frame-key lookup (0x8022BE60:
+  cached index, then the +20 -> +12 range list, returns (u16 << 16) | u8 << 8).
+- Verified: every one reached by the test inputs (`GM_G3D_COUNT` first-call logs) and checked
+  register-exact with `RT_GM_VERIFY_REGS=1` over P3 / P2 (0x8022C1F0: 182k calls, 0 different).
+  The differences that remain are the double run's artifacts: 0x8022BE60 / 0x8022BF80 (the
+  original runs first and fills the cache, so the native takes the cached path - fewer polls,
+  same registers / memory), the allocators 0x802D35C0 / 0x802D3590 / 0x802D3700 (state taken
+  twice), 0x802BA710.
+- Strict A/B (`ab4.sh`, 4 inputs x 450 s, against base0): batch 11 (s74) and batch 12 (s75)
+  clean. Windows build OK. The only difference on any input is still the one open P2 frame 29443 of (97).
+- Left in the library: the hermite keyframe evaluator 0x80240100 (paired singles + fres; wants
+  its own pass), EGG::Math<float>::sqrt (no hle_funcs.txt name, off).
+
+## 2026-11-09 (97) - Claude (instance 1): Kimi's parts 88-96 checked against the whole game - 1 fix, 1 open item
+
+- Merged (88)-(96) and ran the strict four-input A/B (`ab4.sh`, memory hashed every frame against
+  the fully recompiled build base0): P3 and P3-warp identical; P2 diverged from frame 3,067 and
+  the no-input run from 9,927 (365,337 / 1,566,356 words different at frame 12,000).
+- Cause (bisected with `RT_GM_VERIFY=orig:<list>` over the 75 natives new since (87)):
+  `dScStage_c::calcTitleCount` (`gm_d_sc_stage.c`) stored the wrapped title counter to
+  0x80430000 instead of the counter itself (0x80430000 - 24072) - every frame, an unrelated word
+  of the small-data area overwritten and the counter never wrapped. Its verification declares
+  only the counter's range, so the stray write was invisible to `RT_GM_VERIFY`; the per-function
+  native / PowerPC comparison passed it. Fixed.
+- After the fix (s73): P3, P3 warp and no input identical on every frame (31,994 / 31,732 /
+  33,647 frames), memory identical at frame 12,000; P2 identical but for one frame, 29,443 (memory
+  identical at 12,000 and every frame after 29,443). Reproducible; base0 against itself is
+  clean there, so it is real. Not from any of Kimi's natives, nor any `RT_GM_VERIFY`-switchable
+  native (`RT_GM_VERIFY=orig` keeps it), nor gm_m3d.c / gm_nw4r_g3d.c (built switchable, forced
+  to PowerPC: kept). It is four words at 0x81253638 + 76 n (a model's calcWorld buffer): base0
+  has 0x8043F9E0 there, the build 1, and the write watch (`RT_DET_WATCH_AT` / `RT_DET_WATCHW`)
+  sees no guest store before the frame's first one - so it arrives by a path the watch doesn't
+  trap (another mapping of guest memory, or host-side DMA). Earlier strict A/Bs never ran P2 that
+  far (28,120 frames), so it may well predate this week. Narrowed further: a build with all 16
+  files that have a VERIFY mode (and gm_m3d.c) switchable, everything forced to PowerPC
+  (`RT_GM_VERIFY=orig`), keeps it - so it is in one of the files without a VERIFY mode (gm_bg,
+  gm_d_cc, gm_d_enemy*, gm_d_scene, gm_m3d_anm, gm_m3d_scene, gm_m_2d / allocator / fader /
+  frustum / heap / mtx, gm_state_ids) or in the runtime itself. None of those changed this week.
+  ~~Open (instance 1).~~ Found and fixed in (101): a native of gm_d_actor.c left a different
+  word in dead stack; the watch log was misread here (there *is* a store - it carries the value).
+- `gm_m3d.c` gains a `GM_M3D_VERIFY` mode (its entries switchable at run time) for that bisect.
+- Note for track B: a clean strict A/B only covers what the four test inputs reach. None of them
+  plays to a game over, the staff credits or a Coin Battle / Free-for-All, so the continue menu,
+  staff-credit and multiplayer course-select natives are probably not exercised by it yet;
+  inputs that reach them are the next test need.
+
+## 2026-11-08 (96) - Kimi: track B - small-score popup colors complete
+
+- Ported the four remaining `dSmallScore_c` methods in `runtime/gm_d_small_score.c`:
+  `setPlayer1000Color`, `setPlayer100Color`, `chgColor` and `DispWait`, covering popup
+  player colors, connected-player cycling and display-wait completion. Generated prologue
+  coverage contains 845 fixed-frame functions.
+- Directed native / PowerPC calls used real initialized popups from `dSmallScoreManager_c`
+  and the native module `CreateSmallScore` path. The 29 cases covered all eight players and
+  the fallback index, disabled / threshold / advance / wrap color changes, generic and
+  60-frame waits, big / small animation, visibility cleanup, scale restoration and color
+  changes inside `DispWait`. The A/B matched all **1,439** retained events, including **30**
+  directed log events per run. Testing exposed and fixed the player-7 boundary (`<= 7`) and
+  `chgColor`'s original pointer-bank selection for connected players.
+- Removed the temporary harness and generated diagnostics. The final clean native / PowerPC
+  A/B matched all **1,409** retained events. `NATIVE_PORT.md` regenerated: **326 of 1318**
+  module functions native across **135 classes**; `dSmallScore_c` **4/4**. Windows no-deploy
+  builds used throughout; nothing was deployed.
+
+## 2026-11-08 (95) - Kimi: track B - staff-credit scores complete
+
+- Ported all nine `dStaffCreditScore_c` methods and its free class initializer in
+  `runtime/gm_d_staff_credit.c`: layout creation, eight-player coin counters, high-score
+  presentation and winner-animation coordination. Generated prologue coverage contains
+  841 fixed-frame functions.
+- Directed native / PowerPC calls in the real stage scene covered layout success and failure,
+  changed / unchanged counters, direct per-player updates, tied and zero scores, high-score
+  animation, winner poses and end-wait transitions. The A/B matched all **1,432** retained
+  events, including **16** directed results / state hashes. Testing exposed and fixed a winner
+  animation index that used the maximum score instead of the player type.
+- Removed the temporary harness and allocation diagnostics. The final clean native / PowerPC
+  A/B matched all **1,409** retained events. `NATIVE_PORT.md` regenerated: **322 of 1318**
+  module functions native across **135 classes**; `dStaffCreditScore_c` **9/9**. Windows
+  no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (94) - Kimi: track B - multiplayer course select complete
+
+- Ported all four `dMultiCourseSelect_c` methods and its free class initializer in
+  `runtime/gm_d_multi_course.c`: extra eight-player layout panes, player positions,
+  favorite-course / play-count setup and rank-star finalization. Generated prologue coverage
+  contains 831 fixed-frame functions; the dynamically aligned display initializer has an explicit
+  equivalent frame instead.
+- Directed native / PowerPC calls in the real multiplayer scene covered layout success and
+  failure, positions for 1-8 players, ordinary Free-for-All, Coin Battle, page-10 favorite
+  selection and rank stars. Each case matched all **1,029** retained events, including **14**
+  directed results / state hashes. Testing exposed and fixed a Coin Battle branch that tested
+  the temporary save-buffer pointer instead of the mode flag.
+- Removed the temporary scene / animation probes and state dumps. The final clean native /
+  PowerPC A/B matched all **1,409** retained events. `NATIVE_PORT.md` regenerated: **312 of 1318**
+  module functions native across **135 classes**; `dMultiCourseSelect_c` **4/4**. Windows
+  no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (93) - Kimi: track B - stock-item menu complete
+
+- Ported all eight `dStockItem_c` methods and its free class initializer in
+  `runtime/gm_d_stock_item.c`: layout creation, eight-player pane selection and positioning,
+  item-mode updates, use effects, item selection and window open / close handling. Generated
+  prologue coverage contains 827 fixed-frame functions.
+- Separate directed native / PowerPC calls covered all 64 pane lookups, 1-8-player layouts,
+  position / scale updates, every item mode, effect calls, both Star-selection paths and window
+  states. All **1,508** retained ordinary and test events, including **97** directed results and
+  state hashes, matched. Observable actor, item, pane, count, presence and mode changes agree;
+  this was not a full all-register equivalence claim for `calcPosScale`'s dead residue.
+- Removed the temporary directed harness. The final clean native / PowerPC A/B matched all
+  **1,409** retained events. `NATIVE_PORT.md` regenerated: **307 of 1318** module functions
+  native; `dStockItem_c` **8/8**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (92) - Kimi: track B - continue menu complete
+
+- Ported all 13 `dContinue_c` methods in `runtime/gm_d_continue.c`: layout and continue-state
+  setup, player / life displays, pane lookup, card positioning, digit effects, count-up states and
+  end-wait handling. Generated prologue coverage contains 818 fixed-frame functions.
+- Directed live-object native / PowerPC calls covered results, selected registers, object / layout /
+  pane hashes, counter edges, card positions, both effect paths, animation states and sound waits,
+  matching all **7,257** ordinary and test events. This was not a full all-register verifier run.
+- Removed the temporary directed harness and diagnostics. The final clean native / PowerPC A/B
+  matched all **1,367** events. `NATIVE_PORT.md` regenerated: **298 of 1318** module functions
+  native; `dContinue_c` **13/13**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (91) - Kimi: track B - player-select menu complete
+
+- Ported all 11 `dSelectPlayer_c` methods in `runtime/gm_d_select_player.c`: layout creation,
+  start gating, animation transitions, single / multiplayer cursor setup, member-selection input,
+  page wrapping and exit handling. Generated prologue coverage contains 805 functions.
+- Directed live-object A/B calls covered the layout guard, start states, animation setup, cursor
+  selections and ten non-confirming directional / page-wrap input cases. They exposed and fixed
+  the inverted start-wait guard, direction-bit branch and page-wrap comparison; all **1,419**
+  ordinary and test events match. Confirmation flows that could not be rolled back safely were
+  excluded from the directed matrix.
+- Removed the temporary directed harness. The final clean native / PowerPC A/B matched all
+  **1,367** events. `NATIVE_PORT.md` regenerated: **285 of 1318** module functions native;
+  `dSelectPlayer_c` **11/11**. Windows no-deploy build used throughout; nothing deployed.
+
+## 2026-11-08 (90) - Kimi: track B - course-select manager complete
+
+- Ported all 11 `dCourseSelectManager_c` methods in `runtime/gm_d_course_manager.c`: pre-execute
+  gating, continue checks / restoration, all key-wait dispatch arms, stock-item selection,
+  interrupt-save callbacks, easy pairing and player power-up queries. The world-map player's
+  power-up call now enters native code. Generated prologue coverage contains 794 functions.
+- Directed live-manager A/B calls covered every method, all eight key-dispatch flags, the
+  eight-player fallback loop and both stock-item directions. Testing exposed and fixed the
+  stock-item zero guard: only zero updates the eight players / cursor and changes state. The
+  nonzero and interrupt-isolated zero A/Bs each matched all **1,421** ordinary and test events.
+  Strict full-register checks of getPlayerPowerup reported no differences.
+- Removed the temporary directed harness. The final clean native / PowerPC A/B matched all
+  **1,367** events. `NATIVE_PORT.md` regenerated: **274 of 1318** module functions native;
+  `dCourseSelectManager_c` **11/11**. Windows no-deploy build used throughout; nothing deployed.
+
+## 2026-11-08 (89) - Kimi: track B - course-select guide complete
+
+- Ported all five `dCourseSelectGuide_c` methods in `runtime/gm_d_course_guide.c`: layout
+  creation and destruction, eight-player icon placement / visibility, remaining-life number
+  updates and alpha stepping. Generated prologue coverage contains 784 fixed-frame functions.
+- Separate directed native / PowerPC calls covered 1, 4, 5 and 8 players, unchanged and changed
+  life-number caches, and equal / increasing / decreasing alpha targets. They matched all
+  **1,379** ordinary and test events. Separate runs avoid the verifier's double-invocation
+  artifact: PowerPC mutates the life-number cache before native receives the same nominal call.
+- Removed all temporary test hooks. The final clean native / PowerPC A/B matched all **1,367**
+  events. `NATIVE_PORT.md` regenerated: **263 of 1318** module functions native;
+  `dCourseSelectGuide_c` **5/5**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (88) - Kimi: track B - world-map player complete
+
+- Completed all 13 `daWmPlayer_c` methods in `runtime/gm_d_wm_player.c`: construction / deletion,
+  creation of the eight companions, entry and model updates, guide input, route gating, active
+  character flags, game start, skeleton roots and course-entry voices. The deleting destructor now
+  frees for flags >= 1, matching the original `blt` skip and restoring the later heap addresses.
+- Directed calls on the live player covered both route overrides, skeleton indices 0-10, four
+  course-entry points, entry / active-character tables, both model-update modes, player-mode refresh
+  and guide handling. Native and PowerPC runs matched all 37 added events and every shared ordinary
+  event. Strict full-register checks of the queries reported no differences; the bounded runs did
+  not print aggregate totals. Repeated creation was excluded from double-invocation verification
+  because the first invocation legitimately changes the companion list seen by the second.
+- Removed the temporary directed hook. The final clean native / PowerPC A/B matched all **1,367**
+  events. `NATIVE_PORT.md` regenerated: **258 of 1318** module functions native; `daWmPlayer_c`
+  **13/13**. Windows no-deploy build used throughout; nothing was deployed.
+
+## 2026-11-08 (87) - Claude (instance 1): Kimi's parts 67-86 checked against the whole game - 29 fixes
+
+Merging (67)-(86) into my tree and running the strict four-input A/B (memory hashed every frame
+against the fully recompiled base, `/tmp/claude-0/ab4.sh`, CHANGELOG (57)) failed: all four inputs
+diverged by frame 674 and two crashed when the world-select was deleted (a virtual call through a
+null pointer from `fn_80103F10`). The per-function native / PowerPC A/B and the self-tests did not
+see it: most world-map natives are declared `GMV_IGNORE_POLLS` with no memory ranges (`0, 0`), so
+`RT_GM_VERIFY` checks nothing but registers on them, and the paths taken in the real game differ
+from the directed calls. Found with `RT_GM_VERIFY=orig:<list>` (the listed natives run their
+PowerPC versions) and a bisection over the active set; each fix confirmed by the next A/B.
+
+- `gm_py_mng.c` createCourseInit: the players' spacing sign (the PowerPC code tests cr2.eq - the
+  entry's bit 0 clear - the native had it the other way: players on the wrong side, the first
+  difference at frame 674); the shuffle's draw count (`bgt` keeps the count, at least 4 draws - the
+  native capped it at 4).
+- `gm_d_fukidashi.c`: the destructor cleared 0x8042ACA0 (an unrelated global) instead of the
+  manager instance 0x8042A320 (`r13 - 21344`); setInfoFlag x2 read the character / player type
+  from r3 / r4 instead of r4 / r5 (so never set the flag).
+- `gm_d_wm_se.c`: initialize stored the player sound objects for players 0-2 only (`blt` for
+  `ble`) - the world-select deletion then called through the unset fourth slot (the crash);
+  execute's actor and list loops polled once less than the PowerPC loops (which enter through
+  their test: a poll before every body) - the game clock drifted 0x7A ticks; playSlot's cases 0
+  and 1 swapped (0 is the `+36 == 12` check, 1 does nothing); playPlySound: sound 24 for action 5
+  only, sound 3 for action 3 only (the native used `< 5`, `< 3`); playSlot called with the bl's
+  r3 / r4 / LR.
+- `gm_d_gamedisplay.c` execute: the animation step is skipped when +1105 is clear too (inverted).
+- `gm_d_wm_subplayer.c`: loadModel's allocation loop polled once less; calcWalkSpeed's store
+  path computed as the PowerPC fmul / fmadd (two statements - one expression can contract
+  differently).
+- `gm_d_wm_player.c`: PlayerEntryUpdate (the third loop's players 1-4 / 5-8 offset swapped; the
+  model-type-3 flag inverted); updateSubPlayerModel (the companion test inverted);
+  updatePlayerMode (the players 1-4 offset swapped; its call made as the bl, LR and all);
+  initActiveCharaFlags (the offset swapped); checkCsGuideKey rewritten against the PowerPC code
+  (six branch senses inverted, a key path missing); getCourseInVoiceId (three senses inverted);
+  the destructor frees for flags >= 1 (not > 1); getSkeletonRoot takes 0..9 (not 0..8); create's
+  createSubPlayers call with the bl's LR.
+- `build_linux_clang.sh`: Kimi's ten new files added (build.py had them).
+- Pattern for whoever writes the next ones: most of these are a `bne` / `beq` read the wrong way
+  round, or a C `while` whose poll sits at the end - the compiler's while loops jump to their test
+  first, so the PowerPC code polls before every body. Please keep the strict A/B (`ab4.sh`, or
+  any memory-hash run against a fully recompiled build) as the acceptance test: the per-function
+  comparison alone passed all of these.
+- Verified: the four-input A/B (s71: P3, P2, P3 warp, no input; 450 s each, base0 = the fully
+  recompiled PC build): identical on every frame (26,880 / 28,120 / 25,827 / 29,095 frames),
+  memory identical at frame 12,000. Windows build OK.
+
 ## 2026-11-08 (86) - Kimi: track B - world-map route access complete
 
 - Ported both `daWmMap_c` methods in `runtime/gm_d_wm_map.c`: `IsRouteOpen` and

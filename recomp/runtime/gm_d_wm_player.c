@@ -53,7 +53,7 @@ static gptr wp_destruct(GM_CTX, gptr self, int32_t flags) {
         ctx->lr = 0x81829160u; ppc_call_indirect(ctx, base, ctx->ctr);
     }
     R(3) = R(28); R(4) = (uint32_t)-1; BL(0x8182916Cu, hle___dt__11dPyMdlMng_cFv);
-    if (flags > 1) { R(3) = self; BL(0x8182917Cu, hle__Z17FreeFromGameHeap1Pv); }
+    CMPS(flags, 1); if (flags >= 1) { R(3) = self; BL(0x8182917Cu, hle__Z17FreeFromGameHeap1Pv); }   /* (blt skips: freed for 1 and up) */
     R(3) = self; return R(3);
 }
 
@@ -81,7 +81,7 @@ static uint32_t wp_create(GM_CTX, gptr self) {
     I2_FN(0x8182919Cu);
     NV_R(29, 0); NV_R(30, self); gm_set_u16(self + 258, 0); R(3) = 0; BL(0x818291C4u, fn_8016F430);
     R(3) = self; BL(0x818291CCu, fn_2_196190_80903940); R(3) = self; gm_set_u32(self + 464, 0);
-    wp_createSubPlayers(GM_PASS, self); R(3) = gm_u32(self + 464); CMPU(R(3), 0);
+    ctx->lr = 0x818291D8u; wp_createSubPlayers(GM_PASS, self); R(3) = gm_u32(self + 464);   /* (the bl's LR: the replayed prologue saves it) */ CMPU(R(3), 0);
     if (!R(3)) {
         R(4) = 0x81850000u - 4936; R(3) = R(4) + 29; R(5) = R(4) + 47; R(6) = R(4) + 67;
         CR_SETBIT(ctx, 6, 0); R(4) = 70; BL(0x81829274u, mod_OSPanic_818380F8); return 0;
@@ -114,7 +114,7 @@ static void wp_playerEntryUpdate(GM_CTX, gptr self) {
             R(5) = i2_rotl(R(4), 2) & 0xFFFFFFFCu; R(5) = gm_u32(R(25) + R(5)); CMPU(R(5), 3);
             int modelIs3 = R(5) == 3;
             R(5) = R(26) != 0; ctx->xer_ca = R(26) != 0;
-            if (!modelIs3) R(6) = R(5);
+            if (modelIs3) R(6) = 0;                                       /* (r6 = 1, cleared for model type 3; r5 = r26 != 0) */
             R(3) = self; BL(0x81829474u, fn_2_195690_80902E40);
         }
         NV_R(27, R(27) - 1); NV_R(23, R(23) + 1); NV_R(24, R(24) + 4); CMPU(R(27), 0);
@@ -128,7 +128,7 @@ static void wp_playerEntryUpdate(GM_CTX, gptr self) {
     }
     ctx->ctr = 8; R(4) = WP_ACTIVE_TABLE - 4; R(5) = WP_MODEL_TABLE; R(3) = 0;
     do {
-        R(6) = R(3) < 4 ? R(28) : R(28) - 1992;
+        R(6) = R(3) < 4 ? R(28) - 1992 : R(28);                         /* (players 1-4 at -1992, as the second loop) */
         R(7) = gm_u32(R(4) + 4); R(4) += 4; R(3)++; R(6) = gm_u32(R(6)); NV_R(28, R(28) + 4);
         R(7) = i2_rotl(R(7), 2) & 0xFFFFFFFCu; gm_set_u32(R(5) + R(7), R(6));
         if (--ctx->ctr) GM_LOOP(); else break;
@@ -147,7 +147,7 @@ static void wp_updateSubPlayerModel(GM_CTX, gptr self, uint32_t type, uint32_t s
         NV_R(30, extra); NV_R(29, scene); NV_R(28, self); NV_R(26, type);
         for (;;) {
             R(3) = R(27); R(4) = type; BL(0x818295ACu, hle_mod_fn_2_181B10); CMPU(R(3), 0);
-            if (R(3)) {
+            if (!R(3)) {                                                  /* (0: not this companion - the next) */
                 NV_R(27, gm_u32(R(27) + 388)); CMPU(R(27), 0);
                 if (R(27)) { GM_LOOP(); continue; }
                 return;
@@ -170,13 +170,13 @@ static void wp_updatePlayerMode(GM_CTX, gptr self) {
     NV_R(30, self); NV_R(25, gm_u32(WP_INFO) + 2892); NV_R(26, 0x809A0000u);
     NV_R(27, 8); NV_R(29, 0); NV_R(24, WP_STAR_TABLE); R(3) = WP_ACTIVE_TABLE - 4;
     do {
-        R(4) = R(29) < 4 ? R(25) : R(25) - 1992; R(4) = gm_u32(R(4)); NV_R(23, R(3) + 4); CMPU(R(4), 3);
+        R(4) = R(29) < 4 ? R(25) - 1992 : R(25); R(4) = gm_u32(R(4)); NV_R(23, R(3) + 4); CMPU(R(4), 3);
         if (R(4) == 3) {
             NV_R(28, gm_u32(R(3) + 4)); R(4) = R(29); R(3) = gm_u32(WP_LAYOUT);
-            BL(0x818296D4u, mod_fn_2_1C3A40_81814E70); R(5) = R(3);
+            BL(0x818296D4u, hle_mod_fn_2_1C3A40); R(5) = R(3);
             R(3) = i2_rotl(R(28), 2) & 0xFFFFFFFCu; R(3) = gm_u32(R(24) + R(3));
             R(4) = R(28); R(6) = R(3) & 1; R(3) = self;
-            wp_updateSubPlayerModel(GM_PASS, self, R(4), R(5), R(6));
+            BL(0x818296F0u, hle_mod_fn_2_195730);                       /* (as the PowerPC bl: its LR, through the hle entry) */
         }
         NV_R(27, R(27) - 1); NV_R(29, R(29) + 1); CMPU(R(27), 0); NV_R(25, R(25) + 4); R(3) = R(23);
         if (CR_BIT(ctx, 1)) GM_LOOP(); else break;
@@ -194,7 +194,7 @@ static void wp_initActiveCharaFlags(GM_CTX) {
     R(7) = gm_u32(WP_INFO); R(4) = WP_ACTIVE_TABLE - 4; R(3) = 0; ctx->ctr = 8;
     R(5) = R(7) + 2892; R(6) = WP_MODEL_TABLE;
     do {
-        R(7) = R(3) < 4 ? R(5) : R(5) - 1992; R(7) = gm_u32(R(7)); CMPU(R(7), 3); R(7) = R(7) == 3 ? 3 : 0;
+        R(7) = R(3) < 4 ? R(5) - 1992 : R(5); R(7) = gm_u32(R(7)); CMPU(R(7), 3); R(7) = R(7) == 3 ? 3 : 0;
         R(8) = gm_u32(R(4) + 4); R(4) += 4; R(3)++; R(5) += 4;
         R(8) = i2_rotl(R(8), 2) & 0x1Cu; gm_set_u32(R(6) + R(8), R(7));
         if (--ctx->ctr) GM_LOOP(); else break;
@@ -203,83 +203,94 @@ static void wp_initActiveCharaFlags(GM_CTX) {
 
 static uint32_t wp_getSkeletonRoot(GM_CTX, uint32_t index) {
     CMPU(index, 9); R(4) = 0;
-    if (index < 9) { R(4) = WP_SKELETONS; R(3) = i2_rotl(index, 2) & 0xFFFFFFFCu; R(4) = gm_u32(R(4) + R(3)); }
+    if (index <= 9) { R(4) = WP_SKELETONS;                            /* (bgt skips: 0..9) */
+        R(3) = i2_rotl(index, 2) & 0xFFFFFFFCu; R(4) = gm_u32(R(4) + R(3)); }
     R(3) = R(4); return R(3);
 }
 
 static uint32_t wp_getCourseInVoiceId(GM_CTX, uint32_t point) {
     I2_FN(0x81815110u);
     NV_R(30, point); BL(0x81815128u, fn_80100940); CMPS(R(3), 0); R(3) = 5;
-    if (CR_BIT(ctx, 0)) return R(3);
-    R(4) = gm_u32(WP_ACTIVE_TABLE); CMPU(R(4), 0); if (!R(4)) return R(3);
+    if (CR_BIT(ctx, 1)) return R(3);                                     /* (bgt) */
+    R(4) = gm_u32(WP_ACTIVE_TABLE); CMPU(R(4), 0); if (R(4)) return R(3);   /* (bne) */
     R(3) = gm_u32(WP_MAP); R(4) = gm_u32(R(3) + 13196); R(4) = (uint32_t)((int32_t)R(4) * 11427);
     R(4) = i2_rotl(R(4), 3) & 0xFFFFFFF8u; R(3) += R(4) + 13204; R(4) = point; BL(0x81815168u, hle_fn_800F56B0);
     BL(0x8181516Cu, GetCourseNoFromPointName__6dWmLibFPCc_800F9530);
     BL(0x81815170u, GetCourseTypeFromCourseNo__6dWmLibFi_800F9840);
     R(4) = R(3); R(3)--; CMPU(R(3), 2); R(3) = 6; if (CR_BIT(ctx, 0)) return R(3);
-    CMPU(R(4), 3); R(5) = R(4) == 3 ? 4 : 6; CMPU(R(4), 8); if (R(4) != 8) R(3) = R(5); return R(3);
+    CMPU(R(4), 3); R(5) = R(4) == 3 ? 6 : 4; CMPU(R(4), 8); if (R(4) != 8) R(3) = R(5); return R(3);
 }
 
 static void wp_checkCsGuideKey(GM_CTX, gptr self) {
+    /* (rewritten against the PowerPC code, CHANGELOG 87: the branch senses as the original's) */
     I2_FN(0x81829738u);
     NV_R(30, self); BL(0x81829754u, fn_2_19B000_809087B0); CMPU(R(3), 0); R(3) = 0;
     if (CR_BIT(ctx, 2)) return;
     NV_R(29, 0x80430000u); R(3) = gm_u32(WP_CS_SEQ); BL(0x8182976Cu, fn_2_1A7E90_80915640); CMPU(R(3), 0);
-    if (R(3)) {
+    if (CR_BIT(ctx, 2)) {                                                    /* (0: ask the sequence manager) */
         R(3) = gm_u32(WP_CS_SEQ); BL(0x8182977Cu, FUN_80915600__11dCsSeqMng_cFv_80915610); CMPU(R(3), 0);
-        if (!R(3)) goto check_keys;
+        if (CR_BIT(ctx, 2)) goto check_keys;
     }
 
 guide_path:
     R(3) = 4; NV_R(29, gm_u32(self + 648)); gm_set_u32(self + 652, 4); gm_set_u32(self + 648, 4);
     R(3) = self; BL(0x8182979Cu, fn_2_19B600_80908DB0); R(4) = R(3); R(3) = self; BL(0x818297A8u, fn_2_196BD0_80904380);
     R(4) = gm_u8(self + 601) & 0x10; CR0(ctx, R(4));
-    if (R(4)) {
-        if (gm_u32(self + 648) != 4) { gm_set_u32(self + 768, 0); R(3) = self; BL(0x818297D0u, fn_2_197070_80904820); }
+    if (CR_BIT(ctx, 2)) {
+        R(4) = gm_u32(self + 648); CMPU(R(4), 4);
+        if (CR_BIT(ctx, 2)) goto restore_mode;
+        R(3) = 0; gm_set_u32(self + 768, 0); R(3) = self; BL(0x818297D0u, fn_2_197070_80904820);
     } else { R(3) = self; BL(0x818297DCu, fn_2_196CA0_80904450); }
-    if (gm_u32(self + 648) == 4) gm_set_u32(self + 648, R(29));
+    R(4) = gm_u32(self + 648); CMPU(R(4), 4);
+    if (!CR_BIT(ctx, 2)) return;
+restore_mode:
+    gm_set_u32(self + 648, R(29));
     return;
 
 check_keys:
     R(3) = 0; BL(0x818297F8u, mod_fn_800FD390_818146E4); NV_R(29, R(3)); R(3) = gm_u32(WP_SOUND);
-    if (R(29) == 1) goto key_one;
-    if (R(29) == 2) goto key_two;
-    if (R(29) == 3) {
-        R(4) = gm_u32(R(3)); R(5) = 0x81860000u - 6288; CMPU(R(4), R(5)); if (R(4) != R(5)) R(3) = 0;
-        R(3) = gm_u8(R(3) + 11) & 0x20; CR0(ctx, R(3)); if (R(3)) goto clear_input;
-        goto ui_input;
-    }
-    goto ui_input;
+    CMPU(R(29), 1); if (CR_BIT(ctx, 2)) { R(4) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(4); R(4) = 16384; goto key_call; }
+    CMPU(R(29), 2); if (CR_BIT(ctx, 2)) goto key_two;
+    CMPU(R(29), 3); if (!CR_BIT(ctx, 2)) { R(4) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(4); R(4) = 2048; goto key_call; }
+    R(4) = gm_u32(R(3)); R(5) = 0x81860000u - 6288; CMPU(R(4), R(5)); if (!CR_BIT(ctx, 2)) R(3) = 0;
+    R(3) = gm_u8(R(3) + 11) & 0x20; CR0(ctx, R(3));
+    if (!CR_BIT(ctx, 2)) goto ui_input;
+    goto clear_input;
 
 key_two:
-    R(4) = gm_u32(R(3)); R(5) = 0x81860000u - 6344; CMPU(R(4), R(5)); if (R(4) != R(5)) R(3) = 0;
-    R(3) = gm_u8(R(3) + 10) & 8; CR0(ctx, R(3)); if (R(3)) goto clear_input;
+    R(4) = gm_u32(R(3)); R(5) = 0x81860000u - 6344; CMPU(R(4), R(5)); if (!CR_BIT(ctx, 2)) R(3) = 0;
+    R(3) = gm_u8(R(3) + 10) & 8; CR0(ctx, R(3));
+    if (CR_BIT(ctx, 2)) goto clear_input;
     goto ui_input;
 
-key_one:
-    R(4) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(4); R(4) = 16384;
-    ctx->lr = 0x818298DCu; ppc_call_indirect(ctx, base, ctx->ctr); CMPU(R(3), 0); if (R(3)) GM_LOOP();
-    if (R(3)) goto ui_input;
-    goto clear_input;
+key_call:
+    ctx->lr = 0x818298DCu; ppc_call_indirect(ctx, base, ctx->ctr); CMPU(R(3), 0);
+    if (CR_BIT(ctx, 2)) goto clear_input;
+    GM_LOOP();
 
 ui_input:
     R(3) = gm_u32(WP_LAYOUT); R(4) = gm_u8(R(3) + 1350); CMPU(R(4), 0);
-    if (!R(4)) { R(4) = gm_u8(gm_u32(R(3) + 1332) + 597); CMPU(R(4), 1); }
-    if (gm_u8(R(3) + 1350) || R(4) != 1) gm_set_u8(R(3) + 1349, 1);
+    if (CR_BIT(ctx, 2)) {
+        R(4) = gm_u8(gm_u32(R(3) + 1332) + 597); CMPU(R(4), 1);
+        if (!CR_BIT(ctx, 2)) goto ui_done;
+    }
+    R(4) = 1; gm_set_u8(R(3) + 1349, 1);
+ui_done:
     BL(0x81829898u, fn_2_16AF80_808D8730); R(3) = gm_u32(WP_CS_SEQ); R(5) = self;
     R(6) = gm_u32(0x80430000u - 23932); R(4) = 30; goto play_sequence;
 
 clear_input:
     R(3) = gm_u32(WP_SOUND); R(4) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(4); R(4) = 16;
     ctx->lr = 0x81829900u; ppc_call_indirect(ctx, base, ctx->ctr); CMPU(R(3), 0);
-    if (!R(3)) { R(3) = gm_u32(WP_CS_SEQ); R(4) = 47; goto sequence_simple; }
-    R(4) = R(29) == 0 ? 512 : 1536; NV_R(29, 0x80430000u);
+    if (!CR_BIT(ctx, 2)) { R(3) = gm_u32(WP_CS_SEQ); R(4) = 47; goto sequence_simple; }
+    CMPU(R(29), 0); R(4) = 512; if (!CR_BIT(ctx, 2)) R(4) = 1536;
+    NV_R(29, 0x80430000u);
     R(3) = gm_u32(WP_SOUND); R(5) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(5);
     ctx->lr = 0x81829940u; ppc_call_indirect(ctx, base, ctx->ctr); CMPU(R(3), 0);
-    if (!R(3)) { R(3) = gm_u32(WP_CS_SEQ); R(4) = 49; goto sequence_simple; }
+    if (!CR_BIT(ctx, 2)) { R(3) = gm_u32(WP_CS_SEQ); R(4) = 49; goto sequence_simple; }
     R(3) = gm_u32(WP_SOUND); R(4) = gm_u32(gm_u32(R(3)) + 32); ctx->ctr = R(4); R(4) = 4096;
     ctx->lr = 0x81829970u; ppc_call_indirect(ctx, base, ctx->ctr); CMPU(R(3), 0);
-    if (!R(3)) { GM_LOOP(); goto guide_path; }
+    if (CR_BIT(ctx, 2)) { GM_LOOP(); goto guide_path; }
     R(3) = gm_u32(WP_CS_SEQ); R(4) = 50;
 
 sequence_simple:

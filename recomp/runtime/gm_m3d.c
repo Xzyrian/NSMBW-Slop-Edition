@@ -657,7 +657,11 @@ static void mdl_play(GM_CTX, gptr self) {
    (calcRatio_c and the callback's create / remove through mdl_c) or share their code with a
    reached one but for a constant (setTevKColorAll, calcVtx). */
 #define A(i) GM_ARG(i)
+#ifdef GM_M3D_VERIFY  /* (testing: each entry checked against / switchable to its PowerPC version at run time) */
+#define E(name) GM_HLE_INT(name, GM_ARG(0), 4)
+#else
 #define E(name) GM_HLE(name)
+#endif
 /* banm_c */
 E(testAnmFlag__Q23m3d6banm_cFv) { GM_RET(banm_is_bound(GM_PASS, A(0))); }                    /* banm_c::IsBound */
 E(getCurrentFrame__Q23m3d6banm_cFv) { banm_vcall(GM_PASS, A(0), 32); }                       /* ::getFrame */

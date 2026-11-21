@@ -40,7 +40,7 @@ RT_STATE_FILE                                   /* (game code: its variables are
 static void dm_init(GM_CTX, gptr self) {
     I2_FN(0x81803CFCu);
     NV_R(30, self);
-    BL(0x81803D14u, ext_fn_8005B4A0_81845400);                          /* (the game's daPyDemoMng_c::init) */
+    BL(0x81803D14u, hle_ext_fn_8005B4A0);                          /* (the game's daPyDemoMng_c::init) */
     R(3) = (uint32_t)-1;
     static const uint32_t ext[8] = { 152, 184, 156, 188, 160, 192, 164, 196 };   /* (course-in / -out 5-8, as stored) */
     for (int i = 0; i < 8; i++) gm_set_u32(self + ext[i], R(3));
@@ -150,8 +150,8 @@ static gptr dm_ctrl(GM_CTX, uint32_t p, uint32_t ra, int signed_cmp) {
     int none = signed_cmp ? CMPS(R(3), 0) == 0 : CMPU(R(3), 0) == 0;
     return none ? 0 : R(3);
 }
-#define TESTFLAG(ra, pl, f) (R(3) = (pl), R(4) = (f), BL((ra), testFlag__10daPlBase_cFi_80056CF0), CMPU(R(3), 0) != 0)
-#define SETFLAG(ra, f)      (R(4) = (f), BL((ra), setFlag__10daPlBase_cFi_80056C70))
+#define TESTFLAG(ra, pl, f) (R(3) = (pl), R(4) = (f), BL((ra), hle_testFlag__10daPlBase_cFi), CMPU(R(3), 0) != 0)
+#define SETFLAG(ra, f)      (R(4) = (f), BL((ra), hle_setFlag__10daPlBase_cFi))
 #define FLAG_GOAL_DEMO      101          /* daPlBase_c flags of the goal demo */
 #define FLAG_ON_POLE        102
 #define FLAG_POLE_DOWN      103
@@ -536,7 +536,7 @@ static uint32_t dm_all_flag(GM_CTX, uint32_t flag, int with_goal_demo, const uin
                 NV_R(r_pl, pl);
                 if (TESTFLAG(ra[1], pl, FLAG_GOAL_DEMO)) fail = !TESTFLAG(ra[2], R(r_pl), flag);
             } else if (flag) fail = !TESTFLAG(ra[1], pl, flag);
-            else { BL(ra[1], fn_80052470); fail = CMPU(R(3), 0) == 0; }  /* (isLand: daPlBase_c::isDemoLand) */
+            else { BL(ra[1], hle_fn_80052470); fail = CMPU(R(3), 0) == 0; }  /* (isLand: daPlBase_c::isDemoLand) */
         }
         if (fail) break;
         NV_R(r_res, CMPU(p, 6) > 0 ? 1 : 0);
@@ -633,7 +633,7 @@ static void dm_startControlDemoAll(GM_CTX) {
     NV_R(29, 8); NV_R(28, 1); NV_R(30, 0); NV_R(27, PY_ACT_INFO);
     for (uint32_t p = 0;; ) {
         gptr pl = dm_ctrl(GM_PASS, p, 0x81804AA4u, 0);
-        if (pl) { BL(0x81804AB0u, fn_80051E70); if (CMPU(R(3), 0) == 0) NV_R(28, 0); }   /* daPlBase_c::startControlDemo */
+        if (pl) { BL(0x81804AB0u, hle_fn_80051E70); if (CMPU(R(3), 0) == 0) NV_R(28, 0); }   /* daPlBase_c::startControlDemo */
         NV_R(29, R(29) - 1);
         int more = CMPU(R(29), 0) > 0;
         NV_R(30, ++p);
@@ -658,7 +658,7 @@ static void dm_each_player(GM_CTX, uint32_t arg, uint32_t ra_get, uint32_t ra_ca
 }
 static void dm_endControlDemoAll(GM_CTX, uint32_t arg) {
     I2_FN(0x81804BA0u);
-    dm_each_player(GM_PASS, arg, 0x81804BE8u, 0x81804BF8u, fn_80051EF0);
+    dm_each_player(GM_PASS, arg, 0x81804BE8u, 0x81804BF8u, hle_fn_80051EF0);
 }
 static void dm_setAnimePlayStandardTypeAll(GM_CTX, uint32_t type) {
     I2_FN(0x81804ECCu);
@@ -671,7 +671,7 @@ static void dm_getControlDemoPlayerNum(GM_CTX) {
     NV_R(27, PY_ACT_INFO); NV_R(28, 8); NV_R(29, 0); NV_R(30, 0);
     for (uint32_t p = 0;; ) {
         gptr pl = dm_ctrl(GM_PASS, p, 0x81804C70u, 0);
-        if (pl) { R(4) = 4; BL(0x81804C80u, fn_8004DB40); n += R(3); NV_R(30, n); }   /* daPlBase_c::isControlDemo(4) */
+        if (pl) { R(4) = 4; BL(0x81804C80u, hle_fn_8004DB40); n += R(3); NV_R(30, n); }   /* daPlBase_c::isControlDemo(4) */
         NV_R(28, R(28) - 1);
         int more = CMPU(R(28), 0) > 0;
         NV_R(29, ++p);
@@ -687,7 +687,7 @@ static void dm_onLandStopReq(GM_CTX) {
     for (uint32_t p = 0;; ) {
         gptr pl = dm_ctrl(GM_PASS, p, 0x81804CFCu, 0);
         if (pl) {
-            R(4) = 4; NV_R(29, pl); BL(0x81804D10u, fn_8004DB40);
+            R(4) = 4; NV_R(29, pl); BL(0x81804D10u, hle_fn_8004DB40);
             if (CMPU(R(3), 0) != 0) { R(3) = R(29); SETFLAG(0x81804D24u, FLAG_DEMO_LAND_STOP); }
         }
         NV_R(28, R(28) - 1);
@@ -707,11 +707,11 @@ static void dm_startControlDemoLandPlayer(GM_CTX) {
     for (uint32_t p = 0;; ) {
         gptr pl = dm_ctrl(GM_PASS, p, 0x81804DB0u, 0);
         if (pl) {
-            NV_R(29, pl); BL(0x81804DC0u, fn_80052470);                 /* daPlBase_c::isDemoLand */
+            NV_R(29, pl); BL(0x81804DC0u, hle_fn_80052470);                 /* daPlBase_c::isDemoLand */
             if (CMPU(R(3), 0) == 0) NV_R(26, 0);
             else {
-                R(3) = R(29); R(4) = 4; BL(0x81804DD4u, fn_8004DB40);
-                if (CMPU(R(3), 0) == 0) { R(3) = R(29); BL(0x81804DE4u, fn_80051E70); NV_R(26, 0); }
+                R(3) = R(29); R(4) = 4; BL(0x81804DD4u, hle_fn_8004DB40);
+                if (CMPU(R(3), 0) == 0) { R(3) = R(29); BL(0x81804DE4u, hle_fn_80051E70); NV_R(26, 0); }
             }
         }
         NV_R(28, R(28) - 1);
@@ -744,7 +744,7 @@ static void dm_executeStartToride(GM_CTX, gptr self) {
             if (CMPS(R(3), -1) != 0) {
                 BL(0x81804FD0u, getCtrlPlayer__9daPyMng_cFi_8005FB90);
                 if (CMPU(R(3), 0) != 0) {
-                    BL(0x81804FDCu, fn_80052470);
+                    BL(0x81804FDCu, hle_fn_80052470);
                     if (CMPU(R(3), 0) != 0) { gm_set_u32(self + DM_TORIDE_PLAYER, i); break; }
                 }
             }

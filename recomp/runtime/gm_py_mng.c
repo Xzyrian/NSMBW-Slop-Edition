@@ -32,8 +32,8 @@ RT_STATE_FILE                                   /* (game code: its variables are
 #define GAME_RULE           0x8185FE04u /* dGameRule_s::current (the module's game rules) */
 #define GR_INFINITE_LIVES   5           /*   bool infinite_lives */
 #define PY_DEATH_COUNT      0x8185EAF0u /* s32 mDeathCount[8 characters] (with infinite lives: deaths instead of lives) */
-#define PY_STAR_COUNT       0x8185EAD0u /* u16 m_star_count[8] */
-#define PY_STAR_TIME        0x8185EAE0u /* u16 m_star_time[8] */
+#define PY_STAR_TIME       0x8185EAD0u /* u16 m_star_time[8] (names corrected in part 102: setSceneChangeInfo / create) */
+#define PY_STAR_COUNT        0x8185EAE0u /* u16 m_star_count[8] */
 #define PY_QUAKE_TIMER      0x8185E9BCu /* s32 m_quakeTimer[8] */
 #define PY_QUAKE_EFFECT     0x8185E9DCu /* s32 m_quakeEffectFlag[8] */
 #define PY_REST             0x81851D8Cu /* s32 mRest[8 characters]: lives (initialised data: 5 each) */
@@ -64,7 +64,7 @@ void hle_create__13dStageActor_cF6ActorsUiP7Point3dP6S16VecUc(ppc_context *ctx, 
 #define PL_STAR_TIMER       4208        /* dAcPy_c: the star's frames left (s32) */
 #define PL_BALLOON          5436        /* dAcPy_c: 1 = in a bubble */
 #define VT_YOSHI_PLR_NO     108         /* (virtual: the Yoshi's rider number, a pointer to an s8) */
-#define VT_IS_ALIVE         224         /* (virtual: the player can play on) */
+#define VT_IS_ALIVE         224         /* isItemKinopio (module source; was "can play on") */
 #define VT_EXECUTE_LAST     216         /* (virtual: the last step of the frame) */
 #define VT_EXECUTE_LAST_ALL 220
 #define FLAG_YOSHI_RIDE     75
@@ -574,7 +574,7 @@ static void py_stopYoshiBGM(GM_CTX) {
         NV_R(29, left); NV_R(30, p);
         R(3) = p; BL(0x81807280u, hle_getPlayer__9daPyMng_cFi);
         if (CMPU(R(3), 0) != 0) {
-            R(4) = FLAG_YOSHI_RIDE; BL(0x81807290u, testFlag__10daPlBase_cFi_80056CF0);
+            R(4) = FLAG_YOSHI_RIDE; BL(0x81807290u, hle_testFlag__10daPlBase_cFi);
             if (CMPU(R(3), 0) != 0) return;
         }
         left--; NV_R(29, left); NV_R(30, p + 1);
@@ -645,16 +645,16 @@ static void py_initStage(GM_CTX) {
     gm_set_u32(PY_NUM, 0);
     R(3) = 0x81860000u; gm_set_u8(PY_OLD_ACT_INFO, 0);
     R(5) = 0x81860000u; R(4) = PY_ACT_INFO;
-    R(3) = PY_STAR_TIME; R(5) = PY_STAR_COUNT; NV_R(28, 8);
+    R(3) = PY_STAR_COUNT; R(5) = PY_STAR_TIME; NV_R(28, 8);
     gm_set_u32(PY_ACT_INFO, 0);
-    NV_R(27, PY_STAR_TIME - 2); NV_R(26, PY_STAR_COUNT - 2); NV_R(30, 0);
+    NV_R(27, PY_STAR_COUNT - 2); NV_R(26, PY_STAR_TIME - 2); NV_R(30, 0);
     gm_set_u32(PY_ACT_INFO + 4, 0);
     for (uint32_t p = 0;; ) {                                            /* no player actors, no stars */
         R(3) = p; R(4) = 0; BL(0x818058E0u, hle_setPlayer__9daPyMng_cFiP7dAcPy_c);
         NV_R(28, R(28) - 1);
-        NV_R(27, PY_STAR_TIME + 2 * p); gm_set_u16(R(27), 0);
+        NV_R(27, PY_STAR_COUNT + 2 * p); gm_set_u16(R(27), 0);
         int more = CMPU(R(28), 0) > 0;
-        NV_R(26, PY_STAR_COUNT + 2 * p); gm_set_u16(R(26), 0);
+        NV_R(26, PY_STAR_TIME + 2 * p); gm_set_u16(R(26), 0);
         NV_R(30, ++p);
         if (!more) break;
         GM_LOOP();
@@ -739,16 +739,16 @@ static void py_update(GM_CTX) {
         }
     }
     BL(0x818065B8u, fn_800608E0);                                        /* checkLastAlivePlayer */
-    BL(0x818065BCu, fn_80101960);                                        /* dScStage_c::getGameDisplay */
+    BL(0x818065BCu, hle_fn_80101960);                                        /* dScStage_c::getGameDisplay */
     if (CMPU(R(3), 0) != 0) {
         gptr disp = R(3); NV_R(30, disp);
         R(3) = gm_u8(GAME_RULE + GR_INFINITE_LIVES);
         R(4) = CMPU(R(3), 0) != 0 ? PY_DEATH_COUNT : PY_REST;
         R(3) = 0x81860000u; if (R(4) == PY_REST) R(3) = 0x81850000u;
-        R(3) = disp; BL(0x818065F8u, mfn_81832A24);                      /* dGameDisplay_c::updatePlayNum */
+        R(3) = disp; BL(0x818065F8u, hle_mfn_81832A24);                      /* dGameDisplay_c::updatePlayNum */
         R(3) = 8; R(4) = 0; ctx->ctr = 8;
         for (uint32_t c = 0; c < 8; c++) { R(3) = PY_COIN + 4 * c; R(5) = gm_u32(R(3)); R(4) += R(5); if (--ctx->ctr) GM_LOOP(); }
-        R(3) = disp; BL(0x81806624u, fn_80159960);                       /* setCoinNum(getCoinAll()) */
+        R(3) = disp; BL(0x81806624u, hle_fn_80159960);                       /* setCoinNum(getCoinAll()) */
         R(3) = 0x80430000u; R(4) = gm_u32(PY_SCORE);
         R(3) = disp; BL(0x81806634u, hle_mod_fn_80159CB0);                /* setScore */
         R(3) = disp; BL(0x8180663Cu, hle_mod_fn_80159AF0);                /* setCollect */
@@ -788,7 +788,7 @@ static void py_update(GM_CTX) {
                 R(3) = p; BL(0x818066ECu, getCtrlPlayer__9daPyMng_cFi_8005FB90);
                 if (CMPU(R(3), 0) != 0) {
                     gptr pl = R(3);
-                    R(4) = 100; NV_R(29, pl); BL(0x81806700u, testFlag__10daPlBase_cFi_80056CF0);
+                    R(4) = 100; NV_R(29, pl); BL(0x81806700u, hle_testFlag__10daPlBase_cFi);
                     if (CMPU(R(3), 0) == 0) {
                         i2_vcall(ctx, base, 0x8180671Cu, pl, VT_IS_WAIT_FRAME_MAX, 3);
                         R(3) ^= 1; wait |= R(3); NV_R(27, wait);
@@ -823,7 +823,7 @@ static void py_update(GM_CTX) {
                         set = R(5) & 8;
                         if (!set) { R(5) = gm_u32(R(25) + 4); set = CMPU(R(5), 0) == 0; }
                     }
-                    if (set) BL(0x818067D4u, setFlag__10daPlBase_cFi_80056C70);
+                    if (set) BL(0x818067D4u, hle_setFlag__10daPlBase_cFi);
                 }
                 NV_R(28, R(28) - 1);
                 int more = CMPU(R(28), 0) > 0;
@@ -845,7 +845,7 @@ static void py_update(GM_CTX) {
         gm_set_u8(R(5) + 12, (uint8_t)R(6));
     }
     R(3) = gm_u32(DEMO_MNG_INSTANCE); BL(0x8180684Cu, fn_8005B550);      /* daPyDemoMng_c::update */
-    R(3) = gm_u32(PY_EFFECT_INSTANCE); BL(0x81806858u, fn_800D2D80);     /* dPyEffectMng_c::update */
+    R(3) = gm_u32(PY_EFFECT_INSTANCE); BL(0x81806858u, hle_fn_800D2D80);     /* dPyEffectMng_c::update */
 }
 
 /* ================================================================== coins */
@@ -901,7 +901,7 @@ static void py_incCoin(GM_CTX, uint32_t plr) {
             uint32_t remotes = 0;
             for (uint32_t p = 0;; ) {
                 NV_R(25, PY_ENTRY + 4 * p); R(3) = gm_u32(R(25));
-                if (CMPU(R(3), 0) != 0) { R(3) = p; BL(0x81806F90u, mod_getRemotePlayer__6dAudioFi_81807C9C); remotes |= R(3); NV_R(30, remotes); }
+                if (CMPU(R(3), 0) != 0) { R(3) = p; BL(0x81806F90u, hle_mod_getRemotePlayer__6dAudioFi); remotes |= R(3); NV_R(30, remotes); }
                 NV_R(28, R(28) - 1);
                 int more = CMPU(R(28), 0) > 0;
                 NV_R(29, ++p);
@@ -924,7 +924,7 @@ static void py_incCoin(GM_CTX, uint32_t plr) {
             if (CMPU(R(3), 0) != 0) {
                 R(3) = p; BL(0x81807010u, hle_getPlayer__9daPyMng_cFi);
                 int life = 0;
-                if (CMPU(R(3), 0) != 0) { R(4) = 4; BL(0x81807020u, testFlag__10daPlBase_cFi_80056CF0); life = CMPU(R(3), 0) != 0; }
+                if (CMPU(R(3), 0) != 0) { R(4) = 4; BL(0x81807020u, hle_testFlag__10daPlBase_cFi); life = CMPU(R(3), 0) != 0; }
                 if (life) { R(3) = p; R(4) = 1; R(5) = R(28); BL(0x81807038u, fn_80060460); }   /* incRest(player, 1, ...) */
                 else {                                                   /* (not playing now: the 1-up as score) */
                     R(3) = gm_u32(SCORE_MNG_INSTANCE); R(4) = 8; R(5) = p; R(6) = R(30);
@@ -978,9 +978,9 @@ static void py_setHipAttackSpecialEffect(GM_CTX) {
         gm_set_u32(R(3) + 4, 1);
         R(3) = p; BL(0x81807650u, hle_getPlayer__9daPyMng_cFi);
         if (CMPU(R(3), 0) == 0) goto next;
-        R(4) = FLAG_YOSHI_RIDE; NV_R(26, R(3)); BL(0x81807664u, testFlag__10daPlBase_cFi_80056CF0);
+        R(4) = FLAG_YOSHI_RIDE; NV_R(26, R(3)); BL(0x81807664u, hle_testFlag__10daPlBase_cFi);
         if (CMPU(R(3), 0) != 0) {                                        /* on a Yoshi: at the Yoshi */
-            R(3) = R(26); BL(0x81807674u, getYoshi__7dAcPy_cFv_80139950);
+            R(3) = R(26); BL(0x81807674u, hle_getYoshi__7dAcPy_cFv);
             NV_R(26, R(3));
             if (CMPU(R(3), 0) == 0) goto next;
         }
@@ -1143,7 +1143,7 @@ entry_direction:
     } while (1);
     R(5) = gm_u32(0x80310000u + 23440 + 8);
     if (CMPU(R(5), 2) != 0) {
-        NV_R(28, R(26)); if (CMPS(R(26), 4) > 0) NV_R(28, 4);
+        NV_R(28, R(26)); if (CMPS(R(26), 4) <= 0) NV_R(28, 4);         /* (bgt keeps the count: at least 4 draws) */
         NV_R(29, sp + 184); NV_R(25, sp + 116);
         for (;;) {
             BL(0x81806014u, rnd__8dGameComFv_800B2F00); NV_R(28, R(28) - 1);
@@ -1160,7 +1160,7 @@ entry_direction:
             GM_LOOP();
         } while (1);
         NV_R(28, sp + 8); R(3) = R(28); R(4) = sp + 88; R(5) = 32; BL(0x81806054u, mod_memcpy_81844C38);
-        R(3) = sp + 152; R(4) = R(29); R(5) = R(28); BL(0x81806064u, mfn_8180637C);
+        R(3) = sp + 152; R(4) = R(29); R(5) = R(28); BL(0x81806064u, hle_mfn_8180637C);
     }
     R(4) = PY_CREATE_ITEM; R(6) = PY_REST; R(3) = 0;
     R(7) = PY_TYPE - 4; R(5) = PY_ENTRY - 4; ctx->ctr = 8;
@@ -1215,7 +1215,7 @@ entry_direction:
                 R(4) = gm_u8(R(24) + R(3) + 3) & 4; CR0(ctx, R(4));
                 if (CR_BIT(ctx, 2) && CMPS(gm_u32(R(23) + R(3)), 0) > 0) {
                     ctx->f[0].d = ctx->ps1[0] = ldfs(base, sp + 76);
-                    ctx->f[0].d = ctx->ps1[0] = (R(29) & 0x1000000u) ?
+                    ctx->f[0].d = ctx->ps1[0] = CR_BIT(ctx, 10) ?                    /* (cr2.eq: the entry's bit 0 clear) */
                         frsp(ctx->f[0].d - ctx->f[31].d) : frsp(ctx->f[31].d + ctx->f[0].d);
                     stfs(base, sp + 76, ctx->f[0].d);
                 }

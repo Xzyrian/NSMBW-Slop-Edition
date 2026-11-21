@@ -181,8 +181,8 @@ static void dGameDisplay_execute(GM_CTX, gptr self) {
     R(12) = gm_u32(R(12) + 16); ctx->ctr = R(12);
     ctx->lr = 0x81831710u; ppc_call_indirect(ctx, base, ctx->ctr);
     R(3) = self + 112; BL(0x81831718u, hle_isAnyAnimOn__Q23m2d13EmbedLayout_cFv);
-    if (CMPS(R(3), 0) == 0 && CMPU(gm_u8(self + 1104), 0) == 0 && CMPU(gm_u8(self + 1105), 0) != 0)
-        goto visibility;
+    if (CMPS(R(3), 0) == 0 && CMPS(gm_u8(self + 1104), 0) == 0 && CMPS(gm_u8(self + 1105), 0) == 0)
+        goto visibility;                                                   /* (all three clear: no animation step) */
     R(3) = self + 112; BL(0x81831740u, hle_execAnimations__Q23m2d13EmbedLayout_cFv);
     R(12) = gm_u32(self + 120); R(3) = self + 112;
     R(12) = gm_u32(R(12) + 16); ctx->ctr = R(12);
@@ -227,16 +227,16 @@ static void dGameDisplay_AreaCheck(GM_CTX, gptr self) {
                     if (CMPU(R(6), 0) == 0) {
                         ctx->f[2].d = ctx->ps1[2] = ldfs(base, R(5) + 16);
                         cr_fcmp(ctx, 0, ctx->f[0].d, ctx->f[2].d);
-                        if (!CR_BIT(ctx, 1)) {
-                            ctx->f[2].d = ctx->ps1[2] = ldfs(base, R(5) + 8);
+                        if (CR_BIT(ctx, 1)) {
+                            ctx->f[2].d = ctx->ps1[2] = ldfs(base, R(5) + 20);   /* (part 115: the right edge was read at +8, and the four tests were inverted) */
                             cr_fcmp(ctx, 0, ctx->f[0].d, ctx->f[2].d);
-                            if (!CR_BIT(ctx, 0)) {
+                            if (CR_BIT(ctx, 0)) {
                                 ctx->f[2].d = ctx->ps1[2] = ldfs(base, R(5) + 8);
                                 cr_fcmp(ctx, 0, ctx->f[1].d, ctx->f[2].d);
-                                if (!CR_BIT(ctx, 0)) {
+                                if (CR_BIT(ctx, 0)) {
                                     ctx->f[2].d = ctx->ps1[2] = ldfs(base, R(5) + 12);
                                     cr_fcmp(ctx, 0, ctx->f[1].d, ctx->f[2].d);
-                                    if (!CR_BIT(ctx, 1)) {
+                                    if (CR_BIT(ctx, 1)) {
                                         gm_set_u8(self + 1104, R(23)); gm_set_u8(R(3), R(23));
                                     }
                                 }
@@ -266,10 +266,10 @@ static void dGameDisplay_AlphaEnterAndExit(GM_CTX, gptr self) {
     do {
         uint32_t ea = R(9) + 4; R(10) = gm_u32(ea); R(9) = ea;
         R(10) = gm_u32(R(4) + (i2_rotl(R(10), 2) & 0xFFFFFFFCu));
-        R(12) = gm_u8(R(10) + 184); R(11) = CMPU(R(12), 71) >= 0;
+        R(12) = gm_u8(R(10) + 184); R(11) = CMPU(R(12), 71) < 0;          /* (fading out: done below 71) */
         ea = R(5) + 1; R(0) = gm_u8(ea); R(5) = ea;
         int entering = CMPU(R(0), 0) == 0;
-        if (!entering) R(11) = i2_rotl(cntlzw(R(12) ^ 0xFFu), 27) & 0x7FFFFFFu;
+        if (entering) R(11) = i2_rotl(cntlzw(R(12) ^ 0xFFu), 27) & 0x7FFFFFFu;   /* (fading in: done at 255; part 115 - both tests were swapped) */
         R(12) = entering ? 12 : (uint32_t)-12;
         ea = R(6) + 4; R(0) = gm_u32(ea); R(6) = ea;
         R(12) += R(0);
