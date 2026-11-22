@@ -24,6 +24,7 @@
  * Hooks (hle_funcs.txt): dAcPy_c::executeMain, draw, setJump; daPlBase_c's speed/position
  * step (posMove for players); the wall slide check, setHipAttackAction, dAcPyKey_c::triggerShakeJump. */
 #include "rt.h"
+#include "smb3_stage.h"                         /* ../SMB3Disassembly/port */
 #include "smb1_physics.h"
 #include <math.h>
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
@@ -352,6 +353,7 @@ static retro_t *retro_of(uint32_t pl) {
     }
     return r;
 }
+int retro_is_player(uint32_t pl) { return retro_of(pl) != NULL; }   /* (a Retro Mario player: ../SMB3Disassembly/port/smb3_stage.c leaves its size alone) */
 
 static const char *state_name(ppc_context *ctx, uint8_t *base, uint32_t mgr) {
     static char s[64];
@@ -965,6 +967,7 @@ static void procs_init(void) {
 /* dAcPy_c::draw: a retro player is drawn by its proc instead of the 3D model */
 void hle_fn_80145A60(ppc_context *ctx, uint8_t *base) {
     uint32_t pl = ctx->r[3];
+    smb3_stage_player_draw(ctx, base, pl);                                /* (the SMB3 stage draws its level from here) */
     retro_t *r = retro_of(pl);
     if (!r) { orig_fn_80145A60(ctx, base); return; }
     if (gcall(ctx, base, A_TEST_FLAG, 2, pl, FLAG_NO_DRAW)) {     /* (as the original: skip a frame) */

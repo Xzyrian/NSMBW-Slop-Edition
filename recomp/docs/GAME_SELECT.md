@@ -1,8 +1,15 @@
 # Game Select
 
 Title menu > Singleplayer / Multiplayer opens **Game Select**, then File Select, then the
-character select (`runtime/rt_gamesetup.c`). Game Select is the game's file select screen with
-one card in the middle. Later it will list level and map packs too (TODO.md).
+character select (`runtime/rt_gamesetup.c`). Game Select is the game's file select screen as a
+**carousel**: the chosen game's card in the middle, the games before and after it on either side
+(smaller, lower, fainter; the list wraps round). Left/right turns it - the cards slide along the
+arc into their new places and the selection corners stay in the middle. Games: **NSMBW**, **SMB3**. Every game goes the
+same way (File Select, character select); Start Game starts the chosen one. SMB3
+(`../SMB3Disassembly/port/README.md`) has its own three files - the File Select shows them, not
+NSMBW's - and starts on the chosen file's map over the faded-out setup screen; + is its pause
+menu (Continue / Save / Save & Quit / Quit to the title). Later Game Select will list level and map packs too
+(TODO.md).
 
 ## Game portraits
 
@@ -21,7 +28,7 @@ ui/graphics/gameportrait/<game id>.png       nsmbw.png = New Super Mario Bros. W
 - File Select's cards are untouched; leaving Game Select puts back every size, texture and
   colour the card had.
 
-The game ids are in `GAMES[]` in `rt_gamesetup.c`. For now there is only `nsmbw`.
+The game ids are in `GAMES[]` in `rt_gamesetup.c`: `nsmbw`, `smb3`.
 
 ## How (`rt_gamesetup.c`, "game portraits")
 
@@ -46,3 +53,13 @@ The game ids are in `GAMES[]` in `rt_gamesetup.c`. For now there is only `nsmbw`
 
 The texture lives in guest memory, so save states and the online game carry it like
 everything else. The host's state has it, and a client gets it from there.
+
+## The carousel (`rt_gamesetup.c`, "the Game Select carousel")
+
+The file select's three cards are the carousel's places: card 2 (the cursor's) shows the chosen
+game, cards 1 and 3 the ones before and after it. A turn changes the game at once and leaves a
+`spin` of +-1 that runs down (x0.8 a frame); each card is drawn at position `(card - 2) + spin`:
+its root pane moved to `position x 205` (the file select puts them at -190 / 0 / 190), lowered on
+an arc, scaled `1 - 0.27|p|` and faded (0 past |p| = 1.7). Scale and alpha are factors of what the
+game sets (its opening animation scales the cards from 0.01), so its animations still play. Each
+card keeps its own saved texture for the portrait; the File Select gets every card back as it was.

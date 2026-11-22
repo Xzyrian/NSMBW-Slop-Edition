@@ -16,6 +16,7 @@
  * uploaded to that application. docs/DISCORD.md. Not part of save states (host-side only). */
 #include "rt.h"
 #include "rt_version.h"
+#include "smb3.h"                               /* ../SMB3Disassembly/port */
 #include <time.h>
 #ifdef _WIN32
 #include <windows.h>
@@ -185,7 +186,8 @@ static void build(char *details, int dn, char *state, int sn, int *party) {
     uint32_t mode = R32(G_GAME_MODE);
     int players = 0; for (int i = 0; i < 8; i++) if (R32(MOD_PY_ENTRY + 4 * i)) players++;
     *party = players;
-    if (scene == SC_STAGE && mode == 2) { snprintf(details, dn, "On the title screen"); *party = 0; }
+    if (smb3_active()) { smb3_presence(details, dn); *party = 1; }       /* SMB3 (over the setup scene): one player for now */
+    else if (scene == SC_STAGE && mode == 2) { snprintf(details, dn, "On the title screen"); *party = 0; }
     else if (scene == SC_GAME_SETUP) { snprintf(details, dn, "Getting ready"); *party = 0; }
     else if (scene == SC_OPENING) snprintf(details, dn, "Watching the opening");
     else if (scene == SC_WORLD_MAP) {

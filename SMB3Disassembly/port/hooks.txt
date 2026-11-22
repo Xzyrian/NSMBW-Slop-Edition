@@ -1,0 +1,4 @@
+# Native code that runs at an SMB3 label before the original (tools/recomp6502.py).
+# <label> <C function: int fn(void)>  - returns 0 to go on with the original code, or a result
+# (NES_RTS() to leave the routine as if it had returned).
+Do_Title_Screen     smb3_hook_title         # entered from the character select: no title, straight to the World 1 map

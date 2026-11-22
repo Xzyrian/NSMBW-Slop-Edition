@@ -16,6 +16,7 @@
  * The rest of the DSP library (DSPAddTask, the task list, __DSP_boot_task / __DSP_exec_task, which
  * only send mail) and the whole AX library stay recompiled. */
 #include "rt.h"
+#include "smb3.h"                               /* ../SMB3Disassembly/port */
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 
 #define SDA 0x8042F680u
@@ -248,6 +249,7 @@ void audio_tick(void) {
         pcm[2 * i] = (int16_t)R16(0x80000000u | (ai_addr + 4 * i + 2));
     }
     if (!g_resim) {                                          /* (fields run again after a rollback: not heard twice) */
+        if (smb3_active()) smb3_audio(pcm, (int)frames);     /* SMB3 running: its sound, not the game's (the menu music) */
         sfx_mix(pcm, (int)frames);                           /* (our own sounds: rt_sfx.c) */
         plat_audio_push(pcm, (int)frames);
     }

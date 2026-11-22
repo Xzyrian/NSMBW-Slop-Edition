@@ -1,8 +1,8 @@
 @echo off
 rem Build the game (nsmbw.exe) and put it in ..\game. Double-click this file, or run it
-rem from a command prompt (options: --clean, --jobs N; see build.py). It first asks for the
-rem version number (Enter keeps it, + the next one); afterwards, when that is higher than the
-rem update server's, it offers to publish the build (docs\UPDATES.md).
+rem from a command prompt (options: --clean, --jobs N; see build.py). Each build raises the
+rem version number by one (0.1.17 -> 0.1.18; --version X sets it instead); afterwards, when
+rem that is higher than the update server's, it offers to publish the build (docs\UPDATES.md).
 cd /d "%~dp0"
 set PY=
 where py >nul 2>nul && set "PY=py -3"
@@ -16,7 +16,7 @@ if errorlevel 1 (
   if errorlevel 1 goto end
 )
 %PY% -c "import PIL" >nul 2>nul || %PY% -m pip install --user pillow
-%PY% build.py --ask-version --ask-publish %*
+%PY% build.py --bump-version --ask-publish %*
 goto end
 :nopython
 echo Python 3.8 or newer is needed: https://www.python.org/downloads/

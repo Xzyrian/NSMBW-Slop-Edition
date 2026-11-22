@@ -1045,6 +1045,16 @@ int ui_register_texture(const uint32_t *argb, int w, int h) {
     ui_texs[ui_ntex] = t;
     return ui_ntex++;
 }
+/* new pixels for a registered texture (same size), drawn without filtering: a picture that
+   changes every frame (the SMB3 screen, ../SMB3Disassembly/port/smb3_main.c) */
+void ui_update_texture(int id, const uint32_t *argb, int w, int h) {
+    if (!gl_on || id <= 0 || id >= ui_ntex) return;
+    gl_unit(15); glBindTexture(GL_TEXTURE_2D, ui_texs[id]); bound_tex[15] = ui_texs[id];
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, w, h, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, argb);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+}
 static void ui_end(void) {
     if (!ui_nv) return;
     if (!ui_prog) ui_init();

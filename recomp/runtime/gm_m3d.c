@@ -174,21 +174,29 @@ static void fanm_play(GM_CTX, gptr self) {
     ctx->f[1].d = nf;
     GM_CALLR(0x80168EE8u, V(o, 28), 1, o);                                              /* SetFrame */
 }
-/* set(duration, mode, rate, start) */
+/* set(duration, mode, rate, start). Register for register as the PowerPC code (RT_GM_VERIFY_REGS: the
+   caller sees what the last call left in r3-r12 / ctr, f0 = 0.0 in both halves, f31 in both halves on
+   the frsp path - part 115's finding: GM_CALLR put r3 back, and the game reads it) */
 static void fanm_set(GM_CTX, gptr self, double dur, uint32_t mode, double rate, double start) {
-    FN(0x80168F10); GM_NV_KEEP;
-    double frame = start;
-    if (start < R2F(21456)) frame = (mode == 1) ? R2F(21456) : frsp(dur - R2F(21448));
-    NV_F(31, frame); NV_F(30, rate); NV_R(31, mode); NV_R(30, self);
+    FN(0x80168F10); GM_NV_KEEP; GM_LR_KEEP;
+    uint32_t lr0 = ctx->lr;
+    NV_F(31, start); NV_F(30, rate); NV_R(31, mode); NV_R(30, self);
+    if (start < R2F(21456) || start != start) {                           /* (fcmp: NaN goes this way too) */
+        if (mode == 1) NV_F(31, R2F(21456));
+        else { double v = frsp(dur - R2F(21448)); NV_FL(31, v); }        /* (frsp: both halves) */
+    }
+    double frame = ctx->f[31].d;
+    ctx->f[0].d = ctx->ps1[0] = R2F(21456);
     SF(self + 40, dur); SF(self + 44, R2F(21456));
-    gptr o = gm_u32(self + 4);
-    ctx->f[1].d = frame;
-    GM_CALLR(0x80168F8Cu, V(o, 28), 1, o);
-    o = gm_u32(self + 4);
-    ctx->f[1].d = rate;
-    GM_CALLR(0x80168FA4u, V(o, 40), 1, o);                                              /* SetUpdateRate */
+    gptr o = gm_u32(self + 4); uint32_t fn = V(o, 28);
+    ctx->r[12] = fn; ctx->ctr = fn; ctx->f[1].d = frame;
+    GM_CALLV(0x80168F8Cu, fn, 1, o);                                      /* setFrame */
+    o = gm_u32(self + 4); fn = V(o, 40);
+    ctx->r[12] = fn; ctx->ctr = fn; ctx->f[1].d = rate;
+    GM_CALLV(0x80168FA4u, fn, 1, o);                                      /* SetUpdateRate */
     gm_set_u8(self + 52, mode);
     SF(self + 48, frame);
+    ctx->r[0] = lr0;                                                      /* (the epilogue's lwz r0: the saved LR) */
 }
 static void fanm_set_frame(GM_CTX, gptr self, double fr) {
     FN(0x80168FE0); GM_NV_KEEP;
@@ -279,10 +287,12 @@ static void leaf_calc(GM_CTX, gptr self, uint32_t keep, int vtx) {
     ctx->r[0] = lr;
 }
 static void leaf_set_priority(GM_CTX, gptr self, uint32_t opa, uint32_t xlu) {
-    FN(0x8016A2A0); GM_NV_KEEP;
+    FN(0x8016A2A0); GM_NV_KEEP; GM_LR_KEEP;
+    uint32_t lr0 = ctx->lr;
     NV_R(31, xlu); NV_R(30, self);
-    GM_CALLR(0x8016A2C4u, F_PRIO_OPA, 2, gm_u32(self + 4), opa);
-    GM_CALLR(0x8016A2D0u, F_PRIO_XLU, 2, gm_u32(self + 4), xlu);
+    GM_CALLV(0x8016A2C4u, F_PRIO_OPA, 2, gm_u32(self + 4), opa);          /* (GM_CALLV: the registers as the */
+    GM_CALLV(0x8016A2D0u, F_PRIO_XLU, 2, gm_u32(self + 4), xlu);          /*  callees leave them, as bl does) */
+    ctx->r[0] = lr0;
 }
 
 /* ================================================================== bmdl_c / smdl_c */

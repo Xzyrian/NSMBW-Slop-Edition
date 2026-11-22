@@ -116,6 +116,7 @@ void ui_rect(float x, float y, float w, float h, uint32_t rgba);         /* 640x
 void ui_text(float x, float y, float scale, const char *s, uint32_t rgba);
 void ui_image(int tex, float x, float y, float w, float h, float u0, float v0, float u1, float v1, uint32_t rgba);
 int  ui_register_texture(const uint32_t *argb, int w, int h);   /* 0xAARRGGBB; returns id for ui_image */
+void ui_update_texture(int id, const uint32_t *argb, int w, int h);   /* same size, unfiltered: a picture that changes every frame */
 uint32_t *gx_decode_rgba(uint32_t addr, int w, int h, int fmt); /* GX texture -> malloc'd 0xAARRGGBB */
 /* game layouts (rt_lyt.c) */
 uint32_t lyt_find_pane(uint32_t pane, const char *name);

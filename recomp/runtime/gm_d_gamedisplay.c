@@ -567,7 +567,7 @@ static void dGameDisplay_NormalSettle(GM_CTX, gptr self) {
         R(3) = gm_u8(0x80430000u - 24704 + 3) & 0x40u; CR0(ctx, R(3));
         if (CR_BIT(ctx, 2)) {
             R(3) = gm_u32(0x80430000u - 23416); R(4) = 145; R(5) = 1;
-            BL(0x81832148u, hle_startSystemSe__11SndAudioMgrFUiUl);
+            BL(0x81832148u, fn_801953A0);   /* (0x801953A0: the SE player at +2300, not startSystemSe) */
         }
         R(3) = R(30); R(4) = (uint32_t)-1; BL(0x81832154u, addScore__9daPyMng_cFii_80060690);
     }
@@ -617,7 +617,7 @@ static void dGameDisplay_OtasukeSettle(GM_CTX, gptr self) {
         R(5) = (uint32_t)(left >> 31); R(4) = 0x80430000u; R(3) &= ~R(5);
         gm_set_u32(R(4) - 25408, R(3));
         R(3) = gm_u32(0x80430000u - 23416); R(4) = 145; R(5) = 1;
-        BL(0x81832268u, hle_startSystemSe__11SndAudioMgrFUiUl);
+        BL(0x81832268u, fn_801953A0);   /* (as in NormalSettle) */
     }
     R(3) = gm_u32(R(29) - 300); R(4) = gm_u32(sp + 20);
     if (CMPU(R(3), R(4)) != 0) { BL(0x818322A8u, mfn_81844FCC); return; }
@@ -682,7 +682,7 @@ static void dGameDisplay_executeState_ProcGoalSettleUp(GM_CTX, gptr self) {
         CR0(ctx, R(3));
         R(3) = 0;
         gm_set_u32(R(30) + GD_GOAL_ELAPSED, R(3));
-        if (CR_BIT(ctx, 2)) goto change_state;
+        if (!CR_BIT(ctx, 2)) goto change_state;   /* (bit 0x40 set: no sound 146 - was inverted) */
     }
     R(3) = 0x80430000u;
     R(3) = gm_u32(R(3) - 23416);

@@ -226,6 +226,12 @@ cmp before.hash after.hash
 
 `RT_GM_VERIFY=orig:name,...` instead runs only the listed PowerPC implementations and leaves every
 other native enabled. Use this to isolate world-changing functions without double-invoking them.
+For long lists, `orig:@file` (or `@file` for verifying) reads the names from a file, one per line
+(the first word of each line); the list has no length limit and each name is looked up once.
+`RT_GM_VERIFY_NAMES=file` writes each switchable native the run calls, once, with the field of its
+first call (in any mode, `orig` too: the candidates for a bisection by name), and
+`RT_GM_VERIFY_FROM=<field>` lets natives run unverified before that field (verifying all of them
+from boot stops the boot; from a field shortly before a difference it doesn't).
 `RT_AUTOPRESS_FRAMES=1` makes the autopress times count game-frame seconds (the usual `8`, `10`, ...
 script stays in those units). **Part 71's frame-4900 replay was a false positive:** it entered
 `StateID_DemoDown` before reaching the world map, so it tested death, not a clear. The corrected,

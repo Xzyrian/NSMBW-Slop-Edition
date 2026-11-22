@@ -141,7 +141,7 @@ static void stage_setNextScene(GM_CTX) {
         goto done;
     }
 
-    R(3) = 0x80315E90u;
+    R(3) = 0x80315B90u;
     R(0) = gm_u32(R(3) + 8);
     CMPS(R(0), 4);
     if (R(0) == 4) {
@@ -351,10 +351,10 @@ static void stage_exitClear(GM_CTX) {
     R(3) = gm_u32(ST_INSTANCE);
     NV_R(30, gm_u8(R(3) + 4620));
     CMPU(R(30), 9);
-    if (R(30) >= 9) return;
+    if (R(30) > 9) return;                      /* (bgt: was >= 9) */
     NV_R(29, gm_u8(R(3) + 4621));
     CMPU(R(29), 41);
-    if (R(29) >= 41) return;
+    if (R(29) > 41) return;                     /* (bgt: was >= 41) */
     R(3) = gm_u32(ST_MINI_GAME);
     R(4) = 0x80430000u;
     NV_R(27, gm_u32(ST_INFO));
@@ -377,7 +377,7 @@ static void stage_exitClear(GM_CTX) {
     R(3) = gm_u32(ST_SAVE_MNG);
     R(4) = (uint32_t)-1;
     BL(0x8182B91Cu, hle_mod_getSaveGame__10dSaveMng_cFSc);
-    R(4) = 0x80315E90u;
+    R(4) = 0x80315B90u;
     R(5) = gm_u32(R(4) + 8);
     CMPU(R(5), 0);
     if (R(5) != 0) {
@@ -390,11 +390,14 @@ static void stage_exitClear(GM_CTX) {
     R(3) = gm_u8(R(4) + 13);
     R(4) = R(3) - 25;
     CMPU(R(4), 7);
-    if (R(4) > 7 && R(3) != 40) {
-        R(3) = R(27) + 8;
-        BL(0x8182BA90u, mod_fn_8008EDB0_81809958);
+    if (R(4) >= 7) {                            /* (bge to 0x8182BA80: was > 7; only this path polls) */
+        CMPU(R(3), 40);
+        if (R(3) != 40) {
+            R(3) = R(27) + 8;
+            BL(0x8182BA90u, mod_fn_8008EDB0_81809958);
+        }
+        GM_LOOP();
     }
-    GM_LOOP();
     BL(0x8182B960u, hle_mod_getEntryNum__9daPyMng_cFv);
     CMPU(R(3), 1);
     if (R(3) == 1) {
@@ -426,13 +429,13 @@ static void stage_exitClear(GM_CTX) {
     R(3) = 0x80430000u; R(4) = 0;
     gm_set_u8(R(3) - 24200, R(4));
     R(3) = gm_u32(ST_GOAL_TYPE);
-    R(5) = gm_u32(0x80315E90u + 8);
+    R(5) = gm_u32(0x80315B90u + 8);
     R(6) = 0x80430000u;
     R(3) ^= 1; R(3) = cntlzw(R(3));
     CMPU(R(5), 0);
     R(3) = i2_rotl(R(3), 27) & 0x7FFFFFFu;
     gm_set_u8(R(6) - 24192, R(4));
-    if (R(5) == 0) {
+    if (R(5) != 0) {                            /* (beq skips it: was inverted) */
 proc_clear:
         R(4) = R(30) ^ 2;
         R(6) = R(29) ^ 3;
@@ -446,7 +449,7 @@ proc_clear:
     }
     R(5) = R(30); R(6) = R(29);
     BL(0x8182BA40u, fn_800FB9E0);
-    R(3) = gm_u32(0x80315E90u + 8);
+    R(3) = gm_u32(0x80315B90u + 8);
     CMPU(R(3), 0);
     if (R(3) != 0) {
         ctx->lr = 0x8182BA58u;

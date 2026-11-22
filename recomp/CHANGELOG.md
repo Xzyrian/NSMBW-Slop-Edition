@@ -6,6 +6,77 @@ without re-deriving it.
 
 ---
 
+## 2026-11-21 (120) - Claude: build_windows.bat raises the version by itself
+
+- **`build.py --bump-version`** (build_windows.bat now passes it instead of `--ask-version`): before
+  building, VERSION goes up by one in its last number (0.1.17 -> 0.1.18), with no prompt.
+  `--version X` still sets it outright; `--ask-version` still exists for asking. `next_version()`
+  is shared by both.
+- Open: the number goes up before the compile, so a failed build also uses one up.
+
+## 2026-11-21 (119) - Claude (instance 1): the end-to-end check on instance 1's side - fanm_c::set and setPriorityDraw register-exact, a prologue-scanner fix, five bugs in the goal / course-exit natives (HUD, stage scene); verifier options for bisecting by name
+
+- **The bench.** Instance 2's check (115), repeated with instance 1's 15 inputs (`tools/ab_inputs/`): a
+  build with no natives (every `gm_*.c` but gm_verify / gm_prologue out of the build, 208 runtime
+  hooks left in hle_funcs.txt - the same 208 as instance 2's) against the current tree.
+- **`gm_m3d.c` `fanm_c::set` (fn_80168F10)** - instance 2's finding in (115). The cause:
+  `GM_CALLR` (`gm_gcall_ra_`) puts r0-r12, lr and ctr back after the call, and the game reads r3
+  after it (the PowerPC code calls through two vtable slots and leaves r3 as the callee returned it).
+  Rewritten register-exact: `GM_CALLV` for both calls, r12 / ctr set as the PowerPC code sets them,
+  `NV_FL` (both paired-single halves) where the frsp path writes f31, r0 = the entry lr at the end.
+  `RT_GM_VERIFY=fn_80168F10 RT_GM_VERIFY_REGS=1`: 1,638 of 1,638 calls different before, 0 of 1,630
+  after. `leaf_set_priority` (fn_8016A2A0, setPriorityDraw) the same way. Five other m3d natives
+  still differ in r0 only (scnLeaf ctor, setDrawMatrix, fn_8016A2F0 / 8016A3A0, fn_80168400).
+- **`tools/gm_prologues.py` / `tools/gm_conv.py`:** a register written anywhere in a line (also
+  inside `{ }`, as lwzu writes) now counts as written, so it is not taken for a saved one later;
+  and no register is listed as saved twice. `runtime/gm_prologue.c` regenerated: exactly the tables
+  of 0x80079060, 0x80079250, 0x80079380, 0x800794B0 and 0x800795E0 change (instance 2's case, from
+  fn_80078EF0).
+- **Five bugs in instance 2's goal-sequence natives** (please check - small fixes, each marked in
+  the code). e and wm (1-1 with `RT_TEST_POS` to the goal) differed from the original from field
+  4053; each culprit was found by bisection by name (below) and then read against the recompiled
+  mod code:
+  - `gm_d_gamedisplay.c` NormalSettle (mod_fn_80158C50, the time-bonus count) and OtasukeSettle
+    (mod_fn_80158D00) called `hle_startSystemSe__11SndAudioMgrFUiUl` (0x80195380: the handle at
+    +2296, PlaySoundWithFunctionB4) where the mod code calls **fn_801953A0** (the handle at +2300,
+    fn_80195190): the sound heap's objects were linked in another order. Up to field 4051 the
+    clocks and every thread's poll counts were the same; in 4052 the main thread took another path.
+  - `gm_d_gamedisplay.c` ProcGoalSettleUp (mod_fn_80158F70): after NormalSettle the test of bit
+    0x40 was inverted (the original plays sound 146 when it is clear).
+  - `gm_d_sc_stage.c` exitClear (mod_fn_2_1B7A50): `dInfo_c::m_startGameInfo` is **0x80315B90**
+    (0x80310000 + 23440); the file used 0x80315E90 in all four places (one of them in setNextScene,
+    0x818156C0). The block after the coin loop ran when +8 was 0 instead of when it is not (beq
+    skips it); the call of mod_fn_8008EDB0 was for course - 25 > 7 instead of >= 7 (bge), and the
+    poll belongs on that path only; the early returns were >= 9 / >= 41 instead of > 9 / > 41 (bgt).
+  - A check of every hand-written `BL(<return address>, callee)` (1,086) against the callee the
+    recompiled code calls at that address (wrappers like `PL_*` / `PLAY_GOAL_OTHER` resolved by
+    address): the two sound calls were the only wrong ones.
+  - Why the verifier didn't see these: their `GM_HLE_VERIFIED_` ranges don't cover the sound
+    system or dInfo_c, and their poll checks are off (`GMV_IGNORE_POLLS`).
+- **`gm_verify.c`, testing options** (docs/DECOMP.md):
+  `RT_GM_VERIFY=orig:@file` / `@file` (the list from a file, one name per line, no length limit;
+  each name looked up once, cached by its pointer), `RT_GM_VERIFY_NAMES=file` (each switchable native
+  the run calls, once, with the field of its first call), `RT_GM_VERIFY_FROM=<field>` (natives run
+  unverified before it: verifying everything from boot stops the boot). Stats table 512 -> 16,384.
+- **Results against the no-natives build** (400 s runs, ~17,000-21,500 fields each): **13 of 15
+  identical on every field** (a, c, e, hm, wm, f1, p1-p5, s1, s2). Before (state 104 / this
+  morning): b 4933 -> 7248, d 7661 -> 9305, e and wm 4053 -> identical, p3 2452 -> identical.
+  Still open:
+  - **b, field 7248:** only two words, both 0x43300000 (an int-to-float temporary) at 0x80E062F4 /
+    0x80E0642C - a stack that the live hash doesn't know as one (no OSThread in the active queue
+    owns it). Dead stack, the same kind as (115)'s p3 finding; not game state. Even with every
+    switchable native on its PowerPC version, so a plain `GM_HLE` / non-switchable one.
+  - **d, field 9305:** one word, 0x811EED58 (0x8153D7B4 in the original, 0x8153DBA0 here): a
+    scratch buffer of the model-matrix code (fn_80250E70 via calcWorld, written every field;
+    `RT_DET_WATCHW`), the write at field 9304 from the player's model (fn_800D3830 ->
+    fn_80145520). Also with every switchable native on PowerPC. Instance 1 looks at this next.
+- **Note on (115)'s "e, wm identical":** in instance 1's bench e and wm run with `RT_TEST_POS` to
+  the goal, so they reach the time-bonus count; that is where they differed.
+- **Checked:** the 15 inputs above; Linux (clang) and Windows builds.
+
+---
+
+
 ## 2026-11-19 (118) - Claude (instance 2): the player family and the world map in the DOL - 698 functions native (`runtime/gm_pf_family.c`, `runtime/gm_wmc_worldmap.c`, new)
 
 - **Claimed (TODO.md), by address range in E2** - the classes next to instance 2's player and

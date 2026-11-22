@@ -25,18 +25,39 @@
  * afterwards. For the functions a test run doesn't reach. Not for deterministic runs. */
 #include "gm.h"
 #include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 static int verify_mode = -1;                 /* -1 unknown, 0 off, 1 all, 2 listed, 3 all orig, 4 listed orig */
-static char verify_list[16384];
+static char *verify_list = "";              /* ",name,name,": from the option, or from a file (orig:@file, @file) */
+static void verify_list_set(const char *e) {
+    size_t cap = strlen(e) + 3; char *b; FILE *f = NULL;
+    if (*e == '@' && (f = fopen(e + 1, "r"))) { fseek(f, 0, SEEK_END); cap += (size_t)ftell(f) + 2; rewind(f); }
+    b = malloc(cap); size_t n = 0; b[n++] = ',';
+    if (f) { char line[512]; while (fgets(line, sizeof line, f)) { size_t k = strcspn(line, " \t\r\n,"); if (k && n + k + 2 < cap) { memcpy(b + n, line, k); n += k; b[n++] = ','; } } fclose(f); }
+    else { size_t k = strlen(e); memcpy(b + n, e, k); n += k; b[n++] = ','; }
+    b[n] = 0; verify_list = b;
+}
+static int verify_listed(const char *name) {    /* (once per name: the names are static strings) */
+    static const char *key[32768]; static signed char val[32768];
+    uintptr_t h = ((uintptr_t)name >> 3) * 2654435761u;
+    for (int i = 0; i < 32768; i++) { uint32_t j = (uint32_t)(h + i) & 32767;
+        if (key[j] == name) return val[j];
+        if (!key[j]) { char k[160]; snprintf(k, sizeof k, ",%s,", name); key[j] = name; return val[j] = strstr(verify_list, k) != NULL; } }
+    char k[160]; snprintf(k, sizeof k, ",%s,", name); return strstr(verify_list, k) != NULL;
+}
 static int verify_fatal, verify_regs;
+static long verify_from;                     /* RT_GM_VERIFY_FROM=<field>: before it, natives just run */
 
 int gm_verifying(void) {
     if (verify_mode < 0) {
         const char *e = getenv("RT_GM_VERIFY");
         verify_mode = !e || !*e || !strcmp(e, "0") ? 0 : !strcmp(e, "1") ? 1 : !strcmp(e, "orig") ? 3 : !strncmp(e, "orig:", 5) ? 4 : 2;
-        if (verify_mode == 2 || verify_mode == 4) snprintf(verify_list, sizeof verify_list, ",%s,", e + (verify_mode == 4 ? 5 : 0));
+        if (verify_mode == 2 || verify_mode == 4) verify_list_set(e + (verify_mode == 4 ? 5 : 0));
         verify_fatal = getenv("RT_GM_VERIFY_FATAL") != NULL;
         verify_regs = getenv("RT_GM_VERIFY_REGS") != NULL;
+        {   const char *f = getenv("RT_GM_VERIFY_FROM"); verify_from = f ? atol(f) : 0; }
         if (verify_mode == 3) rt_log("gm", "running the PowerPC versions of the decompiled functions");
         else if (verify_mode == 4) rt_log("gm", "running the listed PowerPC versions only (%s)", e + 5);
         else if (verify_mode) rt_log("gm", "verifying decompiled functions against their PowerPC versions (%s)", e);
@@ -45,10 +66,10 @@ int gm_verifying(void) {
 }
 
 typedef struct { const char *name; uint64_t calls, bad; } vstat_t;
-static vstat_t stats[512]; static int nstats;
+static vstat_t stats[16384]; static int nstats;
 static vstat_t *stat_of(const char *name) {
     for (int i = 0; i < nstats; i++) if (stats[i].name == name) return &stats[i];
-    if (nstats == 512) return &stats[511];
+    if (nstats == 16384) return &stats[16383];
     stats[nstats].name = name; return &stats[nstats++];
 }
 static void report(void);
@@ -60,10 +81,12 @@ static void report(void) {
 
 void gm_verify(const char *name, ppc_context *ctx, uint8_t *base, gm_native_fn native, gm_native_fn orig,
                const gptr *ranges, int nranges, int flags) {
+    {   static FILE *nf; static int ni; if (!ni) { ni = 1; const char *p = getenv("RT_GM_VERIFY_NAMES"); if (p) nf = fopen(p, "w"); }
+        if (nf) { vstat_t *s = stat_of(name); if (!s->bad && !s->calls) { s->bad = ~0ull; extern uint64_t g_vi_fields; fprintf(nf, "%s %llu\n", name, (unsigned long long)g_vi_fields); fflush(nf); } } }   /* (testing: each name once, with its first field) */
     if (verify_mode == 3) { orig(ctx, base); return; }
+    if (verify_from) { extern uint64_t g_vi_fields; if ((long)g_vi_fields < verify_from) { native(ctx, base); return; } }
     if (verify_mode == 2 || verify_mode == 4) {
-        char k[96]; snprintf(k, sizeof k, ",%s,", name);
-        int listed = strstr(verify_list, k) != NULL;
+        int listed = verify_listed(name);
         if (verify_mode == 4 || !listed) { (verify_mode == 4 && listed ? orig : native)(ctx, base); return; }
     }
     static int registered; if (!registered) { registered = 1; atexit(report); signal(SIGTERM, on_signal); signal(SIGINT, on_signal); }

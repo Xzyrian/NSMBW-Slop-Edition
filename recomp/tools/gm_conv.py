@@ -62,7 +62,7 @@ def convert(addr, cname, raw=False):
     lines = [l for l in body.split('\n') if l.strip() and not l.strip().startswith('PPC_ENTER') and not l.strip().startswith('//')]
     if any('g_mod_on' in l for l in lines): raise Refuse('mod wrapper')
     # ---- the prologue (tools/gm_prologues.py's scan)
-    size, ents, lr_reg, dirty, k11, drop = 0, [], None, set(), None, set()
+    size, ents, lr_reg, dirty, k11, drop, taken = 0, [], None, set(), None, set(), set()
     has_stwu = any(stwu.search(l) for l in lines)
     saves_lr = any(l.strip() == 'ctx->r[0] = ctx->lr;' for l in lines[:6])
     framed = has_stwu and saves_lr and not raw
@@ -81,15 +81,15 @@ def convert(addr, cname, raw=False):
             if s:
                 k, r = int(s.group(1)), int(s.group(2))
                 if r == 0 and lr_reg == 0: ents.append((k, 'L', 0)); drop.add(i)
-                elif r >= 13 and r not in dirty: ents.append((k, 'G', r)); drop.add(i)
+                elif r >= 13 and r not in dirty and ('G', r) not in taken: ents.append((k, 'G', r)); drop.add(i); taken.add(('G', r))
                 continue
             s = st64.search(l)
             if s:                                           # (only f14-f31 are saved registers)
-                if int(s.group(2)) >= 14: ents.append((int(s.group(1)), 'F', int(s.group(2)))); drop.add(i)
+                if int(s.group(2)) >= 14 and ('F', int(s.group(2))) not in taken: ents.append((int(s.group(1)), 'F', int(s.group(2)))); drop.add(i); taken.add(('F', int(s.group(2))))
                 continue
             s = psqst.search(l)
             if s:
-                if int(s.group(2)) >= 14: ents.append((int(s.group(1)), 'P', int(s.group(2)))); drop.add(i)
+                if int(s.group(2)) >= 14 and ('P', int(s.group(2))) not in taken: ents.append((int(s.group(1)), 'P', int(s.group(2)))); drop.add(i); taken.add(('P', int(s.group(2))))
                 continue
             s = r11.search(l)
             if s: k11 = int(s.group(1)); continue
@@ -97,12 +97,11 @@ def convert(addr, cname, raw=False):
             if s and k11 is not None:
                 f0 = 14 + (int(s.group(1), 16) - 0x802DCD40) // 4
                 for r in range(f0, 32):
-                    if r not in dirty: ents.append((k11 - 4 * (32 - r), 'G', r))
+                    if r not in dirty and ('G', r) not in taken: ents.append((k11 - 4 * (32 - r), 'G', r)); taken.add(('G', r))
                 drop.add(i); continue
             if l.startswith('ctx->lr = '): continue
-            a = assign.match(l)
-            if a:
-                dirty.add(int(a.group(1)))
+            for a in re.finditer(r'ctx->r\[(\d+)\] = ', l):   # (every register the line writes, also inside { }: lwzu -
+                dirty.add(int(a.group(1)))                  #  fn_80078EF0, a later store of the loaded r21 is data)
                 if int(a.group(1)) == 0: lr_reg = None
             if 'ppc_call' in l or re.search(r'\w+_[0-9A-F]{8}\(ctx, base\)', l) or 'hle_' in l: break
         if not size: raise Refuse('no frame found')

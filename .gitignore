@@ -28,3 +28,6 @@ settings.ini
 # 8-player module (downloaded by tools/fetch_mod.py) and generated config
 recomp/mod/
 recomp/config/d_project/
+
+# SMB3 port: assembled ROM, listing and recompiled C (SMB3Disassembly/tools/build_smb3.py)
+SMB3Disassembly/out/

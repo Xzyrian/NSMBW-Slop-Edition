@@ -21,11 +21,16 @@ GAME = os.environ.get('NSMBW_GAME_DIR') or os.path.normpath(os.path.join(ROOT, '
 OBJ = os.path.join(ROOT, 'out', 'objwin')
 RUNTIME = ['rt_core', 'rt_bootscreen', 'rt_hw', 'rt_ios', 'rt_disc', 'rt_gx', 'rt_gxrender', 'rt_wiimote', 'rt_remotes', 'rt_net', 'rt_det', 'rt_state', 'rt_profiles', 'rt_crypto', 'rt_update', 'rt_si', 'rt_threads',
            'rt_ax', 'rt_hdtex', 'rt_aspect', 'rt_menu', 'rt_gamesetup', 'rt_title', 'rt_lyt', 'rt_mod', 'smb1_physics', 'rt_retro', 'rt_sfx', 'rt_chars', 'rt_charmdl', 'rt_discord', 'rt_dvd', 'rt_vi', 'rt_exi', 'rt_audio', 'rt_os', 'gm_verify', 'gm_mj2d_game', 'gm_mj2d_header', 'gm_save_mng', 'gm_info', 'gm_c_list', 'gm_f_list', 'gm_f_base', 'gm_f_manager', 'gm_s_state', 'gm_d_base', 'gm_d_actor', 'gm_d_enemy', 'gm_d_enemy_death', 'gm_d_enemy_carry', 'gm_bg', 'gm_m3d', 'gm_m3d_scene', 'gm_m3d_anm', 'gm_m_mtx', 'gm_m_heap', 'gm_m_allocator', 'gm_m_fader', 'gm_d_cc', 'gm_m_2d', 'gm_m_frustum', 'gm_s_lib', 'gm_c_lib', 'gm_m_color', 'gm_d_cd', 'gm_d_rail', 'gm_d_actorcreate', 'gm_d_wipe', 'gm_d_smallscore', 'gm_d_scene', 'gm_d_next', 'gm_d_lytbase', 'gm_d_wm', 'gm_d_stage', 'gm_d_2d', 'gm_d_res', 'gm_d_lytbuild', 'gm_d_lyttextbox', 'gm_d_message', 'gm_d_selectcursor', 'gm_d_util', 'gm_d_misc', 'gm_nw4r_ut', 'gm_egg', 'gm_nw4r_g3d', 'gm_state_ids', 'gm_prologue', 'gm_py_mng', 'gm_py_demo', 'gm_d_fukidashi', 'gm_d_fukidashi_info', 'gm_d_gamedisplay', 'gm_d_gamecom', 'gm_d_nand', 'gm_d_sc_wmap', 'gm_d_wm_se', 'gm_d_wm_subplayer', 'gm_d_wm_map', 'gm_d_wm_player', 'gm_d_course_guide', 'gm_d_course_manager', 'gm_d_select_player', 'gm_d_continue', 'gm_d_stock_item', 'gm_d_multi_course', 'gm_d_staff_credit', 'gm_d_small_score', 'gm_d_sc_stage', 'gm_py_key', 'gm_py_player', 'gm_d_player_base', 'gm_d_player', 'gm_en_enemies', 'gm_d_player_conv', 'gm_bg_scroll', 'gm_bs_bases', 'gm_eb_boss', 'gm_mj_conv', 'gm_pf_family', 'gm_wmc_worldmap', 'rt_plat_win']
-# the SMB3 port (../SMB3Disassembly/port/<name>.c): compiled with the runtime
+# the SMB3 port: ../SMB3Disassembly/port/<name>.c, and the recompiled game that
+# ../SMB3Disassembly/tools/build_smb3.py writes to ../SMB3Disassembly/out/ (smb3_*.c)
 SMB3_DIR = '../SMB3Disassembly/port'
-SMB3 = ['smb3_main']
+SMB3_OUT = '../SMB3Disassembly/out'
+SMB3 = ['smb3_main', 'smb3_game', 'smb3_stage', 'nes_cpu', 'nes_ppu', 'nes_apu']
+def smb3_generated():
+    d = os.path.join(ROOT, SMB3_OUT)
+    return sorted(f[:-2] for f in os.listdir(d) if f.startswith('smb3_') and f.endswith('.c')) if os.path.isdir(d) else []
 ZCC = [sys.executable, '-m', 'ziglang', 'cc', '-target', 'x86_64-windows-gnu']
-FLAGS = ['-std=gnu11', '-O2', '-fno-stack-protector', '-march=x86_64_v3', '-ffp-contract=off', '-w', '-Iruntime', '-Iout', '-I../SMB3Disassembly/port']
+FLAGS = ['-std=gnu11', '-O2', '-fno-stack-protector', '-march=x86_64_v3', '-ffp-contract=off', '-w', '-Iruntime', '-Iout', '-I../SMB3Disassembly/port', '-I../SMB3Disassembly/out']
 
 
 def say(msg): print(msg, flush=True)
@@ -183,6 +188,19 @@ def set_version(v):
     say('version set to %s' % v)
 
 
+def next_version(cur):
+    nums = [int(x) for x in cur.split('.')] if version_ok(cur) else [0, 0, 0]
+    while len(nums) < 3: nums.append(0)
+    return '.'.join(map(str, nums[:-1] + [nums[-1] + 1]))
+
+
+def bump_version():
+    """build_windows.bat: this build is the next version (0.1.17 -> 0.1.18)"""
+    p = os.path.join(ROOT, 'VERSION')
+    cur = open(p).read().strip() if os.path.exists(p) else '0.0.0'
+    set_version(next_version(cur))
+
+
 def ask_version():
     """build_windows.bat: the version number for this build (Enter keeps it, + the next one)"""
     if not sys.stdin.isatty(): return
@@ -200,9 +218,7 @@ def ask_version():
                     if line.startswith('version '): server = line[8:].strip()
     except Exception:
         pass
-    nums = [int(x) for x in cur.split('.')] if version_ok(cur) else [0, 0, 0]
-    while len(nums) < 3: nums.append(0)
-    nxt = '.'.join(map(str, nums[:-1] + [nums[-1] + 1]))
+    nxt = next_version(cur)
     say('\nVersion of this build: %s%s' % (cur, ('   (players have %s)' % server) if server else ''))
     while True:
         v = input('  Enter = keep %s,  + = %s,  or type a version: ' % (cur, nxt)).strip()
@@ -223,15 +239,20 @@ def main():
     ap.add_argument('--notes', default='', help='with --publish: what changed (one line)')
     ap.add_argument('--ask-publish', action='store_true', help='after building, offer to publish when VERSION is higher than the server\'s (build_windows.bat)')
     ap.add_argument('--ask-version', action='store_true', help='before building, ask for the version number (build_windows.bat)')
+    ap.add_argument('--bump-version', action='store_true', help='before building, raise VERSION by one in its last number (build_windows.bat)')
     ap.add_argument('--version', default='', help='set the version number (written to VERSION) before building')
     a = ap.parse_args()
     os.chdir(ROOT)
     if a.version: set_version(a.version)
+    elif a.bump_version: bump_version()
     elif a.ask_version: ask_version()
     if a.jobs <= 0: a.jobs = default_jobs()
     t0 = time.time()
     check_zig()
     generate()
+    say('[1b] SMB3 (../SMB3Disassembly)')
+    r = subprocess.run([sys.executable, os.path.join(ROOT, '..', 'SMB3Disassembly', 'tools', 'build_smb3.py')], cwd=ROOT)
+    if r.returncode: fail('SMB3: tools/build_smb3.py failed')
     if a.clean and os.path.isdir(OBJ): shutil.rmtree(OBJ)
     os.makedirs(OBJ, exist_ok=True)
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
@@ -249,11 +270,12 @@ def main():
     recomp = sorted('out/' + f for f in os.listdir('out') if f.startswith('recomp_') and f.endswith('.c'))
     compile_all(recomp, a.jobs, '[2/4] game code')
     compile_all(['runtime/%s.c' % f for f in RUNTIME] + ['%s/%s.c' % (SMB3_DIR, f) for f in SMB3], a.jobs, '[3/4] runtime')
+    compile_all(['%s/%s.c' % (SMB3_OUT, f) for f in smb3_generated()], a.jobs, '[3b] SMB3 (recompiled)')
     say('    linking...')
     tmp = tempfile.mkdtemp(prefix='nsmbw_build_')
     exe = os.path.join(tmp, 'nsmbw.exe')
     objs = sorted(os.path.join(OBJ, f) for f in os.listdir(OBJ)
-                  if f.endswith('.c.o') or (f.endswith('.o') and f[:-2] in RUNTIME + SMB3))   # (not objects of runtime files that were removed)
+                  if f.endswith('.c.o') or (f.endswith('.o') and f[:-2] in RUNTIME + SMB3 + smb3_generated()))   # (not objects of runtime files that were removed)
     r = subprocess.run(ZCC + objs + ['runtime/nsmbw.rc', '-o', exe, '-luser32', '-lgdi32', '-lwinmm', '-lws2_32', '-lwinhttp', '-Wl,--stack,67108864',
                         # fixed load address, no ASLR: save states hold code addresses (rt_state.c)
                         '-Wl,--image-base,0x140000000', '-Wl,--no-dynamicbase'],

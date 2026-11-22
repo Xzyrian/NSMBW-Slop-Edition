@@ -72,7 +72,7 @@ for f in sorted(glob.glob('out/recomp_*.c')):
     for m in fn_re.finditer(open(f).read()):
         name, addr = m.group(1), int(m.group(2), 16)
         if not any(lo <= addr < hi for lo, hi in RANGES) or addr not in USED: continue
-        size, ents, lr_reg, dirty, k11 = 0, [], None, set(), None
+        size, ents, lr_reg, dirty, k11, taken = 0, [], None, set(), None, set()
         modw = 0                                            # (the mod wrapper: if (g_mod_on) { mod } else { frame })
         for line in m.group(3).split('\n'):
             l = line.strip()
@@ -93,15 +93,15 @@ for f in sorted(glob.glob('out/recomp_*.c')):
             if s:
                 k, r = int(s.group(1)), int(s.group(2))
                 if r == 0 and lr_reg == 0: ents.append((k, 'L', 0))
-                elif r >= 13 and r not in dirty: ents.append((k, 'G', r))
-                continue
+                elif r >= 13 and r not in dirty and ('G', r) not in taken: ents.append((k, 'G', r)); taken.add(('G', r))
+                continue                                    # (a second store of a register taken as saved is data: fn_80078EF0)
             s = st64.search(l)
             if s:                                           # (only f14-f31 are saved: a store of f0-f13 is the function's own -
-                if int(s.group(2)) >= 14: ents.append((int(s.group(1)), 'F', int(s.group(2))))   #  an fctiw spill past the first call)
+                if int(s.group(2)) >= 14 and ('F', int(s.group(2))) not in taken: ents.append((int(s.group(1)), 'F', int(s.group(2)))); taken.add(('F', int(s.group(2))))   #  an fctiw spill past the first call)
                 continue
             s = psqst.search(l)
             if s:
-                if int(s.group(2)) >= 14: ents.append((int(s.group(1)), 'P', int(s.group(2))))
+                if int(s.group(2)) >= 14 and ('P', int(s.group(2))) not in taken: ents.append((int(s.group(1)), 'P', int(s.group(2)))); taken.add(('P', int(s.group(2))))
                 continue
             s = r11.search(l)
             if s: k11 = int(s.group(1)); continue
@@ -109,13 +109,13 @@ for f in sorted(glob.glob('out/recomp_*.c')):
             if s and k11 is not None:
                 first = 14 + (int(s.group(1), 16) - 0x802DCD40) // 4
                 for r in range(first, 32):
-                    if r not in dirty: ents.append((k11 - 4 * (32 - r), 'G', r))
+                    if r not in dirty and ('G', r) not in taken: ents.append((k11 - 4 * (32 - r), 'G', r)); taken.add(('G', r))
                 continue
             if l.startswith('ctx->lr = '): continue
-            a = assign.match(l)
-            if a:
-                dirty.add(int(a.group(1)))
-                if int(a.group(1)) == 0: lr_reg = None      # (r0 no longer holds LR: a later store of it is data)
+            for a in re.finditer(r'ctx->r\[(\d+)\] = ', l):   # (every register this line writes, also inside { } - lwzu: fn_80078EF0)
+                rr = int(a.group(1))
+                dirty.add(rr)
+                if rr == 0: lr_reg = None                   # (r0 no longer holds LR: a later store of it is data)
             if 'ppc_call' in l or re.search(r'\w+_[0-9A-F]{8}\(ctx, base\)', l) or 'hle_' in l: break
         out.append((addr, name, size, ents))
 out.sort()

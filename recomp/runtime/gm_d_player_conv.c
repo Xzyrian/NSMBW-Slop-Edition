@@ -6,6 +6,7 @@
  * Build flags (testing): -DGM_PL_COUNT logs each native's first call, -DGM_PL_VERIFY makes them
  * switchable (RT_GM_VERIFY=orig:<names>). */
 #include "gm.h"
+void smb3_stage_player_sensors(uint32_t player);   /* ../SMB3Disassembly/port/smb3_stage.c */
 #include "gm_nv.h"
 
 #define R(n) ctx->r[n]
@@ -35496,7 +35497,7 @@ E(fn_80141CD0, 4) { py_ccCallBack_41cd0(GM_PASS); }
 E(fn_80142030, 4) { py_setCcData_42030(GM_PASS); }
 E(fn_80142430, 4) { py_atCcCallBack_42430(GM_PASS); }
 E(fn_80142580, 4) { py_getBgPointData_42580(GM_PASS); }
-E(fn_80142660, 4) { py_setBcData_42660(GM_PASS); }
+E(fn_80142660, 4) { uint32_t pl_ = ctx->r[3]; py_setBcData_42660(GM_PASS); smb3_stage_player_sensors(pl_); }   /* (the SMB3 stage: players at 75%) */
 E(fn_80142F20, 4) { py_fn_80143060_42f20(GM_PASS); }
 E(fn_801430E0, 4) { py_fn_80143220_430e0(GM_PASS); }
 E(fn_801432F0, 4) { py_reviseBcDataCarryPlayer_432f0(GM_PASS); }
