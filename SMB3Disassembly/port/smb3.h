@@ -25,6 +25,9 @@ void smb3_quit(void);               /* leave SMB3; the setup scene goes on to th
 int  smb3_take_quit(void);          /* (rt_gamesetup.c) quit was chosen: once */
 /* save files and presence */
 const char *smb3_file_summary(int file);    /* "World 3", or NULL for an empty file */
+int smb3_file_info(int file, int *world, int *lives);   /* 1: the file exists (its world 0-8, lives) */
+int smb3_file_copy(int from, int to);        /* the File Select's Copy / Delete */
+int smb3_file_delete(int file);
 void smb3_presence(char *out, int n);       /* Discord: what is being played */
 /* the prototype stage (smb3_stage.c, smb3_stage.h): NSMBW players in SMB3's 1-1 */
 int  smb3_stage_on(void);                                    /* that stage is running */

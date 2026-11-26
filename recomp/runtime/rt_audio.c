@@ -250,6 +250,7 @@ void audio_tick(void) {
     }
     if (!g_resim) {                                          /* (fields run again after a rollback: not heard twice) */
         if (smb3_active()) smb3_audio(pcm, (int)frames);     /* SMB3 running: its sound, not the game's (the menu music) */
+        else { int smb3_stage_audio(int16_t *lr, int n); smb3_stage_audio(pcm, (int)frames); }   /* (SMB3's map in a stage: its music instead of the course's) */
         sfx_mix(pcm, (int)frames);                           /* (our own sounds: rt_sfx.c) */
         plat_audio_push(pcm, (int)frames);
     }

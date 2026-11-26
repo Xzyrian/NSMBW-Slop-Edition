@@ -155,9 +155,11 @@ static void dGameDisplay_destructor(GM_CTX, gptr self, uint32_t flags) {
     R(3) = self;
 }
 
+int smb3_stage_on(void);                         /* (SMB3Disassembly/port/smb3_stage.c) */
 static void dGameDisplay_draw(GM_CTX, gptr self) {
     I2_FN(0x81831784u);
     NV_R(30, self);
+    if (smb3_stage_on()) { R(3) = 1; return; }                         /* (the SMB3 stage: its own status bar instead) */
     R(3) = gm_u8(self + 1106);
     if (CMPU(R(3), 1) == 0) {
         R(3) = gm_u8(self + 1099);

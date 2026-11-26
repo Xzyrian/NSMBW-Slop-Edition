@@ -7,7 +7,8 @@
  * chosen; 1 then takes the character back (the card returns on it), and 1 again goes back.
  *
  * Game Select and File Select are the game's file select screen (dFileSelect_c) shown two
- * ways: as Game Select it is a carousel of the games (NSMBW, SMB3): the three cards show the
+ * ways: as Game Select it is a carousel of the games (NSMBW, SMB3, then the locked placeholder
+ * games - "game portraits" below): the three cards show the
  * chosen game in the middle and its neighbours on either side, smaller and fainter, wrapping
  * round; left/right turns it (the cards slide along the arc to their new places). Both go the same way (File Select, character select); Start Game starts the chosen one.
  * SMB3 (../SMB3Disassembly/port) has its own three files: its File Select cards show them (the
@@ -28,6 +29,8 @@
 #include "smb3.h"                               /* ../SMB3Disassembly/port */
 #include "smb3_stage.h"
 #include <math.h>
+#include <ctype.h>
+#include <dirent.h>
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 extern uint64_t g_frames_presented;
 int menu_singleplayer(void);                    /* rt_menu.c: 1 Singleplayer, 0 Multiplayer */
@@ -153,6 +156,7 @@ enum { NPA_IN_FIRST = 2, NPA_ON_LAST = 7 };
 #define ST_CB_BUTTON_EXIT_ANIME    0x80990AC0u   /* (what 2 starts in SelectStartWait: the card comes back) */
 #define NP_IND_PANES    0x21C           /* (on each indicator) two panes the buttons hide: +0x21C, +0x220 */
 #define TDP_FLAG        0x266           /* (on each 2D player) set while the buttons show */
+#define TDP_POS_X       0xAC            /* (on each 2D player) mPos.x: the figure above the card (layout units) */
 #define NP_BUTTONS_FLAG 0x688
 
 /* ---- guest calls (rt_gcall in rt.h) ---- */
@@ -214,27 +218,34 @@ static uint32_t np_buttons;              /* singleplayer: the select whose Start
 static struct { uint8_t ind[8][2], tdp[8], flag; } np_snap;   /* what showing the button changed */
 static uint32_t cb_rejoin;               /* singleplayer: the card whose character was taken back */
 static uint32_t gs_scene;                /* the dScGameSetup_c, while the scene runs */
-static int game_sel;                     /* Game Select: the game on the card (GAMES[]) */
+static int game_sel;                     /* Game Select: the game on the card (games[]) */
+static uint32_t sp_visit;                /* counts the singleplayer character select's openings (rt_charsel.c) */
 static float spin;                       /* (the carousel's turn still to show: below) */
 static void cards_forget(void);          /* (game portraits: a scene's card pictures are gone with it) */
 static int play_game;                    /* the game chosen there (what Start Game starts) */
 static int smb3_started;                 /* Start Game started SMB3 (it runs until Quit) */
 static int smb3_file;                    /* the SMB3 file chosen on the File Select */
+int rt_smb3_file(void) { return smb3_file; }   /* (SMB3Disassembly/port/smb3_stage.c: its map's file) */
 int menu_smb3_pause_input(uint32_t pressed);   /* rt_menu.c */
 static int games_n(void);
 static int cur_game(void);
+static int game_locked(int g);
+static void *game_portrait_any(int g);         /* (game_portrait, below) */
+static const char *game_label(int g);
 enum { GAME_NSMBW, GAME_SMB3 };
 
 static int in_setup(void) { return R16(G_NOW_SCENE) == SCENE_GAME_SETUP; }
 static int is_multi(void) { return !menu_singleplayer(); }
+static void fs3_restore(void);
 static void set_phase(int p) {
     if (p != phase) rt_log("setup", "%s", ph_name[p]);
+    if (p != PH_FILE) fs3_restore();                                      /* (SMB3's File Select left: NSMBW's slots back) */
     phase = p;
 }
 static void reset_if_left(void) {
     if (!in_setup() && (gs_scene || phase != PH_GAME || pending >= 0)) {
         gs_scene = 0; phase = PH_GAME; pending = -1; fs_fade_in_wait = char_fade_in_wait = np_exit_wait = np_back_wait = 0;
-        np_buttons = 0; cb_rejoin = 0;
+        np_buttons = 0; cb_rejoin = 0; fs3_restore();
         if (smb3_active()) smb3_quit();                                   /* (if SMB3 was running) */
         smb3_take_quit(); smb3_started = 0;
         cards_forget(); spin = 0;
@@ -290,12 +301,105 @@ static void char_select_open(ppc_context *ctx, uint8_t *base, uint32_t self) {
     for (uint32_t i = 0; i < 8; i++) W32(connect_stage_addr(i), 0);       /* PlyConnectStage OFF */
     W8(np + NP_ACTIVE, 1);
     W32(np + NP_PLAYER_COUNT, is_multi() ? 8 : 1);
+    if (!is_multi()) sp_visit++;                                          /* (a new visit for the grid) */
     change_state(ctx, base, self + GS_STATE, ST_GS_CONNECTION_CHECK);
     char_fade_in_wait = 1; wait_start = g_frames_presented;
 }
+/* ---- the singleplayer character grid (rt_charsel.c) ---- */
+#define SP_CARD_DX (-170.0f)                    /* singleplayer: the card (the grid's preview) moves left by this (layout units) */
+uint32_t gs_sp_select_visit(void) { return sp_visit; }
+/* 0 not shown, 1 choosing, 2 chosen (Start Game shows) */
+int gs_sp_select_state(void) {
+    if (!in_setup() || !gs_scene || phase != PH_CHAR || is_multi() || pending >= 0) return 0;
+    return np_buttons ? 2 : 1;
+}
+/* how much of the screen shows: 1 shown .. 0 black (mFaderBase_c: +4 status 0 opaque, 1 hidden,
+   2 / 3 fading; mColorFader_c +19: its alpha) */
+float gs_screen_alpha(void) {
+    uint32_t f = R32(G_FADER);
+    if (!(f >= 0x80000000u && f < 0x94000000u)) return 1;
+    uint32_t st = R32(f + 4);
+    if (st == 1) return 1;
+    if (st == 0) return 0;
+    return 1.0f - R8(f + 19) / 255.0f;
+}
+/* the card's middle on the overlay (640 x 480: a layout unit is 480 / 456 of it in 4:3; in 16:9 the
+   overlay keeps 4:3 in the middle of the screen while the layout spreads over all of it) */
+float gs_sp_preview_x(void) { return 320.0f + SP_CARD_DX * (480.0f / 456.0f) * (rt_widescreen() ? 4.0f / 3.0f : 1.0f); }
+
+/* ---- SMB3's File Select: NSMBW's own cards, on SMB3's files ----
+   While the File Select shows SMB3's files, the save manager's three slots (and quick saves) hold
+   stand-ins made from SMB3's files - an SMB3 file is a slot with its world and lives, no file an
+   empty one, no quick saves - so the game's own cards, Copy and Erase work on them as on NSMBW's.
+   NSMBW's real slots are kept here and put back: around each NAND save (the NAND command copies
+   the data at once: gm_d_nand.c nand_cmdSave), before a file is loaded, and when the File Select
+   is left. Copy (saveGameCopy) and Erase (dMj2dGame_c::initialize on a slot) are also done on
+   SMB3's files (smb3_main.c). */
+#define FS3_SLOT_SIZE  0x980
+#define A_MJ2D_INIT    0x800CDED0u              /* dMj2dGame_c::initialize */
+#define MJ2D_COMPLETION 0x002                   /* (u8: bit 0x01 the slot is empty) */
+#define MJ2D_WORLD      0x003                   /* (u8: the world the file is on) */
+#define MJ2D_LIFE       0x029                   /* (u8 [8]: lives, by player type) */
+#define MJ2D_WORLD_OPEN 0x049                   /* (u8 [10]: bit 0x01 the world is open - the card shows the highest) */
+#define DF_TB_WORLD    3580                     /* (dDateFile_c: the world number's text box, d_basesNP fn_2_10420 / 0x8077D9E0) */
+#define DF_TB_LIVES    3588                     /* (the lives') */
+#define SAVEMNG_GAME_   0x06C0                  /* (the save manager's slots and quick saves: gm_save_mng.c) */
+#define SAVEMNG_TEMP_   0x2340
+static uint8_t fs3_real[2][3 * FS3_SLOT_SIZE];  /* NSMBW's slots, quick saves - while the stand-ins are in */
+static int fs3_swapped, fs3_building;
+static int smb3_files_shown(void) { return in_setup() && gs_scene && phase == PH_FILE && play_game == GAME_SMB3; }
+static void fs3_copy(uint32_t mng, int to_mng) {
+    for (int r = 0; r < 2; r++) {
+        uint32_t at = mng + (r ? SAVEMNG_TEMP_ : SAVEMNG_GAME_);
+        for (uint32_t i = 0; i < 3 * FS3_SLOT_SIZE; i++) { if (to_mng) W8(at + i, fs3_real[r][i]); else fs3_real[r][i] = R8(at + i); }
+    }
+}
+/* the stand-ins, from SMB3's files (the real slots kept first, the first time) */
+static void fs3_put(ppc_context *ctx, uint8_t *base) {
+    uint32_t mng = R32(G_SAVE_MNG);
+    if (!mng) return;
+    if (!fs3_swapped) { fs3_copy(mng, 0); fs3_swapped = 1; }
+    fs3_building = 1;
+    for (int k = 0; k < 3; k++) { gcall(ctx, base, A_MJ2D_INIT, 1, mng + SAVEMNG_GAME_ + (uint32_t)k * FS3_SLOT_SIZE); gcall(ctx, base, A_MJ2D_INIT, 1, mng + SAVEMNG_TEMP_ + (uint32_t)k * FS3_SLOT_SIZE); }
+    fs3_building = 0;
+    for (int k = 0; k < 3; k++) {
+        uint32_t s = mng + SAVEMNG_GAME_ + (uint32_t)k * FS3_SLOT_SIZE; int world, lives;
+        if (!smb3_file_info(k, &world, &lives)) continue;
+        W8(s + MJ2D_COMPLETION, R8(s + MJ2D_COMPLETION) & ~1u);
+        W8(s + MJ2D_WORLD, (uint8_t)world);
+        for (int w = 0; w <= world && w < 10; w++) W8(s + MJ2D_WORLD_OPEN + (uint32_t)w, R8(s + MJ2D_WORLD_OPEN + (uint32_t)w) | 1u);
+        for (int t = 0; t < 8; t++) W8(s + MJ2D_LIFE + (uint32_t)t, (uint8_t)(lives > 99 ? 99 : lives));
+    }
+    {   char b[120]; int o = 0; for (int k = 0; k < 3; k++) { uint32_t s = mng + SAVEMNG_GAME_ + (uint32_t)k * FS3_SLOT_SIZE;
+            o += snprintf(b + o, sizeof b - o, " %d:%s", k + 1, R8(s + MJ2D_COMPLETION) & 1 ? "new" : "World"); if (!(R8(s + MJ2D_COMPLETION) & 1)) o += snprintf(b + o, sizeof b - o, " %d x%d", R8(s + MJ2D_WORLD) + 1, R8(s + MJ2D_LIFE)); }
+        rt_log("setup", "SMB3 File Select: SMB3's files in the cards (NSMBW's slots kept):%s", b); }
+}
+/* NSMBW's real slots back */
+static void fs3_restore(void) {
+    if (!fs3_swapped) return;
+    uint32_t mng = R32(G_SAVE_MNG);
+    if (mng) fs3_copy(mng, 1);
+    fs3_swapped = 0;
+}
+/* gm_save_mng.c, around each NAND save: NSMBW's own data is what's written */
+static int fs3_saving;
+void gs_smb3_save_begin(void) { fs3_saving = fs3_swapped; fs3_restore(); }
+void gs_smb3_save_end(ppc_context *ctx, uint8_t *base) { if (fs3_saving && smb3_files_shown()) fs3_put(ctx, base); fs3_saving = 0; }
+/* saveGameCopy(dst, src): also SMB3's files (the game copies the stand-ins) */
+void gs_smb3_copy(int dst, int src) { if (fs3_swapped && smb3_files_shown()) smb3_file_copy(src, dst); }
+/* dMj2dGame_c::initialize(at): Erase on a stand-in slot is the Erase of that SMB3 file */
+void gs_smb3_init(uint32_t at) {
+    if (fs3_building || !fs3_swapped || !smb3_files_shown()) return;
+    uint32_t mng = R32(G_SAVE_MNG);
+    if (mng && at >= mng + SAVEMNG_GAME_ && at < mng + SAVEMNG_GAME_ + 3 * FS3_SLOT_SIZE && (at - mng - SAVEMNG_GAME_) % FS3_SLOT_SIZE == 0)
+        smb3_file_delete((int)((at - mng - SAVEMNG_GAME_) / FS3_SLOT_SIZE));
+}
+
 /* the file select comes up behind black (Game Select or File Select) */
 static void file_select_open(ppc_context *ctx, uint8_t *base, uint32_t self) {
     uint32_t fs = R32(self + GS_FSEL);
+    if (phase == PH_FILE && play_game == GAME_SMB3) fs3_put(ctx, base);  /* (SMB3's files in NSMBW's cards) */
+    else fs3_restore();
     W8(self + GS_IN_PLAYER_SELECT, 0);
     change_state(ctx, base, self + GS_STATE, ST_GS_FILE_SELECT);          /* (switches it on again) */
     /* the cards start over (what their "reset" request does - asked for by the fade-out's end,
@@ -308,6 +412,7 @@ static void file_select_open(ppc_context *ctx, uint8_t *base, uint32_t self) {
     change_state(ctx, base, fs + FS_STATE, ST_FS_START_WAIT);             /* (what its GameStartWait does after a fade; clears the choice) */
     int last = (int8_t)R8(R32(G_SAVE_MNG) + SM_LAST_FILE);               /* the cursor starts on the last file played (Game Select: the middle card) */
     int cur = phase == PH_GAME ? 1 : (last >= 0 && last < 3) ? last : 0;
+    if (phase == PH_GAME) for (int g = 0; g < games_n(); g++) game_portrait_any(g);   /* (every game's picture, while it's black) */
     W32(fs + FS_CHOICE, (uint32_t)cur); W32(fs + FS_LAST_CHOICE, (uint32_t)cur);
     fs_fade_in_wait = 1; wait_start = g_frames_presented;
 }
@@ -334,7 +439,7 @@ void hle_mod_fn_2_1AAFE0(ppc_context *ctx, uint8_t *base) {
             return;
         }
         play_game = cur_game();
-        rt_log("setup", "Game Select: %s", play_game == GAME_SMB3 ? "SMB3" : "NSMBW");
+        rt_log("setup", "Game Select: %s", game_label(play_game));
         pending = PH_FILE;                                                /* (the same for every game) */
         W8(self + GS_IN_PLAYER_SELECT, 0);
         change_state(ctx, base, self + GS_STATE, ST_GS_FADE_OUT);
@@ -350,6 +455,7 @@ void hle_mod_fn_2_1AAFE0(ppc_context *ctx, uint8_t *base) {
     W8(self + GS_IN_PLAYER_SELECT, 1);
     int choice = (int)R32(fs + FS_CHOICE);
     if (choice < 3 && play_game == GAME_SMB3) {                           /* an SMB3 file (smb3_main.c keeps them) */
+        fs3_restore();                                                    /* (NSMBW's own slot for the stage's players, below) */
         smb3_file = choice;
         if (rt_setting("smb3_stage", 1)) gcall(ctx, base, A_INIT_LOAD_GAME, 2, R32(G_SAVE_MNG), (uint32_t)(int8_t)choice);   /* (the stage prototype: NSMBW's player data, read only) */
         rt_log("setup", "SMB3 file %d (%s)", choice + 1, smb3_file_summary(choice) ? smb3_file_summary(choice) : "new");
@@ -642,6 +748,7 @@ void hle_mod_fn_2_345C0(ppc_context *ctx, uint8_t *base) {
 enum { B_LEFT = 0x0001, B_RIGHT = 0x0002, B_DOWN = 0x0004, B_UP = 0x0008, B_PLUS = 0x0010, B_2 = 0x0100, B_1 = 0x0200,
        B_B = 0x0400, B_A = 0x0800, B_MINUS = 0x1000, B_HOME = 0x8000 };
 static int fs_screen_live;               /* the file select layout was drawn lately */
+static int confirm_held;                 /* Game Select: 2/A went down on a locked game and are still held */
 static uint64_t fs_drawn_frame;
 uint32_t gs_filter_buttons(uint32_t b) {
     static uint32_t prev; uint32_t pressed = b & ~prev; prev = b;     /* (kept up to date on every screen: a held button is no new press) */
@@ -654,6 +761,8 @@ uint32_t gs_filter_buttons(uint32_t b) {
     }
     if (pending >= 0 || fs_fade_in_wait || char_fade_in_wait || np_exit_wait || np_back_wait || fader_seen != FADER_HIDDEN) return b & ~0xFFFFu;
     fs_screen_live = g_frames_presented - fs_drawn_frame <= 3;
+    if (phase == PH_CHAR && !is_multi()) { uint32_t charsel_input(uint32_t b, uint32_t pressed); b = charsel_input(b, pressed); }   /* the grid */
+    if (phase != PH_GAME) confirm_held = 0;
     if (phase == PH_GAME && fs_screen_live) {
         /* left/right (the remote held sideways: up/down) picks the card's game */
         int dir = (pressed & B_UP) ? -1 : (pressed & B_DOWN) ? 1 : 0;
@@ -663,6 +772,10 @@ uint32_t gs_filter_buttons(uint32_t b) {
             rt_log("setup", "Game Select: game %d of %d", game_sel + 1, games_n());
         }
         b &= ~(uint32_t)(B_LEFT | B_RIGHT | B_UP | B_DOWN | B_PLUS | B_MINUS);
+        /* a placeholder game (locked) can't be chosen: 2/A are dropped there, and stay dropped
+           while held (turning to a game with 2 held is no press of 2) */
+        if (game_locked(game_sel) && (b & (B_2 | B_A))) confirm_held = 1;
+        if (confirm_held) { if (b & (B_2 | B_A)) b &= ~(uint32_t)(B_2 | B_A); else confirm_held = 0; }
     }
     else if (phase == PH_FILE && fs_screen_live && menu_singleplayer()) b &= ~(uint32_t)B_LEFT;   /* (down, sideways: the hidden versus buttons) */
     return b;
@@ -737,7 +850,7 @@ static void vis_restore(uint32_t pane) {
 static void show_if(uint32_t root, const char *name, int cond, int v) { uint32_t p = lyt_find_pane(root, name); if (cond) vis_set(p, v); else vis_restore(p); }
 
 /* a pane moved from where the game put it (the game may set it again: then that is the new base) */
-#define MAXSHIFT 16
+#define MAXSHIFT 32
 static struct { uint32_t pane; int axis; float base, written; } shifts[MAXSHIFT]; static int nshift; static uint32_t shift_scene;
 static void pane_shift(uint32_t pane, int axis, float d) {
     if (!pane) return;
@@ -770,20 +883,74 @@ static void pane_mul(uint32_t pane, int what, float m) {          /* what: 0 sca
 }
 
 /* ======================================================= game portraits
- * Game Select: each game's card shows its portrait, ui/graphics/gameportrait/<id>.png (any size,
- * PNG; transparent pixels stay transparent). The card takes the picture's shape: as tall as
- * before, as wide as the picture (its white border stays 5 px all round), and the game's name
- * shows only when there is no picture. The picture is scaled to fit 512 x 512 and kept as a GX
- * CMPR (DXT1) texture in our guest memory, so a few games fit. */
-typedef struct { const char *id, *label; } game_t;
-static const game_t GAMES[] = { {"nsmbw", "NSMBW"}, {"smb3", "SMB3"} };   /* (order: GAME_NSMBW, GAME_SMB3) */
-#define NGAMES  (int)(sizeof GAMES / sizeof GAMES[0])
-static int games_n(void) { return NGAMES; }
+ * Game Select: a card per game. NSMBW and SMB3 can be played; every other picture in
+ * ui/graphics/gameportrait/ (.png / .jpg / .jpeg, except locked.png) is a placeholder game, after
+ * them in name order: its card can be turned to (hovered) but not chosen, and shows locked.png
+ * over its picture (centred, about half the picture's size, drawn into the texture when it is
+ * made). Each card shows its game's picture (any size; transparent pixels stay transparent;
+ * file names in any case). The card takes the picture's shape: as tall as before, as wide as the
+ * picture (its white border stays 5 px all round), and the game's name shows only when there is
+ * no picture. The pictures are GX CMPR (DXT1) textures in our guest memory (GP_MEM..GP_MEM_END,
+ * 320 KB - the guest memory past MEM1 is all spoken for), each made small enough that all of
+ * them fit: about 280 x 390 for a portrait with 6 games. */
+typedef struct { char id[32], label[32], file[64]; int locked; } game_t;   /* file: in gameportrait/ ("" none) */
+#define MAXGAMES 16
+static game_t games[MAXGAMES]; static int ngames;                           /* (order: GAME_NSMBW, GAME_SMB3, placeholders) */
+static char lock_file[64];                                                   /* locked.png (any case / extension) */
+static int name_eq(const char *a, const char *b) {
+    for (; *a && *b; a++, b++) if (tolower((unsigned char)*a) != tolower((unsigned char)*b)) return 0;
+    return *a == *b;
+}
+static int name_cmp(const void *x, const void *y) {
+    const char *a = x, *b = y;
+    for (; *a && tolower((unsigned char)*a) == tolower((unsigned char)*b); a++, b++) ;
+    return tolower((unsigned char)*a) - tolower((unsigned char)*b);
+}
+static void games_scan(void) {                                               /* (once: the first time the list is wanted) */
+    static const char *const play[][2] = { {"nsmbw", "NSMBW"}, {"smb3", "SMB3"} };
+    ngames = 0; lock_file[0] = 0;
+    for (int i = 0; i < 2; i++) { game_t *g = &games[ngames++]; memset(g, 0, sizeof *g); strcpy(g->id, play[i][0]); strcpy(g->label, play[i][1]); }
+    char dir[1200]; snprintf(dir, sizeof dir, "%s/ui/graphics/gameportrait", g_root);
+    static char names[64][64]; int nn = 0;
+    DIR *d = opendir(dir);
+    if (d) {
+        struct dirent *de;
+        while ((de = readdir(d)) && nn < 64) {
+            const char *dot = strrchr(de->d_name, '.');
+            if (!dot || dot == de->d_name || strlen(de->d_name) >= 64 || dot - de->d_name >= 32) continue;
+            if (!name_eq(dot, ".png") && !name_eq(dot, ".jpg") && !name_eq(dot, ".jpeg")) continue;
+            strcpy(names[nn++], de->d_name);
+        }
+        closedir(d);
+    }
+    qsort(names, (size_t)nn, sizeof names[0], name_cmp);
+    for (int i = 0; i < nn; i++) {
+        char stem[32]; size_t n = (size_t)(strrchr(names[i], '.') - names[i]); memcpy(stem, names[i], n); stem[n] = 0;
+        if (name_eq(stem, "locked")) { if (!lock_file[0]) strcpy(lock_file, names[i]); continue; }
+        int k; for (k = 0; k < ngames && !name_eq(games[k].id, stem); k++) ;
+        if (k < ngames) { if (!games[k].file[0]) strcpy(games[k].file, names[i]); continue; }
+        if (ngames == MAXGAMES) { rt_log("setup", "game pictures: more than %d games, %s left out", MAXGAMES, names[i]); continue; }
+        game_t *g = &games[ngames++]; memset(g, 0, sizeof *g);
+        strcpy(g->id, stem); strcpy(g->label, stem); strcpy(g->file, names[i]); g->locked = 1;
+    }
+    char list[512]; size_t o = 0; list[0] = 0;
+    for (int i = 0; i < ngames && o < sizeof list - 48; i++) o += (size_t)snprintf(list + o, sizeof list - o, "%s%s%s", i ? ", " : "", games[i].label, games[i].locked ? " (locked)" : "");
+    rt_log("setup", "games: %s%s", list, lock_file[0] ? "" : " - no locked.png");
+}
+static int games_n(void) { if (!ngames) games_scan(); return ngames; }
+static int game_locked(int g) { return g >= 0 && g < games_n() && games[g].locked; }
+static const char *game_label(int g) { return g >= 0 && g < games_n() ? games[g].label : "?"; }
 #define GP_MEM      0x81870000u                             /* free: past the module's loader scratch, before rt_retro's */
 #define GP_MEM_END  0x818C0000u                             /* (above: the SMB3 stage's, smb3_stage.c) */
 #define GP_MAX      512
 typedef struct { int state; uint32_t tex; int tw, th; float aspect; } gport_t;   /* state 0 untried, 1 ok, -1 none */
-static gport_t gports[NGAMES];
+static gport_t gports[MAXGAMES];
+/* texels per picture so that every game's picture fits (10% kept for the 8 x 8 rounding and alignment) */
+static double gp_budget(void) {
+    int n = 0; for (int i = 0; i < games_n(); i++) if (games[i].file[0]) n++;
+    if (n < 1) n = 1;
+    return (double)(GP_MEM_END - GP_MEM - 32u * (uint32_t)n) * 2.0 / n * 0.9;
+}
 static uint32_t gp_next = GP_MEM;
 static int gp_borrowed;
 void boot_screen_mem_lost(void);
@@ -876,22 +1043,47 @@ write:
     out[0] = (uint8_t)(c0 >> 8); out[1] = (uint8_t)c0; out[2] = (uint8_t)(c1 >> 8); out[3] = (uint8_t)c1;
     for (int r = 0; r < 4; r++) out[4 + r] = (uint8_t)(idx[r * 4] << 6 | idx[r * 4 + 1] << 4 | idx[r * 4 + 2] << 2 | idx[r * 4 + 3]);
 }
+/* a placeholder's picture: locked.png over it, centred, fitted to half its width and height
+   (straight alpha, as gp_resample gives it) */
+static void gp_lock(float *img, int tw, int th) {
+    static uint32_t *lpx; static int lw, lh, tried;
+    if (!tried) {
+        tried = 1;
+        if (lock_file[0]) { char path[1200]; snprintf(path, sizeof path, "%s/ui/graphics/gameportrait/%s", g_root, lock_file); lpx = ui_load_png(path, &lw, &lh); }
+        if (!lpx) rt_log("setup", "locked.png missing: placeholder games show no lock");
+    }
+    if (!lpx) return;
+    double s = 0.5 * tw / lw; if (0.5 * th / lh < s) s = 0.5 * th / lh;
+    int dw = (int)(lw * s + 0.5), dh = (int)(lh * s + 0.5);
+    if (dw < 1 || dh < 1) return;
+    float *L = gp_resample(lpx, lw, lh, dw, dh);
+    int ox = (tw - dw) / 2, oy = (th - dh) / 2;
+    for (int y = 0; y < dh; y++) for (int x = 0; x < dw; x++) {
+        const float *l = L + ((size_t)y * dw + x) * 4; float *o = img + ((size_t)(oy + y) * tw + ox + x) * 4;
+        float la = l[3] / 255.0f, da = o[3] / 255.0f * (1 - la), oa = la + da;
+        for (int k = 0; k < 3; k++) o[k] = oa > 0 ? (l[k] * la + o[k] * da) / oa : 0;
+        o[3] = oa * 255.0f;
+    }
+    free(L);
+}
 static gport_t *game_portrait(int g) {
-    if (g < 0 || g >= NGAMES) return NULL;
+    if (g < 0 || g >= games_n()) return NULL;
     gport_t *p = &gports[g];
     if (p->state) return p->state > 0 ? p : NULL;
     p->state = -1;
-    char path[1200]; snprintf(path, sizeof path, "%s/ui/graphics/gameportrait/%s.png", g_root, GAMES[g].id);
+    if (!games[g].file[0]) return NULL;
+    char path[1200]; snprintf(path, sizeof path, "%s/ui/graphics/gameportrait/%s", g_root, games[g].file);
     int w, h; uint32_t *px = ui_load_png(path, &w, &h);
-    if (!px) return NULL;
-    /* fit GP_MAX (never bigger than it is), in whole 8x8 tiles */
-    double sc = (double)GP_MAX / (w > h ? w : h); if (sc > 1) sc = 1;
+    if (!px) { rt_log("setup", "%s: can't be read", path); return NULL; }
+    /* fit GP_MAX and the share of the memory (never bigger than it is), in whole 8x8 tiles */
+    double sc = (double)GP_MAX / (w > h ? w : h), sa = sqrt(gp_budget() / ((double)w * h)); if (sa < sc) sc = sa; if (sc > 1) sc = 1;
     int tw = (int)(w * sc / 8 + 0.5) * 8, th = (int)(h * sc / 8 + 0.5) * 8;
     if (tw < 8) tw = 8; if (th < 8) th = 8;
     if (gp_borrowed) { gp_borrowed = 0; boot_screen_mem_lost(); }
     uint32_t bytes = (uint32_t)tw * th / 2, at = (gp_next + 31) & ~31u;
     if (at + bytes > GP_MEM_END) { free(px); rt_log("setup", "%s: no room for another game picture", path); return NULL; }
     float *img = gp_resample(px, w, h, tw, th); free(px);
+    if (games[g].locked) gp_lock(img, tw, th);
     uint8_t *dst = G(at);
     for (int ty = 0; ty < th; ty += 8) for (int tx = 0; tx < tw; tx += 8)
         for (int sb = 0; sb < 4; sb++) {                            /* (an 8x8 tile: its four 4x4 blocks, row by row) */
@@ -902,7 +1094,7 @@ static gport_t *game_portrait(int g) {
     free(img);
     p->tex = at; p->tw = tw; p->th = th; p->aspect = (float)w / h; p->state = 1;
     gp_next = at + bytes;
-    rt_log("setup", "game picture %s: %dx%d, kept at %dx%d (%u KB)", GAMES[g].id, w, h, tw, th, bytes / 1024);
+    rt_log("setup", "game picture %s: %dx%d, kept at %dx%d (%u KB)%s", games[g].id, w, h, tw, th, bytes / 1024, games[g].locked ? ", locked" : "");
     return p;
 }
 /* the boot's keyboard picture (rt_bootscreen.c) borrows the whole region: it is shown long
@@ -912,7 +1104,8 @@ uint32_t gs_ui_mem_borrow(uint32_t bytes) {
     memset(gports, 0, sizeof gports); gp_next = GP_MEM; gp_borrowed = 1;
     return GP_MEM;
 }
-static int cur_game(void) { return game_sel >= 0 && game_sel < NGAMES ? game_sel : 0; }
+static void *game_portrait_any(int g) { return game_portrait(g); }
+static int cur_game(void) { return game_sel >= 0 && game_sel < games_n() ? game_sel : 0; }
 
 /* ---- the Game Select carousel ----
    Card slot 1 (the middle, where the cursor is) shows the chosen game, slots 0 / 2 the one before
@@ -922,7 +1115,7 @@ static int cur_game(void) { return game_sel >= 0 && game_sel < NGAMES ? game_sel
 #define CAR_DX 205.0f                                  /* the distance between neighbours */
 #define CAR_SLOT_X 190.0f                              /* (where the file select puts its cards) */
 static uint64_t spin_frame;
-static int slot_game(int slot) { return ((game_sel + slot - 1) % NGAMES + NGAMES) % NGAMES; }
+static int slot_game(int slot) { int n = games_n(); return ((game_sel + slot - 1) % n + n) % n; }
 static float slot_pos(int slot) { return (float)(slot - 1) + spin; }
 static void spin_step(void) {                          /* (once per frame) */
     if (spin_frame == g_frames_presented) return;
@@ -973,7 +1166,7 @@ static void card_picture(uint32_t pane, gport_t *p) {
 /* the card's width changed from what the game set (the game may set it again: then that is the
    new base); d = 0 puts it back */
 static void cursor_note(uint32_t pane, float wide, float narrow);
-#define MAXWIDTH 12
+#define MAXWIDTH 32                                                 /* (Game Select: 3 cards x 7 card_panes) */
 static struct { uint32_t pane; float base, written; } widths[MAXWIDTH]; static int nwidth; static uint32_t width_scene;
 static void pane_narrow(uint32_t pane, float d) {
     if (!pane) return;
@@ -984,7 +1177,7 @@ static void pane_narrow(uint32_t pane, float d) {
         if (k < nwidth) { if (v == widths[k].written) wrf(pane + 0x4C, widths[k].base); widths[k] = widths[--nwidth]; }
         return;
     }
-    if (k == nwidth) { if (nwidth == MAXWIDTH) return; nwidth++; widths[k].pane = pane; widths[k].base = v; }
+    if (k == nwidth) { if (nwidth == MAXWIDTH) { rt_log("setup", "pane_narrow: table full (MAXWIDTH %d)", MAXWIDTH); return; } nwidth++; widths[k].pane = pane; widths[k].base = v; }
     else if (v != widths[k].written) widths[k].base = v;
     widths[k].written = widths[k].base - d;
     wrf(pane + 0x4C, widths[k].written);
@@ -1023,17 +1216,48 @@ static void cursor_fix(int narrowed) {
 static const char *const card_panes[] = {"N_dateFile_00", "P_NumBase_01", "P_Shine_00", "W_dateFile_00", "W_shadow_00", "P_selectBase_00", "W_select_00"};
 
 /* which of the setup scene's layouts this is */
-enum { L_OTHER, L_FILE_SELECT, L_DATE_FILE, L_CHAR_SELECT };
+enum { L_OTHER, L_FILE_SELECT, L_DATE_FILE, L_CHAR_SELECT, L_CARD };   /* L_CARD: player 1's card (slot: 0 base, 1 contents, 2 arrows, 3 indicator) */
 static int which_layout(uint32_t layout, uint32_t root, int menu_kind, int *slot) {
     if (!in_setup() || !gs_scene) return L_OTHER;
     if (menu_kind == 2) return L_FILE_SELECT;
     uint32_t np = R32(gs_scene + GS_NUMPY);
     if (np && root == R32(np + NP_ROOT)) return L_CHAR_SELECT;
+    if (np) {
+        static const uint32_t parts[4] = {NP_CC_BASE, NP_CC_CONTENTS, NP_CC_ARROW, NP_CC_INDICATOR};
+        for (int i = 0; i < 4; i++) { uint32_t o = R32(np + parts[i]); if (o && layout > o && layout - o < 0x1000) { *slot = i; return L_CARD; } }
+    }
     for (int i = 0; i < 3; i++) {
         uint32_t df = R32(gs_scene + GS_DATEFILE + 4 * i);
         if (df && layout > df && layout - df < 0x1000) { *slot = i; return L_DATE_FILE; }
     }
     return L_OTHER;
+}
+
+/* singleplayer character select: the card on the left (the grid's preview, rt_charsel.c) */
+static void card_calc(uint32_t root, int part) {
+    int sp = phase == PH_CHAR && !is_multi() && part != 1;               /* (the contents follow the base) */
+    pane_shift(root, 0, sp ? SP_CARD_DX : 0.0f);
+}
+
+/* a float the game sets, moved by d (the game may set it again: then that is the new base); d = 0
+   puts it back */
+#define MAXFSHIFT 16
+static struct { uint32_t at; float base, written; } fshifts[MAXFSHIFT]; static int nfshift; static uint32_t fshift_scene;
+static void float_shift(uint32_t at, float d) {
+    if (fshift_scene != gs_scene) { nfshift = 0; fshift_scene = gs_scene; }
+    int k; for (k = 0; k < nfshift && fshifts[k].at != at; k++) ;
+    float v = rdf(at);
+    if (d == 0) { if (k < nfshift) { if (v == fshifts[k].written) wrf(at, fshifts[k].base); fshifts[k] = fshifts[--nfshift]; } return; }
+    if (k == nfshift) { if (nfshift == MAXFSHIFT) return; nfshift++; fshifts[k].at = at; fshifts[k].base = v; }
+    else if (v != fshifts[k].written) fshifts[k].base = v;
+    fshifts[k].written = fshifts[k].base + d;
+    wrf(at, fshifts[k].written);
+}
+/* the figures (2D players, by body) stand above the card: singleplayer, it's on the left */
+static void figures_place(int sp) {
+    uint32_t np = R32(gs_scene + GS_NUMPY);
+    if (!np) return;
+    for (int t = 0; t < 8; t++) { uint32_t tdp = R32(np + NP_2DPLAYER + 4 * t); if (tdp) float_shift(tdp + TDP_POS_X, sp ? SP_CARD_DX : 0.0f); }
 }
 
 /* before the layout's matrices are computed: positions */
@@ -1054,10 +1278,19 @@ void gs_layout_calc(uint32_t layout, uint32_t root, int menu_kind) {
         if (p && d == 0) d = -0.0001f;                              /* (a square picture: still ours) */
         for (unsigned i = 0; i < sizeof card_panes / sizeof card_panes[0]; i++) pane_narrow(lyt_find_pane(root, card_panes[i]), d);
         if (phase == PH_GAME ? slot == cur : slot == 0) cursor_fix(p != NULL);   /* (once per frame) */
+    } else if (w == L_CARD) {
+        card_calc(root, slot);
+    } else if (w == L_CHAR_SELECT && is_multi()) {
+        figures_place(0);
     } else if (w == L_CHAR_SELECT && !is_multi()) {
-        /* singleplayer: Start Game alone, in the middle */
+        figures_place(phase == PH_CHAR);
+        /* singleplayer: Start Game alone, under the card */
         uint32_t yes = lyt_find_pane(root, "P_yesBase_00");
-        if (yes) pane_shift(yes, 0, -110.0f);
+        /* (under the card: the grid is on the right; 4:3 has less room: a little smaller, and right of
+           the card's middle to stay on the screen) */
+        int narrow = phase == PH_CHAR && !rt_widescreen();
+        if (yes) { pane_shift(yes, 0, -110.0f + (phase == PH_CHAR ? (narrow ? -158.0f : SP_CARD_DX) : 0.0f));
+                   pane_mul(yes, 0, narrow ? 0.8f : 1.0f); pane_mul(yes, 2, narrow ? 0.8f : 1.0f); }
         /* "Back 1" stays while it shows (the button's animation squashes it to height 0;
            set before the matrices) */
         if (np_buttons) { uint32_t back = lyt_find_pane(root, "N_back");
@@ -1073,8 +1306,8 @@ void gs_layout_draw(uint32_t layout, uint32_t root, int menu_kind) {
         int game = phase == PH_GAME;
         uint32_t title = lyt_find_pane(root, "T_title_00");
         if (game) text_set(title, "Select a Game", 0); else text_restore(title);
-        int smb3 = play_game == GAME_SMB3;                                /* (SMB3's files: no copy / delete yet, no versus) */
-        show_if(root, "P_copy_00", game || smb3, 0); show_if(root, "P_delete_00", game || smb3, 0);
+        int smb3 = play_game == GAME_SMB3;                                /* (SMB3's files: no versus) */
+        show_if(root, "P_copy_00", game, 0); show_if(root, "P_delete_00", game, 0);
         int no_vs = game || smb3 || menu_singleplayer();
         show_if(root, "N_Multi_00", no_vs, 0); show_if(root, "N_MultiCoin_00", no_vs, 0);
         uint32_t back = lyt_find_pane(root, "N_back");                   /* "Back 1", as on the character select */
@@ -1086,14 +1319,35 @@ void gs_layout_draw(uint32_t layout, uint32_t root, int menu_kind) {
         int sg = game ? slot_game(slot) : 0;                              /* the game this card shows */
         static const char *contents[] = {"N_dateFile_01", "P_fileNumBase_02", "N_save"};
         uint32_t t1 = lyt_find_pane(root, "T_NewdateFile_00"), t2 = lyt_find_pane(root, "T_NewdateFileS");
-        int smb3f = !game && play_game == GAME_SMB3;                     /* File Select for SMB3: its own files, not NSMBW's */
-        show_if(root, contents[0], game || smb3f, 0); show_if(root, contents[1], game, 0); show_if(root, contents[2], game || smb3f, 0);
+        /* (File Select for SMB3: the game's own cards - they show SMB3's files: gs_smb3_slot below) */
+        show_if(root, contents[0], game, 0); show_if(root, contents[1], game, 0); show_if(root, contents[2], game, 0);
         gport_t *p = game ? game_portrait(sg) : NULL;                   /* the game's picture, or its name on a blank card */
         card_picture(lyt_find_pane(root, "P_NumBase_01"), p);
-        show_if(root, "N_NewFile_00", game || smb3f, game ? !p : 1);
-        if (game && !p) { text_set_scaled(t1, GAMES[sg].label, 0, 0.78f); text_set_scaled(t2, GAMES[sg].label, 0, 0.78f); }
-        else if (smb3f) { const char *s = smb3_file_summary(slot); text_set_scaled(t1, s ? s : "New File", 0, 0.62f); text_set_scaled(t2, s ? s : "New File", 0, 0.62f); }
+        if (game && !p) { text_set_scaled(t1, games[sg].label, 0, 0.78f); text_set_scaled(t2, games[sg].label, 0, 0.78f); }
         else { text_restore(t1); text_restore(t2); }
+        /* SMB3's File Select: what the card shows is its stand-in slot's (the cards were made with
+           NSMBW's slots at Game Select and keep that look: Copy / Erase redo only the card they change) */
+        /* (from SMB3's file itself, not the stand-in: once a file is chosen NSMBW's slots are back
+           while the cards fade out - a card read from them showed "New!" or the old lives text) */
+        uint32_t df = R32(gs_scene + GS_DATEFILE + 4 * (uint32_t)slot);
+        int s3 = !game && play_game == GAME_SMB3 && in_setup() && gs_scene && (phase == PH_FILE || pending == PH_CHAR) && df && slot >= 0 && slot < 3;
+        int f_world = 0, f_lives = 0;
+        static struct { uint64_t at; int has, world, lives; } fc[3];      /* (read a few times a second, not each draw) */
+        if (s3 && (!fc[slot].at || g_frames_presented - fc[slot].at > 15)) { fc[slot].at = g_frames_presented; fc[slot].has = smb3_file_info(slot, &fc[slot].world, &fc[slot].lives); }
+        if (s3) { f_world = fc[slot].world; f_lives = fc[slot].lives; }
+        int has = s3 && fc[slot].has;
+        /* (only while it's SMB3's File Select: otherwise the lines above decide - "restoring" these
+           here showed a save card's contents over the Game Select's portraits) */
+        if (s3) { show_if(root, "N_dateFile_01", 1, has); show_if(root, "N_save", 1, 0); }
+        show_if(root, "N_NewFile_00", s3 || game, game ? !p : !has);
+        show_if(root, "N_starIcon_00", s3, 0);
+        if (has) {
+            char n[8];
+            snprintf(n, sizeof n, "%d", f_world + 1 < 1 ? 1 : f_world + 1 > 9 ? 9 : f_world + 1); text_set(R32(df + DF_TB_WORLD), n, 0);
+            snprintf(n, sizeof n, "%d", f_lives > 99 ? 99 : f_lives < 0 ? 0 : f_lives); text_set(R32(df + DF_TB_LIVES), n, 0);
+        } else if (df) { text_restore(R32(df + DF_TB_WORLD)); text_restore(R32(df + DF_TB_LIVES)); }
+    } else if (w == L_CARD) {
+        if (slot == 2) { if (phase == PH_CHAR && !is_multi()) vis_set(root, 0); else vis_restore(root); }   /* (singleplayer: no arrows - the grid moves the card) */
     } else if (w == L_CHAR_SELECT) {
         text_set(lyt_find_pane(root, "T_titleNinzu_00"), is_multi() ? "Multiplayer" : "Singleplayer", 0);
         lyt_set_visible(lyt_find_pane(root, "N_remo_00"), 0);           /* (the four remotes) */

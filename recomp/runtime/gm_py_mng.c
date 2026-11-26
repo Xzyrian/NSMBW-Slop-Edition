@@ -14,6 +14,7 @@
  *
  * createCourseInit also builds the players and preserves the original spawn-order stack layout. */
 #include "gm_i2.h"
+#include "rt_powerup.h"                      /* (the new power-ups: PU_COUNT) */
 RT_STATE_FILE                                   /* (game code: its variables are part of a save state) */
 
 
@@ -172,7 +173,7 @@ static void py_initGame(GM_CTX) {
     R(3) = 0x80430000u; R(4) = 0;
 }
 /* checkCorrectCreateInfo: clamp what a save or a mod may have left out of range - characters
-   (0-7), power-ups (0-6), lives (99 at most), all coins (over 99 between them: none), the score */
+   (0-7), power-ups (0-6, and ours: rt_powerup.h), lives (99 at most), all coins (over 99 between them: none), the score */
 static void py_checkCorrectCreateInfo(GM_CTX) {
     R(3) = 0; R(4) = PY_MODE; R(5) = PY_REST; R(7) = 5;
     ctx->ctr = 8;
@@ -182,7 +183,7 @@ static void py_checkCorrectCreateInfo(GM_CTX) {
         if (CMPU(R(8), 8) >= 0) { R(8) = 0; gm_set_u32(R(6), 0); }   /* (an unknown character: Mario) */
         R(8) <<= 2;
         R(9) = PY_MODE + R(8); R(10) = gm_u32(R(9));
-        if (CMPU(R(10), 7) >= 0) gm_set_u32(R(9), 0);                 /* (power-up: none) */
+        if (CMPU(R(10), PU_COUNT) >= 0) gm_set_u32(R(9), 0);          /* (power-up: none - the game's 7 and the new ones are kept, rt_powerup.h) */
         R(9) = PY_REST + R(8); R(8) = gm_u32(R(9));
         if (CMPU(R(8), 100) >= 0) gm_set_u32(R(9), 5);               /* (lives: 5) */
         if (--ctx->ctr) GM_LOOP();

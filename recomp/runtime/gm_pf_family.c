@@ -9,6 +9,7 @@
 
 #include "gm.h"
 #include "gm_nv.h"
+#include "rt_powerup.h"                      /* (the new power-ups: pu_tab for the game's 7-entry tables) */
 
 #define R(n) ctx->r[n]
 #define F(n) ctx->f[n].d
@@ -4148,6 +4149,13 @@ static void pf_m_d4670(GM_CTX) {
     uint32_t lr = ctx->lr; gptr f = gm_frame_sp; (void)lr; (void)f;
     R(0) = ctx->lr;
     R(5) = (0 + 0x802F0000u);
+    /* (dPlayerMdl_c::setPlayerMode: a new power-up's model is its base's - the model keeps the
+       base value in mPlayerMode, which the game's model code indexes its 7-entry tables with
+       (dPyMdlMng_c::calc's scale, ...); the player keeps the real one: rt_powerup.h) */
+    {   extern int32_t rt_charmdl_set_mode(ppc_context *, uint8_t *, uint32_t, uint32_t);   /* (the Frog's own model: rt_charmdl.c) */
+        int32_t m = rt_charmdl_set_mode(ctx, base, R(3), R(4));
+        if (m < 0) return;                                              /* (the other model shows it) */
+        rt_pu_mdl_set(R(3), R(4)); R(4) = pu_tab((uint32_t)m); }
     R(0) = rotl32(R(4), 2) & 0xFFFFFFFCu;
     R(5) = (R(5) + 4912);
     R(31) = R(3) |R(3);
@@ -4769,8 +4777,9 @@ static void pf_m_d5580(GM_CTX) {
 }
 
 /* fn_800D5640 (fn_800D5640, 8 bytes) */
-static void pf_m_d5640(GM_CTX) {
-    st8(base, (R(3) + 338), R(4));
+static void pf_m_d5640(GM_CTX) {             /* (dPyMdlBase_c::setPlayerMode: the base value kept - rt_powerup.h, as dPlayerMdl_c's) */
+    rt_pu_mdl_set(R(3), R(4));
+    st8(base, (R(3) + 338), pu_tab(R(4)));
 }
 
 /* fn_800D5680 (fn_800D5680, 112 bytes) */
@@ -19274,7 +19283,8 @@ E(fn_800D5170, 4) { pf_m_d5170(GM_PASS); }
 E(fn_800D5330, 4) { pf_m_d5330(GM_PASS); }
 E(fn_800D54A0, 4) { pf_m_d54a0(GM_PASS); }
 E(fn_800D54E0, 4) { pf_m_d54e0(GM_PASS); }
-E(fn_800D5580, 4) { pf_m_d5580(GM_PASS); }
+E(fn_800D5580, 4) { uint32_t a3 = R(3), a4 = R(4), a5 = R(5), a6 = R(6); pf_m_d5580(GM_PASS);
+    { extern void rt_charmdl_after_create(ppc_context *, uint8_t *, uint32_t, uint32_t, uint32_t, uint32_t); rt_charmdl_after_create(ctx, base, a3, a4, a5, a6); } }   /* (the Frog's model created beside: rt_charmdl.c) */
 E(fn_800D5640, 4) { pf_m_d5640(GM_PASS); }
 E(fn_800D5680, 4) { pf_m_d5680(GM_PASS); }
 E(fn_800D56F0, 4) { pf_m_d56f0(GM_PASS); }
@@ -19503,7 +19513,8 @@ E(fn_80154740, 4) { pf_m_54740(GM_PASS); }
 E(fn_801548A0, 4) { pf_m_548a0(GM_PASS); }
 E(fn_80154A70, 4) { pf_m_54a70(GM_PASS); }
 E(fn_80154D00, 4) { pf_m_54d00(GM_PASS); }
-E(fn_80154D50, 4) { pf_m_54d50(GM_PASS); }
+void smb3_stage_draw_any(ppc_context *ctx, uint8_t *base);   /* (../SMB3Disassembly/port/smb3_stage.c) */
+E(fn_80154D50, 4) { pf_m_54d50(GM_PASS); { uint32_t r3 = ctx->r[3]; smb3_stage_draw_any(ctx, base); ctx->r[3] = r3; } }   /* dBgGm_c::draw: the SMB3 level's draw proc also from here, every frame (no player drawn: a death, a pit) */
 E(fn_80156930, 4) { pf_m_56930(GM_PASS); }
 E(fn_80156D70, 4) { pf_m_56d70(GM_PASS); }
 E(fn_80156E00, 4) { pf_m_56e00(GM_PASS); }

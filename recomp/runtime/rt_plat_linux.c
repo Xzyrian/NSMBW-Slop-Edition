@@ -1,5 +1,6 @@
 /* rt_plat_linux.c - headless Linux platform: ucontext fibers, frames dumped as PPM files. */
 #define _GNU_SOURCE
+#include <stdio.h>
 #include "rt.h"
 #include <ucontext.h>
 #include <time.h>
@@ -93,18 +94,27 @@ void plat_init(void) {
     signal(SIGSEGV, on_segv); signal(SIGBUS, on_segv); signal(SIGFPE, on_segv);
     prof_start();
 }
+#include <stdlib.h>
+#include <unistd.h>
 static int frame_no;
 void plat_present(const uint32_t *rgba, int w, int h) {
     frame_no++;
     const char *every = getenv("RT_DUMP_EVERY");
     int n = every ? atoi(every) : 60;
-    if (n <= 0 || frame_no % n) return;
-    { const char *from = getenv("RT_DUMP_FROM"); if (from && frame_no < atoi(from)) return; }   /* first frame to dump */
+    static const char *req; static int reqi; if (!reqi) { reqi = 1; req = getenv("RT_DUMP_REQ"); }   /* (testing: a frame dumped when this file appears - drive2.py's shot) */
+    int asked = req && access(req, F_OK) == 0;
+    if (asked) unlink(req);
+    else {
+        if (n <= 0 || frame_no % n) return;
+        { const char *from = getenv("RT_DUMP_FROM"); if (from && frame_no < atoi(from)) return; }   /* first frame to dump */
+    }
     const char *dd = getenv("RT_DUMP_DIR"); char p[1200];
     if (dd) snprintf(p, sizeof p, "%s/frame_%05d.ppm", dd, frame_no); else snprintf(p, sizeof p, "%s/frames/frame_%05d.ppm", g_root, frame_no);
     FILE *f = fopen(p, "wb"); if (!f) return;
     fprintf(f, "P6\n%d %d\n255\n", w, h);
-    for (int i = 0; i < w * h; i++) { uint32_t c = rgba[i]; fputc((c >> 16) & 0xFF, f); fputc((c >> 8) & 0xFF, f); fputc(c & 0xFF, f); }
+    {   uint8_t *row = malloc((size_t)w * 3);
+        for (int y = 0; y < h; y++) { for (int x = 0; x < w; x++) { uint32_t c = rgba[y * w + x]; row[x * 3] = (c >> 16) & 0xFF; row[x * 3 + 1] = (c >> 8) & 0xFF; row[x * 3 + 2] = c & 0xFF; } fwrite(row, 3, (size_t)w, f); }
+        free(row); }
     fclose(f);
 }
 int plat_pump(void) { return 1; }
@@ -117,6 +127,13 @@ uint32_t plat_buttons(void) {
     { extern void chars_test_frame(void); chars_test_frame(); }   /* rt_chars.c: RT_SELECT_SCRIPT */
     extern uint32_t g_retro_test_buttons;                 /* rt_retro.c: RT_RETRO_SCRIPT */
     if (!init) { init = 1; t0 = rt_now_ns(); spec = getenv("RT_AUTOPRESS"); }
+    {   /* RT_AUTOPRESS_FILE=path: the buttons (hex) in that file, read each frame (a test driver writes it) */
+        static const char *pf; static int pfi; if (!pfi) { pfi = 1; pf = getenv("RT_AUTOPRESS_FILE"); }
+        {   static const char *ff; static int ffi; extern uint64_t g_frames_presented; static uint64_t last = ~0ull;   /* RT_FRAME_FILE: the frame number, for the driver */
+            if (!ffi) { ffi = 1; ff = getenv("RT_FRAME_FILE"); }
+            if (ff && last != g_frames_presented) { last = g_frames_presented; FILE *f = fopen(ff, "w"); if (f) { fprintf(f, "%llu\n", (unsigned long long)last); fclose(f); } } }
+        if (pf) { uint32_t b = 0; FILE *f = fopen(pf, "r"); if (f) { if (fscanf(f, "%x", &b) != 1) b = 0; fclose(f); } { static uint32_t lastb; extern uint64_t g_frames_presented; if (b != lastb) { lastb = b; rt_log("test", "buttons %X at frame %llu", b, (unsigned long long)g_frames_presented); } } return b | g_retro_test_buttons; }
+    }
     if (!spec) return g_retro_test_buttons;
     double t = (double)(rt_now_ns() - t0) / 1e9;
     { extern uint64_t g_frames_presented; static int fr = -1; if (fr < 0) fr = getenv("RT_AUTOPRESS_FRAMES") != NULL;

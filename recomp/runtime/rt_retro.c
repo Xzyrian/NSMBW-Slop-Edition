@@ -594,7 +594,9 @@ static retro_t *acting;              /* the retro player whose update is running
 /* dAcPy_c::executeMain: after it, the collision results go to the SMB1 code */
 void hle_fn_801438A0(ppc_context *ctx, uint8_t *base) {
     uint32_t pl = ctx->r[3];
+    { void smb3_stage_player_exec(uint32_t pl); smb3_stage_player_exec(pl); }   /* (the SMB3 stage: the game ran this frame - not paused, not stopped) */
     retro_t *r = retro_of(pl);
+    { int smb3_map_player_exec(ppc_context *ctx, uint8_t *base, uint32_t pl); if (smb3_map_player_exec(ctx, base, pl)) return; }   /* (the SMB3 map: its players - an NES character too - walk the map, not NSMBW's course: no physics of their own there, or they fall out of it) */
     if (!r) { orig_fn_801438A0(ctx, base); return; }
     r->controlled = 0;                                                  /* (set by the move step, if it runs) */
     r->in_execute = 1;
@@ -968,8 +970,13 @@ static void procs_init(void) {
 void hle_fn_80145A60(ppc_context *ctx, uint8_t *base) {
     uint32_t pl = ctx->r[3];
     smb3_stage_player_draw(ctx, base, pl);                                /* (the SMB3 stage draws its level from here) */
+    { int smb3_stage_player_hidden(uint32_t pl); if (smb3_stage_player_hidden(pl)) { ctx->r[3] = 1; return; } }   /* (behind SMB3's suit poof) */
     retro_t *r = retro_of(pl);
-    if (!r) { orig_fn_80145A60(ctx, base); return; }
+    if (!r) {
+        orig_fn_80145A60(ctx, base);
+        { void smb3_stage_player_drawn(ppc_context *ctx, uint8_t *base, uint32_t pl); uint32_t keep = ctx->r[3]; smb3_stage_player_drawn(ctx, base, pl); ctx->r[3] = keep; }   /* (after the model's own draw: its joints this frame's) */
+        return;
+    }
     if (gcall(ctx, base, A_TEST_FLAG, 2, pl, FLAG_NO_DRAW)) {     /* (as the original: skip a frame) */
         gcall(ctx, base, A_CLEAR_FLAG, 2, pl, FLAG_NO_DRAW);
         ctx->r[3] = 1; return;
@@ -1101,6 +1108,7 @@ void hle_draw__11dPyMdlMng_cFv(ppc_context *ctx, uint8_t *base) {
 void hle___dt__11dPyMdlMng_cFv(ppc_context *ctx, uint8_t *base) {
     msprite_t *m = ms_of(ctx->r[3], 0);
     if (m) memset(m, 0, sizeof *m);
+    { void rt_charmdl_mng_dtor(ppc_context *, uint8_t *, uint32_t); rt_charmdl_mng_dtor(ctx, base, ctx->r[3]); }   /* (the Frog's model: rt_charmdl.c) */
     orig___dt__11dPyMdlMng_cFv(ctx, base);
 }
 

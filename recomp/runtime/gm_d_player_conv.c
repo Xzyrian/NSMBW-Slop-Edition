@@ -8,6 +8,7 @@
 #include "gm.h"
 void smb3_stage_player_sensors(uint32_t player);   /* ../SMB3Disassembly/port/smb3_stage.c */
 #include "gm_nv.h"
+#include "rt_powerup.h"                      /* (the new power-ups: pu_tab for the game's 7-entry tables) */
 
 #define R(n) ctx->r[n]
 #define F(n) ctx->f[n].d
@@ -22541,7 +22542,7 @@ static void py_setCcData_42030(GM_CTX) {
     R(5) = (R(5) + 20648);
     R(31) = R(3) |R(3);
     R(4) = ld32(base, (R(3) + 10852));
-    R(0) = ld32(base, (R(3) + 4240));
+    R(0) = pu_tab(ld32(base, (R(3) + 4240)));   /* (setCcData: a 7-entry table - rt_powerup.h) */
     R(6) = ld32(base, (R(4) + 352));
     R(4) = rotl32(R(0), 2) & 0xFFFFFFFCu;
     R(0) = R(6) & 0x1u;
@@ -25699,7 +25700,7 @@ static void py_setCenterOffset_465d0(GM_CTX) {
     { uint32_t ea_ = R(6) + 22432; R(4) = ld32(base, ea_); R(6) = ea_; }
     R(5) = (f + 20);
     R(11) = ld32(base, (R(6) + 4));
-    R(0) = ld32(base, (R(3) + 4240));
+    R(0) = pu_tab(ld32(base, (R(3) + 4240)));   /* (a 7-entry table on the stack: rt_powerup.h) */
     R(10) = ld32(base, (R(6) + 8));
     R(9) = ld32(base, (R(6) + 12));
     R(0) = rotl32(R(0), 2) & 0xFFFFFFFCu;
@@ -33299,14 +33300,14 @@ static void py_getHangBcOffsetY_32530(GM_CTX) {
     cr_cmp_s(ctx, 0, (int32_t)R(0), 1);
     if ((!CR_BIT(ctx, 2))) { goto L_8013255C; }
 L_80132544:;
-    R(0) = ld32(base, (R(3) + 4240));
+    R(0) = pu_tab(ld32(base, (R(3) + 4240)));
     R(3) = (0 + 0x802F0000u);
     R(3) = (R(3) + 20068);
     R(0) = rotl32(R(0), 2) & 0xFFFFFFFCu;
     { uint32_t ea_ = (R(3) + R(0)); ctx->f[1].d = ctx->ps1[1] = ldfs(base, ea_); }
     return;
 L_8013255C:;
-    R(0) = ld32(base, (R(3) + 4240));
+    R(0) = pu_tab(ld32(base, (R(3) + 4240)));
     R(3) = (0 + 0x802F0000u);
     R(3) = (R(3) + 20096);
     R(0) = rotl32(R(0), 2) & 0xFFFFFFFCu;
@@ -35414,7 +35415,10 @@ E(fn_8012DA60, 4) { py_executeState_Crouch_2da60(GM_PASS); }
 E(fn_8012DE80, 4) { py_getCarryPos_2de80(GM_PASS); }
 E(fn_8012DFB0, 4) { py_getLiftUpPos_2dfb0(GM_PASS); }
 E(fn_8012E140, 4) { py_checkSpinLiftUpReserve_2e140(GM_PASS); }
-E(fn_8012E5A0, 4) { py_releaseCarryActor_2e5a0(GM_PASS); }
+int smb3_stage_carry(uint32_t pl); void smb3_stage_carry_release(uint32_t pl); void hle_fn_8012E510(ppc_context *ctx, uint8_t *base);
+E(fn_8012E5A0, 4) {                              /* (an SMB3 shell carried: dropped, the carry undone) */
+    if (smb3_stage_carry(ctx->r[3])) { ctx->r[4] = 0; hle_fn_8012E510(ctx, base); return; }
+    py_releaseCarryActor_2e5a0(GM_PASS); }
 E(fn_8012E650, 4) { py_setCarryOffFall_2e650(GM_PASS); }
 E(fn_8012E760, 4) { py_checkCarryThrow_2e760(GM_PASS); }
 E(fn_8012E820, 4) { py_initializeThrowCommonBase_2e820(GM_PASS); }

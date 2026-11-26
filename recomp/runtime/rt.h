@@ -223,6 +223,7 @@ uint32_t rt_gcall_(const char *file, int line, ppc_context *ctx, uint8_t *base, 
 #define rt_gcall(...) rt_gcall_(__FILE__, __LINE__, __VA_ARGS__)
 /* give a native function a guest address, so guest code can call it (function pointers, vtables) */
 void rt_register_native(uint32_t addr, ppc_func fn);
+void rt_override_func(uint32_t addr, ppc_func fn);   /* (a game function replaced for indirect calls, before the table: rt_core.c) */
 void rt_post_callback(uint32_t fn, uint32_t a0, uint32_t a1);
 void rt_post_interrupt(uint32_t fn, uint32_t intr);                /* an SDK interrupt handler (intr, current OSContext) as a native event */   /* rt_core.c: a guest callback "from an interrupt" (track A) */
 int  rt_events_pending(void);

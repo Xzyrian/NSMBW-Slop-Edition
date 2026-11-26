@@ -92,6 +92,8 @@ void hle_DoSceneChange__FUsUiUi(ppc_context *ctx, uint8_t *base) {
         return;
     }
     rt_log("scene", "next scene %u (param %08X%s) requested from %08X (%s)", ctx->r[3] & 0xFFFF, ctx->r[4], ctx->r[5] ? ", forced" : "", ctx->lr, rt_func_name(ctx->lr, NULL));
+    {   int smb3_stage_restart(ppc_context *ctx, uint8_t *base);        /* (the SMB3 stage: a death goes back into the level, not NSMBW's world map) */
+        if ((ctx->r[3] & 0xFFFF) == 3 && smb3_stage_restart(ctx, base)) return; }
     orig_DoSceneChange__FUsUiUi(ctx, base);
 }
 void hle_setNextScene__10dScStage_cFUsiQ210dScStage_c6Exit_eQ28dFader_c12fader_type_e(ppc_context *ctx, uint8_t *base) {

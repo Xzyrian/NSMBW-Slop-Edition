@@ -7,6 +7,8 @@
      is fine, it is only reported
   3. recompile: tools/recomp6502.py -> out/smb3_bNN.c, out/smb3_table.c
   4. out/smb3_rom.c: the ROM image (the game's data; the code reads its tables from it)
+  5. out/smb3_raccoon_anm.c: NSMB2's Raccoon animations as NSMBW's (tools/nsmb2_anims.py), from
+     the user's NSMB2 RomFS dump in ../NSMB2_RomFS (none there: an empty archive)
 Everything it writes is in out/. Skipped when nothing it depends on changed (out/.stamp). recomp/build.py runs it."""
 import hashlib, os, shutil, subprocess, sys, glob
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -32,8 +34,18 @@ def nesasm():
     if os.name == 'nt' and os.path.exists(exe): return exe
     return shutil.which('nesasm') or shutil.which('nesasm3') or sys.exit('build_smb3: no NESASM (set NESASM=path)')
 
+def raccoon_anims():
+    romfs = os.path.join(os.path.dirname(ROOT), 'NSMB2_RomFS')
+    src = os.path.join(romfs, 'Model', 'Player', 'Anim_Common.bcres')
+    tool = os.path.join(HERE, 'nsmb2_anims.py'); out_c = os.path.join(OUT, 'smb3_raccoon_anm.c')
+    pose = os.path.join(os.path.dirname(ROOT), 'models', 'frog', 'frog_idle_pose.json')   # (the Frog's idle: F_wait)
+    newest = max(os.path.getmtime(f) for f in (tool, src, pose) if os.path.exists(f))
+    if os.path.exists(out_c) and os.path.getmtime(out_c) >= newest: return
+    subprocess.run([sys.executable, tool, romfs, os.path.join(OUT, 'smb3_raccoon_anm.brres'), out_c], check=True)
+
 def main():
     os.makedirs(OUT, exist_ok=True)
+    raccoon_anims()
     st = stamp(); sp = os.path.join(OUT, '.stamp')
     if os.path.exists(sp) and open(sp).read().strip() == st and os.path.exists(os.path.join(OUT, 'smb3_rom.c')):
         print('SMB3: up to date'); return

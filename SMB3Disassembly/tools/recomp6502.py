@@ -136,7 +136,10 @@ def gen_bank(bank, base, rom, addrs, labels, out, hooks={}):
         o.append('L_%04X:%s' % (a, '  /* %s */' % lab if lab else ''))
         if (bank, a) in hooks:                        # native code first (port/hooks.txt): 0 = go on with the original
             o.append('    { int h_ = %s(); if (h_) return h_; }' % hooks[(bank, a)])
-        s = 'CYC(%d); ' % cyc
+        # (interrupts at every instruction, as the 6502 takes them: an MMC3 IRQ asserted in a long
+        #  run of straight code - SMB3's music engine - came late, after the next line's counter
+        #  clock: the Spade game's strip splits fell a strip low every other frame)
+        s = 'CHECK(0x%04X); CYC(%d); ' % (a, cyc)
         if m in ('LDA', 'LDX', 'LDY'):
             r = m[2].lower(); s += 'R.%s = %s; NZ(R.%s);' % (r, rd(mode, a), r)
         elif m in ('STA', 'STX', 'STY'):

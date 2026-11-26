@@ -1,0 +1,211 @@
+# power-up reads: 297 sites in 210 functions
+cmp    OPhysicsCallback1__15daEnBlockMain_c@80020BF0    recomp_002.c:470       mPowerup cmp eq0,eq3 
+other  fn_80022180@80022180                             recomp_002.c:2043      mPowerup  
+cmp    fn_80036AB0@80036AB0                             recomp_003.c:11696     mPowerup cmp deq1,deq2 
+cmp    fn_8003B020@8003B020                             recomp_004.c:383       mPowerup cmp eq0,eq3 
+cmp    fn_8003B3E0@8003B3E0                             recomp_004.c:649       mPowerup cmp eq0 
+cmp    fn_80047630@80047630                             recomp_005.c:308       mPowerup cmp eq3 
+cmp    fn_80047800@80047800                             recomp_005.c:414       mPowerup cmp eq5 
+cmp    fn_80048630@80048630                             recomp_005.c:1495      mPowerup cmp eq5 
+cmp    fn_80048C70@80048C70                             recomp_005.c:1973      mPowerup cmp eq3 
+cmp    fn_80048E10@80048E10                             recomp_005.c:2065      mPowerup cmp eq0,eq3 
+cmp    fn_80049270@80049270                             recomp_005.c:2484      mPowerup cmp eq3 
+cmp    fn_8004C990@8004C990                             recomp_005.c:6477      mPowerup cmp eq5 
+cmp    fn_8004CB30@8004CB30                             recomp_005.c:6606      mPowerup cmp eq0,eq3 
+other  fn_8004CC10@8004CC10                             recomp_005.c:6686      mdl mPlayerMode  
+cmp    fn_8004CF20@8004CF20                             recomp_005.c:6904      mPowerup cmp eq3 
+cmp    fn_8004CFD0@8004CFD0                             recomp_005.c:6943      mPowerup cmp eq3 
+cmp    fn_8004D350@8004D350                             recomp_005.c:7280      mPowerup cmp eq3 
+TABLE  fn_8004D5A0@8004D5A0                             recomp_005.c:7359      mPowerup  32[802EEAF0]
+cmp    fn_8004D5C0@8004D5C0                             recomp_005.c:7395      mPowerup cmp eq5 
+cmp    fn_8004EDE0@8004EDE0                             recomp_005.c:9345      mPowerup cmp eq0,eq3,eq4 
+cmp    fn_80051930@80051930                             recomp_005.c:12486     mPowerup cmp eq0 
+cmp    fn_800544F0@800544F0                             recomp_005.c:15748     mPowerup cmp eq3 
+cmp    fn_80054F80@80054F80                             recomp_005.c:16579     mPowerup cmp eq3 
+cmp    fn_80056BD0@80056BD0                             recomp_006.c:1882      mPowerup cmp eq3 
+cmp    fn_8005B8A0@8005B8A0                             recomp_006.c:7735      mPowerup cmp eq0,eq3 
+other  fn_8006C1C0@8006C1C0                             recomp_007.c:10411     mPowerup  
+other  fn_80088100@80088100                             recomp_008.c:26527     mPowerup  
+cmp    fn_800883E0@800883E0                             recomp_008.c:27018     mPowerup cmp eq3 
+cmp    fn_800A2A20@800A2A20                             recomp_010.c:10201     mPowerup cmp eq3 
+cmp    fn_800B0840@800B0840                             recomp_011.c:10900     mPowerup cmp eq3 
+call/pass fn_800B1A90@800B1A90                             recomp_011.c:12267     mPowerup  
+call/pass fn_800B2550@800B2550                             recomp_011.c:13194     mPowerup  
+cmp    fn_800BD620@800BD620                             recomp_012.c:11566     mdl mPlayerMode cmp eq3 
+cmp    fn_800D2060@800D2060                             recomp_014.c:1767      mPowerup cmp eq0,eq3 
+cmp    fn_800D4670@800D4670                             recomp_014.c:4511      mdl mPlayerMode cmp eq2,eq6 
+cmp    fn_800D5170@800D5170                             recomp_014.c:5288      mdl mPlayerMode cmp eq0,eq3 
+cmp    fn_800D57F0@800D57F0                             recomp_014.c:5810      mdl mPlayerMode cmp ?0 
+cmp    StartAnimOrig@800D5DD0                           recomp_014.c:6204      mdl mPlayerMode cmp eq3 
+call/pass calc__11dPyMdlMng_cFR6mMtx_c@800D6EB0            recomp_014.c:7463      mdl mPlayerMode  
+other  calc__11dPyMdlMng_cF7mVec3_c7mAng3_c7mVec3_c@800D6F40 recomp_014.c:7497      mdl mPlayerMode  
+other  fn_80100DA0@80100DA0                             recomp_017.c:3810      mdl mPlayerMode  
+call/pass fn_80101110@80101110                             recomp_017.c:4004      mdl mPlayerMode  
+call/pass fn_80101230@80101230                             recomp_017.c:4100      mdl mPlayerMode  
+cmp    fn_80125D90@80125D90                             recomp_019.c:10189     mPowerup cmp eq3 
+cmp    fn_80126630@80126630                             recomp_019.c:10816     mPowerup cmp eq3 
+cmp    fn_80126A80@80126A80                             recomp_019.c:11150     mPowerup cmp eq4 
+cmp    fn_80127B30@80127B30                             recomp_019.c:12465     mPowerup cmp eq3 
+cmp    fn_80129050@80129050                             recomp_019.c:13888     mPowerup cmp eq5 
+other  fn_80129220@80129220                             recomp_019.c:13979     mdl mPlayerMode  
+cmp    fn_8012AA30@8012AA30                             recomp_019.c:15663     mPowerup cmp eq5 
+cmp    fn_8012AB00@8012AB00                             recomp_019.c:15721     mPowerup cmp eq3 
+cmp    fn_8012B5B0@8012B5B0                             recomp_019.c:16581     mPowerup cmp eq5 
+cmp    fn_8012BF70@8012BF70                             recomp_019.c:17195     mPowerup cmp eq3,eq5 
+cmp    fn_8012C5E0@8012C5E0                             recomp_019.c:17654     mPowerup cmp eq5 
+cmp    fn_8012D490@8012D490                             recomp_019.c:18758     mPowerup cmp eq5 
+cmp    fn_8012DC60@8012DC60                             recomp_019.c:19300     mPowerup cmp eq4 
+cmp    fn_8012DD70@8012DD70                             recomp_019.c:19382     mPowerup cmp eq3 
+cmp    fn_8012EA10@8012EA10                             recomp_019.c:20427     mPowerup cmp eq0 
+cmp    fn_8012FB10@8012FB10                             recomp_019.c:21568     mPowerup cmp eq0,eq3 
+cmp    fn_8012FCF0@8012FCF0                             recomp_019.c:21687     mPowerup cmp eq0,eq3 
+cmp    fn_801300E0@801300E0                             recomp_019.c:22009     mPowerup cmp eq5 
+cmp    fn_80130340@80130340                             recomp_019.c:22142     mPowerup cmp eq3 
+cmp    fn_801305B0@801305B0                             recomp_019.c:22286     mPowerup cmp eq5 
+cmp    fn_80130C10@80130C10                             recomp_019.c:22739     mPowerup cmp eq5 
+cmp    fn_80131470@80131470                             recomp_019.c:23337     mPowerup cmp eq5 
+cmp    fn_80131870@80131870                             recomp_019.c:23624     mPowerup cmp eq5 
+cmp    fn_80131990@80131990                             recomp_019.c:23805     mPowerup cmp eq5 
+TABLE  fn_80132530@80132530                             recomp_019.c:24534     mPowerup  f[802F4E64] f[802F4E80]
+cmp    fn_80132F60@80132F60                             recomp_019.c:25295     mPowerup cmp eq0,eq3 
+TABLE  fn_80133CB0@80133CB0                             recomp_020.c:719       mPowerup  f[802F4E9C]
+cmp    fn_80137320@80137320                             recomp_020.c:4722      mPowerup cmp eq0 
+cmp    fn_80137B60@80137B60                             recomp_020.c:5272      mPowerup/mdl mPlayerMode cmp eq0,eq3 
+cmp    fn_80137E20@80137E20                             recomp_020.c:5538      mPowerup cmp eq3 
+cmp    fn_80138140@80138140                             recomp_020.c:5734      mPowerup cmp eq3 
+TABLE  fn_801386B0@801386B0                             recomp_020.c:6072      mPowerup  f[802F4ED0]
+cmp    fn_80138790@80138790                             recomp_020.c:6244      mPowerup cmp eq0,eq3 
+call/pass fn_80139D00@80139D00                             recomp_020.c:7701      mPowerup  
+call/pass fn_8013A180@8013A180                             recomp_020.c:8098      mPowerup  
+cmp    fn_8013B9C0@8013B9C0                             recomp_020.c:9765      mPowerup cmp eq2 
+cmp    PlayerProjectileShooting@8013BB90                recomp_020.c:9948      mPowerup cmp eq2 
+cmp    fn_8013C1B0@8013C1B0                             recomp_020.c:10319     mPowerup cmp eq2 
+cmp    fn_8013CC90@8013CC90                             recomp_020.c:11097     mPowerup cmp eq4 
+cmp    fn_8013E170@8013E170                             recomp_020.c:12757     mPowerup cmp eq3 
+cmp    fn_8013E380@8013E380                             recomp_020.c:12808     mPowerup cmp eq0,eq3 
+cmp    fn_8013E4B0@8013E4B0                             recomp_020.c:12910     mPowerup cmp eq1 
+cmp    fn_8013ED10@8013ED10                             recomp_020.c:13518     mPowerup cmp eq3 
+cmp    fn_8013FF70@8013FF70                             recomp_020.c:14913     mPowerup cmp ?3 
+cmp    fn_80140300@80140300                             recomp_020.c:15115     mPowerup cmp eq4 
+cmp    fn_80140F40@80140F40                             recomp_020.c:16018     mNextMode/mPowerup cmp eq3 
+cmp    fn_80141140@80141140                             recomp_020.c:16218     mPowerup cmp eq4 
+cmp    fn_80141320@80141320                             recomp_020.c:16300     mPowerup cmp eq0,eq3 
+TABLE  fn_80141E30@80141E30                             recomp_020.c:17096     mPowerup  32[802F50A8] 32[80325260]
+other  fn_80141E90@80141E90                             recomp_020.c:17129     mdl mPlayerMode  
+cmp    fn_80141F70@80141F70                             recomp_020.c:17195     mPowerup cmp eq0,eq3 
+cmp    fn_80142030@80142030                             recomp_020.c:17264     mPowerup cmp eq0,eq3 
+call/pass fn_80142530@80142530                             recomp_020.c:17609     mPowerup  
+cmp    fn_80142580@80142580                             recomp_020.c:17663     mPowerup cmp eq3 
+cmp    fn_80142660@80142660                             recomp_020.c:17891     mPowerup cmp eq5 
+call/pass fn_80142F20@80142F20                             recomp_020.c:18307     mPowerup  
+call/pass fn_801430E0@801430E0                             recomp_020.c:18453     mPowerup  
+call/pass fn_80143410@80143410                             recomp_020.c:18642     mPowerup  
+cmp    fn_801435E0@801435E0                             recomp_020.c:18780     mPowerup/mdl mPlayerMode cmp eq0,eq3 
+call/pass fn_801436F0@801436F0                             recomp_020.c:18864     mdl mPlayerMode  
+cmp    fn_80144110@80144110                             recomp_020.c:19637     mPowerup cmp eq3 
+call/pass fn_80144B20@80144B20                             recomp_020.c:20405     mPowerup  
+call/pass fn_80144D60@80144D60                             recomp_020.c:20593     mPowerup  
+call/pass fn_80145650@80145650                             recomp_020.c:21278     mPowerup  
+other  dAcPy_c__ChangePowerupWithAnimation@80145AC0     recomp_020.c:21562     mNextMode/mPowerup  
+cmp    fn_80145E90@80145E90                             recomp_020.c:21899     mPowerup cmp eq0,eq3 
+call/pass dAcPy_vf3F4@801460F0                             recomp_020.c:22026     mNextMode/mPowerup  
+call/pass dAcPy_vf3F8@801461D0                             recomp_020.c:22099     mNextMode/mPowerup  
+cmp    fn_801462A0@801462A0                             recomp_020.c:22289     mPowerup cmp eq0,eq3 
+other  fn_80146580@80146580                             recomp_020.c:22369     mPowerup  
+TABLE  fn_801465D0@801465D0                             recomp_020.c:22390     mPowerup cmp ?3 f[?]
+TABLE  fn_80146700@80146700                             recomp_020.c:22472     mPowerup  32[802F57D0]
+cmp    fn_80146740@80146740                             recomp_020.c:22491     mPowerup cmp eq3 
+cmp    fn_801467B0@801467B0                             recomp_020.c:22534     mPowerup cmp eq3,eq4,eq5 
+cmp    dAcPy_vf3FC@801468D0                             recomp_020.c:22620     mPowerup cmp eq3 
+cmp    fn_80146FA0@80146FA0                             recomp_020.c:23123     mPowerup cmp deq4 
+cmp    fn_80147040@80147040                             recomp_020.c:23172     mPowerup cmp eq4 
+cmp    fn_80147560@80147560                             recomp_020.c:23568     mPowerup cmp eq3 
+call/pass fn_80147BD0@80147BD0                             recomp_020.c:24854     mNextMode/mPowerup  
+call/pass fn_8014f030__9daYoshi_cFP7dAcPy_c@8014EEF0       recomp_021.c:5574      mNextMode  
+call/pass fn_8014EFB0@8014EFB0                             recomp_021.c:5635      mNextMode  
+call/pass fn_801501D0@801501D0                             recomp_021.c:6956      mNextMode  
+call/pass fn_801503E0@801503E0                             recomp_021.c:7116      mNextMode  
+cmp    fn_80152FB0@80152FB0                             recomp_021.c:10361     mPowerup cmp eq4 
+cmp    fn_2_538A0@807C1050                              recomp_048.c:5021      mPowerup cmp eq3 
+cmp    fn_2_53D80@807C1530                              recomp_048.c:5439      mPowerup cmp eq3 
+cmp    fn_2_69190@807D6940                              recomp_049.c:14865     mPowerup cmp eq3 
+cmp    fn_2_6DFA0@807DB750                              recomp_049.c:20655     mPowerup cmp eq3 
+call/pass fn_2_75500@807E2CB0                              recomp_050.c:8167      mPowerup  
+other  fn_2_7E520@807EBCD0                              recomp_051.c:3204      mPowerup  
+cmp    fn_2_B48F0@808220A0                              recomp_055.c:142       mPowerup cmp eq3 
+cmp    fn_2_B4A80@80822230                              recomp_055.c:306       mPowerup cmp ?3 
+cmp    fn_2_FD700@8086AEB0                              recomp_060.c:2442      mPowerup cmp eq0,eq3 
+cmp    fn_2_14F2F0@808BCAA0                             recomp_065.c:8044      mPowerup cmp eq3 
+call/pass fn_2_16C7E0@808D9F90                             recomp_067.c:10582     mdl mPlayerMode  
+call/pass fn_2_17B330@808E8AE0                             recomp_068.c:5644      mdl mPlayerMode  
+call/pass fn_2_17C8F0@808EA0A0                             recomp_068.c:7156      mdl mPlayerMode  
+call/pass fn_2_17CB90@808EA340                             recomp_068.c:7318      mdl mPlayerMode  
+call/pass fn_2_17CE40@808EA5F0                             recomp_068.c:7507      mdl mPlayerMode  
+call/pass fn_2_17D220@808EA9D0                             recomp_068.c:7788      mdl mPlayerMode  
+call/pass fn_2_17D560@808EAD10                             recomp_068.c:8016      mdl mPlayerMode  
+call/pass fn_2_17DB60@808EB310                             recomp_068.c:8651      mdl mPlayerMode  
+call/pass fn_2_17ECC0@808EC470                             recomp_068.c:9774      mdl mPlayerMode  
+call/pass fn_2_17ED80@808EC530                             recomp_068.c:9902      mdl mPlayerMode  
+call/pass fn_2_17F150@808EC900                             recomp_068.c:10100     mdl mPlayerMode  
+call/pass fn_2_17F380@808ECB30                             recomp_068.c:10262     mdl mPlayerMode  
+cmp    fn_2_1806C0@808EDE70                             recomp_068.c:11634     mdl mPlayerMode cmp eq5 
+other  fn_2_181B70@808EF320                             recomp_068.c:13109     mdl mPlayerMode  
+call/pass fn_2_181BF0@808EF3A0                             recomp_068.c:13175     mdl mPlayerMode  
+call/pass fn_2_195980@80903130                             recomp_069.c:16930     mdl mPlayerMode  
+call/pass fn_2_195B20@809032D0                             recomp_069.c:16989     mdl mPlayerMode  
+call/pass fn_2_197840@80904FF0                             recomp_070.c:805       mdl mPlayerMode  
+call/pass fn_2_198590@80905D40                             recomp_070.c:1642      mdl mPlayerMode  
+call/pass fn_2_1986C0@80905E70                             recomp_070.c:1749      mdl mPlayerMode  
+cmp    fn_2_198DF0@809065A0                             recomp_070.c:2253      mdl mPlayerMode cmp eq5 
+call/pass fn_2_19BAF0@809092A0                             recomp_070.c:5592      mdl mPlayerMode  
+call/pass fn_2_19C030@809097E0                             recomp_070.c:6007      mdl mPlayerMode  
+call/pass fn_2_19C210@809099C0                             recomp_070.c:6157      mdl mPlayerMode  
+call/pass fn_2_19D2A0@8090AA50                             recomp_070.c:7615      mdl mPlayerMode  
+call/pass fn_2_19DF10@8090B6C0                             recomp_070.c:8165      mdl mPlayerMode  
+call/pass fn_2_19E0C0@8090B870                             recomp_070.c:8277      mdl mPlayerMode  
+call/pass fn_2_19E3C0@8090BB70                             recomp_070.c:8461      mdl mPlayerMode  
+call/pass fn_2_19E560@8090BD10                             recomp_070.c:8586      mdl mPlayerMode  
+call/pass fn_2_19E690@8090BE40                             recomp_070.c:8704      mdl mPlayerMode  
+call/pass fn_2_19E9C0@8090C170                             recomp_070.c:8918      mdl mPlayerMode  
+call/pass fn_2_19ECB0@8090C460                             recomp_070.c:9097      mdl mPlayerMode  
+call/pass fn_2_19EE00@8090C5B0                             recomp_070.c:9192      mdl mPlayerMode  
+cmp    fn_2_1A3F50@80911700                             recomp_070.c:15040     mPowerup cmp deq1,deq2,deq6 
+cmp    fn_2_1A5110@809128C0                             recomp_070.c:16384     mPowerup cmp eq3 
+call/pass fn_3_8CD0@809ABAA0                               recomp_073.c:13988     mPowerup  
+cmp    fn_3_1C4E0@809BF2B0                              recomp_075.c:5022      mPowerup cmp eq3 
+cmp    fn_3_2B9F0@809CE7C0                              recomp_076.c:6143      mPowerup cmp eq3 
+cmp    fn_3_2BB60@809CE930                              recomp_076.c:6300      mPowerup cmp ?3 
+cmp    fn_3_2FDB0@809D2B80                              recomp_076.c:11280     mPowerup cmp eq0,eq3 
+cmp    fn_3_394B0@809DC280                              recomp_077.c:4106      mPowerup cmp eq3 
+cmp    fn_3_85560@80A28330                              recomp_082.c:768       mNextMode cmp deq4 
+other  daEnItem_c__GetWhetherPlayerCanGetPowerupOrNot@80A2BEA0 recomp_082.c:5038      mPowerup  
+cmp    fn_3_BD3E0@80A601B0                              recomp_085.c:5931      mPowerup cmp eq3 
+cmp    fn_3_D3F10@80A76CE0                              recomp_086.c:15925     mPowerup cmp eq3 
+cmp    fn_3_F14C0@80A94290                              recomp_088.c:15571     mPowerup cmp dgt4 
+cmp    fn_3_F2FD0@80A95DA0                              recomp_089.c:385       mPowerup cmp eq3 
+cmp    fn_3_110100@80AB2ED0                             recomp_090.c:16424     mPowerup cmp eq3 
+cmp    fn_3_115A30@80AB8800                             recomp_091.c:4747      mPowerup cmp eq4 
+cmp    fn_3_125190@80AC7F60                             recomp_092.c:5951      mPowerup cmp eq5 
+cmp    fn_3_1252E0@80AC80B0                             recomp_092.c:6043      mPowerup cmp eq5 
+call/pass fn_4_1CE00@80B39850                              recomp_095.c:584       mPowerup  
+call/pass fn_4_1F4B0@80B3BF00                              recomp_095.c:3445      mPowerup  
+call/pass fn_4_1F650@80B3C0A0                              recomp_095.c:3560      mPowerup  
+other  fn_4_28160@80B44BB0                              recomp_095.c:14259     mNextMode  
+cmp    mod_fn_8003B3E0@81802020                         recomp_098.c:16103     mPowerup cmp eq0 
+cmp    mod_fn_8004EDE0@81802840                         recomp_098.c:16714     mPowerup cmp eq0,eq3,eq4 
+cmp    mod_fn_8005B8A0@81803EF4                         recomp_098.c:18568     mPowerup cmp eq0,eq3 
+other  mod_fn_8006C1C0@81807E2C                         recomp_099.c:455       mPowerup  
+cmp    mod_fn_800883E0@818093CC                         recomp_099.c:2160      mPowerup cmp eq3 
+cmp    mfn_8180CB80@8180CB80                            recomp_099.c:6160      mdl mPlayerMode cmp eq3 
+TABLE  mod_fn_2_6DFA0@81823240                          recomp_100.c:10805     mPowerup  f[?]
+cmp    mod_fn_2_FD700@818262D0                          recomp_100.c:14471     mPowerup cmp eq0,eq3 
+cmp    mod_fn_8013FF70@8182E0F8                         recomp_100.c:23672     mPowerup cmp ?3 
+cmp    mod_fn_80140F40@8182E520                         recomp_100.c:23889     mNextMode/mPowerup cmp eq3 
+call/pass mod_fn_80144B20@8182E5F0                         recomp_100.c:23988     mPowerup  
+call/pass mod_fn_80144D60@8182E834                         recomp_100.c:24112     mPowerup  
+call/pass mod_dAcPy_vf3F4@8182EAD0                         recomp_100.c:24292     mNextMode/mPowerup  
+call/pass mod_dAcPy_vf3F8@8182EBE4                         recomp_100.c:24375     mNextMode/mPowerup  
+cmp    mod_fn_3_85560@81835AAC                          recomp_101.c:4076      mNextMode cmp eq6 
+cmp    mod_fn_3_F14C0@81836BD8                          recomp_101.c:5261      mPowerup cmp gt1 
+cmp    mfn_8183D7B8@8183D7B8                            recomp_101.c:13345     mPowerup cmp eq3 
+TABLE  mfn_8183D9B0@8183D9B0                            recomp_101.c:13464     mPowerup  32[?]

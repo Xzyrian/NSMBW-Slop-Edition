@@ -415,7 +415,17 @@ void rt_register_native(uint32_t addr, ppc_func fn) {
     for (int i = 0; i < native_count; i++) if (native_fns[i].addr == addr) { native_fns[i].fn = fn; return; }
     if (native_count < 32) { native_fns[native_count].addr = addr; native_fns[native_count].fn = fn; native_count++; }
 }
+/* a game function replaced for indirect calls (virtual calls, state methods, callbacks) without
+   regenerating out/ (rt_override_func: rt_powerup.c's power-up table hooks) - looked up first */
+static struct { uint32_t addr; ppc_func fn; } override_fns[64] RT_LOCAL;
+static int override_count RT_LOCAL;
+void rt_override_func(uint32_t addr, ppc_func fn) {
+    for (int i = 0; i < override_count; i++) if (override_fns[i].addr == addr) { override_fns[i].fn = fn; goto flush; }
+    if (override_count < 64) { override_fns[override_count].addr = addr; override_fns[override_count].fn = fn; override_count++; }
+flush: { uint32_t i = (addr >> 2) & ((1 << 14) - 1); if (icache[i].addr == addr) icache[i].fn = NULL; }
+}
 static ppc_func lookup_slow(uint32_t addr) {
+    for (int i = 0; i < override_count; i++) if (override_fns[i].addr == addr) return override_fns[i].fn;
     uint32_t lo = 0, hi = ppc_func_count;
     while (lo < hi) {
         uint32_t m = (lo + hi) / 2;
@@ -1020,6 +1030,7 @@ int main(int argc, char **argv) {
     if (disc_init()) rt_fatal("cannot open disc files in %s", g_disc);
     setup_low_memory();
     hw_init(); ios_init(); gx_init();
+    { void rt_powerup_init(void); rt_powerup_init(); }   /* (the new power-ups' hooks: rt_powerup.c) */
     /* the guest's main thread runs on a fiber of its own (rt_state.c: its stack is part of a
        save state); main's stack stays the host fiber, where save states are loaded */
     plat_fiber_main();

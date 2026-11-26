@@ -20,3 +20,7 @@ uint8_t ppu_peek_chr(uint16_t addr);                /* a byte of the pattern tab
 uint8_t ppu_peek_pal(int i);                        /* palette RAM (0-31) */
 uint8_t ppu_peek_ctrl(void);                        /* $2000 */
 uint32_t ppu_rgb(int colour);                       /* an NES colour as 0xAARRGGBB */
+void ppu_capture_at(int line);                      /* snapshot the pattern tables as mapped when drawing this line */
+const uint8_t *ppu_captured_chr(void);              /* (8 KB, $0000-$1FFF) */
+uint8_t ppu_captured_ctrl(void);                    /* $2000 then (bit 4: the background's table) */
+uint8_t ppu_peek_nt(uint16_t addr);                 /* a name / attribute table byte ($2000-$2FFF, mirrored) */

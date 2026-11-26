@@ -15,6 +15,7 @@
  *
  * Which functions are on and how they were verified: see the list before the entry points. */
 #include "gm_i2.h"
+#include "rt_powerup.h"                      /* (the new power-ups: pu_tab for the game's 7-entry tables) */
 RT_STATE_FILE                                   /* (game code: its variables are part of a save state) */
 
 /* ---- fBase_c / dActor_c fields (checked against the recompiled code) */
@@ -809,7 +810,7 @@ static void pb_isMameAction(GM_CTX, gptr self) {
 /* setSoundPlyMode: the sound object's mode from scPlayerSound[mPowerup] */
 static void pb_setSoundPlyMode(GM_CTX, gptr self) {
     (void)base;
-    R(0) = gm_u32(self + PL_POWERUP); R(4) = PLAYER_SOUND_MODE;
+    R(0) = pu_tab(gm_u32(self + PL_POWERUP)); R(4) = PLAYER_SOUND_MODE;
     R(0) = X4(R(0)); R(0) = gm_u32(R(4) + R(0));
     gm_set_u32(self + PL_SND_PLY_MODE, R(0));
 }

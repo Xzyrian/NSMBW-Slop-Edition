@@ -80,6 +80,8 @@ static uint32_t color_calc(GM_CTX, gptr self) {
 #define E(name) GM_HLE(name)
 /* mFader_c */
 E(fn_8016DAA0) {                                                                               /* mFader_c::draw */
+    {   int smb3_stage_fader(uint32_t fd);                                                     /* (the SMB3 game mode: SMB3's palette fade instead) */
+        if (smb3_stage_fader(gm_u32(CUR_FADER))) return; }
     FN(0x8016DAA0);
     GM_CALLR(0x8016DAB4u, F_G3D_INVALIDATE, 1, 2047);
     GM_CALLR(0x8016DAB8u, F_RESET_MATERIAL, 0);

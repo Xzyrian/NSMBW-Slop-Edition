@@ -18,6 +18,7 @@
 #include "nes_gen.h"
 #include "nes_ppu.h"
 #include "nes_apu.h"
+void rt_log(const char *tag, const char *fmt, ...);
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -213,8 +214,14 @@ static int events(uint16_t pc) {
         }
         if (!pre_done && dot >= 261 * DOTS_LINE + 1) { pre_done = 1; ppu_prerender(); }
         if (dot >= DOTS_FRAME) { frame_dot0 += DOTS_FRAME; vbl_done = pre_done = 0; ppu_frame_start(); continue; }
-        if (nmi_pending) { nmi_pending = 0; int r = interrupt(0xFFFA, pc, 0); if (r != -1) return r; continue; }
-        if (irq_line && !R.i) { int r = interrupt(0xFFFE, pc, 0); if (r != -1) return r; continue; }
+        if (nmi_pending) { nmi_pending = 0; int d0 = frame_dot(); int r = interrupt(0xFFFA, pc, 0);
+            {   static int lg = -1; if (lg < 0) lg = getenv("NES_IRQLOG") != NULL;
+                if (lg) { int d1 = frame_dot(); rt_log("nes", "nmi: frame %llu from dot %d (line %d) to dot %d (line %d)%s", (unsigned long long)frames, d0, d0 / DOTS_LINE, d1, d1 / DOTS_LINE, r != -1 ? " (no RTI)" : ""); } }
+            if (r != -1) return r; continue; }
+        if (irq_line && !R.i) {
+            {   static int lg = -1; if (lg < 0) lg = getenv("NES_IRQLOG") != NULL;
+                if (lg) rt_log("nes", "irq: frame %llu line %d dot %d (latch %u) pc %04X", (unsigned long long)frames, ppu_next_line(), dot - ppu_next_line() * DOTS_LINE, mmc_irq_latch, pc); }
+            int r = interrupt(0xFFFE, pc, 0); if (r != -1) return r; continue; }
         break;
     }
     set_next_event();

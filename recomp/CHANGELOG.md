@@ -6,6 +6,392 @@ without re-deriving it.
 
 ---
 
+## 2026-11-26 (130) - Claude: the Frog gets its own model file (Penguin untouched); more power-up sites
+
+- **Frog model** (`runtime/rt_charmdl.c`): Mario gets a second dPlayerMdl_c built from
+  `game/mod/characters/smb3/frog_mario.brres` (made with the first, `fn_800D5580` →
+  `rt_charmdl_after_create`; deleted with the manager, `rt_retro.c`). setPlayerMode(8) swaps
+  dPyMdlMng_c's model to it (and back for any other value), restarting the current animation, so
+  NSMBW's change animation shows old/new by turns as usual. The Penguin is the real Penguin again.
+  `smb3/mario.brres` is now the Raccoon parts only (`models/tools/build_smb3_brres.py`: `--frog`
+  only for frog_mario.brres). Other characters: Super's model until their Frog file exists.
+- **Power-up sites** (POWERUPS.md "Read so far"): setCcData and the fukidashi offset read their
+  tables with `pu_tab`; hle for daEnItem_c::GetWhetherPlayerCanGetPowerupOrNot (a block gives a
+  Raccoon/Frog player a flower, not a mushroom), fn_80022180 and fn_80036AB0 (a Raccoon/Frog
+  player breaks bricks like any big player). `runtime/hle_funcs.txt` lists the three.
+- **Verified** (headless, Mario, SMB3 1-1): Frog shows the Frog model, Penguin the Penguin,
+  Raccoon the tail and ears; Raccoon and Frog persist through a pipe; small → Frog no crash.
+  The brick/item hle are for the NSMBW mode's blocks: built, not yet tested in an NSMBW level.
+- **Open**: the rest of the catalog; Tanooki/P-Wing; Frog moves; Frog files for the others;
+  carrying-player block hits; NSMB2 leaf (needs code.bin).
+
+---
+
+## 2026-11-26 (129) - Claude: the new power-ups become NSMBW power-up states (Raccoon 7, Frog 8); a crash; faster tests
+
+User (2026-11-26): the suits must be real NSMBW power-up states, not flags stacked on Super; the
+new power-ups exist in every game mode; nothing substituted between games. Plan and catalog:
+`SMB3Disassembly/port/POWERUPS.md` (sites: `powerup_sites.txt`, `tools/powerup_scan.py`).
+
+- **`runtime/rt_powerup.h`** (new): `PLAYER_MODE_e` extended - 7 `PU_RACCOON` (variants Tanooki,
+  P-Wing to come), 8 `PU_FROG`; `pu_base` (the power-up a new one is built on: Super) and
+  `pu_tab` (the index for one of the game's 7-entry tables - never a read past the end).
+- **The game's tables** read with `pu_tab`: setCcDataDirect (l_mode_cc_size_data),
+  getBgPointData (the collision points), getTallType, setSpeedData (scSpeedHioData), the
+  balloon offset (`gm_d_player.c`); setSoundPlyMode (`gm_d_player_base.c`); getHangBcOffsetY,
+  setCenterOffset (`gm_d_player_conv.c`); fn_80133CB0 (recompiled only: `runtime/rt_powerup.c`,
+  hooked for its indirect callers with the new `rt_override_func`, `rt_core.c`).
+- **The model** (`gm_pf_family.c`, dPlayerMdl_c::setPlayerMode): a new power-up shows its base's
+  model and the model keeps the base value in its mPlayerMode (the game's model code indexes
+  tables with it - dPyMdlMng_c::calc's scale read past the end made a Raccoon invisible); the
+  real value per model in `rt_pu_mdl_set/get` (NSMBW's change shows old and new by turns).
+- **Kept**: daPyMng_c::checkCorrectCreateInfo clamps 0-8 now (was 0-6: back to small); a pipe /
+  door junction keeps everyone's power-up (`keep_modes`, the stage restart made them small).
+- **The SMB3 suits** (`smb3_stage.c`, `smb3_stage_frog.inc`): the leaf is
+  ChangePowerupWithAnimation(PU_RACCOON) - NSMBW's own change; the Frog suit PU_FROG; the
+  Raccoon's parts, P-meter and flight follow the player's value (rc[].on is set from it each
+  frame, no longer a flag of its own); a hit: NSMBW's own rule already gives Super for a suit;
+  the SMB3-mode hook only turns small into Super for one. NES characters: the value set at once
+  with SMB3's poof. The Frog's Penguin-slot model switch is gone (no substitution): the Frog
+  shows Super's model until it has a model of its own (next: a 5th model in dPlayerMdl_c).
+- **Crash** (taking the Frog suit small, or the leaf as Fire): `A_SET_POWERUP_NOW` 0x801416C0
+  isn't a function start in the recompiled game - `set_powerup_now` does it (mNextMode, then
+  setPowerup through the vtable).
+- **The Raccoon's animation merge** was refused - and tried again every frame - when the archive
+  had no F_wait (a build without the Frog's pose): F_wait is optional now.
+- **Tests**: frames are dumped only for a shot (`RT_DUMP_REQ`, drive2.py), written a row at a
+  time - a test is about 2 minutes instead of 10; `scen.py OUT MAPY MAPX [ENV=..] -- STEPS`
+  (the save's map position, the level, the steps, a contact sheet). Test env: SMB3_TEST_GIVE=v[,f]
+  (NSMBW's change to power-up v), SMB3_MDL_LOG.
+
+Checked: Raccoon given to small Luigi (NSMBW's change, Raccoon's tail and ears, walking,
+jumping), hit by a Goomba -> Super, Raccoon through a pipe kept; the Frog suit taken small (no
+crash).
+
+Next: the Frog's own model (a 5th dPlayerMdl_c model; `models/tools/build_smb3_brres.py` must
+stop putting it in the Penguin's place), the rest of the catalog (getters' callers, callees given
+the value), the items in the NSMBW mode, block hits while carrying a player, INTERACTIONS.md.
+
+---
+
+## 2026-11-26 (128) - Claude: SMB3 - the user's bug list, the map's pause menu, Boomerang Bros, note blocks, the P-Switch, Micro-Goombas, white blocks, pipes and doors
+
+User's list (2026-11-25): roulette glitchy, portrait ignores the fade, SMB1 Mario falls off the
+map, file select cards unstable, a death after the goal, shells don't break bricks, 1-6 platforms
+jitter, Toad House camera / tiles / early movement / item into the bar; new: Boomerang Bro, note
+block, P-Switch, Para-Goomba dropper, white blocks, pipes, doors, slopes, VFX, music; and the map's
+pause menu (NSMBW's own) is back. All checked headless (drive2.py) on 1-1 / 1-2 / 1-3 / the user's
+saves.
+
+- **Roulette**: the IRQ came late in long straight-line code (the music engine), so on alternate
+  frames the reload used the old latch. `tools/recomp6502.py` now emits `CHECK(pc)` before every
+  instruction (interrupts are taken only at CHECKs) - the split is steady.
+- **Portrait** (`smb3_map.inc`): `portrait_fade()` compares Pal_Data with the PPU palette (steps
+  0-4) and darkens the picture with it; hidden while the BG is off.
+- **Map pause menu** (`smb3_map.inc` pm_frame): NSMBW's COURSE_SELECT_MENU (profile 693) made with
+  createBase, opened with + when Map_Operation is $0D; SMB3 waits while it's open; Save writes the
+  SMB3 file, Title stops the session and goes to the title. (Star Coins / Add-Drop do nothing.)
+- **SMB1 / retro characters on the map** (`rt_retro.c`): they also go through
+  `smb3_map_player_exec` - no more falling off it.
+- **File select** (`rt_gamesetup.c`): the SMB3 cards read the file through `smb3_file_info`
+  directly (cached 15 frames) - no extra 0, no "new!".
+- **Goal**: NSMBW's timer held at 999 after the card (goal.hold) - it ran out after the time bonus.
+- **Shells bust bricks** (hit_block: `big || bump_self >= 0`).
+- **Platforms** (`smb3_stage_platforms.inc`): positions with their sub-pixel fractions - no jitter.
+- **Toad House**: zoom locked (bp +0x40/+0x44 = +0x70/+0x74, the bg's zoom targets), centred
+  (L.lx + 128 - w/2); its own BG bank (no PT2_Anim); players held until Toad's message is done
+  (th_halted); the item flies into the open inventory (ToadHouse_GiveItem: Inventory_DestX, yvel
+  -$30, gravity 2), the bar shows the inventory rows meanwhile.
+- **Boomerang Bro** (`smb3_stage_battle.inc` norm_boomerangbro): Var5 & 3 states, throws at
+  (Var7 & $BF) == $1F; SObj_Boomerang (+-$20 / -$16, timer $40, back and caught); pictures OA1_PAL2.
+  Fire / Heavy Bros still fight as Hammer Bros.
+- **Note blocks** ($2E-$31, $71, $BC): landing bumps it down, then a launch of 3.5 or 7.0 (jump held
+  / pressed: the high one) through dAcPy's jump (vtable +0x3FC); hit from below: its item.
+- **P-Switch** ($F2; pressed $D7): coins <-> bricks swapped for its time (decremented every 4
+  frames), each change recorded and put back.
+- **Para-Goomba dropper** (`port/smb3_stage_micro.inc`, new: ObjNorm_ParaGoombaBomber,
+  OBJ_PARAGOOMBAWITHMICROS $74): flutters down / flies $38 above the player / drops a
+  Micro-Goomba every 32 ticks; stomped -> Goomba. SObj_Microgoomba: falls swaying, sticks to a
+  player (Data 5), bobs on it, holds it to a walk (Player_UphillSpeedVals $16 = 1.375); new
+  presses shake it (-1), every 16 ticks it holds on (+1); off: flops away. Its picture ($FF, bank
+  $4F, PAL3) is slot 12 of the brothers' 16-slot block (no extra atlas room).
+- **White blocks** (`smb3_stage.c` white_blocks, prg008 PRG008_BE31 / A766): plains only; on a big
+  white block's top ($25-$27) holding down for $F0 frames the player drops 6 through it and is
+  behind the scenes (Player_Behind $F0, every other tick -1, kept while the head tile isn't $41 /
+  sky); objects and Micro-Goombas don't touch it (Player_Behind_En). Drawn behind: NSMBW resets
+  the player's z every frame, so the tiles around it (5 x 5) are drawn again in front of it with
+  their backdrop pixels dropped - the atlas marks a tile's colour-0 pixels (alpha $FE -> RGB5A3
+  alpha 6), drawn as before, but the second pass's alpha compare (> 230) drops them.
+  GXSetZCompLoc is now 0 (after texturing).
+- **Pipes and doors** (`port/smb3_stage_pipes.inc`, new; prg008 Player_DoSpecialTiles /
+  PipeEntryPrepare / PRG008_A827): a player on a pipe's top ($AD-$B0, $B3/$B4) holding down within 8
+  of its middle, jumping into its bottom holding up, walking into a sideways mouth ($B5), or pressing
+  up at a door ($43; $42 in fortresses). SMB3 - unseen - gets its Mario put at that pipe / door
+  with the same button: it decides (Level_PipeMove / Level_JctCtl set, or not). Up / down: NSMBW's
+  own pipe entry - daPlBase_c::changeDemoState(StateID_DemoOutDokanD / U from setDemoOutDokanAction's
+  table 0x80308450), mWarpPos at the pipe's mouth, its sound - its slide's length (+1060) pushed out
+  of reach so its own scene change never comes, its depth kept at the stage's (NSMBW's -1800 would
+  be behind this level's sky); the tiles about it drawn again in front (as the white blocks). Once
+  32 in, SMB3 runs the junction (Level_JctCtl: Level_AltLayout / the table by Player_XHi) until the
+  other area is up, its Mario out of the exit pipe and its fade-in done; the stage starts again on
+  it (clock, counters, lives kept: `jct_restart`), the players at SMB3's Mario. Sideways pipes: a slide
+  of our own (untested - none in World 1). A pipe / door that leaves the level: the map, cleared.
+  Checked: 1-1's coin room (down and up, test pipes at screen 8 - 1-1's real one is on top of the
+  tall pipe at 141,7, reached flying), 1-Fortress's door (109,23) into its spike room.
+- Test env (all optional): SMB3_PIPE_LOG, SMB3_STAGE_TEST_XOFF, SMB3_STAGE_TEST_ONLY=hex (that enemy id only), SMB3_STAGE_TEST_ROW
+  (with _X: stand on that row), SMB3_FIND_TILE=hex,hex.. (log where those tiles are; SMB3_STAGE_TEST_TILES also writes SMB3's Tile_Mem), SMB3_SLOTLOG,
+  SMB3_BATTLE_TEST_WIN, SMB3_TH_LOG, NES_IRQLOG, SMB3_MAP_TILT, SMB3_MAP_TH_NES.
+
+Open: wall-slide gap on the right of a block (asked the user for a repro), the NSMBW map Mario
+(tilt -0x1400 applied; asked the user what's missing), coming out of the exit pipe (players appear
+on it), slopes, VFX,
+music / SFX, Fire / Heavy Bros.
+
+---
+
+## 2026-11-25 (127) - Claude: SMB3 - Toad Houses as stages, the bonus rooms' Mario portrait, the Hammer Bro battle
+
+User: the Toad House with the NSMBW players; their picture (`ui/graphics/smb3/marioportrait.png`)
+in place of SMB3's big Mario in the Spade / N-Spade rooms; Hammer Bros: no battle when Mario
+stops on their square, and a black screen (softlock) when one is touched. Checked headless on the
+user's saves (file 1: the user's World 1 with a Hammer Bro; file 2: on the Toad House; file 3: on
+the Spade panel).
+
+- **Toad House** (`port/smb3_stage_toadhouse.inc`, new): tileset 7 is a stage now (only 15 / 16 /
+  17 - spade, N-spade, 2P battle - are still played by SMB3 on the map plane). Toad ($34, ObjP34,
+  sprite bank $05), his box and message drawn from the level's BG letters (prg002 ToadMsg_*:
+  whistle / standard / anchor-P-Wing by YHi and Map_EnterViaID), one box row a frame then one
+  letter per 4 frames; chests ($81-$84) opened with B / run; the item (THouse_Treasure ->
+  ToadItem tables) rises, lands, goes into Inventory_Items' first empty slot, then
+  `map_level_end(.., 0)` after $FF frames. Atlas: 48 more slots kept for tileset 7.
+- **Bonus rooms' Mario** (`smb3_map.inc` portrait_*): SMB3's Mario there is a 3x4 block of BG
+  tiles (prg022 LoadLevel_BonusPlayer: Player_BonusTiles_Big / Raccoon / Small, its top-left
+  always TILE15_BRICKBG). Found by his head ($43 $44 $45, or small $4A over $86) in Tile_Mem,
+  on screen at col*16 - Horz_Scroll, row*16 - (Vert_Scroll + 1) (16, 80 in the Typical layout);
+  painted over in the map picture with his top-left brick tile, the user's PNG (resampled to
+  64 x 96 RGB5A3 at `SM_MEM+0x1F000`, texobj `+0x3FE00`) drawn there, 64 high, feet on the floor.
+  (A first try took the OAM at Player_SprOff: that was Toad's body.) Not during the roulette.
+- **Hammer Bro battle** (`port/smb3_stage_battle.inc`, new): ObjNorm_HammerBro (walk +-6 by
+  Var5 & $40, jumps -$30 / -$60 with Timer2 $28 / $20 not landing - through the floors -, hammers
+  when Var6's low bits reach $1F), TDO group 2, bound box 2, drawn 16x32 8 below Y from ObjP81
+  (bank $4E, palette 3); stomped: killed, 1000. SObj_Hammer (15 frames in the hand, then +-$12 /
+  -$30 with gravity 2 to $6E, Hammer_Draw's 8 frames, SObj_PlayerCollide). LevelEvent_TreasureBox:
+  with no objects and no hammers left, the box at Y $170, X $30 / $C0 into the screen away from
+  the player; ObjNorm_TreasureBox: poof at $18, falls, opened on touch (clock stops), the item
+  (Level_TreasureItem, palette $30 / ToadItem_PalPerItem / $0F) rises then flashes $70 frames,
+  into the inventory, $60 frames, `map_level_end(.., 0)` - SMB3 takes the brother off its map.
+  Boomerang / Heavy / Fire brothers (Worlds 2+) fight as Hammer Brothers for now.
+- **The black screen**: the user's save had the brother at X $90 - between squares (World 1's
+  starts at $A0; brothers march 2 squares over Map_March_Count's 32 frames). Saved mid-march, the
+  march counter (RAM) is lost: it could never be stood on (prg011 PRG011_B6A1 wants the exact
+  square), and touched there, the level lookup by map position finds no level. `smb3_game.c`
+  `snap_map_objects`: marching map objects ($03-$08, $0B) down to the 32-pixel grid on save and
+  on load (the user's brother is back at $80, $80).
+- Testing aids: `SMB3_MAP_TRACE` (the map's operation, position, Map_EnterViaID as they change),
+  `SMB3_MAP_FBDUMP_EVERY`, `SMB3_BATTLE_TEST_WIN=N` (the brothers beaten at frame N),
+  `NES_IRQLOG` (nes_cpu.c: the MMC3 IRQ's line each frame - for the roulette, below).
+
+Verified: the portrait in the Spade room (file 3); the Toad House to the inventory and back to the
+map (file 2); stepping onto a brother's square starts the battle, the brother jumps and throws,
+the box comes, the item goes in, SMB3's map with the brother gone (file 1, brother moved next to
+Mario).
+
+Open: the Spade roulette's glitching (alternate frames with the strip / status bar splits late:
+MMC3 IRQ timing - `NES_IRQLOG` added, not yet run); the map's player as NSMBW's world-map Mario
+(the SMB3 map itself stays flat); the other brothers' own behaviour.
+
+---
+
+## 2026-11-25 (126) - Claude: SMB3 - the log platforms (World 1), ridden through NSMBW's own colliders
+
+User: port SMB3's moving platforms as objects (SMB3 sprites, behaviour from the disassembly).
+Checked headless (Linux, GL) on 1-4 and 1-6 from the user's save (file 3: the save with the map
+position set on 1-6's panel).
+
+- **`port/smb3_stage_platforms.inc`** (new, included by `smb3_stage_enemies.inc`): prg002's
+  ObjInit / ObjNorm for $26 (rider), $27 / $37 (horizontal oscillating, Platform_Oscillate),
+  $28 / $38 (vertical), $36 (1-4: drifts left at -8, stops and drops faster and faster once stood
+  on), $3C / $44 (1-6: ObjNorm_PathFollowPlat - the four tiles about its middle at TDO group 9,
+  WoodenPlat_ScanIndices / _NextTileIdx / _PathTiles(Alt) / _XVel / _YVel, the platform puller
+  $D0 reversing it, falling where the path ends; $44 waits to be stood on). Drawn as LogPlat_Draw
+  ($8F $9D $9D $9D $9D $9F, palette 3) from sprite bank $0E (OPTS_SETPT5 | $0E: SMB3 sets that
+  bank for them as they run - the level's own bank drew other graphics). In the object slots with
+  the enemies; spawned / deleted 48 wide; no harm to players, not hit by shells, tails or bumps.
+- **Standing on them**: NSMBW's `RideableActorCollider` (ctor 800DB450, init 800DB530,
+  setPosition 800DB5F0, update = vtable +12, BasicCollider::addToList 800DAE80 /
+  removeFromList 800DAED0) - a line along the platform's top, moved each frame with it; the
+  update carries its riders by the move. `dRc_c::check` (800D9940 -> 800D9B80 -> 800D9D70) wants
+  the line's kinds (+69) to share a bit with the rider's (+46: 3 for the players) and its layer
+  (+74) equal to the rider's (+50); +60 flags 0. The line needs an owner actor: one DUMMY_ACTOR
+  (profile 0x2EB, a dStageActor_c that does nothing), checked by `fBase_c::search(id)`. Its
+  riders (+16, kept until its next update) are SMB3's "stood on". NSMBW never clears the
+  collider list, so the lines are taken out when the stage scene goes (`smb3_stage_on`) and when
+  the level starts again. Verified on 1-4: a jump onto the first platform, it stops and drops
+  with the player on it (`platform 0 (36) ... stood on`), the player carried down to the ground.
+  1-6: the first track platform rides its zig-zag track between the two pullers, back and forth.
+- (Fixed on the way: the objects' calls into the game used `blk_ctx` before the first player had
+  set it - set in `smb3_stage_player_draw` now.)
+- Test switches: `SMB3_PLAT_LOG` (the platforms every 30 frames, stood on / left); `drive2.py`
+  takes `GAME_WRAP` (e.g. a gdb wrapper) to get a native backtrace.
+
+Open: SMB3's side push and head bonk on a platform (NSMBW's line is top-only), the other platform
+kinds (clouds, floating, falling, invisible lift), autoscroll (1-4), the custom SMB3 map scene.
+
+---
+
+## 2026-11-25 (125) - Claude: SMB3 - SMB3's palette fades in place of NSMBW's course intro and wipes; bug fixes
+
+User: a save card over the Game Select; a gap wall-sliding on the right side of a wall; a red shell
+stopped and flipped by a brick; the map player jumping to the viewport's top right on entering a
+level; the player spawning floating; the course intro on every return to the map; exiting a stage
+sent the player to 1-1. Then: SMB3's own fade-in (the palette shift) instead of NSMBW's intro and
+wipes. Checked headless (Linux, GL): the menus to SMB3's map, 1-1 entered, wall slides both
+sides, a death back to the map, frames dumped.
+
+- **SMB3's palette fade** (`runtime/rt_gxgl.inc`, `rt_gl.h`, `gm_m_fader.c`, `port/smb3_stage.c`):
+  in the SMB3 stage scene `mFader_c::draw` asks `smb3_stage_fader`, which doesn't draw NSMBW's
+  fader but sets `rt_nes_fade(mode, step, palette)`; at the display copy (`gl_present` /
+  `gl_overlay_efb`, before the menus) a full-screen pass takes every pixel to its nearest NES
+  colour and steps it as PRG026 does: fade-out takes $10 off a step (below $00: $0F); fade-in
+  starts at colour-$30 (black if below $00), a black comes back as its row-0 shade, then +$10 a
+  step. A step every 4 frames (Fade_Tick), 4 steps; NSMBW's frame-counting fader is made 16
+  frames long; opaque = black. Verified: the map's fade-in, 1-1's fade-in, a death's fade-out
+  and the map after it (dumped frames show SMB3's darker-row colours).
+- **No course intro** (`port/smb3_stage.c`, `stage_start_game`): `dScCrsin_c::m_isDispOff`
+  (0x8042A1B0, as the title's restart and fn_800BB880 set it) before `dInfo_c::startGame` - the
+  course intro waits 1 frame instead of 120 and shows nothing - and `dFader_c::setFader(0)`; the
+  intro scene's colour fader cut to 2 frames. Because the intro is now a few frames, the next
+  level was never loaded (it waited for a 30-frame gap without players): `smb3_stage_on` and
+  the fader hook now load it as soon as a scene other than the stage is seen.
+- **Wall-slide gap**: the 80% wall sensor (6.4 units) left a player 7.0 from a wall on its left,
+  6.1 from one on its right, creeping and snapping back; the wall sensor offsets are now whole
+  units (6). Verified: 6.0 from the wall, steady.
+- **Exit to 1-1** (`port/smb3_map.inc`): from the user's log - toad houses (tileset 7) and the
+  spade / card games (15, 16) were entered as stages; the spade game's picture overflowed the
+  tile texture, SMB3 never got back to its map and the session stopped, so every later end fell
+  back to 1-1. Those panels (and 2P battle, 17) now play inside SMB3 on its map (the player's
+  model hidden meanwhile); if SMB3 can't get back to its map the session reloads from the save
+  file instead of stopping; tile texture writes guarded. Not yet reached in a test run.
+- **Map player on entering a level** (`port/smb3_map.inc`): kept where it was while SMB3 leaves
+  its map, not moved to the marker's new place. Verified (the enter-level box closing on it).
+- **Floating spawn** (`port/smb3_stage.c`): the start lift now takes off the grid alignment's
+  drop (`L.dy`).
+- **Red shell vs brick** (`port/smb3_stage_enemies.inc`): the shell's own wall hit bumped the
+  brick, and the bump turned over every object touching it - the shell too. The bumping shell
+  is skipped, and only objects standing on the block's top are bumped. Not reproduced headless.
+- **Game Select** (`runtime/rt_gamesetup.c`): the File Select's save card (`N_dateFile_01`,
+  `N_save`, `N_starIcon_00`) hidden there. Verified.
+
+Open: the custom SMB3 map scene with NSMBW's world-map actors, SMB3's moving platforms (notes in
+`SMB3Disassembly/port/ROADMAP.md`), slopes, autoscroll, pipes / doors, water, vertical levels.
+
+---
+
+## 2026-11-25 (124) - Claude: SMB3 - the course clear loop, the floor jitter, levels' start, the File Select as NSMBW's; JPG portraits
+
+User: finishing a stage killed Mario and sent him back into 1-1; in every stage but 1-1 he jittered on
+the floor; the SMB3 File Select should be identical to NSMBW's. Reproduced headless (Linux, GL) with
+the user's SMB3 save, and from their nsmbw_log.txt.
+
+- **Course clear loop** (`port/smb3_stage_enemies.inc`, `port/smb3_map.inc`): the goal card's exit
+  ran again every frame while NSMBW's wipe still showed the old stage (33 times in the user's log),
+  each time telling SMB3 "level done, back to the map" and starting the stage again. SMB3 then went
+  into a level of its own (tileset 4) that never came up, the map session stopped, and with no map
+  the player died and the old fallback restarted 1-1. Now the card exits once (`var4 = 8`) and
+  `map_level_end` takes one end per stage scene (`MP.ending`, cleared by `map_apply_next`).
+  Verified: 1-1's card -> one "level cleared" -> SMB3's map, file saved -> 1-2 entered.
+- **Floor jitter** (`port/smb3_stage.c`, placement): the level was placed so that SMB3's start sat
+  where the course puts player 1 - off NSMBW's 16-unit grid (floor tops at world y 454). NSMBW
+  takes a solid unit's top from its own cells, so the players were pushed up out of the floor and
+  fell back onto it every few frames: on every level (~2.5 units on 1-1's solid ground), worst on
+  the one-way floors of the hills tileset (1-2: `$9A`) and 1-4's ledges. `L.lx` / `L.ly` are now
+  on the grid (the level up to 15 units lower: the players start above their ground). Verified:
+  1-4 and 1-1 stand at exactly the floor's top, walk, jump, land.
+  (Found on the way: NSMBW's one-way top is `0x20` with shape `0x0A` - shapes 0-5 / 0x0B-0x12 are
+  its slopes, shape 0 has no top: `SMB3_STAGE_PROBE` on 1-1. UNIT_TOP is unchanged.)
+- **The level's start** (`port/smb3_stage.c`): from SMB3's own Player_X / Player_Y once the level
+  is up (`L.sx`, `L.sy`) and the first floor below it - not column 2's ground from the bottom,
+  which dropped 1-4's player into the sky (it starts on a ledge at row 22).
+- **SMB3's File Select = NSMBW's** (`runtime/rt_gamesetup.c`, `gm_save_mng.c`, `gm_mj2d_game.c`,
+  `port/smb3_main.c`): while it shows SMB3's files the save manager's slots (and quick saves) hold
+  stand-ins made from them (world, lives; no file = empty), so NSMBW's own cards, Copy and Erase
+  show and work on them. NSMBW's real slots are kept and put back around every NAND save (the NAND
+  command copies the data at once: `nand_cmdSave`), before a file is loaded and on leaving.
+  Copy / Erase also copy / delete SMB3's file (`smb3_file_copy`, `smb3_file_delete`). The cards
+  were built at Game Select with NSMBW's slots and keep that look, so the card's contents (world /
+  lives or NEW!!, no stars, no quick save) are set from its stand-in each frame.
+  Verified: file 2 (the user's) "World 1 x46"; Copy 2 -> 3 and Erase 3 done on SMB3's files;
+  nsmbw-save.json byte-identical before and after.
+- **JPG portraits** (`runtime/rt_hdtex.c`): stb_image was PNG-only (`STBI_ONLY_PNG`), so the Game
+  Select's SMB1.jpg / SMW.jpg (122) couldn't load; `STBI_ONLY_JPEG` too.
+- Testing switches: `SMB3_STAGE_TEST_X_ONCE=1` (TEST_X for the first level only),
+  `SMB3_STAGE_SENSORS=1` (the players' sensors before scaling: head 0,16 | foot -5..4,0 | wall 4..11,8).
+- Open (step 2 of port/ROADMAP.md, still to do for "every level"): SMB3's slopes collide as flat
+  one-way steps; no autoscroll (1-4 lets the player go at their own pace); pipes / doors to other
+  areas, water and vertical levels not done; the first ~2.5 columns of a level sit behind the shell
+  course's left scroll limit (the player is pushed right at the start). Windows build: not
+  compiled here.
+
+## 2026-11-24 (123) - Claude: singleplayer character select is a grid
+
+User: the roster is big and growing, and NSMBW's card select (left/right through everyone) is slow,
+especially in singleplayer. Picked: a grid with a preview, families with variants, a Recent row.
+Details: docs/CHARACTERS.md "Singleplayer: the character grid".
+
+- **New `runtime/rt_charsel.c`** (in build.py RUNTIME and build_linux_clang.sh): the grid's state,
+  input (`charsel_input`), the card's target (`charsel_target` / `charsel_take_decide`), Recent
+  (settings.ini `sp_pick_<id>`), drawing (`charsel_draw`, called from `menu_draw`).
+- `rt_chars.c`: `ROSTER[]` gets `.family` / `.variant` (the retro Marios are Mario's variants);
+  `chars_family`, `chars_variant`, `chars_tile_texture` (portrait.png or the card layout's picture);
+  SelectWait: `grid_select` (singleplayer, setup scene) moves the card to the grid's character and
+  chooses there; initDecidedCharacter notes the pick (`charsel_note_pick`).
+- `rt_gamesetup.c`: `gs_sp_select_state` / `gs_sp_select_visit` / `gs_screen_alpha` (the fader) /
+  `gs_sp_preview_x`; the grid's input in `gs_filter_buttons`; player 1's card layouts (`L_CARD`) and
+  the 2D players' `mPos.x` (`float_shift`) move left by `SP_CARD_DX` (-170); arrows hidden; Start
+  Game under the card (4:3: x 0.8, a little right); MAXSHIFT 16 -> 32.
+- `rt_menu.c`: `menu_text` / `menu_text_width` (the game's font for other overlays); `menu_draw`
+  draws the grid (under Controls).
+- `rt_gxgl.inc`: the overlay holds 128 textures (`UI_MAXTEX`; was 8 - the font and the first 7
+  tiles used them up).
+- Verified (Linux, GL headless, 16:9 and 4:3; driver: `RT_AUTOPRESS_FILE`): grid up with the card
+  on the left; - on Mario -> Retro Mario (SMB1) on the card; d-pad across rows, held repeats; up into
+  Recent; 2 -> the figure lands on the card, Start Game under it, "2: Start Game  1: Change"; 1 takes
+  it back, 1 again -> File Select, back in -> on the last pick; Start Game -> world map as Luigi.
+  Windows build: not compiled here.
+- Open: hidden in multiplayer and on the world map (the cards as before). The figure jumps in from
+  the right, across the grid (drawn under it). No sound on moving the cursor yet.
+
+## 2026-11-24 (122) - Claude: Game Select placeholder games (locked)
+
+- **Games list** (`runtime/rt_gamesetup.c`, "game portraits"): `GAMES[]` is now `games[]`, made once
+  from `ui/graphics/gameportrait/`: NSMBW and SMB3 first (playable; GAME_NSMBW / GAME_SMB3 unchanged),
+  then every other .png / .jpg / .jpeg there (not locked.*) as a placeholder game, in name order
+  (now NSMBDS, NSMBU, SMB1, SMW; label = file name). File names match in any case. The list is logged
+  (`[setup] games: ...`).
+- **Locked cards:** a placeholder's texture gets locked.png drawn over it when it is made (`gp_lock`):
+  centred, fitted to half the picture's width and height (user's choice: "about 50% of the portrait").
+- **Hover, not choose:** on Game Select, 2/A are dropped while the middle card is a locked game, and stay
+  dropped until released (`confirm_held`), so turning to a playable game with 2 held doesn't choose it.
+- **Memory:** the pictures still share GP_MEM..GP_MEM_END (320 KB; nothing free past MEM1 - SMB3 stage
+  0x818C0000, retro 0x81900000, chars 0x81A00000, models 0x81C00000). Each picture now gets an even share
+  (`gp_budget`): with 6 games about 264 x 376 for a portrait (was up to 512 tall), 287 KB in all. All
+  pictures are made while Game Select opens behind black (`file_select_open`), not when a card first shows.
+- `build.py`: ui/ copies .jpg / .jpeg too (SMB1.jpg, SMW.jpg).
+- Verified: gcc -fsyntax-only (only rt.h's clang check); sizes and a lock preview computed with PIL using
+  the same maths. Not yet built or run.
+- Open: no "can't" sound when 2 is pressed on a locked game.
+
+## 2026-11-24 (121) - Claude: Game Select's right card no longer squished
+
+- **Cause:** `pane_narrow()` (`runtime/rt_gamesetup.c`) keeps each narrowed pane's width in
+  `widths[MAXWIDTH]`, and MAXWIDTH was 12 - enough for the one card Game Select used to have. The
+  carousel narrows 7 `card_panes` on each of 3 cards (21): the left card got all 7, the middle 5
+  (not P_selectBase_00 / W_select_00), the right none, and the table being full was silent. The
+  right card still got the portrait texture, so the tall picture (aspect ~0.71) was stretched over
+  the full-width card.
+- **Fix:** MAXWIDTH 32; a full table now logs `[setup] pane_narrow: table full`.
+- Verified: dateFile.arc's layout has all 7 card_panes (so 21 entries are needed); not yet run.
+
 ## 2026-11-21 (120) - Claude: build_windows.bat raises the version by itself
 
 - **`build.py --bump-version`** (build_windows.bat now passes it instead of `--ask-version`): before

@@ -973,7 +973,8 @@ static GLuint gc_lookup(int map, uint32_t *w, uint32_t *h) {
 #include "font8x8_basic.h"
 static GLuint ui_prog, ui_vao, ui_vbo, ui_tex;
 static float ui_v[6 * 8 * 4096]; static int ui_nv;
-static GLuint ui_texs[8]; static int ui_ntex = 1;           /* 0 = built-in font, 1.. = registered (game font) */
+#define UI_MAXTEX 128                                   /* (the character grid has a picture per character: rt_charsel.c) */
+static GLuint ui_texs[UI_MAXTEX]; static int ui_ntex = 1;           /* 0 = built-in font, 1.. = registered (game font) */
 static struct { int first, count, tex; } ui_seg[256]; static int ui_nseg;
 static int ui_px, ui_py, ui_pw, ui_ph, ui_cw, ui_ch;
 static void ui_init(void) {
@@ -1034,7 +1035,7 @@ void ui_image(int tex, float x, float y, float w, float h, float u0, float v0, f
 }
 /* register a 0xAARRGGBB image for ui_image; returns its id (0 on failure) */
 int ui_register_texture(const uint32_t *argb, int w, int h) {
-    if (!gl_on || ui_ntex >= 8) return 0;              /* (software renderer: no GL; the menus aren't drawn there) */
+    if (!gl_on || ui_ntex >= UI_MAXTEX) return 0;              /* (software renderer: no GL; the menus aren't drawn there) */
     GLuint t; glGenTextures(1, &t); gl_unit(15); glBindTexture(GL_TEXTURE_2D, t); bound_tex[15] = t;
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, argb);
@@ -1077,9 +1078,79 @@ static void ui_end(void) {
     gls.valid = 0; ui_nv = 0;
 }
 
+/* ------------------------------------------------------------------ the NES palette fade
+ * SMB3's Palette_FadeIn / Palette_FadeOut (PRG026) on the whole picture, for the SMB3 game mode
+ * (../SMB3Disassembly/port/smb3_stage.c sets it each frame NSMBW's fader is drawn): every pixel
+ * taken as its nearest NES colour, then moved through the NES palette's brightness rows the way
+ * SMB3 steps its palette buffer - a fade-out takes $10 off each step (below $00: black, $0F); a
+ * fade-in starts at the colour less $30 (black if that's below $00) and adds $10 each step, a
+ * black one coming back first as its row-0 shade. A step every 4 frames, as Fade_Tick. */
+static int nes_fade_mode, nes_fade_step;          /* mode 0 off, 1 fading in, 2 fading out, 3 black */
+static float nes_fade_pal[64][3];
+void rt_nes_fade(int mode, int step, const uint32_t *argb64) {
+    nes_fade_mode = mode; nes_fade_step = step;
+    if (argb64) for (int i = 0; i < 64; i++) {
+        nes_fade_pal[i][0] = ((argb64[i] >> 16) & 255) / 255.0f; nes_fade_pal[i][1] = ((argb64[i] >> 8) & 255) / 255.0f; nes_fade_pal[i][2] = (argb64[i] & 255) / 255.0f; }
+}
+static void gl_nes_fade(void) {
+    static GLuint prog, tex, fbo, vao; static int tw, th; static GLint u_pal, u_mode, u_step;
+    if (!nes_fade_mode) return;
+    int mode = nes_fade_mode, step = nes_fade_step; nes_fade_mode = 0;          /* (one frame's: set again by the next) */
+    gl_flush();
+    if (!prog) {
+        static const char *vs = "#version 330 core\nout vec2 vT; void main() { vec2 p = vec2(float((gl_VertexID & 1) * 2), float((gl_VertexID >> 1) * 2));\n"
+                                "vT = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }\n";
+        static const char *fs =
+            "#version 330 core\nin vec2 vT; uniform sampler2D uT; uniform vec3 uPal[64]; uniform int uMode, uStep; out vec4 o;\n"
+            "void main() {\n"
+            "  if (uMode == 3) { o = vec4(uPal[15], 1.0); return; }\n"
+            "  vec3 c = texture(uT, vT).rgb; int best = 15; float bd = 1e9;\n"
+            "  for (int i = 0; i < 64; i++) {\n"
+            "    int lo = i & 15; if ((lo >= 14 && i != 15) || i == 13 || i == 29) continue;\n"   /* (the blacks: $0F stands for them) */
+            "    vec3 d = c - uPal[i]; float e = dot(d, d); if (e < bd) { bd = e; best = i; } }\n"
+            "  int r = best;\n"
+            "  if (best != 15) {\n"
+            "    if (uMode == 2) { r = best - 16 * uStep; if (r < 0) r = 15; }\n"
+            "    else if (uStep == 0) { r = best - 48; if (r < 0) r = 15; }\n"
+            "    else { r = (best & 15) + 16 * (uStep - 1 + ((best >> 4) == 3 ? 1 : 0)); if (r > best) r = best; } }\n"
+            "  o = vec4(uPal[r], 1.0);\n"
+            "}\n";
+        GLuint v = gl_compile(GL_VERTEX_SHADER, vs), f = gl_compile(GL_FRAGMENT_SHADER, fs);
+        if (!v || !f) { rt_log("gl", "NES fade shader failed"); nes_fade_mode = 0; return; }
+        prog = glCreateProgram(); glAttachShader(prog, v); glAttachShader(prog, f); glLinkProgram(prog);
+        GLint ok = 0; glGetProgramiv(prog, GL_LINK_STATUS, &ok);
+        if (!ok) { rt_log("gl", "NES fade shader failed to link"); return; }
+        glUseProgram(prog); gl_bound_prog = prog;
+        glUniform1i(glGetUniformLocation(prog, "uT"), 0);
+        u_pal = glGetUniformLocation(prog, "uPal"); u_mode = glGetUniformLocation(prog, "uMode"); u_step = glGetUniformLocation(prog, "uStep");
+        glGenVertexArrays(1, &vao); glGenFramebuffers(1, &fbo); glGenTextures(1, &tex);
+    }
+    if (tw != SW || th != SH) {                                      /* (the picture's copy, at the internal resolution) */
+        tw = SW; th = SH; gl_unit(15); glBindTexture(GL_TEXTURE_2D, tex); bound_tex[15] = tex;
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, tw, th, 0, GL_BGRA, GL_UNSIGNED_BYTE, NULL);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo); glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex, 0);
+    }
+    glDisable(GL_SCISSOR_TEST); glColorMask(1, 1, 1, 1);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, gl_fbo); glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo);
+    glBlitFramebuffer(0, 0, SW, SH, 0, 0, SW, SH, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    glBindFramebuffer(GL_FRAMEBUFFER, gl_fbo);
+    glViewport(0, 0, SW, SH);
+    glDisable(GL_BLEND); glDisable(GL_DEPTH_TEST); glDisable(GL_CULL_FACE);
+    glUseProgram(prog); gl_bound_prog = prog;
+    glUniform3fv(u_pal, 64, &nes_fade_pal[0][0]); glUniform1i(u_mode, mode); glUniform1i(u_step, step);
+    gl_unit(0); glBindTexture(GL_TEXTURE_2D, tex); bound_tex[0] = tex; glBindSampler(0, 0); bound_smp[0] = 0;
+    glBindVertexArray(vao); glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(gl_vao); glBindBuffer(GL_ARRAY_BUFFER, gl_vbo);
+    glEnable(GL_SCISSOR_TEST);
+    gls.valid = 0; gl_cur_ok = 0;
+}
+
 /* menus drawn into the EFB itself (when the frame is read back instead of shown by GL) */
 static void gl_overlay_efb(int sx, int sy, int w, int h) {
     gl_flush();
+    gl_nes_fade();
     glDisable(GL_SCISSOR_TEST); glColorMask(1, 1, 1, 1);
     ui_begin(sx * gl_scale, (EFB_H - (sy + h)) * gl_scale, w * gl_scale, h * gl_scale, SW, SH); menu_draw(); ui_end();
     glEnable(GL_SCISSOR_TEST);
@@ -1105,6 +1176,7 @@ static int gl_present(int sx, int sy, int w, int h) {
     int px, py, pw, ph, cw, ch;
     if (!plat_gl_present_begin(&px, &py, &pw, &ph, &cw, &ch)) return 0;
     gl_flush();
+    gl_nes_fade();                                     /* (SMB3's palette fade, before the menus) */
     if (cw > 0 && ch > 0) {
         glBindFramebuffer(GL_READ_FRAMEBUFFER, gl_fbo); glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
         glDisable(GL_SCISSOR_TEST); glColorMask(1, 1, 1, 1);

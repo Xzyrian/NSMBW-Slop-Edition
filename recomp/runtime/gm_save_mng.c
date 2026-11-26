@@ -267,18 +267,21 @@ static void savemng_selftest(GM_CTX, gptr self);
 static uint32_t slot_r(GM_CTX) { CMPS(A(1), -1); R(4) = (uint32_t)(slot_of(SELF, (int32_t)A(1)) * (int32_t)SLOT_SIZE); return R(4); }
 GM_HLE_INT (mod_getSaveGame__10dSaveMng_cFSc, 0, 0) { savemng_selftest(GM_PASS, SELF); gptr r = dSaveMng_getSaveGame(SELF, (int32_t)A(1)); slot_r(GM_PASS); R(3) = r; }
 GM_HLE_INT (mod_getTempGame__10dSaveMng_cFSc, 0, 0) { gptr r = dSaveMng_getTempGame(SELF, (int32_t)A(1)); slot_r(GM_PASS); R(3) = r; }
+/* (rt_gamesetup.c: SMB3's File Select keeps stand-in slots in the manager - NSMBW's own go back for each save) */
+void gs_smb3_save_begin(void); void gs_smb3_save_end(ppc_context *ctx, uint8_t *base); void gs_smb3_copy(int dst, int src);
 GM_HLE_VERIFIED_(mod_create__10dSaveMng_cFPQ23EGG4Heap, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_create(GM_PASS); }
 GM_HLE_VERIFIED_(mod_fn_800E02D0, GMV_IGNORE_POLLS, SELF, SAVEMNG_SIZE) { dSaveMng_refresh(GM_PASS, SELF); }
-GM_HLE_VERIFIED_(mod_startNandSave__10dSaveMng_cFv, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_startNandSave(GM_PASS, SELF); }
-GM_HLE_VERIFIED_(mod_fn_800E0C20, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_startBufferedSave(GM_PASS, SELF, 0); }
-GM_HLE_VERIFIED_(mod_fn_800E0D20, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_startBufferedSave(GM_PASS, SELF, 1); }
-GM_HLE_VERIFIED_(mod_fn_800E11D0, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_startBufferedSave(GM_PASS, SELF, 2); }
+GM_HLE_VERIFIED_(mod_startNandSave__10dSaveMng_cFv, GMV_IGNORE_POLLS, 0, 0) { gs_smb3_save_begin(); dSaveMng_startNandSave(GM_PASS, SELF); gs_smb3_save_end(GM_PASS); }
+GM_HLE_VERIFIED_(mod_fn_800E0C20, GMV_IGNORE_POLLS, 0, 0) { gs_smb3_save_begin(); dSaveMng_startBufferedSave(GM_PASS, SELF, 0); gs_smb3_save_end(GM_PASS); }
+GM_HLE_VERIFIED_(mod_fn_800E0D20, GMV_IGNORE_POLLS, 0, 0) { gs_smb3_save_begin(); dSaveMng_startBufferedSave(GM_PASS, SELF, 1); gs_smb3_save_end(GM_PASS); }
+GM_HLE_VERIFIED_(mod_fn_800E11D0, GMV_IGNORE_POLLS, 0, 0) { gs_smb3_save_begin(); dSaveMng_startBufferedSave(GM_PASS, SELF, 2); gs_smb3_save_end(GM_PASS); }
 void chars_prepare_save(void);
 GM_HLE_VERIFIED_(mod_fn_800E1690, GMV_IGNORE_POLLS, 0, 0) { chars_prepare_save(); dSaveMng_prepareSave(GM_PASS, SELF); }
 GM_HLE_VERIFIED_(mod_fn_800E1840, GMV_IGNORE_POLLS, 0, 0) { dSaveMng_initLoadGame(GM_PASS, SELF, (int32_t)A(1)); }
 GM_HLE_VOID(mod_fn_800E03E0, SELF, SAVEMNG_SIZE) {                       /* saveGameCopy(dst, src): framed; the slot's fresh quick save is the native initialize */
     I2_FN(0x81813CE4u);
     gptr self = SELF; int32_t dst = (int32_t)A(1), src = (int32_t)A(2);
+    gs_smb3_copy((int8_t)dst, (int8_t)src);                              /* (SMB3's File Select: its files too) */
     gptr to = self + SAVEMNG_GAME + (uint32_t)dst * SLOT_SIZE, from = self + SAVEMNG_GAME + (uint32_t)src * SLOT_SIZE;
     for (uint32_t i = 0; i < SLOT_SIZE; i++) {
         gm_set_u8(to + i, gm_u8(from + i));

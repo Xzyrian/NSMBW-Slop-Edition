@@ -101,6 +101,7 @@ enum {
     X(void, glBindAttribLocation, (GLuint p, GLuint i, const GLchar *n)) \
     X(GLint, glGetUniformLocation, (GLuint p, const GLchar *n)) \
     X(void, glUniform1i, (GLint l, GLint v)) \
+    X(void, glUniform3fv, (GLint l, GLsizei n, const GLfloat *v)) \
     X(void, glUniform4iv, (GLint l, GLsizei n, const GLint *v)) \
     X(void, glUniform2iv, (GLint l, GLsizei n, const GLint *v)) \
     X(void, glGenFramebuffers, (GLsizei n, GLuint *f)) \

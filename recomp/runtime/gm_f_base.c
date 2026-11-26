@@ -408,6 +408,8 @@ gptr fBase_make(GM_CTX, uint32_t prof, gptr parent, uint32_t param, uint32_t gro
     if (!gm_ptr(gm_ptr(PROF_TBL) + off)) return 0;
     fBase_setTmpCtData(prof, parent, param, group);
     gptr p = gm_ptr(gm_ptr(PROF_TBL) + off);
+    { static int lc = -1; if (lc < 0) lc = getenv("RT_LOG_CREATE") != 0;    /* (testing: every actor made - its profile and who made it) */
+      if (lc) rt_log("create", "profile %u (struct %08X) param %08X from %08X", prof, p, param, (uint32_t)ctx->lr); }
     gptr res = GM_CALLR(0x80162AB4u, gm_u32(p), 1, p);                    /* the profile's class init (r3: the profile, as left) */
     NV_R(31, res);
     fBase_setTmpCtData(0, 0, 0, 0);

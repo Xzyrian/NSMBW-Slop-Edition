@@ -47,8 +47,17 @@ void ppu_prerender(void) {
 }
 void ppu_frame_start(void) { next_line = 0; }
 
+/* a snapshot of the pattern tables as mapped on one line (SMB3's status bar has its own banks,
+   set by the MMC3 IRQ in the middle of the frame) */
+static int cap_line = -1; static uint8_t cap_chr[0x2000], cap_ctrl;
+void ppu_capture_at(int y) { cap_line = y; }
+const uint8_t *ppu_captured_chr(void) { return cap_chr; }
+uint8_t ppu_captured_ctrl(void) { return cap_ctrl; }
+uint8_t ppu_peek_nt(uint16_t a) { return vram[nt_index(a)]; }
+
 static void draw_line(int y) {
     uint32_t *out = ppu_fb + y * 256;
+    if (y == cap_line) { for (int i = 0; i < 0x2000; i++) cap_chr[i] = chr_rd((uint16_t)i); cap_ctrl = ctrl; }
     uint8_t bg[256 + 16]; memset(bg, 0, sizeof bg);
     if (mask & 0x08) {                                   /* background */
         uint16_t vv = v; uint16_t base = (ctrl & 0x10) ? 0x1000 : 0;

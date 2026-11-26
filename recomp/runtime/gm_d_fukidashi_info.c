@@ -2,6 +2,7 @@
  * Track B (gm_i2.h, docs/DECOMP.md), instance 2. The complete 572-byte child and its
  * layout objects remain in big-endian guest memory. */
 #include "gm_i2.h"
+#include "rt_powerup.h"
 RT_STATE_FILE
 
 #define FI_SIZE       572
@@ -30,7 +31,7 @@ static void fi_setPosOffset(GM_CTX, gptr self, uint32_t character, uint32_t inde
     R(6) = 0x81850000u;
     R(4) = (uint32_t)((int32_t)character * 28);
     R(6) -= 27024;
-    R(5) = i2_rotl(index, 2) & 0xFFFFFFFCu;
+    R(5) = i2_rotl(pu_tab(index), 2) & 0xFFFFFFFCu;   /* (index: the player's power-up - a 7-entry row, rt_powerup.h) */
     R(4) = R(6) + R(4);
     R(4) = gm_u32(R(4) + R(5));
     R(5) = 0;

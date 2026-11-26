@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 GAME = os.environ.get('NSMBW_GAME_DIR') or os.path.normpath(os.path.join(ROOT, '..', 'game'))
 OBJ = os.path.join(ROOT, 'out', 'objwin')
 RUNTIME = ['rt_core', 'rt_bootscreen', 'rt_hw', 'rt_ios', 'rt_disc', 'rt_gx', 'rt_gxrender', 'rt_wiimote', 'rt_remotes', 'rt_net', 'rt_det', 'rt_state', 'rt_profiles', 'rt_crypto', 'rt_update', 'rt_si', 'rt_threads',
-           'rt_ax', 'rt_hdtex', 'rt_aspect', 'rt_menu', 'rt_gamesetup', 'rt_title', 'rt_lyt', 'rt_mod', 'smb1_physics', 'rt_retro', 'rt_sfx', 'rt_chars', 'rt_charmdl', 'rt_discord', 'rt_dvd', 'rt_vi', 'rt_exi', 'rt_audio', 'rt_os', 'gm_verify', 'gm_mj2d_game', 'gm_mj2d_header', 'gm_save_mng', 'gm_info', 'gm_c_list', 'gm_f_list', 'gm_f_base', 'gm_f_manager', 'gm_s_state', 'gm_d_base', 'gm_d_actor', 'gm_d_enemy', 'gm_d_enemy_death', 'gm_d_enemy_carry', 'gm_bg', 'gm_m3d', 'gm_m3d_scene', 'gm_m3d_anm', 'gm_m_mtx', 'gm_m_heap', 'gm_m_allocator', 'gm_m_fader', 'gm_d_cc', 'gm_m_2d', 'gm_m_frustum', 'gm_s_lib', 'gm_c_lib', 'gm_m_color', 'gm_d_cd', 'gm_d_rail', 'gm_d_actorcreate', 'gm_d_wipe', 'gm_d_smallscore', 'gm_d_scene', 'gm_d_next', 'gm_d_lytbase', 'gm_d_wm', 'gm_d_stage', 'gm_d_2d', 'gm_d_res', 'gm_d_lytbuild', 'gm_d_lyttextbox', 'gm_d_message', 'gm_d_selectcursor', 'gm_d_util', 'gm_d_misc', 'gm_nw4r_ut', 'gm_egg', 'gm_nw4r_g3d', 'gm_state_ids', 'gm_prologue', 'gm_py_mng', 'gm_py_demo', 'gm_d_fukidashi', 'gm_d_fukidashi_info', 'gm_d_gamedisplay', 'gm_d_gamecom', 'gm_d_nand', 'gm_d_sc_wmap', 'gm_d_wm_se', 'gm_d_wm_subplayer', 'gm_d_wm_map', 'gm_d_wm_player', 'gm_d_course_guide', 'gm_d_course_manager', 'gm_d_select_player', 'gm_d_continue', 'gm_d_stock_item', 'gm_d_multi_course', 'gm_d_staff_credit', 'gm_d_small_score', 'gm_d_sc_stage', 'gm_py_key', 'gm_py_player', 'gm_d_player_base', 'gm_d_player', 'gm_en_enemies', 'gm_d_player_conv', 'gm_bg_scroll', 'gm_bs_bases', 'gm_eb_boss', 'gm_mj_conv', 'gm_pf_family', 'gm_wmc_worldmap', 'rt_plat_win']
+           'rt_ax', 'rt_hdtex', 'rt_aspect', 'rt_menu', 'rt_gamesetup', 'rt_title', 'rt_lyt', 'rt_mod', 'smb1_physics', 'rt_retro', 'rt_sfx', 'rt_chars', 'rt_charsel', 'rt_charmdl', 'rt_powerup', 'rt_discord', 'rt_dvd', 'rt_vi', 'rt_exi', 'rt_audio', 'rt_os', 'gm_verify', 'gm_mj2d_game', 'gm_mj2d_header', 'gm_save_mng', 'gm_info', 'gm_c_list', 'gm_f_list', 'gm_f_base', 'gm_f_manager', 'gm_s_state', 'gm_d_base', 'gm_d_actor', 'gm_d_enemy', 'gm_d_enemy_death', 'gm_d_enemy_carry', 'gm_bg', 'gm_m3d', 'gm_m3d_scene', 'gm_m3d_anm', 'gm_m_mtx', 'gm_m_heap', 'gm_m_allocator', 'gm_m_fader', 'gm_d_cc', 'gm_m_2d', 'gm_m_frustum', 'gm_s_lib', 'gm_c_lib', 'gm_m_color', 'gm_d_cd', 'gm_d_rail', 'gm_d_actorcreate', 'gm_d_wipe', 'gm_d_smallscore', 'gm_d_scene', 'gm_d_next', 'gm_d_lytbase', 'gm_d_wm', 'gm_d_stage', 'gm_d_2d', 'gm_d_res', 'gm_d_lytbuild', 'gm_d_lyttextbox', 'gm_d_message', 'gm_d_selectcursor', 'gm_d_util', 'gm_d_misc', 'gm_nw4r_ut', 'gm_egg', 'gm_nw4r_g3d', 'gm_state_ids', 'gm_prologue', 'gm_py_mng', 'gm_py_demo', 'gm_d_fukidashi', 'gm_d_fukidashi_info', 'gm_d_gamedisplay', 'gm_d_gamecom', 'gm_d_nand', 'gm_d_sc_wmap', 'gm_d_wm_se', 'gm_d_wm_subplayer', 'gm_d_wm_map', 'gm_d_wm_player', 'gm_d_course_guide', 'gm_d_course_manager', 'gm_d_select_player', 'gm_d_continue', 'gm_d_stock_item', 'gm_d_multi_course', 'gm_d_staff_credit', 'gm_d_small_score', 'gm_d_sc_stage', 'gm_py_key', 'gm_py_player', 'gm_d_player_base', 'gm_d_player', 'gm_en_enemies', 'gm_d_player_conv', 'gm_bg_scroll', 'gm_bs_bases', 'gm_eb_boss', 'gm_mj_conv', 'gm_pf_family', 'gm_wmc_worldmap', 'rt_plat_win']
 # the SMB3 port: ../SMB3Disassembly/port/<name>.c, and the recompiled game that
 # ../SMB3Disassembly/tools/build_smb3.py writes to ../SMB3Disassembly/out/ (smb3_*.c)
 SMB3_DIR = '../SMB3Disassembly/port'
@@ -84,11 +84,21 @@ def compile_one(src, obj):
     return src, None
 
 
+def src_mtime(src):
+    """a source's time; the SMB3 port's .c files include its .inc files (smb3_stage.c: the
+    enemies, the map, the Frog suit ...), so the newest of those counts too"""
+    t = os.path.getmtime(src)
+    if src.startswith(SMB3_DIR):
+        d = os.path.join(ROOT, SMB3_DIR)
+        t = max([t] + [os.path.getmtime(os.path.join(d, f)) for f in os.listdir(d) if f.endswith('.inc')])
+    return t
+
+
 def compile_all(srcs, jobs, label):
     todo = []
     for src in srcs:
         obj = os.path.join(OBJ, os.path.basename(src)[:-2] + ('.c.o' if 'recomp_' in src else '.o'))
-        if os.path.exists(obj) and os.path.getmtime(obj) >= os.path.getmtime(src) and \
+        if os.path.exists(obj) and os.path.getmtime(obj) >= src_mtime(src) and \
            (src.startswith('out') or os.path.getmtime(obj) >= newest_header): continue
         todo.append((src, obj))
     if not todo:
@@ -137,7 +147,7 @@ def deploy(exe):
     for dp, _, fs in os.walk(os.path.join(ROOT, 'ui')):          # ui/ with subfolders (retro sprite sheets...)
         if os.sep + 'guide' in dp: continue
         for f in fs:
-            if not f.endswith(('.png', '.json', '.wav')): continue
+            if not f.lower().endswith(('.png', '.jpg', '.jpeg', '.json', '.wav')): continue
             s = os.path.join(dp, f); d = os.path.join(GAME, os.path.relpath(s, ROOT))
             os.makedirs(os.path.dirname(d), exist_ok=True)
             if same(s, d): continue

@@ -140,6 +140,9 @@ static void gtext(float x, float y, float size, const char *s, uint32_t rgba) {
     }
 }
 static void gtext_centered(float cx, float y, float size, const char *s, uint32_t rgba) { gtext(cx - gtext_width(s, size) / 2, y, size, s, rgba); }
+/* (the game's font for other overlays: rt_charsel.c) */
+void menu_text(float x, float y, float size, const char *s, uint32_t rgba) { gtext(x, y, size, s, rgba); }
+float menu_text_width(const char *s, float size) { return gtext_width(s, size); }
 
 /* ================================================================== title screen state */
 enum { T_IDLE, T_PRESS_OUT, T_LIST, T_LIST_OUT, T_PRESS_IN, T_OPTIONS, T_START, T_CONTROLS, T_ONLINE, T_PROFILES };
@@ -235,9 +238,9 @@ static float screen_w(void) { uint32_t bp = R32(G_BG_PARAM); float w = bp ? rdf(
 /* the camera, driven by us while held: walking speed, wrapped with the stage loop */
 void hle_fn_80154F60(ppc_context *ctx, uint8_t *base) {
     cam_trace();
-    extern void aspect_camera_fix(void);
+    extern void aspect_camera_fix(void); extern void smb3_stage_camera(void);
     orig_fn_80154F60(ctx, base);
-    if (!cam_held()) { aspect_camera_fix(); return; }
+    if (!cam_held()) { aspect_camera_fix(); smb3_stage_camera(); return; }   /* (the SMB3 stage: SMB3's vertical scroll) */
     uint32_t bp = R32(G_BG_PARAM), bg = R32(G_BG);
     if (!bp || !bg) return;
     cam_x += WALK;
@@ -298,7 +301,9 @@ static int title_player_of_model(uint32_t mdl) {
     for (int i = 0; i < 8; i++) if (title_players[i]) { uint32_t mm = R32(title_players[i] + 3560); if (mm && R32(mm + 4) == mdl) return i; }
     return -1;
 }
+int smb3_stage_anim(ppc_context *ctx, uint8_t *base);   /* (SMB3Disassembly/port/smb3_stage.c: the Raccoon's animations) */
 void hle_StartAnimOrig(ppc_context *ctx, uint8_t *base) {
+    if (smb3_stage_anim(ctx, base)) return;
     int i = title_player_of_model(ctx->r[3]);
     { static int tr = -1; if (tr < 0) tr = getenv("RT_ANMTRACE") != NULL;
       if (tr && i >= 0) rt_log("anm", "f%llu p%d id %d rate %.3f blend %.3f frame %.3f cam %d", (unsigned long long)g_frames_presented, i, (int)ctx->r[4], ctx->f[1].d, ctx->f[2].d, ctx->f[3].d, cam_mode); }
@@ -568,7 +573,9 @@ uint32_t menu_filter_buttons(uint32_t b) {
     hidden = (hidden & b) | (b & ~out);
     return out & ~hidden;
 }
+uint32_t g_pad0_buttons;                 /* (player 1's buttons this frame, before any menu takes them: SMB3Disassembly/port/smb3_stage.c's map) */
 static uint32_t filter_buttons(uint32_t b) {
+    g_pad0_buttons = b;
     uint32_t pressed = b & ~prev_btn; prev_btn = b;
     {   int boot_kb_active(void); void boot_kb_press(void);              /* the boot's keyboard screen (rt_bootscreen.c): 2 goes on */
         if (boot_kb_active()) { if (pressed & (B_2 | B_A)) boot_kb_press(); return 0; } }
@@ -1302,6 +1309,7 @@ void menu_draw(void) {
     {   const char *nt = net_notice();                  /* an online game just ended: why */
         if (nt) { float w = gtext_width(nt, 18) + 40; if (w > 600) w = 600; float x = 320 - w / 2, y = 24;
                   ui_rect(x - 3, y - 3, w + 6, 40, 0xF0C030E0u); ui_rect(x, y, w, 34, 0x101828F0u); gtext_centered(320, y + 7, 18, nt, 0xFFFFFFFFu); } }
+    { void charsel_draw(void); charsel_draw(); }      /* the singleplayer character grid (rt_charsel.c) */
     if (ctl_open) { double t = (now_s() - ctl_t) / FADE; controls_draw(t > 1 ? 1 : (float)t); return; }
     if (smb3_active()) { smb3_screen(); return; }
     if (!title_live() && tstate != T_OPTIONS && tstate != T_CONTROLS && tstate != T_ONLINE && tstate != T_PROFILES) return;

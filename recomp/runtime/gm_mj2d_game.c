@@ -260,7 +260,8 @@ static void mj2d_initialize_r(GM_CTX) {
     }
     R(3) = 2; gm_set_u8(self + MJ2D_IBARA_NOW, 2);
 }
-GM_HLE_VOID(mod_fn_800CDED0, SELF, MJ2D_SIZE) { mj2d_initialize_r(GM_PASS); }
+void gs_smb3_init(uint32_t at);   /* rt_gamesetup.c: SMB3's File Select - Erase is on SMB3's files too */
+GM_HLE_VOID(mod_fn_800CDED0, SELF, MJ2D_SIZE) { gs_smb3_init(SELF); mj2d_initialize_r(GM_PASS); }
 static void mj2d_selftest(GM_CTX, gptr self);
 GM_HLE_VOID(mod_fn_800CE020, SELF, MJ2D_SIZE) {                         /* versionUpdate: an older save's slot starts over */
     mj2d_selftest(GM_PASS, SELF);

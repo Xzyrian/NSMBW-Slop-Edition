@@ -15,6 +15,7 @@
  * code calls either way. Which functions are on and how they were verified: see the list before
  * the entry points at the end. */
 #include "gm_i2.h"
+#include "rt_powerup.h"                      /* (the new power-ups: pu_tab for the game's 7-entry tables) */
 RT_STATE_FILE                                   /* (game code: its variables are part of a save state) */
 
 /* ---- fBase_c / dBaseActor_c / dActor_c fields */
@@ -503,11 +504,18 @@ static void py_setCancelCrouch(GM_CTX, gptr self) {
 }
 
 /* ================================================================== carrying, lifting, throwing */
+/* the SMB3 stage (SMB3Disassembly/port): an SMB3 shell held is carried as NSMBW carries - its
+   carry and throw animations, its rules (no lifting a player, no crouch, ...) - with no NSMBW
+   actor behind it (the carry ID stays 0) */
+int smb3_stage_carry(uint32_t pl);
+void smb3_stage_carry_release(uint32_t pl);
+float smb3_stage_player_scale(uint32_t pl);
 /* isCarry: something is carried */
 static void py_isCarry(GM_CTX, gptr self) {
     R(3) = gm_u32(self + PY_CARRY_ACTOR_ID);
     R(0) = (uint32_t)-(int32_t)R(3); R(0) |= R(3);
     R(3) = R(0) >> 31;                                                   /* (neg / or / rlwinm 1,31,31) */
+    if (!R(3) && smb3_stage_carry(self)) R(3) = 1;
 }
 /* the actor carried (fManager_c::searchBaseByID(mCarryActorID)) and a check of it; r3 = it or 0 */
 static void py_searchCarry(GM_CTX, gptr self, uint32_t ra) {
@@ -583,6 +591,7 @@ static void py_getLiftUpOffset(GM_CTX, gptr self) {
     R(3) = LIFT_UP_POS_DATA + R(0);
     LDF(1, R(3) + 36);
     FS(1, F(0) * F(1));
+    { float k = smb3_stage_player_scale(self); if (k != 1.0f) FS(1, F(1) * k); }   /* (the SMB3 stage's smaller players: the lift height with them) */
 }
 /* clearSpinLiftUpReserve */
 static void py_clearSpinLiftUpReserve(GM_CTX, gptr self) {
@@ -776,7 +785,7 @@ static void py_fn_801416c0(GM_CTX, gptr self, uint32_t powerup) {
 /* ================================================================== collision data */
 /* setCcDataDirect: the body cc from the power-up's size data */
 static void py_setCcDataDirect(GM_CTX, gptr self) {
-    R(0) = gm_u32(self + PL_POWERUP); R(5) = 0x802F0000u; R(4) = 0x80320000u;
+    R(0) = pu_tab(gm_u32(self + PL_POWERUP)); R(5) = 0x802F0000u; R(4) = 0x80320000u;
     LDF(1, self + PY_CC_M1598);
     R(0) <<= 2; R(5) = L_MODE_CC_SIZE;
     R(0) = gm_u32(R(5) + R(0));
@@ -872,7 +881,7 @@ static void py_initCcData(GM_CTX, gptr self) {
 /* getBgPointData_Powerup(powerup, index): &scBgPointData[powerup][index] */
 static void py_getBgPointData_Powerup(GM_CTX, uint32_t powerup, uint32_t index) {
     R(3) = 0x80320000u;
-    R(4) = powerup << 2;
+    R(4) = pu_tab(powerup) << 2;
     R(3) = SC_BG_POINT_DATA;
     R(0) = index << 6;
     R(3) = gm_u32(R(3) + R(4));
@@ -976,7 +985,7 @@ static void py_getTallType(GM_CTX, gptr self, uint32_t powerup) {
     int c = CMPS(R(0), -1);
     R(5) = gm_u16(R(2) - 22192); R(0) = gm_u8(R(2) - 22190);
     gm_set_u32(sp + 8, R(6)); gm_set_u16(sp + 12, (uint16_t)R(5)); gm_set_u8(sp + 14, (uint8_t)R(0));
-    if (c == 0) { R(0) = gm_u32(self + PL_POWERUP); R(4) = (uint32_t)(int8_t)R(0); }
+    if (c == 0) { R(0) = pu_tab(gm_u32(self + PL_POWERUP)); R(4) = (uint32_t)(int8_t)R(0); }
     R(0) = (uint32_t)(int8_t)R(4);
     R(3) = sp + 8;
     R(3) = gm_u8(R(3) + R(0));
@@ -990,7 +999,7 @@ static void py_setPlayerData(GM_CTX, gptr self) {
 }
 /* setSpeedData: the speed tables for the power-up */
 static void py_setSpeedData(GM_CTX, gptr self) {
-    R(0) = gm_u32(self + PL_POWERUP); R(5) = 0x802F0000u; R(4) = 0x80370000u;
+    R(0) = pu_tab(gm_u32(self + PL_POWERUP)); R(5) = 0x802F0000u; R(4) = 0x80370000u;
     R(0) <<= 2; R(5) = SC_SPEED_HIO_DATA;
     R(0) = gm_u32(R(5) + R(0));
     R(4) = M_SPEED_HIO;
@@ -1614,6 +1623,7 @@ static void py_checkSpinLiftUpRoofHeight(GM_CTX, gptr self) {
 /* cancelCarry(actor): carrying that actor (or any, for nullptr) - let go */
 static void py_cancelCarry(GM_CTX, gptr self, gptr actor) {
     I2_FN(0x8012E510u);
+    if (smb3_stage_carry(self)) { smb3_stage_carry_release(self); actor = 0; }   /* (an SMB3 shell: dropped) */
     NV_R(31, actor); NV_R(30, self);
     R(3) = gm_u32(self + PY_CARRY_ACTOR_ID);
     BL(0x8012E534u, hle_search__7fBase_cFUi);
@@ -1631,6 +1641,13 @@ static void py_cancelCarry(GM_CTX, gptr self, gptr actor) {
 static void py_checkEnableThrow(GM_CTX, gptr self) {
     I2_FN(0x8012E6E0u);
     NV_R(31, self);
+    if (smb3_stage_carry(self)) {                                        /* (an SMB3 shell: thrown as the carry button lets go - the stage kicks it) */
+        R(3) = self + PL_KEY;
+        BL(0x8012E740u, fn_8005E680);
+        R(0) = cntlzw(R(3));
+        R(3) = i2_rotl(R(0), 27) & 0x7FFFFFFu;
+        return;
+    }
     VCALL(0x8012E704u, self, VT_IS_CARRY);
     if (CMPS(R(3), 0) == 0) { R(3) = 0; return; }
     R(3) = gm_u32(self + PY_CARRY_ACTOR_ID);
@@ -1747,7 +1764,7 @@ static void py_setDrawBalloonInPlayer(GM_CTX, gptr self, gptr pos) {
     BL(0x801386D4u, PL_testFlag);
     if (CMPS(R(3), 0) == 0) return;
     R(3) = self; ON_STATUS(0x801386E8u, ST_54);
-    R(0) = gm_u32(self + PL_POWERUP); R(3) = SC_BALLOON_OFFSET_Y;
+    R(0) = pu_tab(gm_u32(self + PL_POWERUP)); R(3) = SC_BALLOON_OFFSET_Y;
     LDF(1, pos + 4); R(0) <<= 2; LDF(2, pos);
     LDF(0, R(3) + R(0));
     FS(0, F(1) + F(0));
@@ -2023,8 +2040,10 @@ static void py_doDelete(GM_CTX, gptr self) {
 }
 /* fn_80145c00(powerup): a new power-up to change to (not out of play nor stunned; not the one
    pending; a change) */
+int smb3_stage_powerdown(uint32_t pl, uint32_t *powerup);   /* (SMB3Disassembly/port/smb3_stage.c: a Raccoon hit drops to Super) */
 static void py_setNextPowerup(GM_CTX, gptr self, uint32_t powerup) {
     I2_FN(0x80145AC0u);
+    smb3_stage_powerdown(self, &powerup);
     NV_R(31, powerup); R(4) = ST_OUT_OF_PLAY; NV_R(30, self);
     BL(0x80145AE4u, PL_testFlag);
     if (CMPS(R(3), 0) != 0) { R(3) = 0; return; }

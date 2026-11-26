@@ -88,6 +88,38 @@ the character it picked (`chars_of_player(n)`; derived from its type when it nev
   they play as their body for now.
 - **Title screen**: the first five characters only (rt_title.c -> `chars_title_players`).
 
+## Singleplayer: the character grid (2026-11-24, rt_charsel.c)
+
+NSMBW's select walks one card through the whole roster (up to 11 presses today, more as it
+grows), so singleplayer has a grid instead. Multiplayer and the world map's character change keep
+the cards.
+
+- **Screen:** the game's card moves to the left (`SP_CARD_DX`, rt_gamesetup.c: the base and the
+  indicator layouts; the contents follow the base) and is the preview: picture, lives, and the 3D
+  figure that jumps onto it once chosen (2D player `mPos.x`, +0xAC, moved the same way). Over the
+  right of the screen: the grid (drawn by rt_menu.c `menu_draw`, faded with the game's fader).
+  The name and the family's variant row sit above the card; Start Game below it (in 4:3: a
+  little smaller and to the right, to stay on the screen). No arrows.
+- **Families:** a tile per family. `ROSTER[].family` = the id of the family's first character
+  (Retro Mario SMB1 / SMW / SM64 -> "mario"); `.variant` = its name on the variant row ("Normal"
+  when not set). A tile shows its family's current variant; dots on the tile = its variants.
+- **Input** (rt_gamesetup.c `gs_filter_buttons` -> `charsel_input`, while the select waits): the
+  d-pad moves (left / right run on through the rows, up / down by column; held: repeats after 18
+  frames, every 5), - steps through the hovered family's variants, 2 / A chooses. The game gets
+  no d-pad / - / 2 / A then; 1 (back / take the choice back) and + (Settings) are unchanged.
+- **Choosing:** rt_chars.c `grid_select` (in SelectWait) moves the card straight to the grid's
+  character (one slide, in the roster's direction) and chooses it there as the card's own 2 did;
+  from there the flow is the game's (Start Game, 1 takes it back, 1 again: File Select).
+- **Recent:** a row under the grid with the last 3 characters chosen in singleplayer; the cursor
+  starts on the latest. Kept in settings.ini as `sp_pick_<id> = n` (`sp_pick_count`: the last n),
+  so changing the roster's order doesn't mix them up.
+- **Tile pictures:** `ui/characters/<id>/portrait.png`, else the card layout's own picture (Mario,
+  Luigi, the two Toads: decoded from the layout's texture the first time the card is drawn). The
+  overlay now holds 128 textures (`UI_MAXTEX`, rt_gxgl.inc; was 8).
+- **Size:** 6 a row, 3 rows shown, scrolling by rows past that (arrows show more above / below).
+- Testing: `RT_AUTOPRESS_FILE` / `RT_FRAME_FILE` driver; the grid logs `[charsel] open ...` and
+  `[charsel] choose ...`.
+
 ## Next
 
 1. **Per-character data instead of per-type** (lives, power-up, items): today they belong to

@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_ONLY_PNG
+#define STBI_ONLY_JPEG                          /* (Game Select portraits may be .jpg: rt_gamesetup.c) */
 #define STBI_NO_STDIO_FAIL_MSG
 #include "stb_image.h"
 #define XXH_INLINE_ALL

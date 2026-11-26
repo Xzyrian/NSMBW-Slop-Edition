@@ -37,6 +37,9 @@ typedef struct {
     int body;            /* its own player type, or -1: borrows one */
     int prefer;          /* the body to borrow first (body < 0) */
     int style;
+    const char *family;  /* singleplayer grid (rt_charsel.c): one tile per family - the id of the
+                            family's first character, or 0: its own family */
+    const char *variant; /* its name on the family's variant row (0: "Normal") */
 } chara_t;
 static const chara_t ROSTER[] = {
     {"mario",       "Mario",              MARIO,           0, STYLE_NORMAL},
@@ -48,9 +51,9 @@ static const chara_t ROSTER[] = {
     {"daisy",       "Daisy",              ORANGE_TOAD,     0, STYLE_NORMAL},   /* model: Rosalina and Daisy mod */
     {"rosalina",    "Rosalina",           PURPLE_TOADETTE, 0, STYLE_NORMAL},   /* model: Rosalina and Daisy mod */
     {"goomba",      "Goomba",             -1, BLACK_TOAD,      STYLE_NORMAL},  /* (needs a 9th body for its model) */
-    {"retro_smb1",  "Retro Mario (SMB1)", -1, MARIO,           STYLE_SMB1},
-    {"retro_smw",   "Retro Mario (SMW)",  -1, MARIO,           STYLE_SMW},     /* (style: to make) */
-    {"retro_sm64",  "Retro Mario (SM64)", -1, MARIO,           STYLE_SM64},    /* (style: to make) */
+    {"retro_smb1",  "Retro Mario (SMB1)", -1, MARIO,           STYLE_SMB1, "mario", "SMB1"},
+    {"retro_smw",   "Retro Mario (SMW)",  -1, MARIO,           STYLE_SMW,  "mario", "SMW"},    /* (style: to make) */
+    {"retro_sm64",  "Retro Mario (SM64)", -1, MARIO,           STYLE_SM64, "mario", "SM64"},   /* (style: to make) */
 };
 #define CHAR_COUNT ((int)(sizeof ROSTER / sizeof ROSTER[0]))
 #define TITLE_CHARS 5                 /* the first five are on the title screen */
@@ -146,6 +149,13 @@ int chars_of_player(int n) {
     for (int i = 0; i < CHAR_COUNT; i++) if (ROSTER[i].body == type) return i;
     return -1;
 }
+/* the singleplayer grid (rt_charsel.c): families and variants */
+int chars_family(int c) {                          /* the family's first character */
+    if (c < 0 || c >= CHAR_COUNT) return -1;
+    int f = ROSTER[c].family ? chars_index(ROSTER[c].family) : -1;
+    return f >= 0 ? f : c;
+}
+const char *chars_variant(int c) { return c >= 0 && c < CHAR_COUNT && ROSTER[c].variant ? ROSTER[c].variant : "Normal"; }
 int chars_style_of_player(int n) { int c = chars_of_player(n); return c >= 0 ? ROSTER[c].style : STYLE_NORMAL; }
 int chars_is_smb1(int n) { return chars_style_of_player(n) == STYLE_SMB1; }
 
@@ -271,6 +281,7 @@ void hle_mod_fn_2_26D0(ppc_context *ctx, uint8_t *base) {
     if (singleplayer() && me == 0) copy_type_state((int)R32(MOD_PY_TYPE), body);   /* state carries over */
     W32(cb + CB_DECIDED_CHAR, (uint32_t)body);
     if (me >= 0 && me < 8) g_player_char[me] = c;
+    if (singleplayer() && me == 0) { void charsel_note_pick(int c); charsel_note_pick(c); }   /* (the grid's Recent row) */
     rt_log("chars", "player %d: %s (body %d)", me + 1, ROSTER[c].name, body);
 }
 
@@ -292,6 +303,36 @@ static void select_script_step(void) {
 static uint64_t select_seen_frame;
 void chars_test_frame(void) { extern uint64_t g_frames_presented; if (select_seen_frame && g_frames_presented != select_seen_frame) { select_seen_frame = g_frames_presented; select_script_step(); } }
 
+int charsel_target(void);                          /* rt_charsel.c: the singleplayer grid's character (-1: no grid) */
+int charsel_take_decide(void);                     /* rt_charsel.c: 2 / A pressed on the grid (once) */
+/* singleplayer, the grid: the card goes straight to the grid's character (one slide, the way the
+   character is in the roster), and the grid's 2 / A chooses once it's there */
+static int grid_select(ppc_context *ctx, uint8_t *base, uint32_t cb) {
+    int t = charsel_target();
+    if (t < 0 || t >= CHAR_COUNT) return 0;
+    int option = (int)R32(cb + CB_OPTION), now = opt_char(option);
+    if (now != t) {
+        int me = (int)R32(cb + CB_PLAYER_NO);
+        if (me >= 0 && me < 8) last_dir[me] = t > now ? 1 : -1;
+        W32(R32(cb + CB_ARROW) + AR_MOVE_DIR, t > now ? 2 : 1);
+        W32(cb + CB_MOVE_KIND, t > now ? 4 : 5);
+        W32(cb + CB_OPTION, (uint32_t)(OPT_HIGH - t));
+        change_state(ctx, base, cb + CB_STATE, ST_CB_MOVE_ANIME);
+        return 1;
+    }
+    if (!charsel_take_decide() || char_locked(cb, t)) return 1;
+    uint32_t ec = R32(cb + CB_ENTER_COUNT);
+    int n = (int)R32(ec) + 1, count = (int)R32(cb + CB_PLAYER_COUNT);
+    W32(ec, (uint32_t)n);
+    if (n >= count) {
+        W32(ec, (uint32_t)count);
+        if (R16(G_NOW_SCENE) != SCENE_WORLD_MAP) gcall(ctx, base, A_SET_SETUP_TRACK, 2, R32(G_SND_SCENE_MGR), 3);
+    }
+    W32(cb + CB_MOVE_KIND, (uint32_t)option);
+    change_state(ctx, base, cb + CB_STATE, ST_CB_HIT_ANIME);
+    return 1;
+}
+
 /* executeState_SelectWait: the module's version with the roster's range */
 void hle_mod_fn_2_3170(ppc_context *ctx, uint8_t *base) {
     uint32_t cb = ctx->r[3];
@@ -303,6 +344,7 @@ void hle_mod_fn_2_3170(ppc_context *ctx, uint8_t *base) {
     }
     int option = (int)R32(cb + CB_OPTION);
     W32(R32(cb + CB_CONTENTS) + CC_ICON_NOW, card_icon(cb, option));
+    if (grid_select(ctx, base, cb)) return;
     uint32_t core = R32(R32(G_GAME_KEY) + 4 + 4 * R32(cb + CB_PLAYER_NO));
     uint32_t rc = R32(MOD_KEY_REMOCON + 4 * R32(core + 4));
     if (gcall(ctx, base, VFN(rc, 0x20), 2, rc, 0x900)) {                 /* confirm (2 / A) */
@@ -414,6 +456,45 @@ static int layout_picture(int c) {
     switch (c) { case 0: return -1; case 1: return 2; case 2: return 6; case 3: return 4; default: return 0; }
 }
 
+/* ---- the grid's tile pictures (rt_charsel.c): ui/characters/<id>/portrait.png, or for the
+   characters the card layout has pictures of (Mario, Luigi, the two Toads), that picture -
+   decoded from the layout's texture the first time the card is drawn ---- */
+static int tile_tex[32], tile_tried[32], tile_w[32], tile_h[32];
+static int layout_tex_of(uint32_t pane, int *w, int *h) {
+    uint32_t tm = pane_texmap(pane);
+    if (!tm || ours(R32(tm))) return 0;
+    uint32_t img = R32(tm); int tw = R16(tm + 8), th = R16(tm + 10), fmt = (int)(R32(tm + 0x18) >> 28);
+    if (!(img >= 0x80000000u && img < 0x94000000u) || tw <= 0 || th <= 0 || tw > 1024 || th > 1024) return 0;
+    uint32_t *px = gx_decode_rgba(img, tw, th, fmt);
+    if (!px) return 0;
+    int id = ui_register_texture(px, tw, th); free(px);
+    *w = tw; *h = th;
+    return id;
+}
+int chars_tile_texture(int c);
+static void tiles_from_card(uint32_t cc) {
+    for (int c = 0; c < CHAR_COUNT && c < 32; c++) {
+        if (chars_tile_texture(c) || tile_tried[c] == 2) continue;      /* (portrait.png first) */
+        int lp = layout_picture(c);
+        if (lp > 0 || lp < 0) {
+            uint32_t pane = lp < 0 ? R32(cc + CC_MARIO_PICS) : R32(cc + CC_PICTURES + 4 * lp);
+            int id = layout_tex_of(pane, &tile_w[c], &tile_h[c]);
+            if (id) { tile_tex[c] = id; tile_tried[c] = 2; rt_log("chars", "tile %s: the card layout's picture (%dx%d)", ROSTER[c].id, tile_w[c], tile_h[c]); }
+        }
+    }
+}
+/* the tile picture of character c (0: none yet) */
+int chars_tile_texture(int c) {
+    if (c < 0 || c >= CHAR_COUNT || c >= 32) return 0;
+    if (!tile_tex[c] && !tile_tried[c]) {
+        tile_tried[c] = 1;
+        char path[1200]; snprintf(path, sizeof path, "%s/ui/characters/%s/portrait.png", g_root, ROSTER[c].id);
+        int w, h; uint32_t *px = ui_load_png(path, &w, &h);
+        if (px) { tile_tex[c] = ui_register_texture(px, w, h); tile_w[c] = w; tile_h[c] = h; tile_tried[c] = 2; free(px); }
+    }
+    return tile_tex[c];
+}
+
 /* dCharacterChangeSelectContents_c::dispNextConPicture(icon, side): the card's two faces
    (N_cSelectCon_00 / _01) slide past each other when the character changes; side 0 is the
    card's character, side 1 the one coming in. Each shows its character's picture; the base
@@ -422,6 +503,7 @@ void hle_mod_fn_2_5AB0(ppc_context *ctx, uint8_t *base) {
     uint32_t cc = ctx->r[3], icon = ctx->r[4], side = ctx->r[5];
     if (icon < ICON_BASE || icon >= ICON_BASE + 2u * CHAR_COUNT || side > 1) { orig_mod_fn_2_5AB0(ctx, base); return; }
     int c = (int)(icon - ICON_BASE) / 2, locked = (icon - ICON_BASE) & 1;
+    tiles_from_card(cc);                                                 /* (before our portrait replaces the Mario picture) */
     for (uint32_t i = side; i < 8; i += 2) vis(R32(cc + CC_PICTURES + 4 * i), 0);
     vis(R32(cc + CC_MARIO_PICS + 4 * side), 0);
     for (uint32_t i = side; i < 4; i += 2) vis(R32(cc + CC_TEXTBOXES + 4 * i), 0);

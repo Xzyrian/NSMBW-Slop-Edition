@@ -48,8 +48,43 @@ const char *smb3_file_summary(int f) {
     }
     return summary[f].has ? summary[f].text : NULL;
 }
+/* the File Select (rt_gamesetup.c): a file's world (0-8) and lives - 0 = no file; Copy and
+   Delete on SMB3's files */
+int smb3_file_info(int f, int *world, int *lives) {
+    static smb3_save_t s;
+    if (f < 0 || f > 2 || !read_file(f, &s)) return 0;
+    *world = s.world; *lives = s.lives[0];
+    return 1;
+}
+int smb3_file_copy(int from, int to) {
+    static smb3_save_t s;
+    if (from < 0 || from > 2 || to < 0 || to > 2 || from == to || !read_file(from, &s)) return 0;
+    char dir[1100]; snprintf(dir, sizeof dir, "%s/smb3", g_root); MKDIR(dir);
+    char p[1200], tmp[1210]; file_path(to, p, sizeof p); snprintf(tmp, sizeof tmp, "%s.new", p);
+    FILE *fp = fopen(tmp, "wb");
+    int ok = fp && fwrite(&s, 1, sizeof s, fp) == sizeof s;
+    if (fp) ok = !fclose(fp) && ok;
+    if (ok) { remove(p); ok = !rename(tmp, p); }
+    summary[to].known = 0;
+    rt_log("smb3", "file %d copied to file %d: %s", from + 1, to + 1, ok ? "ok" : "FAILED");
+    return ok;
+}
+int smb3_file_delete(int f) {
+    if (f < 0 || f > 2) return 0;
+    char p[1200]; file_path(f, p, sizeof p);
+    int ok = !remove(p);
+    summary[f].known = 0;
+    rt_log("smb3", "file %d deleted%s", f + 1, ok ? "" : " (there was none)");
+    return ok;
+}
+static int save_to(int file);
 int smb3_save(void) {
     if (!active || status[0]) return 0;
+    return save_to(cur_file);
+}
+/* (smb3_stage.c's map: its game - the same NES - to the file it came from) */
+int smb3_save_file(int file) { return file >= 0 && file < 3 && save_to(file); }
+static int save_to(int cur_file) {
     static smb3_save_t s; smb3_save_capture(&s);
     char dir[1100]; snprintf(dir, sizeof dir, "%s/smb3", g_root); MKDIR(dir);
     char p[1200], tmp[1210]; file_path(cur_file, p, sizeof p); snprintf(tmp, sizeof tmp, "%s.new", p);
@@ -74,6 +109,8 @@ static uint8_t pad_of(uint32_t b) {
     if (b & 0x1000) p |= NES_SELECT;
     return p;
 }
+uint8_t smb3_pad(uint32_t b) { return pad_of(b); }                    /* (smb3_stage.c's map) */
+int smb3_read_save(int f, smb3_save_t *s) { return f >= 0 && f < 3 && read_file(f, s); }
 void smb3_enter(int file) {
     status[0] = 0; paused = 0; quit_req = 0;
     cur_file = file >= 0 && file < 3 ? file : 0;

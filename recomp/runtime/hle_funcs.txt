@@ -11962,3 +11962,7 @@ fn_801062B0
 fn_80106620
 fn_801068B0
 fn_80106D60
+# the new power-ups (rt_powerup.c)
+daEnItem_c__GetWhetherPlayerCanGetPowerupOrNot
+fn_80022180
+fn_80036AB0
