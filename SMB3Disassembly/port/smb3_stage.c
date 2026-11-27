@@ -38,6 +38,7 @@ extern int smb3_start_at_map;
 #define BG_GM           (SDA - 22704)            /* dBgGm_c::m_bg_p */
 #define BG_TILEMAPS     (SDA - 22672)
 #define BG_AREA         (SDA - 21688)
+#define A_IS_DEMO       0x8004DD00u              /* daPlBase_c::isDemo (a demo of type 1-3: death, pipes, the goal...) */
 #define A_UNIT_FLAGS    0x800774A0u              /* dBgGm_c: a tile number's flags (r3:r4) */
 #define A_START_GAME    0x800BB780u              /* dInfo_c::startGame(StartGameInfo_s &) */
 #define A_SET_FADER     0x800B0DB0u              /* dFader_c::setFader(fader_type_e): 0 the colour fade */
@@ -141,6 +142,19 @@ static const uint8_t RC_TAIL_PAT[4] = {0x09, 0x3B, 0x1D, 0x1F};
 static const uint8_t RC_COLOUR[NRCOL] = {0x16, 0x2A, 0x12, 0x28};
 static const char *const RC_EAR_ART[8] = {"..KKK...", ".KSSK...", "KSSSK...", "KSSSK...", "KRSSK...", "KRRRK...", ".KKK....", "........"};
 static int rc_slot0;
+/* SMB3's music (smb3_stage_music.inc): its songs' numbers (smb3.asm) */
+#define MUS1_PLAYERDEATH    0x01
+#define MUS1_GAMEOVER       0x02
+#define MUS1_BOSSVICTORY    0x04
+#define MUS1_COURSECLEAR    0x20
+#define MUS1_TIMEWARNING    0x40
+#define MUS2A_INVINCIBILITY 0x0A
+#define MUS2B_PSWITCH       0xA0
+#define GOAL_CLEAR_FRAMES   192                 /* (MUS1_COURSECLEAR's length in frames: measured, SMB3_MUSIC_TEST_Q1=20,60) */
+#define GOAL_FANFARE_FRAMES 240                 /* (MUS1_BOSSVICTORY's: SMB3_MUSIC_TEST_Q1=04,60) */
+#define DEATH_SONG_FRAMES   192                 /* (MUS1_PLAYERDEATH's: SMB3_MUSIC_TEST_Q1=01,60) */
+static void music_level_placed(void); static void mus_q1(uint8_t v); static int music_death_left(void);
+static int restart_wait;                        /* (a death's restart held until SMB3's death song is over: smb3_stage_draw_any) */
 static int active, probe, tex_ready;
 static int await_scene;                         /* (a restart from inside the stage: the level not placed on the old one's players) */
 static int keep_counters;                       /* (a restart after a death: SMB3's score and coins stay) */
@@ -367,6 +381,10 @@ int smb3_stage_restart(ppc_context *ctx, uint8_t *base) {
     if (map_on()) return map_again(ctx, base);                           /* (on the map: NSMBW's way out of a course - the map again) */
     int any = 0; for (int i = 0; i < 8; i++) if (R32(WP_ENTRY_TABLE + 4 * (uint32_t)i) && (int)R32(MOD_PY_REST + 4 * (uint32_t)i) > 0) any = 1;
     if (!any) return 0;                                                  /* (game over: NSMBW's own) */
+    if (music_death_left() > 0) {                                        /* (SMB3's death song first: the restart from the next frames' draw) */
+        if (!restart_wait) rt_log("smb3", "stage: the restart waits %d frames for the death song", music_death_left());
+        restart_wait = 1; return 1; }
+    restart_wait = 0;
     if (map_shown_level() && map_level_end(ctx, base, 1)) return 1;      /* (SMB3's map: back to it, the life lost) */
     rt_log("smb3", "stage: a player down - 1-1 again");
     keep_counters = 1; int r = smb3_stage_begin(ctx, base); keep_counters = 0;
@@ -1269,6 +1287,7 @@ static void items_frame(void) {
     }
 }
 static void items_touch(ppc_context *ctx, uint8_t *base, uint32_t pl, int n, float px, float py, float h) {
+    if (gcall(ctx, base, A_IS_DEMO, 1, pl) || gcall(ctx, base, A_TEST_FLAG, 2, pl, 4) || gcall(ctx, base, A_TEST_FLAG, 2, pl, 53)) return;   /* (dying, in a demo - a pipe, the goal -, out of play, in a balloon: no items - SMB3's power-ups ignore a dying Player) */
     float lx = px - L.lx, lyb = -py - L.ly;                              /* (player's feet, level pixels) */
     for (int i = 0; i < NITEM; i++) {
         item_t *it = &items[i];
@@ -2069,6 +2088,7 @@ static void proc_enter(ppc_context *ctx, uint8_t *base) {
     gcall(ctx, base, A_LEAF_ENTRY, 1, SM_PROC);
 }
 void smb3_stage_draw_any(ppc_context *ctx, uint8_t *base) {
+    if (restart_wait && music_death_left() <= 0 && R16(G_NOW_SCENE) == 5) { restart_wait = 0; smb3_stage_restart(ctx, base); }
     if (getenv("SMB3_STAGE_DRAWLOG")) { extern uint64_t g_frames_presented; rt_log("smb3", "drawlog f%llu gamedisplay scene %d mode %d placed %d", (unsigned long long)g_frames_presented, R16(G_NOW_SCENE), (int)R32(G_GAME_MODE), L.placed); }
     if (smb3_stage_on() && L.placed && !probe) proc_enter(ctx, base);
 }
@@ -2194,7 +2214,7 @@ void smb3_stage_player_draw(ppc_context *ctx, uint8_t *base, uint32_t pl) {
            so the players start above their ground, not in it; across to the nearest */
         {   float raw = L.ly; L.lx = floorf(L.lx / 16.0f + 0.5f) * 16.0f; L.ly = ceilf(L.ly / 16.0f) * 16.0f; L.dy = L.ly - raw; }
         if (getenv("SMB3_STAGE_TEST_X") && getenv("SMB3_STAGE_TEST_XOFF") && col == atoi(getenv("SMB3_STAGE_TEST_X"))) WF(pl + PL_POS, px + (float)atoi(getenv("SMB3_STAGE_TEST_XOFF")));   /* (testing: that much further in the column) */
-        L.placed = 1;
+        L.placed = 1; music_level_placed();
         if (keep_rest) { keep_rest = 0; for (int i = 0; i < 8; i++) W32(MOD_PY_REST + 4 * (uint32_t)i, (uint32_t)kept_rest[i]); }   /* (lifted: the status bar under it) */
         rt_log("smb3", "stage: player 1 at (%.1f, %.1f, %.1f): the SMB3 level placed at (%.1f, %.1f): start column %d, ground row %d (SMB3's start %d, %d)", px, py, pz, L.lx, L.ly, col, g, L.sx, L.sy);
         if (getenv("SMB3_STAGE_SOLIDLOG")) { char b[900]; int k = 0;   /* (testing: walls - columns whose tile above the ground is solid) */
@@ -2241,4 +2261,5 @@ int smb3_map_player_exec(ppc_context *ctx, uint8_t *base, uint32_t pl) {
     return 1;
 }
 #include "smb3_map.inc"
+#include "smb3_stage_music.inc"
 #include "smb3_stage_pipes.inc"

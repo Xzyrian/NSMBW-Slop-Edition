@@ -35481,7 +35481,8 @@ E(fn_8013C1B0, 4) { py_setSpinFireBall_3c1b0(GM_PASS); }
 E(fn_8013CE00, 4) { py_updatePropelParts_3ce00(GM_PASS); }
 E(fn_8013D400, 4) { py_initDemo_DownPose_3d400(GM_PASS); }
 E(fn_8013D4E0, 4) { py_initDemo_DownFall_3d4e0(GM_PASS); }
-E(fn_8013D7E0, 4) { py_initPlayerDownCommon_3d7e0(GM_PASS); }
+void smb3_music_player_down(uint32_t pl);   /* (SMB3Disassembly/port/smb3_stage_music.inc: SMB3's death song as the death begins) */
+E(fn_8013D7E0, 4) { uint32_t pl_ = R(3); py_initPlayerDownCommon_3d7e0(GM_PASS); smb3_music_player_down(pl_); }
 E(fn_8013DB00, 4) { py_initializeState_DemoDown_3db00(GM_PASS); }
 E(fn_8013DC30, 4) { py_executeState_DemoDown_3dc30(GM_PASS); }
 E(fn_8013DE40, 4) { py_initializeState_DemoFallDown_3de40(GM_PASS); }

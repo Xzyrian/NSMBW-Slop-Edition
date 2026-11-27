@@ -90,6 +90,7 @@ SMB3Disassembly/
     nes_cpu.c                memory map, MMC3, calls/returns, interrupts, timing, coroutine
     nes_ppu.c                the picture (scanline renderer)
     nes_apu.c                the sound (2A03: pulses, triangle, noise, DMC; 32 kHz)
+    smb3_stage_music.inc     SMB3's music in the stage (its sound engine alone in a level)
     smb3_save.h              an SMB3 save file
   out/ (generated, not in git)
     smb3.nes, smb3.lst       the ROM and listing (byte-identical to SMB3 USA Rev A)
@@ -491,3 +492,54 @@ comparison (awaiting decisions): `BLOCKS_NSMBW_VS_SMB3.md`.
   - **Log:** `player N: body Raccoon, open hands` / `Raccoon, fists` / `Super` on each change, and
     `hands: the Raccoon's parts in the model at ...` once a model is found to have them.
 - **Not yet:** the Toads' Raccoon parts (they keep Super's body).
+
+### 2026-11-27: SMB3's music in the stage (smb3_stage_music.inc)
+
+- **Levels play SMB3's music, from SMB3's own sound engine.** In a level the NES game is held
+  where SMB3 brought the level up; `nes_sound_run` (nes_cpu.c) runs PRG028's
+  `Sound_Engine_Begin` alone, as the NMI does (banks 28/29 in, a JSR, everything put back), once
+  every 29780.5 CPU cycles, paced by the sound sent to the PC (`smb3_stage_audio`, called by
+  `rt_audio.c` for each block). So the tempo is the NES's, rollback frames never run it twice,
+  and the held game goes on unchanged when SMB3 takes over again (its frame timing moves on with
+  the cycles). On the map nothing changed: SMB3's frames make its sound.
+- **What plays** - SMB3's queues, set the way SMB3's code sets them:
+  - the level's song (`Level_MusicQueueRestore`, from its header) from the top when the level is
+    placed; a pipe into another area gets that area's;
+  - NSMBW's star / P-switch music state (SndSceneMgr's flags 4 / 8, NSMBW's own) → Invincibility /
+    P-Switch, and the level's song after (PRG008_A1FE);
+  - NSMBW's requests, translated: the miss → Player death, game over → Game over, the hurry-up at
+    100 → Time warning (NSMBW's timer is SMB3's), a course / boss clear → Course clear / Victory;
+  - the goal card → "Got the Card" (`MUS1_COURSECLEAR`), three alike → the fanfare; the time
+    bonus waits for it as DoTimeBonus waits for SndCur_Music1 - here by its length (192 / 240
+    frames), so every machine counts the same;
+  - NSMBW's pause menu → `Sound_QPause` 1 / 2: SMB3's pause sound, the music held.
+- **NSMBW's music is not played in the SMB3 stage** (`smb3_music_sound`, from the nw4r
+  detail_StartSound / HoldSound / PrepareSound hooks): its BGM players' sounds (16-19, 21 in the
+  sound archive - `tools/brsar_sounds.py`) and, in a level, its pause sound. NSMBW's sound
+  effects stay and are mixed with SMB3's sound (on the map too, where SMB3's sound used to replace
+  everything).
+- Testing: `SMB3_MUSIC_LOG=1` (the songs as they change, a second's samples and loudness, the
+  NSMBW sounds not played); `SMB3_MUSIC_TEST_Q1=song,frame` queues a Music1 song that many sound
+  frames into the level (song lengths).
+- Checked headless (Mario, 1-1 from the map): World 1's level song (10) plays with full sound in
+  the level; NSMBW's CHIJOU stream and its voice track are not started; a death plays SMB3's death
+  song (01); the card plays Course clear (20) and the level ends back on the map; pause holds the
+  music silent after SMB3's pause sound and resume continues it.
+- Not yet: SMB3's sound effects (NSMBW's play); bosses' own songs and the Hammer Bro battle's win
+  (their objects queue nothing yet).
+- **Fixes (same day):**
+  - *The music skipped* (worst in 1-2): the engine's own cycles were made into sound on top of
+    the cycles asked for, so the sound piled up and the backlog was dropped every few seconds.
+    They are part of the frame now (`nes_sound_run`: the next frame 29780.5 cycles after this one
+    began; what it ran past is owed back).
+  - *The death song came late and was cut*: it waited for NSMBW's miss music (after DemoDown's
+    wait) and NSMBW's restart came before its end. Now it starts as the death begins
+    (`dAcPy_c::initPlayerDownCommon`, when the level is lost: +5460, startMissBGM's own test), and
+    the restart waits for it (`smb3_stage_restart` holds it; `smb3_stage_draw_any` does it once
+    the 192 frames are over - as SMB3 drops to its map when the song ends).
+  - *The P-switch's song*: from the stage's own P-switch (`PS.cnt`, SMB3's Level_PSwitchCnt) as
+    SMB3 changes it - pressed: P-Switch (over a star's song too); a star got: Invincibility; one
+    over: the other's if it still runs, else the level's.
+  - *A dying player took a star*: SMB3's power-ups aren't touched by a player in a demo (death,
+    pipes, the goal), out of play or in a balloon (`items_touch`).
+

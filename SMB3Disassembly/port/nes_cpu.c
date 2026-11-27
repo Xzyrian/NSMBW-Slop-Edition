@@ -23,6 +23,7 @@ void rt_log(const char *tag, const char *fmt, ...);
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <setjmp.h>
 
 nes_cpu nes_R;
 uint8_t nes_ram[0x800], nes_wram[0x2000];
@@ -59,8 +60,10 @@ static void coro_new(void) {
 static void to_game(void) { swapcontext(&host_ctx, &game_ctx); }
 static void to_host(void) { swapcontext(&game_ctx, &host_ctx); }
 #endif
+static int snd_in; static jmp_buf snd_jb;              /* (nes_sound_run: the sound engine called from the host) */
 static void fatal(const char *fmt, ...) {
     va_list ap; va_start(ap, fmt); vsnprintf(err, sizeof err, fmt, ap); va_end(ap);
+    if (snd_in) { nlog("sound engine stopped: %s", err); longjmp(snd_jb, 1); }   /* (the game itself is fine) */
     nlog("stopped: %s", err);
     failed = 1;
     for (;;) to_host();                                 /* never resumed */
@@ -232,6 +235,52 @@ int nes_check(uint16_t pc, int win, int bank) {
     if (r != -1) return nes_unwind(r);
     if (bank >= 0 && nes_map[win] != bank) return NES_JUMP(pc);
     return 0;
+}
+
+/* ------------------------------------------------------------------ the sound engine alone */
+/* While the game is held between two frames (a level of SMB3's played in NSMBW's stage), its
+   sound engine still runs as the NMI runs it (PRG031_F567): the engine's banks in at $A000 /
+   $C000, a JSR to it, the banks back - each 29780.5 cycles (a frame), the APU on in between. The
+   held game sees nothing: its registers, banks and call frames are put back, and its frame's
+   timing (frame_dot0, nes_ev) moves on with the cycles, so it goes on where it was. */
+static double snd_next;                                    /* (cycles to the next sound frame) */
+static uint64_t snd_ahead;                                 /* (cycles the engine itself ran past what was asked: owed back) */
+static void snd_advance(uint64_t n) { nes_cyc += n; nes_ev += n; frame_dot0 += 3 * n; apu_catch_up(); }
+static uint64_t snd_frame(uint16_t engine, uint8_t bank_a, uint8_t bank_c) {
+    nes_cpu r = R; uint8_t m[4]; memcpy(m, nes_map, sizeof m);
+    uint64_t ev = nes_ev, c0 = nes_cyc; int d = depth;
+    nes_ev = ~0ull;                                        /* (no events: no frame, no interrupts) */
+    nes_map[1] = bank_a; nes_map[2] = bank_c;
+    snd_in = 1;
+    if (!setjmp(snd_jb)) {
+        PUSH16(0x0FFE);                                    /* (a JSR from nowhere: its RTS comes back here) */
+        int ret = nes_call(engine, 0x0FFF);
+        if (ret != 0x0FFF) nlog("sound engine: left by a jump (%X), not its RTS", ret);
+    }
+    snd_in = 0;
+    uint64_t used = nes_cyc - c0;
+    R = r; memcpy(nes_map, m, sizeof m); depth = d;
+    nes_ev = ev + used; frame_dot0 += 3 * used; apu_catch_up();
+    return used;
+}
+/* the engine's own cycles are part of the frame (the NMI's time in it): the next frame starts
+   29780.5 cycles after this one did, and they count against the cycles asked for - else every
+   frame would make that much sound more than asked (a backlog, dropped: the music skips) */
+void nes_sound_run(uint16_t engine, uint8_t bank_a, uint8_t bank_c, uint64_t cycles) {
+    if (!running || failed) return;
+    uint64_t owed = snd_ahead < cycles ? snd_ahead : cycles;
+    snd_ahead -= owed; cycles -= owed;
+    while (cycles) {
+        uint64_t step = snd_next > 0 ? (uint64_t)snd_next + (snd_next > (double)(uint64_t)snd_next) : 0;
+        if (step > cycles) step = cycles;
+        snd_advance(step); cycles -= step; snd_next -= (double)step;
+        if (snd_next <= 0) {
+            uint64_t used = snd_frame(engine, bank_a, bank_c);
+            snd_next += 29780.5 - (double)used;
+            uint64_t take = used < cycles ? used : cycles;
+            cycles -= take; snd_ahead += used - take;
+        }
+    }
 }
 
 /* ------------------------------------------------------------------ running */

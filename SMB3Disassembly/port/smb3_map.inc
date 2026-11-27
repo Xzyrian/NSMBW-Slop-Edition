@@ -224,7 +224,7 @@ static int map_level_end(ppc_context *ctx, uint8_t *base, int died) {
     S3W(SMB3_Player_Lives, (uint8_t)(died ? rest + 1 : rest));            /* (a death: SMB3 takes one itself) */
     S3W(SMB3_Map_ReturnStatus, (uint8_t)(died ? 1 : 0));
     S3W(SMB3_Level_ExitToMap, 1);
-    rt_log("smb3", "map: the level %s - back to SMB3's map", died ? "lost" : "cleared");
+    { extern uint64_t g_frames_presented; rt_log("smb3", "map: the level %s - back to SMB3's map (frame %llu)", died ? "lost" : "cleared", (unsigned long long)g_frames_presented); }
     if (!map_run_until(cond_on_map, 2, "the map again")) {                /* (SMB3 didn't get back: its map from the file - saved on the way in - not 1-1) */
         rt_log("smb3", "map: SMB3's map again from the file");
         if (!map_session_start()) { map_session_stop(); return 0; }
@@ -456,10 +456,4 @@ static void map_place(float px, float py) {
     if (MP.fy == 0) MP.fy = getenv("SMB3_MAP_FEET") ? (float)atof(getenv("SMB3_MAP_FEET")) : 14.0f;
     empty_course();
     rt_log("smb3", "stage: SMB3 map placed at (%.1f, %.1f): World %d", L.lx, L.ly, S3(SMB3_World_Num) + 1);
-}
-/* SMB3's sound on the map (the course's music under it: replaced) */
-int smb3_stage_audio(int16_t *lr, int n) {
-    if (!MP.session || !map_on() || !active) return 0;
-    apu_pull(lr, n, rt_setting("smb3_volume", 100));
-    return 1;
 }

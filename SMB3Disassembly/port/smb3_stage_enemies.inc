@@ -33,7 +33,7 @@ typedef struct {
     float hx, hy, hz; uint64_t hseen;            /* (held: where NSMBW holds a shell, as last drawn - dEn_c's calcCarryPos) */
 } obj_t;
 static obj_t ob[NOBJ];
-static struct { int msg, phase, wait, kind, hold; } goal;   /* (hold: the clock stays stopped once the goal's run is over - into the map) */   /* (the goal's run, below) */
+static struct { int msg, phase, wait, kind, hold, music; } goal;   /* (hold: the clock stays stopped once the goal's run is over - into the map) */   /* (the goal's run, below) */
 static int sb_first_player(void);
 static int kept_rest[8], keep_rest;
 static float pz;
@@ -461,8 +461,10 @@ static void fires_frame(float cam_l, float cam_r) {
 static int goal_stop_timer(void) { return goal.phase != 0; }
 /* DoTimeBonus (prg000): each frame, while a digit is left - 10 seconds off for 500 points while
    the hundreds or tens remain, then a second for 50 (TimeBonus_Score 50, 5: in tens). 1 while
-   converting. (SMB3 waits for the course clear music to end first; there's no SMB3 music here.) */
+   converting. SMB3 waits for the course clear music to end first (SndCur_Music1): here its
+   length in frames (goal.music, from the card's touch), so it is the same on every machine. */
 static int do_time_bonus(void) {
+    if (goal.music > 0) return 1;
     if (SB.time <= 0) return 0;
     if (SB.time >= 10) { SB.time -= 10; SG.score += 50; } else { SB.time -= 1; SG.score += 5; }
     return 1;
@@ -478,10 +480,14 @@ static void goal_take(obj_t *o, int n) {
     goal.kind = o->frame % 3 + 1; goal.phase = 1; goal.msg = 0;
     o->xvel = -1; o->yvel = -0x28; o->var4 = 4;
     int k = 0; while (k < 3 && SG.cards[k]) k++; if (k < 3) SG.cards[k] = goal.kind;   /* Player_GetCard */
+    {   int triple = k == 2 && SG.cards[0] == SG.cards[1] && SG.cards[1] == SG.cards[2];   /* (PRG002_BF9F: "Got the Card", or the fanfare for three alike) */
+        mus_q1(triple ? MUS1_BOSSVICTORY : MUS1_COURSECLEAR);
+        goal.music = triple ? GOAL_FANFARE_FRAMES : GOAL_CLEAR_FRAMES; }
     rt_log("smb3", "goal: player %d takes the card (%d)", n + 1, goal.kind);
 }
 static int goal_card(obj_t *o, int self) {      /* 1: the level starts over (stop here) */
     (void)self;
+    if (goal.music > 0) goal.music--;
     if (o->var4 == 0) {                          /* EndLevelCard_Untouched */
         if (!(counter1 & 7)) o->frame = (o->frame + 1) % 3;
         for (int n = 0; n < 8; n++) if (pp[n].on && intersect(pl_box(n), obj_box(o))) { goal_take(o, n); break; }

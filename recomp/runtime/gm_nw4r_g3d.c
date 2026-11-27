@@ -119632,7 +119632,8 @@ E(fn_8027A560, 4) { soundplayer_ctor_7a560(GM_PASS); }
 E(fn_8027A5F0, 4) { list_head_init_7a5f0(GM_PASS); }
 E(fn_8027A8E0, 4) { soundplayer_get_float_68_idx_7a8e0(GM_PASS); }
 E(fn_8027A8F0, 4) { soundplayer_set_float_88_idx_7a8f0(GM_PASS); }
-E(detail_PrepareSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo, 4) { soundstartable_prepare_7b270(GM_PASS); }
+int smb3_music_sound(uint32_t id);   /* (SMB3Disassembly/port/smb3_stage_music.inc: NSMBW's music in the SMB3 stage, not played) */
+E(detail_PrepareSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo, 4) { if (smb3_music_sound(R(5))) { R(3) = 1; return; } soundstartable_prepare_7b270(GM_PASS); }
 E(fn_8027B290, 4) { soundsystem_init_default_7b290(GM_PASS); }
 E(fn_8027B360, 4) { soundsystem_init_7b360(GM_PASS); }
 E(fn_8027B510, 4) { soundsystem_is_initialized_7b510(GM_PASS); }

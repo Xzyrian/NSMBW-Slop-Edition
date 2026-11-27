@@ -6,6 +6,54 @@ without re-deriving it.
 
 ---
 
+## 2026-11-27 (132) - Claude: SMB3 music fixes; a dying player took items
+
+User's bugs: the grassland (1-2) music skips; a dying NSMBW player can grab a star; the death
+music plays late and gets cut off; the P-switch music doesn't play.
+
+- **Skips**: `nes_sound_run` (`SMB3Disassembly/port/nes_cpu.c`) counted the engine's own cycles
+  on top of the ones asked for - more sound made than played, the backlog dropped (1-2's song is
+  the heaviest). They're part of the frame now. Checked: 1-2 headless, no samples dropped in the
+  level (`[apu] dropped` with `SMB3_MUSIC_LOG=1`; before: every ~2 s).
+- **Death song**: queued as the death begins (`gm_d_player_conv.c`: fn_8013D7E0
+  initPlayerDownCommon → `smb3_music_player_down`, when the level is lost - +5460 as
+  startMissBGM tests it), not at NSMBW's later miss music; the restart back to the map waits
+  for its 192 frames (`smb3_stage_restart` / `smb3_stage_draw_any`). Checked: the song from the
+  death, the restart held 82 frames, then the map.
+- **P-switch**: the stage's own P-switch (PS.cnt) drives SMB3's P-Switch song with SMB3's rules
+  (pressed over a star; the other's song or the level's after). Checked with a P-switch put under
+  the start (`SMB3_STAGE_TEST_TILES=2,26,F2`): song A0.
+- **Items**: `items_touch` skips a player in a demo (daPlBase_c::isDemo - death, pipes, goal),
+  out of play or in a balloon.
+
+---
+
+## 2026-11-27 (131) - Claude: SMB3's music in the SMB3 stage
+
+User (2026-11-27): "can you implement SMB3 music next". Details: `SMB3Disassembly/port/README.md`
+(2026-11-27), `SMB3Disassembly/port/smb3_stage_music.inc`.
+
+- **SMB3's own sound engine plays the levels' music**: `nes_sound_run` (`port/nes_cpu.c`) runs
+  `Sound_Engine_Begin` alone while the NES game is held in its level, as its NMI would, paced by
+  the sound sent to the PC (`smb3_stage_audio`, from `rt_audio.c`). `apu_flush` (`nes_apu.c`)
+  drops the burst of the frames SMB3 ran to bring a level up.
+- **Native state first**: the songs come from SMB3's queues, set from NSMBW's own state and
+  requests - SndSceneMgr's star / P-switch flags; NSMBW's miss, game over, hurry-up, clear
+  sounds translated; the goal card's songs; NSMBW's pause (dGameDisplay_c ProcMainPause,
+  `gm_d_gamedisplay.c`) → Sound_QPause.
+- **NSMBW's music not played in the SMB3 stage**: `smb3_music_sound` from the nw4r
+  detail_StartSound / HoldSound (`rt_retro.c`) and detail_PrepareSound (`gm_nw4r_g3d.c`) hooks -
+  the sounds on NSMBW's BGM players (ids from the disc's sound archive:
+  `SMB3Disassembly/tools/brsar_sounds.py`). NSMBW's sound effects stay, mixed with SMB3's sound
+  (also on the map now - it used to replace everything there).
+- **The goal's time bonus** waits for the card song (192 / 240 frames for a triple), as
+  DoTimeBonus waits for SndCur_Music1 - by length, so it stays deterministic.
+- **Verified** (headless, Mario, 1-1 from the map, `SMB3_MUSIC_LOG=1`): the level's song (10),
+  NSMBW's stream not started, death → 01, the card → 20 then the map, pause / resume.
+- **Open**: SMB3's sound effects; bosses' songs (their objects don't queue them yet).
+
+---
+
 ## 2026-11-26 (130) - Claude: the Frog gets its own model file (Penguin untouched); more power-up sites
 
 - **Frog model** (`runtime/rt_charmdl.c`): Mario gets a second dPlayerMdl_c built from

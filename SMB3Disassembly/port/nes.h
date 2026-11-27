@@ -14,6 +14,9 @@ uint8_t *nes_ram_ptr(void);                         /* $0000-$07FF */
 uint8_t *nes_wram_ptr(void);                        /* $6000-$7FFF */
 const char *nes_error(void);                        /* why it stopped, or NULL */
 uint64_t nes_frame_count(void);
+/* the game held where it is, its sound engine run alone for that many CPU cycles (once a frame:
+   the engine's banks at $A000 / $C000, as the NMI has them) - the APU's samples made meanwhile */
+void nes_sound_run(uint16_t engine, uint8_t bank_a000, uint8_t bank_c000, uint64_t cycles);
 void nes_set_log(void (*fn)(const char *msg));
 /* the PPU as it is now (for building pictures outside the NES frame: smb3_stage.c) */
 uint8_t ppu_peek_chr(uint16_t addr);                /* a byte of the pattern tables ($0000-$1FFF, as mapped now) */

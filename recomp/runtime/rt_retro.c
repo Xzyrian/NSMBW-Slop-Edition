@@ -809,14 +809,17 @@ static int se_log(ppc_context *ctx, const char *what, uint32_t id) {
     if (lg) rt_log("se", "%s %u obj %08X lr %08X acting %d frame %llu", what, id, ctx->r[3], ctx->lr, acting ? (int)(acting - R) : -1, (unsigned long long)g_frames_presented);
     return lg;
 }
+int smb3_music_sound(uint32_t id);   /* (SMB3Disassembly/port/smb3_stage_music.inc: 1 = NSMBW's music, not played in the SMB3 stage) */
 /* nw4r::snd::SoundStartable::detail_StartSound / detail_HoldSound(handle r4, id r5, info r6) */
 void hle_detail_StartSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo(ppc_context *ctx, uint8_t *base) {
     se_log(ctx, "start", ctx->r[5]);
+    if (smb3_music_sound(ctx->r[5])) { ctx->r[3] = 1; return; }         /* (NSMBW's music in the SMB3 stage: SMB3's instead) */
     if (retro_sound(ctx->r[5], ctx->r[3])) { ctx->r[3] = 1; return; }    /* (START_ERR_LOW_PRIORITY: not played) */
     orig_detail_StartSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo(ctx, base);
 }
 void hle_detail_HoldSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo(ppc_context *ctx, uint8_t *base) {
     uint32_t obj = ctx->r[3];
+    if (smb3_music_sound(ctx->r[5])) { ctx->r[3] = 1; return; }
     for (int i = 0; i < 8; i++) if (R[i].actor && obj >= R[i].actor && obj < R[i].actor + 0x2A80 && retro_of(R[i].actor)) { ctx->r[3] = 1; return; }   /* (the player's held sounds) */
     orig_detail_HoldSound__Q34nw4r3snd14SoundStartableFPQ34nw4r3snd11SoundHandleUlPCQ44nw4r3snd14SoundStartable9StartInfo(ctx, base);
 }

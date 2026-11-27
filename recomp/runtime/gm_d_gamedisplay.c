@@ -61,7 +61,9 @@ static void dGameDisplay_finalizeState_ProcMainGame(GM_CTX, gptr self) {
     gm_set_u8(self + GD_MAIN_GAME_FLAG, R(4));
 }
 
+void smb3_music_pause(int on);   /* (SMB3Disassembly/port/smb3_stage_music.inc: SMB3's music paused with NSMBW's pause menu) */
 static void dGameDisplay_initializeState_ProcMainPause(GM_CTX, gptr self) {
+    smb3_music_pause(1);
     R(4) = 1;
     gm_set_u32(self + GD_MAIN_GAME_VALUE, R(4));
     R(4) = 0;
@@ -79,6 +81,7 @@ static void dGameDisplay_executeState_ProcMainPause(GM_CTX, gptr self) {
 }
 
 static void dGameDisplay_finalizeState_ProcMainPause(GM_CTX, gptr self) {
+    smb3_music_pause(0);
     R(4) = 0;
     gm_set_u32(self + GD_PAUSE_ANIM_VALUE, R(4));
 }

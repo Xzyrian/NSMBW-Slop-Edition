@@ -6,6 +6,8 @@
 #include "nes_apu.h"
 #include "nes_gen.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 static const uint8_t LEN[32] = {10,254,20,2,40,4,80,6,160,8,60,10,14,12,26,14,12,16,24,18,48,20,96,22,192,24,72,26,16,28,32,30};
 static const uint8_t DUTY[4][8] = {{0,1,0,0,0,0,0,0},{0,1,1,0,0,0,0,0},{0,1,1,1,1,0,0,0},{1,0,0,1,1,1,1,1}};
@@ -120,6 +122,8 @@ static void cycle(void) {
 }
 void apu_catch_up(void) { while (apu_cyc < nes_cyc) { cycle(); apu_cyc++; } }
 
+void apu_flush(void) { r_r = r_w; }
+
 void apu_reset(void) {
     memset(pl, 0, sizeof pl); memset(&tri, 0, sizeof tri); memset(&noi, 0, sizeof noi); memset(&dmc, 0, sizeof dmc);
     noi.lfsr = 1; noi.period = NOISE_P[0]; dmc.rate = DMC_P[0]; dmc.bits = 8; dmc.silent = 1;
@@ -176,7 +180,7 @@ uint8_t apu_status(void) {
 int apu_pull(int16_t *lr, int n, int volume_pct) {
     static int16_t last; int got = 0;
     unsigned have = r_w - r_r;
-    if (have > 4096) r_r = r_w - 2048;                  /* (fallen far behind: keep the latency small) */
+    if (have > 4096) { r_r = r_w - 2048; if (getenv("SMB3_MUSIC_LOG")) fprintf(stderr, "[apu] dropped %u samples (behind)\n", have - 2048); }   /* (fallen far behind: keep the latency small) */
     for (int i = 0; i < n; i++) {
         if (r_w != r_r) { last = ring[r_r % RING]; r_r++; got++; }
         int v = last * volume_pct / 100;
