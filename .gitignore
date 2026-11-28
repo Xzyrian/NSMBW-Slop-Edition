@@ -32,3 +32,12 @@ recomp/config/d_project/
 # SMB3 port: assembled ROM, listing and recompiled C (SMB3Disassembly/tools/build_smb3.py)
 SMB3Disassembly/out/
 NSMB2_RomFS/
+
+# SMW port: assembled ROM and recompiled C (SMWDisassembly/tools)
+SMWDisassembly/out/
+
+# SMB1 (SMB1Disassembly, asm6): the assembled ROM (build.bat) - SMB1 Mario is run from it
+SMB1Disassembly/*.nes
+
+# transfer archives with game data
+_xfer_i2/game.tar.zst

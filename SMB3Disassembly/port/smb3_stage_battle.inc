@@ -228,6 +228,7 @@ static void hams_frame(float cam_l, float cam_r) {
         if (ham[k].timer) ham[k].timer--;
         if (ham[k].boom) {                                               /* SObj_Boomerang */
             ham[k].var1++;
+            if (!(nes_ram_ptr()[SMB3_SndCur_Level2] & 0x04)) sfx_level2(0x04);   /* (PRG007_B8C1: SND_BOOMERANG, again whenever it's over) */
             if (ham[k].var2 >= 0 && !ham[k].timer) {
                 int y = ham[k].var2 & 1;
                 ham[k].xvel += y ? -1 : 1;                               /* Boomerang_XVelDelta */

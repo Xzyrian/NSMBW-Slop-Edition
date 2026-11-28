@@ -119392,7 +119392,8 @@ E(fn_80265F90, 4) { set_float_64_idx_65f90(GM_PASS); }
 E(fn_80265FF0, 4) { basicsound_ctor_65ff0(GM_PASS); }
 E(fn_802660D0, 4) { basicsound_init_param_660d0(GM_PASS); }
 E(fn_80266230, 4) { basicsound_start_prepared_66230(GM_PASS); }
-E(Stop__Q44nw4r3snd6detail10BasicSoundFi, 4) { basicsound_stop_66250(GM_PASS); }
+void smb3_music_stopping(uint32_t snd, uint32_t lr, uint32_t fade);   /* (smb3_stage_music.inc: testing - who stops an SMB3 song) */
+E(Stop__Q44nw4r3snd6detail10BasicSoundFi, 4) { smb3_music_stopping(R(3), ctx->lr, R(4)); basicsound_stop_66250(GM_PASS); }
 E(Pause__Q44nw4r3snd6detail10BasicSoundFbi, 4) { basicsound_pause_66440(GM_PASS); }
 E(fn_802666A0, 4) { basicsound_set_auto_stop_666a0(GM_PASS); }
 E(fn_802667D0, 4) { basicsound_is_pause_667d0(GM_PASS); }
@@ -120430,7 +120431,8 @@ E(fn_802D3810, 4) { arcplayer_ctor_d3810(GM_PASS); }
 E(fn_802D3920, 4) { arcplayer_set_1232_d3920(GM_PASS); }
 E(fn_802D3940, 4) { arcplayer_open_by_mode_d3940(GM_PASS); }
 E(fn_802D39B0, 4) { arcplayer_open_dvd_d39b0(GM_PASS); }
-E(fn_802D3E90, 4) { arcplayer_load_group_d3e90(GM_PASS); }
+void smb3_sound_group_load(ppc_context *ctx, uint8_t *base, uint32_t mgr, uint32_t group, uint32_t heap, uint32_t block);   /* (SMB3Disassembly/port/smb3_stage_music.inc: GROUP_SMB3 with GROUP_BOOT) */
+E(fn_802D3E90, 4) { uint32_t m_ = R(3), g_ = R(4), h_ = R(5), b_ = R(6); arcplayer_load_group_d3e90(GM_PASS); smb3_sound_group_load(ctx, base, m_, g_, h_, b_); }
 E(fn_802D41D0, 4) { arcplayer_calc_d41d0(GM_PASS); }
 E(fn_802D42C0, 4) { call_callback_18184_d42c0(GM_PASS); }
 E(fn_802D42D0, 4) { sound_foreach_in_player_d42d0(GM_PASS); }

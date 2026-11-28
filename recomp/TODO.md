@@ -8,6 +8,9 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
 
 ## Next up (user's list)
 
+- [x] **SMB3 sound in NSMBW's sound archive** (user, 2026-11-27; Claude - this session): songs and sound effects made at build time, NSMBW's sound archive expanded with them (CHANGELOG 134, 136). A door / pipe keeps the song playing; the stage's sound effects (137). Open: an upward / sideways pipe exit not checked.
+- [~] **GitHub issues** (user, 2026-11-27: "begin working on the GitHub issues", github.com/Xzyrian/NSMBW-Slop-Edition/issues) - claimed by **Claude instance 1**: #4, #16 and #15 fixed 2026-11-27 (CHANGELOG 135). Other sessions: please pick other numbers and add your claim here.
+- [~] **SMW** (user, 2026-11-27: "lets begin implementing SMW ... make it playable to 1-1") - Claude: recompiled whole and playable from a new file through Yoshi's Island 1 (CHANGELOG 138, `SMWDisassembly/port/README.md`). NSMBW players in its levels begun (CHANGELOG 139: its tiles, slopes and background in an NSMBW stage; 140: Exit Course / side exits back to SMW's map, SMW's camera, Yoshi's House). Next: the goal and back to SMW's map, SMW's blocks / items / enemies, sound (SPC700 + DSP).
 - [~] **Native port: from emulation to a decompiled PC port** (user, 2026-10-16: performance,
   modding and principle; online play may be taken apart) - `docs/NATIVE_ROADMAP.md`.
   Split (user, 2026-10-16): track A (platform: SDK libraries native, no emulated hardware)
@@ -161,7 +164,7 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     with real remotes on Windows (log lines `[wm]`, `[remotes]`)
 - [~] **Character list: 12 characters, room for more** (Claude instance 2) - `docs/CHARACTERS.md`.
   Roster (in order; first five on the title screen): Mario, Luigi, Ala Gold, Buckenberry,
-  Toadette | Toadsworth, Daisy, Rosalina, Goomba, Retro Mario (SMB1), Retro Mario (SMW), Retro
+  Toadette | Toadsworth, Daisy, Rosalina, Goomba, Retro Mario (SMB1), Retro Mario (SMB3), Retro Mario (SMW), Retro
   Mario (SM64). Purple Toadette is dropped.
   - [x] character table (`runtime/rt_chars.c`); players remember the character they picked
   - [x] character select: NSMBW's cards walk all 12 (left/right); portraits from files
@@ -187,7 +190,11 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
     (left/right only); [ ] HUD head icons (2D) for the retro characters
   - [x] selection: an entry in the character select (character 10)
   - [ ] more pictures in NSMBW states (carry, throw, grow, shoot, pipes, victory), play-testing
-- [ ] **Retro Mario (SMW), Retro Mario (SM64)** - characters 11 and 12 of the roster: same
+- [~] **Retro Mario (SMB3)** (user, 2026-11-27: "add SMB3 Mario as a character / should have
+  authentic SMB3 physics") - Claude: SMB3's player code ported (`runtime/smb3_physics.c`), SMB3's
+  own sprites and sounds, small / Super / Fire / Raccoon / Frog (CHANGELOG 141, docs/RETRO_MARIO.md).
+  Open: the tail swipe against NSMBW enemies, the Tanooki statue, SMB3's death song, portrait.
+- [ ] **Retro Mario (SMW), Retro Mario (SM64)** - characters 12 and 13 of the roster: same
   approach as SMB1 (a movement port + sprites), designs to settle with the user.
 - [~] **Discord Rich Presence** (Claude instance 1, 2026-10-15) - `docs/DISCORD.md`. What you're
   doing (title, world map, level, online) on your Discord profile, through Discord's local IPC

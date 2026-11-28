@@ -22,6 +22,7 @@
 #include "gm.h"
 #include "gm_nv.h"
 #include "smb3.h"                               /* ../SMB3Disassembly/port */
+#include "smw.h"                                /* ../SMWDisassembly/port */
 
 #define R(n) ctx->r[n]
 #define F(n) ctx->f[n].d
@@ -166,7 +167,7 @@ static gptr acm_spawn(GM_CTX, gptr m, gptr data, gptr info, gptr flag, gptr del,
     R(0) = gm_u16(R(9) + R(0));
     NV_R(29, flag); NV_R(30, del);
     int dummy = cmpu(ctx, R(0), DUMMY_ACTOR) == 0;
-    if (smb3_stage_suppress_actors()) dummy = 1;                          /* (the SMB3 stage: the shell course's actors are not spawned) */
+    if (smb3_stage_suppress_actors() || smw_stage_suppress_actors()) dummy = 1;   /* (the SMB3 / SMW stage: the shell course's actors are not spawned) */
     NV_R(31, area);
     if (!dummy) {
         R(3) = m;

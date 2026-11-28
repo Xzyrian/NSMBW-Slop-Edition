@@ -90,7 +90,8 @@ SMB3Disassembly/
     nes_cpu.c                memory map, MMC3, calls/returns, interrupts, timing, coroutine
     nes_ppu.c                the picture (scanline renderer)
     nes_apu.c                the sound (2A03: pulses, triangle, noise, DMC; 32 kHz)
-    smb3_stage_music.inc     SMB3's music in the stage (its sound engine alone in a level)
+    smb3_stage_music.inc     SMB3's sound in the stage: its engine's rules natively, songs on NSMBW's stream players
+    smb3_sound.c, .h         SMB3's songs / sound effects in NSMBW's formats (build time) and NSMBW's sound archive expanded with them
     smb3_save.h              an SMB3 save file
   out/ (generated, not in git)
     smb3.nes, smb3.lst       the ROM and listing (byte-identical to SMB3 USA Rev A)
@@ -411,7 +412,7 @@ comparison (awaiting decisions): `BLOCKS_NSMBW_VS_SMB3.md`.
     and come out again for the next level.
   - **Saving.** The progress is saved to the SMB3 file each time the map comes back, because
     NSMBW's pause menu in a stage has no Save.
-  - **Sound.** SMB3's own map music plays (`smb3_stage_audio`, `rt_audio.c`).
+  - **Sound.** SMB3's own map music plays (since 2026-11-27 (134) as NSMBW streams: see below).
   - Checked headless:
     - walking from START, then entering 1;
     - losing 1-1: back on the map, a life down;
@@ -495,6 +496,9 @@ comparison (awaiting decisions): `BLOCKS_NSMBW_VS_SMB3.md`.
 
 ### 2026-11-27: SMB3's music in the stage (smb3_stage_music.inc)
 
+(Replaced in (134), below: SMB3's songs are NSMBW streams now and its engine no longer runs on
+the APU in the stage. What plays when, and why, still holds.)
+
 - **Levels play SMB3's music, from SMB3's own sound engine.** In a level the NES game is held
   where SMB3 brought the level up; `nes_sound_run` (nes_cpu.c) runs PRG028's
   `Sound_Engine_Begin` alone, as the NMI does (banks 28/29 in, a JSR, everything put back), once
@@ -543,3 +547,223 @@ comparison (awaiting decisions): `BLOCKS_NSMBW_VS_SMB3.md`.
   - *A dying player took a star*: SMB3's power-ups aren't touched by a player in a demo (death,
     pipes, the goal), out of play or in a balloon (`items_touch`).
 
+### 2026-11-27: slopes (Hills, Underground)
+
+- **Players on SMB3's slopes are on NSMBW's own slopes** (`smb3_stage.c`: `slope_shape`,
+  `slope_unit`). In a slope level (`Level_SlopeEn`: tilesets 3 Hills and 14 Underground), each tile
+  from its quad's base up (`Tile_AttrTable`'s first four: $25 $5F $99 $E2) has a shape from
+  prg000's `Level_SlopeQuad00/40/80/C0`, and `Slope_LUT` gives the shape's floor and ceiling per
+  pixel. `smb3_stage_unit` hands NSMBW a slope unit for a slope shape, so the player's own physics
+  run on it: walking, running, standing, the crouch slide, jumps from it.
+  - Floor slopes are hi `0x20`, low byte as follows: `$01` 45° up → `0`, `$02` 45° down → `1`,
+    `$0C $0D` 22.5° up → `2 3`, `$0E $0F` 22.5° down → `4 5`.
+  - Ceiling slopes are hi `0x40`. Each one is a floor shape upside down, with the same number:
+    `$05 $06 $11 $12 $13 $14` → `0 1 2 3 4 5`.
+  - Squares (`$03`), walls (`$04`) and flat ceilings (`$08`) are solid. Unsloped ground (`$07`)
+    is NSMBW's one-way floor, as before.
+  - How the codes were found: `SMB3_STAGE_PROBE` on the shell course gave NSMBW's slope tiles
+    (`0x20` / `0x40` with shapes 0-5, `0x0A` flat, `0x0B-0x12` its 4-tile slopes). Walking across
+    test cells (`SMB3_STAGE_TEST_UNIT`) showed each shape's direction.
+- **SMB3's objects on slopes** (`smb3_stage_enemies.inc`: `world_detect`, `hit_ground`), ported
+  from PRG000_C5BC-C67F.
+  - An object lands at the shape's depth under its middle (`Object_SlopeHeight`, added by
+    `Object_HitGround`). The depth rule is SMB3's: at or below the slope's height there, or 12
+    down.
+  - The flat middle grounds ($A8 $AA $AB $F9 $37) lift it to a pixel above.
+  - Walking off a slope's tile, it follows the slope down or up (`Objects_Slope`).
+  - In a slope level, anything from the base up is a ceiling to its head.
+  - SMB3's ceiling shapes are no floor for objects.
+  - Not ported yet: a slope's push on objects' speed (`LRBounce_Vel` / `Slope_ObjectVel_Effect`
+    on kicked shells and the like).
+- **Checked headless:**
+  - 1-2: up the first hill's 22.5° slopes, then the next; over the top and down the 45° and
+    22.5° sides; a crouch slide back down. The pictures match the slopes.
+  - 1-2: the first Para-Goomba hops down the hill's side, landing on the slope.
+  - 1-5: on its 45° floor; jumps up into the slanted ceilings.
+- **New test switches:**
+  - `SMB3_STAGE_TEST_UNIT="col,row,hi,lo;..."`: those cells get those NSMBW unit flags.
+  - `SMB3_MAP_TEST_AT="Y,X"` (hex): player 1's map marker is put on that square, e.g. `20,80` for
+    1-2, `A0,40` for 1-5.
+  - `SMB3_OBJ_TRACE`: every object, every frame.
+  - `SMB3_STAGE_MAP` now draws slopes as `/ \` and ceilings as `v`.
+
+### 2026-11-27: pipes come out, the P-switch goes through, SMB3's sound as NSMBW's (134)
+
+(The sound part is superseded by (136), below: no cache, no file swapped - NSMBW's sound
+archive is expanded, and the sound effects are NSMBW wave sounds.)
+
+User: "when mario enters a pipe he does not exit another / P-Switch state also doesn't carry over
+through a pipe / When entering a pipe, for a brief moment, an audio track will keep playing /
+... can we convert SMB3's audio to NSMBW natively?" (asked: pre-rendered streams).
+
+- **Out of the other pipe** (`smb3_stage_pipes.inc`: `pipe_exit_placed`, `pipe_exit_frame`).
+  While SMB3 runs the junction, its first frame with the other area up gives SMB3's Mario at the
+  start of its way out and `Level_PipeExitDir` (1 up, 2 down, 3 right, 4 left; PRG026 / PRG008).
+  With the stage placed on that area, the exit pipe is the pipe end ($AD-$B4 - exit pipes are
+  often the unenterable $B1/$B2) above / below him, or the sideways mouth ($B5) beside him. Each
+  player is then put inside it and NSMBW's own `daPlBase_c::StateID_DemoInDokanU / D / R / L`
+  plays (`StateID_DemoInDokanU` 0x8035482C, the others 0x40 apart): it waits for the fade and its
+  turn (daPyDemoMng), plays the pipe sound and slides out to mWarpPos, set to the mouth. The
+  pipe's cells let the player through and the tiles about it are drawn over it, as on the way in.
+  Doors and in-level transits: the players stand where SMB3's Mario is, as before.
+- **The P-switch through a pipe** (`smb3_stage.c` `level_fresh`, `pswitch_resume`): SMB3's
+  `Level_PSwitchCnt` belongs to the game, not the area. A junction's restart keeps the count, swaps
+  the new area's coins and bricks, and keeps the P-switch song (`music_bg_want` reads `PS.cnt`).
+- **SMB3's sound is NSMBW's now** (`smb3_sound.c`, `smb3_stage_music.inc`). The NES APU no longer
+  runs for the SMB3 stage or its map (`smb3_stage_audio` makes nothing). That ends the leftover
+  sound on a pipe: the junction's frames, run all at once, used to make a burst of APU sound
+  that played on into the next area.
+  - **Rendered once** (`smb3_sound_prepare`, from `rt_disc.c`'s `disc_init`). SMB3's own engine
+    runs offline on the APU for every song (Music Set 1 $01-$40; Set 2A $01-$0F; Set 2B $10-$C0)
+    and every sound effect (each queue's values).
+    - A looping song is found looping when the engine's RAM (not the stack page) and its work RAM
+      at $7Axx repeat an earlier frame. Its loop start is moved onto a stream block, as NSMBW's
+      are, and the last 20 ms fade into what comes before the loop start (the noise and pulse
+      phases differ), so the loop has no click.
+    - Fast copies of the songs the time warning speeds up (Set 2B, $09, $0A: `Music_RestH_Off`
+      $10, PRG031_E4E4), as NSMBW's _FAST streams.
+    - Songs are written as DSP-ADPCM .brstm in NSMBW's two-channel layout
+      (couse_clear_lr.n.32.brstm: two channels, one track of both, 32 kHz, 0x2000-byte blocks).
+      The encoder's eight predictors come from per-frame least squares, clustered; each frame's
+      predictor and scale are picked by trying them. Sound effects are written as .wav.
+    - The files go to `<game>/cache/smb3_sound/` with a stamp (renderer version + ROM). They are
+      made again only when that changes, or with `RT_SMB3_SOUND_RENDER=1`.
+    - The first time takes about 30 s here (24 s engine + APU, 7 s encoding; 84 files, 30 MB).
+      The window title shows the progress and the window is kept alive.
+  - **On the disc**: the songs are root files `/smb3_m1_XX.brstm`, `/smb3_m2_XX.brstm`,
+    `/smb3_m2f_XX.brstm` (fast), added to the FST after the mod's archive.
+  - **Played by NSMBW** through `SndAudioMgr`'s own start (its vtable +180, as its BGM start
+    `fn_801953B0` calls it), on two of its own BGM sounds:
+    - `STRM_BGM_MORI` (1915; the course BGM player 18, volume 127, one track) for Set 2;
+    - `STRM_BGM_LAST_CASTLE_APPEAR` (1899; the fanfare player 17, volume 127) for Set 1.
+    As NSMBW opens their stream file, `DVDConvertPathToEntrynum` (`gm_mj_conv.c` →
+    `smb3_strm_redirect`) is given the SMB3 song's file instead. Volume: `smb3_volume` (the
+    handle's `SetVolume`). Pause: `BasicSound::Pause`. NSMBW's own stream player does the rest:
+    ADPCM, loops, mixing with its sound effects.
+  - **SMB3's engine's rules, natively** (`smb3_hook_sound` on `Sound_Engine_Begin`, `port/hooks.txt`;
+    `snd_step`). In a level, one step each stage frame (SMB3 is held there); on the map, its
+    NMI's call.
+    - Set 1 stops the Set 2 song and holds it. The time warning over: that song again, fast. Any
+      other jingle over: all music stops.
+    - A Set 2 song queued under a jingle is only held.
+    - A Set 2A song (not $09 / $0A) plays at its own speed again.
+    - The map's enter-level sound halts the song.
+    - Pause / resume (`Sound_QPause` 1 / 2).
+    - `SndCur_Music1 / 2`, `SndCur_Player / Level1 / Level2 / Map / Pause`, `Sound_IsPaused`,
+      `Music2_Hold` and `Music_RestH_Off` are kept as SMB3's code reads them, each for its sound's
+      length in frames. `Level_MainLoop` waits for the enter-level sound, `GameOver_WaitOnBGM`
+      for the game over song, `DoTimeBonus` for the jingle.
+  - **Sound effects** (SMB3's map, the bonus screens) are the rendered clips, played by the
+    runtime's mixer (`rt_sfx.c` `sfx_play_file`, at `smb3_volume`). NSMBW's sound archive has no
+    room for new waves, so they don't go through nw4r. Effects of frames SMB3 runs unseen (a
+    level being brought up, a junction, SMB3's Mario walked into a pipe) are not heard: NSMBW's
+    player makes its own.
+  - A song NSMBW stops on its own (a scene starting) is started again, at most once a second.
+    Before the files were stereo they were dropped every few seconds: one channel against the
+    carriers' two.
+- **Checked headless** (Mario, 1-1 from the map):
+  - a test pipe at screen 8 (`SMB3_STAGE_TEST_TILES=130,25,AD;131,25,AE`) into the coin room:
+    the player comes down out of its ceiling pipe (column 8 row 16, `StateID_DemoInDokanD`),
+    hidden inside it first, then falls;
+  - a P-switch running (`SMB3_TEST_PSWITCH=1`) went through with 41 left, the coin room's tiles
+    swapped, the P-switch song on; at its end, the coin room's song (20);
+  - the output audio (`RT_AUDIO_WAV`) holds each song, matched by loudness envelope against the
+    files decoded: World 1's map (0.98), 1-1 (0.98, 85 s through its loops), the time warning
+    jingle (0.95), then 1-1's fast copy (0.98);
+  - the rendered files decode (a separate decoder) to the APU's own loudness, and their
+    loops line up with the music before the loop start (envelope 0.95-0.99, against 0.3 for any
+    other place).
+- **Test switches**:
+  - `SMB3_TEST_PSWITCH=1`: a P-switch running from the first placement;
+  - `SMB3_MUSIC_LOG=1` now also logs each stream started, the file swapped in, sound effects,
+    and who stops an SMB3 song (`smb3_music_stopping`);
+  - `SMB3_MUSIC_TEST_Q1=song,frame`: counted in sound frames from the session's start;
+  - `RT_SMB3_SOUND_RENDER=1`: render again.
+- **Not yet / open:**
+  - a pipe coming out upwards, and sideways pipes, not checked headless (the same code path as
+    down);
+  - SMB3's sound effects are mixed by the runtime, not by nw4r;
+  - the jingle's length is counted in game frames (as SMB3 does), so a slow machine hears
+    silence after the jingle until the frames are done.
+
+### 2026-11-27: SMB3's sound in NSMBW's sound archive, expanded (136)
+
+User: "songs should not be cached they should be built into the executable / I have cached the
+songs on my end, build them into the game files / we need to expand NSMBW's sound archive for the
+new sfx so they can run natively / do not substitute any space from NSMBW's existing sound
+archive, we must expand it / never substitute or replace anything from the original game".
+
+- **Made at build time, kept as game files.** `build.py` runs the game it just linked as
+  `nsmbw.exe --smb3-render-sound ../SMB3Disassembly/out/sound` (`smb3_sound_render`). That renders
+  only what the stamp says is missing (v6 + the ROM; v5's songs are kept). Deploy copies the
+  results to `game\sound\smb3\`. Nothing is rendered or cached when the game runs.
+  - Songs: `.brstm` as before (two-channel DSP-ADPCM, loops on a block, fast copies).
+  - Sound effects: `.rwav`, NSMBW's own wave format (mono DSP-ADPCM, 32 kHz - the layout of the
+    waves in NSMBW's wave archives, 32 kHz like many of its own).
+- **On the disc** (`rt_disc.c`): the songs go in a new folder, `/smb3/`, appended after the
+  disc's own entries. Nothing of the disc's is moved.
+- **NSMBW's sound archive, expanded** (`smb3_brsar_expand`). The file on the disc is never
+  changed. At start it is read, and the expanded archive is kept in memory and placed on the
+  disc after everything, where the archive's entry points. It holds every byte of NSMBW's own:
+  - SYMB: NSMBW's, then a new string table (its strings and ours: `SMB3_M1_40`,
+    `SMB3_M2F_10`, `SMB3_SE_MAP_04`, ..., `GROUP_SMB3`).
+  - INFO: NSMBW's, then the new entries and new sound, file and group tables (NSMBW's entries
+    first, ours after):
+    - 48 **stream sounds**: file `/smb3/<song>.brstm` (nw4r takes a path starting with `/` as
+      it is); Set 2 on the course BGM player 18, Set 1 on the fanfare player 17;
+    - 36 **wave sounds**: SMB3's queues on NSMBW's players - the player's on
+      PLAYER_SE_PLY, the level's on PLAYER_SE_OBJ, the map's on PLAYER_SE_SYS, the pause sound
+      on PLAYER_SE_SYS_GAME_PAUSE;
+    - **GROUP_SMB3**: one wave sound file (RWSD, laid out as NSMBW's own - Yoshi's voices,
+      file 85: per sound one track of one note at 0) and its wave archive (RWAR) of the effects'
+      waves. nw4r counts groups as the table's count minus one: the last group, NSMBW's unnamed
+      one (the files no other group has), is never loaded by number. So GROUP_SMB3 is group 12,
+      that one moves to 13, and the files listed in it say 13.
+  - FILE: NSMBW's, then GROUP_SMB3's data and waves. NSMBW's groups' places move with the
+    section; their bytes don't change.
+  - Sound IDs: after NSMBW's 1978 - 1978..2025 the songs, 2026..2061 the effects
+    (`smb3_snd_id`).
+  - Checked against the original with a separate reader: all 1978 sound entries the same, every
+    group's data and waves the same, the new entries and files read back.
+- **GROUP_SMB3 loaded with GROUP_BOOT** (`gm_nw4r_g3d.c` E(fn_802D3E90) → `smb3_sound_group_load`).
+  As NSMBW loads GROUP_BOOT at start (`SndAudioMgr` → EGG's loadGroup, fn_802D3E90 → nw4r
+  `SoundArchivePlayer::LoadGroup`), GROUP_SMB3 is loaded the same way into the same heap, where
+  it stays (315 KB of waves; the heap had 1.5 MB free).
+- **Played by NSMBW** (`smb3_stage_music.inc`): every SMB3 sound starts through `SndAudioMgr`'s
+  own start (its vtable +180) by its own ID.
+  - Each SMB3 queue has its own handle (`SM_MEM` +0x288..), so on each queue a new effect stops
+    the last, as on the NES's one channel.
+  - The carrier sounds and the stream file swap (`smb3_strm_redirect`) are gone, and so are the
+    runtime mixer clips; `rt_sfx.c`, `rt.h` and `gm_mj_conv.c` are back as they were.
+- **Checked headless** (1-1 from the map, `RT_AUDIO_WAV`; each matched by loudness envelope
+  against the files decoded):
+  - World 1's map song (0.95), the map's enter-level sound (0.99), 1-1's song (0.99);
+  - the pause sound (1.00) and the song silent while paused;
+  - the time warning jingle (0.82), then 1-1's fast copy (0.98).
+  - The log has each start with its ID, and none dropped.
+- **Test switches**:
+  - `RT_DUMP_BRSAR=file`: the expanded archive as the game gets it;
+  - `RT_DVD_TRACE=bytes`: disc reads that big, with the guest's calls under them;
+  - `SMB3_MUSIC_LOG=1`: also the sound heap's free space when GROUP_SMB3 loads.
+
+### 2026-11-27: a door keeps the song; the stage's sound effects (137)
+
+User: "entering a door incorrectly causes the music track to change (in the case of stages that
+use doors, just restarting the track that is already playing)" / "there are no stage sfx, like
+collecting coins, hitting blocks, stomping enemies, is that intentional?" (it wasn't).
+
+- **The song through a door or pipe** (`smb3_stage_music.inc`, `music_tick`): the area's song is
+  queued only when it isn't the one playing, as SMB3's `Level_MainLoop` does (PRG030_8DE7). The
+  same song plays on through the junction; another one changes.
+- **The stage's sound effects** (`smb3_stage.c` `sfx_player` / `sfx_level1` / `sfx_level2`):
+  the port's coin, block, item, enemy and shell routines set SMB3's sound queues where SMB3's own
+  routines set them, and SMB3's engine rules play them (from GROUP_SMB3, 136):
+  - coins (COIN), a block that bounces (BUMP), a brick busted (CRUMBLE), a power-up rising
+    (RISE), a power-up with no change of form (POWER), an NES character's leaf (POOF), 1-ups;
+  - a stomp (the squish; a Bro's - KICK), a kick, a kill by star / tail / shell / a bump from
+    below (KICK), a kicked shell against a wall (BUMP), the P-switch (BABOOM), the time bonus
+    (BLIP), a boomerang (BOOMERANG).
+  - The characters' own sounds stay NSMBW's (CHARACTERS_AND_GAMES.md rule 5): the jump, the
+    stomp's jump, the ceiling bump, a change of form.
+- **Checked headless**: 1-Fortress's door - the song plays on in phase; 1-1 - a coin block, a
+  kicked shell, its wall and a stomped Goomba each start their SMB3 sound.

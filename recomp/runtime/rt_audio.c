@@ -17,6 +17,7 @@
  * only send mail) and the whole AX library stay recompiled. */
 #include "rt.h"
 #include "smb3.h"                               /* ../SMB3Disassembly/port */
+#include "smw.h"                                /* ../SMWDisassembly/port */
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 
 #define SDA 0x8042F680u
@@ -250,6 +251,7 @@ void audio_tick(void) {
     }
     if (!g_resim) {                                          /* (fields run again after a rollback: not heard twice) */
         if (smb3_active()) smb3_audio(pcm, (int)frames);     /* SMB3 running: its sound, not the game's (the menu music) */
+        else if (smw_active()) smw_audio(pcm, (int)frames); /* SMW running: its sound (silent for now: smw_main.c) */
         else { int smb3_stage_audio(int16_t *lr, int n); smb3_stage_audio(pcm, (int)frames); }   /* (SMB3's map in a stage: its music instead of the course's) */
         sfx_mix(pcm, (int)frames);                           /* (our own sounds: rt_sfx.c) */
         plat_audio_push(pcm, (int)frames);

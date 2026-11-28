@@ -13,6 +13,7 @@
  * up the game sees no buttons. Drawn as an overlay (menu_draw) on a 640x480 virtual screen. */
 #include "rt.h"
 #include "smb3.h"                               /* ../SMB3Disassembly/port */
+#include "smw.h"                                /* ../SMWDisassembly/port */
 #include <math.h>
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 extern uint64_t g_frames_presented;
@@ -238,9 +239,9 @@ static float screen_w(void) { uint32_t bp = R32(G_BG_PARAM); float w = bp ? rdf(
 /* the camera, driven by us while held: walking speed, wrapped with the stage loop */
 void hle_fn_80154F60(ppc_context *ctx, uint8_t *base) {
     cam_trace();
-    extern void aspect_camera_fix(void); extern void smb3_stage_camera(void);
+    extern void aspect_camera_fix(void); extern void smb3_stage_camera(void); extern void smw_stage_camera(void);
     orig_fn_80154F60(ctx, base);
-    if (!cam_held()) { aspect_camera_fix(); smb3_stage_camera(); return; }   /* (the SMB3 stage: SMB3's vertical scroll) */
+    if (!cam_held()) { aspect_camera_fix(); smb3_stage_camera(); smw_stage_camera(); return; }   /* (the SMB3 / SMW stage: their scroll) */
     uint32_t bp = R32(G_BG_PARAM), bg = R32(G_BG);
     if (!bp || !bg) return;
     cam_x += WALK;
@@ -1256,41 +1257,49 @@ static void update_screen(void) {
     }
     if (dark > 0) ui_rect(0, 0, 640, 480, with_alpha(0x00000000u, dark));
 }
-/* ---- SMB3 (started from the character select, rt_gamesetup.c; ../SMB3Disassembly/port) ----
-   A frame of it and its screen over everything. + (or HOME) pauses it: this menu, as NSMBW's
-   world map has - Continue / Save / Save & Quit / Quit (to the title). rt_gamesetup.c hands us
-   the presses while it is open. */
+/* ---- SMB3 / SMW (started from the character select, rt_gamesetup.c; ../SMB3Disassembly/port,
+   ../SMWDisassembly/port) ----
+   A frame of the one running and its screen over everything. + (or HOME) pauses it: this menu,
+   as NSMBW's world map has - Continue / Save / Save & Quit / Quit (to the title). rt_gamesetup.c
+   hands us the presses while it is open. (SMW's Save writes its save RAM: what SMW itself saved.) */
+typedef struct { const char *name; void (*frame)(void); void (*draw)(void); const char *(*status)(void); int (*paused)(void);
+                 void (*set_paused)(int); int (*save)(void); void (*quit)(void); } retro_game_t;
+static const retro_game_t RG_SMB3 = {"SMB3", smb3_frame, smb3_draw, smb3_status, smb3_paused, smb3_set_paused, smb3_save, smb3_quit};
+static const retro_game_t RG_SMW = {"SMW", smw_frame, smw_draw, smw_status, smw_paused, smw_set_paused, smw_save, smw_quit};
+static const retro_game_t *retro_running(void) { return smb3_active() ? &RG_SMB3 : smw_active() ? &RG_SMW : NULL; }
 static const char *const smb3_items[] = {"Continue", "Save", "Save & Quit", "Quit"};
 static int smb3_sel; static double smb3_note_t; static const char *smb3_note;
 int menu_smb3_pause_input(uint32_t pressed) {
+    const retro_game_t *g = retro_running(); if (!g) return 0;
     if (pressed & NAV_UP) smb3_sel = (smb3_sel + 3) % 4;
     if (pressed & NAV_DOWN) smb3_sel = (smb3_sel + 1) % 4;
-    if (pressed & (B_1 | B_B | B_PLUS | B_HOME)) { smb3_set_paused(0); smb3_sel = 0; smb3_note = NULL; return 1; }
+    if (pressed & (B_1 | B_B | B_PLUS | B_HOME)) { g->set_paused(0); smb3_sel = 0; smb3_note = NULL; return 1; }
     if (pressed & (B_2 | B_A)) {
         int ok = 1;
         switch (smb3_sel) {
-        case 0: smb3_set_paused(0); break;
-        case 1: ok = smb3_save(); smb3_note = ok ? "Saved" : "Could not save"; smb3_note_t = now_wall(); break;
-        case 2: ok = smb3_save(); if (ok) smb3_quit(); else { smb3_note = "Could not save"; smb3_note_t = now_wall(); } break;
-        case 3: smb3_quit(); break;
+        case 0: g->set_paused(0); break;
+        case 1: ok = g->save(); smb3_note = ok ? "Saved" : "Could not save"; smb3_note_t = now_wall(); break;
+        case 2: ok = g->save(); if (ok) g->quit(); else { smb3_note = "Could not save"; smb3_note_t = now_wall(); } break;
+        case 3: g->quit(); break;
         }
         if (smb3_sel != 1 && ok) { smb3_sel = 0; smb3_note = NULL; }
     }
     return 1;
 }
 static void smb3_screen(void) {
-    smb3_frame();
-    smb3_draw();
-    const char *e = smb3_status();
-    if (e && !smb3_paused()) {
+    const retro_game_t *g = retro_running(); if (!g) return;
+    g->frame();
+    g->draw();
+    const char *e = g->status();
+    if (e && !g->paused()) {
         float x = 70, y = 165, w = 500, h = 150;
         ui_rect(x - 3, y - 3, w + 6, h + 6, 0xF0C030FFu);
         ui_rect(x, y, w, h, 0x101828F0u);
-        gtext_centered(320, y + 16, 30, "SMB3", 0xFFFFFFFFu);
+        gtext_centered(320, y + 16, 30, g->name, 0xFFFFFFFFu);
         gtext_centered(320, y + 62, 16, e, 0xC8D0E0FFu);
         gtext_centered(320, y + h - 34, 16, "+: Menu", 0xC8D0E0FFu);
     }
-    if (!smb3_paused()) return;
+    if (!g->paused()) return;
     float w = 300, row = 46, h = row * 4 + 28, x = 320 - w / 2, y = 240 - h / 2;
     ui_rect(x - 3, y - 3, w + 6, h + 6, 0xF0C030FFu);
     ui_rect(x, y, w, h, 0x101828E8u);
@@ -1311,7 +1320,8 @@ void menu_draw(void) {
                   ui_rect(x - 3, y - 3, w + 6, 40, 0xF0C030E0u); ui_rect(x, y, w, 34, 0x101828F0u); gtext_centered(320, y + 7, 18, nt, 0xFFFFFFFFu); } }
     { void charsel_draw(void); charsel_draw(); }      /* the singleplayer character grid (rt_charsel.c) */
     if (ctl_open) { double t = (now_s() - ctl_t) / FADE; controls_draw(t > 1 ? 1 : (float)t); return; }
-    if (smb3_active()) { smb3_screen(); return; }
+    if (smw_cover()) { ui_rect(0, 0, 640, 480, 0x000000FFu); return; }   /* (SMW holds a level for the NSMBW stage: black till the stage is up) */
+    if (retro_running()) { smb3_screen(); return; }
     if (!title_live() && tstate != T_OPTIONS && tstate != T_CONTROLS && tstate != T_ONLINE && tstate != T_PROFILES) return;
     if (tstate == T_PROFILES) { profiles_draw(fade_t()); return; }
     if (tstate == T_CONTROLS) { controls_draw(fade_t()); return; }

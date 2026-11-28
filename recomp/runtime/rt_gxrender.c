@@ -209,7 +209,7 @@ static uint64_t texture_hash(uint32_t addr, uint32_t w, uint32_t h, uint32_t fmt
     static const int bh[16] = {8, 4, 4, 4, 4, 4, 4, 0, 8, 4, 4, 0, 0, 0, 8, 0};
     int tw = bw[fmt & 15] ? bw[fmt & 15] : 4, th = bh[fmt & 15] ? bh[fmt & 15] : 4;
     size_t bytes = (size_t)((w + tw - 1) / tw) * ((h + th - 1) / th) * (fmt == 6 ? 64 : 32);
-    { uint32_t pa = addr & 0x3FFFFFFF; if (!((pa + bytes <= 0x02000000u) || (pa >= 0x10000000u && pa + bytes <= 0x14000000u))) bytes = 0; }
+    { uint32_t pa = addr & 0x3FFFFFFF; if (!((pa + bytes <= 0x04000000u) || (pa >= 0x10000000u && pa + bytes <= 0x14000000u))) bytes = 0; }   /* (MEM1 and the memory above it the SMB3 / SMW stages draw from - 0x82000000-0x84000000 - and MEM2) */
     static int full = -1; if (full < 0) full = getenv("RT_TEXFULLHASH") != NULL;
     uint64_t hv = (full || hash_full_next) ? XXH3_64bits(g_base + (addr & 0x3FFFFFFF), bytes) ^ bytes : hash_sampled(g_base + (addr & 0x3FFFFFFF), bytes);
     hash_full_next = 0;

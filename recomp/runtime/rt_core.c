@@ -995,6 +995,8 @@ static void guest_boot(void *arg) {
     rt_fatal("__start returned");
 }
 int main(int argc, char **argv) {
+    /* (build time: build.py) SMB3's songs and sound effects made into NSMBW's formats, then out */
+    if (argc >= 3 && !strcmp(argv[1], "--smb3-render-sound")) { int smb3_sound_render(const char *dir); return smb3_sound_render(argv[2]); }
     if (argc >= 3) {
         snprintf(g_root, sizeof g_root, "%s", argv[1]);
         snprintf(g_disc, sizeof g_disc, "%s", argv[2]);

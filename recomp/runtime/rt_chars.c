@@ -31,7 +31,7 @@ RT_STATE_FILE                                   /* (this file's variables are pa
 
 /* ---- the roster ---- */
 enum { MARIO, LUIGI, BLUE_TOAD, YELLOW_TOAD, TOADETTE, PURPLE_TOADETTE, ORANGE_TOAD, BLACK_TOAD, BODY_COUNT };
-enum { STYLE_NORMAL, STYLE_SMB1, STYLE_SMW, STYLE_SM64 };
+enum { STYLE_NORMAL, STYLE_SMB1, STYLE_SMW, STYLE_SM64, STYLE_SMB3 };
 typedef struct {
     const char *id, *name;
     int body;            /* its own player type, or -1: borrows one */
@@ -52,6 +52,7 @@ static const chara_t ROSTER[] = {
     {"rosalina",    "Rosalina",           PURPLE_TOADETTE, 0, STYLE_NORMAL},   /* model: Rosalina and Daisy mod */
     {"goomba",      "Goomba",             -1, BLACK_TOAD,      STYLE_NORMAL},  /* (needs a 9th body for its model) */
     {"retro_smb1",  "Retro Mario (SMB1)", -1, MARIO,           STYLE_SMB1, "mario", "SMB1"},
+    {"retro_smb3",  "Retro Mario (SMB3)", -1, MARIO,           STYLE_SMB3, "mario", "SMB3"},   /* (SMB3's physics and sprites: rt_retro.c, smb3_physics.c) */
     {"retro_smw",   "Retro Mario (SMW)",  -1, MARIO,           STYLE_SMW,  "mario", "SMW"},    /* (style: to make) */
     {"retro_sm64",  "Retro Mario (SM64)", -1, MARIO,           STYLE_SM64, "mario", "SM64"},   /* (style: to make) */
 };
@@ -158,6 +159,7 @@ int chars_family(int c) {                          /* the family's first charact
 const char *chars_variant(int c) { return c >= 0 && c < CHAR_COUNT && ROSTER[c].variant ? ROSTER[c].variant : "Normal"; }
 int chars_style_of_player(int n) { int c = chars_of_player(n); return c >= 0 ? ROSTER[c].style : STYLE_NORMAL; }
 int chars_is_smb1(int n) { return chars_style_of_player(n) == STYLE_SMB1; }
+int chars_is_retro(int n) { int s = chars_style_of_player(n); return s == STYLE_SMB1 || s == STYLE_SMB3; }   /* (a retro character that is made: rt_retro.c) */
 
 /* the way player slot n last pressed left or right in the character select (-1 left, 1 right):
    the retro characters' figure there faces that way (rt_retro.c). Polled while the figure is

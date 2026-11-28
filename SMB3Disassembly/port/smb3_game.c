@@ -5,6 +5,9 @@
 #include "smb3_save.h"
 #include <string.h>
 
+/* (smb3_stage_music.inc's hook: the routine left as if it had returned) */
+int smb3_nes_rts(void) { return NES_RTS(); }
+
 int smb3_start_at_map = 1;          /* entered from the character select: the title is skipped */
 const smb3_save_t *smb3_load_from;  /* a save file to continue from (smb3_main.c) */
 static void snap_map_objects(uint8_t *w);

@@ -20,8 +20,9 @@ In order. Only the first five are on the title screen.
 | 8 | Rosalina | PURPLE_TOADETTE body, Rosalina/Daisy mod model | icons, voice, world map |
 | 9 | Goomba | borrows a body; Goomba mod model waits for a 9th | own body, icons |
 | 10 | Retro Mario (SMB1) | MARIO + retro look/physics | portrait; sprites: small done, other forms to draw |
-| 11 | Retro Mario (SMW) | new retro style | SMW physics port, sprites |
-| 12 | Retro Mario (SM64) | new retro style | design (SM64 movement in 2D), sprites or model |
+| 11 | Retro Mario (SMB3) | MARIO + SMB3's physics and sprites (2026-11-27) | portrait; Tanooki statue, tail vs NSMBW enemies |
+| 12 | Retro Mario (SMW) | new retro style | SMW physics port, sprites |
+| 13 | Retro Mario (SM64) | new retro style | design (SM64 movement in 2D), sprites or model |
 
 ## What has a fixed count today
 

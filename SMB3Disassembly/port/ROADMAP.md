@@ -35,6 +35,17 @@ drawn as SMB3 sprites.
    - the goal: SMB3's card roulette; death and the timer: restart the level
 2. **every level**: the other tilesets (their layouts, banks, palettes, animated tiles), pipes and
    doors (areas), vertical levels, autoscrolling, water
+   - 2026-11-27 (134): pipes **come out** of the other area's pipe (NSMBW's DemoInDokan U / D / R /
+     L at SMB3's exit pipe); a **P-switch** keeps running through a pipe. **SMB3's sound** is
+     NSMBW's: its songs rendered once into NSMBW streams on NSMBW's BGM players, its engine's rules
+     native (smb3_sound.c, smb3_stage_music.inc). (136): made at build time as game files, and
+     NSMBW's sound archive expanded with them - the songs as stream sounds, the sound effects as
+     wave sounds in a new GROUP_SMB3, all played by nw4r. (137): a door / pipe keeps a song that's
+     already playing; the stage's coins, blocks, items and enemies play SMB3's sound effects.
+     Next: check an upward / sideways exit.
+   - 2026-11-27: **slopes** (Hills, Underground): players on NSMBW's own slope units (SMB3's
+     shapes mapped to NSMBW's), objects by SMB3's own slope floor (PRG000_C5BC). Next: the slopes'
+     push on objects (Slope_ObjectVel_Effect / LRBounce_Vel), SMB3's ceiling slopes for objects
 3. **the world map** (SMB3's maps, NSMBW players walking them), toad houses, spade games
    - first part done (2026-11-23, `smb3_map.inc`): SMB3's own map game - the recompiled game
      kept running between levels - drawn as a plane in the stage's 3D scene; the NSMBW players

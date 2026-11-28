@@ -23,6 +23,7 @@
 #include "smb3_stage.h"
 #include "rt_powerup.h"                      /* (the suits are NSMBW power-up states: PU_RACCOON, PU_FROG - POWERUPS.md) */
 #include "nes_apu.h"
+#include "smb3_syms.h"                         /* (out/: the disassembly's addresses) */
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
@@ -115,6 +116,7 @@ static struct {
     int placed; float lx, ly;                    /* the level's top left (y down, units) */
     float dy;                                    /* (the level this much lower than the players' ground for NSMBW's grid: they come down by it at the lift) */
     int sx, sy;                                  /* where SMB3 starts its player (Player_X / _Y with their high bytes: its 16 x 16 box's top left) */
+    int slopes;                                  /* Level_SlopeEn: a slope level (Hills 3, Underground 14) - tiles from attr[q] up are slope shapes */
 } L RT_LOCAL;
 /* the texture: 256 wide; tile t at ((t % 16) * 16, (t / 16) * 16); below the 256 tiles, slots of
    16 x 16 (slot s at ((s % 16) * 16, (s / 16) * 16), s >= 256): the animated tiles' other frames,
@@ -154,12 +156,13 @@ static int rc_slot0;
 #define GOAL_FANFARE_FRAMES 240                 /* (MUS1_BOSSVICTORY's: SMB3_MUSIC_TEST_Q1=04,60) */
 #define DEATH_SONG_FRAMES   192                 /* (MUS1_PLAYERDEATH's: SMB3_MUSIC_TEST_Q1=01,60) */
 static void music_level_placed(void); static void mus_q1(uint8_t v); static int music_death_left(void);
+static void snd_unseen(int on); static void music_sync(ppc_context *ctx, uint8_t *base);   /* (smb3_stage_music.inc) */
 static int restart_wait;                        /* (a death's restart held until SMB3's death song is over: smb3_stage_draw_any) */
 static int active, probe, tex_ready;
 static int await_scene;                         /* (a restart from inside the stage: the level not placed on the old one's players) */
 static int keep_counters;                       /* (a restart after a death: SMB3's score and coins stay) */
 /* (the world map: smb3_map.inc) */
-static int map_on(void), map_enabled(void), map_special(void); static void map_session_stop(void); static int map_session_start(void), map_session_on(void), map_shown_level(void);
+static int map_on(void), map_enabled(void), map_special(void); static void map_session_stop(void); static int map_session_start(int from_setup), map_session_on(void), map_shown_level(void);
 static void map_apply_next(void), map_place(float px, float py), map_camera(void);
 static void map_player(ppc_context *ctx, uint8_t *base, uint32_t pl), map_draw(ppc_context *ctx, uint8_t *base);
 static int map_level_end(ppc_context *ctx, uint8_t *base, int died), map_again(ppc_context *ctx, uint8_t *base);
@@ -192,7 +195,58 @@ static struct {
     uint32_t px[SB_W * SB_H];
 } SB RT_LOCAL;
 
-static int tile_class(uint8_t t) {               /* 2 solid, 1 solid on top, 0 nothing */
+/* ---- slopes (prg000 Level_SlopeSetByQuad / Slope_LUT; PRG008 Player_GetTileSlopeAndQuad) ----
+   In a slope level (Level_SlopeEn: Hills, Underground) a tile from its quad's base up (Tile_AttrTable's
+   first four: $25 $5F $99 $E2) has a "shape" from these tables, rooted at that base. The shapes
+   (Slope_LUT: per pixel across, the low nibble the floor's depth below the tile's top, the high the
+   ceiling's reach down from it):
+     $00 none   $03 solid square   $04 wall   $07 floor only (unsloped ground: the head passes)
+     $08 ceiling only   $01 / 45 deg up (floor 15..0)   $02 \ 45 deg down (0..15)
+     $0C $0D / 22.5 deg up over two tiles (15..8, 7..0)   $0E $0F \ down (0..7, 8..15)
+     $05 $06 45 deg ceilings, $11 $12 $13 $14 22.5 deg ceilings - each the floor shape upside down
+     ($05 = $01's, $06 = $02's, $11 $12 = $0C $0D's, $13 $14 = $0E $0F's) */
+static const uint8_t SlopeQuad00[] = {0x01, 0x07, 0x02, 0x0C, 0x0D, 0x0E, 0x0F, 0x07, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x07, 0x04,
+                                      0x07, 0x04, 0x04, 0x03, 0x03, 0x03, 0x03, 0x03, 0x07, 0x04, 0x07, 0x04, 0x04, 0x04, 0x04, 0x04};
+static const uint8_t SlopeQuad40[] = {0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03,
+                                      0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03};
+static const uint8_t SlopeQuad80[] = {0x01, 0x07, 0x02, 0x0C, 0x0D, 0x0E, 0x0F, 0x05, 0x06, 0x11, 0x12, 0x13, 0x14, 0x08, 0x07, 0x04,
+                                      0x07, 0x04, 0x04, 0x08, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03,
+                                      0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x08};
+static const uint8_t SlopeQuadC0[] = {0x01, 0x07, 0x02, 0x0C, 0x0D, 0x0E, 0x0F, 0x05, 0x06, 0x11, 0x12, 0x13, 0x14, 0x07, 0x03, 0x03,
+                                      0x03, 0x03, 0x08, 0x07, 0x04, 0x07, 0x04, 0x04, 0x08, 0x08, 0x04};
+static const uint8_t Slope_LUT[0x15][16] = {   /* (low nibble: the floor's depth below the tile's top at that pixel across; high: the ceiling's reach down) */
+    {0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10}, {0x0F,0x0E,0x0D,0x0C,0x0B,0x0A,0x09,0x08,0x07,0x06,0x05,0x04,0x03,0x02,0x01,0x00},
+    {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F}, {0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0},
+    {0}, {0x00,0x10,0x20,0x30,0x40,0x50,0x60,0x70,0x80,0x90,0xA0,0xB0,0xC0,0xD0,0xE0,0xF0},
+    {0xF0,0xE0,0xD0,0xC0,0xB0,0xA0,0x90,0x80,0x70,0x60,0x50,0x40,0x30,0x20,0x10,0x00}, {0},
+    {0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0}, {0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0},
+    {0x02,0x02,0x02,0x02,0x03,0x03,0x03,0x03,0x04,0x04,0x04,0x04,0x03,0x03,0x03,0x02}, {0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0,0xF0},
+    {0x0F,0x0E,0x0E,0x0D,0x0D,0x0D,0x0C,0x0C,0x0B,0x0B,0x0A,0x0A,0x09,0x09,0x08,0x08}, {0x07,0x06,0x06,0x05,0x05,0x05,0x04,0x04,0x03,0x03,0x02,0x02,0x01,0x01,0x00,0x00},
+    {0x00,0x00,0x01,0x01,0x02,0x02,0x03,0x03,0x04,0x04,0x05,0x05,0x05,0x06,0x06,0x07}, {0x08,0x08,0x09,0x09,0x0A,0x0A,0x0B,0x0B,0x0C,0x0C,0x0D,0x0D,0x0D,0x0E,0x0E,0x0F},
+    {0x0E,0x0D,0x0B,0x0A,0x09,0x09,0x08,0x08,0x08,0x08,0x08,0x09,0x09,0x0A,0x0B,0x0D}, {0x00,0x00,0x10,0x10,0x20,0x20,0x30,0x30,0x40,0x40,0x50,0x50,0x50,0x60,0x60,0x70},
+    {0x80,0x80,0x90,0x90,0xA0,0xA0,0xB0,0xB0,0xC0,0xC0,0xD0,0xD0,0xD0,0xE0,0xE0,0xF0}, {0xF0,0xE0,0xE0,0xD0,0xD0,0xD0,0xC0,0xC0,0xB0,0xB0,0xA0,0xA0,0x90,0x90,0x80,0x80},
+    {0x70,0x60,0x60,0x50,0x50,0x50,0x40,0x40,0x30,0x30,0x20,0x20,0x10,0x10,0x00,0x00} };
+/* Slope_ObjectVel_Effect ($80: no floor for objects; SMB3's table stops at $0F - its ceilings $10-$14 none either) */
+static const int8_t Slope_ObjectVel_Effect[0x15] = {0, -2, 2, 0, 0, -128, -128, 0, 0, -128, 0, -128, -1, -1, 1, 1, -128, -128, -128, -128, -128};
+static int slope_shape(uint8_t t) {              /* the tile's shape in a slope level; -1: not a slope level, or a tile below its quad's base */
+    if (!L.slopes) return -1;
+    static const uint8_t *const tab[4] = {SlopeQuad00, SlopeQuad40, SlopeQuad80, SlopeQuadC0};
+    static const int len[4] = {sizeof SlopeQuad00, sizeof SlopeQuad40, sizeof SlopeQuad80, sizeof SlopeQuadC0};
+    int q = t >> 6, i = t - L.attr[q];
+    if (i < 0) return -1;
+    return i < len[q] ? tab[q][i] : 0x03;                                /* (past a table's end: SMB3 reads on into the next - all squares there) */
+}
+/* NSMBW's unit for a shape (SMB3_STAGE_PROBE on the shell course, and SMB3_STAGE_TEST_UNIT walked
+   across: hi word 0x20 a floor slope, 0x40 a ceiling one; low byte 0 / up, 1 \ down, 2 3 the two
+   halves of a 22.5 deg / up (low, high), 4 5 of a \ down (high, low); 0x0A NSMBW's flat one-way top.
+   A ceiling shape n is floor shape n upside down). -1: not one of those (the caller's classes) */
+static int64_t slope_unit(int sh) {
+    static const int8_t nsmbw[0x15] = {-1, 0, 1, -1, -1, 0, 1, -1, -1, -1, -1, -1, 2, 3, 4, 5, -1, 2, 3, 4, 5};
+    if (sh < 0 || sh > 0x14 || nsmbw[sh] < 0) return -1;
+    int ceiling = sh == 0x05 || sh == 0x06 || sh >= 0x11;
+    return ceiling ? (int64_t)(0x0000004000000000ull | (uint64_t)nsmbw[sh]) : (int64_t)(0x00000020000D0000ull | (uint64_t)nsmbw[sh]);
+}
+static int tile_class(uint8_t t) {               /* 2 solid, 1 solid on top, 0 nothing (by Tile_AttrTable, as SMB3's objects test it) */
     int q = t >> 6;
     if (t >= L.attr[q + 4]) return 2;
     if (t >= L.attr[q]) return 1;
@@ -240,6 +294,7 @@ static int level_load(void) {
     for (int s = 0; s < screens; s++) for (int r = 0; r < LH; r++) for (int c = 0; c < 16; c++)
         L.tile[r * L.w + s * 16 + c] = wram[s * 0x1B0 + r * 16 + c];
     memcpy(L.attr, wram + 0x1E94, 8);                                    /* Tile_AttrTable ($7E94) */
+    L.slopes = ram[SMB3_Level_SlopeEn] != 0;                             /* (Hills / Underground: tiles by slope shape - slope_shape) */
     L.sx = ram[0x75] << 8 | ram[0x90];                                    /* (Player_XHi, Player_X: the level's start, as SMB3 has it now) */
     L.sy = ram[0x87] << 8 | ram[0xA2];                                    /* (Player_YHi, Player_Y) */
     frog_level_loaded(ram, wram);                                        /* (1-1: the Frog suit's ? block) */
@@ -349,7 +404,8 @@ static int level_load(void) {
     if (tex_h > TEX_H_MAX) { rt_log("smb3", "stage: the pictures need %d rows, %d fit - the last cut", tex_h, TEX_H_MAX); tex_h = TEX_H_MAX; }
     rt_log("smb3", "stage: %d animated tiles, texture 256 x %d", nanim, tex_h);
     if (getenv("SMB3_STAGE_MAP"))                                        /* (testing: the solidity, rows 14-26) */
-        for (int r = 14; r < LH; r++) { char line[200]; int c; for (c = 0; c < L.w && c < 176; c++) { int k = tile_class(L.tile[r * L.w + c]); line[c] = k == 2 ? '#' : k == 1 ? '=' : '.'; } line[c] = 0; rt_log("smb3", "map %2d %s", r, line); }
+        for (int r = 14; r < LH; r++) { char line[200]; int c; for (c = 0; c < L.w && c < 176; c++) { int k = tile_class(L.tile[r * L.w + c]), sh = slope_shape(L.tile[r * L.w + c]); line[c] = k == 2 ? '#' : k == 1 ? '=' : '.';
+            if (sh == 0x01 || sh == 0x0C || sh == 0x0D) line[c] = '/'; else if (sh == 0x02 || sh == 0x0E || sh == 0x0F) line[c] = '\\'; else if (sh == 0x05 || sh == 0x06 || sh >= 0x11) line[c] = 'v'; } line[c] = 0; rt_log("smb3", "map %2d %s", r, line); }
     if (getenv("SMB3_STAGE_BLOCKS"))                                     /* (testing: where the blocks are) */
         for (int r = 0; r < LH; r++) for (int c = 0; c < L.w; c++) { uint8_t t = L.tile[r * L.w + c]; if (t >= 0x60 && t <= 0x70) rt_log("smb3", "block %02X at %d,%d", t, c, r); }
     L.sky = ppu_rgb(ppu_peek_pal(0));
@@ -370,7 +426,8 @@ static int level_load(void) {
 static void player_scale(int on);
 static void blocks_reset(void);
 static int wb_hidden(int n);                     /* (a player behind the scenes - the white blocks) */
-static int pipe_open_cell(int tx, int ty), pipe_hidden(int n);   /* (smb3_stage_pipes.inc) */
+static int pipe_open_cell(int tx, int ty), pipe_hidden(int n); static void pipe_exit_placed(void);   /* (smb3_stage_pipes.inc) */
+static int pswitch_left(void); static void pswitch_resume(int cnt);
 static void pipe_frame(uint32_t pl, int n, int big, float px, float py, float h), pipe_player_exec(uint32_t pl, int n), pipes_reset(void);
 int retro_is_player(uint32_t pl);               /* rt_retro.c */
 #define PLAYER_SCALE    0.80f                    /* (user, 2026-11-21: 80%; the 3D characters only, not Retro Mario) */
@@ -396,9 +453,14 @@ static int level_fresh(void) {
     if (!level_load()) return 0;
     L.placed = 0; tex_ready = 0;
     if (!jct_restart) { SB.time = SB.time0; SB.tick = 0x28; SB.ptick = 0; }
+    /* a P-switch running through a pipe goes on in the other area (SMB3's Level_PSwitchCnt is the
+       game's, not the area's: PSwitch_SubstTileAndAttr swaps the new area's tiles as they're read) -
+       its count kept, the other area's coins / bricks swapped, its song on (music_bg_want) */
+    int ps_keep = jct_restart ? pswitch_left() : 0;
     jct_restart = 0; pipes_reset(); memset(lifted, 0, sizeof lifted);
     L.ok = 0;                                                            /* (a fresh 1-1 each time: blocks back) */
     blocks_reset();
+    if (ps_keep) pswitch_resume(ps_keep);
     return 1;
 }
 /* what the next stage scene shows, made ready: SMB3's map (placed afresh), or a level (loaded
@@ -457,7 +519,7 @@ static int stage_start_game(ppc_context *ctx, uint8_t *base) {
    else 1-1 */
 int smb3_stage_begin(ppc_context *ctx, uint8_t *base) {
     probe = getenv("SMB3_STAGE_PROBE") != NULL;
-    if (R16(G_NOW_SCENE) != 5) { map_session_stop(); if (map_enabled() && !probe) map_session_start(); }   /* (from the setup screens: a new game) */
+    if (R16(G_NOW_SCENE) != 5) { map_session_stop(); if (map_enabled() && !probe) map_session_start(1); }   /* (from the setup screens: a new game) */
     return stage_start_game(ctx, base);
 }
 /* ---- the players at 80% (SMB3's tiles stay on NSMBW's 16-unit grid: NSMBW's collision snaps to
@@ -547,8 +609,14 @@ int smb3_stage_unit(uint32_t x, uint32_t y, uint64_t *flags) {
     if (ty < 0) ty = 0;                                                  /* (above the level: as its top row - walls stay walls) */
     {   const char *e = getenv("SMB3_STAGE_TEST_NSMBW_TILE");          /* (testing: that cell is NSMBW's own) */
         for (int c, r, t, k; e && sscanf(e, "%d,%d,%x%n", &c, &r, &t, &k) == 3; e += k + (e[k] == ';')) if (c == tx && r == ty) return 0; }
+    {   const char *e = getenv("SMB3_STAGE_TEST_UNIT");                /* (testing: "col,row,hi,lo;..." - that cell given those NSMBW unit flags, hex) */
+        unsigned hi, lo; for (int c, r, k; e && sscanf(e, "%d,%d,%x,%x%n", &c, &r, &hi, &lo, &k) == 4; e += k + (e[k] == ';'))
+            if (c == tx && r == ty) { *flags = (uint64_t)hi << 32 | lo; return 1; } }
     if (pipe_open_cell(tx, ty)) return 1;                               /* (a player going into a pipe: through it) */
-    int c = tile_class(L.tile[ty * L.w + tx]);
+    int sh = slope_shape(L.tile[ty * L.w + tx]);
+    {   int64_t u = slope_unit(sh);                                      /* (a slope: NSMBW's own slope of that shape) */
+        if (u >= 0) { *flags = (uint64_t)u; return 1; } }
+    int c = sh >= 0 ? (sh == 0 ? 0 : sh == 0x07 ? 1 : 2) : tile_class(L.tile[ty * L.w + tx]);   /* (a slope level: the rest by shape - squares, walls, ceilings solid; unsloped ground a floor) */
     /* solid on top: only the top of it. SMB3 lands the player on such a tile's top edge only (its
        big blocks are solid on top all the way down); NSMBW's are one tile thick, and a stack of
        them lifts a player inside it row by row */
@@ -1051,6 +1119,17 @@ static void poof_frame(void) {                   /* (once a frame, from the stag
     for (int n = 0; n < 8; n++) poof.on[n] = 0;
 }
 static void give_life(int n) { if (n >= 0 && n < 8) W32(MOD_PY_REST + 4 * (uint32_t)n, R32(MOD_PY_REST + 4 * (uint32_t)n) + 1); }
+/* -- SMB3's sound effects (CHARACTERS_AND_GAMES.md rule 5: the level's coins, blocks, items and
+   enemies sound as SMB3's): set in its queues where SMB3 sets them - Sound_QPlayer / QLevel1 /
+   QLevel2 - and SMB3's engine rules (smb3_stage_music.inc snd_step) play them from GROUP_SMB3.
+   What the NSMBW characters do themselves (a jump, a power-up's change) keeps NSMBW's sound -- */
+enum { SFXP_BUMP = 0x02, SFXP_SQUISH = 0x04, SFXP_KICK = 0x08,                       /* (Sound_QPlayer: SND_PLAYERBUMP, _SWIM - the stomp's squish -, _KICK) */
+       SFX1_COIN = 0x01, SFX1_RISE = 0x02, SFX1_BABOOM = 0x08, SFX1_BLIP = 0x10, SFX1_POWER = 0x20, SFX1_1UP = 0x40, SFX1_POOF = 0x80,   /* (Sound_QLevel1) */
+       SFX2_CRUMBLE = 0x01 };                                                         /* (Sound_QLevel2) */
+static void sfx_q(uint16_t q, uint8_t v) { nes_ram_ptr()[q] |= v; }
+static void sfx_player(uint8_t v) { sfx_q(SMB3_Sound_QPlayer, v); }
+static void sfx_level1(uint8_t v) { sfx_q(SMB3_Sound_QLevel1, v); }
+static void sfx_level2(uint8_t v) { sfx_q(SMB3_Sound_QLevel2, v); }
 static float hit_x;                              /* (the player who hit a block) */
 
 /* -- the bounce (ObjNorm_BounceDU): 10 frames, Y velocity from Bouncer_PUpVel by position,
@@ -1101,7 +1180,8 @@ static int tclass_at(int px, int py) {           /* (level pixels) the solidity 
     return tile_class(L.tile[ty * L.w + tx]);
 }
 static void coin_get(int who) {                   /* (Coins_Earned; 100: a life, as the status bar does) */
-    SG.coins++; if (SG.coins >= 100) { SG.coins -= 100; give_life(who); rt_log("smb3", "100 coins: 1-up for player %d", who + 1); }
+    sfx_level1(SFX1_COIN);                       /* (PRG008_B604 a coin touched, PRG000_C4A7 one out of a block) */
+    SG.coins++; if (SG.coins >= 100) { SG.coins -= 100; give_life(who); sfx_level1(SFX1_1UP); rt_log("smb3", "100 coins: 1-up for player %d", who + 1); }
 }
 static void pop_coin(int tx, int ty) {           /* LATP_CoinCommon -> PRG000_C49B: 4 slots, else the last */
     coin_get(hit_who);
@@ -1156,8 +1236,14 @@ static void pswitch_frame(void) {                /* (Player_Update: Level_PSwitc
     if (!PS.cnt) return;
     if (PS.cnt == 1 || !(tick & 3)) { if (--PS.cnt == 0) pswitch_swap(0); }
 }
+static int pswitch_left(void) { return PS.cnt; }
+static void pswitch_resume(int cnt) {           /* (the other area of a pipe: the switch still running) */
+    pswitch_swap(1); PS.cnt = cnt;
+    rt_log("smb3", "P-switch: still on in the other area (%d left)", cnt);
+}
 static void pswitch_stomp(int tx, int ty) {
     L.tile[ty * L.w + tx] = T_PSWITCH_PRESSED;
+    sfx_level1(SFX1_BABOOM);                     /* (PRG008_B623: the "Wham!") */
     if (!PS.cnt) pswitch_swap(1);
     PS.cnt = 0x80;
 }
@@ -1170,6 +1256,7 @@ static int note_item(uint8_t v, int big);
 static void obj_block_bumped(int tx, int ty);
 static int bump_self;                            /* (smb3_stage_enemies.inc: the object whose hit bumped a block, -1 a player) */
 static void bump_start(int tx, int ty, uint8_t shown, uint8_t after, int item, int down) {
+    sfx_player(SFXP_BUMP);                       /* (PRG008_B722: a block that bounces - Player_Bounce) */
     if (!down) obj_block_bumped(tx, ty);   /* (Object_HandleBumpUnderneath: what stands on it - not the shell that bumped it: bump_self) */
     for (int i = 0; i < NBUMP; i++) if (!bumps[i].on) {                  /* (block bump slots: objects 6 and 7) */
         bumps[i].on = 1; bumps[i].tx = tx; bumps[i].ty = ty; bumps[i].pos = 10; bumps[i].y16 = 0; bumps[i].vy = 0;
@@ -1211,7 +1298,7 @@ static void hit_block(int tx, int ty, int big, int star, int down) {
         break;
     case 6:                                                              /* LATP_Brick */
         if (ty > 0 && L.tile[(ty - 1) * L.w + tx] == T_COIN) { L.tile[(ty - 1) * L.w + tx] = T_SKY; pop_coin(tx, ty); }   /* (LATP_GetCoinAboveBlock) */
-        if (big || bump_self >= 0) { L.tile[ty * L.w + tx] = T_SKY; bust_start(tx, ty); SG.score += 1; return; }   /* (10 points; a kicked shell - Object_BumpOffBlocks, tile check index 4 - always busts it) */
+        if (big || bump_self >= 0) { L.tile[ty * L.w + tx] = T_SKY; bust_start(tx, ty); sfx_level2(SFX2_CRUMBLE); SG.score += 1; return; }   /* (10 points; a kicked shell - Object_BumpOffBlocks, tile check index 4 - always busts it) */
         break;
     case 7: rt_log("smb3", "vine block (not yet)"); break;
     case 9: item = SPR_1UP; break;                                       /* LATP_1up */
@@ -1268,6 +1355,7 @@ static void items_frame(void) {
             /* PowerUp_DoRaise: out of the box - 16 frames still, then 1 pixel up every 3rd frame */
             if (it->timer) {
                 it->timer--;
+                if (it->timer == 0x2D) sfx_level1(SFX1_RISE);           /* (PowerUp_DoRaise: the rising sound at $2D) */
                 if (it->timer < 0x2D) { if (--it->var1 < 0) { it->var1 = 2; it->y16 -= 16; } }
                 continue;
             }
@@ -1296,6 +1384,9 @@ static void items_touch(ppc_context *ctx, uint8_t *base, uint32_t pl, int n, flo
         int x = it->x16 >> 4, y = it->y16 >> 4;
         if (lx + 6 < x + 2 || lx - 6 > x + 14 || lyb < y + 2 || lyb - h > y + 14) continue;
         int mode = (int)R32(pl + PL_MODE), small = mode == 0 || mode == 3;
+        /* (PowerUp_PlaySound: SMB3's power-up sound - unless the character changes, whose own
+           change sound it is then: NSMBW's, or SMB3's poof for an NES character's leaf) */
+        if ((it->kind == SPR_MUSHROOM && !small) || (it->kind == SPR_FLOWER && !small && mode == PU_FIRE) || (it->kind == SPR_LEAF && !small && mode == PU_RACCOON)) sfx_level1(SFX1_POWER);
         switch (it->kind) {
         case SPR_MUSHROOM:                                               /* ObjHit_PUpMush: small - Super */
             if (small) gcall(ctx, base, A_CHANGE_POWERUP, 2, pl, 1);
@@ -1306,7 +1397,7 @@ static void items_touch(ppc_context *ctx, uint8_t *base, uint32_t pl, int n, flo
         case SPR_LEAF:                                                   /* ObjHit_SuperLeaf */
             if (small) gcall(ctx, base, A_CHANGE_POWERUP, 2, pl, 1);    /* (small, not from a star-flash block: as a mushroom - PRG001_A897) */
             else if (mode == PU_RACCOON) { }                             /* (already Raccoon: the power-up sound only) */
-            else if (retro_is_player(pl)) { set_powerup_now(ctx, base, pl, PU_RACCOON); poof_start(n, pl); }   /* (an NES character: SMB3's poof - Player_SuitLost $17, Player_QueueSuit) */
+            else if (retro_is_player(pl)) { set_powerup_now(ctx, base, pl, PU_RACCOON); poof_start(n, pl); sfx_level1(SFX1_POOF); }   /* (an NES character: SMB3's poof - Player_SuitLost $17, Player_QueueSuit) */
             else gcall(ctx, base, A_CHANGE_POWERUP, 2, pl, PU_RACCOON);  /* (an NSMBW character: NSMBW's own power-up change, to the Raccoon state) */
             break;
         case SPR_FROG: frog_touch(ctx, base, pl, n, mode); break;       /* ObjHit_StarOrSuit, a suit: the Frog (smb3_stage_frog.inc) */
@@ -1325,6 +1416,22 @@ static void items_touch(ppc_context *ctx, uint8_t *base, uint32_t pl, int n, flo
 static void sb_frame(void);
 static void abilities(ppc_context *ctx, uint8_t *base, uint32_t pl, int n, int big) {
     sb_frame();
+    {   int retro_smb3_tail(uint32_t pl);                                /* (rt_retro.c: SMB3 Mario - SMB3's own P-meter, flight and tail on him already) */
+        int t = retro_smb3_tail(pl);
+        if (t >= 0) {                                                    /* (his tail attack reaches SMB3's objects and blocks as the leaf's does) */
+            int left = R8(pl + PL_DIRECTION) != 0;
+            if (t == 0x0C || t == 9) obj_tail(n, left);
+            if (t == 9) {
+                float px = RF(pl + PL_POS), py = RF(pl + PL_POS + 4); int tx, ty;
+                if (tile_of(px + (left ? -13.0f : 13.0f), py + 4.0f, &tx, &ty) && is_block(L.tile[ty * L.w + tx])) {
+                    hit_who = n; hit_x = px; hit_block(tx, ty, 1, gcall(ctx, base, A_IS_STAR, 1, pl) != 0, 0);
+                }
+            }
+            int retro_smb3_power(uint32_t pl, int *flying); int fl = 0;
+            pm[n].power = retro_smb3_power(pl, &fl); pm[n].fly = fl; pm[n].wag = 0; pm[n].tail = t;   /* (the status bar's meter: his Player_Power) */
+            return;
+        }
+    }
     uint32_t key = pl + PL_KEY;
     int ground = (R32(pl + PL_BG_CROSS1) & 1) != 0;
     int dash = gcall(ctx, base, A_KEY_DASH, 1, key) != 0, jump = gcall(ctx, base, A_KEY_JUMP, 1, key) != 0;
@@ -1643,7 +1750,7 @@ static void blocks_frame(void) {                 /* (once a frame the game runs)
         if (!scores[i].value) continue;
         if (!scores[i].counter) { scores[i].value = 0; continue; }
         int v = scores[i].value > 0x0D ? 0x0D : scores[i].value;
-        if (scores[i].counter-- == 0x2A) { SG.score += SCORE_ADD[v - 1]; if (v == 0x0D) give_life(scores[i].who); }
+        if (scores[i].counter-- == 0x2A) { SG.score += SCORE_ADD[v - 1]; if (v == 0x0D) { give_life(scores[i].who); sfx_level1(SFX1_1UP); } }   /* (PRG007_AACF: the 1-up sound) */
         static const uint8_t RISE[4] = {3, 1, 0, 0};
         if (!(tick & RISE[(scores[i].counter >> 4) & 3])) scores[i].y--;
     }
@@ -2190,6 +2297,7 @@ void smb3_stage_player_draw(ppc_context *ctx, uint8_t *base, uint32_t pl) {
     if (last == g_frames_presented) return;
     last = g_frames_presented;
     blk_ctx = ctx; blk_base = base;                                      /* (the objects call the game: the platforms' lines) */
+    music_sync(ctx, base);                                               /* (SMB3's sound: NSMBW's streams as it has them) */
     blocks_frame();
     {   int n = (int8_t)R8(pl + PL_PLR_NO); if (!pipe_hidden(n)) pz = RF(pl + PL_POS + 8); }   /* (one going into a pipe: its depth NSMBW's demo's) */
     if (!L.placed && !await_scene) {
@@ -2214,7 +2322,8 @@ void smb3_stage_player_draw(ppc_context *ctx, uint8_t *base, uint32_t pl) {
            so the players start above their ground, not in it; across to the nearest */
         {   float raw = L.ly; L.lx = floorf(L.lx / 16.0f + 0.5f) * 16.0f; L.ly = ceilf(L.ly / 16.0f) * 16.0f; L.dy = L.ly - raw; }
         if (getenv("SMB3_STAGE_TEST_X") && getenv("SMB3_STAGE_TEST_XOFF") && col == atoi(getenv("SMB3_STAGE_TEST_X"))) WF(pl + PL_POS, px + (float)atoi(getenv("SMB3_STAGE_TEST_XOFF")));   /* (testing: that much further in the column) */
-        L.placed = 1; music_level_placed();
+        L.placed = 1; music_level_placed(); pipe_exit_placed();
+        { static int done; if (getenv("SMB3_TEST_PSWITCH") && !done++) { pswitch_swap(1); PS.cnt = 0x80; rt_log("smb3", "test: the P-switch on"); } }   /* (testing: a P-switch running from the start) */
         if (keep_rest) { keep_rest = 0; for (int i = 0; i < 8; i++) W32(MOD_PY_REST + 4 * (uint32_t)i, (uint32_t)kept_rest[i]); }   /* (lifted: the status bar under it) */
         rt_log("smb3", "stage: player 1 at (%.1f, %.1f, %.1f): the SMB3 level placed at (%.1f, %.1f): start column %d, ground row %d (SMB3's start %d, %d)", px, py, pz, L.lx, L.ly, col, g, L.sx, L.sy);
         if (getenv("SMB3_STAGE_SOLIDLOG")) { char b[900]; int k = 0;   /* (testing: walls - columns whose tile above the ground is solid) */

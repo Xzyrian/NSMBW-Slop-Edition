@@ -1,4 +1,4 @@
-# Retro Mario (SMB1)
+# Retro Mario (SMB1, SMB3)
 
 A character with the look and the movement of Super Mario Bros. (NES) that plays in NSMBW
 levels next to the normal characters and interacts with everything they do.
@@ -147,6 +147,66 @@ grows downwards, NSMBW's upwards: the glue flips the sign.
    (SE_PLY_THROW_FIRE) while its own update runs; powerup / pipepowerdown from its form
    changing; pipepowerdown on going into a pipe; death (NSMBW's miss music isn't started:
    daPyMng_c::startMissBGM). `RT_SE_LOG=1` logs NSMBW's sounds, `RT_SFX_LOG=1` ours.
+
+## Retro Mario (SMB3) (2026-11-27)
+
+User: "add SMB3 Mario as a character / should have authentic SMB3 physics". Character
+`retro_smb3` (roster after SMB1, family Mario, variant "SMB3"), style STYLE_SMB3; the same split
+as SMB1 Mario - an ordinary NSMBW player moved by a port of the original game's code and drawn
+as its sprite.
+
+- **Physics - `runtime/smb3_physics.c/.h`**: SMB3's player code from the disassembly
+  (`SMB3Disassembly/PRG/prg008.asm`), byte for byte: Player_Control (ducking, the water's surface,
+  Player_ApplyXVelocity / Player_ApplyYVelocity with their 4.4 velocities and accumulated
+  fractions, Player_MoveLR), PowerUpMovement_JumpTable (GndMov_Small / Big / FireHammer / Leaf /
+  Frog / Tanooki, Swim_SmallBigLeaf / FireHammer / Frog), Player_GroundHControl (Player_XAccelMain /
+  Player_XAccelPseudoFrac and the Counter_Wiggly carry; walk $18, run $28, P-speed $38, max $40),
+  Player_UnderwaterHControl (with the disassembly's literal `#Pad_Input`), Player_JumpFlyFlutter
+  (jump -$38 less Player_SpeedJumpInc; gravity 5, 1 while A is held rising faster than -$20; the
+  tail: flight at -$18 while Player_FlyTime lasts, flutter falling at $10; the star somersault),
+  Player_SwimV, Player_PowerUpdate (the P-meter: Player_PMeterCnt $08 / $18 a step, $10 ringing,
+  Player_FlyTime $80 on a P-jump), and the frame choice (Player_CommonGroundAnims, skid, duck,
+  Player_SoarJumpFallFrame, Player_AnimTailWag, Player_TailAttackAnim, Player_ShootAnim,
+  Player_SwimAnim, the frog's hops and swimming, Player_SetSpecialFrames: spread eagle, somersault,
+  holding, turning round while holding, kick). The host (`rt_retro.c`) is Player_DetectSolids:
+  NSMBW's collision says landed (YVel 0, not while rising), walked off (InAir, YVel 0), head
+  (YVel 1), wall (XVel 0 into it). On the ground NSMBW's own step moves him at XVel / 16 (slopes,
+  moving floors); in the air the velocities move him. Bounces: an enemy -$40 (PRG000_D2B4), a spring
+  NSMBW's speed. Tests: `tools/test_smb3_physics.c` (walk $18, run $28 after 44 frames, the meter
+  full after 93, P-speed $38; standing jump 71 px, at run 86, at P 101; A tapped 21; falls capped
+  $40 + 5; raccoon flight and flutter): `cc -Iruntime tools/test_smb3_physics.c runtime/smb3_physics.c`.
+- **Power-ups**: Small (Mini at half size), Super, Fire, Raccoon (PU_RACCOON: flight, flutter, tail
+  swipe), Frog (PU_FROG: hops, frog swimming) are SMB3's suits; NSMBW's Ice Flower is the Fire
+  suit in ice colours (light blue, blue - ours, SMB3 has none); Propeller and Penguin are Big
+  (their NSMBW abilities stay NSMBW's, as SMB1 Mario's). Not yet: the Tanooki statue (no Tanooki
+  power-up yet), Kuribo's shoe, sliding down slopes (NSMBW's Slip is refused, as SMB1's), uphill
+  slow-down and ice (NSMBW's slopes and floors).
+- **Sprites - SMB3's own**, straight from the ROM the build assembles (`out/smb3_rom.c`), as
+  Player_Draw (prg029.asm) puts them together: SPPF_Table (six 8x16 sprites a frame, $F1 none),
+  Player_FramePageOff + Player_PUpRootPage (the 1 KB CHR page), the mirrored middle column of a
+  symmetric frame, the kick's foot; colours PowerUp_Palettes. A 32x32 cell per Player_Frame (81),
+  facing left as SMB3 draws them, mirrored for SPR_HFLIP; one texture per suit and colours, made
+  when first needed (guest 0x83800000-0x83C00000; the renderer's texture check covers it since
+  CHANGELOG 140). In NSMBW-driven states: PF_DIE (small), Player_ClimbFrame (turned round every 8
+  frames while climbing; also on the goal pole), PipeMove_Frame (facing the screen), the jump frames
+  (Airship_JumpFrameByPup), the walk cycle. Outside levels (world map, select figure) the model is
+  his sprite too: standing, walking, jumping.
+- **Sounds - SMB3's own**, as the build renders them for the SMB3 stage (`<game>/sound/smb3/
+  smb3_sfx_<queue>_<bit>.rwav`; rt_sfx.c decodes the DSP-ADPCM): jump, bump, squish / swim, kick,
+  pipe / shrink, fireball, the P-meter's ring (not restarted while it rings), frog hop, coin, item,
+  power-up, 1-up, tail wag, brick, skid. His death is NSMBW's miss music for now (SMB3's is a song).
+- **Can and can't**: carrying shells (B, NSMBW's carry - SMB3 holds them too) is allowed; wall
+  jumps, ground pound, spin jump, lifting players, riding Yoshi, small ducking: no (as SMB1's).
+- **In the SMB3 stage** (`SMB3Disassembly/port/smb3_stage.c`): NSMB2's Super Leaf code for NSMBW
+  characters leaves him alone (`retro_smb3_tail` / `retro_smb3_power`); his tail swipe hits SMB3's
+  objects and blocks at the same counts (Player_TailAttack $0C / 9) and the status bar shows his
+  Player_Power.
+- **Testing**: settings.ini `retro_mario = 3` makes every Mario SMB3 Mario (1: SMB1);
+  `RT_RETRO_MODE=n` gives the retro player power-up n (rt_powerup.h: 7 Raccoon, 8 Frog) once he
+  moves; `RT_RETROLOG=1` logs SMB3's state each frame (air, XVel, YVel, power, flight, wag, tail,
+  frame); `RT_RETRO_DUMP_SHEETS=dir` writes each sprite texture as smb3_suit<s>_pal<p>.ppm.
+- **Open**: the tail swipe against NSMBW's enemies (it only animates in NSMBW levels), the Tanooki
+  statue, SMB3's death song, a portrait (placeholder), a HUD head icon.
 
 ## Testing
 

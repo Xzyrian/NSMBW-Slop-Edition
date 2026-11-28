@@ -203,6 +203,7 @@ int  wiimote_connected(int i);                              /* rt_wiimote.c: gam
 int  menu_owns_input(void);                                 /* rt_menu.c: our menus (or the title) have the controls */
 extern uint64_t g_frames_presented;
 void sfx_play(const char *dir, const char *name);         /* rt_sfx.c: ui/retro/<dir>/sfx/<name>.wav */
+void sfx_play_ifidle(const char *dir, const char *name);   /* (not restarted while it plays; dir "@smb3": <game>/sound/smb3/<name>.rwav) */
 void sfx_stop_all(void);
 void sfx_mix(int16_t *pcm, int frames);                   /* (into a 32 kHz stereo block) */
 void plat_audio_push(const int16_t *lr, int frames);     /* 32 kHz stereo, interleaved L,R */
@@ -232,8 +233,9 @@ int  rt_events_pending(void);
 int chars_count(void);
 const char *chars_name(int c);
 int chars_of_player(int player);          /* roster index of player slot 0-7, -1 none */
-int chars_style_of_player(int player);    /* 0 normal, 1 SMB1, 2 SMW, 3 SM64 */
+int chars_style_of_player(int player);    /* 0 normal, 1 SMB1, 2 SMW, 3 SM64, 4 SMB3 */
 int chars_is_smb1(int player);
+int chars_is_retro(int player);           /* SMB1 or SMB3 (rt_retro.c) */
 void chars_keep_choice(int player);        /* it took its character back: the card opens on it again */
 int chars_select_facing(int player);       /* character select: -1 / 1 the way it last pressed left / right */
 void chars_title_players(void);           /* title screen: the first five characters */

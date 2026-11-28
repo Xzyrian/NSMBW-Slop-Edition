@@ -26,6 +26,8 @@
 #include "rt.h"
 #include "smb3_stage.h"                         /* ../SMB3Disassembly/port */
 #include "smb1_physics.h"
+#include "smb3_physics.h"
+#include "rt_powerup.h"
 #include <math.h>
 RT_STATE_FILE                                   /* (this file's variables are part of a save state: rt_state.c) */
 
@@ -303,9 +305,144 @@ static sheet_t *sheet_for(int mode) {
     return sheets[SH_SMALL].state > 0 ? &sheets[SH_SMALL] : NULL;
 }
 
+/* ================================================================== SMB3 Mario's sprites
+ * Straight from SMB3's own graphics (the ROM built from SMB3Disassembly: out/smb3_rom.c), as
+ * Player_Draw (prg029.asm) puts them together: a Player_Frame is six 8 x 16 sprites, three over
+ * three (SPPF_Table; $F1 none), from the 1 KB pattern page Player_PUpRootPage[suit] +
+ * Player_FramePageOff[frame]; when the lower row's first two patterns are the same, the middle
+ * column is the left one mirrored (a symmetric picture). Each frame is drawn facing left (no
+ * SPR_HFLIP) into a 32 x 32 cell with the Player's 16-wide body in the middle (Player_X at x 8),
+ * so turning him round is mirroring the cell; colours from PowerUp_Palettes. Cells: 16 a row, 81
+ * frames, one texture per suit and palette, made when first needed. */
+extern const uint8_t smb3_rom[]; extern const uint32_t smb3_rom_size;
+#define SM3_MEM         0x83800000u            /* (past the SMW stage's memory: smw_stage.c SW_MEM) */
+#define SM3_TEXOBJ      (SM3_MEM + 0x0000)     /* GXTexObj per sheet (0x20 each) */
+#define SM3_TEX         (SM3_MEM + 0x1000)
+#define SM3_FRAMES      0x51
+#define SM3_CELL        32
+#define SM3_TW          (16 * SM3_CELL)
+#define SM3_TH          (6 * SM3_CELL)
+enum { PF3_DIE = 0x4B, PF3_INPIPE_SMALL = 0x32, PF3_INPIPE_BIG = 0x05, PF3_JUMPFALLSMALL = 0x40, PF3_JUMPBIG = 0x4F,
+       PF3_JUMPRACCOON = 0x50, PF3_KICK_BIG = 0x2D };
+static const uint8_t SPPF_Table[SM3_FRAMES][6] = {
+    {0x01,0x03,0xF1,0x05,0x07,0x09}, {0x0B,0x0D,0xF1,0x0F,0x29,0x2B}, {0x2D,0x2F,0xF1,0x19,0x1B,0x1D}, {0x2D,0x2F,0xF1,0x19,0x1B,0x09},
+    {0x21,0x21,0xF1,0x23,0x23,0xF1}, {0x25,0x25,0xF1,0x27,0x27,0xF1}, {0x01,0x03,0xF1,0x05,0x07,0xF1}, {0x31,0x33,0xF1,0x35,0x37,0x39},
+    {0x01,0x03,0xF1,0x05,0x07,0x39}, {0x01,0x03,0xF1,0x05,0x07,0x09}, {0x01,0x03,0xF1,0x05,0x07,0x3B}, {0xF1,0xF1,0xF1,0x3D,0x3F,0xF1},
+    {0x01,0x03,0xF1,0x05,0x07,0xF1}, {0x0B,0x0D,0xF1,0x0F,0x29,0xF1}, {0x2D,0x2F,0xF1,0x19,0x1B,0xF1}, {0x31,0x33,0xF1,0x35,0x37,0xF1},
+    {0x09,0x2F,0xF1,0x1D,0x1F,0xF1}, {0x2D,0x2F,0xF1,0x39,0x3B,0xF1}, {0x31,0x31,0xF1,0x33,0x33,0xF1}, {0x35,0x35,0xF1,0x37,0x37,0xF1},
+    {0x39,0x39,0xF1,0x3B,0x3B,0xF1}, {0x01,0x03,0xF1,0x05,0x07,0x09}, {0x0B,0x0D,0xF1,0x0F,0x29,0x2B}, {0x2D,0x2F,0xF1,0x19,0x1B,0x1D},
+    {0x2D,0x2F,0xF1,0xA9,0xAB,0xF1}, {0x2D,0x2F,0xF1,0xA9,0xAD,0xF1}, {0x01,0x03,0x05,0x07,0x09,0x0B}, {0x0D,0x0F,0x39,0x3B,0x3D,0x3F},
+    {0x19,0x1B,0x1D,0x1F,0x21,0x23}, {0x25,0x27,0x29,0x2B,0x2D,0x2F}, {0x31,0x33,0xF1,0x35,0x37,0xF1}, {0x25,0x29,0x2D,0x33,0x37,0x0D},
+    {0x25,0x29,0x2D,0x33,0x37,0x0F}, {0x19,0x1D,0x21,0x1B,0x1F,0x23}, {0x25,0x29,0x2D,0x27,0x2B,0x2F}, {0x25,0x29,0x2D,0x33,0x37,0x3B},
+    {0x01,0x01,0xF1,0x03,0x03,0xF1}, {0x05,0x05,0xF1,0x07,0x07,0xF1}, {0x09,0x09,0xF1,0x0B,0x0B,0xF1}, {0x31,0x33,0xF1,0x35,0x37,0xF1},
+    {0x31,0x35,0xF1,0x39,0x3D,0xF1}, {0x01,0x03,0xF1,0x05,0x07,0x09}, {0x01,0x03,0xF1,0x0B,0x0D,0x0F}, {0x01,0x03,0xF1,0x21,0x23,0x25},
+    {0x31,0x33,0xF1,0x35,0x37,0xF1}, {0x27,0x19,0xF1,0x1D,0x1F,0xF1}, {0xF1,0xF1,0xF1,0x35,0x37,0xF1}, {0xF1,0xF1,0xF1,0x31,0x33,0xF1},
+    {0x29,0x2B,0xF1,0x2D,0x2F,0xF1}, {0x39,0x3B,0xF1,0x3D,0x3F,0xF1}, {0xF1,0xF1,0xF1,0x2F,0x2F,0xF1}, {0xF1,0xF1,0xF1,0x2B,0x2D,0xF1},
+    {0x29,0x2B,0xF1,0x0D,0x0F,0x27}, {0x29,0x2B,0xF1,0x09,0x0B,0x25}, {0x29,0x2B,0xF1,0x01,0x03,0x3F}, {0x29,0x2B,0xF1,0x01,0x03,0x05},
+    {0x29,0x2B,0xF1,0x01,0x03,0x07}, {0x29,0x2B,0xF1,0x31,0x33,0x3D}, {0x29,0x2B,0xF1,0x35,0x37,0x3D}, {0x29,0x2B,0xF1,0x39,0x3B,0x3D},
+    {0x29,0x2B,0xF1,0x0D,0x1F,0x25}, {0x29,0x2B,0xF1,0x0D,0x2D,0x2F}, {0xF1,0xF1,0xF1,0x05,0x07,0xF1}, {0xF1,0xF1,0xF1,0x01,0x03,0xF1},
+    {0xF1,0xF1,0xF1,0x19,0x1B,0xF1}, {0xF1,0xF1,0xF1,0x21,0x23,0xF1}, {0xF1,0xF1,0xF1,0x1D,0x1F,0xF1}, {0x05,0x07,0xF1,0xA9,0xAB,0xF1},
+    {0x05,0x07,0xF1,0xA9,0xAD,0xF1}, {0x29,0x2B,0xF1,0x01,0x03,0x05}, {0xF1,0xF1,0xF1,0x25,0x27,0xF1}, {0xF1,0xF1,0xF1,0x29,0x2B,0xF1},
+    {0xF1,0xF1,0xF1,0x29,0x2F,0xF1}, {0xF1,0xF1,0xF1,0x25,0x2D,0xF1}, {0xF1,0xF1,0xF1,0x09,0x0B,0xF1}, {0xF1,0xF1,0xF1,0x0D,0x0D,0xF1},
+    {0xF1,0xF1,0xF1,0x31,0x33,0xF1}, {0xF1,0xF1,0xF1,0x35,0x37,0xF1}, {0xF1,0xF1,0xF1,0x0F,0x3F,0xF1}, {0x19,0x1B,0xF1,0x1D,0x21,0xF1},
+    {0x19,0x1B,0xF1,0x1D,0x21,0x23} };
+static const uint8_t Player_FramePageOff[SM3_FRAMES] = {
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,
+    2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, 3 };
+static const uint8_t Player_PUpRootPage[SMB3_SUITS] = {0x50, 0x54, 0x54, 0x00, 0x50, 0x40, 0x44};
+/* PowerUp_Palettes (colours 1-3 of sprite palette 0): Mario's for small / big / leaf, then fire,
+   frog, tanooki, hammer; an Ice Flower Mario (NSMBW's) has no SMB3 colours - ours: light blue, blue */
+enum { SM3P_MARIO, SM3P_FIRE, SM3P_FROG, SM3P_TANOOKI, SM3P_HAMMER, SM3P_ICE, SM3P_COUNT };
+static const uint8_t SM3_PAL[SM3P_COUNT][3] = {{0x16, 0x36, 0x0F}, {0x27, 0x36, 0x16}, {0x2A, 0x36, 0x0F}, {0x17, 0x36, 0x0F}, {0x30, 0x27, 0x0F}, {0x31, 0x36, 0x11}};
+static const uint8_t NES_RGB3[64][3] = {   /* (the palette nes_ppu.c draws SMB3 with) */
+    {84,84,84},{0,30,116},{8,16,144},{48,0,136},{68,0,100},{92,0,48},{84,4,0},{60,24,0},{32,42,0},{8,58,0},{0,64,0},{0,60,0},{0,50,60},{0,0,0},{0,0,0},{0,0,0},
+    {152,150,152},{8,76,196},{48,50,236},{92,30,228},{136,20,176},{160,20,100},{152,34,32},{120,60,0},{84,90,0},{40,114,0},{8,124,0},{0,118,40},{0,102,120},{0,0,0},{0,0,0},{0,0,0},
+    {236,238,236},{76,154,236},{120,124,236},{176,98,236},{228,84,236},{236,88,180},{236,106,100},{212,136,32},{160,170,0},{116,196,0},{76,208,32},{56,204,108},{56,180,204},{60,60,60},{0,0,0},{0,0,0},
+    {236,238,236},{168,204,236},{188,188,236},{212,178,236},{236,174,236},{236,174,212},{236,180,176},{228,196,144},{204,210,120},{180,222,120},{168,226,144},{152,226,180},{160,214,228},{160,162,160},{0,0,0},{0,0,0}};
+typedef struct { int state; uint32_t tex; } sm3sheet_t;
+static sm3sheet_t sm3_sheets[SMB3_SUITS][SM3P_COUNT];
+static uint32_t sm3_tex_next = SM3_TEX;
+/* an 8 x 8 tile of a 1 KB page into the cell at (x, y), maybe mirrored */
+static void sm3_tile(uint32_t *cell, int x, int y, const uint8_t *page, int tile, int hflip, const uint32_t *col) {
+    const uint8_t *t = page + tile * 16;
+    for (int r = 0; r < 8; r++) for (int c = 0; c < 8; c++) {
+        int b = hflip ? c : 7 - c, v = ((t[r] >> b) & 1) | ((t[r + 8] >> b) & 1) << 1;
+        int px = x + c, py = y + r;
+        if (v && px >= 0 && px < SM3_CELL && py >= 0 && py < SM3_CELL) cell[py * SM3_TW + px] = col[v];
+    }
+}
+static sm3sheet_t *sm3_sheet(int suit, int pal) {
+    if (suit < 0 || suit >= SMB3_SUITS || pal < 0 || pal >= SM3P_COUNT) return NULL;
+    sm3sheet_t *sh = &sm3_sheets[suit][pal];
+    if (sh->state) return sh->state > 0 ? sh : NULL;
+    sh->state = -1;
+    uint32_t prg = (uint32_t)smb3_rom[4] * 16384u, chr0 = 16 + prg, nchr = (uint32_t)smb3_rom[5] * 8192u;
+    if (smb3_rom_size < chr0 + nchr || !nchr) { rt_log("retro", "SMB3 Mario: no SMB3 graphics in the ROM"); return NULL; }
+    uint32_t bytes = SM3_TW * SM3_TH * 4;
+    if (sm3_tex_next + bytes > SM3_MEM + 0x400000u) { rt_log("retro", "SMB3 Mario: out of texture memory"); return NULL; }
+    uint32_t col[4] = {0};
+    for (int i = 0; i < 3; i++) { const uint8_t *c = NES_RGB3[SM3_PAL[pal][i] & 0x3F]; col[i + 1] = 0xFF000000u | (uint32_t)c[0] << 16 | c[1] << 8 | c[2]; }
+    uint32_t *img = calloc((size_t)SM3_TW * SM3_TH, 4);
+    for (int f = 0; f < SM3_FRAMES; f++) {
+        uint32_t page = (uint32_t)Player_PUpRootPage[suit] + Player_FramePageOff[f];
+        if (chr0 + page * 1024u + 1024u > smb3_rom_size) continue;
+        const uint8_t *pg = smb3_rom + chr0 + page * 1024u;
+        uint32_t *cell = img + (f / 16) * SM3_CELL * SM3_TW + (f % 16) * SM3_CELL;
+        const uint8_t *pt = SPPF_Table[f];
+        int mirror = pt[3] == pt[4];
+        for (int row = 0; row < 2; row++) for (int c = 0; c < 3; c++) {
+            int p = pt[row * 3 + c];
+            int x = 8 + c * 8, y = row * 16;
+            if (f == PF3_KICK_BIG && row == 0 && c == 2) { p = 0x1B; x = 0; y = 16; }   /* (the kick's foot: down a row, left of the body) */
+            if (p == 0xF1 || (p & 0xFE) * 16 + 32 > 1024) continue;        /* (none; the Kuribo's shoe's, from another page) */
+            int hf = mirror && c == 1;
+            sm3_tile(cell, x, y, pg, p & 0xFE, hf, col);
+            sm3_tile(cell, x, y + 8, pg, (p & 0xFE) + 1, hf, col);
+        }
+    }
+    /* GX RGBA8 */
+    uint8_t *dst = G(sm3_tex_next);
+    for (int ty = 0; ty < SM3_TH; ty += 4) for (int tx = 0; tx < SM3_TW; tx += 4) {
+        for (int i = 0; i < 16; i++) {
+            uint32_t c = img[(ty + (i >> 2)) * SM3_TW + tx + (i & 3)];
+            dst[i * 2] = (uint8_t)(c >> 24); dst[i * 2 + 1] = (uint8_t)(c >> 16);
+            dst[32 + i * 2] = (uint8_t)(c >> 8); dst[32 + i * 2 + 1] = (uint8_t)c;
+        }
+        dst += 64;
+    }
+    {   const char *dd = getenv("RT_RETRO_DUMP_SHEETS");               /* testing: the sheet as a .ppm (transparent: magenta) */
+        if (dd) { char pp[1300]; snprintf(pp, sizeof pp, "%s/smb3_suit%d_pal%d.ppm", dd, suit, pal); FILE *o = fopen(pp, "wb");
+            if (o) { fprintf(o, "P6\n%d %d\n255\n", SM3_TW, SM3_TH); for (int i = 0; i < SM3_TW * SM3_TH; i++) { uint32_t c = img[i];
+                uint8_t px3[3] = {(c >> 24) ? (uint8_t)(c >> 16) : 255, (c >> 24) ? (uint8_t)(c >> 8) : 0, (c >> 24) ? (uint8_t)c : 255}; fwrite(px3, 1, 3, o); } fclose(o); } } }
+    free(img);
+    sh->tex = sm3_tex_next; sm3_tex_next += (bytes + 31) & ~31u;
+    sh->state = 1;
+    rt_log("retro", "SMB3 Mario: suit %d's sprites (palette %d) from the ROM's pattern pages $%02X-$%02X", suit, pal, Player_PUpRootPage[suit], Player_PUpRootPage[suit] + 3);
+    return sh;
+}
+/* NSMBW's power-up -> SMB3's suit (and its colours) */
+static int smb3_suit_of(int mode, int *pal) {
+    int suit, p = SM3P_MARIO;
+    switch (mode) {
+    case PU_SMALL: case PU_MINI: suit = SMB3_SMALL; break;
+    case PU_FIRE: suit = SMB3_FIRE; p = SM3P_FIRE; break;
+    case PU_ICE: suit = SMB3_FIRE; p = SM3P_ICE; break;         /* (no Ice Flower in SMB3: the Fire Mario sprites in ice colours) */
+    case PU_RACCOON: suit = SMB3_LEAF; break;
+    case PU_FROG: suit = SMB3_FROG; p = SM3P_FROG; break;
+    default: suit = SMB3_BIG; break;                             /* (Super; Propeller, Penguin: no SMB3 suit - Big's) */
+    }
+    if (pal) *pal = p;
+    return suit;
+}
+
 /* ================================================================== per player */
+enum { STYLE_SMB1 = 1, STYLE_SMB3 = 4 };       /* (rt_chars.c) */
 typedef struct {
     uint32_t actor, uid;             /* the dAcPy_c this is for (0: none), its fBase_c unique ID */
+    int style;                       /* STYLE_SMB1 / STYLE_SMB3 */
+    smb3_player s3;                  /* (SMB3) */
+    int s3_dir_frames;               /* (SMB3, NSMBW-moved states) the picture's own counter */
+    int suit3, pal3, flip3;          /* (SMB3) the sprites' suit and colours, Player_FlipBits */
     smb1_player p;
     int controlled;                  /* moved by smb1 this frame */
     int was_controlled;
@@ -340,16 +477,22 @@ static retro_t *retro_of(uint32_t pl) {
     if (R32(G_GAME_MODE) == 2) return NULL;                             /* (title screen: 3D characters) */
     int n = (int8_t)R8(pl + PL_PLR_NO);
     if (n < 0 || n >= 8) return NULL;
-    if (!chars_is_smb1(n) && !(rt_setting("retro_mario", 0) && R32(pl + PL_TYPE) == 0)) return NULL;
+    int style = chars_style_of_player(n);
+    if (style != STYLE_SMB1 && style != STYLE_SMB3) {
+        if (!(rt_setting("retro_mario", 0) && R32(pl + PL_TYPE) == 0)) return NULL;
+        style = rt_setting("retro_mario", 0) == 3 ? STYLE_SMB3 : STYLE_SMB1;   /* (testing: retro_mario = 3 - SMB3's) */
+    }
     retro_t *r = &R[n];
-    if (r->actor != pl || r->uid != R32(pl)) {
+    if (r->actor != pl || r->uid != R32(pl) || r->style != style) {
         /* a new player actor (new level / area: the old draw proc went with the scene's heap) */
         memset(r, 0, sizeof *r);
         r->actor = pl; r->uid = R32(pl);
         int mode = (int)R32(pl + PL_MODE);
         r->last_mode = mode;
+        r->style = style;
         smb1_init(&r->p, mode == MODE_SMALL || mode == MODE_MINI, R8(pl + PL_DIRECTION) ? SMB1_FACE_LEFT : SMB1_FACE_RIGHT);
-        rt_log("retro", "player %d (%08X) is SMB1 Mario", n, pl);
+        smb3p_init(&r->s3, smb3_suit_of(mode, NULL), R8(pl + PL_DIRECTION) != 0);
+        rt_log("retro", "player %d (%08X) is %s Mario", n, pl, style == STYLE_SMB3 ? "SMB3" : "SMB1");
     }
     return r;
 }
@@ -409,6 +552,88 @@ static uint8_t smb1_buttons(uint32_t pl) {
     return b;
 }
 
+/* ---- a retro character's sounds: SMB1 Mario's (ui/retro/mario/sfx/<name>.wav); SMB3 Mario's are
+   SMB3's own, as the build renders them (<game>/sound/smb3/smb3_sfx_<queue>_<bit>.rwav,
+   SMB3Disassembly/port/smb3_sound.c): Sound_QPlayer 2, Sound_QLevel1 3, Sound_QLevel2 4 ---- */
+static void rsfx(const retro_t *r, const char *name) {
+    if (r->style != STYLE_SMB3) { sfx_play(retro_dir(), name); return; }
+    static const struct { const char *n, *f; } M[] = {
+        {"jump", "smb3_sfx_2_01"}, {"jumpsmall", "smb3_sfx_2_01"}, {"bump", "smb3_sfx_2_02"}, {"stompswim", "smb3_sfx_2_04"},
+        {"kick", "smb3_sfx_2_08"}, {"pipepowerdown", "smb3_sfx_2_10"}, {"fireball", "smb3_sfx_2_20"}, {"power", "smb3_sfx_2_40"},
+        {"frog", "smb3_sfx_2_80"}, {"coin", "smb3_sfx_3_01"}, {"item", "smb3_sfx_3_02"}, {"powerup", "smb3_sfx_3_20"},
+        {"1up", "smb3_sfx_3_40"}, {"poof", "smb3_sfx_3_80"}, {"tailwag", "smb3_sfx_3_B0"}, {"brick", "smb3_sfx_4_01"}, {"skid", "smb3_sfx_4_80"},
+        {NULL, NULL} };
+    for (int i = 0; M[i].n; i++) if (!strcmp(M[i].n, name)) { if (!strcmp(name, "power")) sfx_play_ifidle("@smb3", M[i].f); else sfx_play("@smb3", M[i].f); return; }
+}
+
+/* ---- SMB3 Mario: SMB3's Player_Control (smb3_physics.c) moves him, as smb1's below ---- */
+#define PL_CARRY        10872               /* (the actor carried: smb3_stage.c) */
+#define PL_STAR_TIMER   0x1070
+static uint8_t smb3_buttons(uint32_t pl) {
+    uint16_t k = R16(pl + PL_KEY + 4);
+    uint8_t b = 0;
+    if (k & (KEY_TWO | KEY_A)) b |= SMB3_A;
+    if (k & (KEY_ONE | KEY_B)) b |= SMB3_B;
+    if (k & KEY_UP) b |= SMB3_UP;
+    if (k & KEY_DOWN) b |= SMB3_DOWN;
+    if ((k & KEY_LEFT) && !(k & KEY_RIGHT)) b |= SMB3_LEFT;
+    if ((k & KEY_RIGHT) && !(k & KEY_LEFT)) b |= SMB3_RIGHT;
+    return b;
+}
+static void smb3_move(ppc_context *ctx, uint8_t *base, retro_t *r, uint32_t pl) {
+    smb3_player *p = &r->s3;
+    int mode = (int)R32(pl + PL_MODE);
+    p->Player_Suit = (uint8_t)smb3_suit_of(mode, NULL);
+    uint32_t bg = R32(pl + PL_BG_CROSS1);
+    const char *st = state_name(ctx, base, pl + PL_STATE_MGR);
+    int swim = !strcmp(st, "Swim");
+    if (p->Player_InWater != swim) { p->Player_InWater = (uint8_t)swim; if (swim && !p->Player_InAir) p->Player_InAir = 1; }
+    p->WaterSurface = swim && !(bg & BGC_WATER_SUBMERGED);
+    p->Player_IsHolding = R32(pl + PL_CARRY) != 0;
+    p->Player_StarInv = (int)R32(pl + PL_STAR_TIMER) > 0;
+    if (!r->was_controlled) {
+        /* taking over from NSMBW's movement: its speeds carried over */
+        float sf = RF(pl + PL_SPEED_F); int xs = (int)lrintf(sf * 16.0f);
+        if (xs > 0x40) xs = 0x40; if (xs < -0x40) xs = -0x40;
+        p->Player_XVel = (uint8_t)(int8_t)xs;
+        float vy = RF(pl + PL_SPEED + 4); int ys = (int)lrintf(-vy * 16.0f);
+        if (ys > 0x40) ys = 0x40; if (ys < -0x7F) ys = -0x7F;
+        p->Player_InAir = !(bg & BGC_FOOT) || swim;
+        p->Player_YVel = p->Player_InAir ? (uint8_t)(int8_t)ys : 0;
+        p->Player_FlipBits = R8(pl + PL_DIRECTION) ? 0 : SMB3_HFLIP;
+    }
+    if (r->ext_jump) {                                                  /* bounced by an enemy / a spring (NSMBW's setJump from outside) */
+        if (r->ext_jump_speed > 5.0f) { int v = -(int)lrintf(r->ext_jump_speed * 16.0f); smb3p_launch(p, v < -0x7F ? -0x7F : v); }
+        else { smb3p_stomp(p); rsfx(r, "stompswim"); }                  /* (PRG000_D2B4: -$40, the squish) */
+        r->ext_jump = 0;
+    }
+    int air0 = p->Player_InAir;
+    smb3_motion m;
+    smb3p_frame(p, smb3_buttons(pl), &m);
+    if (p->jumped) rsfx(r, "jump");
+    if (p->swam) rsfx(r, "stompswim");
+    if (p->tailwag || p->tailattack) rsfx(r, "tailwag");
+    if (p->frog_hop) rsfx(r, "frog");
+    if (p->skid && !(p->Counter_1 & 7)) rsfx(r, "skid");
+    if (p->Player_Power == 0x7F || p->Player_FlyTime) rsfx(r, "power");   /* (SND_PLAYERPOWER: set each frame while the meter is full or he flies - it rings on) */
+    /* SMB3 moves in whole pixels with a fraction kept; the player is moved by the velocity (the
+       same on average, smooth against NSMBW's camera) */
+    r->move_x0 = RF(pl + PL_POS); r->move_dx = m.dx;
+    if (!air0 && !p->Player_InAir && !swim) {
+        WF(pl + PL_SPEED_F, m.dx); WF(pl + PL_MAX_SPEED_F, m.dx); WF(pl + PL_ACCEL_F, 1000.0f);   /* (on the ground NSMBW's own step: slopes, moving floors) */
+        orig_fn_80056E40(ctx, base);
+        r->ground_step = 1;
+    } else {
+        float dy = -m.dy;                                                /* (SMB3: y down) */
+        WF(RM_VEC, m.dx); WF(RM_VEC + 4, dy); WF(RM_VEC + 8, 0.0f);
+        gcall(ctx, base, A_POS_MOVE_DELTA, 2, pl, RM_VEC);
+        WF(pl + PL_SPEED, m.dx); WF(pl + PL_SPEED + 4, dy); WF(pl + PL_SPEED_F, m.dx);
+        r->ground_step = 0;
+    }
+    W8(pl + PL_DIRECTION, (p->Player_FlipBits & SMB3_HFLIP) ? 0 : 1);
+    r->controlled = 1;
+}
+
 /* daPlBase_c's per-frame speed and position step (called from executeMain between the state's
    execute and the collision check). */
 void hle_fn_80056E40(ppc_context *ctx, uint8_t *base) {
@@ -419,6 +644,7 @@ void hle_fn_80056E40(ppc_context *ctx, uint8_t *base) {
         orig_fn_80056E40(ctx, base);
         return;
     }
+    if (r->style == STYLE_SMB3) { smb3_move(ctx, base, r, pl); return; }
     smb1_player *p = &r->p;
     int mode = (int)R32(pl + PL_MODE);
     p->PlayerSize = (mode == MODE_SMALL || mode == MODE_MINI) ? 1 : 0;
@@ -496,7 +722,7 @@ void hle_fn_8013FCE0(ppc_context *ctx, uint8_t *base) {
     if (getenv("RT_TEST_POS")) rt_log("test", "setDemoGoal: player %.1f, %.1f, castle %.1f at frame %llu",
                                       RF(pl + PL_POS), RF(pl + PL_POS + 4), castle, (unsigned long long)g_frames_presented);
     orig_fn_8013FCE0(ctx, base);
-    if (!r || !R8(pl + PL_IS_DEMO)) return;
+    if (!r || !R8(pl + PL_IS_DEMO) || r->style != STYLE_SMB1) return;   /* (SMB1's pole; SMB3 Mario follows NSMBW's goal) */
     memset(&r->goal, 0, sizeof r->goal);
     r->goal.phase = G_SLIDE;
     r->goal.pole_x = RF(pl + PL_POS);                                   /* (NSMBW's player is put on the pole's middle) */
@@ -608,7 +834,18 @@ void hle_fn_801438A0(ppc_context *ctx, uint8_t *base) {
     vine_after(ctx, base, r, pl);
     r->age++;
     uint32_t bg = R32(pl + PL_BG_CROSS1);
-    if (r->controlled) {
+    if (r->controlled && r->style == STYLE_SMB3) {
+        smb3_player *p = &r->s3;                                         /* (Player_DetectSolids, from NSMBW's collision) */
+        if (bg & BGC_FOOT) smb3p_land(p); else if (!p->Player_InAir && !p->Player_InWater) smb3p_leave_ground(p);
+        if ((bg & BGC_HEAD) && (p->Player_YVel & 0x80) && p->Player_InAir) {
+            if (!r->bump_t) { r->bump_t = 6; r->bump_sound = r->obj_sound_frame == g_frames_presented; }
+            smb3p_ceiling(p);
+        }
+        float moved = RF(pl + PL_POS) - r->move_x0, need = r->ground_step ? 0.5f : 1.0f;
+        if (r->move_dx > 0 && moved < r->move_dx * need - 0.01f) smb3p_wall(p, 1);
+        if (r->move_dx < 0 && moved > r->move_dx * need + 0.01f) smb3p_wall(p, 2);
+        smb3p_special_frames(p);
+    } else if (r->controlled) {
         smb1_player *p = &r->p;
         smb1_ground(p, (bg & BGC_FOOT) != 0);
         if ((bg & BGC_HEAD) && !r->bump_t && (int8_t)p->Player_Y_Speed <= 0) {   /* (what it hit: retro_sound) */
@@ -621,30 +858,38 @@ void hle_fn_801438A0(ppc_context *ctx, uint8_t *base) {
         if (r->move_dx > 0 && moved < r->move_dx * need - 0.01f) smb1_wall(p, SMB1_FACE_RIGHT);
         if (r->move_dx < 0 && moved > r->move_dx * need + 0.01f) smb1_wall(p, SMB1_FACE_LEFT);
     }
-    if (r->bump_t && !--r->bump_t && !r->bump_sound) sfx_play(retro_dir(), "bump");   /* (nothing came of it: a bump) */
+    if (r->bump_t && !--r->bump_t && !r->bump_sound) rsfx(r, "bump");   /* (nothing came of it: a bump) */
     /* the goal pole */
     if (r->goal.phase && !(R8(pl + PL_IS_DEMO) && !strcmp(state_name(ctx, base, pl + PL_DEMO_MGR), "DemoGoal"))) { r->goal.phase = G_NONE; r->draw_on_top = 0; }
     if (r->goal.phase) goal_step(ctx, base, r, pl);
     /* death, power-ups and power-downs */
     const char *dst = R8(pl + PL_IS_DEMO) ? state_name(ctx, base, pl + PL_DEMO_MGR) : "";
     {   static char last_demo[8][32]; int n = (int)(r - R);             /* into a pipe */
-        if (!strncmp(dst, "DemoInDokan", 11) && strncmp(last_demo[n], "DemoInDokan", 11) && r->age > 1) sfx_play(retro_dir(), "pipepowerdown");
+        if (!strncmp(dst, "DemoInDokan", 11) && strncmp(last_demo[n], "DemoInDokan", 11) && r->age > 1) rsfx(r, "pipepowerdown");
         snprintf(last_demo[n], sizeof last_demo[n], "%s", dst); }
     int dead = strstr(dst, "Down") || strstr(dst, "Dead") || strstr(dst, "EatDie") || strstr(dst, "FallDown") || strstr(dst, "FireDown");
-    if (dead && !r->was_dead) { sfx_stop_all(); sfx_play(retro_dir(), "death"); }
+    if (dead && !r->was_dead) { sfx_stop_all(); if (r->style != STYLE_SMB3) rsfx(r, "death"); }   /* (SMB3's death is a song: NSMBW's miss music for now) */
     r->was_dead = dead;
     int mode = (int)R32(pl + PL_MODE);
     if (mode != r->last_mode && !dead && !R8(pl + PL_IS_DEMO) && r->was_controlled) {
-        if (mode == MODE_SMALL || (mode == MODE_MUSHROOM && r->last_mode != MODE_SMALL && r->last_mode != MODE_MINI)) sfx_play(retro_dir(), "pipepowerdown");
-        else sfx_play(retro_dir(), "powerup");
+        if (mode == MODE_SMALL || (mode == MODE_MUSHROOM && r->last_mode != MODE_SMALL && r->last_mode != MODE_MINI)) rsfx(r, "pipepowerdown");
+        else rsfx(r, "powerup");
     }
     r->last_mode = mode;
     r->was_controlled = r->controlled;
     {   static int started; if (r->controlled) started = 1; if (started) test_script_step(); }
+    {   const char *e = getenv("RT_RETRO_MODE");                    /* testing: RT_RETRO_MODE=n - that power-up (rt_powerup.h), once the player moves */
+        static uint32_t given; if (e && r->controlled && given != r->uid) { given = r->uid; uint32_t v = (uint32_t)atoi(e);
+            W32(pl + 5344, v); gcall(ctx, base, R32(R32(pl + 96) + 228), 3, pl, v, 0);   /* (mNextMode; setPowerup(v, no demo): smb3_stage.c set_powerup_now) */
+            rt_log("retro", "test: power-up %u", v); } }
     {   static int star = -1; if (star < 0) star = getenv("RT_RETRO_STAR") != NULL;      /* testing: invincible */
         if (star) W32(pl + 0x1070, 600); }
     {   static int lg = -1; if (lg < 0) lg = getenv("RT_RETROLOG") != NULL;     /* testing: a line per frame */
-        if (lg) rt_log("retro", "%s %s%s%s pos %.1f,%.1f bg %08X smb1 st %d xs %02X ys %02X face %d keys %04X goal %d %.1f,%.1f",
+        if (lg && r->style == STYLE_SMB3) rt_log("retro", "%s %s%s%s pos %.1f,%.1f bg %08X smb3 air %d xv %02X yv %02X power %02X fly %02X wag %02X tail %02X duck %d frame %02X flip %02X keys %04X",
+                       r->controlled ? "smb3" : "nsmbw", state_name(ctx, base, pl + PL_STATE_MGR), R8(pl + PL_IS_DEMO) ? "/" : "", dst, RF(pl + PL_POS), RF(pl + PL_POS + 4),
+                       R32(pl + PL_BG_CROSS1), r->s3.Player_InAir, r->s3.Player_XVel, r->s3.Player_YVel, r->s3.Player_Power, r->s3.Player_FlyTime, r->s3.Player_WagCount,
+                       r->s3.Player_TailAttack, r->s3.Player_IsDucking, r->s3.Player_Frame, r->s3.Player_FlipBits, R16(pl + PL_KEY + 4));
+        else if (lg) rt_log("retro", "%s %s%s%s pos %.1f,%.1f bg %08X smb1 st %d xs %02X ys %02X face %d keys %04X goal %d %.1f,%.1f",
                        r->controlled ? "smb1" : "nsmbw", state_name(ctx, base, pl + PL_STATE_MGR), R8(pl + PL_IS_DEMO) ? "/" : "", dst, RF(pl + PL_POS), RF(pl + PL_POS + 4),
                        R32(pl + PL_BG_CROSS1), r->p.Player_State, r->p.Player_X_Speed, r->p.Player_Y_Speed, r->p.PlayerFacingDir, R16(pl + PL_KEY + 4),
                        r->goal.phase, r->goal.x, r->goal.y); }
@@ -712,7 +957,7 @@ void hle_fn_80047430(ppc_context *ctx, uint8_t *base) {
             if (!strcmp(st, "Slip") || !strcmp(st, "LiftUp") || !strcmp(st, "RideYoshi") ||
                 (small && (!strcmp(st, "Crouch") || !strcmp(st, "SitJump")))) {
                 static int lg = -1; if (lg < 0) lg = getenv("RT_RETROLOG") != NULL;
-                if (lg) rt_log("retro", "no %s for SMB1 Mario", st);
+                if (lg) rt_log("retro", "no %s for retro Mario", st);
                 return;
             }
         }
@@ -726,7 +971,8 @@ void hle_fn_8014eb70__9daYoshi_cFP7dAcPy_ci(ppc_context *ctx, uint8_t *base) {
 }
 /* dAcPy_c::spinLiftUp(actor, really): pick up / carry something (shells, blocks, players) */
 void hle_fn_8012E400(ppc_context *ctx, uint8_t *base) {
-    if (retro_of(ctx->r[3])) { ctx->r[3] = 0; return; }
+    retro_t *r = retro_of(ctx->r[3]);
+    if (r && r->style != STYLE_SMB3) { ctx->r[3] = 0; return; }        /* (SMB3 Mario holds shells with B: NSMBW's carry) */
     orig_fn_8012E400(ctx, base);
 }
 
@@ -789,16 +1035,16 @@ static int retro_sound(uint32_t id, uint32_t obj) {
         if (!r->actor || retro_of(r->actor) != r) continue;
         int own = obj >= r->actor && obj < r->actor + 0x2A80;              /* the player's own sound object */
         if (r->bump_t && (id == SE_OBJ_BLOCK_BREAK || id == SE_OBJ_ITEM_APPEAR || id == SE_OBJ_GET_COIN)) {
-            if (!r->bump_sound) { r->bump_sound = (int)id; sfx_play(retro_dir(), id == SE_OBJ_BLOCK_BREAK ? "brick" : id == SE_OBJ_ITEM_APPEAR ? "item" : "coin"); }
+            if (!r->bump_sound) { r->bump_sound = (int)id; rsfx(r, id == SE_OBJ_BLOCK_BREAK ? "brick" : id == SE_OBJ_ITEM_APPEAR ? "item" : "coin"); }
             return 1;
         }
         if (r->bump_t && (id == SE_PLY_HIT_BLOCK || id == SE_PLY_HIT_BLOCK_BOUND)) return 1;
         if (acting == r || own) {
-            if (id == SE_OBJ_GET_COIN || id == SE_OBJ_GET_COIN_SHOWER) { sfx_play(retro_dir(), "coin"); r->obj_sound_frame = g_frames_presented; return 1; }
+            if (id == SE_OBJ_GET_COIN || id == SE_OBJ_GET_COIN_SHOWER) { rsfx(r, "coin"); r->obj_sound_frame = g_frames_presented; return 1; }
             if (id == SE_OBJ_BLOCK_BREAK || id == SE_OBJ_ITEM_APPEAR) {
-                sfx_play(retro_dir(), id == SE_OBJ_BLOCK_BREAK ? "brick" : "item"); r->obj_sound_frame = g_frames_presented; return 1; }
-            if (id == SE_SYS_ONE_UP || id == SE_SYS_ONE_UP_RC || id == SE_SYS_100COIN_ONE_UP) { sfx_play(retro_dir(), "1up"); return 1; }
-            if (id == SE_PLY_THROW_FIRE) { sfx_play(retro_dir(), "fireball"); return 1; }
+                rsfx(r, id == SE_OBJ_BLOCK_BREAK ? "brick" : "item"); r->obj_sound_frame = g_frames_presented; return 1; }
+            if (id == SE_SYS_ONE_UP || id == SE_SYS_ONE_UP_RC || id == SE_SYS_100COIN_ONE_UP) { rsfx(r, "1up"); return 1; }
+            if (id == SE_PLY_THROW_FIRE) { rsfx(r, "fireball"); if (r->style == STYLE_SMB3) smb3p_fired(&r->s3); return 1; }   /* (SMB3: Player_FireCount - the throwing frames) */
             if (own) return 1;                                          /* (NSMBW's player sounds and voice) */
         }
     }
@@ -831,7 +1077,36 @@ void hle_startMissBGM__9daPyMng_cFi(ppc_context *ctx, uint8_t *base) {
 }
 
 /* ================================================================== drawing */
+/* SMB3 Mario's picture: SMB3's own Player_Frame while its physics moves him; in NSMBW's other
+   states the SMB3 frame for it (Player_ClimbFrame, PipeMove_Frame, PF_DIE, the jump frames
+   (Airship_JumpFrameByPup), the walk cycle) */
+static void pick_frame3(ppc_context *ctx, uint8_t *base, retro_t *r, uint32_t pl) {
+    int mode = (int)R32(pl + PL_MODE);
+    r->suit3 = smb3_suit_of(mode, &r->pal3);
+    if (r->controlled) { r->frame = r->s3.Player_Frame; r->flip3 = r->s3.Player_FlipBits; return; }
+    static const uint8_t walk[SMB3_SUITS][4] = {{0x3E, 0x3F, 0x3E, 0x3F}, {0x0C, 0x0D, 0x0E, 0x0D}, {0x0C, 0x0D, 0x0E, 0x0D},
+        {0x00, 0x01, 0x02, 0x01}, {0x00, 0x01, 0x02, 0x01}, {0x00, 0x01, 0x02, 0x01}, {0x0C, 0x0D, 0x0E, 0x0D}};   /* (Player_WalkFramesByPUp) */
+    static const uint8_t climb[SMB3_SUITS] = {0x4A, 0x2C, 0x2C, 0x2C, 0x28, 0x2C, 0x2C};   /* (Player_ClimbFrame) */
+    static const uint8_t jump[SMB3_SUITS] = {0x40, 0x4F, 0x4F, 0x50, 0x02, 0x50, 0x4F};    /* (Airship_JumpFrameByPup) */
+    int su = r->suit3;
+    r->flip3 = R8(pl + PL_DIRECTION) ? 0 : SMB3_HFLIP;
+    const char *st = R8(pl + PL_IS_DEMO) ? state_name(ctx, base, pl + PL_DEMO_MGR) : state_name(ctx, base, pl + PL_STATE_MGR);
+    uint32_t bg = R32(pl + PL_BG_CROSS1);
+    float vx = RF(pl + PL_SPEED), vy = RF(pl + PL_SPEED + 4);
+    r->anim_t++;
+    if (strstr(st, "Down") || strstr(st, "Dead")) { r->suit3 = SMB3_SMALL; r->pal3 = 0; r->frame = PF3_DIE; r->flip3 = 0; return; }
+    if (strstr(st, "Vine") || strstr(st, "Pole") || strstr(st, "Ivy") || strstr(st, "Hang") || (strstr(st, "Goal") && !(bg & BGC_FOOT))) {
+        r->frame = climb[su];                                           /* (Player_DoClimbAnim: turned round every 8 frames as it climbs) */
+        if (fabsf(vx) + fabsf(vy) > 0.01f && (r->anim_t / 8) & 1) r->flip3 ^= SMB3_HFLIP;
+        return;
+    }
+    if (strstr(st, "Dokan") && !strstr(st, "DokanL") && !strstr(st, "DokanR")) { r->frame = su ? PF3_INPIPE_BIG : PF3_INPIPE_SMALL; return; }   /* (PipeMove_Frame: facing the screen) */
+    if (!(bg & BGC_FOOT) && fabsf(vy) > 0.01f) { r->frame = jump[su]; return; }
+    if (fabsf(vx) > 0.05f) { r->frame = walk[su][(r->anim_t / 5) & 3]; return; }
+    r->frame = walk[su][2];
+}
 static void pick_frame(ppc_context *ctx, uint8_t *base, retro_t *r, uint32_t pl) {
+    if (r->style == STYLE_SMB3) { pick_frame3(ctx, base, r, pl); return; }
     if (r->goal.phase) return;                                          /* (goal_step picks it) */
     if (r->vine.on) {
         r->frame = r->vine.anim ? FR_CLIMB2 : FR_CLIMB1;
@@ -883,7 +1158,27 @@ static void pick_frame(ppc_context *ctx, uint8_t *base, retro_t *r, uint32_t pl)
 
 /* one sprite quad: q = top-left, top-right, bottom-right, bottom-left in the space of the
    position matrix at mtx (guest address) */
+static void tex_quad_draw(ppc_context *ctx, uint8_t *base, uint32_t to, uint32_t tex, int tw, int th, float u0, float v0, float u1, float v1,
+                          uint32_t mtx, const float q[4][3], int on_top);
 static void sprite_draw(ppc_context *ctx, uint8_t *base, sheet_t *sh, int f, int facing_left, uint32_t mtx, const float q[4][3], int on_top) {
+    float u0 = (float)sh->fr[f][0] / sh->tw, u1 = (float)(sh->fr[f][0] + sh->bw) / sh->tw;
+    float v0 = (float)sh->fr[f][1] / sh->th, v1 = (float)(sh->fr[f][1] + sh->bh) / sh->th;
+    if (facing_left) { float t = u0; u0 = u1; u1 = t; }
+    tex_quad_draw(ctx, base, RM_TEXOBJ + (uint32_t)(sh - sheets) * 0x20, sh->tex, sh->tw, sh->th, u0, v0, u1, v1, mtx, q, on_top);
+}
+/* SMB3 Mario's frame f (Player_Frame): its cell, mirrored when facing right (SMB3's frames face
+   left: SPR_HFLIP turns him round), upside down with SPR_VFLIP */
+static void sm3_draw(ppc_context *ctx, uint8_t *base, sm3sheet_t *sh, int f, int flipbits, uint32_t mtx, const float q[4][3], int on_top) {
+    if (f < 0 || f >= SM3_FRAMES) f = 0x0E;
+    float u0 = (float)((f % 16) * SM3_CELL) / SM3_TW, u1 = u0 + (float)SM3_CELL / SM3_TW;
+    float v0 = (float)((f / 16) * SM3_CELL) / SM3_TH, v1 = v0 + (float)SM3_CELL / SM3_TH;
+    if (flipbits & SMB3_HFLIP) { float t = u0; u0 = u1; u1 = t; }
+    if (flipbits & 0x80) { float t = v0; v0 = v1; v1 = t; }
+    int k = (int)(sh - &sm3_sheets[0][0]);
+    tex_quad_draw(ctx, base, SM3_TEXOBJ + (uint32_t)k * 0x20, sh->tex, SM3_TW, SM3_TH, u0, v0, u1, v1, mtx, q, on_top);
+}
+static void tex_quad_draw(ppc_context *ctx, uint8_t *base, uint32_t to, uint32_t tex, int tw, int th, float u0, float v0, float u1, float v1,
+                          uint32_t mtx, const float q[4][3], int on_top) {
     /* GX state (the scene's own state is invalidated around it) */
     gcall(ctx, base, A_G3D_INVALIDATE, 1, 0x7FF);
     gcall(ctx, base, A_DISABLE_IND_TEX, 0);
@@ -907,16 +1202,12 @@ static void sprite_draw(ppc_context *ctx, uint8_t *base, sheet_t *sh, int f, int
     gcall(ctx, base, A_GXSetZCompLoc, 1, 0);                    /* depth after the alpha test */
     gcall(ctx, base, A_GXSetCullMode, 1, 0);
     gcall(ctx, base, A_GXSetColorUpdate, 1, 1);
-    uint32_t to = RM_TEXOBJ + (uint32_t)(sh - sheets) * 0x20;
-    gcall(ctx, base, A_GXInitTexObj, 8, to, sh->tex, sh->tw, sh->th, 6, 0, 0, 0);   /* RGBA8, clamp */
+    gcall(ctx, base, A_GXInitTexObj, 8, to, tex, (uint32_t)tw, (uint32_t)th, 6, 0, 0, 0);   /* RGBA8, clamp */
     ctx->f[1].d = 0.0; ctx->f[2].d = 0.0; ctx->f[3].d = 0.0;
     gcall(ctx, base, A_GXInitTexObjLOD, 8, to, 0, 0, 0, 0, 0, 0, 0);               /* nearest */
     gcall(ctx, base, A_GXLoadTexObj, 2, to, 0);
     gcall(ctx, base, A_GXLoadPosMtxImm, 2, mtx, 0);
     gcall(ctx, base, A_GXSetCurrentMtx, 1, 0);
-    float u0 = (float)sh->fr[f][0] / sh->tw, u1 = (float)(sh->fr[f][0] + sh->bw) / sh->tw;
-    float v0 = (float)sh->fr[f][1] / sh->th, v1 = (float)(sh->fr[f][1] + sh->bh) / sh->th;
-    if (facing_left) { float t = u0; u0 = u1; u1 = t; }
     const float uv[4][2] = {{u0, v0}, {u1, v0}, {u1, v1}, {u0, v1}};
     gcall(ctx, base, A_GXBegin, 3, 0x80, 0, 4);                 /* GX_QUADS, fmt 0, 4 vertices */
     for (int i = 0; i < 4; i++) {
@@ -943,6 +1234,15 @@ static void proc_draw(ppc_context *ctx, uint8_t *base, uint32_t proc, int draw_x
     r->draw_pending = 0;
     uint32_t pl = r->actor;
     if (r->goal.phase && r->goal.hidden) return;
+    if (r->style == STYLE_SMB3) {                                       /* (SMB3 Mario: a 32 x 32 cell, his body in its middle, feet at the bottom) */
+        sm3sheet_t *s3 = sm3_sheet(r->suit3, r->pal3);
+        if (!s3 || !camera_mtx(ctx, base)) return;
+        float k = R32(pl + PL_MODE) == PU_MINI ? 0.5f : 1.0f;           /* (Mini: small Mario at half size) */
+        float px = RF(pl + PL_POS), py = RF(pl + PL_POS + 4), pz = RF(pl + PL_POS + 8), h = SM3_CELL * k;
+        const float q[4][3] = {{px - h / 2, py + h, pz}, {px + h / 2, py + h, pz}, {px + h / 2, py, pz}, {px - h / 2, py, pz}};
+        sm3_draw(ctx, base, s3, r->frame, r->flip3, RM_MTX, q, draw_xlu);
+        return;
+    }
     sheet_t *sh = sheet_for((int)R32(pl + PL_MODE));
     if (!sh) return;
     int f = sheet_frame(sh, r->frame);
@@ -973,6 +1273,7 @@ static void procs_init(void) {
 void hle_fn_80145A60(ppc_context *ctx, uint8_t *base) {
     uint32_t pl = ctx->r[3];
     smb3_stage_player_draw(ctx, base, pl);                                /* (the SMB3 stage draws its level from here) */
+    { void smw_stage_player_draw(ppc_context *ctx, uint8_t *base, uint32_t pl); smw_stage_player_draw(ctx, base, pl); }   /* (the SMW stage too) */
     { int smb3_stage_player_hidden(uint32_t pl); if (smb3_stage_player_hidden(pl)) { ctx->r[3] = 1; return; } }   /* (behind SMB3's suit poof) */
     retro_t *r = retro_of(pl);
     if (!r) {
@@ -1019,7 +1320,7 @@ void hle_fn_80145A60(ppc_context *ctx, uint8_t *base) {
 #define MS_COUNT        16
 typedef struct {
     uint32_t mng, proc;
-    int pending, scene, type, frame, facing_left, anim_t, have_last;
+    int pending, scene, type, frame, facing_left, anim_t, have_last, slot;
     float pos[3], k, last[3];        /* model position, size against a level's, last position */
 } msprite_t;
 static msprite_t MS[MS_COUNT];
@@ -1030,8 +1331,8 @@ static int smb1_slot_of_model(uint32_t mdl) {
     int id = R8(mdl + MDL_ID), scene = (int)R32(mdl + MDL_SCENE);
     if (R8(mdl + MDL_CHARA_ID) == 5) return -1;                           /* a Yoshi (its +0x150 is its rider's number) */
     if (R32(G_GAME_MODE) == 2) return -1;                                /* (title screen) */
-    if (scene == 0) return id < 8 && chars_is_smb1(id) ? id : -1;
-    for (int n = 0; n < 8; n++) if ((int)R32(MOD_PY_TYPE + 4 * n) == id && chars_is_smb1(n)) return n;
+    if (scene == 0) return id < 8 && chars_is_retro(id) ? id : -1;
+    for (int n = 0; n < 8; n++) if ((int)R32(MOD_PY_TYPE + 4 * n) == id && chars_is_retro(n)) return n;
     return -1;
 }
 static msprite_t *ms_of(uint32_t mng, int add) {
@@ -1045,6 +1346,25 @@ static void mproc_draw(ppc_context *ctx, uint8_t *base, uint32_t proc) {
     for (int i = 0; i < MS_COUNT; i++) if (MS[i].mng && MS[i].proc == proc) m = &MS[i];
     if (!m || !m->pending) return;
     m->pending = 0;
+    if (chars_style_of_player(m->slot) == STYLE_SMB3) {               /* (SMB3 Mario: standing, walking, jumping - SMB3's frames) */
+        int pal, su = smb3_suit_of((int)R32(MOD_PY_MODE + 4 * m->type), &pal);
+        sm3sheet_t *s3 = sm3_sheet(su, pal);
+        if (!s3 || !camera_mtx(ctx, base)) return;
+        static const uint8_t walk[SMB3_SUITS][4] = {{0x3E, 0x3F, 0x3E, 0x3F}, {0x0C, 0x0D, 0x0E, 0x0D}, {0x0C, 0x0D, 0x0E, 0x0D},
+            {0x00, 0x01, 0x02, 0x01}, {0x00, 0x01, 0x02, 0x01}, {0x00, 0x01, 0x02, 0x01}, {0x0C, 0x0D, 0x0E, 0x0D}};
+        static const uint8_t jump[SMB3_SUITS] = {0x40, 0x4F, 0x4F, 0x50, 0x02, 0x50, 0x4F};
+        int f = m->frame == FR_JUMP ? jump[su] : m->frame == FR_IDLE ? walk[su][2] : walk[su][(m->anim_t / 6) & 3];
+        float c[12]; for (int i = 0; i < 12; i++) c[i] = RF(RM_MTX + 4 * i);
+        float vx = c[0] * m->pos[0] + c[1] * m->pos[1] + c[2] * m->pos[2] + c[3];
+        float vy = c[4] * m->pos[0] + c[5] * m->pos[1] + c[6] * m->pos[2] + c[7];
+        float vz = c[8] * m->pos[0] + c[9] * m->pos[1] + c[10] * m->pos[2] + c[11] + 2.0f * m->k;
+        float hw = SM3_CELL / 2.0f * m->k, h = SM3_CELL * m->k;
+        const float q[4][3] = {{vx - hw, vy + h, vz}, {vx + hw, vy + h, vz}, {vx + hw, vy, vz}, {vx - hw, vy, vz}};
+        static const float id[12] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0};
+        for (int i = 0; i < 12; i++) WF(RM_IDMTX + 4 * i, id[i]);
+        sm3_draw(ctx, base, s3, f, m->facing_left ? 0 : SMB3_HFLIP, RM_IDMTX, q, 0);
+        return;
+    }
     sheet_t *sh = sheet_for((int)R32(MOD_PY_MODE + 4 * m->type));
     if (!sh) return;
     int f = sheet_frame(sh, m->frame);
@@ -1080,7 +1400,7 @@ void hle_draw__11dPyMdlMng_cFv(ppc_context *ctx, uint8_t *base) {
         m->proc = proc;
         rt_log("retro", "player %d's model (scene %u) drawn as its sprite", slot, R32(mdl + MDL_SCENE));
     }
-    m->scene = (int)R32(mdl + MDL_SCENE);
+    m->scene = (int)R32(mdl + MDL_SCENE); m->slot = slot;
     m->type = m->scene == 0 ? (int)R32(MOD_PY_TYPE + 4 * slot) : R8(mdl + MDL_ID);
     if (m->type < 0 || m->type >= 8) m->type = 0;
     /* where: the model matrix's position; its size against the model's size in levels */
@@ -1135,4 +1455,13 @@ static int map_effect_is_retro(ppc_context *ctx, int name_reg, int pos_reg) {
         if (dx * dx + dy * dy + dz * dz < r * r) return 1;
     }
     return 0;
+}
+
+/* (SMB3Disassembly/port/smb3_stage.c) SMB3 Mario in the SMB3 stage: his tail attack's counter
+   (Player_TailAttack; -1: not SMB3 Mario), his power meter (Player_Power) and flight time */
+int retro_smb3_tail(uint32_t pl) { retro_t *r = retro_of(pl); return r && r->style == STYLE_SMB3 ? r->s3.Player_TailAttack : -1; }
+int retro_smb3_power(uint32_t pl, int *flying) {
+    retro_t *r = retro_of(pl); if (!r || r->style != STYLE_SMB3) { if (flying) *flying = 0; return 0; }
+    if (flying) *flying = r->s3.Player_FlyTime;
+    return r->s3.Player_Power;
 }

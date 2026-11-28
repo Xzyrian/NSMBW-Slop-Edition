@@ -510,6 +510,7 @@ static void py_setCancelCrouch(GM_CTX, gptr self) {
 int smb3_stage_carry(uint32_t pl);
 void smb3_stage_carry_release(uint32_t pl);
 float smb3_stage_player_scale(uint32_t pl);
+float smw_stage_player_scale(uint32_t pl);
 /* isCarry: something is carried */
 static void py_isCarry(GM_CTX, gptr self) {
     R(3) = gm_u32(self + PY_CARRY_ACTOR_ID);
@@ -591,7 +592,7 @@ static void py_getLiftUpOffset(GM_CTX, gptr self) {
     R(3) = LIFT_UP_POS_DATA + R(0);
     LDF(1, R(3) + 36);
     FS(1, F(0) * F(1));
-    { float k = smb3_stage_player_scale(self); if (k != 1.0f) FS(1, F(1) * k); }   /* (the SMB3 stage's smaller players: the lift height with them) */
+    { float k = smb3_stage_player_scale(self); if (k == 1.0f) k = smw_stage_player_scale(self); if (k != 1.0f) FS(1, F(1) * k); }   /* (the SMB3 stage's smaller players: the lift height with them) */
 }
 /* clearSpinLiftUpReserve */
 static void py_clearSpinLiftUpReserve(GM_CTX, gptr self) {

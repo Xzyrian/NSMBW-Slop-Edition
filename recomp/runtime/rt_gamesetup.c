@@ -7,13 +7,14 @@
  * chosen; 1 then takes the character back (the card returns on it), and 1 again goes back.
  *
  * Game Select and File Select are the game's file select screen (dFileSelect_c) shown two
- * ways: as Game Select it is a carousel of the games (NSMBW, SMB3, then the locked placeholder
+ * ways: as Game Select it is a carousel of the games (NSMBW, SMB3, SMW, then the locked placeholder
  * games - "game portraits" below): the three cards show the
  * chosen game in the middle and its neighbours on either side, smaller and fainter, wrapping
  * round; left/right turns it (the cards slide along the arc to their new places). Both go the same way (File Select, character select); Start Game starts the chosen one.
  * SMB3 (../SMB3Disassembly/port) has its own three files: its File Select cards show them (the
  * NSMBW save is not touched), and it runs over the faded-out setup screen. + (or HOME) is its
- * pause menu (rt_menu.c); Quit goes to the title, as NSMBW's does.
+ * pause menu (rt_menu.c); Quit goes to the title, as NSMBW's does. SMW (../SMWDisassembly/port)
+ * the same way: its own three files (its save RAM) in the cards, run over the faded-out screen.
  * The "Select Players" screen (dSelectPlayer_c) is gone: the character
  * select (dNumberOfPeopleChange_c) opens with 1 player (Singleplayer) or 8 (Multiplayer).
  * Every change of screen goes through black: the screen fades out with everything in place,
@@ -27,6 +28,7 @@
  * manager's vtable (sStateMgr: +0x18 changeState, +0x28 getStateID). */
 #include "rt.h"
 #include "smb3.h"                               /* ../SMB3Disassembly/port */
+#include "smw.h"                                /* ../SMWDisassembly/port */
 #include "smb3_stage.h"
 #include <math.h>
 #include <ctype.h>
@@ -227,12 +229,18 @@ static int smb3_started;                 /* Start Game started SMB3 (it runs unt
 static int smb3_file;                    /* the SMB3 file chosen on the File Select */
 int rt_smb3_file(void) { return smb3_file; }   /* (SMB3Disassembly/port/smb3_stage.c: its map's file) */
 int menu_smb3_pause_input(uint32_t pressed);   /* rt_menu.c */
+static int smw_started;                  /* Start Game started SMW (it runs until Quit) */
+static int smw_file;                     /* the SMW file chosen on the File Select */
+static uint32_t smw_handed;              /* (the setup scene that handed SMW's held level to a stage) */
 static int games_n(void);
 static int cur_game(void);
 static int game_locked(int g);
 static void *game_portrait_any(int g);         /* (game_portrait, below) */
 static const char *game_label(int g);
-enum { GAME_NSMBW, GAME_SMB3 };
+enum { GAME_NSMBW, GAME_SMB3, GAME_SMW };
+/* the games whose File Select shows their own files in NSMBW's cards (SMB3, SMW: below) */
+static int retro_files(int g) { return g == GAME_SMB3 || g == GAME_SMW; }
+static int rfile_info(int g, int k, int *world, int *lives) { return g == GAME_SMW ? smw_file_info(k, world, lives) : smb3_file_info(k, world, lives); }
 
 static int in_setup(void) { return R16(G_NOW_SCENE) == SCENE_GAME_SETUP; }
 static int is_multi(void) { return !menu_singleplayer(); }
@@ -248,6 +256,8 @@ static void reset_if_left(void) {
         np_buttons = 0; cb_rejoin = 0; fs3_restore();
         if (smb3_active()) smb3_quit();                                   /* (if SMB3 was running) */
         smb3_take_quit(); smb3_started = 0;
+        if (smw_active()) smw_quit();                                     /* (or SMW) */
+        smw_take_quit(); smw_started = 0;
         cards_forget(); spin = 0;
     }
 }
@@ -260,6 +270,10 @@ void hle_mod_fn_2_1AA4E0(ppc_context *ctx, uint8_t *base) {
     gs_scene = self; phase = PH_GAME; pending = -1;                       /* a new setup scene starts at Game Select */
     fs_fade_in_wait = char_fade_in_wait = np_exit_wait = np_back_wait = 0;
     rt_log("setup", "scene %08X: Game Select (%s)", self, is_multi() ? "multiplayer" : "singleplayer");
+    if (smw_resume()) {                                                   /* SMW's level left (smw_stage.c): SMW on to its map, over this scene */
+        play_game = GAME_SMW; smw_started = 1;
+        rt_log("setup", "SMW: back from its level - SMW runs again (over the setup scene)");
+    }
     int ver = (int)R32(MOD_GAME_VERSION), lt6 = ver < 6, lt8 = ver < 8, off = lt6 ? 0 : lt8 ? 2 : 4;
     uint32_t np = gcall(ctx, base, A_CREATE_CHILD, 4, lt8 ? 694u : 696u, self, 0, 0);
     W32(self + GS_NUMPY, np);
@@ -347,7 +361,7 @@ float gs_sp_preview_x(void) { return 320.0f + SP_CARD_DX * (480.0f / 456.0f) * (
 #define SAVEMNG_TEMP_   0x2340
 static uint8_t fs3_real[2][3 * FS3_SLOT_SIZE];  /* NSMBW's slots, quick saves - while the stand-ins are in */
 static int fs3_swapped, fs3_building;
-static int smb3_files_shown(void) { return in_setup() && gs_scene && phase == PH_FILE && play_game == GAME_SMB3; }
+static int smb3_files_shown(void) { return in_setup() && gs_scene && phase == PH_FILE && retro_files(play_game); }   /* (SMB3's or SMW's) */
 static void fs3_copy(uint32_t mng, int to_mng) {
     for (int r = 0; r < 2; r++) {
         uint32_t at = mng + (r ? SAVEMNG_TEMP_ : SAVEMNG_GAME_);
@@ -364,7 +378,7 @@ static void fs3_put(ppc_context *ctx, uint8_t *base) {
     fs3_building = 0;
     for (int k = 0; k < 3; k++) {
         uint32_t s = mng + SAVEMNG_GAME_ + (uint32_t)k * FS3_SLOT_SIZE; int world, lives;
-        if (!smb3_file_info(k, &world, &lives)) continue;
+        if (!rfile_info(play_game, k, &world, &lives)) continue;
         W8(s + MJ2D_COMPLETION, R8(s + MJ2D_COMPLETION) & ~1u);
         W8(s + MJ2D_WORLD, (uint8_t)world);
         for (int w = 0; w <= world && w < 10; w++) W8(s + MJ2D_WORLD_OPEN + (uint32_t)w, R8(s + MJ2D_WORLD_OPEN + (uint32_t)w) | 1u);
@@ -372,7 +386,7 @@ static void fs3_put(ppc_context *ctx, uint8_t *base) {
     }
     {   char b[120]; int o = 0; for (int k = 0; k < 3; k++) { uint32_t s = mng + SAVEMNG_GAME_ + (uint32_t)k * FS3_SLOT_SIZE;
             o += snprintf(b + o, sizeof b - o, " %d:%s", k + 1, R8(s + MJ2D_COMPLETION) & 1 ? "new" : "World"); if (!(R8(s + MJ2D_COMPLETION) & 1)) o += snprintf(b + o, sizeof b - o, " %d x%d", R8(s + MJ2D_WORLD) + 1, R8(s + MJ2D_LIFE)); }
-        rt_log("setup", "SMB3 File Select: SMB3's files in the cards (NSMBW's slots kept):%s", b); }
+        rt_log("setup", "%s File Select: its files in the cards (NSMBW's slots kept):%s", play_game == GAME_SMW ? "SMW" : "SMB3", b); }
 }
 /* NSMBW's real slots back */
 static void fs3_restore(void) {
@@ -386,19 +400,20 @@ static int fs3_saving;
 void gs_smb3_save_begin(void) { fs3_saving = fs3_swapped; fs3_restore(); }
 void gs_smb3_save_end(ppc_context *ctx, uint8_t *base) { if (fs3_saving && smb3_files_shown()) fs3_put(ctx, base); fs3_saving = 0; }
 /* saveGameCopy(dst, src): also SMB3's files (the game copies the stand-ins) */
-void gs_smb3_copy(int dst, int src) { if (fs3_swapped && smb3_files_shown()) smb3_file_copy(src, dst); }
+void gs_smb3_copy(int dst, int src) { if (fs3_swapped && smb3_files_shown()) { if (play_game == GAME_SMW) smw_file_copy(src, dst); else smb3_file_copy(src, dst); } }
 /* dMj2dGame_c::initialize(at): Erase on a stand-in slot is the Erase of that SMB3 file */
 void gs_smb3_init(uint32_t at) {
     if (fs3_building || !fs3_swapped || !smb3_files_shown()) return;
     uint32_t mng = R32(G_SAVE_MNG);
     if (mng && at >= mng + SAVEMNG_GAME_ && at < mng + SAVEMNG_GAME_ + 3 * FS3_SLOT_SIZE && (at - mng - SAVEMNG_GAME_) % FS3_SLOT_SIZE == 0)
-        smb3_file_delete((int)((at - mng - SAVEMNG_GAME_) / FS3_SLOT_SIZE));
+    {   int f_ = (int)((at - mng - SAVEMNG_GAME_) / FS3_SLOT_SIZE);
+        if (play_game == GAME_SMW) smw_file_delete(f_); else smb3_file_delete(f_); }
 }
 
 /* the file select comes up behind black (Game Select or File Select) */
 static void file_select_open(ppc_context *ctx, uint8_t *base, uint32_t self) {
     uint32_t fs = R32(self + GS_FSEL);
-    if (phase == PH_FILE && play_game == GAME_SMB3) fs3_put(ctx, base);  /* (SMB3's files in NSMBW's cards) */
+    if (phase == PH_FILE && retro_files(play_game)) fs3_put(ctx, base);  /* (SMB3's / SMW's files in NSMBW's cards) */
     else fs3_restore();
     W8(self + GS_IN_PLAYER_SELECT, 0);
     change_state(ctx, base, self + GS_STATE, ST_GS_FILE_SELECT);          /* (switches it on again) */
@@ -417,10 +432,32 @@ static void file_select_open(ppc_context *ctx, uint8_t *base, uint32_t self) {
     fs_fade_in_wait = 1; wait_start = g_frames_presented;
 }
 
+/* SMW come back from a level (smw_resume, above): it runs over whatever state this scene is in -
+   its next level straight to an NSMBW stage, its Quit to the title. 1: SMW has the scene */
+static int smw_back_step(ppc_context *ctx, uint8_t *base, uint32_t self) {
+    if (play_game != GAME_SMW || !smw_started || phase == PH_CHAR) return 0;
+    {   int smw_stage_begin(ppc_context *ctx, uint8_t *base);
+        if (smw_level_held()) {
+            if (smw_handed != self) { smw_handed = self; rt_log("setup", "SMW: its level to an NSMBW stage");
+                if (smw_stage_begin(ctx, base)) change_state(ctx, base, self + GS_STATE, ST_GS_NEXT_SCENE_WAIT); }
+            return 1;
+        }
+        smw_handed = 0; }
+    if (smw_active()) return 1;
+    smw_started = 0;
+    if (smw_take_quit()) {                                                /* Quit: to the title */
+        gcall(ctx, base, A_START_TITLE, 2, 0, 0);
+        change_state(ctx, base, self + GS_STATE, ST_GS_NEXT_SCENE_WAIT);
+        return 1;
+    }
+    return 0;
+}
+
 /* executeState_FileSelect */
 void hle_mod_fn_2_1AAFE0(ppc_context *ctx, uint8_t *base) {
     uint32_t self = ctx->r[3], fs = R32(self + GS_FSEL);
     gs_scene = self;
+    if (smw_back_step(ctx, base, self)) return;
     fader_status(ctx, base);
     if (phase == PH_GAME) W32(fs + FS_CHOICE, 1);                       /* Game Select: the one card is the middle one */
     gcall(ctx, base, A_DATEFILE_ANIME_OUT, 1, self);
@@ -459,6 +496,11 @@ void hle_mod_fn_2_1AAFE0(ppc_context *ctx, uint8_t *base) {
         smb3_file = choice;
         if (rt_setting("smb3_stage", 1)) gcall(ctx, base, A_INIT_LOAD_GAME, 2, R32(G_SAVE_MNG), (uint32_t)(int8_t)choice);   /* (the stage prototype: NSMBW's player data, read only) */
         rt_log("setup", "SMB3 file %d (%s)", choice + 1, smb3_file_summary(choice) ? smb3_file_summary(choice) : "new");
+    } else if (choice < 3 && play_game == GAME_SMW) {                     /* an SMW file (its save RAM: smw_main.c) */
+        fs3_restore();
+        smw_file = choice;
+        if (rt_setting("smw_stage", 1)) gcall(ctx, base, A_INIT_LOAD_GAME, 2, R32(G_SAVE_MNG), (uint32_t)(int8_t)choice);   /* (its levels in an NSMBW stage: NSMBW's player data, read only - as SMB3's) */
+        rt_log("setup", "SMW file %d (%s)", choice + 1, smw_file_summary(choice) ? smw_file_summary(choice) : "new");
     } else if (choice < 3) {                                              /* a save file */
         if (R8(fs + FS_CHOICE_TEMP)) gcall(ctx, base, A_LOAD_QUICK_SAVE, 2, R32(G_SAVE_MNG), (uint32_t)choice & 0xFF);
         gcall(ctx, base, A_INIT_LOAD_GAME, 2, R32(G_SAVE_MNG), (uint32_t)(int8_t)choice);
@@ -483,6 +525,7 @@ void hle_mod_fn_2_1AB140(ppc_context *ctx, uint8_t *base) {
 void hle_fn_2_1AB1B0(ppc_context *ctx, uint8_t *base) {
     uint32_t self = ctx->r[3];
     gs_scene = self;
+    if (smw_back_step(ctx, base, self)) return;
     if (!screen_black(ctx, base)) return;
     if (pending == PH_CHAR || (pending < 0 && R8(self + GS_IN_PLAYER_SELECT))) {
         pending = -1; set_phase(PH_CHAR);
@@ -566,6 +609,23 @@ void hle_fn_2_1AB570(ppc_context *ctx, uint8_t *base) {
     }
     if (R8(np + NP_ACTIVE)) return;
     if (R32(np + NP_ON_BUTTON) == 0) {                                     /* Start Game */
+        if (play_game == GAME_SMW) {                                      /* SMW: over the black screen, until Quit (smw_main.c) */
+            if (!smw_started) { smw_started = 1; smw_enter(smw_file); }
+            if (smw_level_held()) {                                       /* SMW reached a level: on to NSMBW's start of a game, whose end puts it in a stage (smw_stage.c) */
+                if (smw_handed != self) { smw_handed = self; rt_log("setup", "SMW: its level to an NSMBW stage"); change_state(ctx, base, self + GS_STATE, ST_GS_LOW_BATTERY_CHECK); }
+                return;
+            }
+            smw_handed = 0;
+            if (smw_active()) return;
+            smw_started = 0;
+            if (smw_take_quit()) {                                        /* Quit: to the title (as Game Select's Back) */
+                gcall(ctx, base, A_START_TITLE, 2, 0, 0);
+                change_state(ctx, base, self + GS_STATE, ST_GS_NEXT_SCENE_WAIT);
+                return;
+            }
+            set_phase(PH_FILE); file_select_open(ctx, base, self);
+            return;
+        }
         if (play_game == GAME_SMB3 && !rt_setting("smb3_stage", 1)) {                                     /* SMB3: over the black screen, until HOME */
             if (!smb3_started) { smb3_started = 1; smb3_enter(smb3_file); }
             if (smb3_active()) return;
@@ -597,6 +657,8 @@ void hle_mod_fn_2_1AB6D0(ppc_context *ctx, uint8_t *base) {
 /* finalizeState_VoiceEndWait: on to the world map (or the opening movie for a new save) */
 void hle_mod_fn_2_1AB9F0(ppc_context *ctx, uint8_t *base) {
     if (play_game == GAME_SMB3 && rt_setting("smb3_stage", 1) && smb3_stage_begin(ctx, base)) return;   /* SMB3 (prototype): its 1-1 in an NSMBW stage, not the world map (smb3_stage.c) */
+    {   int smw_stage_begin(ppc_context *ctx, uint8_t *base);
+        if (play_game == GAME_SMW && smw_stage_begin(ctx, base)) return; }   /* SMW: the level it holds, in an NSMBW stage (smw_stage.c) */
     uint32_t save = gcall(ctx, base, A_GET_SAVE_GAME, 2, R32(G_SAVE_MNG), (uint32_t)-1);
     if ((R8(save + 2) & 1) && !R8(G_DISABLE_OPENING_MOVIE)) gcall(ctx, base, A_DO_SCENE_CHANGE, 3, 8, 0, 0);   /* MOVIE */
     else gcall(ctx, base, A_DO_SCENE_CHANGE, 3, 3, gcall(ctx, base, A_WMAP_BOOT_PARAM, 0), 0);                /* WORLD_MAP */
@@ -759,6 +821,11 @@ uint32_t gs_filter_buttons(uint32_t b) {
         else { smb3_input(b); if (pressed & (B_PLUS | B_HOME)) smb3_set_paused(1); }
         return b & ~0xFFFFu;
     }
+    if (smw_active()) {                                                   /* SMW likewise (the same menu: rt_menu.c) */
+        if (smw_paused()) menu_smb3_pause_input(pressed);
+        else { smw_input(b); if (pressed & (B_PLUS | B_HOME)) smw_set_paused(1); }
+        return b & ~0xFFFFu;
+    }
     if (pending >= 0 || fs_fade_in_wait || char_fade_in_wait || np_exit_wait || np_back_wait || fader_seen != FADER_HIDDEN) return b & ~0xFFFFu;
     fs_screen_live = g_frames_presented - fs_drawn_frame <= 3;
     if (phase == PH_CHAR && !is_multi()) { uint32_t charsel_input(uint32_t b, uint32_t pressed); b = charsel_input(b, pressed); }   /* the grid */
@@ -883,7 +950,7 @@ static void pane_mul(uint32_t pane, int what, float m) {          /* what: 0 sca
 }
 
 /* ======================================================= game portraits
- * Game Select: a card per game. NSMBW and SMB3 can be played; every other picture in
+ * Game Select: a card per game. NSMBW, SMB3 and SMW can be played; every other picture in
  * ui/graphics/gameportrait/ (.png / .jpg / .jpeg, except locked.png) is a placeholder game, after
  * them in name order: its card can be turned to (hovered) but not chosen, and shows locked.png
  * over its picture (centred, about half the picture's size, drawn into the texture when it is
@@ -895,7 +962,7 @@ static void pane_mul(uint32_t pane, int what, float m) {          /* what: 0 sca
  * them fit: about 280 x 390 for a portrait with 6 games. */
 typedef struct { char id[32], label[32], file[64]; int locked; } game_t;   /* file: in gameportrait/ ("" none) */
 #define MAXGAMES 16
-static game_t games[MAXGAMES]; static int ngames;                           /* (order: GAME_NSMBW, GAME_SMB3, placeholders) */
+static game_t games[MAXGAMES]; static int ngames;                           /* (order: GAME_NSMBW, GAME_SMB3, GAME_SMW, placeholders) */
 static char lock_file[64];                                                   /* locked.png (any case / extension) */
 static int name_eq(const char *a, const char *b) {
     for (; *a && *b; a++, b++) if (tolower((unsigned char)*a) != tolower((unsigned char)*b)) return 0;
@@ -907,9 +974,9 @@ static int name_cmp(const void *x, const void *y) {
     return tolower((unsigned char)*a) - tolower((unsigned char)*b);
 }
 static void games_scan(void) {                                               /* (once: the first time the list is wanted) */
-    static const char *const play[][2] = { {"nsmbw", "NSMBW"}, {"smb3", "SMB3"} };
+    static const char *const play[][2] = { {"nsmbw", "NSMBW"}, {"smb3", "SMB3"}, {"smw", "SMW"} };
     ngames = 0; lock_file[0] = 0;
-    for (int i = 0; i < 2; i++) { game_t *g = &games[ngames++]; memset(g, 0, sizeof *g); strcpy(g->id, play[i][0]); strcpy(g->label, play[i][1]); }
+    for (int i = 0; i < 3; i++) { game_t *g = &games[ngames++]; memset(g, 0, sizeof *g); strcpy(g->id, play[i][0]); strcpy(g->label, play[i][1]); }
     char dir[1200]; snprintf(dir, sizeof dir, "%s/ui/graphics/gameportrait", g_root);
     static char names[64][64]; int nn = 0;
     DIR *d = opendir(dir);
@@ -1306,7 +1373,7 @@ void gs_layout_draw(uint32_t layout, uint32_t root, int menu_kind) {
         int game = phase == PH_GAME;
         uint32_t title = lyt_find_pane(root, "T_title_00");
         if (game) text_set(title, "Select a Game", 0); else text_restore(title);
-        int smb3 = play_game == GAME_SMB3;                                /* (SMB3's files: no versus) */
+        int smb3 = retro_files(play_game);                                /* (SMB3's / SMW's files: no versus) */
         show_if(root, "P_copy_00", game, 0); show_if(root, "P_delete_00", game, 0);
         int no_vs = game || smb3 || menu_singleplayer();
         show_if(root, "N_Multi_00", no_vs, 0); show_if(root, "N_MultiCoin_00", no_vs, 0);
@@ -1330,10 +1397,10 @@ void gs_layout_draw(uint32_t layout, uint32_t root, int menu_kind) {
         /* (from SMB3's file itself, not the stand-in: once a file is chosen NSMBW's slots are back
            while the cards fade out - a card read from them showed "New!" or the old lives text) */
         uint32_t df = R32(gs_scene + GS_DATEFILE + 4 * (uint32_t)slot);
-        int s3 = !game && play_game == GAME_SMB3 && in_setup() && gs_scene && (phase == PH_FILE || pending == PH_CHAR) && df && slot >= 0 && slot < 3;
+        int s3 = !game && retro_files(play_game) && in_setup() && gs_scene && (phase == PH_FILE || pending == PH_CHAR) && df && slot >= 0 && slot < 3;
         int f_world = 0, f_lives = 0;
-        static struct { uint64_t at; int has, world, lives; } fc[3];      /* (read a few times a second, not each draw) */
-        if (s3 && (!fc[slot].at || g_frames_presented - fc[slot].at > 15)) { fc[slot].at = g_frames_presented; fc[slot].has = smb3_file_info(slot, &fc[slot].world, &fc[slot].lives); }
+        static struct { uint64_t at; int has, world, lives, g; } fc[3];   /* (read a few times a second, not each draw) */
+        if (s3 && (!fc[slot].at || g_frames_presented - fc[slot].at > 15 || fc[slot].g != play_game)) { fc[slot].at = g_frames_presented; fc[slot].g = play_game; fc[slot].has = rfile_info(play_game, slot, &fc[slot].world, &fc[slot].lives); }
         if (s3) { f_world = fc[slot].world; f_lives = fc[slot].lives; }
         int has = s3 && fc[slot].has;
         /* (only while it's SMB3's File Select: otherwise the lines above decide - "restoring" these

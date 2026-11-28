@@ -19,7 +19,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROSTER = [  # (id, name) in roster order
     ('mario', 'Mario'), ('luigi', 'Luigi'), ('ala_gold', 'Ala Gold'), ('buckenberry', 'Buckenberry'),
     ('toadette', 'Toadette'), ('toadsworth', 'Toadsworth'), ('daisy', 'Daisy'), ('rosalina', 'Rosalina'),
-    ('goomba', 'Goomba'), ('retro_smb1', 'Retro Mario (SMB1)'), ('retro_smw', 'Retro Mario (SMW)'),
+    ('goomba', 'Goomba'), ('retro_smb1', 'Retro Mario (SMB1)'), ('retro_smb3', 'Retro Mario (SMB3)'),
+    ('retro_smw', 'Retro Mario (SMW)'),
     ('retro_sm64', 'Retro Mario (SM64)'),
 ]
 LAYOUT_HAS_PICTURE = {'mario', 'luigi', 'ala_gold', 'buckenberry'}

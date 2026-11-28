@@ -94,9 +94,15 @@ void hle_DoSceneChange__FUsUiUi(ppc_context *ctx, uint8_t *base) {
     rt_log("scene", "next scene %u (param %08X%s) requested from %08X (%s)", ctx->r[3] & 0xFFFF, ctx->r[4], ctx->r[5] ? ", forced" : "", ctx->lr, rt_func_name(ctx->lr, NULL));
     {   int smb3_stage_restart(ppc_context *ctx, uint8_t *base);        /* (the SMB3 stage: a death goes back into the level, not NSMBW's world map) */
         if ((ctx->r[3] & 0xFFFF) == 3 && smb3_stage_restart(ctx, base)) return; }
+    {   int smw_stage_restart(ppc_context *ctx, uint8_t *base);         /* (the SMW stage likewise) */
+        if ((ctx->r[3] & 0xFFFF) == 3 && smw_stage_restart(ctx, base)) return; }
     orig_DoSceneChange__FUsUiUi(ctx, base);
 }
+/* the last stage exit's kind (dScStage_c::Exit_e: 0 the goal, 1 a death, 2 Exit Course from the
+   pause menu) - the SMW stage tells a death from leaving by it (smw_stage.c) */
+int rt_stage_exit_kind = -1;
 void hle_setNextScene__10dScStage_cFUsiQ210dScStage_c6Exit_eQ28dFader_c12fader_type_e(ppc_context *ctx, uint8_t *base) {
+    rt_stage_exit_kind = (int)ctx->r[5];
     rt_log("scene", "stage exit to scene %u (r4 %08X r5 %08X r6 %08X) from %08X (%s)", ctx->r[3] & 0xFFFF, ctx->r[4], ctx->r[5], ctx->r[6], ctx->lr, rt_func_name(ctx->lr, NULL));
     orig_setNextScene__10dScStage_cFUsiQ210dScStage_c6Exit_eQ28dFader_c12fader_type_e(ctx, base);
 }

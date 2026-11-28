@@ -54,14 +54,60 @@ static int load_wav(const char *path, int16_t **out, int *out_frames) {
     return 1;
 }
 
+/* SMB3's sound effects as the build renders them (SMB3Disassembly/port/smb3_sound.c write_rwav):
+   an RWAV, one channel of DSP-ADPCM (frames of 8 bytes: predictor / scale, 14 nibbles) -> 32 kHz
+   stereo int16 */
+static uint32_t be32(const uint8_t *p) { return (uint32_t)p[0] << 24 | p[1] << 16 | p[2] << 8 | p[3]; }
+static int load_rwav(const char *path, int16_t **out, int *out_frames) {
+    FILE *f = fopen(path, "rb"); if (!f) return 0;
+    fseek(f, 0, SEEK_END); long n = ftell(f); fseek(f, 0, SEEK_SET);
+    uint8_t *d = malloc(n > 0 ? n : 1);
+    if (n < 0xA8 || fread(d, 1, n, f) != (size_t)n) { fclose(f); free(d); return 0; }
+    fclose(f);
+    const uint8_t *w = d + 0x28;                                        /* (INFO's body) */
+    if (memcmp(d, "RWAV", 4) || memcmp(d + 0x20, "INFO", 4) || w[0] != 2) { free(d); return 0; }   /* (DSP-ADPCM only) */
+    int rate = w[4] << 8 | w[5];
+    uint32_t e = be32(w + 0x0C);
+    int samples = (int)((e - 2) / 16 * 14 + (e - 2) % 16) + 1;
+    int16_t coef[16]; for (int k = 0; k < 16; k++) coef[k] = (int16_t)(w[0x3C + 2 * k] << 8 | w[0x3C + 2 * k + 1]);
+    const uint8_t *data = d + 0xA8;
+    int nf = (samples + 13) / 14;
+    if (rate < 1000 || samples < 1 || 0xA8 + (long)nf * 8 > n) { free(d); return 0; }
+    int16_t *mono = malloc(sizeof(int16_t) * (size_t)nf * 14);
+    int h1 = 0, h2 = 0;
+    for (int i = 0; i < nf; i++) {
+        const uint8_t *fr = data + i * 8; int pred = (fr[0] >> 4) & 7, scale = 1 << (fr[0] & 15);
+        for (int k = 0; k < 14; k++) {
+            int nib = (fr[1 + k / 2] >> ((k & 1) ? 0 : 4)) & 15; if (nib >= 8) nib -= 16;
+            int v = (coef[pred * 2] * h1 + coef[pred * 2 + 1] * h2 + ((nib * scale) << 11) + 1024) >> 11;
+            v = v > 32767 ? 32767 : v < -32768 ? -32768 : v;
+            mono[i * 14 + k] = (int16_t)v; h2 = h1; h1 = v;
+        }
+    }
+    int frames = (int)((int64_t)samples * 32000 / rate);
+    int16_t *pcm = malloc(sizeof(int16_t) * 2 * (frames > 0 ? frames : 1));
+    for (int i = 0; i < frames; i++) {
+        double src = (double)i * rate / 32000.0; int a = (int)src; double t = src - a; int b = a + 1 < samples ? a + 1 : a;
+        int16_t v = (int16_t)(mono[a] + (mono[b] - mono[a]) * t); pcm[2 * i] = pcm[2 * i + 1] = v;
+    }
+    free(mono); free(d);
+    *out = pcm; *out_frames = frames;
+    return 1;
+}
 static int clip_of(const char *dir, const char *name) {
     char key[96]; snprintf(key, sizeof key, "%s/%s", dir, name);
     for (int i = 0; i < nclips; i++) if (!strcmp(clips[i].key, key)) return clips[i].state > 0 ? i : -1;
     if (nclips >= MAXCLIP) return -1;
     clip_t *c = &clips[nclips];
     snprintf(c->key, sizeof c->key, "%s", key);
-    char path[1300]; snprintf(path, sizeof path, "%s/ui/retro/%s/sfx/%s.wav", g_root, dir, name);
-    c->state = load_wav(path, &c->pcm, &c->frames) ? 1 : -1;
+    char path[1300];
+    if (!strcmp(dir, "@smb3")) {                                        /* (SMB3's own: <game>/sound/smb3/<name>.rwav) */
+        snprintf(path, sizeof path, "%s/sound/smb3/%s.rwav", g_root, name);
+        c->state = load_rwav(path, &c->pcm, &c->frames) ? 1 : -1;
+    } else {
+        snprintf(path, sizeof path, "%s/ui/retro/%s/sfx/%s.wav", g_root, dir, name);
+        c->state = load_wav(path, &c->pcm, &c->frames) ? 1 : -1;
+    }
     if (c->state < 0) rt_log("sfx", "no %s", path);
     else rt_log("sfx", "%s: %d frames", key, c->frames);
     return nclips++, c->state > 0 ? nclips - 1 : -1;
@@ -78,6 +124,13 @@ void sfx_play(const char *dir, const char *name) {
     if (v < 0) { v = 0; for (int i = 1; i < VOICES; i++) if (V[i].started < V[v].started) v = i; }   /* (all busy: the oldest) */
     V[v].clip = c + 1; V[v].pos = 0; V[v].started = ++started_n;
     { static int lg = -1; if (lg < 0) lg = getenv("RT_SFX_LOG") != NULL; if (lg) rt_log("sfx", "play %s/%s", dir, name); }
+}
+/* the same, unless that sound is still playing (a sound set every frame that rings on: SMB3's power meter) */
+void sfx_play_ifidle(const char *dir, const char *name) {
+    int c = clip_of(dir, name);
+    if (c < 0) return;
+    for (int i = 0; i < VOICES; i++) if (V[i].clip == c + 1) return;
+    sfx_play(dir, name);
 }
 void sfx_stop_all(void) { for (int i = 0; i < VOICES; i++) V[i].clip = 0; }
 

@@ -22,6 +22,15 @@ static void do_read(uint32_t addr, uint32_t len, uint32_t offset_words) {
     disc_read((uint64_t)offset_words << 2, addr, len);
     g_dvd_reads++; g_dvd_bytes += len;
 }
+/* (RT_DVD_TRACE=bytes: a read that big logged with the guest's calls under it - who reads what) */
+static void dvd_trace(ppc_context *ctx, uint32_t addr, uint32_t len, uint32_t words) {
+    static long min = -2; if (min == -2) { const char *e = getenv("RT_DVD_TRACE"); min = e ? atol(e) : -1; }
+    if (min < 0 || len < (uint32_t)min) return;
+    char b[256]; int n = snprintf(b, sizeof b, "lr %08X", ctx->lr);
+    uint32_t sp = ctx->r[1];
+    for (int i = 0; i < 10 && sp >= 0x80000000u && sp < 0x94000000u; i++) { sp = R32(sp); if (!sp) break; n += snprintf(b + n, sizeof b - (size_t)n, " %08X", R32(sp + 4)); }
+    rt_log("dvd", "trace: %X bytes at %llX -> %08X: %s", len, (unsigned long long)words << 2, addr, b);
+}
 
 /* the completion, in the interrupt-like frame: state, transferred size, then the callback */
 static void dvd_done(ppc_context *ctx, uint8_t *base) {
@@ -42,6 +51,7 @@ void hle_fn_801CECC0(ppc_context *ctx, uint8_t *base) {
     uint32_t blk = ctx->r[3], addr = ctx->r[4], len = ctx->r[5], off = ctx->r[6], cb = ctx->r[7];
     W32(blk + CB_COMMAND, 1); W32(blk + CB_ADDR, addr); W32(blk + CB_LENGTH, len); W32(blk + CB_OFFSET, off);
     W32(blk + CB_TRANSFERRED, 0); W32(blk + CB_CALLBACK, cb);
+    dvd_trace(ctx, addr, len, off);
     do_read(addr, len, off);
     W32(blk + CB_STATE, ST_BUSY);
     if (pending_find(blk) < 0 && npending < 64) pending[npending++] = blk;
@@ -61,6 +71,7 @@ void hle__Z11DVDReadPrioP9DVDHandlePviii(ppc_context *ctx, uint8_t *base) {
     }
     uint32_t words = R32(fi + 0x30) + ((uint32_t)off >> 2);
     W32(fi + CB_COMMAND, 1); W32(fi + CB_ADDR, addr); W32(fi + CB_LENGTH, len); W32(fi + CB_OFFSET, words);
+    dvd_trace(ctx, addr, len, words);
     do_read(addr, len, words);
     W32(fi + CB_TRANSFERRED, len); W32(fi + CB_STATE, ST_END);
     LOG("dvd", "read %08X <- %X bytes at %llX (sync)", addr, len, (unsigned long long)words << 2);

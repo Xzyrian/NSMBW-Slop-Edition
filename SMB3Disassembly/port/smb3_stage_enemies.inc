@@ -27,7 +27,7 @@ enum { OS_DEAD, OS_INIT, OS_NORMAL, OS_SHELLED, OS_HELD, OS_KICKED, OS_KILLED, O
 #define SPR_VFLIP 0x80
 #define NOBJ 5                                   /* (SMB3's general object slots 0-4) */
 typedef struct {
-    int state, id, x, y, xvel, yvel, xfrac, yfrac, flip, frame, det;
+    int state, id, x, y, xvel, yvel, xfrac, yfrac, flip, frame, det, slope;   /* (slope: Objects_Slope) */
     int timer, timer2, timer3, timer4, var1, var2, var3, var4, var5, var7, target, hits, kills, spawn, holder, phs;
     int pal;                                     /* Objects_SprAttr's palette, set at init and kept (a Para-Goomba's stays when its wings go) */
     float hx, hy, hz; uint64_t hseen;            /* (held: where NSMBW holds a shell, as last drawn - dEn_c's calcCarryPos) */
@@ -104,14 +104,41 @@ static int tile_at(int x, int y) {               /* (Object_DetectTile: none bel
 }
 /* Object_WorldDetect4 (TDO group 1, no slopes): the feet ($10, $08) or, going up, the head ($00,
    $08); the wall ahead ($09, $00 / $0F) */
+/* In a slope level (Level_SlopeEn) the floor goes by the tile's slope shape (PRG000_C5BC-C67F):
+   the object lands at the shape's depth at its middle (Object_SlopeHeight, added at
+   Object_HitGround), the flat middle grounds lift it to a pixel above, a slope's tile walked off
+   is followed down / up by Objects_Slope (its X speed's whole part, by the slope's way); the head
+   meets anything from the slopes' base up */
+static int obj_slope_h;                          /* Object_SlopeHeight */
+static int obj_tile(int x, int y) { return (y < 0 || y >= LH * 16 || x < 0 || x >= L.w * 16) ? -1 : L.tile[(y >> 4) * L.w + (x >> 4)]; }
 static void world_detect(obj_t *o, int depth) {
-    o->det = 0;
+    o->det = 0; obj_slope_h = 0;
     int wall = tile_at(o->x + (o->xvel < 0 ? 0 : 15), o->y + 9);
     if (wall == 2) o->det |= o->xvel < 0 ? 2 : 1;
-    if (o->yvel < 0) { if (tile_at(o->x + 8, o->y) == 2) o->det |= 8; return; }
-    if (tile_at(o->x + 8, o->y + 16) && (o->y & 15) < depth) o->det |= 4;   /* (PRG000_C649: no deeper than 4 into it) */
+    if (o->yvel < 0) { if (tile_at(o->x + 8, o->y) >= (L.slopes ? 1 : 2)) o->det |= 8; return; }
+    if (!L.slopes) { if (tile_at(o->x + 8, o->y + 16) && (o->y & 15) < depth) o->det |= 4; return; }   /* (PRG000_C649: no deeper than 4 into it) */
+    int fx = o->x + 8, t = obj_tile(fx, o->y + 16), sh = t < 0 ? -1 : slope_shape((uint8_t)t);
+    if (t >= 0 && tile_at(fx, o->y + 16)) {
+        if (t == 0xA8 || t == 0xAA || t == 0xAB || t == 0xF9 || t == 0x37) {   /* (flat solid middles - TILE3_VERTGROUNDL/R, MIDGROUND, WMIDGROUND; TILE14_ABOVE_MIDGROUND) */
+            if (o->state == OS_KILLED || o->state == OS_HELD) return;
+            o->y = (o->y & ~15) - 1;                                     /* (a pixel above it, and again) */
+            world_detect(o, 255); return;
+        }
+        if (sh >= 0 && sh <= 0x14 && Slope_ObjectVel_Effect[sh] != -128) {
+            int h = Slope_LUT[sh][fx & 15] & 15, rel = o->y & 15;
+            if (rel >= 12 || rel >= h) {
+                obj_slope_h = h; o->det |= 4;
+                int a = (o->xvel & 0xFF) >> 4; if (!a) a = 1; if (a >= 8) a |= ~15;   /* (the speed's whole part, signed - 1 at a stop) */
+                int e = Slope_ObjectVel_Effect[sh];
+                if (!e) a = 0; else if (e < 0) a = -a;
+                o->slope = a;
+                return;
+            }
+        }
+    }
+    if (o->slope) { o->y += o->slope; o->slope = 0; world_detect(o, 255); }   /* (PRG000_C65D: off a slope's edge - follow it) */
 }
-static void hit_ground(obj_t *o) { o->y &= ~15; o->yvel = 0; }                                /* Object_HitGround */
+static void hit_ground(obj_t *o) { o->y = (o->y & ~15) + obj_slope_h; o->yvel = 0; }        /* Object_HitGround (with Object_SlopeHeight) */
 static void obj_move2(obj_t *o) {                                                               /* Object_Move */
     apply_xvel(o); apply_yvel(o); world_detect(o, 4);
     o->yvel += 3; if (o->yvel >= 0 && o->yvel > 0x40) o->yvel = 0x40;   /* (OBJECT_FALLRATE, OBJECT_MAXFALL) */
@@ -154,7 +181,7 @@ static void set_shell(obj_t *o) { o->state = OS_SHELLED; o->timer3 = 0xFF; }    
 static void kill_by_shell(obj_t *o) { o->state = OS_KILLED; o->yvel = -0x30; }                  /* ObjectKill_SetShellKillVars */
 /* Enemy_Kill (the tail: Temp_Var4 $0A - Y velocity -$50); troops shelled upside down, the rest killed for points */
 static void enemy_kill(obj_t *o, int n, int bounced) {
-    o->timer2 = 12;
+    o->timer2 = 12; sfx_player(SFXP_KICK);       /* (Enemy_Kill: the kick sound) */
     if (!obj_dieshelled(o->id)) { obj_score(o, n >= 0 ? kill_tally[n] : 0, n); o->state = OS_KILLED; }
     else { int k = obj_killchange(o->id); if (k) o->id = k; o->timer3 = 0xFF; o->state = OS_SHELLED; }
     o->yvel = bounced ? -0x30 : -0x50;
@@ -162,7 +189,7 @@ static void enemy_kill(obj_t *o, int n, int bounced) {
     o->flip |= SPR_VFLIP;
 }
 static void kick(obj_t *o, int n) {             /* Player_KickObject */
-    o->timer2 = 0x10; o->kills = 0;
+    o->timer2 = 0x10; o->kills = 0; sfx_player(SFXP_KICK);
     int y = o->state == OS_HELD ? (pp[n].flip ? 1 : 0) : xdiff(o, n);
     static const int kickv[2] = {-0x30, 0x30};   /* (ObjectKickXVelMoving) */
     o->xvel = kickv[y];
@@ -212,9 +239,10 @@ static void hit_player(obj_t *o, int n) {
     if (o->state == OS_SHELLED) {                /* PRG000_D2A2: a kick, for points */
         obj_score(o, kill_tally[n], n); kill_tally[n]++; kick(o, n); return;
     }
-    o->timer2 = 8; pl_bounce(n);                 /* PRG000_D2B4 */
+    o->timer2 = 8; pl_bounce(n); sfx_player(SFXP_SQUISH);   /* PRG000_D2B4 (SND_PLAYERSWIM: the squish) */
     rt_log("smb3", "enemy: player %d stomps %02X (tally %d)", n + 1, o->id, kill_tally[n]);
     if (obj_bro(o->id)) {                       /* (OA2_NOSHELLORSQUASH: killed, halted; OCSPECIAL_HIGHSCORE: 1000 up) */
+        nes_ram_ptr()[SMB3_Sound_QPlayer] = (uint8_t)((nes_ram_ptr()[SMB3_Sound_QPlayer] & ~SFXP_SQUISH) | SFXP_KICK);   /* (PRG000_D301: the kick sound, not the squish) */
         obj_score(o, kill_tally[n] + 4, n); kill_tally[n]++; o->state = OS_KILLED; o->xvel = o->yvel = 0; return;
     }
     int k = obj_killchange(o->id);
@@ -282,7 +310,7 @@ static void obj_block_bumped(int tx, int ty) {
         if (i == bump_self || o->state < OS_NORMAL || o->state > OS_KICKED || o->state == OS_HELD || obj_piranha(o->id) || obj_inert(o->id)) continue;
         if (((o->x + 8) >> 4) != tx || ((o->y + 16) >> 4) != ty || o->y + 16 - ty * 16 > 4) continue;
         int n = near_pl(o);
-        o->yvel = -0x30; o->xvel = xdiff(o, n) ? 8 : -8; o->flip = SPR_VFLIP;
+        o->yvel = -0x30; o->xvel = xdiff(o, n) ? 8 : -8; o->flip = SPR_VFLIP; sfx_player(SFXP_KICK);
         if (obj_squash(o->id)) { o->state = OS_KILLED; obj_score(o, 0, n); }
         else { int k = obj_killchange(o->id); if (k) { o->id = k; obj_score(o, 0, n); } set_shell(o); }
     }
@@ -313,7 +341,7 @@ static void shell_hits(obj_t *o, int self) {
             obj_score(o, p->state == OS_KICKED ? p->kills : 0, who);
             kill_by_shell(o); o->xvel = p->xvel < 0 ? -0x10 : 0x10; o->holder = -1;
         }
-        p->xvel = o->xvel < 0 ? -0x10 : 0x10; kill_by_shell(p);
+        p->xvel = o->xvel < 0 ? -0x10 : 0x10; kill_by_shell(p); sfx_player(SFXP_KICK);   /* (PRG000_CCF7 / D8EB: the kick sound) */
         obj_score(p, o->kills, who); o->kills++;
         return;
     }
@@ -459,6 +487,29 @@ static void fires_frame(float cam_l, float cam_r) {
       third card gives lives (EndLevelCard_xUpByMatch: 2 / 3 / 5 for three alike, else 1) and
       the cards clear. Then - with no SMB3 map yet - the level again. -- */
 static int goal_stop_timer(void) { return goal.phase != 0; }
+/* The players at the goal (issue #15; CHARACTERS_AND_GAMES.md rule 1: the goal sequence is the
+   character's): once the card is taken, every player in play comes under NSMBW's control demo
+   (daPlBase_c::startControlDemo - StateID_DemoControl, or flag 113 until it can: in the air it
+   lands first), so no one is steered any more; an NSMBW character then strikes NSMBW's goal pose
+   (goal_pose, the pole's KimePose animation) once it is ready for a control action. NES
+   characters only stop. The stage starting again (the map, or 1-1) ends the demo. */
+#define A_START_CONTROL_DEMO 0x80051E70u         /* daPlBase_c::startControlDemo */
+#define A_CONTROL_READY      0x80052030u         /* daPlBase_c::isReadyForDemoControlAction */
+#define A_ANIME_PLAY_ID      0x80052170u         /* daPlBase_c::setAnimePlayWithAnimID(int) */
+#define PL_ANM_GOAL_POSE     87                  /* (goal_pose: the 88th name of the animation table at 0x802F1350) */
+static uint8_t goal_posed[8];
+static void goal_players(int start) {
+    for (int n = 0; n < 8; n++) {
+        if (start) goal_posed[n] = 0;
+        if (!pp[n].on || !pp[n].pl || goal_posed[n]) continue;
+        uint32_t pl = pp[n].pl;
+        gcall(blk_ctx, blk_base, A_START_CONTROL_DEMO, 1, pl);           /* (again each frame until it holds: harmless once in) */
+        if (!gcall(blk_ctx, blk_base, A_CONTROL_READY, 1, pl)) continue;
+        if (!retro_is_player(pl)) gcall(blk_ctx, blk_base, A_ANIME_PLAY_ID, 2, pl, PL_ANM_GOAL_POSE);
+        goal_posed[n] = 1;
+        rt_log("smb3", "goal: player %d stops%s", n + 1, retro_is_player(pl) ? "" : ", NSMBW's goal pose");
+    }
+}
 /* DoTimeBonus (prg000): each frame, while a digit is left - 10 seconds off for 500 points while
    the hundreds or tens remain, then a second for 50 (TimeBonus_Score 50, 5: in tens). 1 while
    converting. SMB3 waits for the course clear music to end first (SndCur_Music1): here its
@@ -467,6 +518,7 @@ static int do_time_bonus(void) {
     if (goal.music > 0) return 1;
     if (SB.time <= 0) return 0;
     if (SB.time >= 10) { SB.time -= 10; SG.score += 50; } else { SB.time -= 1; SG.score += 5; }
+    sfx_level1(SFX1_BLIP);                       /* (PRG000_C43C: the tick) */
     return 1;
 }
 static void goal_take(obj_t *o, int n) {
@@ -484,6 +536,7 @@ static void goal_take(obj_t *o, int n) {
         mus_q1(triple ? MUS1_BOSSVICTORY : MUS1_COURSECLEAR);
         goal.music = triple ? GOAL_FANFARE_FRAMES : GOAL_CLEAR_FRAMES; }
     rt_log("smb3", "goal: player %d takes the card (%d)", n + 1, goal.kind);
+    goal_players(1);
 }
 static int goal_card(obj_t *o, int self) {      /* 1: the level starts over (stop here) */
     (void)self;
@@ -491,8 +544,10 @@ static int goal_card(obj_t *o, int self) {      /* 1: the level starts over (sto
     if (o->var4 == 0) {                          /* EndLevelCard_Untouched */
         if (!(counter1 & 7)) o->frame = (o->frame + 1) % 3;
         for (int n = 0; n < 8; n++) if (pp[n].on && intersect(pl_box(n), obj_box(o))) { goal_take(o, n); break; }
+        if (o->var4 == 0 && getenv("SMB3_STAGE_TEST_CARD") && pp[0].on) goal_take(o, 0);   /* (testing: player 1 takes the card as it comes) */
         return 0;
     }
+    if (o->var4 >= 4 && o->var4 < 8) goal_players(0);   /* (the players: under demo control, posing) */
     if (o->var4 == 4) {                          /* EndLevelCard_WaitFlyAway */
         apply_yvel(o); apply_xvel(o);
         uint32_t bg = R32(BG_PARAM_P); float top = bg ? -RF(bg + 60) - L.ly : 0;
@@ -552,6 +607,7 @@ static void obj_spawn(int k, int slot) {
 static void objs_spawn_delete(float cam_l, float cam_r) {   /* (Level_ObjectsSpawnByScroll / Object_DeleteOffScreen, about the NSMBW screen) */
     for (int i = 0; i < NOBJ; i++) {
         obj_t *o = &ob[i]; if (o->state == OS_DEAD || o->state == OS_HELD) continue;
+        if (o->id == OBJ_ENDLEVELCARD && o->var4) continue;   /* (a taken card: its run is the goal's - kept wherever the camera goes; issue #16) */
         int w = obj_platform(o->id) ? PLAT_W : 16;
         if (o->x + w < cam_l - 48 || o->x > cam_r + 48 || o->y >= 0x200) {
             if (o->state != OS_KILLED && o->spawn >= 0) OL.spawned[o->spawn] = 0;   /* (Object_Delete: it can come back) */
@@ -602,6 +658,8 @@ static void objs_frame(void) {
         for (int i = 0; i < NOBJ; i++) if (ob[i].state != last[i] || ob[i].id != lid[i]) {
             rt_log("smb3", "enemy %d: %02X state %d -> %d at (%d, %d)%s", i, ob[i].id, last[i], ob[i].state, ob[i].x, ob[i].y, ob[i].state == OS_NORMAL && last[i] == OS_DEAD ? " (spawned)" : "");
             last[i] = ob[i].state; lid[i] = ob[i].id; } }
+    if (getenv("SMB3_OBJ_TRACE"))                                        /* (testing: every live object, every frame) */
+        for (int i = 0; i < NOBJ; i++) if (ob[i].state != OS_DEAD) rt_log("smb3", "trace obj %d %02X st %d x %d y %d xv %d yv %d det %X slope %d", i, ob[i].id, ob[i].state, ob[i].x, ob[i].y, ob[i].xvel, ob[i].yvel, ob[i].det, ob[i].slope);
     for (int i = 0; i < NOBJ; i++) {
         obj_t *o = &ob[i];
         if (pcol[i].on && (o->state != OS_NORMAL || !obj_platform(o->id))) plat_col_off(i);   /* (gone, or the slot something else's: its line out) */
@@ -660,6 +718,7 @@ static void objs_frame(void) {
             obj_move2(o);
             if (o->det & 4) { if (!o->xvel) o->xvel = xdiff(o, near_pl(o)) ? -0x18 : 0x18; hit_ground(o); o->yvel = 0x0C; }   /* (ObjKickXvel) */
             if (o->det & 3) {                    /* (a wall: the block there is hit, then back) */
+                sfx_player(SFXP_BUMP);           /* (PRG000_CCE2: the bump sound) */
                 int wx = o->x + (o->xvel < 0 ? 0 : 15), wy = o->y + 9, tx = wx >> 4, ty = wy >> 4;
                 if (tx >= 0 && tx < L.w && ty >= 0 && ty < LH && is_block(L.tile[ty * L.w + tx])) { hit_who = near_pl(o) < 0 ? 0 : near_pl(o); hit_x = L.lx + o->x + 8; bump_self = i; hit_block(tx, ty, !pp[hit_who].small, 0, 0); bump_self = -1; }   /* (Object_BumpOffBlocks: Level_DoBumpBlocks - LATP by the Player's suit, a brick busted whatever it is) */
                 about_face(o);

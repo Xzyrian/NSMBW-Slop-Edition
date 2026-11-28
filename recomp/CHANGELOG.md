@@ -6,6 +6,370 @@ without re-deriving it.
 
 ---
 
+## 2026-11-27 (141) - Claude: Retro Mario (SMB3) - SMB3's own physics, sprites and sounds
+
+User: "next lets add SMB3 Mario as a character" / "should have authentic SMB3 physics". See
+`docs/RETRO_MARIO.md` (Retro Mario (SMB3)).
+
+- **The character**: `retro_smb3`, "Retro Mario (SMB3)", after SMB1 in the roster (family Mario,
+  variant "SMB3"; `rt_chars.c` STYLE_SMB3, `chars_is_retro`); body Mario's, drawn as his sprite.
+  Portrait: a placeholder (`tools/make_char_portraits.py`).
+- **Physics** (new `runtime/smb3_physics.c/.h`, in `build.py` / `build_linux_clang.sh`): SMB3's
+  player code (prg008.asm) ported byte for byte - Player_Control, the suits' movement table,
+  Player_GroundHControl (with Counter_Wiggly's carry), Player_UnderwaterHControl,
+  Player_JumpFlyFlutter, Player_SwimV, the velocities' 4.4 application, Player_PowerUpdate (the
+  P-meter, flight time), and the frame choice down to Player_SetSpecialFrames. The disassembly's
+  BLS / BGS are BMI / BPL (signed by the difference), kept so. `tools/test_smb3_physics.c`: walk
+  $18, run $28 (44 frames), meter full (93), P-speed $38 (112); jumps 71 / 86 / 101 px (standing /
+  run / P), 21 tapped; falls capped; raccoon flight and flutter.
+- **The host** (`rt_retro.c`, beside SMB1's): in NSMBW's movement states SMB3's code moves him
+  (on the ground NSMBW's step at XVel / 16 - slopes, moving floors; in the air the velocities),
+  NSMBW's collision is Player_DetectSolids (land, walk off, head, wall); a stomp -$40; NSMBW's own
+  states (pipes, vines, damage, death, the goal) keep NSMBW's movement with SMB3 frames. Suits:
+  small, Super, Fire, Raccoon (PU_RACCOON), Frog (PU_FROG); Ice = Fire in ice colours; Propeller /
+  Penguin = Big; Mini = small at half size. Carrying shells allowed (SMB3 holds them).
+- **Sprites from SMB3's ROM** (`out/smb3_rom.c`) as Player_Draw builds them: SPPF_Table,
+  Player_FramePageOff / Player_PUpRootPage, the mirrored column, the kick's foot, PowerUp_Palettes;
+  32x32 cells, 81 frames a suit, textures at 0x83800000 made when first needed. World map / select
+  figure: his sprite too.
+- **Sounds: SMB3's** - the build's rendered RWAVs (`<game>/sound/smb3`), decoded by rt_sfx.c
+  (DSP-ADPCM; `sfx_play("@smb3", name)`, `sfx_play_ifidle` for the P-meter's ring).
+- **SMB3 stage** (`SMB3Disassembly/port/smb3_stage.c`): NSMB2's leaf code skips him; his tail
+  swipe hits SMB3's objects and blocks; the status bar shows his Player_Power.
+- **Testing**: `retro_mario = 3` (settings.ini), `RT_RETRO_MODE=n` (a power-up), `RT_RETROLOG=1`
+  (SMB3's state per frame), `RT_RETRO_DUMP_SHEETS`.
+- **Verified** (Linux runtime, NSMBW's 1-1): small SMB3 Mario walks, runs, fills the meter,
+  reaches P-speed (3.5 px a frame), jumps (69 px small), skids, with SMB3's frames; as Raccoon a
+  P-jump flies at -$18 for the flight time, slowing to walking speed, then flutters - the frames
+  and tail as SMB3's. SMB1 Mario unchanged (`retro_mario = 1`). Windows-target syntax check.
+- **Open**: the tail swipe against NSMBW's enemies (it animates only, outside the SMB3 stage), the
+  Tanooki statue / suit, Kuribo's shoe, sliding down slopes, SMB3's death song, a portrait and HUD
+  icon; sounds not heard here (the log only).
+
+## 2026-11-27 (140) - Claude: SMW stages - leaving them (Exit Course, Yoshi's House's side exit), the camera as SMW's, no flashes
+
+User: "its impossible to exit any stage by using 'exit course' in the pause menu / its impossible
+to exit Yoshi's House by walking off the side of the screen / Yoshi's House should be horizontally
+centered, and locked to the minimum screen size (account for 16:9 aspect) and the ground should be
+extended out to accommodate / starting SMW from a save file briefly flashes the SMW titlescreen /
+starting an SMW stage briefly flashes the stage before it actually loads with Mario in it / camera
+zooms out like NSMBW ... causing the background to show garbage tiles at the bottom of the screen".
+See `SMWDisassembly/port/README.md` (Now).
+
+- **Leaving a stage for SMW's map** (`port/smw_stage.c`, `smw_main.c`, `runtime/rt_lyt.c`,
+  `rt_gamesetup.c`): every way out of the course asked NSMBW's world map, and the stage's hook took
+  all of them for a death (the level again). Now `rt_lyt.c` keeps the stage exit's kind
+  (dScStage_c::Exit_e from dScStage_c::setNextScene: 1 a death - the player's code - 0 the goal,
+  2 Exit Course): a death with lives left still restarts; anything else leaves - SMW out of its
+  level as it would do it itself (`smw_leave_level`: OWLevelExitMode $80 as Start + Select, 0 for a
+  side exit; game mode $0B, the fade to its map), NSMBW to the setup scene (DoSceneChange 10) in
+  place of its world map. When that scene is made SMW runs again over it (`smw_resume`); its next
+  level goes straight from whatever state the scene is in to a stage, and its Quit to the title
+  (`smw_back_step`). The hand-off's guard is reset when SMW isn't holding a level (a scene object
+  at the same address could otherwise never hand over again).
+- **Yoshi's House** (one screen: HorizLayer1Setting 0 or SideExitEnabled): its 16 columns placed
+  16 columns in, each edge column's lowest unbroken run (the ground) repeated outwards; the camera
+  centred on it and still, walls at the screen's sides. With SideExitEnabled a player at a side of
+  the screen (NSMBW keeps players some 19 units inside its camera) leaves by NSMBW's own exit
+  (`dScStage_c::setNextScene(3, 0, 2, 5)`: its wipe) - SMW's map, exit mode 0 (SubSideExit's).
+- **The camera** (`smw_stage_camera`): NSMBW's zoom held at its unzoomed size (dBgParameter_c +0x70,
+  dBg_c's targets, as SMB3's Toad Houses) - SMW never zooms out; the lowest it shows is SMW's
+  (layer 1 at $C0: 416); the background kept to SMW's bottom line (`by` from the screen's bottom:
+  a screen taller than SMW's shows more of its sky, not the tilemap below SMW's picture).
+- **No flashes** (`smw_main.c`, `rt_menu.c`): SMW's fade from the title to its map and the fade
+  after a level aren't shown (black until game mode $0D, the map's fade-in); SMW's own loading of a
+  level for a stage (game modes $10-$14, not the intro) isn't either; while SMW holds a level and
+  the stage isn't up the screen is black (`smw_cover`) - the setup scene under it isn't seen.
+- **Pictures new each level** (`runtime/rt_gxrender.c`): the texture cache's change check hashed
+  nothing above 32 MB of MEM1, so a texture at the same address with the same size kept its old
+  picture - Yoshi's Island 1 after Yoshi's House had Yoshi's House's background. It covers up to
+  0x84000000 now (the SMB3 / SMW stages' memory); `smw_stage.c` invalidates after an upload.
+- **Slope assists** ($1D8-$1FA): SMW carries the slope above down for a foot in them; under a slope
+  they now pass (a dirt hill's body - a player could wedge under a peak against the solid one),
+  solid elsewhere. The diagonal pipe still climbs.
+- **Verified** (Linux runtime, 4:3): from a file on the map - Yoshi's House centred with its ground
+  out to the screen's sides, walking off its right side -> NSMBW's wipe -> SMW's map fading in on
+  Yoshi's House -> walking to Yoshi's Island 1 -> a stage again (from the resumed setup scene);
+  Yoshi's Island 1's own sky and background; a death restarts, Exit Course (`SMW_STAGE_TEST_EXIT`,
+  as the pause menu asks it) -> SMW's map on Yoshi's Island 1; no title or level flash in frame
+  dumps; the hills passed through and over, the pipe climbed. Windows-target syntax check.
+- **Open**: the pause menu's own Exit Course not driven in the test (its cursor didn't take the
+  test's d-pad; the exit it asks is the same); 16:9 not seen here (the zoom lock takes NSMBW's
+  unzoomed width, whatever the aspect); a game over goes NSMBW's way; SMW's objects, the goal.
+
+## 2026-11-27 (139) - Claude: SMW - its scroll fixed; NSMBW players in its levels (begun)
+
+User: "scrolling does not behave properly / fix that, then begin implementing NSMBW characters".
+See `SMWDisassembly/port/README.md` (Now, Testing).
+
+- **The scroll** (`port/snes_ppu.c`): a layer's scroll register keeps all its bits between its two
+  writes (BGnHOFS: the new high byte, the previous write's latch less its low 3 bits, the old
+  value's bits 8-10); it was masked to 10 bits when written, so the next write lost bit 10 and a
+  layer jumped by 1024 / jittered as Mario ran. Masked only where a row is drawn now.
+  `tools/smw_headless.c`: `SMW_SCROLL=frame` prints Mario, the layers and the PPU's scroll.
+- **NSMBW players in SMW's levels** (new `port/smw_stage.c`, the way `smb3_stage.c` began, by
+  CHARACTERS_AND_GAMES.md - the characters NSMBW's, the level SMW's; settings.ini `smw_stage`,
+  default 1): when SMW starts a level (game mode $14, not the intro) `smw_main.c` holds it there;
+  the setup (`rt_gamesetup.c`) loads the file's NSMBW player data (read only, as SMB3's) and starts
+  NSMBW's course 1-1 as an empty shell (its actors not spawned, its tiles emptied). In it:
+  - SMW's level as its own loader built it - Map16 ($7EC800 / $7FC800), each tile's picture from
+    Map16Pointers' four 8 x 8 tiles with BG1's VRAM patterns and CGRAM palette (an atlas of the
+    tiles used: 72 in Yoshi's Island 1); the sky its BackgroundColor; layer 2 from VRAM, half speed;
+  - collision as SMW's player block interaction (`gm_bg.c` asks `smw_stage_unit`): ledges one-way
+    tops, solids, slopes by SlopesPtr -> SlopeHeights as NSMBW's slope units, the slopes' fill
+    solid, lava passed for now; SMW's first / last screen are walls (Yoshi's House's second screen
+    has no ground and SMW never scrolls there);
+  - the chosen characters where SMW puts Mario, at 80% (models and sensors, as SMB3's); NSMBW's
+    camera kept in the level, following player 1 up and down; a death with lives left restarts
+    the level (`rt_lyt.c`), the old picture kept through the wipe.
+  Hooks: `gm_bg.c`, `gm_d_actorcreate.c`, `gm_d_player_conv.c`, `gm_d_player.c`, `rt_menu.c`
+  (camera), `gm_pf_family.c` (drawing), `rt_lyt.c`, `rt_retro.c`, `rt_gamesetup.c`; `build.py`
+  compiles smw_stage.
+- **Verified** (Linux runtime: Game Select -> SMW -> file on the map -> Yoshi's Island 1 ->
+  the stage): Yoshi's House and Yoshi's Island 1 placed on SMW's start; Mario walks, jumps, climbs
+  the dirt hill's slope and walks up and over the diagonal pipe (traced: 45 degrees all the way,
+  onto the ledge behind it); the background's parallax; the walls at the ends; death restarts.
+  Windows-target syntax check of the changed files.
+- **Open**: SMW's objects (? blocks, coins, Yoshi coins, the tapes), enemies, the goal and back to
+  SMW's map, vertical levels, lava, SMW's status bar (NSMBW's shows),
+  SMW's 1:4 slopes approximated by NSMBW's 22.5 degrees, sound.
+
+## 2026-11-27 (138) - Claude: SMW begins - recompiled whole, playable from a new file to Yoshi's Island 1 / 2
+
+User: "lets begin implementing SMW, refer to SMWDisassembly in the files and make it playable to
+1-1" (asked: the same path as SMB3 - the whole game recompiled first, with its own Mario; "New file
+-> intro message -> Yoshi's House -> map -> Yoshi Island 1 or Yoshi Island 2"; silent first, sound
+next). See `SMWDisassembly/port/README.md`.
+
+- **Assembled**: Asar 1.91 (`SMWDisassembly/asar.exe`, its licence beside it; elsewhere `$ASAR`)
+  builds the USA version; the ROM is the original (SHA-1 6b47bb75..., CRC32 B19ED489).
+  `tools/build_smw.py` assembles into out/ (nothing written in the disassembly's own files),
+  checks, recompiles, writes `out/smw_rom.c`; `recomp/build.py` runs it as [1c] and compiles
+  [3c]; without Asar a complete out/ is used.
+- **A 65816 recompiler** (`tools/recomp65816.py`): code from Asar's address-to-line map (a source
+  line whose first word is an instruction; the SPC700 engine left out; macro-made instructions;
+  `DEX #3` repeats), 62,465 instructions in 9 banks - every decoded length equals the distance to
+  the next mapped address. Widths: immediates as assembled, the rest by the M / X flags at run time
+  (`port/snes_gen.h`: every instruction as a macro). Calls as SMB3's (the stack is the truth;
+  ExecutePtr's pulled return addresses unwind). An interpreter generated from the same table runs
+  what isn't recompiled (SMW's OAM routine built in RAM).
+- **The SNES** (`port/snes_cpu.c`, `snes_ppu.c`, `snes_apu.c`): LoROM bus, WRAM / SRAM,
+  $4200-$421F, DMA / HDMA, NMI and the V-IRQ (when the beam reaches VTIME, not when it's written -
+  SMW's status bar split), a row-at-a-time PPU (modes 0 / 1 / 7, sprites, windows, colour math,
+  mosaic, brightness), the SPC700 boot ROM's upload protocol (the sound engine doesn't run: silent).
+  Names prefixed (`sppu_`, `sapu_`) - SMB3's NES has `ppu_` / `apu_`.
+- **In the game** (`port/smw_main.c`; `rt_gamesetup.c`, `rt_menu.c`, `rt_audio.c`,
+  `rt_discord.c`): the SMW card (its picture SMW.jpg was a locked placeholder) is playable; the
+  File Select shows SMW's three files from its save RAM (`<game>/smw/smw.srm`) in NSMBW's cards,
+  through SMB3's stand-in machinery, now for either game (`retro_files`, `rfile_info`); Start Game
+  runs SMW over the faded-out screen; its title and file menus are passed unseen by its own code
+  (the file's line, 1 player); + is the pause menu (shared with SMB3: Continue / Save / Save &
+  Quit / Quit). SMW saves itself into its save RAM; the file is written whenever that changes.
+- **Fixed on the way**: MVN / MVP wrote to the source offset (X), not the destination (Y) - the
+  map's layer 1 stayed the last level's and the wrong level was entered; the IRQ fired at line
+  245 (the status bar was missing); an HDMA write re-entered the row drawing.
+- **Verified** (headless and in the runtime - Game Select -> SMW -> File Select (three NEW) ->
+  character select -> Start Game): the intro message; Yoshi's House; the map (layers, border,
+  mosaic fades); walking to Yoshi's Island 1 and playing it (status bar, Rexes, Banzai Bill,
+  coins, death and back to the map). About 3 ms a frame unoptimised.
+- **Open**: sound (SPC700 + DSP, then NSMBW streams as SMB3's); NSMBW players in SMW's levels;
+  hi-res / offset-per-tile modes (not used by the first levels); SMW's own Start pause isn't on a
+  button (+ is the menu); File Select Copy / Erase on SMW files not tried yet.
+
+## 2026-11-27 (137) - Claude: SMB3 - a door / pipe no longer restarts the song; the stage's sound effects
+
+User: "entering a door incorrectly causes the music track to change (in the case of stages that
+use doors, just restarting the track that is already playing)" / "there are no stage sfx, like
+collecting coins, hitting blocks, stomping enemies, is that intentional?" (not intentional: the
+stage's routines never set SMB3's sound queues, so 136's sound effects only ever came from SMB3's
+own code - the map, the pause).
+
+- **Doors / pipes** (`SMB3Disassembly/port/smb3_stage_music.inc`, `music_tick`): the stage
+  starting again after a junction queued the area's song every time, so the same song started
+  over. Now as SMB3's `Level_MainLoop` (PRG030_8DE7: the BGM already in `SndCur_Music2` is not
+  queued again) - the same song plays on; a different one changes. The NES sound queues are also
+  cleared when a level is placed (nothing left over plays). NSMBW's stage restart does not stop
+  the stream, so no resume-at-offset was needed.
+- **Sound effects** (`smb3_stage.c`, `smb3_stage_enemies.inc`): `sfx_player` / `sfx_level1` /
+  `sfx_level2` set `Sound_QPlayer` / `QLevel1` / `QLevel2` where SMB3 sets them; `snd_step`
+  plays them from GROUP_SMB3 as before:
+  - a coin (touched or out of a block) - COIN (PRG008_B604, PRG000_C4A7); 100 coins - 1-UP;
+  - a block that bounces - BUMP (PRG008_B722); a brick busted - CRUMBLE (PRG008_B84E);
+  - a power-up rising out of its block - RISE at timer $2D (PowerUp_DoRaise);
+  - a power-up taken with no change of form - POWER (PowerUp_PlaySound); an NES character's leaf -
+    POOF (PRG001_A825). A change of form keeps the character's own sound (NSMBW's
+    SE_PLY_CHANGE_UP), as before;
+  - a 1-up score - 1-UP (PRG007_AACF);
+  - a stomp - the squish, SND_PLAYERSWIM (PRG000_D2B4); a Bro stomped - KICK instead (PRG000_D301);
+  - a kick, Enemy_Kill (star, tail), a shell's kill, a bumped-from-below enemy - KICK;
+  - a kicked shell against a wall - BUMP (PRG000_CCE2);
+  - the P-switch pressed - BABOOM (PRG008_B623); the time bonus - BLIP each step (PRG000_C43C);
+  - a boomerang in flight - BOOMERANG, again whenever it ends (PRG007_B8C1;
+    `smb3_stage_battle.inc` - built, not heard: no Boomerang Bro in World 1).
+  NSMBW's character sounds (the jump, landing, SE_PLY_HIT_BLOCK on a ceiling) are unchanged.
+- **Verified** (headless):
+  - 1-Fortress's door (SMB3_MAP_TEST_AT=60,60, SMB3_STAGE_TEST_X=109): "the level's song 40
+    (already playing: on)" after the junction; the recorded audio keeps the song's 18.1 s loop
+    in phase through the door (no restart);
+  - 1-1 with test blocks / a test shell: the coin block gives BUMP + COIN (SMB3_SE_PLY_02,
+    SMB3_SE_LV1_01 started), the shell's kick KICK, its wall BUMP;
+  - 1-1's first Goomba stomped: SMB3_SE_PLY_04 (the squish) with NSMBW's own stomp jump
+    (SE_PLY_JUMP_SS_HIGH, the character's).
+- **Open**: SMB3's objects not ported yet (cannons, Fire Bros, the vine block) get their sounds
+  (BABOOM, FIRE, VINE) when they are ported.
+
+## 2026-11-27 (136) - Claude: SMB3's sound - made at build time, NSMBW's sound archive expanded (no cache, nothing replaced)
+
+User: "songs should not be cached they should be built into the executable / I have cached the
+songs on my end, build them into the game files / we need to expand NSMBW's sound archive for the
+new sfx so they can run natively / do not substitute any space from NSMBW's existing sound
+archive, we must expand it / never substitute or replace anything from the original game".
+Details: `SMB3Disassembly/port/README.md` (2026-11-27 (136)). Replaces 134's cache, carrier
+sounds and runtime clips.
+
+- **Build** (`recomp/build.py` smb3_sound / deploy): after linking, it runs
+  `nsmbw.exe --smb3-render-sound ../SMB3Disassembly/out/sound`. `runtime/rt_core.c` main does
+  that before anything else, calling `smb3_sound_render`; only what's missing for the stamp is
+  rendered. Deploy copies the `.brstm` songs and `.rwav` sound effects (NSMBW's wave format) to
+  `game\sound\smb3`.
+- **Start** (`runtime/rt_disc.c`): `smb3_sound_files` finds them. The songs go in a new disc
+  folder `/smb3/` (`fst_add_dir`), after the disc's entries. `Sound/wii_mj2d_sound.brsar` is read
+  and given to the game expanded (`smb3_brsar_expand`) from memory, at a new place on the disc; the
+  file itself is not changed. NSMBW's SYMB / INFO / FILE stay byte for byte, followed by:
+  - new string, sound, file and group tables;
+  - 48 stream sounds (Set 2 on player 18, Set 1 on 17), files `/smb3/*.brstm`;
+  - 36 wave sounds (PLAYER_SE_PLY / _OBJ / _SYS / _SYS_GAME_PAUSE);
+  - GROUP_SMB3 (an RWSD as NSMBW's file 85, and an RWAR). It is group 12: nw4r's group count is
+    the table's minus one, so the unnamed last group moves to 13 and its files' positions say
+    13.
+  - Sound IDs 1978-2061 (`smb3_snd_id`).
+- **GROUP_SMB3** loaded right after GROUP_BOOT by NSMBW's own loader into its sound heap:
+  `runtime/gm_nw4r_g3d.c` E(fn_802D3E90) → `smb3_sound_group_load` (`smb3_stage_music.inc`).
+- **Playback** (`port/smb3_stage_music.inc`): songs and effects by their own IDs through
+  `SndAudioMgr` (vtable +180), with one handle per SMB3 sound queue.
+  - Removed: the carriers, `smb3_strm_redirect` (`gm_mj_conv.c` back as it was), and the
+    rt_sfx.c / rt.h additions (back as they were).
+- **Verified** (headless, 1-1 from the map, output audio matched against the decoded files):
+  - the map song, a map effect, 1-1's song;
+  - the pause sound and the silence while paused;
+  - the time warning jingle and the fast song.
+  - The expanded archive was checked against the original with a separate reader: every
+    original sound entry and group's bytes the same.
+- **Test switches**: `RT_DUMP_BRSAR=file`; `RT_DVD_TRACE=bytes` (`runtime/rt_dvd.c`: big disc reads
+  with the guest's call chain).
+- **The user's machine**: the songs already rendered (game\cache\smb3_sound, v5) were put in
+  `SMB3Disassembly/out/sound` and `game\sound\smb3` with the effects, so the next build renders
+  nothing. `game\cache\smb3_sound` is no longer used.
+
+---
+
+## 2026-11-27 (135) - Claude (instance 1): GitHub issues #4 (a new SMB3 file took NSMBW's lives), #16 (the goal card came back), #15 (players kept control at the goal)
+
+User: "begin working on the GitHub issues". Claimed in TODO.md: #4, #16, #15.
+
+- **#4** (`SMB3Disassembly/port/smb3_map.inc` map_session_start, `smb3_stage.c`): choosing an SMB3
+  file loads NSMBW's save of the same slot for the players' data (rt_gamesetup.c), and with it
+  NSMBW's lives (daPyMng_c::mRest); map_session_start then copied mRest into SMB3's
+  Player_Lives - so a new SMB3 file showed the NSMBW file's lives (and an existing SMB3 file lost
+  its own). Now, when the session starts from the setup screens (`map_session_start(1)`), SMB3's
+  lives as smb3_hook_title set them (4 for a new file, else the file's) go into all eight mRest;
+  mid-game (SMB3's map again from the file, `(0)`) NSMBW's stay the lives, as before.
+  Checked (Linux, headless, NSMBW file 1 with 50 lives for every character, no SMB3 files):
+  the map's bar before M x 50, now M x 4; in 1-1 the bar follows (a Goomba death: 3).
+- **#16** (`smb3_stage_enemies.inc` objs_spawn_delete): a taken card flies up and is its own
+  goal sequence (var4 4-8); scrolled off by the player walking away, Object_DeleteOffScreen
+  deleted it and freed its spawn - the sequence stopped and the untouched card came back for
+  another card. A taken card is now never deleted by the scroll. Checked: card taken, 600 frames
+  running left, 700 back: before - the card deleted at y 236, spawned again, a second card taken;
+  now - one card, the course clear comes as usual.
+- **#15** (`smb3_stage_enemies.inc` goal_players): once the card is taken, every player in play
+  comes under NSMBW's control demo (daPlBase_c::startControlDemo 0x80051E70: StateID_DemoControl,
+  or flag 113 until it can), so no one is steered; an NSMBW character, once
+  isReadyForDemoControlAction, plays NSMBW's goal pose (setAnimePlayWithAnimID(87): `goal_pose`,
+  the 88th entry of the animation table at 0x802F1350, stride 0x24, 0 = `wait`); NES characters
+  (retro_is_player) only stop. The next stage ends the demo. Checked (software renderer, frame
+  dumps): card taken, left held 400 frames - the player stays put in the pose through COURSE
+  CLEAR / YOU GOT A CARD; the clear and the map come as before. Open: SMB3 has Mario walk off
+  right after the card - not done (rule 1: the character's own sequence); in multiplayer each
+  player poses where it stands (NSMBW gathers them only at a pole).
+- **Test switch** `SMB3_STAGE_TEST_CARD=1`: player 1 takes the card as it comes (with
+  `SMB3_STAGE_TEST_X=140 SMB3_STAGE_TEST_XOFF=448`: on screen at the start, room to walk away).
+  Test driving notes: with the remote sideways, d-pad left is `008` (not `001`), right `004`;
+  `SMB3_MAP_TEST_AT=20,40` puts player 1 on 1-1. Pictures without a window: `NSMBW_RENDERER=sw`,
+  `RT_DUMP_DIR=dir RT_DUMP_EVERY=0 RT_DUMP_REQ=file` (a frame dumped each time the file appears).
+- **`build_linux_clang.sh`**: rt_powerup was missing (entry 129: link errors on Linux).
+- Merged onto the device's newer smb3_map.inc / smb3_stage.c (entry 134's work in progress) as
+  exact edits; the device's smb3_stage.c doesn't compile right now only for 134's unfinished
+  sound (`sfx_play_file` / `sfx_file_playing` undeclared in smb3_stage_music.inc).
+
+---
+
+## 2026-11-27 (134) - Claude: SMB3 - out of the other pipe, the P-switch through pipes, SMB3's sound as NSMBW streams
+
+User: "in SMB3 pipe entry transitions don't seem to work, when mario enters a pipe he does not exit
+another / P-Switch state also doesn't carry over through a pipe / When entering a pipe, for a brief
+moment, an audio track will keep playing / ... can we convert SMB3's audio to NSMBW natively?"
+(asked; answer: pre-rendered streams). Details: `SMB3Disassembly/port/README.md` (2026-11-27 (134)).
+
+- **Pipe exits** (`port/smb3_stage_pipes.inc`): the junction's first frame in the other area gives
+  SMB3's Mario and `Level_PipeExitDir`. After the restart the exit pipe is found by the tiles
+  (pipe ends $AD-$B4, sideways mouth $B5), and each player plays NSMBW's
+  `daPlBase_c::StateID_DemoInDokanU/D/R/L` (0x8035482C + 0x40 n) out of it.
+- **P-switch** (`port/smb3_stage.c` level_fresh, `pswitch_resume`): the count is kept through a
+  junction's restart, and the new area's tiles are swapped.
+- **SMB3's sound** - new `port/smb3_sound.c` / `.h`:
+  - SMB3's engine renders every song (+ the time warning's fast copies) to DSP-ADPCM .brstm in
+    NSMBW's two-channel layout, and every sound effect to .wav. Loops are found from the engine's
+    state and moved onto a block. Output: `<game>/cache/smb3_sound`, with a stamp. It is made at
+    the first start (about 30 s; the window title shows it).
+  - The songs are added to the FST as root files (`runtime/rt_disc.c`).
+  - `port/smb3_stage_music.inc` is rewritten. `smb3_hook_sound` (port/hooks.txt:
+    Sound_Engine_Begin) runs the engine's music and SFX rules natively and keeps SMB3's
+    SndCur_* / Music2_Hold / Music_RestH_Off.
+  - Streams start through `SndAudioMgr` (vtable +180) on `STRM_BGM_MORI` (Set 2) and
+    `STRM_BGM_LAST_CASTLE_APPEAR` (Set 1). Their file is swapped in `DVDConvertPathToEntrynum`
+    (`runtime/gm_mj_conv.c` → `smb3_strm_redirect`).
+  - Sound effects go through `rt_sfx.c` (new `sfx_play_file(path, vol)`, `sfx_file_playing`; 96
+    clips, per-clip volume).
+  - The NES APU no longer runs for the SMB3 stage or map. SMB3 on its own (smb3_main.c) is
+    unchanged: the hook steps aside there and while rendering.
+  - `runtime/gm_nw4r_g3d.c`: `BasicSound::Stop` reports to `smb3_music_stopping` (logging only).
+  - `recomp/build.py` SMB3 list: + smb3_sound.
+- **Regenerated**: `SMB3Disassembly/out/smb3_b28.c`, `smb3_hooks.h` (hooks.txt changed;
+  build_smb3.py redoes it - NESASM needed).
+- **Verified** (headless, 1-1 from the map):
+  - a test pipe into the coin room: the player comes down out of its ceiling pipe;
+  - a P-switch going through with its song;
+  - the output audio matches the rendered songs: map, level, the time warning, the fast copy;
+  - each song plays without being dropped (mono files were dropped every few seconds, which is
+    why the files are two-channel).
+- **Open**: an upward / sideways pipe exit not checked headless; the sound effects are mixed by
+  the runtime, not nw4r; on a slow machine the jingle's frame count outlasts its sound.
+
+---
+
+## 2026-11-27 (133) - Claude: SMB3 - slopes
+
+User: "begin working on slopes". Details: `SMB3Disassembly/port/README.md` (2026-11-27: slopes).
+
+- **Players** (`port/smb3_stage.c`): in a slope level (`Level_SlopeEn`: Hills 3, Underground 14),
+  `smb3_stage_unit` gives NSMBW's own slope units for SMB3's slope shapes (prg000
+  Level_SlopeQuad*, Slope_LUT). The codes: floor hi 0x20, low 0 / up, 1 \ down, 2 3 the 22.5 deg up
+  halves, 4 5 the down halves; ceilings hi 0x40 with the same numbers, upside down. Squares, walls
+  and flat ceilings are solid; unsloped ground is the one-way floor. NSMBW's physics run on them:
+  walking, running, the crouch slide.
+- **Objects** (`port/smb3_stage_enemies.inc` world_detect / hit_ground): SMB3's slope floor,
+  ported from PRG000_C5BC-C67F: Object_SlopeHeight, the flat middle grounds, Objects_Slope's
+  edge-following. `tile_class` is unchanged (SMB3's objects still test Tile_AttrTable).
+- **Verified** (headless): 1-2's hills up and down, a crouch slide, a Para-Goomba landing on a
+  slope; 1-5's 45 deg floor and slanted ceilings.
+- **Test switches**: `SMB3_STAGE_TEST_UNIT`, `SMB3_MAP_TEST_AT` (the map marker put on a square),
+  `SMB3_OBJ_TRACE`.
+- **Open**: the slopes' push on objects (kicked shells speeding down, LRBounce_Vel); objects
+  under ceiling slopes; NSMBW's 4-tile slopes have no SMB3 counterpart (not used).
+
+---
+
 ## 2026-11-27 (132) - Claude: SMB3 music fixes; a dying player took items
 
 User's bugs: the grassland (1-2) music skips; a dying NSMBW player can grab a star; the death

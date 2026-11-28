@@ -1,0 +1,3 @@
+# hooks.txt - native code run before an SMW routine: "<label> <C function>" (tools/recomp65816.py).
+# The function returns 0 to go on with the original, or a result (SNES_RTS / SNES_RTL...).
+# (none yet: SMW runs as it is)

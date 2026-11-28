@@ -19514,7 +19514,8 @@ E(fn_801548A0, 4) { pf_m_548a0(GM_PASS); }
 E(fn_80154A70, 4) { pf_m_54a70(GM_PASS); }
 E(fn_80154D00, 4) { pf_m_54d00(GM_PASS); }
 void smb3_stage_draw_any(ppc_context *ctx, uint8_t *base);   /* (../SMB3Disassembly/port/smb3_stage.c) */
-E(fn_80154D50, 4) { pf_m_54d50(GM_PASS); { uint32_t r3 = ctx->r[3]; smb3_stage_draw_any(ctx, base); ctx->r[3] = r3; } }   /* dBgGm_c::draw: the SMB3 level's draw proc also from here, every frame (no player drawn: a death, a pit) */
+void smw_stage_draw_any(ppc_context *ctx, uint8_t *base);    /* (../SMWDisassembly/port/smw_stage.c) */
+E(fn_80154D50, 4) { pf_m_54d50(GM_PASS); { uint32_t r3 = ctx->r[3]; smb3_stage_draw_any(ctx, base); smw_stage_draw_any(ctx, base); ctx->r[3] = r3; } }   /* dBgGm_c::draw: the SMB3 level's draw proc also from here, every frame (no player drawn: a death, a pit) */
 E(fn_80156930, 4) { pf_m_56930(GM_PASS); }
 E(fn_80156D70, 4) { pf_m_56d70(GM_PASS); }
 E(fn_80156E00, 4) { pf_m_56e00(GM_PASS); }

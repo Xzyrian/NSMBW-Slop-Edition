@@ -167,10 +167,12 @@ static void map_hide_marker(void) { for (int i = 0; i < 16; i += 4) nes_ram_ptr(
 /* SMB3 on, unseen, until cond() or MAP_RUN_MAX frames; 0 = it never got there (or stopped) */
 static int map_run_until(int (*cond)(void), int extra, const char *what) {
     int i = 0;
+    snd_unseen(1);                                                       /* (its sound effects not heard: no one sees these frames) */
     for (; i < MAP_RUN_MAX && !cond(); i++) {
         nes_set_buttons(0, 0); nes_run_frame();
-        if (nes_error()) { rt_log("smb3", "map: SMB3 stopped (%s): %s", what, nes_error()); return 0; }
+        if (nes_error()) { snd_unseen(0); rt_log("smb3", "map: SMB3 stopped (%s): %s", what, nes_error()); return 0; }
     }
+    snd_unseen(0);
     if (i >= MAP_RUN_MAX) { rt_log("smb3", "map: SMB3 didn't get to %s in %d frames (tileset %d, PPU_CTL2 %02X, Map_Operation %d, frames %llu)", what, MAP_RUN_MAX,
                                    S3(SMB3_Level_Tileset), S3(SMB3_PPU_CTL2_Copy), S3(SMB3_Map_Operation), (unsigned long long)nes_frame_count()); return 0; }
     for (int k = 0; k < extra; k++) { nes_set_buttons(0, 0); nes_run_frame(); }
@@ -186,7 +188,7 @@ static int cond_in_level(void) {
     return ++lvl_frames > 40;
 }
 /* the game from the file chosen (smb3_main.c's way: smb3_hook_title sets it up), on to its map */
-static int map_session_start(void) {
+static int map_session_start(int from_setup) {
     static smb3_save_t sv;
     if (!nes_load(smb3_rom, smb3_rom_size)) return 0;
     int f = rt_smb3_file();
@@ -195,9 +197,19 @@ static int map_session_start(void) {
     rt_log("smb3", "map: SMB3 file %d, %s", f + 1, smb3_load_from ? "continuing" : "a new game (World 1)");
     MP.session = 1;
     if (!map_run_until(cond_on_map, 2, "the map")) { map_session_stop(); return 0; }
+    {   const char *at = getenv("SMB3_MAP_TEST_AT"); unsigned y, x;     /* (testing: "Y,X" hex - player 1's marker put on that square, e.g. 20,80 = 1-2) */
+        if (at && sscanf(at, "%x,%x", &y, &x) == 2) { S3W(SMB3_World_Map_Y, (uint8_t)y); S3W(SMB3_World_Map_X, (uint8_t)x); S3W(SMB3_World_Map_XHi, 0);
+            map_run_until(cond_on_map, 2, "the map (test square)"); rt_log("smb3", "map: test - player 1 put at Y %02X X %02X", y, x); } }
     MP.next = MP_MAP; memcpy(map_fb, nes_framebuffer(), sizeof map_fb);
-    /* SMB3's lives: NSMBW's (player 1's rest count) */
-    S3W(SMB3_Player_Lives, (uint8_t)R32(MOD_PY_REST));
+    /* the lives. From the setup screens: the SMB3 file's (smb3_hook_title: 4 for a new file, else
+       the saved count) become NSMBW's rest counts - NSMBW's own save in the same slot was loaded
+       for the players' data (rt_gamesetup.c) and brought its lives along (issue #4). Later (SMB3's
+       map again from the file, mid-game): NSMBW's are the lives, SMB3's follow them. */
+    if (from_setup) {
+        uint32_t n = S3(SMB3_Player_Lives);
+        for (int i = 0; i < 8; i++) W32(MOD_PY_REST + 4 * (uint32_t)i, n);
+        rt_log("smb3", "map: lives %u (the SMB3 file's)", n);
+    } else S3W(SMB3_Player_Lives, (uint8_t)R32(MOD_PY_REST));
     return 1;
 }
 /* the stage's counters <-> SMB3's (score in tens, 3 bytes; Mario's coins; the cards) */
@@ -227,7 +239,7 @@ static int map_level_end(ppc_context *ctx, uint8_t *base, int died) {
     { extern uint64_t g_frames_presented; rt_log("smb3", "map: the level %s - back to SMB3's map (frame %llu)", died ? "lost" : "cleared", (unsigned long long)g_frames_presented); }
     if (!map_run_until(cond_on_map, 2, "the map again")) {                /* (SMB3 didn't get back: its map from the file - saved on the way in - not 1-1) */
         rt_log("smb3", "map: SMB3's map again from the file");
-        if (!map_session_start()) { map_session_stop(); return 0; }
+        if (!map_session_start(0)) { map_session_stop(); return 0; }
     }
     memcpy(map_fb, nes_framebuffer(), sizeof map_fb);
     S3W(SMB3_Player_Lives, (uint8_t)rest);
@@ -315,6 +327,7 @@ static void map_tick(ppc_context *ctx, uint8_t *base) {
     if (MP.tick_frame == g_frames_presented || !MP.session || MP.phase != MP_MAP) return;
     MP.tick_frame = g_frames_presented;
     uint32_t tm = R32(0x8042A070u); if (tm) W32(tm + 4, 999u * 4096u);  /* (NSMBW's course timer: no time-up on the map) */
+    music_sync(ctx, base);                                               /* (SMB3's sound: NSMBW's streams as it has them) */
     if (pm_frame(ctx, base)) return;                                     /* (NSMBW's map menu up: SMB3 waits) */
     {   uint8_t pad = smb3_pad(g_pad0_buttons);                         /* (+ is the menu's: SMB3's Start isn't on the pad) */
         nes_set_buttons(0, pad); }

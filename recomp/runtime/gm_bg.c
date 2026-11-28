@@ -12,6 +12,7 @@
 #include "gm.h"
 #include "gm_nv.h"
 #include "smb3.h"                               /* ../SMB3Disassembly/port: SMB3's tiles in its stage */
+#include "smw.h"                                /* ../SMWDisassembly/port: SMW's in its */
 
 #define SDA 0x8042F680u
 #define BG_GM         (SDA - 22704)      /* dBgGm_c::m_bg_p */
@@ -101,6 +102,7 @@ static gptr bg_tile_ptr(GM_CTX, uint32_t x, uint32_t y, uint32_t layer, gptr blk
 static uint64_t unit_at(GM_CTX, gptr bg, uint32_t x, uint32_t y, uint32_t layer) {
     FN(0x80077650); NV_KEEP;
     { uint64_t sf; if (smb3_stage_unit(x, y, &sf)) return sf; }           /* (the SMB3 stage: its tiles) */
+    { uint64_t sf; if (smw_stage_unit(x, y, &sf)) return sf; }            /* (the SMW stage: its) */
     ctx->r[31] = layer; ctx->r[30] = y; ctx->r[29] = bg;
     gm_set_u32(f + 12, x); gm_set_u32(f + 8, 0x43300000u);
     ctx->f[1].d = ctx->ps1[1] = frsp(bits2d(ld64g(GM_PASS, f + 8)) - bits2d(ld64g(GM_PASS, ctx->r[2] - 29536)));
@@ -116,6 +118,7 @@ static uint64_t unit_at(GM_CTX, gptr bg, uint32_t x, uint32_t y, uint32_t layer)
 static uint32_t unit_kind_at(GM_CTX, gptr bg, uint32_t x, uint32_t y, uint32_t layer) {
     FN(0x80077700);
     { uint64_t sf; if (smb3_stage_unit(x, y, &sf)) return (uint32_t)sf; }
+    { uint64_t sf; if (smw_stage_unit(x, y, &sf)) return (uint32_t)sf; }
     ctx->lr = 0x80077710u;
     return (uint32_t)unit_at(GM_PASS, bg, x, y, layer);
 }
