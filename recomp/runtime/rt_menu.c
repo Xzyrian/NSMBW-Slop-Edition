@@ -1028,6 +1028,7 @@ static int profiles_input(void) {
         { int kind, conn, pl; uint64_t ad; remotes_slot_info(s, &kind, &ad, &conn, &pl); is_kb = kind == REMOTES_KEYBOARD || (s == 0 && !conn); }
         switch (r->st) {
         case PR_CHOOSE:
+            if (is_kb) { int c; while ((c = plat_text_char())) if (c == 27) pressed |= B_1; }   /* (the keyboard: Esc is Back too) */
             if (r->choice >= 0 && prof_taken(r->choice, s)) r->choice = next_choice(s, r->choice, 1);
             if (pressed & NAV_LEFT) r->choice = next_choice(s, r->choice, -1);
             if (pressed & NAV_RIGHT) r->choice = next_choice(s, r->choice, 1);
@@ -1037,7 +1038,8 @@ static int profiles_input(void) {
             } else if ((pressed & B_PLUS) && r->choice >= 0) {          /* edit this profile */
                 r->st = PR_NAME; r->edit = r->choice; snprintf(r->name, sizeof r->name, "%s", prof_name(r->choice)); r->cur = 0;
                 r->pref = chars_index(prof_pref(r->choice)); if (r->pref < 0) r->pref = 0; r->err = 0;
-            } else if ((pressed & (B_1 | B_B)) && s == 0) return 1;     /* player 1: back */
+            } else if (pressed & (B_1 | B_B)) return 1;                 /* back - from any row still choosing (issue #7: only player 1's
+                                                                           row could, so a keyboard on another slot never got out) */
             break;
         case PR_NAME: {
             int len = (int)strlen(r->name);
@@ -1164,7 +1166,7 @@ static void profiles_draw(float a) {
     if (!nrows) gtext(x + 20, ry, 18, "No controllers connected", with_alpha(GREY, a));
     gtext_centered(320, y + h - 46, 14, "Each controller: Left/Right choose, 2 take it, + edit a profile. New profile: a 4-letter name (Up/Down, or type), then a character.",
                    with_alpha(GREY, a));
-    gtext_centered(320, 456, 20, all_ready && nrows ? "Player 1 - 2: Continue   1: Back" : "1: Back", with_alpha(WHITE, a));
+    gtext_centered(320, 456, 20, all_ready && nrows ? "Player 1 - 2: Continue   1 / Esc: Back" : "1 / Esc: Back", with_alpha(WHITE, a));
 }
 void menu_controls_open(void) { ctl_open = 1; ctl_t = now_s(); rt_log("menu", "controls (from the character select)"); }
 int menu_controls_is_open(void) { return ctl_open; }

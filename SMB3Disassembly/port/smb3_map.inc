@@ -60,12 +60,14 @@ static void map_apply_next(void) {
    SMB3's big Mario sprite - the Spade game's and N-Spade's intro (tilesets 15 / 16, not the
    roulette: Raster_Effect $60). His six sprites (Player_Draw: Sprite_RAM + Player_SprOff, 8 x 16
    each) are taken out of SMB3's picture before it is shown, and the picture is drawn over the box
-   they made, standing on its bottom, as tall as it */
-#define PORT_TEX    (SM_MEM + 0x1F000)           /* (64 x 96 RGB5A3, 12 KB: on the map, the atlas's room past SMB3's picture) */
+   they made: exactly his 3 x 4 tiles (48 x 64). Every picture is fitted into that shape, 3:4
+   (issue #24: it was 2:3 - drawn narrower than his box, a sliver of him showed), and blended over
+   the room where it is partly transparent (issue #25: its soft edges were drawn opaque, dark) */
+#define PORT_TEX    (SM_MEM + 0x1F000)           /* (60 x 80 RGB5A3, 9.4 KB of the 12 KB: on the map, the atlas's room past SMB3's picture) */
 #define PORT_TEXOBJ (SM_MEM + 0x3FE00)
-#define PORT_W 64
-#define PORT_H 96
-static struct { int loaded, ok, on, found, logged, shade; float aspect; int x0, y0, x1, y1; } PT;
+#define PORT_W 60                                /* (3:4 - his box's shape) */
+#define PORT_H 80
+static struct { int loaded, ok, on, found, logged, shade, fade_seen, wait; float aspect; int x0, y0, x1, y1; } PT;
 static uint32_t PT_img[PORT_W * PORT_H];          /* (the picture, 0xAARRGGBB, as loaded) */
 uint8_t ppu_peek_pal(int i);
 static void portrait_load(void) {
@@ -74,7 +76,8 @@ static void portrait_load(void) {
     char path[1200]; snprintf(path, sizeof path, "%s/ui/graphics/smb3/marioportrait.png", g_root);
     int w = 0, h = 0; uint32_t *px = ui_load_png(path, &w, &h);
     if (!px || w < 1 || h < 1) { rt_log("smb3", "map: %s can't be read - SMB3's Mario stays in the bonus rooms", path); free(px); return; }
-    /* fitted into 64 x 96 (its height, centred), each texel the average of the pixels it covers
+    /* fitted into 60 x 80 (its height - or its width if it's wider than 3:4 - centred, standing on
+       the bottom), each texel the average of the pixels it covers
        (colour weighted by alpha), then RGB5A3 in 4 x 4 blocks */
     float sc = (float)PORT_H / h; if (w * sc > PORT_W) sc = (float)PORT_W / w;
     float ox = (PORT_W - w * sc) * 0.5f, oy = PORT_H - h * sc;
@@ -144,8 +147,16 @@ static void portrait_take_mario(void) {
     int x = scr * 256 + col * 16 - S3(SMB3_Horz_Scroll), y = row * 16 - (S3(SMB3_Vert_Scroll) + 1);
     if (!PT.logged) { PT.logged = 1; rt_log("smb3", "map: the bonus room's Mario at Tile_Mem +%03X (row %d col %d) - on screen %d,%d (vscroll %02X/%02X)", at, row, col, x, y, S3(SMB3_Vert_Scroll), S3(SMB3_Level_VertScroll)); }
     PT.found = 1; PT.x0 = x; PT.y0 = y; PT.x1 = x + 48; PT.y1 = y + 64;
-    /* shown as SMB3's picture is: not while the screen is off (PPU_CTL2's BG), shaded with its fade */
+    /* shown as SMB3's picture is: not while the screen is off (PPU_CTL2's BG), shaded with its fade
+       (read back from the palette); and not before the room's fade-in has begun (issue #23: the
+       room's screen came on for a frame with the palette still at its target before
+       Palette_PrepareFadeIn - Fade_Level 4 - darkened it, and the picture showed early, unfaded.
+       Fade_State isn't a sign: SMB3 INCs it, a fade-in after a finished one is state 2) */
+    int fs = S3(SMB3_Fade_State);
+    if (S3(SMB3_Fade_Level) > 0 && (S3(SMB3_PPU_CTL2_Copy) & 0x08)) PT.fade_seen = 1;
+    if (!PT.fade_seen && ++PT.wait < 60) return;                         /* (no fade-in at all after a second: shown anyway) */
     int sh = (S3(SMB3_PPU_CTL2_Copy) & 0x08) ? portrait_fade() : 4;
+    if (getenv("SMB3_PORTRAIT_LOG")) { extern uint64_t g_frames_presented; rt_log("smb3", "portrait f%llu: fade state %d level %d, ctl2 %02X, palette shade %d -> %d", (unsigned long long)g_frames_presented, fs, S3(SMB3_Fade_Level), S3(SMB3_PPU_CTL2_Copy), portrait_fade(), sh); }
     if (sh >= 4) return;
     if (sh != PT.shade) portrait_upload(sh);
     PT.on = 1;
@@ -343,7 +354,7 @@ static void map_tick(ppc_context *ctx, uint8_t *base) {
                                           S3(SMB3_Level_Tileset), S3(0x7EEB + 2), S3(0x7EF9 + 2)); } }
     {   int ts = S3(SMB3_Level_Tileset);
         int sp = ts == 15 || ts == 16 || ts == 17 || (ts == 7 && getenv("SMB3_MAP_TH_NES"));   /* (a Toad House, 7, is a stage now: smb3_stage_toadhouse.inc - SMB3's own with the test switch) */
-        if (sp != MP.special) { MP.special = sp; rt_log("smb3", "map: %s (tileset %d)", sp ? "SMB3 plays a Toad House / bonus screen itself" : "back on the map", ts); }
+        if (sp != MP.special) { MP.special = sp; PT.fade_seen = 0; PT.wait = 0; rt_log("smb3", "map: %s (tileset %d)", sp ? "SMB3 plays a Toad House / bonus screen itself" : "back on the map", ts); }
         if (!sp) map_hide_marker(); else portrait_take_mario();
         if (ts != 0 && !sp) { MP.phase = MP_LEVEL; map_enter_level(ctx, base); return; } }
     memcpy(map_fb, nes_framebuffer(), sizeof map_fb); MP.tex_ok = 0;   /* (the picture: the map's last, kept through the wipe into a level) */
@@ -443,11 +454,13 @@ static void map_draw(ppc_context *ctx, uint8_t *base) {
         ctx->f[1].d = 0.0; ctx->f[2].d = 0.0; ctx->f[3].d = 0.0;
         gcall(ctx, base, A_GXInitTexObjLOD, 8, PORT_TEXOBJ, 1, 1, 0, 0, 0, 0, 0);
         gcall(ctx, base, A_GXLoadTexObj, 2, PORT_TEXOBJ, 0);
-        float h = (float)(PT.y1 - PT.y0), wd = h * PT.aspect, cx = (PT.x0 + PT.x1) * 0.5f;
+        float h = (float)(PT.y1 - PT.y0), wd = h * PT.aspect, cx = (PT.x0 + PT.x1) * 0.5f;   /* (3:4 in his 48 x 64: exactly his box) */
         float px0 = L.lx + cx - wd * 0.5f, px1 = px0 + wd, py0 = -(L.ly + PT.y1 - h), py1 = -(L.ly + PT.y1), pz2 = z + 1.0f;
+        gcall(ctx, base, A_GXSetBlendMode, 4, 1, 4, 5, 0);             /* (blended: GX_BM_BLEND, SRCALPHA, INVSRCALPHA) */
         gcall(ctx, base, A_GXBegin, 3, 0x80, 0, 4);
         const float pq[4][5] = {{px0, py0, pz2, 0, 0}, {px1, py0, pz2, 1, 0}, {px1, py1, pz2, 1, 1}, {px0, py1, pz2, 0, 1}};
         for (int i = 0; i < 4; i++) for (int j = 0; j < 5; j++) gx_fifo_write(fbits(pq[i][j]), 4);
+        gcall(ctx, base, A_GXSetBlendMode, 4, 0, 1, 0, 0);
     }
     gcall(ctx, base, A_G3D_INVALIDATE, 1, 0x7FF);
 }

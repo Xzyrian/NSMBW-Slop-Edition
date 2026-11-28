@@ -6,6 +6,63 @@ without re-deriving it.
 
 ---
 
+## 2026-11-28 (143) - Claude (instance 2): GitHub issues #3, #7, #13, #23, #24, #25, #26 (and #4, #15, #16 found fixed)
+
+User: "look through issues on the GitHub and start fixing what you can". Claimed in TODO.md: #25,
+#13, #7, #26, #5, #17, #3, #14 (and #23, #24 with #25: the same picture).
+
+- **#4, #15, #16**: already fixed by instance 1 (entry 135) - closed on GitHub.
+- **#25** (`SMB3Disassembly/port/smb3_map.inc`): the bonus rooms' Mario picture was drawn with
+  blending off (gx_setup: GX_BM_NONE), so its partly transparent pixels were opaque in their own
+  (dark) colour. Its quad is now drawn blended (GX_BM_BLEND, SRCALPHA / INVSRCALPHA), then the
+  state put back.
+- **#24** (same file): the picture was fitted into 64 x 96 (2:3) and drawn 42.7 x 64 in Mario's
+  48 x 64 box (3:4): a sliver of SMB3's Mario showed beside it. Every picture is now fitted into
+  60 x 80 (3:4, his box's shape) and drawn exactly over his 3 x 4 tiles.
+- **#23** (same file): the room's screen comes on for one frame with the palette still at its
+  target (Fade_Level 0) before Palette_PrepareFadeIn darkens it - portrait_fade read "no fade" and
+  the picture showed over a black screen. It now waits for the room's fade-in to begin (Fade_Level
+  above 0 with the screen on; at most a second), then follows the palette as before. (Fade_State
+  is no sign: SMB3 INCs it - a fade-in after a finished one is state 2.) Test switch
+  `SMB3_PORTRAIT_LOG=1`: the fade each frame.
+  Checked (Linux, headless, SMB3_MAP_TEST_AT=60,80 - World 1's Spade panel, frames dumped every
+  2): before - the picture alone on black at the room's first frame; now - black, then the room
+  and the picture fade in together. The picture sits exactly in Mario's place, smooth edges, the
+  text box clear.
+- **#26** (`smb3_stage.c` smb3_stage_fader): the whole-picture NES fade (rt_nes_fade) takes every
+  pixel to the nearest NES colour and lowers it by the step; NSMBW's fader stays "fading in" for
+  ~31 frames, so for the ~15 after step 4 (the level in full colour) the players' 3D models were
+  still drawn quantized to the NES palette - dull, "still faded". At its full colours (fading in at
+  step 4, fading out at step 0) the fade is now off. Checked (frames dumped every frame on 1-1's
+  entry, SMB3_STAGE_FADELOG): before - Mario posterized from frame 16 to 31 of the fade-in;
+  now - full colour from step 4 on, with the level.
+- **#13** (`smb3_stage.c` smb3_stage_camera): NSMBW's camera zoom is locked in every SMB3 level as
+  it was in Toad Houses (the unzoomed screen into dBgParameter_c +0x40 / +0x44 and dBg_c's zoom
+  targets). Checked: 1-1 with SMB3_STAGE_CAMLOG - the screen 298.7 x 224 throughout.
+- **#3** (`smb3_stage_enemies.inc`, `smb3_stage_battle.inc`): a treasure box ($52) in a level's own
+  object list (World 1's tower: the Warp Whistle) was never spawned - only the Hammer Bros'
+  battles had one. It is now a known object: ObjInit_TreasureBox ($1F ticks, the poof), then the
+  battle's box_frame - touched, the item (Level_TreasureItem) rises and goes into SMB3's inventory;
+  no Level_Event 7 in a level, so play goes on (as SMB3). Its pictures are made whenever the list
+  has one (room kept for them in the atlas, as for brothers); the poof now runs down outside
+  battles too. Test switch `SMB3_STAGE_TEST_OBJ=id,col,row` (hex id) adds an object to the level's
+  list. Checked: a box in 1-1 - spawned, poof, opened, the item (none there) given, gone.
+  Not checked in the tower's secret room itself (reached by flying).
+- **#7** (`runtime/rt_menu.c`, "Who's playing?"): Back was taken only from player 1's row, so a
+  keyboard on any other slot could never leave. Any row that is still choosing can go back now,
+  and Esc does it from the keyboard ("1 / Esc: Back").
+- **#5** (menu music gap): not reproduced. New test switch `RT_AUDIO_DUMP=file` (rt_audio.c: what's
+  heard, raw 32 kHz stereo). Headless on Linux: the title music and the menu's STRM_BGM_MENU
+  (loop 10.4 s - 26.4 s, 22050 Hz, 8 channels) loop with no silence over 100+ s. Asked on the issue
+  which screen and which build.
+- **#17** (note blocks): the bounce's timing matches SMB3 (11 frames standing: Bouncer_PUpVel's 10);
+  what looks late is that the player doesn't ride the block down and up. Setting the position
+  after the collision doesn't move the drawn model (it's placed before), so that needs a model
+  offset at draw - not done.
+- Open: #14 (camera limits per area: no specific limits named), #2, #6, #10-12, #18-22.
+
+---
+
 ## 2026-11-28 (142) - Claude: Retro Mario (SMB1) rebuilt - SMB1's own code from its ROM
 
 User: "rebuild SMB Mario in a similar way to how you just built SMB3 Mario? delete the current

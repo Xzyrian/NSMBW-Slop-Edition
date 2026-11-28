@@ -58,7 +58,9 @@ static int list_has(const uint8_t *wram, int id) {   /* (id -1: a brother) */
     for (int i = 0; d[0] != 0xFF && i < 96; i++, d += 3) if (id < 0 ? obj_bro(d[0]) : d[0] == id) return 1;
     return 0;
 }
-static int list_has_bros(const uint8_t *wram) { return list_has(wram, -1) || list_has(wram, 0x74); }
+static int list_has_bros(const uint8_t *wram) {   /* (the block of pictures needed: brothers, the Micro-Goombas' dropper, a chest - issue #3) */
+    const char *t = getenv("SMB3_STAGE_TEST_OBJ");
+    return list_has(wram, -1) || list_has(wram, 0x74) || list_has(wram, OBJ_TREASUREBOX) || (t && strtol(t, NULL, 16) == OBJ_TREASUREBOX); }
 /* (level_load) the pictures */
 static const uint8_t BT_BRO[8] = {0xB1, 0xB3, 0xB5, 0xB7, 0xA5, 0xA7, 0xBD, 0xBF};   /* ObjP81's halves */
 static const uint8_t BT_HAM[8] = {0xA1, 0xA3, 0xB9, 0xAF, 0x89, 0x8B, 0x8D, 0x8F};   /* Hammer_Patterns', Boomerang_Patterns' */
@@ -68,7 +70,8 @@ static void bt_render(int *slot, const uint8_t *chr, uint32_t nchr, const uint8_
     BT.item = wram[0x7963 - 0x6000];                                     /* Level_TreasureItem */
     bt_reset();
     BT.mg_slot = -1;
-    BT.pics = BT.on || list_has(wram, -1) || list_has(wram, 0x74);   /* (the Micro-Goomba's picture is in the brothers' block: slot 12) */
+    int chest = 0; for (int k = 0; k < OL.n; k++) if (OL.id[k] == OBJ_TREASUREBOX) chest = 1;   /* (objs_load_list's) */
+    BT.pics = BT.on || list_has(wram, -1) || list_has(wram, 0x74) || chest;   /* (the Micro-Goomba's picture is in the brothers' block: slot 12; a chest in the level - its box and item too, issue #3) */
     if (!BT.pics) return;
     if (*slot + 16 > (TEX_H_MAX / 16) * 16) { rt_log("smb3", "brothers: no room for the pictures (slot %d of %d)", *slot, (TEX_H_MAX / 16) * 16); BT.slot0 = -1; return; }
     BT.slot0 = *slot;
@@ -297,10 +300,10 @@ static void box_frame(obj_t *o) {                 /* ObjNorm_TreasureBox */
 static void bt_frame(float cam_l, float cam_r) {
     if (!BT.pics) return;
     hams_frame(cam_l, cam_r);
-    if (!BT.on) return;
+    if (BT.poof) BT.poof--;                                              /* (a chest's poof in a level too) */
+    if (!BT.on) return;                                                  /* (a chest in a level: no Level_Event 7 - taken, the item goes in and play goes on) */
     if (getenv("SMB3_BATTLE_TEST_WIN") && counter1 == atoi(getenv("SMB3_BATTLE_TEST_WIN")))   /* (testing: the brothers beaten at frame N) */
         for (int i = 0; i < NOBJ; i++) if (ob[i].state == OS_NORMAL && obj_bro(ob[i].id)) { ob[i].state = OS_KILLED; ob[i].yvel = -0x30; }
-    if (BT.poof) BT.poof--;
     if (BT.event_cnt) {
         if (!--BT.event_cnt && !BT.ended) {
             BT.ended = 1;

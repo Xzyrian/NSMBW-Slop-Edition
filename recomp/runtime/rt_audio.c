@@ -255,6 +255,9 @@ void audio_tick(void) {
         else { int smb3_stage_audio(int16_t *lr, int n); smb3_stage_audio(pcm, (int)frames); }   /* (SMB3's map in a stage: its music instead of the course's) */
         sfx_mix(pcm, (int)frames);                           /* (our own sounds: rt_sfx.c) */
         plat_audio_push(pcm, (int)frames);
+        {   static FILE *dump; static int tried;                      /* (testing: RT_AUDIO_DUMP=file - what's heard, raw 32 kHz stereo s16) */
+            if (!tried) { tried = 1; const char *e = getenv("RT_AUDIO_DUMP"); if (e) dump = fopen(e, "wb"); }
+            if (dump) { fwrite(pcm, 4, frames, dump); fflush(dump); } }
     }
     {   static uint64_t st_t0, st_frames, st_resets; st_frames += frames;      /* delivery rate, logged every 10 s */
         if (now > aidma_next_ns + 90000000ull) st_resets++;

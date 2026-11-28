@@ -586,7 +586,12 @@ int smb3_stage_fader(uint32_t fd) {
     else if (lf != g_frames_presented) { lf = g_frames_presented; k++; }
     int cur = k, step = cur / 4; if (step > 4) step = 4;
     if (getenv("SMB3_STAGE_FADELOG") && st != 1) rt_log("smb3", "fade: scene %d fader %08X (vtable %08X) status %u frame %d of %d step %d", sc, fd, R32(fd), st, cur, R16(fd + 10), step);
-    rt_nes_fade(st == 0 ? 3 : st == 2 ? 1 : st == 3 ? 2 : 0, step, pal);
+    int mode = st == 0 ? 3 : st == 2 ? 1 : st == 3 ? 2 : 0;
+    /* (the fade at its full colours - fading in at step 4, fading out at step 0 - changes no NES
+       colour, but it still takes every pixel to the nearest one: the players' 3D models looked
+       dull until NSMBW's fader finished, ~15 frames after the level was in full colour - issue #26) */
+    if ((mode == 1 && step >= 4) || (mode == 2 && step == 0)) mode = 0;
+    rt_nes_fade(mode, step, pal);
     return 1;
 }
 int smb3_stage_suppress_actors(void) { return smb3_stage_on() && !probe; }
@@ -2135,7 +2140,8 @@ void smb3_stage_camera(void) {
     uint32_t bp = R32(BG_PARAM_P), bg = R32(0x80429DD0u);           /* dBgParameter_c, dBg_c */
     if (!bp || !bg) return;
     float h = RF(bp + 68); if (h < 100 || h > 1000) return;
-    if (TH.on) {                                                         /* (a Toad House: SMB3's one screen of it, as SMB3 shows it - NSMBW's camera neither zooms out nor moves) */
+    {   /* NSMBW's camera doesn't zoom out: SMB3's view, the unzoomed screen, in its levels as in a
+           Toad House (issue #13 - it zoomed out as NSMBW's does, for speed and for the players) */
         float bw = RF(bp + 0x70), bh = RF(bp + 0x74);                   /* (dBgParameter_c: the unzoomed screen; +0x40 / +0x44 this frame's - dBg_c +0x8FE78.. its targets) */
         if (bw > 100 && bh > 100) {
             W32(bp + 0x40, fbits(bw)); W32(bp + 0x44, fbits(bh));

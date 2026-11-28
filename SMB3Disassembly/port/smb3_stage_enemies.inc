@@ -59,7 +59,7 @@ static int iabs(int v) { return v < 0 ? -v : v; }
 
 /* the kinds handled; anything else in the list stays unspawned for now */
 static int obj_piranha(int id) { return id == OBJ_GREENPIRANHA || id == OBJ_GREENPIRANHA_FIRE || id == OBJ_VENUSFIRETRAP; }
-static int obj_known(int id) { return id == 0x34 /* OBJ_TOAD */ || obj_bro(id) || id == 0x74 /* OBJ_PARAGOOMBAWITHMICROS */ || id == OBJ_ENDLEVELCARD || id == OBJ_GOOMBA || id == OBJ_PARAGOOMBA || id == OBJ_GREENTROOPA || id == OBJ_REDTROOPA || id == OBJ_PARATROOPAGREENHOP || obj_piranha(id); }
+static int obj_known(int id) { return id == 0x34 /* OBJ_TOAD */ || id == 0x52 /* OBJ_TREASUREBOX: a level's chest (issue #3) */ || obj_bro(id) || id == 0x74 /* OBJ_PARAGOOMBAWITHMICROS */ || id == OBJ_ENDLEVELCARD || id == OBJ_GOOMBA || id == OBJ_PARAGOOMBA || id == OBJ_GREENTROOPA || id == OBJ_REDTROOPA || id == OBJ_PARATROOPAGREENHOP || obj_piranha(id); }
 static int obj_dieshelled(int id) { return id == OBJ_GREENTROOPA || id == OBJ_REDTROOPA || id == OBJ_PARATROOPAGREENHOP; }   /* OA3_DIESHELLED */
 static int obj_squash(int id) { return id == OBJ_GOOMBA || id == OBJ_PARAGOOMBA || id == 0x74; }           /* OA3_SQUASH (else OA3_DIESHELLED) */
 static int obj_gndmod(int id) { return id == OBJ_GOOMBA || id == OBJ_GREENTROOPA || id == OBJ_REDTROOPA; }   /* OA2_GNDPLAYERMOD */
@@ -76,6 +76,8 @@ static void objs_load_list(const uint8_t *wram) {
     for (int i = 0; d[0] != 0xFF && OL.n < 96 && i < 96; i++, d += 3) {
         OL.id[OL.n] = d[0]; OL.col[OL.n] = d[1]; OL.row[OL.n] = d[2]; OL.spawned[OL.n] = 0; OL.n++;
     }
+    {   const char *e = getenv("SMB3_STAGE_TEST_OBJ"); int id, c, r;      /* (testing: "id,column,row" hex id - one more object in the list) */
+        if (e && sscanf(e, "%x,%d,%d", &id, &c, &r) == 3 && OL.n < 96) { OL.id[OL.n] = id; OL.col[OL.n] = c; OL.row[OL.n] = r; OL.spawned[OL.n] = 0; OL.n++; } }
     {   char ids[400]; int k = 0; ids[0] = 0;
         for (int i = 0; i < OL.n && k < 380; i++) k += snprintf(ids + k, sizeof ids - k, " %02X@%d,%d%s", OL.id[i], OL.col[i], OL.row[i], obj_known(OL.id[i]) ? "" : "?");
         rt_log("smb3", "enemies: %d objects in the list:%s", OL.n, ids); }
@@ -596,6 +598,7 @@ static void obj_spawn(int k, int slot) {
     if (obj_platform(o->id)) { platobj_init(o); return; }
     if (o->id == OBJ_TOAD) { toad_init(o); return; }
     if (obj_bro(o->id)) { bro_init(o); return; }
+    if (o->id == OBJ_TREASUREBOX) { o->pal = 3; o->timer = 0x1F; return; }   /* (a chest in the level - World 1's tower, the Warp Whistle: ObjInit_TreasureBox, Level_TreasureItem's item; smb3_stage_battle.inc) */
     switch (o->id) {                             /* (ObjectGroup_Attributes: OA1_PAL*) */
     case OBJ_GREENTROOPA: case OBJ_PARATROOPAGREENHOP: case OBJ_GREENPIRANHA: case OBJ_GREENPIRANHA_FIRE: o->pal = 2; break;
     case OBJ_GOOMBA: case 0x74: o->pal = 3; break;                     /* (the Micro-Goomba dropper: OA1_PAL3) */
