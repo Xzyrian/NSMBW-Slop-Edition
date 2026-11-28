@@ -6,6 +6,39 @@ without re-deriving it.
 
 ---
 
+## 2026-11-28 (142) - Claude: Retro Mario (SMB1) rebuilt - SMB1's own code from its ROM
+
+User: "rebuild SMB Mario in a similar way to how you just built SMB3 Mario? delete the current
+version of SMB Mario, and create a more accurate version, with accurate physics" (the user put a
+more complete disassembly + its ROM in `../SMB1Disassembly`). See `docs/RETRO_MARIO.md`
+(Rebuilt from the ROM).
+
+- **No port any more**: SMB1's routines run on a small 6502 (`runtime/smb1_cpu.c`) against each
+  player's own 2 KB of NES RAM, from the ROM (`SMBBase.nes`, embedded by the new
+  `tools/smb1_embed.py`, build step [1d]: `out/smb1_rom.c`, `out/smb1_syms.h` - labels and RAM
+  names from `list.txt` and the sources, the build's switches as `SMB1_CFG_*`). No ROM: SMB1 Mario
+  plays as NSMBW's Mario. The ROM stays out of git.
+- **Movement** (`runtime/smb1_mario.c`): DecTimers, PlayerCtrlRoutine's controller reading, then
+  PlayerMovementSubs and ChkMoveDir each frame; NSMBW's collision goes back in as
+  PlayerBGCollision (state, NYSpd, LandPlyr, ImpedePlayerMove); stomps SetBounce ($FA: this
+  build's EXTRA_BOUNCE), springs JumpspringForce. In play (1-1, headless): walk 1.5 px/frame,
+  run 2.5, standing jump 66 px small and big, 70 walking.
+- **Pictures**: PlayerGfxHandler's 8 OAM sprites drawn from the ROM's CHR in PlayerColors /
+  GroundPaletteData into a 32x32 picture (texture cache, 128). Walk, skid, jump, swim + kick,
+  climb, crouch, fireball throw, growing / shrinking, death, star cycling, Fire Mario's flashing.
+  NSMBW-moved states pose his RAM first (`smb1m_pose`). Goal walk, world map and select sprites:
+  the same. Testing: `retro_mario = 1/3` now makes the world map / select Mario models retro too.
+- **Sounds**: SMB1's SoundEngine (bank 2) renders each sound on a small 2A03 the first time an
+  SMB1 Mario appears (rt_sfx.c "@smb1", `sfx_preload`; MAXCLIP 64). Death: SMB1's death music.
+  Found: this build's SKID_SFX switch cuts the brick sound to one frame (the ROM's behaviour).
+- **Gone**: `runtime/smb1_physics.c/.h`, `tools/test_smb1_physics.c`,
+  `tools/make_retro_templates.py`, `ui/retro/mario/` (sheets, frames.json, guide, WAVs), the sheet
+  code in rt_retro.c. New test: `tools/test_smb1_mario.c` (all ok).
+- **Open**: the star's palette cycling not seen in play (RT_RETRO_STAR's +0x1070 may not be the
+  star timer); pictures for carry / kick / pipes / victory; Windows build not run here.
+
+---
+
 ## 2026-11-27 (141) - Claude: Retro Mario (SMB3) - SMB3's own physics, sprites and sounds
 
 User: "next lets add SMB3 Mario as a character" / "should have authentic SMB3 physics". See

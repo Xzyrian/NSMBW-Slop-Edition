@@ -1,13 +1,15 @@
 /* rt_sfx.c - our own sound effects, mixed into the game's audio output.
  *
- * The retro characters' sounds (ui/retro/<character>/sfx/<name>.wav, any rate, 8/16-bit, mono or
- * stereo) are loaded on first use, resampled to the game's 32 kHz stereo and mixed into each block
+ * The retro characters' sounds - SMB1 Mario's rendered from SMB1's own sound engine ("@smb1":
+ * smb1_mario.c), SMB3 Mario's the build's renders of SMB3's ("@smb3": <game>/sound/smb3/<name>.rwav),
+ * or a .wav (ui/retro/<dir>/sfx/<name>.wav, any rate, 8/16-bit, mono or stereo) - are made or
+ * loaded on first use, resampled to the game's 32 kHz stereo and mixed into each block
  * the game's audio DMA hands to the host (rt_hw.c -> sfx_mix -> plat_audio_push). A sound that is
  * started again while it plays restarts (like the NES's sound channels); up to 8 play at once.
  * settings.ini retro_sfx_volume (0-100, default 70). */
 #include "rt.h"
 
-#define MAXCLIP 32
+#define MAXCLIP 64
 #define VOICES 8
 typedef struct { char key[96]; int16_t *pcm; int frames; int state; } clip_t;   /* state 0 untried, 1 ok, -1 missing */
 static clip_t clips[MAXCLIP];
@@ -101,7 +103,11 @@ static int clip_of(const char *dir, const char *name) {
     clip_t *c = &clips[nclips];
     snprintf(c->key, sizeof c->key, "%s", key);
     char path[1300];
-    if (!strcmp(dir, "@smb3")) {                                        /* (SMB3's own: <game>/sound/smb3/<name>.rwav) */
+    if (!strcmp(dir, "@smb1")) {                                        /* (SMB1's own: its SoundEngine run on the ROM, smb1_mario.c) */
+        int smb1_sfx_render(const char *name, int16_t **pcm, int *frames);
+        snprintf(path, sizeof path, "SMB1 SoundEngine: %s", name);
+        c->state = smb1_sfx_render(name, &c->pcm, &c->frames) ? 1 : -1;
+    } else if (!strcmp(dir, "@smb3")) {                                 /* (SMB3's own: <game>/sound/smb3/<name>.rwav) */
         snprintf(path, sizeof path, "%s/sound/smb3/%s.rwav", g_root, name);
         c->state = load_rwav(path, &c->pcm, &c->frames) ? 1 : -1;
     } else {
@@ -132,6 +138,8 @@ void sfx_play_ifidle(const char *dir, const char *name) {
     for (int i = 0; i < VOICES; i++) if (V[i].clip == c + 1) return;
     sfx_play(dir, name);
 }
+/* made / loaded now rather than when first played (SMB1's are rendered: a moment each) */
+void sfx_preload(const char *dir, const char *name) { (void)clip_of(dir, name); }
 void sfx_stop_all(void) { for (int i = 0; i < VOICES; i++) V[i].clip = 0; }
 
 /* add the playing sounds to a block of 32 kHz stereo */

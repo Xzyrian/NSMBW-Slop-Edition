@@ -7,11 +7,64 @@ levels next to the normal characters and interacts with everything they do.
 
 | Topic | Decision |
 |---|---|
-| Art | User draws the sprites. Templates (white boxes per frame): `ui/retro/mario/*.png`, layout in `frames.json`, guide in `guide/` (`tools/make_retro_templates.py`). |
-| Physics | Faithful SMB1, ported from the disassembly the user provided (`../SMB1Disassembly/SMBDIS.ASM`). No wall jump / spin jump / ground pound. |
-| Power-ups | All NSMBW power-ups (sheets: small, super, fire, ice, propeller, penguin, mini). |
+| Art | SMB1's own sprites, from the ROM (2026-11-27; until then user-drawn sheets in `ui/retro/mario/`, now gone). |
+| Physics | SMB1's own code, run from the ROM (2026-11-27, user: "delete the current version of SMB Mario, and create a more accurate version"; until then a C port of `SMBDIS.ASM`). No wall jump / spin jump / ground pound. |
+| Power-ups | All NSMBW power-ups: small / big / fire as SMB1's; Ice Flower = fire in ice colours; propeller, penguin = big; mini = small at half size. |
 | Selection | An extra character in the character select. |
-| Drawing | One textured plane, 1 tile (16 units) wide: 16x16 small, 16x32 big. 1 sprite pixel = 1 game unit. |
+| Drawing | One textured plane, 32x32 units: the 8 sprites PlayerGfxHandler put in OAM. 1 sprite pixel = 1 game unit. |
+
+## Rebuilt from the ROM (2026-11-27)
+
+The user replaced the disassembly with a more complete one plus its ROM
+(`../SMB1Disassembly`: the MMC3 build for asm6 - `build.bat` makes `SMBBase.nes` and the listing
+`list.txt`; 8 PRG banks of 16 KB, the last fixed at $C000; the original first half, with the
+player code, is bank 0). SMB1 Mario no longer has a port of anything: SMB1's routines run on a
+small 6502 against his own copy of the NES's 2 KB of RAM.
+
+- **`tools/smb1_embed.py`** (build step [1d]) writes `out/smb1_rom.c` (the ROM) and
+  `out/smb1_syms.h` (every RAM name and code label from the listing and the sources, with its
+  bank; the build's switches from `code/settings*.asm` as `SMB1_CFG_*`). No ROM: an empty one,
+  and SMB1 Mario plays as NSMBW's Mario (a log line). The ROM is not in git (`.gitignore`).
+- **`runtime/smb1_cpu.c`** - the 6502 (all official opcodes, JMP ($xxFF) page wrap, no decimal
+  mode): $0000-$07FF RAM, $8000 one bank, $C000 the fixed bank, $4000-$4017 to a hook.
+- **`runtime/smb1_mario.c`** - each frame: the NMI's DecTimers and FrameCounter, the last
+  frame's SaveAB, PlayerCtrlRoutine's controller reading (down + left/right on the ground: none),
+  then **PlayerMovementSubs** (bank 0) and ChkMoveDir. His height is kept on the playing field
+  ($80, the water's surface $10 - SMB1 can't swim above $14) with JumpOrigin_Y_Position kept the
+  same distance above him; the host moves the NSMBW player by the change of
+  Player_Y_Position + Player_YMF_Dummy, and by Player_X_Speed / 16 sideways. What NSMBW's collision
+  found goes in as **PlayerBGCollision** would put it (`smb1m_collide`: the default state, the
+  head (NYSpd: Y speed 1), landing (LandPlyr), ImpedePlayerMove on either side). Stomps:
+  SetBounce ($FA with this build's EXTRA_BOUNCE); springs: JumpspringForce ($F4 / $F9).
+- **Pictures**: **PlayerGfxHandler** (fixed bank) on his RAM after the frame's move - walk
+  cycle, skid, jump, swim with the kick tile, climbing, crouch, the fireball throw
+  (FireballThrowingTimer when NSMBW throws one), growing / shrinking (PlayerChangeSizeFlag's
+  animation when NSMBW's power-up changes his size), the death picture (GameEngineSubroutine
+  $0B). The 8 OAM sprites are drawn from the ROM's sprite pattern table (CHR's first 4 KB:
+  MMC3 CHR0/CHR1) in PlayerColors (Mario's, the fiery one) and GroundPaletteData's sprite
+  palettes (the star's cycling - CyclePlayerPalette - and Fire Mario's flashing use them) into a
+  32x32 picture; each different picture is a texture (128 kept, `S1_TEX`). In states NSMBW moves
+  him in, his RAM is first set as SMB1's would be (`smb1m_pose`: dead, climbing up / down / still,
+  in the air, walking at his speed) and his timers run. The goal pole walk and the world map /
+  select sprites are his pictures too.
+- **Sounds**: what the routines put in the sound queues (jumps and swim strokes from
+  PlayerPhysicsSub, the skid from ProcessPlayerAction) and what the host maps NSMBW's events to
+  are played as SMB1's **SoundEngine** (bank 2) makes them: run alone on a fresh NES with the one
+  sound queued, a frame at a time, on a small 2A03 (pulses, triangle, noise), 32 kHz
+  (`smb1_sfx_render`, rt_sfx.c "@smb1"). Rendered the first time an SMB1 Mario appears (~0.1 s for
+  all). Death: SMB1's death music (EventMusicQueue $01).
+- This build's SKID_SFX switch (on in `settings.default.asm`) makes the noise channel's skid
+  sound share NoiseSfxHandler with the brick: its PlayBrickShatter no longer sets
+  NoiseSoundBuffer, so the brick sound stops after its first frame (0.04 s) - the ROM's own
+  behaviour, kept.
+- Tests: `tools/test_smb1_mario.c` (walk $18 after 41 frames, run $28 17 frames later, stops in
+  49; jumps 66 px standing, 70 walking, 82.5 running, 26 tapped; every sound rendered; pictures
+  as text):
+  `python3 tools/smb1_embed.py; cc -Iruntime -Iout tools/test_smb1_mario.c runtime/smb1_mario.c runtime/smb1_cpu.c out/smb1_rom.c`.
+
+The sections below describe the first version; where they speak of `smb1_physics`, sheets,
+`frames.json` or `ui/retro/mario/sfx` that is gone (the hooks, states, goal script, vines,
+no-particles and models parts still hold).
 
 ## Scale
 
@@ -210,7 +263,7 @@ as its sprite.
 
 ## Testing
 
-- `tools/test_smb1_physics.c` - the physics and the picture choice, without the game.
+- `tools/test_smb1_mario.c` - SMB1's routines from the ROM, without the game (above).
 - In the game (Linux build, headless): pick Retro Mario in the character select (or
   `retro_mario = 1` in settings.ini), then
   `RT_RETROLOG=1` (a line per frame: who moves it, state, position, SMB1 state/speeds) and
@@ -224,7 +277,6 @@ as its sprite.
 - World map walking (left / right / up / down along paths) checked only by logic: the test save
   had no open path. Check the sprite's size against the map model's look.
 - HUD / course-in / file select head icons for the retro character (2D pictures, user's call).
-- Sprites for the other forms (fire, ice, propeller, penguin, mini) - user (big: done).
 - **Underwater bubbles still there**: the small bubbles that rise near SMB1 Mario after a swim
   stroke are not made through the effect system - they stay with every effect switched off
   (`RT_NO_EFFECTS=1`, testing) - nor by the player's own code (no effect, actor or joint lookup
@@ -233,8 +285,8 @@ as its sprite.
 - Not verified in play: vines (no test level found), Yoshi, carrying, the world map's smoke with
   a retro map player, 1-up and fireball sounds (who collected the 1-up: only while its own
   update runs).
-- SMB1 pictures in more NSMBW states: carrying, throwing, kicking, power-up change (grow),
-  shooting fireballs, pipe entry (front/back), victory.
+- SMB1 pictures in more NSMBW states: carrying, kicking, pipe entry (front/back), victory
+  (growing and the fireball throw: done, 2026-11-27).
 - Verify in play: stomping, springs, swimming, vines, moving platforms, slopes.
 - Testing switch `RT_RETRO_STAR=1`: the retro player stays invincible (star timer), to walk a
   level in a scripted test without dying.

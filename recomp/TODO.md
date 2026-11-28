@@ -180,16 +180,16 @@ Legend: `[ ]` open, `[~]` in progress (who), `[x]` done.
   - [ ] save format v2 (per character; remember each slot's character)
   - [ ] Goomba's model (from its mod) - needs a 9th body
 - [~] **Retro Mario (SMB1)** (Claude instance 2) - `docs/RETRO_MARIO.md`.
-  - [x] SMB1 physics ported from the disassembly (`runtime/smb1_physics.c`, tests in
-    `tools/test_smb1_physics.c`)
-  - [x] sprite sheet templates (`ui/retro/mario/`); [x] user: small sheet painted;
-    [ ] user: super, fire, ice, propeller, penguin, mini
+  - [x] 2026-11-27: rebuilt - SMB1's own code run from the ROM (`runtime/smb1_mario.c`,
+    `smb1_cpu.c`, `tools/smb1_embed.py`): movement, pictures, sounds (CHANGELOG 142); the port
+    (`smb1_physics.c`) and the drawn sheets (`ui/retro/mario/`) are gone
   - [x] an NSMBW player driven by the SMB1 physics, collision fed back (`runtime/rt_retro.c`)
   - [x] drawn as a 1-tile sprite plane, SMB1 animation rules
   - [x] no 3D model anywhere: world map, select figure, ... are the sprite plane too
     (left/right only); [ ] HUD head icons (2D) for the retro characters
   - [x] selection: an entry in the character select (character 10)
-  - [ ] more pictures in NSMBW states (carry, throw, grow, shoot, pipes, victory), play-testing
+  - [ ] more pictures in NSMBW states (carry, kick, pipes, victory; grow and throw: done), play-testing
+  - [ ] the star's palette cycling in play (works on its own; NSMBW's star timer not found at +0x1070?)
 - [~] **Retro Mario (SMB3)** (user, 2026-11-27: "add SMB3 Mario as a character / should have
   authentic SMB3 physics") - Claude: SMB3's player code ported (`runtime/smb3_physics.c`), SMB3's
   own sprites and sounds, small / Super / Fire / Raccoon / Frog (CHANGELOG 141, docs/RETRO_MARIO.md).

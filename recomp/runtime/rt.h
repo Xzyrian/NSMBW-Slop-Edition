@@ -202,9 +202,10 @@ void remotes_forget(int slot);
 int  wiimote_connected(int i);                              /* rt_wiimote.c: game remote i is in */
 int  menu_owns_input(void);                                 /* rt_menu.c: our menus (or the title) have the controls */
 extern uint64_t g_frames_presented;
-void sfx_play(const char *dir, const char *name);         /* rt_sfx.c: ui/retro/<dir>/sfx/<name>.wav */
+void sfx_play(const char *dir, const char *name);         /* rt_sfx.c: "@smb1" SMB1's (smb1_mario.c), "@smb3" SMB3's, else ui/retro/<dir>/sfx/<name>.wav */
 void sfx_play_ifidle(const char *dir, const char *name);   /* (not restarted while it plays; dir "@smb3": <game>/sound/smb3/<name>.rwav) */
 void sfx_stop_all(void);
+void sfx_preload(const char *dir, const char *name);    /* (made now, not on first play) */
 void sfx_mix(int16_t *pcm, int frames);                   /* (into a 32 kHz stereo block) */
 void plat_audio_push(const int16_t *lr, int frames);     /* 32 kHz stereo, interleaved L,R */
 void plat_parallel_for(int n, void (*fn)(int i, void *arg), void *arg);   /* rt_threads.c */

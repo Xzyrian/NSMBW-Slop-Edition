@@ -12,7 +12,7 @@
  *
  * It knows nothing about the level (Player_DetectSolids is the host's): each frame the host gives
  * the buttons, moves the player by the velocities and reports what the collision found
- * (smb3p_land, smb3p_leave_ground, smb3p_ceiling, smb3p_wall), like smb1_physics.c. Units are
+ * (smb3p_land, smb3p_leave_ground, smb3p_ceiling, smb3p_wall), as the SMB1 Mario host does for smb1_mario.c. Units are
  * the same in both games: 1 pixel = 1 unit, 60 frames a second, y down (the host flips).
  */
 #pragma once
